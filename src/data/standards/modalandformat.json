@@ -1,0 +1,3700 @@
+{
+  "data": [
+    {
+      "id": 1438,
+      "type": "model_and_format",
+      "name": "Observations Data Model 2",
+      "abbreviation": "ODM2",
+      "doi": "10.25504/FAIRsharing.de40c7",
+      "registry": "Standard",
+      "description": "Observations Data Model 2 (ODM2) is an information model for feature-based earth observations, designed to facilitate interoperability across scientific disciplines and domains. ODM2's metadata is structured around sampling, sensing, and analysis workflows. It also provides a supporting software ecosystem. Implementing the ODM2 data model as a database allows the integration of hydrological time series, soil and sediment geochemistry, biodiversity surveys, oceanographic sensor profiles, and multi-dimensional spectra.",
+      "domains": [],
+      "subjects": [
+        {
+          "label": "Geochemistry",
+          "id": 432,
+          "definitions": [
+            "Geochemistry is defined as the study of the processes that control the abundance, composition, and distribution of chemical compounds and isotopes in geologic environments. [Adapted from https://www.sciencedirect.com/topics/earth-and-planetary-sciences/geochemistry and https://doi.org/10.1016/B978-0-12-803350-0.00001-5, AL 2.4.2019]"
+          ],
+          "iri": "http://aims.fao.org/aos/agrovoc/c_24848",
+          "synonyms": []
+        },
+        {
+          "label": "Hydrogeology",
+          "id": 436,
+          "definitions": [
+            "Hydrogeology is the subfield of Geology that is concerned with the study of water on or below the surface of the earth."
+          ],
+          "iri": "http://aims.fao.org/aos/agrovoc/c_11669",
+          "synonyms": []
+        },
+        {
+          "label": "Geology",
+          "id": 471,
+          "definitions": [
+            "Geology is the study or science of the earth, its history, and its life as recorded in the rocks; includes the study of geologic features of an area, such as the geometry of rock formations, weathering and erosion, and sedimentation."
+          ],
+          "iri": "http://purl.obolibrary.org/obo/OMIT_0007039",
+          "synonyms": []
+        },
+        {
+          "label": "Biodiversity",
+          "id": 685,
+          "definitions": [
+            "The degree of variation of life forms within a given ecosystem, biome or an entire planet."
+          ],
+          "iri": "http://edamontology.org/topic_3050",
+          "synonyms": []
+        },
+        {
+          "label": "Oceanography",
+          "id": 810,
+          "definitions": [
+            "Oceanography is the branch of science concerned with the physical and biological properties and phenomena of the ocean. [OED, AL 20.05.2019]"
+          ],
+          "iri": "http://purl.obolibrary.org/obo/OMIT_0010809",
+          "synonyms": []
+        },
+        {
+          "label": "Hydrology",
+          "id": 831,
+          "definitions": [
+            "Hydrology is the scientific study of the movement, distribution, and quality of water on Earth and other planets, including the water cycle, water resources and environmental watershed sustainability. [AgroVoc, 28.3.2019]"
+          ],
+          "iri": "http://aims.fao.org/aos/agrovoc/c_3731",
+          "synonyms": []
+        }
+      ],
+      "taxonomies": [
+        {
+          "label": "Not applicable"
+        }
+      ],
+      "userDefinedTags": [
+        {
+          "label": "earth observation"
+        }
+      ],
+      "recordAssociations": [],
+      "reverseRecordAssociations": [
+        {
+          "fairsharingRecord": {
+            "name": "International GeoSample Number",
+            "id": 51,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "related_to"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "Observations and Measurements",
+            "id": 203,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "related_to"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "Observations Data Model 2 Controlled Vocabulary",
+            "id": 509,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "related_to"
+        }
+      ],
+      "status": "ready",
+      "isRecommended": false
+    },
+    {
+      "id": 17,
+      "type": "model_and_format",
+      "name": "XML for evolutionary biology and comparative genomics.",
+      "abbreviation": "phyloXML",
+      "doi": "10.25504/FAIRsharing.3mprr8",
+      "registry": "Standard",
+      "description": "PhyloXML is an XML language designed to describe phylogenetic trees (or networks) and associated data. PhyloXML provides elements for commonly used features, such as taxonomic information, gene names and identifiers, branch lengths, support values, and gene duplication and speciation events.",
+      "domains": [],
+      "subjects": [
+        {
+          "label": "Phylogenetics",
+          "id": 629,
+          "definitions": [
+            "The study of evolutionary relationships amongst organisms from analysis of genetic information (typically gene or protein sequences)."
+          ],
+          "iri": "http://edamontology.org/topic_3293",
+          "synonyms": [
+            "Biological Systematics"
+          ]
+        },
+        {
+          "label": "Evolutionary Biology",
+          "id": 719,
+          "definitions": [
+            "The evolutionary processes, from the genetic to environmental scale, that produced life in all its diversity."
+          ],
+          "iri": "http://edamontology.org/topic_3299",
+          "synonyms": []
+        },
+        {
+          "label": "Life Science",
+          "id": 742,
+          "definitions": [
+            "Life Science is the study of all of the divisions of the natural sciences dealing with the various aspects of the phenomena of life and vital processes."
+          ],
+          "iri": "http://aims.fao.org/aos/agrovoc/c_4318",
+          "synonyms": [
+            "Life Sciences"
+          ]
+        },
+        {
+          "label": "Comparative Genomics",
+          "id": 783,
+          "definitions": [
+            "The study (typically comparison) of the sequence, structure or function of multiple genomes."
+          ],
+          "iri": "http://edamontology.org/topic_0797",
+          "synonyms": []
+        }
+      ],
+      "taxonomies": [
+        {
+          "label": "All"
+        }
+      ],
+      "userDefinedTags": [],
+      "recordAssociations": [
+        {
+          "linkedRecord": {
+            "name": "Extensible Markup Language",
+            "id": 1277,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "related_to"
+        }
+      ],
+      "reverseRecordAssociations": [
+        {
+          "fairsharingRecord": {
+            "name": "Integrated Microbial Genomes And Microbiomes",
+            "id": 1598,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "implements"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "Virus Pathogen Database and Analysis Resource",
+            "id": 1697,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "implements"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "GreenPhylDB: A phylogenomic database for plant comparative genomics",
+            "id": 1827,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "implements"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "RDA Covid-19 WG Resources",
+            "id": 3540,
+            "registry": "Collection"
+          },
+          "recordAssocLabel": "collects"
+        }
+      ],
+      "status": "ready",
+      "isRecommended": false
+    },
+    {
+      "id": 1403,
+      "type": "model_and_format",
+      "name": "EngMeta",
+      "abbreviation": "EngMeta",
+      "doi": null,
+      "registry": "Standard",
+      "description": "EngMeta is a metadata model for data from computational engineering based on existing standards and developed to enable a structured documentation of the research process and the simulation environment all together with discipline specific information about the simulated system.",
+      "domains": [
+        {
+          "label": "Modeling and simulation",
+          "id": 1335,
+          "definitions": [],
+          "iri": "http://purl.obolibrary.org/obo/ERO_0100102",
+          "synonyms": [
+            "modeling and simulation objective",
+            "modeling objective",
+            "mathematical modeling objective"
+          ],
+          "inFairsharing": true
+        }
+      ],
+      "subjects": [
+        {
+          "label": "Engineering Science",
+          "id": 468,
+          "definitions": [
+            "The discipline concerned with the application of scientific knowledge to solve practical issues in commerce or industry."
+          ],
+          "iri": "http://purl.obolibrary.org/obo/NCIT_C16548",
+          "synonyms": []
+        },
+        {
+          "label": "Aerospace Engineering",
+          "id": 524,
+          "definitions": [
+            "Aerospace Engineering is the field of engineering concerned with the development of aircraft and spacecraft."
+          ],
+          "iri": "http://www.fairsharing.org/ontology/subject/SRAO_0000283",
+          "synonyms": []
+        },
+        {
+          "label": "Thermodynamics",
+          "id": 559,
+          "definitions": [
+            "The branch of physics concerned with the conversion of different forms of energy."
+          ],
+          "iri": "http://purl.obolibrary.org/obo/NCIT_C17193",
+          "synonyms": []
+        },
+        {
+          "label": "Molecular Dynamics",
+          "id": 686,
+          "definitions": [
+            "The science of simulating the motions of a system of particles. (Karplus and Petsko)"
+          ],
+          "iri": "http://purl.obolibrary.org/obo/NCIT_C18097",
+          "synonyms": []
+        }
+      ],
+      "taxonomies": [
+        {
+          "label": "Not applicable"
+        }
+      ],
+      "userDefinedTags": [
+        {
+          "label": "Aerodynamics"
+        },
+        {
+          "label": "High Performance Computing (HPC)"
+        }
+      ],
+      "recordAssociations": [
+        {
+          "linkedRecord": {
+            "name": "Premis Data Dictionary for the Preservation Metadata",
+            "id": 1529,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "related_to"
+        },
+        {
+          "linkedRecord": {
+            "name": "CodeMeta",
+            "id": 1413,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "related_to"
+        }
+      ],
+      "reverseRecordAssociations": [
+        {
+          "fairsharingRecord": {
+            "name": "DataCite Metadata Schema",
+            "id": 758,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "related_to"
+        }
+      ],
+      "status": "in_development",
+      "isRecommended": false
+    },
+    {
+      "id": 18,
+      "type": "model_and_format",
+      "name": "Systems Biology Markup Language",
+      "abbreviation": "SBML",
+      "doi": "10.25504/FAIRsharing.9qv71f",
+      "registry": "Standard",
+      "description": "The Systems Biology Markup Language (SBML) is a machine-readable exchange format for computational models of biological processes. Its strength is in representating phenomena at the scale of biochemical reactions, but it is not limited to that. By supporting SBML as an input and output format, different software tools can operate on the same representation of a model, removing chances for errors in translation and assuring a common starting point for analyses and simulations.",
+      "domains": [
+        {
+          "label": "Mathematical model",
+          "id": 992,
+          "definitions": [
+            "A biological model represented in mathematical terms."
+          ],
+          "iri": "http://edamontology.org/data_0950",
+          "synonyms": [
+            "Biological model"
+          ],
+          "inFairsharing": true
+        },
+        {
+          "label": "Network model",
+          "id": 1109,
+          "definitions": [
+            "model based on a network of nodes or vertices, linked by edges or arcs. nodes can be physical entities, processes, events or logic operators. Edges can represent fluxs, interactions, influences etc."
+          ],
+          "iri": "http://identifiers.org/mamo/MAMO_0000035",
+          "synonyms": [],
+          "inFairsharing": true
+        },
+        {
+          "label": "Molecular entity",
+          "id": 1137,
+          "definitions": [
+            "Any constitutionally or isotopically distinct atom, molecule, ion, ion pair, radical, radical ion, complex, conformer etc., identifiable as a separately distinguishable entity."
+          ],
+          "iri": "http://purl.obolibrary.org/obo/CHEBI_23367",
+          "synonyms": [],
+          "inFairsharing": true
+        },
+        {
+          "label": "Modeling and simulation",
+          "id": 1335,
+          "definitions": [],
+          "iri": "http://purl.obolibrary.org/obo/ERO_0100102",
+          "synonyms": [
+            "modeling and simulation objective",
+            "modeling objective",
+            "mathematical modeling objective"
+          ],
+          "inFairsharing": true
+        },
+        {
+          "label": "Enzymatic reaction",
+          "id": 1546,
+          "definitions": [
+            "terms aiming to represent biochemical reactions referring to their resulting product modifications."
+          ],
+          "iri": "http://purl.obolibrary.org/obo/MI_0414",
+          "synonyms": [
+            "Biochemical reaction"
+          ],
+          "inFairsharing": true
+        },
+        {
+          "label": "Pathway model",
+          "id": 1756,
+          "definitions": [
+            "A pathway is a set of inter-connected  reactions and interactions whose delineation and scope are used as a model for exploring and studying, describing and understanding the working of and relationships between biomolecules within a context."
+          ],
+          "iri": "http://purl.obolibrary.org/obo/PW_0000001",
+          "synonyms": [
+            "pathway"
+          ],
+          "inFairsharing": true
+        }
+      ],
+      "subjects": [
+        {
+          "label": "Systems Biology",
+          "id": 838,
+          "definitions": [
+            "The holistic modelling and analysis of complex biological systems and the interactions therein."
+          ],
+          "iri": "http://edamontology.org/topic_2259",
+          "synonyms": []
+        }
+      ],
+      "taxonomies": [
+        {
+          "label": "All"
+        }
+      ],
+      "userDefinedTags": [],
+      "recordAssociations": [
+        {
+          "linkedRecord": {
+            "name": "CellML",
+            "id": 434,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "related_to"
+        },
+        {
+          "linkedRecord": {
+            "name": "Simulation Experiment Description Markup Language",
+            "id": 80,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "related_to"
+        },
+        {
+          "linkedRecord": {
+            "name": "Systems Biology Graphical Notation",
+            "id": 1149,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "related_to"
+        },
+        {
+          "linkedRecord": {
+            "name": "Minimal Information Required In the Annotation of Models",
+            "id": 988,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "related_to"
+        },
+        {
+          "linkedRecord": {
+            "name": "Open Food Safety Model Ontology",
+            "id": 834,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "related_to"
+        },
+        {
+          "linkedRecord": {
+            "name": "Systems Biology Ontology",
+            "id": 1156,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "related_to"
+        },
+        {
+          "linkedRecord": {
+            "name": "Open Modeling EXchange format",
+            "id": 1161,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "related_to"
+        },
+        {
+          "linkedRecord": {
+            "name": "Extensible Markup Language",
+            "id": 1277,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "related_to"
+        },
+        {
+          "linkedRecord": {
+            "name": "BioSimulators conventions for the inputs, outputs, and capabilities of biosimulation software tools",
+            "id": 1536,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "related_to"
+        },
+        {
+          "linkedRecord": {
+            "name": "EnzymeML",
+            "id": 623,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "related_to"
+        }
+      ],
+      "reverseRecordAssociations": [
+        {
+          "fairsharingRecord": {
+            "name": "MetaCrop 2.0",
+            "id": 1605,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "implements"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "Integrated Pathway Analysis and Visualization System",
+            "id": 1665,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "implements"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "BRENDA Enzyme Database",
+            "id": 1789,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "implements"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "Gramene: A curated, open-source, integrated data resource for comparative functional genomics in plants",
+            "id": 1837,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "implements"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "BioModels",
+            "id": 1846,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "implements"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "Reactome",
+            "id": 1866,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "implements"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "SABIO-RK Biochemical Reaction Kinetics Database",
+            "id": 1891,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "implements"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "YEASTNET: A consensus reconstruction of yeast metabolism",
+            "id": 2103,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "implements"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "Experimental data repository for KInetic MOdels of biological SYStems",
+            "id": 2159,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "implements"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "SIGnaling Network Open Resource",
+            "id": 2224,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "implements"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "Physiome Model Repository",
+            "id": 2261,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "implements"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "FAIRDOMHub",
+            "id": 2262,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "implements"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "JWS Online",
+            "id": 2266,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "implements"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "BiGG Models",
+            "id": 2268,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "implements"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "MetaNetX",
+            "id": 2281,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "implements"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "Virtual Parts Repository",
+            "id": 2304,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "implements"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "PathBank",
+            "id": 2831,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "implements"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "EMBO Press Recommended Databases and Data Standards",
+            "id": 3470,
+            "registry": "Policy"
+          },
+          "recordAssocLabel": "recommends"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "Advanced Genetics",
+            "id": 3473,
+            "registry": "Policy"
+          },
+          "recordAssocLabel": "recommends"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "Computational Modeling (COMBINE)",
+            "id": 3495,
+            "registry": "Collection"
+          },
+          "recordAssocLabel": "collects"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "H2020 Phenome and Metabolome aNalysis (PhenoMenal) Project",
+            "id": 3503,
+            "registry": "Collection"
+          },
+          "recordAssocLabel": "collects"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "FAIRDOM Community Standards",
+            "id": 3505,
+            "registry": "Collection"
+          },
+          "recordAssocLabel": "collects"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "The NormSys Registry for Modeling Standards",
+            "id": 3530,
+            "registry": "Collection"
+          },
+          "recordAssocLabel": "collects"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "ISO 20691 - Requirements for data formatting and description in the life sciences",
+            "id": 3533,
+            "registry": "Collection"
+          },
+          "recordAssocLabel": "collects"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "Systems Medicine",
+            "id": 3536,
+            "registry": "Collection"
+          },
+          "recordAssocLabel": "collects"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "MorpheusML model repository",
+            "id": 4401,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "related_to"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "Virtual Metabolic Human",
+            "id": 4410,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "implements"
+        }
+      ],
+      "status": "ready",
+      "isRecommended": true
+    },
+    {
+      "id": 1214,
+      "type": "model_and_format",
+      "name": "DEscription Language for TAxonomy",
+      "abbreviation": "DELTA",
+      "doi": "10.25504/FAIRsharing.svzbnp",
+      "registry": "Standard",
+      "description": "When taxonomic descriptions are prepared for input to computer programs, the form of the coding is usually dictated by the requirements of a particular program or set of programs. This restricts the type of data that can be represented, and the number of other programs that can use the data. Even when working with a particular program, it is frequently necessary to set up different versions of the same basic data, for example, when using restricted sets of taxa or characters to make special-purpose keys. The potential advantages of automation, especially in connexion with large groups, cannot be realized if the data have to be restructured by hand for every operation. The DELTA (DEscription Language for TAxonomy) system was developed to overcome these problems. It was designed primarily for easy use by people rather than for convenience in computer programming, and is versatile enough to replace the written description as the primary means of recording data. Consequently, it can be used as a shorthand method of recording data, even if computer processing of the data is not envisaged.",
+      "domains": [
+        {
+          "label": "Taxonomic classification",
+          "id": 1023,
+          "definitions": [
+            "The full name for a group of organisms, reflecting their biological classification and (usually) conforming to a standard nomenclature."
+          ],
+          "iri": "http://edamontology.org/data_1872",
+          "synonyms": [
+            "Taxonomic information",
+            "Taxonomic name"
+          ],
+          "inFairsharing": true
+        }
+      ],
+      "subjects": [
+        {
+          "label": "Biodiversity",
+          "id": 685,
+          "definitions": [
+            "The degree of variation of life forms within a given ecosystem, biome or an entire planet."
+          ],
+          "iri": "http://edamontology.org/topic_3050",
+          "synonyms": []
+        },
+        {
+          "label": "Life Science",
+          "id": 742,
+          "definitions": [
+            "Life Science is the study of all of the divisions of the natural sciences dealing with the various aspects of the phenomena of life and vital processes."
+          ],
+          "iri": "http://aims.fao.org/aos/agrovoc/c_4318",
+          "synonyms": [
+            "Life Sciences"
+          ]
+        }
+      ],
+      "taxonomies": [
+        {
+          "label": "All"
+        }
+      ],
+      "userDefinedTags": [],
+      "recordAssociations": [],
+      "reverseRecordAssociations": [
+        {
+          "fairsharingRecord": {
+            "name": "TDWG Biodiversity Information Standards",
+            "id": 3537,
+            "registry": "Collection"
+          },
+          "recordAssocLabel": "collects"
+        }
+      ],
+      "status": "ready",
+      "isRecommended": false
+    },
+    {
+      "id": 125,
+      "type": "model_and_format",
+      "name": "Variant Call Format",
+      "abbreviation": "VCF",
+      "doi": "10.25504/FAIRsharing.cfzz0h",
+      "registry": "Standard",
+      "description": "Variant Call Format (VCF) is a text file format (most likely stored in a compressed manner). It contains meta-information lines, a header line, and then data lines each containing information about a position in the genome.",
+      "domains": [
+        {
+          "label": "Sequence position",
+          "id": 1002,
+          "definitions": [
+            "A position of one or more points (base or residue) in a sequence, or part of such a specification."
+          ],
+          "iri": "http://edamontology.org/data_1016",
+          "synonyms": [],
+          "inFairsharing": true
+        },
+        {
+          "label": "Deoxyribonucleic acid",
+          "id": 1131,
+          "definitions": [
+            "High molecular weight, linear polymers, composed of nucleotides containing deoxyribose and linked by phosphodiester bonds; DNA contain the genetic information of organisms."
+          ],
+          "iri": "http://purl.obolibrary.org/obo/CHEBI_16991",
+          "synonyms": [
+            "DNA"
+          ],
+          "inFairsharing": true
+        },
+        {
+          "label": "Genome",
+          "id": 1826,
+          "definitions": [
+            "A genome is the sum of genetic material within a cell or virion."
+          ],
+          "iri": "http://purl.obolibrary.org/obo/SO_0001026",
+          "synonyms": [],
+          "inFairsharing": true
+        },
+        {
+          "label": "Genotype",
+          "id": 1907,
+          "definitions": [
+            "The total sum of the genetic information of an organism that is known and relevant to the experiment being performed, including chromosomal, plasmid, viral or other genetic material which has been introduced into the organism either prior to or during the experiment."
+          ],
+          "iri": "http://www.ebi.ac.uk/efo/EFO_0000513",
+          "synonyms": [],
+          "inFairsharing": true
+        }
+      ],
+      "subjects": [
+        {
+          "label": "Genomics",
+          "id": 541,
+          "definitions": [
+            "The study of comprehensive sets of genes via high throughput methods."
+          ],
+          "iri": "http://purl.obolibrary.org/obo/NCIT_C84343",
+          "synonyms": []
+        },
+        {
+          "label": "Life Science",
+          "id": 742,
+          "definitions": [
+            "Life Science is the study of all of the divisions of the natural sciences dealing with the various aspects of the phenomena of life and vital processes."
+          ],
+          "iri": "http://aims.fao.org/aos/agrovoc/c_4318",
+          "synonyms": [
+            "Life Sciences"
+          ]
+        }
+      ],
+      "taxonomies": [
+        {
+          "label": "All"
+        },
+        {
+          "label": "Homo sapiens"
+        }
+      ],
+      "userDefinedTags": [],
+      "recordAssociations": [],
+      "reverseRecordAssociations": [
+        {
+          "fairsharingRecord": {
+            "name": "UCSC Genome Browser database",
+            "id": 1651,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "implements"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "The European Genome-phenome Archive",
+            "id": 1865,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "implements"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "Ensembl",
+            "id": 1867,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "implements"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "SoyBase",
+            "id": 1934,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "implements"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "Database of Genotypes and Phenotypes",
+            "id": 1996,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "implements"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "Catalogue of Somatic Mutations in Cancer",
+            "id": 2204,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "implements"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "Genetic and Genomic Information System",
+            "id": 2263,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "implements"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "ClinVar",
+            "id": 2265,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "implements"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "RNA Binding Protein Variant Database",
+            "id": 2288,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "implements"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "iDog",
+            "id": 2291,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "implements"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "Japanese Genotype-phenotype Archive",
+            "id": 2300,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "implements"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "The Triticeae Toolbox",
+            "id": 2442,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "implements"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "Alliance of Genome Resources",
+            "id": 2530,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "implements"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "The International Genome Sample Resource",
+            "id": 2737,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "implements"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "Genome Variation Map",
+            "id": 2903,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "implements"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "National Cancer Institute's Genomic Data Commons",
+            "id": 2990,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "implements"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "National Institute of Mental Health Data Archive",
+            "id": 3209,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "implements"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "National Child Development Study (UK)",
+            "id": 3501,
+            "registry": "Collection"
+          },
+          "recordAssocLabel": "collects"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "eTRIKS Standards Starter Pack",
+            "id": 3510,
+            "registry": "Collection"
+          },
+          "recordAssocLabel": "collects"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "AgBioData",
+            "id": 3520,
+            "registry": "Collection"
+          },
+          "recordAssocLabel": "collects"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "Wheat Data Interoperability  Guidelines",
+            "id": 3529,
+            "registry": "Collection"
+          },
+          "recordAssocLabel": "collects"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "ISO 20691 - Requirements for data formatting and description in the life sciences",
+            "id": 3533,
+            "registry": "Collection"
+          },
+          "recordAssocLabel": "collects"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "RDA Covid-19 WG Resources",
+            "id": 3540,
+            "registry": "Collection"
+          },
+          "recordAssocLabel": "collects"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "COVID-19 Host Genetics Initiative",
+            "id": 4067,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "accepts"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "European Variation Archive",
+            "id": 2155,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "implements"
+        }
+      ],
+      "status": "ready",
+      "isRecommended": false
+    },
+    {
+      "id": 1298,
+      "type": "model_and_format",
+      "name": "StandardsRegExt: a VOResource Schema Extension for Describing IVOA Standards",
+      "abbreviation": "StandardsRegExt",
+      "doi": "10.25504/FAIRsharing.4PesRe",
+      "registry": "Standard",
+      "description": "StandardsRegExt is an XML encoding standard for metadata about IVOA standards themselves, referred to as StandardsRegExt. It is intended to allow for the discovery of a standard via an IVOA identifier that refers to the standard. It also allows one to define concepts that are defined by the standard which can themselves be referred to via an IVOA identifier (augmented with a URL fragment identifier). Finally, it can also provide a machine interpretable description of a standard service interface. We describe the general model for the schema and explain its intended use by interoperable registries for discovering resources.",
+      "domains": [],
+      "subjects": [
+        {
+          "label": "Astrophysics and Astronomy",
+          "id": 637,
+          "definitions": [
+            "Astronomy and astrophysics are the study of objects and phenomena that are found beyond our solar system. This combines theoretical simulations and observation with both terrestrial and space-craft-borne instruments of the electromagnetic radiation and high-energy particles emitted by celestial bodies."
+          ],
+          "iri": "http://www.fairsharing.org/ontology/subject/SRAO_0000189",
+          "synonyms": []
+        }
+      ],
+      "taxonomies": [
+        {
+          "label": "Not applicable"
+        }
+      ],
+      "userDefinedTags": [
+        {
+          "label": "Metadata standardization"
+        }
+      ],
+      "recordAssociations": [
+        {
+          "linkedRecord": {
+            "name": "SimpleDALRegExt - Describing Simple IVOA Data Access Services",
+            "id": 1371,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "related_to"
+        },
+        {
+          "linkedRecord": {
+            "name": "VOResource - an XML Encoding Schema for IVOA Resource Metadata",
+            "id": 1382,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "related_to"
+        },
+        {
+          "linkedRecord": {
+            "name": "VODataService: a VOResource Schema Extension for Describing Collections and Services",
+            "id": 1372,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "related_to"
+        },
+        {
+          "linkedRecord": {
+            "name": "IVOA Registry Relational Schema",
+            "id": 1335,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "related_to"
+        },
+        {
+          "linkedRecord": {
+            "name": "IVOA Registry Interfaces",
+            "id": 1378,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "related_to"
+        },
+        {
+          "linkedRecord": {
+            "name": "Resource Metadata for the Virtual Observatory",
+            "id": 1370,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "related_to"
+        }
+      ],
+      "reverseRecordAssociations": [
+        {
+          "fairsharingRecord": {
+            "name": "IVOA Identifier",
+            "id": 332,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "related_to"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "Extensible Markup Language",
+            "id": 1277,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "related_to"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "heiDATA",
+            "id": 2778,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "implements"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "arthistoricum.net@heiDATA",
+            "id": 3299,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "implements"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "Propylaeum@heiDATA",
+            "id": 3309,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "implements"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "International Virtual Observatory Alliance",
+            "id": 3515,
+            "registry": "Collection"
+          },
+          "recordAssocLabel": "collects"
+        }
+      ],
+      "status": "ready",
+      "isRecommended": false
+    },
+    {
+      "id": 907,
+      "type": "model_and_format",
+      "name": "Standard for Documentation of Astronomical Catalogues",
+      "abbreviation": "SDAC",
+      "doi": "10.25504/FAIRsharing.zcjkc7",
+      "registry": "Standard",
+      "description": "A set of conventions for archiving astronomical data. As well as path, filename and data format conventions, the key file is a plain text description file, including all the necessary metadata information related to the catalogue: author(s), reference(s) of the related published papers, brief summary, scientific keys, caption and accurate description of each table of the catalogue.",
+      "domains": [
+        {
+          "label": "Resource metadata",
+          "id": 1032,
+          "definitions": [
+            "Data concerning or describing some core computational resource, as distinct from primary data.  This includes metadata on the origin, source, history, ownership or location of some thing."
+          ],
+          "iri": "http://edamontology.org/data_2337",
+          "synonyms": [
+            "Provenance metadata"
+          ],
+          "inFairsharing": true
+        }
+      ],
+      "subjects": [
+        {
+          "label": "Astrophysics and Astronomy",
+          "id": 637,
+          "definitions": [
+            "Astronomy and astrophysics are the study of objects and phenomena that are found beyond our solar system. This combines theoretical simulations and observation with both terrestrial and space-craft-borne instruments of the electromagnetic radiation and high-energy particles emitted by celestial bodies."
+          ],
+          "iri": "http://www.fairsharing.org/ontology/subject/SRAO_0000189",
+          "synonyms": []
+        },
+        {
+          "label": "Natural Science",
+          "id": 700,
+          "definitions": [
+            "Natural Science is the branch of knowledge that deals with the natural or physical world, in contrast to the social sciences and human sciences."
+          ],
+          "iri": "http://purl.obolibrary.org/obo/OMIT_0011790",
+          "synonyms": []
+        },
+        {
+          "label": "Physics",
+          "id": 796,
+          "definitions": [
+            "The study of matter, space and time, and related concepts such as energy and force."
+          ],
+          "iri": "http://edamontology.org/topic_3318",
+          "synonyms": []
+        }
+      ],
+      "taxonomies": [
+        {
+          "label": "Not applicable"
+        }
+      ],
+      "userDefinedTags": [],
+      "recordAssociations": [],
+      "reverseRecordAssociations": [
+        {
+          "fairsharingRecord": {
+            "name": "VizieR astronomical catalogue database",
+            "id": 2755,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "implements"
+        }
+      ],
+      "status": "ready",
+      "isRecommended": false
+    },
+    {
+      "id": 1165,
+      "type": "model_and_format",
+      "name": "Language resource management -- Semantic annotation framework (SemAF) -- Part 2: Dialogue acts",
+      "abbreviation": "ISO 24617-2:2012",
+      "doi": "10.25504/FAIRsharing.51fdf0",
+      "registry": "Standard",
+      "description": "ISO 24617-2:2012 provides a set of empirically and theoretically well-motivated concepts for dialogue annotation, a formal language for expressing dialogue annotations -- the dialogue act markup language (DiAML) -- and a method for segmenting a dialogue into semantic units. This allows the manual or automatic annotation of dialogue segments with information about the communicative actions which the participants perform by their contributions to the dialogue. It supports multidimensional annotation, in which units in dialogue are viewed as having multiple communicative functions. The DiAML language has an XML-based representation format and a formal semantics which makes it possible to apply inference to DiAML representations. Please note that, although this specification is current, a new revision of it is under development.",
+      "domains": [
+        {
+          "label": "Annotation",
+          "id": 1056,
+          "definitions": [
+            "Annotate an entity (typically a biological or biomedical database entity) with terms from a controlled vocabulary."
+          ],
+          "iri": "http://edamontology.org/operation_0226",
+          "synonyms": [],
+          "inFairsharing": true
+        },
+        {
+          "label": "Curated information",
+          "id": 1677,
+          "definitions": [
+            "A information content entity that has undergone a digital curation performed by a curator for accuracy checks and compliance with curation requirements. Information which has been assessed for accuracy by domain experts."
+          ],
+          "iri": "http://purl.obolibrary.org/obo/OBI_0302840",
+          "synonyms": [],
+          "inFairsharing": true
+        }
+      ],
+      "subjects": [
+        {
+          "label": "Computer Science",
+          "id": 764,
+          "definitions": [
+            "The theory and practical use of computer systems."
+          ],
+          "iri": "http://edamontology.org/topic_3316",
+          "synonyms": []
+        },
+        {
+          "label": "Linguistics",
+          "id": 801,
+          "definitions": [
+            "Linguistics is the scientific study of language and its structure."
+          ],
+          "iri": "http://aims.fao.org/aos/agrovoc/c_1335455465014",
+          "synonyms": []
+        }
+      ],
+      "taxonomies": [
+        {
+          "label": "Not applicable"
+        }
+      ],
+      "userDefinedTags": [],
+      "recordAssociations": [
+        {
+          "linkedRecord": {
+            "name": "Extensible Markup Language",
+            "id": 1277,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "related_to"
+        }
+      ],
+      "reverseRecordAssociations": [
+        {
+          "fairsharingRecord": {
+            "name": "Language resource management -- Semantic annotation framework (SemAF) -- Part 4: Semantic roles (SemAF-SR)",
+            "id": 1059,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "related_to"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "Language resource management -- Semantic annotation framework (SemAF) -- Part 1: Time and events (SemAF-Time, ISO-TimeML)",
+            "id": 1130,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "related_to"
+        }
+      ],
+      "status": "ready",
+      "isRecommended": false
+    },
+    {
+      "id": 241,
+      "type": "model_and_format",
+      "name": "mz peptide and protein Identification Markup Language",
+      "abbreviation": "mzIdentML",
+      "doi": "10.25504/FAIRsharing.11889",
+      "registry": "Standard",
+      "description": "A large number of different proteomics search engines are available that produce output in a variety of different formats. It is intended that mzIdentML will provide a common format for the export of identification results from any search engine. The format was originally developed under the name AnalysisXML as a format for several types of computational analyses performed over mass spectra in the proteomics context. It has been decided to split development into two formats: mzIdentML for peptide and protein identification, and mzQuantML, covering quantitative proteomic data derived from MS.",
+      "domains": [
+        {
+          "label": "Peptide identification",
+          "id": 991,
+          "definitions": [
+            "Protein or peptide identifications with evidence supporting the identifications, for example from comparing a peptide mass fingerprint (from mass spectrometry) to a sequence database, or  the set of typical spectra one obtains when running a protein through a mass spectrometer."
+          ],
+          "iri": "http://edamontology.org/data_0945",
+          "synonyms": [
+            "'Protein identification'"
+          ],
+          "inFairsharing": true
+        },
+        {
+          "label": "Protein identification",
+          "id": 1093,
+          "definitions": [
+            "Identification of protein, for example from one or more peptide identifications by tandem mass spectrometry."
+          ],
+          "iri": "http://edamontology.org/operation_3767",
+          "synonyms": [
+            "Protein inference"
+          ],
+          "inFairsharing": true
+        },
+        {
+          "label": "Centrally registered identifier",
+          "id": 1528,
+          "definitions": [
+            "An information content entity that consists of a CRID symbol and additional information about the CRID registry to which it belongs."
+          ],
+          "iri": "http://purl.obolibrary.org/obo/IAO_0000578",
+          "synonyms": [],
+          "inFairsharing": true
+        },
+        {
+          "label": "Protein",
+          "id": 1753,
+          "definitions": [
+            "An amino acid chain that is produced de novo by ribosome-mediated translation of a genetically-encoded mRNA, and any derivatives thereof."
+          ],
+          "iri": "http://purl.obolibrary.org/obo/PR_000000001",
+          "synonyms": [
+            "natural protein",
+            "native protein"
+          ],
+          "inFairsharing": true
+        }
+      ],
+      "subjects": [
+        {
+          "label": "Life Science",
+          "id": 742,
+          "definitions": [
+            "Life Science is the study of all of the divisions of the natural sciences dealing with the various aspects of the phenomena of life and vital processes."
+          ],
+          "iri": "http://aims.fao.org/aos/agrovoc/c_4318",
+          "synonyms": [
+            "Life Sciences"
+          ]
+        }
+      ],
+      "taxonomies": [
+        {
+          "label": "All"
+        }
+      ],
+      "userDefinedTags": [],
+      "recordAssociations": [
+        {
+          "linkedRecord": {
+            "name": "HUPO PSI Mass Spectrometry Controlled Vocabulary",
+            "id": 1179,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "related_to"
+        },
+        {
+          "linkedRecord": {
+            "name": "mz Quantitative Markup Language",
+            "id": 285,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "related_to"
+        },
+        {
+          "linkedRecord": {
+            "name": "Quality Control Markup Language",
+            "id": 1244,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "related_to"
+        },
+        {
+          "linkedRecord": {
+            "name": "mzTab",
+            "id": 1037,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "related_to"
+        },
+        {
+          "linkedRecord": {
+            "name": "Extensible Markup Language",
+            "id": 1277,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "related_to"
+        }
+      ],
+      "reverseRecordAssociations": [
+        {
+          "fairsharingRecord": {
+            "name": "Separation Markup Language",
+            "id": 59,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "related_to"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "Mass Spectrometry Interactive Virtual Environment",
+            "id": 2671,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "implements"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "HUPO Proteomics Standards Initiative",
+            "id": 3514,
+            "registry": "Collection"
+          },
+          "recordAssocLabel": "collects"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "ISO 20691 - Requirements for data formatting and description in the life sciences",
+            "id": 3533,
+            "registry": "Collection"
+          },
+          "recordAssocLabel": "collects"
+        }
+      ],
+      "status": "ready",
+      "isRecommended": false
+    },
+    {
+      "id": 981,
+      "type": "model_and_format",
+      "name": "Compact URI",
+      "abbreviation": "CURIE",
+      "doi": "10.25504/FAIRsharing.af21db",
+      "registry": "Standard",
+      "description": "A CURIE (or Compact URI) defines a generic, abbreviated syntax for expressing Uniform Resource Identifiers (URIs). It is an abbreviated URI expressed in a compact syntax, and may be found in both XML and non-XML grammars.",
+      "domains": [],
+      "subjects": [
+        {
+          "label": "Subject Agnostic",
+          "id": 768,
+          "definitions": [
+            "Subject Agnostic provides a way of describing research and resources that are applicable across all subject areas. Please note that this term does not, by default, mean that an object tagged with it is completely generic.\n\nExample: \"JPEG\" is Subject Agnostic, which means that the resource is applicable regardless of subject, but it does not mean that it can or should be used for any type of data."
+          ],
+          "iri": "http://www.fairsharing.org/ontology/subject/SRAO_0000401",
+          "synonyms": []
+        }
+      ],
+      "taxonomies": [
+        {
+          "label": "Not applicable"
+        }
+      ],
+      "userDefinedTags": [],
+      "recordAssociations": [],
+      "reverseRecordAssociations": [
+        {
+          "fairsharingRecord": {
+            "name": "TreeBase",
+            "id": 2072,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "outputs"
+        }
+      ],
+      "status": "ready",
+      "isRecommended": false
+    },
+    {
+      "id": 1529,
+      "type": "model_and_format",
+      "name": "Premis Data Dictionary for the Preservation Metadata",
+      "abbreviation": "PREMIS",
+      "doi": "10.25504/FAIRsharing.27a0f4",
+      "registry": "Standard",
+      "description": "PREMIS is a metadata standard used worldwide for the preservation of digital objects which prolongs their use. The standard is maintained by the PREMIS Editorial Committee which includes data dictionary an XML schema and supporting documentation.",
+      "domains": [],
+      "subjects": [
+        {
+          "label": "Subject Agnostic",
+          "id": 768,
+          "definitions": [
+            "Subject Agnostic provides a way of describing research and resources that are applicable across all subject areas. Please note that this term does not, by default, mean that an object tagged with it is completely generic.\n\nExample: \"JPEG\" is Subject Agnostic, which means that the resource is applicable regardless of subject, but it does not mean that it can or should be used for any type of data."
+          ],
+          "iri": "http://www.fairsharing.org/ontology/subject/SRAO_0000401",
+          "synonyms": []
+        }
+      ],
+      "taxonomies": [
+        {
+          "label": "Not applicable"
+        }
+      ],
+      "userDefinedTags": [],
+      "recordAssociations": [
+        {
+          "linkedRecord": {
+            "name": "Web Ontology Language",
+            "id": 409,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "related_to"
+        },
+        {
+          "linkedRecord": {
+            "name": "Extensible Markup Language",
+            "id": 1277,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "related_to"
+        }
+      ],
+      "reverseRecordAssociations": [
+        {
+          "fairsharingRecord": {
+            "name": "Technical Metadata for Text",
+            "id": 1146,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "related_to"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "EngMeta",
+            "id": 1403,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "related_to"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "Purdue University Reaserch Repository",
+            "id": 4378,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "outputs"
+        }
+      ],
+      "status": "ready",
+      "isRecommended": false
+    },
+    {
+      "id": 971,
+      "type": "model_and_format",
+      "name": "XML Path Language",
+      "abbreviation": "XPath",
+      "doi": "10.25504/FAIRsharing.86cf8a",
+      "registry": "Standard",
+      "description": "The primary purpose of XPath is to address the nodes of XML trees. XPath gets its name from its use of a path notation for navigating through the hierarchical structure of an XML document. XPath uses a compact, non-XML syntax to facilitate use of XPath within URIs and XML attribute values. XPath operates on the abstract, logical structure of an XML document, rather than its surface syntax. XPath is designed to be embedded in a host language such as XSLT or XQuery.",
+      "domains": [],
+      "subjects": [
+        {
+          "label": "Computer Science",
+          "id": 764,
+          "definitions": [
+            "The theory and practical use of computer systems."
+          ],
+          "iri": "http://edamontology.org/topic_3316",
+          "synonyms": []
+        },
+        {
+          "label": "Subject Agnostic",
+          "id": 768,
+          "definitions": [
+            "Subject Agnostic provides a way of describing research and resources that are applicable across all subject areas. Please note that this term does not, by default, mean that an object tagged with it is completely generic.\n\nExample: \"JPEG\" is Subject Agnostic, which means that the resource is applicable regardless of subject, but it does not mean that it can or should be used for any type of data."
+          ],
+          "iri": "http://www.fairsharing.org/ontology/subject/SRAO_0000401",
+          "synonyms": []
+        }
+      ],
+      "taxonomies": [
+        {
+          "label": "Not applicable"
+        }
+      ],
+      "userDefinedTags": [],
+      "recordAssociations": [
+        {
+          "linkedRecord": {
+            "name": "Information technology -- Processing languages -- Document Style Semantics and Specification Language (DSSSL)",
+            "id": 1138,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "related_to"
+        },
+        {
+          "linkedRecord": {
+            "name": "Extensible Markup Language",
+            "id": 1277,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "related_to"
+        }
+      ],
+      "reverseRecordAssociations": [
+        {
+          "fairsharingRecord": {
+            "name": "Internationalization Tag Set",
+            "id": 850,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "related_to"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "Extensible Stylesheet Language",
+            "id": 957,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "related_to"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "Extensible Stylesheet Language Transformations",
+            "id": 961,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "related_to"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "XML Query Language",
+            "id": 966,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "related_to"
+        }
+      ],
+      "status": "ready",
+      "isRecommended": false
+    },
+    {
+      "id": 1376,
+      "type": "model_and_format",
+      "name": "IVOA Sky Event Reporting Metadata",
+      "abbreviation": "VOEvent",
+      "doi": "10.25504/FAIRsharing.eMKdXo",
+      "registry": "Standard",
+      "description": "VOEvent defines the content and meaning of a standard information packet for representing, transmitting, publishing and archiving information about a transient celestial event, with the implication that timely follow-up is of interest. The objective is to motivate the observation of targets-of-opportunity, to drive robotic telescopes, to trigger archive searches, and to alert the community. VOEvent is focused on the reporting of photon events, but events mediated by disparate phenomena such as neutrinos, gravitational waves, and solar or atmospheric particle bursts may also be reported. Structured data is used, rather than natural language, so that automated systems can effectively interpret VOEvent packets. Each packet may contain zero or more of the \"who, what, where, when & how\" of a detected event, but in addition, may contain a hypothesis (a \"why\") regarding the nature of the underlying physical cause of the event. Citations to previous VOEvents may be used to place each event in its correct context. Proper curation is encouraged throughout each event's life cycle from discovery through successive follow-ups. VOEvent packets gain persistent identifiers and are typically stored in databases reached via registries. VOEvent packets may therefore reference other packets in various ways. Packets are encouraged to be small and to be processed quickly. This standard does not define a transport layer or the design of clients, repositories, publishers or brokers; it does not cover policy issues such as who can publish, who can build a registry of events, who can subscribe to a particular registry, nor the intellectual property issues.",
+      "domains": [],
+      "subjects": [
+        {
+          "label": "Astrophysics and Astronomy",
+          "id": 637,
+          "definitions": [
+            "Astronomy and astrophysics are the study of objects and phenomena that are found beyond our solar system. This combines theoretical simulations and observation with both terrestrial and space-craft-borne instruments of the electromagnetic radiation and high-energy particles emitted by celestial bodies."
+          ],
+          "iri": "http://www.fairsharing.org/ontology/subject/SRAO_0000189",
+          "synonyms": []
+        }
+      ],
+      "taxonomies": [
+        {
+          "label": "Not applicable"
+        }
+      ],
+      "userDefinedTags": [],
+      "recordAssociations": [],
+      "reverseRecordAssociations": [
+        {
+          "fairsharingRecord": {
+            "name": "VOEvent Transport Protocol",
+            "id": 749,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "related_to"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "International Virtual Observatory Alliance",
+            "id": 3515,
+            "registry": "Collection"
+          },
+          "recordAssocLabel": "collects"
+        }
+      ],
+      "status": "ready",
+      "isRecommended": false
+    },
+    {
+      "id": 121,
+      "type": "model_and_format",
+      "name": "macromolecular Crystallographic Information File",
+      "abbreviation": "PDBx/mmCIF",
+      "doi": "10.25504/FAIRsharing.fd28en",
+      "registry": "Standard",
+      "description": "PDBx/mmCIF is a dictionary of data archiving macromolecule crystallographic experiments and their results.",
+      "domains": [
+        {
+          "label": "Molecular structure",
+          "id": 985,
+          "definitions": [
+            "3D coordinate and associated data for a macromolecular tertiary (3D) structure or part of a structure."
+          ],
+          "iri": "http://edamontology.org/data_0883",
+          "synonyms": [
+            "Structure",
+            "Coordinate model",
+            "Structure data"
+          ],
+          "inFairsharing": true
+        },
+        {
+          "label": "Molecular entity",
+          "id": 1137,
+          "definitions": [
+            "Any constitutionally or isotopically distinct atom, molecule, ion, ion pair, radical, radical ion, complex, conformer etc., identifiable as a separately distinguishable entity."
+          ],
+          "iri": "http://purl.obolibrary.org/obo/CHEBI_23367",
+          "synonyms": [],
+          "inFairsharing": true
+        },
+        {
+          "label": "X-ray crystallography assay",
+          "id": 1637,
+          "definitions": [
+            "A 3D structure determination assay in which the diffraction of pattern of X-ray beams in a crystal of purified material entities is used to resolve the 3-dimensional structure of the material entity of interest."
+          ],
+          "iri": "http://purl.obolibrary.org/obo/OBI_0000912",
+          "synonyms": [],
+          "inFairsharing": true
+        },
+        {
+          "label": "Protein",
+          "id": 1753,
+          "definitions": [
+            "An amino acid chain that is produced de novo by ribosome-mediated translation of a genetically-encoded mRNA, and any derivatives thereof."
+          ],
+          "iri": "http://purl.obolibrary.org/obo/PR_000000001",
+          "synonyms": [
+            "natural protein",
+            "native protein"
+          ],
+          "inFairsharing": true
+        }
+      ],
+      "subjects": [
+        {
+          "label": "Molecular biology",
+          "id": 455,
+          "definitions": [
+            "The molecular basis of biological activity, particularly the macromolecules (e.g. proteins and nucleic acids) that are essential to life."
+          ],
+          "iri": "http://edamontology.org/topic_3047",
+          "synonyms": []
+        },
+        {
+          "label": "Life Science",
+          "id": 742,
+          "definitions": [
+            "Life Science is the study of all of the divisions of the natural sciences dealing with the various aspects of the phenomena of life and vital processes."
+          ],
+          "iri": "http://aims.fao.org/aos/agrovoc/c_4318",
+          "synonyms": [
+            "Life Sciences"
+          ]
+        },
+        {
+          "label": "Biology",
+          "id": 812,
+          "definitions": [
+            "The scientific study of living organisms."
+          ],
+          "iri": "http://purl.obolibrary.org/obo/NCIT_C16345",
+          "synonyms": []
+        }
+      ],
+      "taxonomies": [
+        {
+          "label": "All"
+        }
+      ],
+      "userDefinedTags": [],
+      "recordAssociations": [
+        {
+          "linkedRecord": {
+            "name": "Crystallographic Information Framework",
+            "id": 183,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "related_to"
+        }
+      ],
+      "reverseRecordAssociations": [
+        {
+          "fairsharingRecord": {
+            "name": "NRG-CING",
+            "id": 1670,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "implements"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "Chemical Component Dictionary",
+            "id": 1847,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "implements"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "Protein Data Bank in Europe",
+            "id": 1860,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "implements"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "Protein Data Bank Japan",
+            "id": 2031,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "implements"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "Ligand Expo",
+            "id": 2043,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "implements"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "RCSB Protein Data Bank",
+            "id": 2044,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "implements"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "Nucleic Acid Database",
+            "id": 2046,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "implements"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "eCrystals",
+            "id": 2108,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "implements"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "Biological Magnetic Resonance Data Bank",
+            "id": 2114,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "implements"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "Electron Microscopy Data Bank",
+            "id": 2126,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "implements"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "Worldwide Protein Data Bank",
+            "id": 2207,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "implements"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "Virus Particle Explorer",
+            "id": 2922,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "implements"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "PDB-REDO",
+            "id": 3301,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "implements"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "FAIRDOM Community Standards",
+            "id": 3505,
+            "registry": "Collection"
+          },
+          "recordAssocLabel": "collects"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "ISO 20691 - Requirements for data formatting and description in the life sciences",
+            "id": 3533,
+            "registry": "Collection"
+          },
+          "recordAssocLabel": "collects"
+        }
+      ],
+      "status": "ready",
+      "isRecommended": false
+    },
+    {
+      "id": 1385,
+      "type": "model_and_format",
+      "name": "Citation Style Language JSON Schema",
+      "abbreviation": "CSL-JSON Schema",
+      "doi": "10.25504/FAIRsharing.pwk71v",
+      "registry": "Standard",
+      "description": "The Citation Style Language JSON (CSL-JSON) schema renders citations and bibliography metadata for CSL processors. Where the related CSL XML schema provides structured style and locale files, CSL-JSON provides the structured bibliographic metadata. The CSL-JSON schema is not yet fully normative, and care must be taken to ensure compatibility with other tools built around CSL-JSON. CSL-JSON contains two main structures: csl-data.json describes how the metadata of bibliographic items can be stored; and csl-citation.json incorporates csl-data.json and adds an additional layer of information to also describe the context in which bibliographic items are cited, including information such as the order in which items are cited and which items are cited together in a single citation.",
+      "domains": [
+        {
+          "label": "Citation",
+          "id": 993,
+          "definitions": [
+            "Bibliographic data that uniquely identifies a scientific article, book or other published material."
+          ],
+          "iri": "http://edamontology.org/data_0970",
+          "synonyms": [
+            "Bibliographic reference",
+            "Reference"
+          ],
+          "inFairsharing": true
+        },
+        {
+          "label": "Bibliography",
+          "id": 1051,
+          "definitions": [
+            "A list of publications such as scientic papers or books."
+          ],
+          "iri": "http://edamontology.org/data_3505",
+          "synonyms": [],
+          "inFairsharing": true
+        }
+      ],
+      "subjects": [
+        {
+          "label": "Informatics",
+          "id": 521,
+          "definitions": [
+            "The study and practice of information processing and use of computer information systems."
+          ],
+          "iri": "http://edamontology.org/topic_0605",
+          "synonyms": []
+        }
+      ],
+      "taxonomies": [
+        {
+          "label": "Not applicable"
+        }
+      ],
+      "userDefinedTags": [],
+      "recordAssociations": [
+        {
+          "linkedRecord": {
+            "name": "Citation Style Language XML Schema",
+            "id": 1407,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "related_to"
+        }
+      ],
+      "reverseRecordAssociations": [
+        {
+          "fairsharingRecord": {
+            "name": "JavaScript Object Notation",
+            "id": 475,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "related_to"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "Zenodo",
+            "id": 2358,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "implements"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "Mendeley Data",
+            "id": 2453,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "implements"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "Bicocca Open Archive Research Data",
+            "id": 3284,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "implements"
+        }
+      ],
+      "status": "ready",
+      "isRecommended": false
+    },
+    {
+      "id": 850,
+      "type": "model_and_format",
+      "name": "Internationalization Tag Set",
+      "abbreviation": "ITS",
+      "doi": "10.25504/FAIRsharing.f494ee",
+      "registry": "Standard",
+      "description": "ITS is designed to be used with schemas to support the internationalization and localization of schemas and documents. An implementation is provided for three schema languages: XML DTD, XML Schema and RELAX NG.",
+      "domains": [],
+      "subjects": [
+        {
+          "label": "Subject Agnostic",
+          "id": 768,
+          "definitions": [
+            "Subject Agnostic provides a way of describing research and resources that are applicable across all subject areas. Please note that this term does not, by default, mean that an object tagged with it is completely generic.\n\nExample: \"JPEG\" is Subject Agnostic, which means that the resource is applicable regardless of subject, but it does not mean that it can or should be used for any type of data."
+          ],
+          "iri": "http://www.fairsharing.org/ontology/subject/SRAO_0000401",
+          "synonyms": []
+        },
+        {
+          "label": "Linguistics",
+          "id": 801,
+          "definitions": [
+            "Linguistics is the scientific study of language and its structure."
+          ],
+          "iri": "http://aims.fao.org/aos/agrovoc/c_1335455465014",
+          "synonyms": []
+        }
+      ],
+      "taxonomies": [
+        {
+          "label": "Not applicable"
+        }
+      ],
+      "userDefinedTags": [
+        {
+          "label": "Metadata standardization"
+        }
+      ],
+      "recordAssociations": [
+        {
+          "linkedRecord": {
+            "name": "Regular Language for XML Next Generation",
+            "id": 1031,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "related_to"
+        },
+        {
+          "linkedRecord": {
+            "name": "XML Path Language",
+            "id": 971,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "related_to"
+        },
+        {
+          "linkedRecord": {
+            "name": "W3C XML Schema Definition Language Part 1: Structures",
+            "id": 1002,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "related_to"
+        },
+        {
+          "linkedRecord": {
+            "name": "Extensible Markup Language",
+            "id": 1277,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "related_to"
+        }
+      ],
+      "reverseRecordAssociations": [],
+      "status": "ready",
+      "isRecommended": false
+    },
+    {
+      "id": 325,
+      "type": "model_and_format",
+      "name": "Space Physics Archive Search and Extract Data Model",
+      "abbreviation": "SPASE Data Model",
+      "doi": "10.25504/FAIRsharing.w4g3sj",
+      "registry": "Standard",
+      "description": "An exclusive set of resource types which can be used to describe all the resources in a heliophysics data environment, the data along with its scientific context, source, provenance, content and location. It is designed to support a federated data system where data may reside at different locations and may be seperated from the metadata which describes it. While the data model is neutral on how to it may be expressed, the preferred expression form is XML",
+      "domains": [
+        {
+          "label": "Resource metadata",
+          "id": 1032,
+          "definitions": [
+            "Data concerning or describing some core computational resource, as distinct from primary data.  This includes metadata on the origin, source, history, ownership or location of some thing."
+          ],
+          "iri": "http://edamontology.org/data_2337",
+          "synonyms": [
+            "Provenance metadata"
+          ],
+          "inFairsharing": true
+        },
+        {
+          "label": "Data model",
+          "id": 1626,
+          "definitions": [
+            "Data representational model is an information content entity of the  relationships between data items. A data representational model is encoded in a data format specification such as for cytoscape or biopax."
+          ],
+          "iri": "http://purl.obolibrary.org/obo/OBI_0000658",
+          "synonyms": [
+            "data representational model",
+            "data structure",
+            "data structure specification"
+          ],
+          "inFairsharing": true
+        }
+      ],
+      "subjects": [
+        {
+          "label": "Astrophysics and Astronomy",
+          "id": 637,
+          "definitions": [
+            "Astronomy and astrophysics are the study of objects and phenomena that are found beyond our solar system. This combines theoretical simulations and observation with both terrestrial and space-craft-borne instruments of the electromagnetic radiation and high-energy particles emitted by celestial bodies."
+          ],
+          "iri": "http://www.fairsharing.org/ontology/subject/SRAO_0000189",
+          "synonyms": []
+        },
+        {
+          "label": "Natural Science",
+          "id": 700,
+          "definitions": [
+            "Natural Science is the branch of knowledge that deals with the natural or physical world, in contrast to the social sciences and human sciences."
+          ],
+          "iri": "http://purl.obolibrary.org/obo/OMIT_0011790",
+          "synonyms": []
+        },
+        {
+          "label": "Physics",
+          "id": 796,
+          "definitions": [
+            "The study of matter, space and time, and related concepts such as energy and force."
+          ],
+          "iri": "http://edamontology.org/topic_3318",
+          "synonyms": []
+        }
+      ],
+      "taxonomies": [
+        {
+          "label": "Not applicable"
+        }
+      ],
+      "userDefinedTags": [
+        {
+          "label": "Metadata standardization"
+        }
+      ],
+      "recordAssociations": [
+        {
+          "linkedRecord": {
+            "name": "Extensible Markup Language",
+            "id": 1277,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "related_to"
+        },
+        {
+          "linkedRecord": {
+            "name": "Space Physics Archive Search and Extract Simulation Extensions",
+            "id": 598,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "related_to"
+        }
+      ],
+      "reverseRecordAssociations": [
+        {
+          "fairsharingRecord": {
+            "name": "Crosswalk of available mappings to schema.org",
+            "id": 3641,
+            "registry": "Collection"
+          },
+          "recordAssocLabel": "collects"
+        }
+      ],
+      "status": "ready",
+      "isRecommended": false
+    },
+    {
+      "id": 1397,
+      "type": "model_and_format",
+      "name": "EarthResourceML",
+      "abbreviation": "ERML",
+      "doi": "10.25504/FAIRsharing.496b25",
+      "registry": "Standard",
+      "description": "EarthResourceML is an XML-based data transfer standard for the exchange of digital information for mineral occurrences, mines and mining activity. The model describes the geological features of mineral occurrences, their commodities, mineral resources and reserves. It is also able to describe mines and mining activities, and the production of concentrates, refined products, and waste materials.",
+      "domains": [],
+      "subjects": [
+        {
+          "label": "Geology",
+          "id": 471,
+          "definitions": [
+            "Geology is the study or science of the earth, its history, and its life as recorded in the rocks; includes the study of geologic features of an area, such as the geometry of rock formations, weathering and erosion, and sedimentation."
+          ],
+          "iri": "http://purl.obolibrary.org/obo/OMIT_0007039",
+          "synonyms": []
+        },
+        {
+          "label": "Mineralogy",
+          "id": 731,
+          "definitions": [
+            "Mineralogy is a subfield of Geology specializing in the scientific study of the chemistry, crystal structure, and physical (including optical) properties of minerals and mineralized artifacts. Specific studies within mineralogy include the processes of mineral origin and formation, classification of minerals, their geographical distribution, as well as their utilization. [Adapted from Wikipedia https://en.wikipedia.org/wiki/Mineralogy, AL 2.4.2019]"
+          ],
+          "iri": "http://aims.fao.org/aos/agrovoc/c_4856",
+          "synonyms": []
+        }
+      ],
+      "taxonomies": [
+        {
+          "label": "Not applicable"
+        }
+      ],
+      "userDefinedTags": [
+        {
+          "label": "Mining"
+        }
+      ],
+      "recordAssociations": [
+        {
+          "linkedRecord": {
+            "name": "ISO 19136-1:2020 Geographic information -- Geography Markup Language -- Part 1: Fundamentals",
+            "id": 50,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "extends"
+        },
+        {
+          "linkedRecord": {
+            "name": "Geoscience Markup Language",
+            "id": 967,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "extends"
+        }
+      ],
+      "reverseRecordAssociations": [
+        {
+          "fairsharingRecord": {
+            "name": "ISO 19136-1:2020 Geographic information -- Geography Markup Language -- Part 1: Fundamentals",
+            "id": 50,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "related_to"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "Geoscience Markup Language",
+            "id": 967,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "related_to"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "Extensible Markup Language",
+            "id": 1277,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "related_to"
+        }
+      ],
+      "status": "ready",
+      "isRecommended": false
+    },
+    {
+      "id": 1334,
+      "type": "model_and_format",
+      "name": "TAPRegExt",
+      "abbreviation": "TAPRegExt",
+      "doi": "10.25504/FAIRsharing.wnbDmb",
+      "registry": "Standard",
+      "description": "TAPRegExt is a VOResource schema extension for describing TAP services. It is an XML encoding standard for metadata about services implementing the table access protocol (TAP). Instance documents are part of the service's registry record or can be obtained from the service itself. They deliver information to both humans and software on the languages, output formats, and upload methods supported by the service, as well as data models implemented by the exposed tables, optional language features, and certain limits enforced by the service. To accommodate a wide variety of requirements, the TAP specification offers implementors many choices on optional features, resource limits, or locally defined functionality. One purpose of TAPRegExt is to allow the service to communicate such choices to remote clients using the mechanisms laid down in the VO Service Interfaces standard",
+      "domains": [],
+      "subjects": [
+        {
+          "label": "Astrophysics and Astronomy",
+          "id": 637,
+          "definitions": [
+            "Astronomy and astrophysics are the study of objects and phenomena that are found beyond our solar system. This combines theoretical simulations and observation with both terrestrial and space-craft-borne instruments of the electromagnetic radiation and high-energy particles emitted by celestial bodies."
+          ],
+          "iri": "http://www.fairsharing.org/ontology/subject/SRAO_0000189",
+          "synonyms": []
+        }
+      ],
+      "taxonomies": [
+        {
+          "label": "Not applicable"
+        }
+      ],
+      "userDefinedTags": [
+        {
+          "label": "Metadata standardization"
+        }
+      ],
+      "recordAssociations": [
+        {
+          "linkedRecord": {
+            "name": "Simple Line Access Protocol",
+            "id": 1362,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "related_to"
+        },
+        {
+          "linkedRecord": {
+            "name": "Simple Spectral Access Protocol",
+            "id": 1373,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "related_to"
+        },
+        {
+          "linkedRecord": {
+            "name": "DataLink",
+            "id": 1374,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "related_to"
+        },
+        {
+          "linkedRecord": {
+            "name": "Simple Image Access Protocol",
+            "id": 1375,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "related_to"
+        },
+        {
+          "linkedRecord": {
+            "name": "Simulation Data Access Layer",
+            "id": 1366,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "related_to"
+        },
+        {
+          "linkedRecord": {
+            "name": "Table Access Protocol",
+            "id": 1384,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "related_to"
+        }
+      ],
+      "reverseRecordAssociations": [
+        {
+          "fairsharingRecord": {
+            "name": "IVOA Server-side Operations for Data Access",
+            "id": 674,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "related_to"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "VOEvent Transport Protocol",
+            "id": 749,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "related_to"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "Simple Cone Search",
+            "id": 770,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "related_to"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "Astronomical Data Query Language",
+            "id": 1110,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "related_to"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "Extensible Markup Language",
+            "id": 1277,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "related_to"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "Data Access Layer Interface",
+            "id": 1325,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "related_to"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "International Virtual Observatory Alliance",
+            "id": 3515,
+            "registry": "Collection"
+          },
+          "recordAssocLabel": "collects"
+        }
+      ],
+      "status": "ready",
+      "isRecommended": false
+    },
+    {
+      "id": 1407,
+      "type": "model_and_format",
+      "name": "Citation Style Language XML Schema",
+      "abbreviation": "CSL Schema",
+      "doi": "10.25504/FAIRsharing.rkRb4s",
+      "registry": "Standard",
+      "description": "The Citation Style Language (CSL) is an XML-based format to describe the formatting of citations, notes and bibliographies, offering: an open format, compact styles, support for style requirements, automatic style localization, infrastructure for style distribution and updating, and many freely available styles.",
+      "domains": [
+        {
+          "label": "Citation",
+          "id": 993,
+          "definitions": [
+            "Bibliographic data that uniquely identifies a scientific article, book or other published material."
+          ],
+          "iri": "http://edamontology.org/data_0970",
+          "synonyms": [
+            "Bibliographic reference",
+            "Reference"
+          ],
+          "inFairsharing": true
+        },
+        {
+          "label": "Bibliography",
+          "id": 1051,
+          "definitions": [
+            "A list of publications such as scientic papers or books."
+          ],
+          "iri": "http://edamontology.org/data_3505",
+          "synonyms": [],
+          "inFairsharing": true
+        }
+      ],
+      "subjects": [
+        {
+          "label": "Informatics",
+          "id": 521,
+          "definitions": [
+            "The study and practice of information processing and use of computer information systems."
+          ],
+          "iri": "http://edamontology.org/topic_0605",
+          "synonyms": []
+        }
+      ],
+      "taxonomies": [
+        {
+          "label": "Not applicable"
+        }
+      ],
+      "userDefinedTags": [],
+      "recordAssociations": [],
+      "reverseRecordAssociations": [
+        {
+          "fairsharingRecord": {
+            "name": "Extensible Markup Language",
+            "id": 1277,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "related_to"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "Citation Style Language JSON Schema",
+            "id": 1385,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "related_to"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "Mendeley Data",
+            "id": 2453,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "implements"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "Bicocca Open Archive Research Data",
+            "id": 3284,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "implements"
+        }
+      ],
+      "status": "ready",
+      "isRecommended": false
+    },
+    {
+      "id": 1536,
+      "type": "model_and_format",
+      "name": "BioSimulators conventions for the inputs, outputs, and capabilities of biosimulation software tools",
+      "abbreviation": "BioSimulators conventions",
+      "doi": "10.25504/FAIRsharing.RdHnQX",
+      "registry": "Standard",
+      "description": "The BioSimulators conventions encompass several conventions for biosimulation tools (see below). In combination with modeling languages such as Cell-ML and SBML, SED-ML, KISAO, and COMBINE/OMEX, the BioSimulators standards enable investigators to use compliant biosimulation tools to execute simulations with the same syntax and generate consistent results. (a) A format for describing the specifications of a biosimulation tool including its name and version; a description of the tool; the modeling frameworks (e.g., logical, constraint-based, kinetic), simulation algorithms (e.g., CVODE, FBA, SSA), and modeling formats (e.g., BNGL, SBML) that the tool supports; the parameters of each algorithm, their data types, and their default values; links to the tool and documentation about the tool; and additional metadata such as citations for the tool.  (b) Specifications for the syntax and semantics of the inputs (command-line arguments) and outputs (reports and charts of simulation results) of command-line interfaces for biosimulation tools. (c) Specifications for (i) the entry points of Docker images of biosimulation tools and (ii) using Docker labels to annotate basic metadata about images such as the name and version of the simulation tool inside the image. (d) A format for describing reports of simulation results, including the numerical predictions, as well as metadata about the semantic meaning of each axis and each individual row and column.",
+      "domains": [
+        {
+          "label": "Mathematical model",
+          "id": 992,
+          "definitions": [
+            "A biological model represented in mathematical terms."
+          ],
+          "iri": "http://edamontology.org/data_0950",
+          "synonyms": [
+            "Biological model"
+          ],
+          "inFairsharing": true
+        },
+        {
+          "label": "Kinetic model",
+          "id": 1048,
+          "definitions": [
+            "Mathematical model of a network, that contains biochemical kinetics."
+          ],
+          "iri": "http://edamontology.org/data_3241",
+          "synonyms": [],
+          "inFairsharing": true
+        },
+        {
+          "label": "Biological network analysis",
+          "id": 1096,
+          "definitions": [
+            "Generate, process or analyse a biological network."
+          ],
+          "iri": "http://edamontology.org/operation_3927",
+          "synonyms": [
+            "Network analysis",
+            "Network topology simulation",
+            "Network modelling",
+            "Network simulation",
+            "Biological network modelling",
+            "Biological network prediction",
+            "Network comparison",
+            "Network prediction"
+          ],
+          "inFairsharing": true
+        },
+        {
+          "label": "Software",
+          "id": 1929,
+          "definitions": [
+            "Computer software, or generally just software, is any set of machine-readable instructions (most often in the form of a computer program) that conform to a given syntax (sometimes referred to as a language) that is interpretable by a given processor and that directs a computer's processor to perform specific operations."
+          ],
+          "iri": "http://www.ebi.ac.uk/swo/SWO_0000001",
+          "synonyms": [],
+          "inFairsharing": true
+        }
+      ],
+      "subjects": [
+        {
+          "label": "Computational Biology",
+          "id": 725,
+          "definitions": [
+            "The development and application of theory, analytical methods, mathematical models and computational simulation of biological systems."
+          ],
+          "iri": "http://edamontology.org/topic_3307",
+          "synonyms": []
+        },
+        {
+          "label": "Systems Biology",
+          "id": 838,
+          "definitions": [
+            "The holistic modelling and analysis of complex biological systems and the interactions therein."
+          ],
+          "iri": "http://edamontology.org/topic_2259",
+          "synonyms": []
+        }
+      ],
+      "taxonomies": [
+        {
+          "label": "Not applicable"
+        }
+      ],
+      "userDefinedTags": [
+        {
+          "label": "Genome Scale Metabolic Model"
+        },
+        {
+          "label": "Multi-scale model"
+        }
+      ],
+      "recordAssociations": [],
+      "reverseRecordAssociations": [
+        {
+          "fairsharingRecord": {
+            "name": "Systems Biology Markup Language",
+            "id": 18,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "related_to"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "Simulation Experiment Description Markup Language",
+            "id": 80,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "related_to"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "CellML",
+            "id": 434,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "related_to"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "JavaScript Object Notation",
+            "id": 475,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "related_to"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "Kinetic Simulation Algorithm Ontology",
+            "id": 974,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "related_to"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "Systems Biology Ontology",
+            "id": 1156,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "related_to"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "EMBRACE Data and Methods Ontology",
+            "id": 1205,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "related_to"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "BioSimulators",
+            "id": 3207,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "implements"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "BioSimulations",
+            "id": 3208,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "implements"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "MorpheusML model repository",
+            "id": 4401,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "related_to"
+        }
+      ],
+      "status": "ready",
+      "isRecommended": false
+    },
+    {
+      "id": 1409,
+      "type": "model_and_format",
+      "name": "Extended Knowledge Organization System",
+      "abbreviation": "XKOS",
+      "doi": "10.25504/FAIRsharing.tXtp2S",
+      "registry": "Standard",
+      "description": "Extended Knowledge Organization System (XKOS) extends the Simple Knowledge Organization System (SKOS) for statistical classifications. It does so in two main directions. First, it defines a number of terms that enable the representation of statistical classifications with their structure and textual properties, as well as the relations between classifications. Second, it refines SKOS semantic properties to allow the use of more specific relations between concepts. Those specific relations can be used for the representation of classifications or for any other case where SKOS is employed. XKOS adds the extensions that are desirable to meet the requirements of the statistical community.",
+      "domains": [
+        {
+          "label": "Resource collection",
+          "id": 1332,
+          "definitions": [
+            "A group of physical or digital resources that share a common identity, purpose, or theme."
+          ],
+          "iri": "http://purl.obolibrary.org/obo/ERO_0002190",
+          "synonyms": [],
+          "inFairsharing": true
+        },
+        {
+          "label": "Data model",
+          "id": 1626,
+          "definitions": [
+            "Data representational model is an information content entity of the  relationships between data items. A data representational model is encoded in a data format specification such as for cytoscape or biopax."
+          ],
+          "iri": "http://purl.obolibrary.org/obo/OBI_0000658",
+          "synonyms": [
+            "data representational model",
+            "data structure",
+            "data structure specification"
+          ],
+          "inFairsharing": true
+        },
+        {
+          "label": "Classification",
+          "id": 1716,
+          "definitions": [
+            "The systematic arrangement of entities in any field into categories classes based on common characteristics such as properties, morphology, or subject matter. [Adapted from https://meshb.nlm.nih.gov/record/ui?ui=D002965, AL 5.8.2020]"
+          ],
+          "iri": "http://purl.obolibrary.org/obo/OMIT_0004280",
+          "synonyms": [],
+          "inFairsharing": true
+        },
+        {
+          "label": "Knowledge representation",
+          "id": 1931,
+          "definitions": [
+            "A knowledge representation role is a role borne by a data format which utilizes formalisms to make complex systems easier to design and build. Knowledge representation is the field of artificial intelligence devoted to representing information about the world in a form that a computer system can utilize to solve complex tasks."
+          ],
+          "iri": "http://www.ebi.ac.uk/swo/data/SWO_3000053",
+          "synonyms": [
+            "Knowledge representation role"
+          ],
+          "inFairsharing": true
+        }
+      ],
+      "subjects": [
+        {
+          "label": "Knowledge and Information Systems",
+          "id": 487,
+          "definitions": [
+            "Knowledge and Information Systems create, share, and manage knowledge and information."
+          ],
+          "iri": "http://aims.fao.org/aos/agrovoc/c_9000089",
+          "synonyms": []
+        },
+        {
+          "label": "Subject Agnostic",
+          "id": 768,
+          "definitions": [
+            "Subject Agnostic provides a way of describing research and resources that are applicable across all subject areas. Please note that this term does not, by default, mean that an object tagged with it is completely generic.\n\nExample: \"JPEG\" is Subject Agnostic, which means that the resource is applicable regardless of subject, but it does not mean that it can or should be used for any type of data."
+          ],
+          "iri": "http://www.fairsharing.org/ontology/subject/SRAO_0000401",
+          "synonyms": []
+        }
+      ],
+      "taxonomies": [
+        {
+          "label": "Not applicable"
+        }
+      ],
+      "userDefinedTags": [],
+      "recordAssociations": [],
+      "reverseRecordAssociations": [
+        {
+          "fairsharingRecord": {
+            "name": "Simple Knowledge Organization System",
+            "id": 1068,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "related_to"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "Data Documentation Initiative Codebook",
+            "id": 1148,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "related_to"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "Data Documentation Initiative Lifecycle",
+            "id": 1367,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "related_to"
+        }
+      ],
+      "status": "ready",
+      "isRecommended": false
+    },
+    {
+      "id": 91,
+      "type": "model_and_format",
+      "name": "Chemical Markup Language",
+      "abbreviation": "CML",
+      "doi": "10.25504/FAIRsharing.3mdt9n",
+      "registry": "Standard",
+      "description": "CML (Chemical Markup Language) is an XML language designed to hold most of the central concepts in chemistry. It was the first language to be developed and plays the same role for chemistry as MathML for mathematics and GML for geographical systems. CML covers most mainstream chemistry and especially molecules, reactions, solid-state, computation and spectroscopy as well as a wide range of chemical properties, parameters and experimental observation. It is particularly concerned with the communication between machines and humans, and machines to machines.",
+      "domains": [
+        {
+          "label": "Molecular structure",
+          "id": 985,
+          "definitions": [
+            "3D coordinate and associated data for a macromolecular tertiary (3D) structure or part of a structure."
+          ],
+          "iri": "http://edamontology.org/data_0883",
+          "synonyms": [
+            "Structure",
+            "Coordinate model",
+            "Structure data"
+          ],
+          "inFairsharing": true
+        },
+        {
+          "label": "Mathematical model",
+          "id": 992,
+          "definitions": [
+            "A biological model represented in mathematical terms."
+          ],
+          "iri": "http://edamontology.org/data_0950",
+          "synonyms": [
+            "Biological model"
+          ],
+          "inFairsharing": true
+        },
+        {
+          "label": "Reaction data",
+          "id": 1041,
+          "definitions": [
+            "Data concerning a biochemical reaction, typically data and more general annotation on the kinetics of enzyme-catalysed reaction."
+          ],
+          "iri": "http://edamontology.org/data_2978",
+          "synonyms": [
+            "Reaction annotation",
+            "Enzyme kinetics annotation"
+          ],
+          "inFairsharing": true
+        },
+        {
+          "label": "Molecular entity",
+          "id": 1137,
+          "definitions": [
+            "Any constitutionally or isotopically distinct atom, molecule, ion, ion pair, radical, radical ion, complex, conformer etc., identifiable as a separately distinguishable entity."
+          ],
+          "iri": "http://purl.obolibrary.org/obo/CHEBI_23367",
+          "synonyms": [],
+          "inFairsharing": true
+        },
+        {
+          "label": "Spectroscopy",
+          "id": 1214,
+          "definitions": [
+            "The study of the interaction of a sample with radiation or particles for measurement or detection."
+          ],
+          "iri": "http://purl.obolibrary.org/obo/CHMO_0000228",
+          "synonyms": [
+            "spectrometry"
+          ],
+          "inFairsharing": true
+        },
+        {
+          "label": "Modeling and simulation",
+          "id": 1335,
+          "definitions": [],
+          "iri": "http://purl.obolibrary.org/obo/ERO_0100102",
+          "synonyms": [
+            "modeling and simulation objective",
+            "modeling objective",
+            "mathematical modeling objective"
+          ],
+          "inFairsharing": true
+        }
+      ],
+      "subjects": [
+        {
+          "label": "Biochemistry",
+          "id": 534,
+          "definitions": [
+            "Chemical substances and physico-chemical processes and that occur within living organisms."
+          ],
+          "iri": "http://edamontology.org/topic_3292",
+          "synonyms": [
+            "Biological chemistry"
+          ]
+        },
+        {
+          "label": "Chemistry",
+          "id": 608,
+          "definitions": [
+            "The science of the composition, structure, properties, and reactions of matter, especially of atomic and molecular systems."
+          ],
+          "iri": "http://purl.obolibrary.org/obo/NCIT_C16414",
+          "synonyms": []
+        },
+        {
+          "label": "Life Science",
+          "id": 742,
+          "definitions": [
+            "Life Science is the study of all of the divisions of the natural sciences dealing with the various aspects of the phenomena of life and vital processes."
+          ],
+          "iri": "http://aims.fao.org/aos/agrovoc/c_4318",
+          "synonyms": [
+            "Life Sciences"
+          ]
+        }
+      ],
+      "taxonomies": [
+        {
+          "label": "All"
+        }
+      ],
+      "userDefinedTags": [],
+      "recordAssociations": [
+        {
+          "linkedRecord": {
+            "name": "Extensible Markup Language",
+            "id": 1277,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "related_to"
+        }
+      ],
+      "reverseRecordAssociations": [
+        {
+          "fairsharingRecord": {
+            "name": "Rhea",
+            "id": 1639,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "implements"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "Chemical Component Dictionary",
+            "id": 1847,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "implements"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "eCrystals",
+            "id": 2108,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "implements"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "Chemistry",
+            "id": 3524,
+            "registry": "Collection"
+          },
+          "recordAssocLabel": "collects"
+        }
+      ],
+      "status": "ready",
+      "isRecommended": false
+    },
+    {
+      "id": 1055,
+      "type": "model_and_format",
+      "name": "Cooperative Ocean-Atmosphere Research Data Service Conventions",
+      "abbreviation": "COARDS conventions",
+      "doi": "10.25504/FAIRsharing.9614ca",
+      "registry": "Standard",
+      "description": "The COARDS conventions are a set of conventions adopted in order to promote the interchange and sharing of files created with the netCDF Application Programmer Interface (API). This standard is based upon version 2.3 of netCDF. Documentation of the netCDF API may be found in the NetCDF documentation. All conventions named in that document will be adhered to in this standard unless noted to the contrary. This standard also refers to version 1.7.1 of the Udunits standard supported by Unidata.",
+      "domains": [
+        {
+          "label": "Marine environment",
+          "id": 1291,
+          "definitions": [
+            "A marine environment and enviroment which is determined by a marine water body."
+          ],
+          "iri": "http://purl.obolibrary.org/obo/ENVO_01000320",
+          "synonyms": [],
+          "inFairsharing": true
+        }
+      ],
+      "subjects": [
+        {
+          "label": "Environmental Science",
+          "id": 445,
+          "definitions": [
+            "Environmental Science is a broad interdisciplinary field in which ecologists work with other physical, chemical, and biological researchers to study and seek solutions to environmental problems. Environmental science focuses on the environment and how humans can manage and utilise its resources and the effects our actions have on the environment."
+          ],
+          "iri": "http://aims.fao.org/aos/agrovoc/c_331559",
+          "synonyms": [
+            "Environmental Sciences"
+          ]
+        },
+        {
+          "label": "Atmospheric Science",
+          "id": 717,
+          "definitions": [
+            "Atmospheric Science is the study of the dynamics and chemistry of the layers of gas that surround the Earth, other planets and moons. This encompasses the interactions between various parts of the atmosphere as well as interactions with the oceans and freshwater systems, the biosphere and human activities. [Nature https://www.nature.com/subjects/atmospheric-science, AL 20.05.2019]"
+          ],
+          "iri": "http://aims.fao.org/aos/agrovoc/c_694",
+          "synonyms": []
+        },
+        {
+          "label": "Oceanography",
+          "id": 810,
+          "definitions": [
+            "Oceanography is the branch of science concerned with the physical and biological properties and phenomena of the ocean. [OED, AL 20.05.2019]"
+          ],
+          "iri": "http://purl.obolibrary.org/obo/OMIT_0010809",
+          "synonyms": []
+        }
+      ],
+      "taxonomies": [
+        {
+          "label": "Not applicable"
+        }
+      ],
+      "userDefinedTags": [],
+      "recordAssociations": [
+        {
+          "linkedRecord": {
+            "name": "Climate and Forecast metadata conventions",
+            "id": 1395,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "related_to"
+        },
+        {
+          "linkedRecord": {
+            "name": "Unidata's Network Common Data Form Data Model",
+            "id": 1354,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "related_to"
+        }
+      ],
+      "reverseRecordAssociations": [
+        {
+          "fairsharingRecord": {
+            "name": "Unidata Data Services",
+            "id": 2440,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "implements"
+        }
+      ],
+      "status": "ready",
+      "isRecommended": false
+    },
+    {
+      "id": 1367,
+      "type": "model_and_format",
+      "name": "Data Documentation Initiative Lifecycle",
+      "abbreviation": "DDI-Lifecycle",
+      "doi": "10.25504/FAIRsharing.1t5ws6",
+      "registry": "Standard",
+      "description": "Data Documentation Initiative (DDI) Lifecycle (DDI-Lifecycle, DDI-L) is designed to document and manage data across the entire life cycle, from conceptualization to data publication, analysis and beyond. The freely available international DDI standards describe data that result from observational methods in the social, behavioral, economic, and health sciences. DDI is used to document data in over 80 countries of the world. It encompasses all of the DDI-Codebook specification and extends it. Based on XML Schemas, DDI-Lifecycle is modular and extensible.",
+      "domains": [
+        {
+          "label": "Questionnaire",
+          "id": 1642,
+          "definitions": [
+            "A document with a set of printed or written questions with a choice of answers, devised for the purposes of a survey or statistical study."
+          ],
+          "iri": "http://purl.obolibrary.org/obo/OBI_0001000",
+          "synonyms": [],
+          "inFairsharing": true
+        },
+        {
+          "label": "Study design",
+          "id": 1684,
+          "definitions": [
+            "A plan specification comprised of protocols (which may specify how and what kinds of data will be gathered) that are executed as part of an investigation and is realized during a study design execution."
+          ],
+          "iri": "http://purl.obolibrary.org/obo/OBI_0500000",
+          "synonyms": [
+            "experimental design"
+          ],
+          "inFairsharing": true
+        },
+        {
+          "label": "Classification",
+          "id": 1716,
+          "definitions": [
+            "The systematic arrangement of entities in any field into categories classes based on common characteristics such as properties, morphology, or subject matter. [Adapted from https://meshb.nlm.nih.gov/record/ui?ui=D002965, AL 5.8.2020]"
+          ],
+          "iri": "http://purl.obolibrary.org/obo/OMIT_0004280",
+          "synonyms": [],
+          "inFairsharing": true
+        }
+      ],
+      "subjects": [
+        {
+          "label": "Economics",
+          "id": 434,
+          "definitions": [
+            "Economics is the branch of social science that deals with the production and distribution and consumption of goods and services and their management)."
+          ],
+          "iri": "http://aims.fao.org/aos/agrovoc/c_2481",
+          "synonyms": []
+        },
+        {
+          "label": "Social Science",
+          "id": 508,
+          "definitions": [
+            "Comprises the scientific study of the human aspects of the world. They are also known as social studies. Psychology studies the human mind, sociology examines human society, political science studies the governing of groups and economics concerns itself with the allocation of wealth in society."
+          ],
+          "iri": "http://purl.obolibrary.org/obo/NCIT_C17141",
+          "synonyms": []
+        },
+        {
+          "label": "Health Science",
+          "id": 587,
+          "definitions": [
+            "The sciences concerned with health promotion and maintenance."
+          ],
+          "iri": "http://purl.obolibrary.org/obo/NCIT_C19199",
+          "synonyms": []
+        },
+        {
+          "label": "Social and Behavioural Science",
+          "id": 759,
+          "definitions": [
+            "Social and Behavioral Science is a broad area of study that applies to a unique range of disciplines -- anthropology, sociology, and psychology, among them -- that are primarily concerned with the analysis of human behavior."
+          ],
+          "iri": "http://www.fairsharing.org/ontology/subject/SRAO_0000041",
+          "synonyms": []
+        },
+        {
+          "label": "Biomedical Science",
+          "id": 780,
+          "definitions": [
+            "Research concerned with the application of biological and physiological principles to clinical medicine."
+          ],
+          "iri": "http://purl.obolibrary.org/obo/NCIT_C15188",
+          "synonyms": []
+        }
+      ],
+      "taxonomies": [
+        {
+          "label": "Homo sapiens"
+        }
+      ],
+      "userDefinedTags": [],
+      "recordAssociations": [
+        {
+          "linkedRecord": {
+            "name": "Extended Knowledge Organization System",
+            "id": 1409,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "related_to"
+        }
+      ],
+      "reverseRecordAssociations": [
+        {
+          "fairsharingRecord": {
+            "name": "Data Documentation Initiative Controlled Vocabularies",
+            "id": 595,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "related_to"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "Resource Description Framework",
+            "id": 1047,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "related_to"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "Data Documentation Initiative Codebook",
+            "id": 1148,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "related_to"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "Extensible Markup Language",
+            "id": 1277,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "related_to"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "Scholars Portal Dataverse",
+            "id": 2542,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "implements"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "UK Data Archive",
+            "id": 2549,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "implements"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "CLOSER Discovery",
+            "id": 2772,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "implements"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "DesignSafe Data Depot Repository",
+            "id": 3326,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "implements"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "ESRC Data Policies and Standards",
+            "id": 3436,
+            "registry": "Policy"
+          },
+          "recordAssocLabel": "recommends"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "National Child Development Study (UK)",
+            "id": 3501,
+            "registry": "Collection"
+          },
+          "recordAssocLabel": "collects"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "Crosswalk of available mappings to schema.org",
+            "id": 3641,
+            "registry": "Collection"
+          },
+          "recordAssocLabel": "collects"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "Emory Core Metadata Mapping to Selected Standards and Systems",
+            "id": 3645,
+            "registry": "Collection"
+          },
+          "recordAssocLabel": "collects"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "CESSDA Data Catalogue DDI Profiles",
+            "id": 4272,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "profiles"
+        }
+      ],
+      "status": "ready",
+      "isRecommended": true
+    },
+    {
+      "id": 1262,
+      "type": "model_and_format",
+      "name": "World geographical scheme for recording plant distributions",
+      "abbreviation": null,
+      "doi": "10.25504/FAIRsharing.jq69k3",
+      "registry": "Standard",
+      "description": "In setting out to establish standards for data fields in botanical databases, the International Working Group on Taxonomic Databases for Plant Sciences (TDWG) identified at an early stage of its existence a need for an agreed system of geographical units at approximately \"country\" level and upwards for use in recording plant distributions. This would aim to provide a standard which different organisations maintaining databases could adopt so that they could compare and exchange data with each other without loss of information due to incompatible geographical boundaries. The present publication has resulted from the deliberations over a period of three years of a committee of both taxonomic and applied botanists set up to produce such a standard. The system offered covers the whole world and identifies units at four levels, firstly continental, secondly regional (or subcontinental), thirdly at what may be called \"Botanical Country\" level (which may often ignore purely political considerations), and fourthly at a slightly lower level called \"Basic Recording Units\" where political integrity is fully recognised. In many cases, where Botanical Countries have no complicating political factors, the units at Level-3 and Level-4 are identical. Very large countries, however, have been subdivided into more conveniently sized units according to constituent states or provinces. It is a fundamental principle that units at all levels are bounded either by political boundaries which appear on modern maps or by coast lines. Modern geographical information systems have not superseded the need for such a scheme. While this standard is still in use, it is no longer actively maintained (labelled as prior on the TDWG website).",
+      "domains": [
+        {
+          "label": "Geographical location",
+          "id": 1053,
+          "definitions": [
+            "A report about localisation of the isolaton of biological material e.g. country or coordinates."
+          ],
+          "iri": "http://edamontology.org/data_3720",
+          "synonyms": [
+            "Geographic location"
+          ],
+          "inFairsharing": true
+        }
+      ],
+      "subjects": [
+        {
+          "label": "Botany",
+          "id": 431,
+          "definitions": [
+            "Plants, e.g. information on a specific plant genome including molecular sequences, genes and annotation."
+          ],
+          "iri": "http://edamontology.org/topic_0780",
+          "synonyms": [
+            "Plant biology",
+            "Plant Science"
+          ]
+        },
+        {
+          "label": "Biodiversity",
+          "id": 685,
+          "definitions": [
+            "The degree of variation of life forms within a given ecosystem, biome or an entire planet."
+          ],
+          "iri": "http://edamontology.org/topic_3050",
+          "synonyms": []
+        },
+        {
+          "label": "Life Science",
+          "id": 742,
+          "definitions": [
+            "Life Science is the study of all of the divisions of the natural sciences dealing with the various aspects of the phenomena of life and vital processes."
+          ],
+          "iri": "http://aims.fao.org/aos/agrovoc/c_4318",
+          "synonyms": [
+            "Life Sciences"
+          ]
+        }
+      ],
+      "taxonomies": [
+        {
+          "label": "Plantae"
+        }
+      ],
+      "userDefinedTags": [],
+      "recordAssociations": [
+        {
+          "linkedRecord": {
+            "name": "Marine Regions",
+            "id": 1518,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "related_to"
+        }
+      ],
+      "reverseRecordAssociations": [
+        {
+          "fairsharingRecord": {
+            "name": "TDWG Biodiversity Information Standards",
+            "id": 3537,
+            "registry": "Collection"
+          },
+          "recordAssocLabel": "collects"
+        }
+      ],
+      "status": "ready",
+      "isRecommended": false
+    },
+    {
+      "id": 413,
+      "type": "model_and_format",
+      "name": "Analyze 7.5 File Format",
+      "abbreviation": "Analyze",
+      "doi": "10.25504/FAIRsharing.a6b4fc",
+      "registry": "Standard",
+      "description": "Analyze 7.5 can store voxel-based volumes and consists of two files: One file with the actual data in a binary format with the filename extension .img and another file (header with filename extension .hdr) with information about the data such as voxel size and number of voxel in each dimension.",
+      "domains": [
+        {
+          "label": "Bioimaging",
+          "id": 1106,
+          "definitions": [
+            "The use of imaging techniques to understand biology."
+          ],
+          "iri": "http://edamontology.org/topic_3383",
+          "synonyms": [
+            "Biological imaging"
+          ],
+          "inFairsharing": true
+        },
+        {
+          "label": "Image",
+          "id": 1518,
+          "definitions": [
+            "An image is an affine projection to a two dimensional surface, of measurements of some quality of an entity or entities repeated at regular intervals across a spatial range, where the measurements are represented as color and luminosity on the projected on surface."
+          ],
+          "iri": "http://purl.obolibrary.org/obo/IAO_0000101",
+          "synonyms": [],
+          "inFairsharing": true
+        }
+      ],
+      "subjects": [
+        {
+          "label": "Biomedical Science",
+          "id": 780,
+          "definitions": [
+            "Research concerned with the application of biological and physiological principles to clinical medicine."
+          ],
+          "iri": "http://purl.obolibrary.org/obo/NCIT_C15188",
+          "synonyms": []
+        }
+      ],
+      "taxonomies": [
+        {
+          "label": "All"
+        }
+      ],
+      "userDefinedTags": [],
+      "recordAssociations": [],
+      "reverseRecordAssociations": [
+        {
+          "fairsharingRecord": {
+            "name": "SICAS Medical Image Repository",
+            "id": 2184,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "implements"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "National Institute of Mental Health Data Archive",
+            "id": 3209,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "implements"
+        }
+      ],
+      "status": "ready",
+      "isRecommended": false
+    },
+    {
+      "id": 706,
+      "type": "model_and_format",
+      "name": "ISO 3166-1:2013 Codes for the representation of names of countries and their subdivisions — Part 1: Country codes",
+      "abbreviation": "ISO 3166-1:2013",
+      "doi": "10.25504/FAIRsharing.ff6fca",
+      "registry": "Standard",
+      "description": "ISO 3166-1:2013 is intended for use in any application requiring the expression of current country names in coded form; it also includes basic guidelines for its implementation and maintenance.",
+      "domains": [
+        {
+          "label": "Geographical location",
+          "id": 1053,
+          "definitions": [
+            "A report about localisation of the isolaton of biological material e.g. country or coordinates."
+          ],
+          "iri": "http://edamontology.org/data_3720",
+          "synonyms": [
+            "Geographic location"
+          ],
+          "inFairsharing": true
+        }
+      ],
+      "subjects": [
+        {
+          "label": "Informatics",
+          "id": 521,
+          "definitions": [
+            "The study and practice of information processing and use of computer information systems."
+          ],
+          "iri": "http://edamontology.org/topic_0605",
+          "synonyms": []
+        },
+        {
+          "label": "Human Geography",
+          "id": 774,
+          "definitions": [
+            "Human Geography is the branch of geography that deals with the activities of mankind as they affect or are influenced by the landscape; (also) the geographical features of a place or region as they relate to or are affected by humans or human activity. [OED, AL 12.6.2019]"
+          ],
+          "iri": "http://www.fairsharing.org/ontology/subject/SRAO_0000202",
+          "synonyms": []
+        }
+      ],
+      "taxonomies": [
+        {
+          "label": "Not applicable"
+        }
+      ],
+      "userDefinedTags": [],
+      "recordAssociations": [],
+      "reverseRecordAssociations": [
+        {
+          "fairsharingRecord": {
+            "name": "Harvard Dataverse Repository",
+            "id": 2452,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "implements"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "Portail Data INRAE",
+            "id": 2608,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "implements"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "The Tromsø Repository of Language and Linguistics",
+            "id": 2929,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "implements"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "DataverseNO",
+            "id": 2955,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "implements"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "Rolling Deck to Repository",
+            "id": 3233,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "implements"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "Medical Affairs at Bayer FAIR Implementation Profile",
+            "id": 3607,
+            "registry": "Collection"
+          },
+          "recordAssocLabel": "collects"
+        }
+      ],
+      "status": "ready",
+      "isRecommended": false
+    },
+    {
+      "id": 1474,
+      "type": "model_and_format",
+      "name": "National Aeronautics and Space Administration Ames Format for Data Exchange",
+      "abbreviation": "NASA Ames Format",
+      "doi": "10.25504/FAIRsharing.rSuIcM",
+      "registry": "Standard",
+      "description": "The National Aeronautics and Space Administration Ames Format for Data Exchange (NASA Ames Format) is composed of ASCII data files that are written in one of nine \"standard\" file formats. The ASCII data file formats were developed at Ames Research Center by R. Stephen Hipskind and Steven E. Gaines in 1990 to standardize the file formats used for in-the-field data exchange during aircraft field experiments. Each ASCII data file consists of a file header, followed by the data records. The file header describes the data and the origin of the file. The data are conceptually divided into Independent Variables and Dependent Variables. The Dependent Variables are further divided into Primary and Auxiliary Variables.",
+      "domains": [
+        {
+          "label": "Geographical location",
+          "id": 1053,
+          "definitions": [
+            "A report about localisation of the isolaton of biological material e.g. country or coordinates."
+          ],
+          "iri": "http://edamontology.org/data_3720",
+          "synonyms": [
+            "Geographic location"
+          ],
+          "inFairsharing": true
+        }
+      ],
+      "subjects": [
+        {
+          "label": "Geophysics",
+          "id": 517,
+          "definitions": [
+            "Geophysics is the branch of science concerned with the physics of the earth and the processes which affect it; the application of the principles, methods, and techniques of physics to the study of the earth, esp. the crust. [Adapted from OED, AL 12.6.2019]"
+          ],
+          "iri": "http://aims.fao.org/aos/agrovoc/c_3235",
+          "synonyms": []
+        },
+        {
+          "label": "Earth Science",
+          "id": 708,
+          "definitions": [
+            "Earth Science is the science that deals with the earth or any part thereof; includes the disciplines of geology, geography, oceanography and meteorology, among others. [GEMET https://www.eionet.europa.eu/gemet/en/concept/2405, AL 12.6.2019]"
+          ],
+          "iri": "http://purl.obolibrary.org/obo/OMIT_0026615",
+          "synonyms": [
+            "Geoscience"
+          ]
+        },
+        {
+          "label": "Remote Sensing",
+          "id": 746,
+          "definitions": [
+            "Remote Sensing is the acquisition of information about an object or phenomenon without making physical contact with the object and thus in contrast to on-site observation, especially the Earth. Remote sensing is used in numerous fields, including geography, land surveying and most Earth Science disciplines as well as military, intelligence, commercial, economic, planning, and humanitarian applications. [Adapted from Wikipedia https://en.wikipedia.org/wiki/Remote_sensing, AL 2.4.2019]"
+          ],
+          "iri": "http://aims.fao.org/aos/agrovoc/c_6498",
+          "synonyms": []
+        }
+      ],
+      "taxonomies": [
+        {
+          "label": "Not applicable"
+        }
+      ],
+      "userDefinedTags": [],
+      "recordAssociations": [],
+      "reverseRecordAssociations": [
+        {
+          "fairsharingRecord": {
+            "name": "International Consortium for Atmospheric Research on Transport and Transformation Format",
+            "id": 1117,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "related_to"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "Network for the Detection of Atmospheric Composition Change",
+            "id": 3133,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "implements"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "In-service Aircraft for a Global Observing System Data Portal",
+            "id": 3246,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "implements"
+        }
+      ],
+      "status": "ready",
+      "isRecommended": false
+    }
+  ]
+}

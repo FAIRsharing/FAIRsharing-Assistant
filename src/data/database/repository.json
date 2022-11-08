@@ -1,0 +1,4230 @@
+{
+  "data": [
+    {
+      "id": 3231,
+      "type": "repository",
+      "name": "Database of Individual Seismogenic Sources",
+      "abbreviation": "DISS",
+      "doi": "10.25504/FAIRsharing.733c3f",
+      "registry": "Database",
+      "description": "The Database of Individual Seismogenic Sources (DISS) is a georeferenced repository of tectonic, fault, and paleoseismological information expressly devoted, but not limited, to potential applications in the assessment of seismic hazard at regional and national scale. DISS represents faults in 3D and contains fully-parameterized records. The core objects of DISS are: individual seismogenic sources, composite seismogenic sources, debated seismogenic sources and subduction zones.",
+      "domains": [],
+      "subjects": [
+        {
+          "label": "Geology",
+          "id": 471,
+          "definitions": [
+            "Geology is the study or science of the earth, its history, and its life as recorded in the rocks; includes the study of geologic features of an area, such as the geometry of rock formations, weathering and erosion, and sedimentation."
+          ],
+          "iri": "http://purl.obolibrary.org/obo/OMIT_0007039",
+          "synonyms": []
+        },
+        {
+          "label": "Geography",
+          "id": 511,
+          "definitions": [
+            "The science that deals with the world and its inhabitants; a description of the earth, or a portion of the earth, including its structure, features, products, political divisions, and the people by whom it is inhabited."
+          ],
+          "iri": "http://purl.obolibrary.org/obo/NCIT_C16633",
+          "synonyms": []
+        },
+        {
+          "label": "Earth Science",
+          "id": 708,
+          "definitions": [
+            "Earth Science is the science that deals with the earth or any part thereof; includes the disciplines of geology, geography, oceanography and meteorology, among others. [GEMET https://www.eionet.europa.eu/gemet/en/concept/2405, AL 12.6.2019]"
+          ],
+          "iri": "http://purl.obolibrary.org/obo/OMIT_0026615",
+          "synonyms": [
+            "Geoscience"
+          ]
+        },
+        {
+          "label": "Physical Geography",
+          "id": 815,
+          "definitions": [
+            "Physical Geography is the branch of geography concerned with the natural features of the earth, as distinct from its political divisions, economic activity, etc. [OED, AL 12.6.2019]"
+          ],
+          "iri": "http://aims.fao.org/aos/agrovoc/c_5836",
+          "synonyms": [
+            "Physiography"
+          ]
+        }
+      ],
+      "taxonomies": [
+        {
+          "label": "Not applicable"
+        }
+      ],
+      "userDefinedTags": [
+        {
+          "label": "Geographic Information System (GIS)"
+        },
+        {
+          "label": "Geological mapping"
+        },
+        {
+          "label": "Paleoseismology"
+        },
+        {
+          "label": "Seismology"
+        }
+      ],
+      "recordAssociations": [
+        {
+          "linkedRecord": {
+            "name": "European Database of Seismogenic Faults",
+            "id": 3232,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "related_to"
+        },
+        {
+          "linkedRecord": {
+            "name": "Keyhole Markup Language",
+            "id": 1320,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "implements"
+        },
+        {
+          "linkedRecord": {
+            "name": "Digital Object Identifier",
+            "id": 1332,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "implements"
+        },
+        {
+          "linkedRecord": {
+            "name": "Environmental Systems Research Institute Shapefile",
+            "id": 1318,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "implements"
+        }
+      ],
+      "reverseRecordAssociations": [],
+      "status": "ready",
+      "isRecommended": false
+    },
+    {
+      "id": 2950,
+      "type": "repository",
+      "name": "European Centre for Disease Prevention and Control",
+      "abbreviation": "ECDC",
+      "doi": "10.25504/FAIRsharing.7ceb60",
+      "registry": "Database",
+      "description": "ECDC's main role as an agency of the European Union is to strengthen Europe’s defences against communicable diseases, worked together with all EU/EEA countries in response to public health threats and emerging diseases. Part of the ECDC mission is to provide search for, collect, collate, evaluate and disseminate relevant scientific and technical data.",
+      "domains": [
+        {
+          "label": "Disease",
+          "id": 1708,
+          "definitions": [
+            "A disposition (i) to undergo pathological processes that (ii) exists in an organism because of one or more disorders in that organism."
+          ],
+          "iri": "http://purl.obolibrary.org/obo/OGMS_0000031",
+          "synonyms": [],
+          "inFairsharing": true
+        }
+      ],
+      "subjects": [
+        {
+          "label": "Health Science",
+          "id": 587,
+          "definitions": [
+            "The sciences concerned with health promotion and maintenance."
+          ],
+          "iri": "http://purl.obolibrary.org/obo/NCIT_C19199",
+          "synonyms": []
+        },
+        {
+          "label": "Humanities and Social Science",
+          "id": 613,
+          "definitions": [
+            "Humanities and Social Sciences is a broad multi-disciplinary research area incorporating both the Humanities and the Social Sciences. One differentiator for these two closely-related subjects is that humanities are predominately interested in studying the specifics and the 'unique', while social sciences are mainly interested in the general / population level."
+          ],
+          "iri": "http://www.fairsharing.org/ontology/subject/SRAO_0000002",
+          "synonyms": []
+        },
+        {
+          "label": "Virology",
+          "id": 710,
+          "definitions": [
+            "Study of viruses, e.g. sequence and structural data, interactions of viral proteins, or a viral genome including molecular sequences, genes and annotation."
+          ],
+          "iri": "http://edamontology.org/topic_0781",
+          "synonyms": []
+        },
+        {
+          "label": "Epidemiology",
+          "id": 833,
+          "definitions": [
+            "The study of the causes, incidence and distribution of disease in the population and its application for prevention or control."
+          ],
+          "iri": "http://purl.obolibrary.org/obo/NCIT_C16556",
+          "synonyms": []
+        }
+      ],
+      "taxonomies": [
+        {
+          "label": "Not applicable"
+        }
+      ],
+      "userDefinedTags": [
+        {
+          "label": "COVID-19"
+        }
+      ],
+      "recordAssociations": [],
+      "reverseRecordAssociations": [
+        {
+          "fairsharingRecord": {
+            "name": "COVID-19 Resources",
+            "id": 3538,
+            "registry": "Collection"
+          },
+          "recordAssocLabel": "collects"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "RDA Covid-19 WG Resources",
+            "id": 3540,
+            "registry": "Collection"
+          },
+          "recordAssocLabel": "collects"
+        }
+      ],
+      "status": "ready",
+      "isRecommended": false
+    },
+    {
+      "id": 3102,
+      "type": "repository",
+      "name": "French Biodiversity (meta)data repository",
+      "abbreviation": "PNDB",
+      "doi": "10.25504/FAIRsharing.SfXDoZ",
+      "registry": "Database",
+      "description": "Based on Metacat / Metacatui https://github.com/NCEAS/metacatui and Geoserver technology, This new born repository will act as a national hub for all biodiversity data produced notably by French researchers. Related to the French national Research infrastructure \"Pôle national de données de Biodiversité\" (PNDB)",
+      "domains": [],
+      "subjects": [
+        {
+          "label": "Agroecology",
+          "id": 429,
+          "definitions": [
+            "Agroecology is the study of ecological processes applied to agricultural production systems."
+          ],
+          "iri": "http://aims.fao.org/aos/agrovoc/c_92381",
+          "synonyms": []
+        },
+        {
+          "label": "Microbial Ecology",
+          "id": 456,
+          "definitions": [
+            "The ecology of microorganisms including their relationship with one another and their environment."
+          ],
+          "iri": "http://edamontology.org/topic_3697",
+          "synonyms": []
+        },
+        {
+          "label": "Metagenomics",
+          "id": 509,
+          "definitions": [
+            "The study of genetic material recovered from environmental samples, and associated environmental data."
+          ],
+          "iri": "http://edamontology.org/topic_3174",
+          "synonyms": []
+        },
+        {
+          "label": "Genomics",
+          "id": 541,
+          "definitions": [
+            "The study of comprehensive sets of genes via high throughput methods."
+          ],
+          "iri": "http://purl.obolibrary.org/obo/NCIT_C84343",
+          "synonyms": []
+        },
+        {
+          "label": "Ecology",
+          "id": 675,
+          "definitions": [
+            "The branch of biology concerned with the relations between organisms and their environment."
+          ],
+          "iri": "http://purl.obolibrary.org/obo/NCIT_C16526",
+          "synonyms": []
+        },
+        {
+          "label": "Biodiversity",
+          "id": 685,
+          "definitions": [
+            "The degree of variation of life forms within a given ecosystem, biome or an entire planet."
+          ],
+          "iri": "http://edamontology.org/topic_3050",
+          "synonyms": []
+        },
+        {
+          "label": "Phylogenomics",
+          "id": 729,
+          "definitions": [
+            "The integrated study of evolutionary relationships and whole genome data, for example, in the analysis of species trees, horizontal gene transfer and evolutionary reconstruction."
+          ],
+          "iri": "http://edamontology.org/topic_0194",
+          "synonyms": []
+        }
+      ],
+      "taxonomies": [
+        {
+          "label": "All"
+        }
+      ],
+      "userDefinedTags": [
+        {
+          "label": "Natural Resources, Earth and Environment"
+        },
+        {
+          "label": "Species-environment interaction"
+        }
+      ],
+      "recordAssociations": [
+        {
+          "linkedRecord": {
+            "name": "Ecological Metadata Language",
+            "id": 231,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "implements"
+        }
+      ],
+      "reverseRecordAssociations": [
+        {
+          "fairsharingRecord": {
+            "name": "DataONE",
+            "id": 2414,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "related_to"
+        }
+      ],
+      "status": "ready",
+      "isRecommended": false
+    },
+    {
+      "id": 2452,
+      "type": "repository",
+      "name": "Harvard Dataverse Repository",
+      "abbreviation": null,
+      "doi": "10.25504/FAIRsharing.t2e1ss",
+      "registry": "Database",
+      "description": "Harvard Dataverse Repository is a research data repository running on the open source Dataverse software. The repository is fully open to the public, allows upload and browsing of data from all fields of research, and is free for all researchers worldwide.\n\nHarvard Dataverse Repository receives support from Harvard University, public and private grants, and an emergent consortium model.",
+      "domains": [
+        {
+          "label": "Experimental measurement",
+          "id": 1044,
+          "definitions": [
+            "Raw data such as measurements or other results from laboratory experiments, as generated from laboratory hardware."
+          ],
+          "iri": "http://edamontology.org/data_3108",
+          "synonyms": [
+            "Raw experimental data",
+            "Measured data",
+            "Measurement",
+            "Measurement data",
+            "Experimentally measured data",
+            "Measurement metadata",
+            "Experimental measurement data"
+          ],
+          "inFairsharing": true
+        },
+        {
+          "label": "Protocol",
+          "id": 1614,
+          "definitions": [
+            "A plan specification which has sufficient level of detail and quantitative information to communicate it between investigation agents, so that different investigation agents will reliably be able to independently reproduce the process."
+          ],
+          "iri": "http://purl.obolibrary.org/obo/OBI_0000272",
+          "synonyms": [
+            "study protocol"
+          ],
+          "inFairsharing": true
+        }
+      ],
+      "subjects": [
+        {
+          "label": "Data Management",
+          "id": 588,
+          "definitions": [
+            "The development and use of architectures, policies, practices and procedures for management of data."
+          ],
+          "iri": "http://edamontology.org/topic_3071",
+          "synonyms": []
+        },
+        {
+          "label": "Subject Agnostic",
+          "id": 768,
+          "definitions": [
+            "Subject Agnostic provides a way of describing research and resources that are applicable across all subject areas. Please note that this term does not, by default, mean that an object tagged with it is completely generic.\n\nExample: \"JPEG\" is Subject Agnostic, which means that the resource is applicable regardless of subject, but it does not mean that it can or should be used for any type of data."
+          ],
+          "iri": "http://www.fairsharing.org/ontology/subject/SRAO_0000401",
+          "synonyms": []
+        }
+      ],
+      "taxonomies": [
+        {
+          "label": "All"
+        }
+      ],
+      "userDefinedTags": [
+        {
+          "label": "Researcher data"
+        }
+      ],
+      "recordAssociations": [
+        {
+          "linkedRecord": {
+            "name": "Scholars Portal Dataverse",
+            "id": 2542,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "related_to"
+        },
+        {
+          "linkedRecord": {
+            "name": "Texas Data Repository",
+            "id": 2558,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "related_to"
+        },
+        {
+          "linkedRecord": {
+            "name": "DataverseNL",
+            "id": 2560,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "related_to"
+        },
+        {
+          "linkedRecord": {
+            "name": "e-cienciaDatos",
+            "id": 2760,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "related_to"
+        },
+        {
+          "linkedRecord": {
+            "name": "heiDATA",
+            "id": 2778,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "related_to"
+        },
+        {
+          "linkedRecord": {
+            "name": "UNC Dataverse",
+            "id": 2864,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "related_to"
+        },
+        {
+          "linkedRecord": {
+            "name": "International Standard Name Identifier Database",
+            "id": 3072,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "related_to"
+        },
+        {
+          "linkedRecord": {
+            "name": "arthistoricum.net@heiDATA",
+            "id": 3299,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "related_to"
+        },
+        {
+          "linkedRecord": {
+            "name": "Propylaeum@heiDATA",
+            "id": 3309,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "related_to"
+        },
+        {
+          "linkedRecord": {
+            "name": "CORA. Repositori de dades de Recerca",
+            "id": 3313,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "related_to"
+        },
+        {
+          "linkedRecord": {
+            "name": "data.sciencespo",
+            "id": 3333,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "related_to"
+        },
+        {
+          "linkedRecord": {
+            "name": "Ontology for Biomedical Investigations",
+            "id": 1488,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "implements"
+        },
+        {
+          "linkedRecord": {
+            "name": "NCBI Taxonomy",
+            "id": 1220,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "implements"
+        },
+        {
+          "linkedRecord": {
+            "name": "DataCite Metadata Schema",
+            "id": 758,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "implements"
+        },
+        {
+          "linkedRecord": {
+            "name": "Schema.org",
+            "id": 1024,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "implements"
+        },
+        {
+          "linkedRecord": {
+            "name": "Dublin Core Metadata Element Set",
+            "id": 1245,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "implements"
+        },
+        {
+          "linkedRecord": {
+            "name": "Open Archives Initiative Object Reuse and Exchange",
+            "id": 521,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "implements"
+        },
+        {
+          "linkedRecord": {
+            "name": "Digital Object Identifier",
+            "id": 1332,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "implements"
+        },
+        {
+          "linkedRecord": {
+            "name": "Extensible Markup Language",
+            "id": 1277,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "implements"
+        },
+        {
+          "linkedRecord": {
+            "name": "JavaScript Object Notation",
+            "id": 475,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "implements"
+        },
+        {
+          "linkedRecord": {
+            "name": "OpenAIRE Guidelines for Data Archives",
+            "id": 322,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "implements"
+        },
+        {
+          "linkedRecord": {
+            "name": "ISO 3166-1:2013 Codes for the representation of names of countries and their subdivisions — Part 1: Country codes",
+            "id": 706,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "implements"
+        },
+        {
+          "linkedRecord": {
+            "name": "ISO 27729:2012 Information and documentation — International standard name identifier",
+            "id": 822,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "implements"
+        },
+        {
+          "linkedRecord": {
+            "name": "Data Documentation Initiative Codebook",
+            "id": 1148,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "implements"
+        },
+        {
+          "linkedRecord": {
+            "name": "Open Archives Initiative Protocol for Metadata Harvesting Schema",
+            "id": 996,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "implements"
+        }
+      ],
+      "reverseRecordAssociations": [
+        {
+          "fairsharingRecord": {
+            "name": "Structural Biology Data Grid",
+            "id": 2209,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "related_to"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "Open Researcher and Contributor ID Registry",
+            "id": 2270,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "related_to"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "PLOS Recommended Data Repositories",
+            "id": 3381,
+            "registry": "Policy"
+          },
+          "recordAssocLabel": "recommends"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "Elsevier - The Lancet - Information for Authors",
+            "id": 3394,
+            "registry": "Policy"
+          },
+          "recordAssocLabel": "recommends"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "Elsevier's Data Policy",
+            "id": 3402,
+            "registry": "Policy"
+          },
+          "recordAssocLabel": "recommends"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "Elsevier - Lancet Neurology - Information for Authors",
+            "id": 3411,
+            "registry": "Policy"
+          },
+          "recordAssocLabel": "recommends"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "Open Research Data and Data Management Plans - Information for ERC grantees by the ERC Scientific Council",
+            "id": 3414,
+            "registry": "Policy"
+          },
+          "recordAssocLabel": "recommends"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "Cell Press - Cell Metabolism - Information for Authors",
+            "id": 3418,
+            "registry": "Policy"
+          },
+          "recordAssocLabel": "recommends"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "Cell Press - Molecular Cell - Information for Authors",
+            "id": 3419,
+            "registry": "Policy"
+          },
+          "recordAssocLabel": "recommends"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "Gates Open Research Data Guidelines",
+            "id": 3421,
+            "registry": "Policy"
+          },
+          "recordAssocLabel": "recommends"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "Cell Press - Developmental Cell - Information for Authors",
+            "id": 3424,
+            "registry": "Policy"
+          },
+          "recordAssocLabel": "recommends"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "Cell Press - Neuron - Information for Authors",
+            "id": 3427,
+            "registry": "Policy"
+          },
+          "recordAssocLabel": "recommends"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "Cell Press - Cell Stem Cell - Information for Authors",
+            "id": 3429,
+            "registry": "Policy"
+          },
+          "recordAssocLabel": "recommends"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "Oxford University Press Journal Research Data Policy",
+            "id": 3434,
+            "registry": "Policy"
+          },
+          "recordAssocLabel": "recommends"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "Elsevier - Lancet Oncology - Information for Authors",
+            "id": 3461,
+            "registry": "Policy"
+          },
+          "recordAssocLabel": "recommends"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "Elsevier - Lancet Infectious Diseases - Information for Authors",
+            "id": 3465,
+            "registry": "Policy"
+          },
+          "recordAssocLabel": "recommends"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "Epidemiology & Infection",
+            "id": 3474,
+            "registry": "Policy"
+          },
+          "recordAssocLabel": "recommends"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "Experimental Results",
+            "id": 3477,
+            "registry": "Policy"
+          },
+          "recordAssocLabel": "recommends"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "eLife Recommended Repositories and Standards",
+            "id": 3478,
+            "registry": "Policy"
+          },
+          "recordAssocLabel": "recommends"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "PeerJ Data and Materials Sharing Policies",
+            "id": 3480,
+            "registry": "Policy"
+          },
+          "recordAssocLabel": "recommends"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "Taylor and Francis - Data Sharing Policy",
+            "id": 3489,
+            "registry": "Policy"
+          },
+          "recordAssocLabel": "recommends"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "General Repository Comparison",
+            "id": 3541,
+            "registry": "Collection"
+          },
+          "recordAssocLabel": "collects"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "National Transportation Data Preservation Network  (NTDPN)",
+            "id": 3542,
+            "registry": "Collection"
+          },
+          "recordAssocLabel": "collects"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "SciELO Data",
+            "id": 3575,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "shares_code_with"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "Springer Nature - Research Data Policies",
+            "id": 3350,
+            "registry": "Policy"
+          },
+          "recordAssocLabel": "recommends"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "Adattár",
+            "id": 3815,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "shares_code_with"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "DataRepositoriUM",
+            "id": 3845,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "shares_code_with"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "data.sciencespo",
+            "id": 3333,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "shares_code_with"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "Geochemistry of Rocks of the Oceans and Continents",
+            "id": 3164,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "related_to"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "CIRAD Dataverse",
+            "id": 3966,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "shares_code_with"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "UCLA Dataverse",
+            "id": 4180,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "shares_code_with"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "Croatian Social Science Data Archive",
+            "id": 4230,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "shares_code_with"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "Portail Data INRAE",
+            "id": 2608,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "shares_code_with"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "University of Virginia Dataverse: LibraData",
+            "id": 4245,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "related_to"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "arthistoricum.net@heiDATA",
+            "id": 3299,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "shares_code_with"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "International Crops Research Institute for the Semi-Arid Tropics Dataverse",
+            "id": 3242,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "shares_code_with"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "NIH Repositories for Sharing Scientific Data",
+            "id": 3493,
+            "registry": "Collection"
+          },
+          "recordAssocLabel": "collects"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "Dryad Digital Repository",
+            "id": 1998,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "related_to"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "MNI Open Research",
+            "id": 3353,
+            "registry": "Policy"
+          },
+          "recordAssocLabel": "recommends"
+        }
+      ],
+      "status": "ready",
+      "isRecommended": true
+    },
+    {
+      "id": 2108,
+      "type": "repository",
+      "name": "eCrystals",
+      "abbreviation": "eCrystals",
+      "doi": "10.25504/FAIRsharing.v448pt",
+      "registry": "Database",
+      "description": "eCrystals is the archive for Crystal Structures generated by the Southampton Chemical Crystallography Group and the EPSRC UK National Crystallography Service. It contains all the fundamental and derived data resulting from a single crystal X-ray structure determination, but excluding the raw images.",
+      "domains": [
+        {
+          "label": "X-ray diffraction",
+          "id": 1213,
+          "definitions": [
+            "A method for determining structure by directing a beam of X-rays at the sample and detecting the positions and intensities of the diffracted X-rays as a pattern of spots on a photographic plate."
+          ],
+          "iri": "http://purl.obolibrary.org/obo/CHMO_0000156",
+          "synonyms": [
+            "X-ray diffractometry",
+            "X-ray crystallography",
+            "XRD",
+            "X-ray diffraction analysis",
+            "X-ray analysis",
+            "X-Ray crystallographic analysis",
+            "X-ray structure determination"
+          ],
+          "inFairsharing": true
+        },
+        {
+          "label": "X-ray crystallography assay",
+          "id": 1637,
+          "definitions": [
+            "A 3D structure determination assay in which the diffraction of pattern of X-ray beams in a crystal of purified material entities is used to resolve the 3-dimensional structure of the material entity of interest."
+          ],
+          "iri": "http://purl.obolibrary.org/obo/OBI_0000912",
+          "synonyms": [],
+          "inFairsharing": true
+        }
+      ],
+      "subjects": [
+        {
+          "label": "Chemistry",
+          "id": 608,
+          "definitions": [
+            "The science of the composition, structure, properties, and reactions of matter, especially of atomic and molecular systems."
+          ],
+          "iri": "http://purl.obolibrary.org/obo/NCIT_C16414",
+          "synonyms": []
+        },
+        {
+          "label": "Materials Science",
+          "id": 744,
+          "definitions": [
+            "Materials Science is the scientific study of the properties and applications of materials of construction or manufacture (such as ceramics, metals, polymers, and composites."
+          ],
+          "iri": "http://www.fairsharing.org/ontology/subject/SRAO_0000236",
+          "synonyms": []
+        }
+      ],
+      "taxonomies": [
+        {
+          "label": "All"
+        }
+      ],
+      "userDefinedTags": [],
+      "recordAssociations": [
+        {
+          "linkedRecord": {
+            "name": "macromolecular Crystallographic Information File",
+            "id": 121,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "implements"
+        },
+        {
+          "linkedRecord": {
+            "name": "Metadata Application Profile: eBank UK project",
+            "id": 594,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "implements"
+        },
+        {
+          "linkedRecord": {
+            "name": "Chemical Markup Language",
+            "id": 91,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "implements"
+        }
+      ],
+      "reverseRecordAssociations": [
+        {
+          "fairsharingRecord": {
+            "name": "Chemistry",
+            "id": 3524,
+            "registry": "Collection"
+          },
+          "recordAssocLabel": "collects"
+        }
+      ],
+      "status": "ready",
+      "isRecommended": false
+    },
+    {
+      "id": 2650,
+      "type": "repository",
+      "name": "International Clinical Trials Registry Platform",
+      "abbreviation": "ICTRP",
+      "doi": "10.25504/FAIRsharing.5a3bc5",
+      "registry": "Database",
+      "description": "ICTRP is a depository of clinical trials to enable the health and scientific community to have access of clinical studies.",
+      "domains": [
+        {
+          "label": "Safety study",
+          "id": 1590,
+          "definitions": [
+            "A study of the relative safety of treatment of a disease. Usually this is a Phase I or II trial."
+          ],
+          "iri": "http://purl.obolibrary.org/obo/NCIT_C49667",
+          "synonyms": [
+            "SAFETY"
+          ],
+          "inFairsharing": true
+        },
+        {
+          "label": "Non-randomized controlled trials",
+          "id": 1729,
+          "definitions": [],
+          "iri": "http://purl.obolibrary.org/obo/OMIT_0028630",
+          "synonyms": [
+            "Non-Randomized Controlled Trials as Topic"
+          ],
+          "inFairsharing": true
+        }
+      ],
+      "subjects": [
+        {
+          "label": "Clinical Studies",
+          "id": 581,
+          "definitions": [
+            "Research conducted with human subjects or on material of human origin in which an investigator directly interacts with human subjects; includes development of new technologies, study of mechanisms of human diseases, therapy, clinical trials, epidemiologic, behavior, and health services research."
+          ],
+          "iri": "http://purl.obolibrary.org/obo/NCIT_C15206",
+          "synonyms": []
+        },
+        {
+          "label": "Virology",
+          "id": 710,
+          "definitions": [
+            "Study of viruses, e.g. sequence and structural data, interactions of viral proteins, or a viral genome including molecular sequences, genes and annotation."
+          ],
+          "iri": "http://edamontology.org/topic_0781",
+          "synonyms": []
+        },
+        {
+          "label": "Biomedical Science",
+          "id": 780,
+          "definitions": [
+            "Research concerned with the application of biological and physiological principles to clinical medicine."
+          ],
+          "iri": "http://purl.obolibrary.org/obo/NCIT_C15188",
+          "synonyms": []
+        },
+        {
+          "label": "Epidemiology",
+          "id": 833,
+          "definitions": [
+            "The study of the causes, incidence and distribution of disease in the population and its application for prevention or control."
+          ],
+          "iri": "http://purl.obolibrary.org/obo/NCIT_C16556",
+          "synonyms": []
+        },
+        {
+          "label": "Preclinical Studies",
+          "id": 844,
+          "definitions": [
+            "An investigation that tests a drug, procedure or medical treatment in animals to determine any toxic effects before trials can be carried out in humans."
+          ],
+          "iri": "http://purl.obolibrary.org/obo/NCIT_C142642",
+          "synonyms": []
+        }
+      ],
+      "taxonomies": [
+        {
+          "label": "Homo sapiens"
+        }
+      ],
+      "userDefinedTags": [],
+      "recordAssociations": [
+        {
+          "linkedRecord": {
+            "name": "Cochrane Library",
+            "id": 3061,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "related_to"
+        },
+        {
+          "linkedRecord": {
+            "name": "ECRIN Clinical Research Metadata Repository",
+            "id": 3067,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "related_to"
+        },
+        {
+          "linkedRecord": {
+            "name": "Netherlands Trial Register",
+            "id": 2932,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "deprecates"
+        }
+      ],
+      "reverseRecordAssociations": [
+        {
+          "fairsharingRecord": {
+            "name": "WHO Guideline for Good Clinical Practice",
+            "id": 3447,
+            "registry": "Policy"
+          },
+          "recordAssocLabel": "recommends"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "ICMJE’s clinical trial registration",
+            "id": 3449,
+            "registry": "Policy"
+          },
+          "recordAssocLabel": "recommends"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "WHO norms for sharing data and results during public health emergencies",
+            "id": 3450,
+            "registry": "Policy"
+          },
+          "recordAssocLabel": "recommends"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "COVID-19 Resources",
+            "id": 3538,
+            "registry": "Collection"
+          },
+          "recordAssocLabel": "collects"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "RDA Covid-19 WG Resources",
+            "id": 3540,
+            "registry": "Collection"
+          },
+          "recordAssocLabel": "collects"
+        }
+      ],
+      "status": "ready",
+      "isRecommended": true
+    },
+    {
+      "id": 3220,
+      "type": "repository",
+      "name": "Sciflection",
+      "abbreviation": "Sciflection",
+      "doi": "10.25504/FAIRsharing.NKUobC",
+      "registry": "Database",
+      "description": "Sciflection is a chemical database which allows researchers to publish and share their experiments as well as analytical data. Sciflection accepts structured data directly uploaded from Electronic Laboratory Notebooks (open enventory, Sciformation ELN, open for others) in JSON format. The repository is searchable by chemical structure, text parts, numeric parameters, etc.",
+      "domains": [
+        {
+          "label": "Chemical formula",
+          "id": 983,
+          "definitions": [
+            "A specification of a chemical structure."
+          ],
+          "iri": "http://edamontology.org/data_0846",
+          "synonyms": [
+            "Chemical structure specification"
+          ],
+          "inFairsharing": true
+        },
+        {
+          "label": "Mass spectrum",
+          "id": 990,
+          "definitions": [
+            "Spectra from mass spectrometry."
+          ],
+          "iri": "http://edamontology.org/data_0943",
+          "synonyms": [
+            "Mass spectrometry spectra"
+          ],
+          "inFairsharing": true
+        },
+        {
+          "label": "Reaction data",
+          "id": 1041,
+          "definitions": [
+            "Data concerning a biochemical reaction, typically data and more general annotation on the kinetics of enzyme-catalysed reaction."
+          ],
+          "iri": "http://edamontology.org/data_2978",
+          "synonyms": [
+            "Reaction annotation",
+            "Enzyme kinetics annotation"
+          ],
+          "inFairsharing": true
+        },
+        {
+          "label": "X-ray diffraction",
+          "id": 1213,
+          "definitions": [
+            "A method for determining structure by directing a beam of X-rays at the sample and detecting the positions and intensities of the diffracted X-rays as a pattern of spots on a photographic plate."
+          ],
+          "iri": "http://purl.obolibrary.org/obo/CHMO_0000156",
+          "synonyms": [
+            "X-ray diffractometry",
+            "X-ray crystallography",
+            "XRD",
+            "X-ray diffraction analysis",
+            "X-ray analysis",
+            "X-Ray crystallographic analysis",
+            "X-ray structure determination"
+          ],
+          "inFairsharing": true
+        },
+        {
+          "label": "Raman spectroscopy",
+          "id": 1325,
+          "definitions": [
+            "A spectroscopy technique that uses inelastic scattering, or Raman scattering, of monochromatic light used to study vibrational, rotational, and other low-frequency modes in a system. "
+          ],
+          "iri": "http://purl.obolibrary.org/obo/ERO_0001677",
+          "synonyms": [],
+          "inFairsharing": true
+        },
+        {
+          "label": "X-ray crystallography assay",
+          "id": 1637,
+          "definitions": [
+            "A 3D structure determination assay in which the diffraction of pattern of X-ray beams in a crystal of purified material entities is used to resolve the 3-dimensional structure of the material entity of interest."
+          ],
+          "iri": "http://purl.obolibrary.org/obo/OBI_0000912",
+          "synonyms": [],
+          "inFairsharing": true
+        }
+      ],
+      "subjects": [
+        {
+          "label": "Engineering Science",
+          "id": 468,
+          "definitions": [
+            "The discipline concerned with the application of scientific knowledge to solve practical issues in commerce or industry."
+          ],
+          "iri": "http://purl.obolibrary.org/obo/NCIT_C16548",
+          "synonyms": []
+        },
+        {
+          "label": "Synthetic Chemistry",
+          "id": 469,
+          "definitions": [
+            "The use of chemistry to create new compounds."
+          ],
+          "iri": "http://edamontology.org/topic_3371",
+          "synonyms": []
+        },
+        {
+          "label": "Chemistry",
+          "id": 608,
+          "definitions": [
+            "The science of the composition, structure, properties, and reactions of matter, especially of atomic and molecular systems."
+          ],
+          "iri": "http://purl.obolibrary.org/obo/NCIT_C16414",
+          "synonyms": []
+        },
+        {
+          "label": "Life Science",
+          "id": 742,
+          "definitions": [
+            "Life Science is the study of all of the divisions of the natural sciences dealing with the various aspects of the phenomena of life and vital processes."
+          ],
+          "iri": "http://aims.fao.org/aos/agrovoc/c_4318",
+          "synonyms": [
+            "Life Sciences"
+          ]
+        },
+        {
+          "label": "Analytical Chemistry",
+          "id": 773,
+          "definitions": [
+            "The study of the separation, identification, and quantification of the chemical components of natural and artificial materials."
+          ],
+          "iri": "http://edamontology.org/topic_3370",
+          "synonyms": []
+        },
+        {
+          "label": "Physics",
+          "id": 796,
+          "definitions": [
+            "The study of matter, space and time, and related concepts such as energy and force."
+          ],
+          "iri": "http://edamontology.org/topic_3318",
+          "synonyms": []
+        },
+        {
+          "label": "Biology",
+          "id": 812,
+          "definitions": [
+            "The scientific study of living organisms."
+          ],
+          "iri": "http://purl.obolibrary.org/obo/NCIT_C16345",
+          "synonyms": []
+        }
+      ],
+      "taxonomies": [
+        {
+          "label": "Not applicable"
+        }
+      ],
+      "userDefinedTags": [
+        {
+          "label": "Catalysis"
+        },
+        {
+          "label": "multidisciplinary"
+        },
+        {
+          "label": "Structured data"
+        }
+      ],
+      "recordAssociations": [
+        {
+          "linkedRecord": {
+            "name": "JavaScript Object Notation",
+            "id": 475,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "implements"
+        }
+      ],
+      "reverseRecordAssociations": [],
+      "status": "ready",
+      "isRecommended": false
+    },
+    {
+      "id": 1909,
+      "type": "repository",
+      "name": "Aphid Genomics Database",
+      "abbreviation": "AphidBase",
+      "doi": "10.25504/FAIRsharing.cb05hf",
+      "registry": "Database",
+      "description": "The Aphid Genome Database's aim is to improve the current pea aphid genome assembly and annotation, and to provide new aphid genome sequences as well as tools for analysis of these genomes.",
+      "domains": [
+        {
+          "label": "Genome annotation",
+          "id": 1062,
+          "definitions": [
+            "Annotate a genome sequence with terms from a controlled vocabulary."
+          ],
+          "iri": "http://edamontology.org/operation_0362",
+          "synonyms": [
+            "Functional genome annotation",
+            "Metagenome annotation",
+            "Structural genome annotation"
+          ],
+          "inFairsharing": true
+        },
+        {
+          "label": "Genomic assembly",
+          "id": 1070,
+          "definitions": [
+            "The process of assembling many short DNA sequences together such thay they represent the original chromosomes from which the DNA originated."
+          ],
+          "iri": "http://edamontology.org/operation_0525",
+          "synonyms": [
+            "Genome assembly",
+            "Breakend assembly",
+            "Sequence assembly (genome assembly)"
+          ],
+          "inFairsharing": true
+        },
+        {
+          "label": "Genome",
+          "id": 1826,
+          "definitions": [
+            "A genome is the sum of genetic material within a cell or virion."
+          ],
+          "iri": "http://purl.obolibrary.org/obo/SO_0001026",
+          "synonyms": [],
+          "inFairsharing": true
+        }
+      ],
+      "subjects": [
+        {
+          "label": "Life Science",
+          "id": 742,
+          "definitions": [
+            "Life Science is the study of all of the divisions of the natural sciences dealing with the various aspects of the phenomena of life and vital processes."
+          ],
+          "iri": "http://aims.fao.org/aos/agrovoc/c_4318",
+          "synonyms": [
+            "Life Sciences"
+          ]
+        }
+      ],
+      "taxonomies": [
+        {
+          "label": "Aphididae"
+        }
+      ],
+      "userDefinedTags": [],
+      "recordAssociations": [
+        {
+          "linkedRecord": {
+            "name": "Gene Ontology",
+            "id": 1417,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "implements"
+        },
+        {
+          "linkedRecord": {
+            "name": "FASTA Sequence Format",
+            "id": 620,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "implements"
+        }
+      ],
+      "reverseRecordAssociations": [],
+      "status": "ready",
+      "isRecommended": false
+    },
+    {
+      "id": 2808,
+      "type": "repository",
+      "name": "MISTRALS",
+      "abbreviation": "MISTRALS",
+      "doi": "10.25504/FAIRsharing.bece4c",
+      "registry": "Database",
+      "description": "The MISTRALS database is a collection of information from satellite, geological and modelling data derived from a number of different data sources both within and without the MISTRALS community. The MISTRALS initiative has 6 programmes - BioDivMex, ChArMEx, HyMex, MERMex, PaleoMex, and SICMED. Registration is required.",
+      "domains": [
+        {
+          "label": "Climate",
+          "id": 1297,
+          "definitions": [
+            "The disposition of an environmental system, particularly those influencing atmospheres, to manifest a cyclic pattern of weather over time."
+          ],
+          "iri": "http://purl.obolibrary.org/obo/ENVO_01001082",
+          "synonyms": [],
+          "inFairsharing": true
+        }
+      ],
+      "subjects": [
+        {
+          "label": "Environmental Science",
+          "id": 445,
+          "definitions": [
+            "Environmental Science is a broad interdisciplinary field in which ecologists work with other physical, chemical, and biological researchers to study and seek solutions to environmental problems. Environmental science focuses on the environment and how humans can manage and utilise its resources and the effects our actions have on the environment."
+          ],
+          "iri": "http://aims.fao.org/aos/agrovoc/c_331559",
+          "synonyms": [
+            "Environmental Sciences"
+          ]
+        },
+        {
+          "label": "Geology",
+          "id": 471,
+          "definitions": [
+            "Geology is the study or science of the earth, its history, and its life as recorded in the rocks; includes the study of geologic features of an area, such as the geometry of rock formations, weathering and erosion, and sedimentation."
+          ],
+          "iri": "http://purl.obolibrary.org/obo/OMIT_0007039",
+          "synonyms": []
+        },
+        {
+          "label": "Geophysics",
+          "id": 517,
+          "definitions": [
+            "Geophysics is the branch of science concerned with the physics of the earth and the processes which affect it; the application of the principles, methods, and techniques of physics to the study of the earth, esp. the crust. [Adapted from OED, AL 12.6.2019]"
+          ],
+          "iri": "http://aims.fao.org/aos/agrovoc/c_3235",
+          "synonyms": []
+        },
+        {
+          "label": "Biodiversity",
+          "id": 685,
+          "definitions": [
+            "The degree of variation of life forms within a given ecosystem, biome or an entire planet."
+          ],
+          "iri": "http://edamontology.org/topic_3050",
+          "synonyms": []
+        },
+        {
+          "label": "Earth Science",
+          "id": 708,
+          "definitions": [
+            "Earth Science is the science that deals with the earth or any part thereof; includes the disciplines of geology, geography, oceanography and meteorology, among others. [GEMET https://www.eionet.europa.eu/gemet/en/concept/2405, AL 12.6.2019]"
+          ],
+          "iri": "http://purl.obolibrary.org/obo/OMIT_0026615",
+          "synonyms": [
+            "Geoscience"
+          ]
+        },
+        {
+          "label": "Bathymetry",
+          "id": 709,
+          "definitions": [
+            "Bathymetry is the study of underwater depth of ocean floors or lake floors."
+          ],
+          "iri": "http://www.fairsharing.org/ontology/subject/SRAO_0000410",
+          "synonyms": []
+        },
+        {
+          "label": "Atmospheric Science",
+          "id": 717,
+          "definitions": [
+            "Atmospheric Science is the study of the dynamics and chemistry of the layers of gas that surround the Earth, other planets and moons. This encompasses the interactions between various parts of the atmosphere as well as interactions with the oceans and freshwater systems, the biosphere and human activities. [Nature https://www.nature.com/subjects/atmospheric-science, AL 20.05.2019]"
+          ],
+          "iri": "http://aims.fao.org/aos/agrovoc/c_694",
+          "synonyms": []
+        },
+        {
+          "label": "Remote Sensing",
+          "id": 746,
+          "definitions": [
+            "Remote Sensing is the acquisition of information about an object or phenomenon without making physical contact with the object and thus in contrast to on-site observation, especially the Earth. Remote sensing is used in numerous fields, including geography, land surveying and most Earth Science disciplines as well as military, intelligence, commercial, economic, planning, and humanitarian applications. [Adapted from Wikipedia https://en.wikipedia.org/wiki/Remote_sensing, AL 2.4.2019]"
+          ],
+          "iri": "http://aims.fao.org/aos/agrovoc/c_6498",
+          "synonyms": []
+        },
+        {
+          "label": "Oceanography",
+          "id": 810,
+          "definitions": [
+            "Oceanography is the branch of science concerned with the physical and biological properties and phenomena of the ocean. [OED, AL 20.05.2019]"
+          ],
+          "iri": "http://purl.obolibrary.org/obo/OMIT_0010809",
+          "synonyms": []
+        }
+      ],
+      "taxonomies": [
+        {
+          "label": "Not applicable"
+        }
+      ],
+      "userDefinedTags": [
+        {
+          "label": "Bathymetry"
+        },
+        {
+          "label": "Cryosphere"
+        }
+      ],
+      "recordAssociations": [],
+      "reverseRecordAssociations": [],
+      "status": "ready",
+      "isRecommended": false
+    },
+    {
+      "id": 3218,
+      "type": "repository",
+      "name": "AmeriFlux",
+      "abbreviation": "AmeriFlux",
+      "doi": "10.25504/FAIRsharing.a784f5",
+      "registry": "Database",
+      "description": "AmeriFlux is a data archive and network of PI-managed sites measuring ecosystem CO2, water, and energy fluxes in North, Central and South America. It was established to connect research on field sites representing major climate and ecological biomes, including tundra, grasslands, savanna, crops, and conifer, deciduous, and tropical forests. Its goals include quantifying the magnitude of the carbon sources and sinks for a range of terrestrial ecosystems in the Americas, and how they may be influenced by disturbance, management regimes, climate variability, nutrients, and atmospheric pollutants; advancing understanding of processes regulating carbon assimilation, respiration, and storage; collecting critical new information to help define the current global CO2 budget; and enabling improved predictions of future concentrations of atmospheric CO2.",
+      "domains": [],
+      "subjects": [
+        {
+          "label": "Environmental Science",
+          "id": 445,
+          "definitions": [
+            "Environmental Science is a broad interdisciplinary field in which ecologists work with other physical, chemical, and biological researchers to study and seek solutions to environmental problems. Environmental science focuses on the environment and how humans can manage and utilise its resources and the effects our actions have on the environment."
+          ],
+          "iri": "http://aims.fao.org/aos/agrovoc/c_331559",
+          "synonyms": [
+            "Environmental Sciences"
+          ]
+        },
+        {
+          "label": "Forest Management",
+          "id": 446,
+          "definitions": [
+            "Forest Management is a branch of forestry concerned with overall administrative, economic, legal, and social aspects, as well as scientific and technical aspects, such as silviculture, protection, and forest regulation. This includes management for aesthetics, fish, recreation, urban values, water, wilderness, wildlife, wood products, forest genetic resources, and other forest resource values. Management can be based on conservation, economics, or a mixture of the two."
+          ],
+          "iri": "http://aims.fao.org/aos/agrovoc/c_16129",
+          "synonyms": []
+        },
+        {
+          "label": "Atmospheric Science",
+          "id": 717,
+          "definitions": [
+            "Atmospheric Science is the study of the dynamics and chemistry of the layers of gas that surround the Earth, other planets and moons. This encompasses the interactions between various parts of the atmosphere as well as interactions with the oceans and freshwater systems, the biosphere and human activities. [Nature https://www.nature.com/subjects/atmospheric-science, AL 20.05.2019]"
+          ],
+          "iri": "http://aims.fao.org/aos/agrovoc/c_694",
+          "synonyms": []
+        },
+        {
+          "label": "Ecosystem Science",
+          "id": 859,
+          "definitions": [
+            "Ecosystem Science is the study of inter-relationships among the living organisms, physical features, bio-chemical processes, natural phenomena, and human activities in ecological communities. [NOAA https://oceanservice.noaa.gov/facts/ecosci.html, AL 16.5.2019]"
+          ],
+          "iri": "http://purl.obolibrary.org/obo/OMIT_0018052",
+          "synonyms": []
+        }
+      ],
+      "taxonomies": [
+        {
+          "label": "Not applicable"
+        }
+      ],
+      "userDefinedTags": [
+        {
+          "label": "Carbon"
+        },
+        {
+          "label": "Carbon cycle"
+        },
+        {
+          "label": "Grassland Research"
+        },
+        {
+          "label": "Pollution"
+        },
+        {
+          "label": "Savannah"
+        },
+        {
+          "label": "Tundra"
+        }
+      ],
+      "recordAssociations": [
+        {
+          "linkedRecord": {
+            "name": "Digital Object Identifier",
+            "id": 1332,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "implements"
+        }
+      ],
+      "reverseRecordAssociations": [],
+      "status": "ready",
+      "isRecommended": false
+    },
+    {
+      "id": 2289,
+      "type": "repository",
+      "name": "Coral Trait Database",
+      "abbreviation": null,
+      "doi": "10.25504/FAIRsharing.4vthvs",
+      "registry": "Database",
+      "description": "The Coral Trait Database is a growing compilation of scleractinian coral life history trait, phylogenetic and biogeographic data. It is an open source research initiative that aims to make all observations and measurements of Scleractinian corals accessible in order to more rapidly advance coral reef science. Anyone collecting coral trait data (e.g., collected in field and laboratory studies, extracted from the literature, or by other means) can join and contribute to the growing data compilation. The citation system has been carefully designed to ensure full transparency about the origin of each individual data point as well as larger data compilations of other peoples' data (such as data extracted from literature for meta-analyses).",
+      "domains": [
+        {
+          "label": "Geographical location",
+          "id": 1053,
+          "definitions": [
+            "A report about localisation of the isolaton of biological material e.g. country or coordinates."
+          ],
+          "iri": "http://edamontology.org/data_3720",
+          "synonyms": [
+            "Geographic location"
+          ],
+          "inFairsharing": true
+        },
+        {
+          "label": "Marine coral reef biome",
+          "id": 1287,
+          "definitions": [
+            "The marine coral reef biome comprises constructional wave-resistant entities which are primarily built by corals and are often cemented together. The growth of these structures is aided by zooxanthellae, algae that are symbiotic with the reef-building corals."
+          ],
+          "iri": "http://purl.obolibrary.org/obo/ENVO_01000049",
+          "synonyms": [],
+          "inFairsharing": true
+        },
+        {
+          "label": "Marine environment",
+          "id": 1291,
+          "definitions": [
+            "A marine environment and enviroment which is determined by a marine water body."
+          ],
+          "iri": "http://purl.obolibrary.org/obo/ENVO_01000320",
+          "synonyms": [],
+          "inFairsharing": true
+        }
+      ],
+      "subjects": [
+        {
+          "label": "Marine Biology",
+          "id": 611,
+          "definitions": [
+            "The study of organisms in the ocean or brackish waters."
+          ],
+          "iri": "http://edamontology.org/topic_3387",
+          "synonyms": []
+        },
+        {
+          "label": "Phylogenetics",
+          "id": 629,
+          "definitions": [
+            "The study of evolutionary relationships amongst organisms from analysis of genetic information (typically gene or protein sequences)."
+          ],
+          "iri": "http://edamontology.org/topic_3293",
+          "synonyms": [
+            "Biological Systematics"
+          ]
+        }
+      ],
+      "taxonomies": [
+        {
+          "label": "Scleractinia"
+        }
+      ],
+      "userDefinedTags": [],
+      "recordAssociations": [
+        {
+          "linkedRecord": {
+            "name": "OBOE: The Extensible Observation Ontology",
+            "id": 1546,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "implements"
+        },
+        {
+          "linkedRecord": {
+            "name": "Crossref",
+            "id": 3037,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "related_to"
+        }
+      ],
+      "reverseRecordAssociations": [],
+      "status": "ready",
+      "isRecommended": false
+    },
+    {
+      "id": 2563,
+      "type": "repository",
+      "name": "JRC Data Catalogue",
+      "abbreviation": null,
+      "doi": "10.25504/FAIRsharing.4e2z82",
+      "registry": "Database",
+      "description": "The JRC Data Catalogue gives access to the multidisciplinary data produced and maintained by the Joint Research Centre, the European Commission's in-house science service providing independent scientific advice and support to policies of the European Union. NB: The JRC Data Catalogue is also included in scientific publishers' submission systems as \"European Commission, Joint Research Centre (JRC)\".",
+      "domains": [],
+      "subjects": [
+        {
+          "label": "Economics",
+          "id": 434,
+          "definitions": [
+            "Economics is the branch of social science that deals with the production and distribution and consumption of goods and services and their management)."
+          ],
+          "iri": "http://aims.fao.org/aos/agrovoc/c_2481",
+          "synonyms": []
+        },
+        {
+          "label": "Engineering Science",
+          "id": 468,
+          "definitions": [
+            "The discipline concerned with the application of scientific knowledge to solve practical issues in commerce or industry."
+          ],
+          "iri": "http://purl.obolibrary.org/obo/NCIT_C16548",
+          "synonyms": []
+        },
+        {
+          "label": "Social Science",
+          "id": 508,
+          "definitions": [
+            "Comprises the scientific study of the human aspects of the world. They are also known as social studies. Psychology studies the human mind, sociology examines human society, political science studies the governing of groups and economics concerns itself with the allocation of wealth in society."
+          ],
+          "iri": "http://purl.obolibrary.org/obo/NCIT_C17141",
+          "synonyms": []
+        },
+        {
+          "label": "Natural Science",
+          "id": 700,
+          "definitions": [
+            "Natural Science is the branch of knowledge that deals with the natural or physical world, in contrast to the social sciences and human sciences."
+          ],
+          "iri": "http://purl.obolibrary.org/obo/OMIT_0011790",
+          "synonyms": []
+        },
+        {
+          "label": "Life Science",
+          "id": 742,
+          "definitions": [
+            "Life Science is the study of all of the divisions of the natural sciences dealing with the various aspects of the phenomena of life and vital processes."
+          ],
+          "iri": "http://aims.fao.org/aos/agrovoc/c_4318",
+          "synonyms": [
+            "Life Sciences"
+          ]
+        },
+        {
+          "label": "Social and Behavioural Science",
+          "id": 759,
+          "definitions": [
+            "Social and Behavioral Science is a broad area of study that applies to a unique range of disciplines -- anthropology, sociology, and psychology, among them -- that are primarily concerned with the analysis of human behavior."
+          ],
+          "iri": "http://www.fairsharing.org/ontology/subject/SRAO_0000041",
+          "synonyms": []
+        }
+      ],
+      "taxonomies": [
+        {
+          "label": "All"
+        }
+      ],
+      "userDefinedTags": [],
+      "recordAssociations": [
+        {
+          "linkedRecord": {
+            "name": "Data Catalog Vocabulary",
+            "id": 747,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "implements"
+        },
+        {
+          "linkedRecord": {
+            "name": "Asset Description Metadata Schema",
+            "id": 410,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "implements"
+        }
+      ],
+      "reverseRecordAssociations": [
+        {
+          "fairsharingRecord": {
+            "name": "JRC Data Policy",
+            "id": 3373,
+            "registry": "Policy"
+          },
+          "recordAssocLabel": "recommends"
+        }
+      ],
+      "status": "ready",
+      "isRecommended": true
+    },
+    {
+      "id": 2789,
+      "type": "repository",
+      "name": "Long Term Ecological Research Network Information System Data Portal",
+      "abbreviation": "LTER NIS Data Portal",
+      "doi": null,
+      "registry": "Database",
+      "description": "The LTER Network Information System Data Portal contains ecological data packages contributed by past and present LTER sites. Data and metadata derived from publicly funded research in the U.S. LTER Network are made available online with as few restrictions as possible, on a non-discriminatory basis. The LTER is able to support high-level analysis and synthesis of complex ecosystem data across the science-policy-management continuum, which in turn helps advance ecosystem research.",
+      "domains": [
+        {
+          "label": "Ecosystem",
+          "id": 1298,
+          "definitions": [
+            "An environmental system which includes both living and non-living components."
+          ],
+          "iri": "http://purl.obolibrary.org/obo/ENVO_01001110",
+          "synonyms": [],
+          "inFairsharing": true
+        }
+      ],
+      "subjects": [
+        {
+          "label": "Ecology",
+          "id": 675,
+          "definitions": [
+            "The branch of biology concerned with the relations between organisms and their environment."
+          ],
+          "iri": "http://purl.obolibrary.org/obo/NCIT_C16526",
+          "synonyms": []
+        },
+        {
+          "label": "Life Science",
+          "id": 742,
+          "definitions": [
+            "Life Science is the study of all of the divisions of the natural sciences dealing with the various aspects of the phenomena of life and vital processes."
+          ],
+          "iri": "http://aims.fao.org/aos/agrovoc/c_4318",
+          "synonyms": [
+            "Life Sciences"
+          ]
+        },
+        {
+          "label": "Ecosystem Science",
+          "id": 859,
+          "definitions": [
+            "Ecosystem Science is the study of inter-relationships among the living organisms, physical features, bio-chemical processes, natural phenomena, and human activities in ecological communities. [NOAA https://oceanservice.noaa.gov/facts/ecosci.html, AL 16.5.2019]"
+          ],
+          "iri": "http://purl.obolibrary.org/obo/OMIT_0018052",
+          "synonyms": []
+        }
+      ],
+      "taxonomies": [
+        {
+          "label": "All"
+        }
+      ],
+      "userDefinedTags": [],
+      "recordAssociations": [
+        {
+          "linkedRecord": {
+            "name": "Ecological Metadata Language",
+            "id": 231,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "implements"
+        }
+      ],
+      "reverseRecordAssociations": [
+        {
+          "fairsharingRecord": {
+            "name": "Environmental Data Initiative Data Portal",
+            "id": 2162,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "deprecates"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "ARPHA",
+            "id": 3827,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "shares_data_with"
+        }
+      ],
+      "status": "deprecated",
+      "isRecommended": false
+    },
+    {
+      "id": 3120,
+      "type": "repository",
+      "name": "World Data Centre for Meteorology, Obninsk",
+      "abbreviation": "WDC",
+      "doi": "10.25504/FAIRsharing.4a527e",
+      "registry": "Database",
+      "description": "The task of the Centre is to collect and disseminate meteorological data and products worldwide and especially in Russia. The information basis of the Centre is updated on regular basis from various sources including the bilateral data exchange with the World Data Centre for Meteorology in Ashville, North Carolina, USA",
+      "domains": [],
+      "subjects": [
+        {
+          "label": "Meteorology",
+          "id": 590,
+          "definitions": [
+            "Meteorology is the branch of science that deals with atmospheric phenomena and processes, especially with a view to forecasting the weather."
+          ],
+          "iri": "http://purl.obolibrary.org/obo/OMIT_0026522",
+          "synonyms": []
+        },
+        {
+          "label": "Earth Science",
+          "id": 708,
+          "definitions": [
+            "Earth Science is the science that deals with the earth or any part thereof; includes the disciplines of geology, geography, oceanography and meteorology, among others. [GEMET https://www.eionet.europa.eu/gemet/en/concept/2405, AL 12.6.2019]"
+          ],
+          "iri": "http://purl.obolibrary.org/obo/OMIT_0026615",
+          "synonyms": [
+            "Geoscience"
+          ]
+        }
+      ],
+      "taxonomies": [
+        {
+          "label": "Not applicable"
+        }
+      ],
+      "userDefinedTags": [
+        {
+          "label": "Air"
+        },
+        {
+          "label": "precipitation"
+        },
+        {
+          "label": "Temperature"
+        }
+      ],
+      "recordAssociations": [],
+      "reverseRecordAssociations": [],
+      "status": "ready",
+      "isRecommended": false
+    },
+    {
+      "id": 2213,
+      "type": "repository",
+      "name": "Research Domain Criteria Database",
+      "abbreviation": "RDoCdb",
+      "doi": "10.25504/FAIRsharing.af3j4h",
+      "registry": "Database",
+      "description": "RDoCdb is an informatics platform for the sharing of human subjects data related to Mental Health research. This database may be used to plan for data submission, share your data, query data that is already shared, or to share your results related to a publication or finding. RDoCdb is is a part of the NIMH Data Archive (NDA), powered by the National Database for Autism Research (NDAR) infrastructure.",
+      "domains": [
+        {
+          "label": "Mental health",
+          "id": 1916,
+          "definitions": [
+            "The state wherein the person is well adjusted."
+          ],
+          "iri": "http://www.ebi.ac.uk/efo/EFO_0003935",
+          "synonyms": [
+            "Hygiene, Mental",
+            "Health, Mental",
+            "Mental Hygiene"
+          ],
+          "inFairsharing": true
+        }
+      ],
+      "subjects": [
+        {
+          "label": "Health Science",
+          "id": 587,
+          "definitions": [
+            "The sciences concerned with health promotion and maintenance."
+          ],
+          "iri": "http://purl.obolibrary.org/obo/NCIT_C19199",
+          "synonyms": []
+        },
+        {
+          "label": "Biomedical Science",
+          "id": 780,
+          "definitions": [
+            "Research concerned with the application of biological and physiological principles to clinical medicine."
+          ],
+          "iri": "http://purl.obolibrary.org/obo/NCIT_C15188",
+          "synonyms": []
+        },
+        {
+          "label": "Preclinical Studies",
+          "id": 844,
+          "definitions": [
+            "An investigation that tests a drug, procedure or medical treatment in animals to determine any toxic effects before trials can be carried out in humans."
+          ],
+          "iri": "http://purl.obolibrary.org/obo/NCIT_C142642",
+          "synonyms": []
+        }
+      ],
+      "taxonomies": [
+        {
+          "label": "Homo sapiens"
+        }
+      ],
+      "userDefinedTags": [],
+      "recordAssociations": [
+        {
+          "linkedRecord": {
+            "name": "National Database for Clinical Trials related to Mental Illness",
+            "id": 2214,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "related_to"
+        }
+      ],
+      "reverseRecordAssociations": [
+        {
+          "fairsharingRecord": {
+            "name": "National Database for Autism Research",
+            "id": 2024,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "related_to"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "National Institute of Mental Health Data Archive",
+            "id": 3209,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "deprecates"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "Data Citation Implementation",
+            "id": 3500,
+            "registry": "Collection"
+          },
+          "recordAssocLabel": "collects"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "RDA Covid-19 WG Resources",
+            "id": 3540,
+            "registry": "Collection"
+          },
+          "recordAssocLabel": "collects"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "Nature Scientific Data - Data Repository Guidance",
+            "id": 3408,
+            "registry": "Policy"
+          },
+          "recordAssocLabel": "recommends"
+        }
+      ],
+      "status": "deprecated",
+      "isRecommended": true
+    },
+    {
+      "id": 2485,
+      "type": "repository",
+      "name": "Health and Medical Care Archive",
+      "abbreviation": "HMCA",
+      "doi": "10.25504/FAIRsharing.szj2xw",
+      "registry": "Database",
+      "description": "The Health and Medical Care Archive (HMCA) is the data archive of the Robert Wood Johnson Foundation (RWJF), the largest philanthropy devoted exclusively to health and health care in the United States. Operated by the Inter-university Consortium for Political and Social Research (ICPSR) at the University of Michigan with funding from RWJF, HMCA preserves and disseminates data collected by selected research projects funded by RWJF and facilitates secondary analyses of the data. The data collections in HMCA primarily includes large-scale surveys of the American public about public health, attitudes towards health reform, and access to medical care; surveys of health care professionals and organizations, public health professionals, and nurses; evaluations of innovative programs for the delivery of health care, and many other topics and populations of interest. Our goal is to build a culture of health by increasing the understanding of health and health care and the factors that contribute to health in the United States through secondary analysis of RWJF-supported data collections.",
+      "domains": [
+        {
+          "label": "Substance abuse",
+          "id": 1271,
+          "definitions": [
+            "A substance-related disorder that involves a maladaptive pattern of substance use leading to significant impairment in functioning."
+          ],
+          "iri": "http://purl.obolibrary.org/obo/DOID_302",
+          "synonyms": [],
+          "inFairsharing": true
+        },
+        {
+          "label": "Resource collection",
+          "id": 1332,
+          "definitions": [
+            "A group of physical or digital resources that share a common identity, purpose, or theme."
+          ],
+          "iri": "http://purl.obolibrary.org/obo/ERO_0002190",
+          "synonyms": [],
+          "inFairsharing": true
+        },
+        {
+          "label": "Behavior",
+          "id": 1395,
+          "definitions": [
+            "The internally coordinated responses (actions or inactions) of animals (individuals or groups) to internal or external stimuli, via a mechanism that involves nervous system activity."
+          ],
+          "iri": "http://purl.obolibrary.org/obo/GO_0007610",
+          "synonyms": [
+            "behavioral response to stimulus",
+            "behaviour",
+            "behavioural response to stimulus"
+          ],
+          "inFairsharing": true
+        },
+        {
+          "label": "Curated information",
+          "id": 1677,
+          "definitions": [
+            "A information content entity that has undergone a digital curation performed by a curator for accuracy checks and compliance with curation requirements. Information which has been assessed for accuracy by domain experts."
+          ],
+          "iri": "http://purl.obolibrary.org/obo/OBI_0302840",
+          "synonyms": [],
+          "inFairsharing": true
+        },
+        {
+          "label": "Nurse",
+          "id": 1891,
+          "definitions": [],
+          "iri": "http://semanticscience.org/resource/SIO_000398",
+          "synonyms": [],
+          "inFairsharing": true
+        },
+        {
+          "label": "Mental health",
+          "id": 1916,
+          "definitions": [
+            "The state wherein the person is well adjusted."
+          ],
+          "iri": "http://www.ebi.ac.uk/efo/EFO_0003935",
+          "synonyms": [
+            "Hygiene, Mental",
+            "Health, Mental",
+            "Mental Hygiene"
+          ],
+          "inFairsharing": true
+        }
+      ],
+      "subjects": [
+        {
+          "label": "Public Health",
+          "id": 582,
+          "definitions": [
+            "The science and practice of protecting and improving the health of a community, as by preventive medicine, health education, control of communicable diseases, application of sanitary measures, and monitoring of environmental hazards."
+          ],
+          "iri": "http://purl.obolibrary.org/obo/NCIT_C17039",
+          "synonyms": []
+        },
+        {
+          "label": "Health Science",
+          "id": 587,
+          "definitions": [
+            "The sciences concerned with health promotion and maintenance."
+          ],
+          "iri": "http://purl.obolibrary.org/obo/NCIT_C19199",
+          "synonyms": []
+        },
+        {
+          "label": "Primary Health Care",
+          "id": 702,
+          "definitions": [
+            "Primary Health Care is a whole-of-society approach to health and well-being centred on the needs and preferences of individuals, families and communities.  It addresses the broader determinants of health and focuses on the comprehensive and interrelated aspects of physical, mental and social health and wellbeing."
+          ],
+          "iri": "http://purl.obolibrary.org/obo/OMIT_0012276",
+          "synonyms": []
+        },
+        {
+          "label": "Community Care",
+          "id": 704,
+          "definitions": [
+            "Community Care research is concerned with services that are intended to help people who need care and support to live with dignity and independence in the community and to avoid social isolation. The services are aimed at the elderly and those who have mental illness, learning disability and physical disability. The main aim in providing community care services is to enable people to remain living in their own homes and to retain as much independence as possible, avoiding social isolation."
+          ],
+          "iri": "http://www.fairsharing.org/ontology/subject/SRAO_0000315",
+          "synonyms": [
+            "Care in the Community"
+          ]
+        }
+      ],
+      "taxonomies": [
+        {
+          "label": "Homo sapiens"
+        }
+      ],
+      "userDefinedTags": [],
+      "recordAssociations": [
+        {
+          "linkedRecord": {
+            "name": "Data Documentation Initiative Codebook",
+            "id": 1148,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "implements"
+        },
+        {
+          "linkedRecord": {
+            "name": "Digital Object Identifier",
+            "id": 1332,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "implements"
+        }
+      ],
+      "reverseRecordAssociations": [
+        {
+          "fairsharingRecord": {
+            "name": "Annals of Global Health Editorial Policies",
+            "id": 3413,
+            "registry": "Policy"
+          },
+          "recordAssocLabel": "recommends"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "RDA Covid-19 WG Resources",
+            "id": 3540,
+            "registry": "Collection"
+          },
+          "recordAssocLabel": "collects"
+        }
+      ],
+      "status": "ready",
+      "isRecommended": true
+    },
+    {
+      "id": 1946,
+      "type": "repository",
+      "name": "Protein Model Database",
+      "abbreviation": "PMDB",
+      "doi": "10.25504/FAIRsharing.wkaakq",
+      "registry": "Database",
+      "description": "The Protein Model DataBase (PMDB) is a database that stores three dimensional protein models obtained by structure prediction techniques.",
+      "domains": [
+        {
+          "label": "Molecular structure",
+          "id": 985,
+          "definitions": [
+            "3D coordinate and associated data for a macromolecular tertiary (3D) structure or part of a structure."
+          ],
+          "iri": "http://edamontology.org/data_0883",
+          "synonyms": [
+            "Structure",
+            "Coordinate model",
+            "Structure data"
+          ],
+          "inFairsharing": true
+        },
+        {
+          "label": "Protein structure",
+          "id": 1016,
+          "definitions": [
+            "3D coordinate and associated data for a protein tertiary (3D) structure, or part of a structure, possibly in complex with other molecules."
+          ],
+          "iri": "http://edamontology.org/data_1460",
+          "synonyms": [
+            "Protein structures"
+          ],
+          "inFairsharing": true
+        },
+        {
+          "label": "Structure",
+          "id": 1738,
+          "definitions": [
+            "A morphology quality inhering in a bearer by virtue of the bearer's relative position, shape, arrangements and connectivity of an organism's various parts; the pattern underlying its form."
+          ],
+          "iri": "http://purl.obolibrary.org/obo/PATO_0000141",
+          "synonyms": [
+            "relational structural quality"
+          ],
+          "inFairsharing": true
+        },
+        {
+          "label": "Protein",
+          "id": 1753,
+          "definitions": [
+            "An amino acid chain that is produced de novo by ribosome-mediated translation of a genetically-encoded mRNA, and any derivatives thereof."
+          ],
+          "iri": "http://purl.obolibrary.org/obo/PR_000000001",
+          "synonyms": [
+            "natural protein",
+            "native protein"
+          ],
+          "inFairsharing": true
+        }
+      ],
+      "subjects": [
+        {
+          "label": "Structural Biology",
+          "id": 574,
+          "definitions": [
+            "The discipline concerned with the three-dimensional configuration of biological molecules and the influence of structure on function."
+          ],
+          "iri": "http://purl.obolibrary.org/obo/NCIT_C18111",
+          "synonyms": []
+        }
+      ],
+      "taxonomies": [
+        {
+          "label": "All"
+        }
+      ],
+      "userDefinedTags": [],
+      "recordAssociations": [
+        {
+          "linkedRecord": {
+            "name": "FASTA Sequence Format",
+            "id": 620,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "implements"
+        },
+        {
+          "linkedRecord": {
+            "name": "Protein Data Bank Format",
+            "id": 848,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "implements"
+        }
+      ],
+      "reverseRecordAssociations": [
+        {
+          "fairsharingRecord": {
+            "name": "Portland Press Data Policy",
+            "id": 3467,
+            "registry": "Policy"
+          },
+          "recordAssocLabel": "recommends"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "RDA Covid-19 WG Resources",
+            "id": 3540,
+            "registry": "Collection"
+          },
+          "recordAssocLabel": "collects"
+        }
+      ],
+      "status": "ready",
+      "isRecommended": true
+    },
+    {
+      "id": 2038,
+      "type": "repository",
+      "name": "Japan Collection of Microorganisms",
+      "abbreviation": "JCM",
+      "doi": "10.25504/FAIRsharing.h2wrt2",
+      "registry": "Database",
+      "description": "The Japan Collection of Microorganisms (JCM) collects, catalogues, and distributes cultured microbial strains, restricted to those classified in Risk Group 1 or 2.",
+      "domains": [
+        {
+          "label": "Taxonomic classification",
+          "id": 1023,
+          "definitions": [
+            "The full name for a group of organisms, reflecting their biological classification and (usually) conforming to a standard nomenclature."
+          ],
+          "iri": "http://edamontology.org/data_1872",
+          "synonyms": [
+            "Taxonomic information",
+            "Taxonomic name"
+          ],
+          "inFairsharing": true
+        }
+      ],
+      "subjects": [
+        {
+          "label": "Life Science",
+          "id": 742,
+          "definitions": [
+            "Life Science is the study of all of the divisions of the natural sciences dealing with the various aspects of the phenomena of life and vital processes."
+          ],
+          "iri": "http://aims.fao.org/aos/agrovoc/c_4318",
+          "synonyms": [
+            "Life Sciences"
+          ]
+        }
+      ],
+      "taxonomies": [
+        {
+          "label": "Archaea"
+        },
+        {
+          "label": "Ascomycota"
+        },
+        {
+          "label": "Bacteria"
+        },
+        {
+          "label": "Basidiomycota"
+        }
+      ],
+      "userDefinedTags": [],
+      "recordAssociations": [],
+      "reverseRecordAssociations": [],
+      "status": "ready",
+      "isRecommended": false
+    },
+    {
+      "id": 2984,
+      "type": "repository",
+      "name": "Global Hydrology Resource Center",
+      "abbreviation": "GHRC DAAC",
+      "doi": "10.25504/FAIRsharing.ecf32a",
+      "registry": "Database",
+      "description": "The Global Hydrology Resource Center (GHRC) collects and distributes both historical and current earth science data, information, and products from satellite, airborne, and surface-based instruments, primarily in the fields of lightning detection, microwave imaging, and convective moisture. GHRC acquires basic data streams and produces derived products from many instruments spread across a variety of instrument platforms. The GHRC DAAC is one of the Earth Observing System Data and Information System (EOSDIS) Distributed Active Archive Centers (DAACs) that archive and distribute earth science data, managed by NASA's Earth Science Data and Information System Project (ESDIS), as part of the Earth Science Data Systems (ESDS) Program.",
+      "domains": [],
+      "subjects": [
+        {
+          "label": "Hydrogeology",
+          "id": 436,
+          "definitions": [
+            "Hydrogeology is the subfield of Geology that is concerned with the study of water on or below the surface of the earth."
+          ],
+          "iri": "http://aims.fao.org/aos/agrovoc/c_11669",
+          "synonyms": []
+        },
+        {
+          "label": "Geography",
+          "id": 511,
+          "definitions": [
+            "The science that deals with the world and its inhabitants; a description of the earth, or a portion of the earth, including its structure, features, products, political divisions, and the people by whom it is inhabited."
+          ],
+          "iri": "http://purl.obolibrary.org/obo/NCIT_C16633",
+          "synonyms": []
+        },
+        {
+          "label": "Meteorology",
+          "id": 590,
+          "definitions": [
+            "Meteorology is the branch of science that deals with atmospheric phenomena and processes, especially with a view to forecasting the weather."
+          ],
+          "iri": "http://purl.obolibrary.org/obo/OMIT_0026522",
+          "synonyms": []
+        },
+        {
+          "label": "Earth Science",
+          "id": 708,
+          "definitions": [
+            "Earth Science is the science that deals with the earth or any part thereof; includes the disciplines of geology, geography, oceanography and meteorology, among others. [GEMET https://www.eionet.europa.eu/gemet/en/concept/2405, AL 12.6.2019]"
+          ],
+          "iri": "http://purl.obolibrary.org/obo/OMIT_0026615",
+          "synonyms": [
+            "Geoscience"
+          ]
+        },
+        {
+          "label": "Atmospheric Science",
+          "id": 717,
+          "definitions": [
+            "Atmospheric Science is the study of the dynamics and chemistry of the layers of gas that surround the Earth, other planets and moons. This encompasses the interactions between various parts of the atmosphere as well as interactions with the oceans and freshwater systems, the biosphere and human activities. [Nature https://www.nature.com/subjects/atmospheric-science, AL 20.05.2019]"
+          ],
+          "iri": "http://aims.fao.org/aos/agrovoc/c_694",
+          "synonyms": []
+        },
+        {
+          "label": "Water Management",
+          "id": 751,
+          "definitions": [
+            "Water Management is the activity of planning, developing, distributing and optimum use of water resources under defined water polices and regulations. It includes: management of water treatment of drinking water, industrial water, sewage or wastewater, management of water resources, management of flood protection, management of irrigation, and management of the water table. [Wikipedia, https://en.wikipedia.org/wiki/Category:Water_management, AL 28.3.2019]"
+          ],
+          "iri": "http://aims.fao.org/aos/agrovoc/c_8320",
+          "synonyms": [
+            "Water Resource Management"
+          ]
+        },
+        {
+          "label": "Hydrology",
+          "id": 831,
+          "definitions": [
+            "Hydrology is the scientific study of the movement, distribution, and quality of water on Earth and other planets, including the water cycle, water resources and environmental watershed sustainability. [AgroVoc, 28.3.2019]"
+          ],
+          "iri": "http://aims.fao.org/aos/agrovoc/c_3731",
+          "synonyms": []
+        }
+      ],
+      "taxonomies": [
+        {
+          "label": "Not applicable"
+        }
+      ],
+      "userDefinedTags": [
+        {
+          "label": "Cyclonic Storm"
+        },
+        {
+          "label": "Forecasting"
+        },
+        {
+          "label": "Lightning"
+        },
+        {
+          "label": "Microwave"
+        },
+        {
+          "label": "Moisture"
+        },
+        {
+          "label": "Satellite Data"
+        },
+        {
+          "label": "Storm"
+        },
+        {
+          "label": "weather"
+        }
+      ],
+      "recordAssociations": [
+        {
+          "linkedRecord": {
+            "name": "NASA's Earth Observing System Data and Information System (EOSDIS)",
+            "id": 3050,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "related_to"
+        },
+        {
+          "linkedRecord": {
+            "name": "Climate and Forecast metadata conventions",
+            "id": 1395,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "implements"
+        }
+      ],
+      "reverseRecordAssociations": [],
+      "status": "ready",
+      "isRecommended": false
+    },
+    {
+      "id": 1554,
+      "type": "repository",
+      "name": "BioSamples at the European Bioinformatics Institute",
+      "abbreviation": "BioSD",
+      "doi": "10.25504/FAIRsharing.ewjdq6",
+      "registry": "Database",
+      "description": "BioSamples stores and supplies descriptions and metadata about biological samples used in research and development by academia and industry. Samples are either 'reference' samples (e.g. from 1000 Genomes, HipSci, FAANG) or have been used in an assay database such as the European Nucleotide Archive (ENA) or ArrayExpress. It provides links to assays and specific samples, and accepts direct submissions of sample information.",
+      "domains": [
+        {
+          "label": "Biological sample annotation",
+          "id": 1046,
+          "definitions": [
+            "Annotation on a biological sample, for example experimental factors and their values.",
+            "Annotation on a biological sample, for example experimental factors and their values."
+          ],
+          "iri": "http://edamontology.org/data_3113",
+          "synonyms": [],
+          "inFairsharing": true
+        },
+        {
+          "label": "Biological sample",
+          "id": 1596,
+          "definitions": [
+            "Any material sample taken from a biological entity for testing, diagnostic, propagation, treatment or research purposes, including a sample obtained from a living organism or taken from the biological object after halting of all its life functions. Biospecimen can contain one or more components including but not limited to cellular molecules, cells, tissues, organs, body fluids, embryos, and body excretory products."
+          ],
+          "iri": "http://purl.obolibrary.org/obo/NCIT_C70699",
+          "synonyms": [
+            "Biospecimen",
+            "Biological Specimen",
+            "Sample",
+            "BiologicSpecimen",
+            "Bio-Specimen",
+            "Specimen"
+          ],
+          "inFairsharing": true
+        },
+        {
+          "label": "Assay",
+          "id": 1607,
+          "definitions": [
+            "A planned process with the objective to produce information about the material entity that is the evaluant, by physically examining it or its proxies.",
+            "A planned process with the objective to produce information about the material entity that is the evaluant, by physically examining it or its proxies.",
+            "A planned process with the objective to produce information about some evaluant",
+            "A planned process with the objective to produce information about the material entity that is the evaluant, by physically examining it or its proxies.",
+            "A planned process with the objective to produce information about the material entity that is the evaluant, by physically examining it or its proxies.",
+            "A planned process with the objective to produce information about some evaluant"
+          ],
+          "iri": "http://purl.obolibrary.org/obo/OBI_0000070",
+          "synonyms": [
+            "study assay",
+            "any method",
+            "scientific observation",
+            "measurement method",
+            "measuring"
+          ],
+          "inFairsharing": true
+        },
+        {
+          "label": "Protocol",
+          "id": 1614,
+          "definitions": [
+            "A plan specification which has sufficient level of detail and quantitative information to communicate it between investigation agents, so that different investigation agents will reliably be able to independently reproduce the process."
+          ],
+          "iri": "http://purl.obolibrary.org/obo/OBI_0000272",
+          "synonyms": [
+            "study protocol"
+          ],
+          "inFairsharing": true
+        },
+        {
+          "label": "Phenotype",
+          "id": 1706,
+          "definitions": [
+            "A (combination of) quality(ies) of an organism determined by the interaction of its genetic make-up and environment that differentiates specific instances of a species from other instances of the same species."
+          ],
+          "iri": "http://purl.obolibrary.org/obo/OGMS_0000023",
+          "synonyms": [],
+          "inFairsharing": true
+        },
+        {
+          "label": "Disease",
+          "id": 1708,
+          "definitions": [
+            "A disposition (i) to undergo pathological processes that (ii) exists in an organism because of one or more disorders in that organism."
+          ],
+          "iri": "http://purl.obolibrary.org/obo/OGMS_0000031",
+          "synonyms": [],
+          "inFairsharing": true
+        },
+        {
+          "label": "Genotype",
+          "id": 1907,
+          "definitions": [
+            "The total sum of the genetic information of an organism that is known and relevant to the experiment being performed, including chromosomal, plasmid, viral or other genetic material which has been introduced into the organism either prior to or during the experiment."
+          ],
+          "iri": "http://www.ebi.ac.uk/efo/EFO_0000513",
+          "synonyms": [],
+          "inFairsharing": true
+        }
+      ],
+      "subjects": [
+        {
+          "label": "Biology",
+          "id": 812,
+          "definitions": [
+            "The scientific study of living organisms."
+          ],
+          "iri": "http://purl.obolibrary.org/obo/NCIT_C16345",
+          "synonyms": []
+        }
+      ],
+      "taxonomies": [
+        {
+          "label": "All"
+        }
+      ],
+      "userDefinedTags": [
+        {
+          "label": "COVID-19"
+        }
+      ],
+      "recordAssociations": [
+        {
+          "linkedRecord": {
+            "name": "ArrayExpress",
+            "id": 1845,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "related_to"
+        },
+        {
+          "linkedRecord": {
+            "name": "European Nucleotide Archive",
+            "id": 1850,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "related_to"
+        },
+        {
+          "linkedRecord": {
+            "name": "PRoteomics IDEntifications database",
+            "id": 1863,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "related_to"
+        },
+        {
+          "linkedRecord": {
+            "name": "The European Genome-phenome Archive",
+            "id": 1865,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "related_to"
+        },
+        {
+          "linkedRecord": {
+            "name": "Cellosaurus",
+            "id": 2348,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "related_to"
+        },
+        {
+          "linkedRecord": {
+            "name": "COVID-19 Data Portal",
+            "id": 2934,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "related_to"
+        },
+        {
+          "linkedRecord": {
+            "name": "Chemical Entities of Biological Interest",
+            "id": 1036,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "implements"
+        },
+        {
+          "linkedRecord": {
+            "name": "Experimental Factor Ontology",
+            "id": 1498,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "implements"
+        },
+        {
+          "linkedRecord": {
+            "name": "Sample Tabular Format",
+            "id": 933,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "implements"
+        },
+        {
+          "linkedRecord": {
+            "name": "BioProject XML Schema",
+            "id": 436,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "implements"
+        },
+        {
+          "linkedRecord": {
+            "name": "FAANG metadata sample specification standard",
+            "id": 1495,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "implements"
+        },
+        {
+          "linkedRecord": {
+            "name": "FAANG metadata experiment specification standard",
+            "id": 206,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "implements"
+        },
+        {
+          "linkedRecord": {
+            "name": "The Data Use Ontology",
+            "id": 256,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "implements"
+        },
+        {
+          "linkedRecord": {
+            "name": "Bioschemas Dataset Profile",
+            "id": 1203,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "implements"
+        },
+        {
+          "linkedRecord": {
+            "name": "Open Researcher and Contributor iD Identifier Schema",
+            "id": 715,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "implements"
+        },
+        {
+          "linkedRecord": {
+            "name": "EBI BioSamples JSON Format ",
+            "id": 735,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "implements"
+        },
+        {
+          "linkedRecord": {
+            "name": "FAANG metadata analysis specification",
+            "id": 1119,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "implements"
+        }
+      ],
+      "reverseRecordAssociations": [
+        {
+          "fairsharingRecord": {
+            "name": "MNI Open Research",
+            "id": 3353,
+            "registry": "Policy"
+          },
+          "recordAssocLabel": "recommends"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "African Academy of Sciences Open Research Data Guidelines for Authors",
+            "id": 3355,
+            "registry": "Policy"
+          },
+          "recordAssocLabel": "recommends"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "Wellcome Open Research Data Guidelines",
+            "id": 3357,
+            "registry": "Policy"
+          },
+          "recordAssocLabel": "recommends"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "F1000Research Data Policy",
+            "id": 3369,
+            "registry": "Policy"
+          },
+          "recordAssocLabel": "recommends"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "HRB Open Research",
+            "id": 3380,
+            "registry": "Policy"
+          },
+          "recordAssocLabel": "recommends"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "UCL Child Open Health Research",
+            "id": 3396,
+            "registry": "Policy"
+          },
+          "recordAssocLabel": "recommends"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "Gates Open Research Data Guidelines",
+            "id": 3421,
+            "registry": "Policy"
+          },
+          "recordAssocLabel": "recommends"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "PeerJ Data and Materials Sharing Policies",
+            "id": 3480,
+            "registry": "Policy"
+          },
+          "recordAssocLabel": "recommends"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "EOSC-Life",
+            "id": 3513,
+            "registry": "Collection"
+          },
+          "recordAssocLabel": "collects"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "ELIXIR Core Data Resources and Deposition Databases",
+            "id": 3527,
+            "registry": "Collection"
+          },
+          "recordAssocLabel": "collects"
+        }
+      ],
+      "status": "ready",
+      "isRecommended": true
+    },
+    {
+      "id": 3238,
+      "type": "repository",
+      "name": "MarinE MethanE and NiTrous Oxide",
+      "abbreviation": "MEMENTO",
+      "doi": "10.25504/FAIRsharing.pPOQZf",
+      "registry": "Database",
+      "description": "MEMENTO aims to identify regions of the world ocean that should be targeted in future work to improve the quality of air-sea flux estimates. MEMENTO is a joint initiative between SOLAS (Surface Ocean Lower Atmosphere Study) and COST Action 735 (European CoOperation in the Field of Scientific and Technical Research).",
+      "domains": [],
+      "subjects": [
+        {
+          "label": "Earth Science",
+          "id": 708,
+          "definitions": [
+            "Earth Science is the science that deals with the earth or any part thereof; includes the disciplines of geology, geography, oceanography and meteorology, among others. [GEMET https://www.eionet.europa.eu/gemet/en/concept/2405, AL 12.6.2019]"
+          ],
+          "iri": "http://purl.obolibrary.org/obo/OMIT_0026615",
+          "synonyms": [
+            "Geoscience"
+          ]
+        },
+        {
+          "label": "Atmospheric Science",
+          "id": 717,
+          "definitions": [
+            "Atmospheric Science is the study of the dynamics and chemistry of the layers of gas that surround the Earth, other planets and moons. This encompasses the interactions between various parts of the atmosphere as well as interactions with the oceans and freshwater systems, the biosphere and human activities. [Nature https://www.nature.com/subjects/atmospheric-science, AL 20.05.2019]"
+          ],
+          "iri": "http://aims.fao.org/aos/agrovoc/c_694",
+          "synonyms": []
+        },
+        {
+          "label": "Oceanography",
+          "id": 810,
+          "definitions": [
+            "Oceanography is the branch of science concerned with the physical and biological properties and phenomena of the ocean. [OED, AL 20.05.2019]"
+          ],
+          "iri": "http://purl.obolibrary.org/obo/OMIT_0010809",
+          "synonyms": []
+        }
+      ],
+      "taxonomies": [
+        {
+          "label": "Not applicable"
+        }
+      ],
+      "userDefinedTags": [
+        {
+          "label": "Gas"
+        },
+        {
+          "label": "Greenhouse gases"
+        },
+        {
+          "label": "Methane"
+        },
+        {
+          "label": "nitrous oxide"
+        },
+        {
+          "label": "Sedimentology"
+        }
+      ],
+      "recordAssociations": [],
+      "reverseRecordAssociations": [],
+      "status": "ready",
+      "isRecommended": false
+    },
+    {
+      "id": 1752,
+      "type": "repository",
+      "name": "American Type Culture Collection database",
+      "abbreviation": "ATCC",
+      "doi": "10.25504/FAIRsharing.j0ezpm",
+      "registry": "Database",
+      "description": "ATCC authenticates microorganisms and cell lines and manages logistics of long-term preservation and distribution of cultures for the scientific community. ATCC supports the cultures it acquires and authenticates with expert technical support, intellectual property management and characterization data.",
+      "domains": [
+        {
+          "label": "Cell line",
+          "id": 1225,
+          "definitions": [],
+          "iri": "http://purl.obolibrary.org/obo/CLO_0000031",
+          "synonyms": [],
+          "inFairsharing": true
+        },
+        {
+          "label": "Cell",
+          "id": 1232,
+          "definitions": [
+            "A material entity of anatomical origin (part of or deriving from an organism) that has as its parts a maximally connected cell compartment surrounded by a plasma membrane.",
+            "A material entity of anatomical origin (part of or deriving from an organism) that has as its parts a maximally connected cell compartment surrounded by a plasma membrane."
+          ],
+          "iri": "http://purl.obolibrary.org/obo/CL_0000000",
+          "synonyms": [],
+          "inFairsharing": true
+        },
+        {
+          "label": "Cell culture",
+          "id": 1659,
+          "definitions": [
+            "A material entity comprised of cultured cells and the media in which they are being propagated or stored."
+          ],
+          "iri": "http://purl.obolibrary.org/obo/OBI_0001876",
+          "synonyms": [],
+          "inFairsharing": true
+        }
+      ],
+      "subjects": [
+        {
+          "label": "Virology",
+          "id": 710,
+          "definitions": [
+            "Study of viruses, e.g. sequence and structural data, interactions of viral proteins, or a viral genome including molecular sequences, genes and annotation."
+          ],
+          "iri": "http://edamontology.org/topic_0781",
+          "synonyms": []
+        },
+        {
+          "label": "Life Science",
+          "id": 742,
+          "definitions": [
+            "Life Science is the study of all of the divisions of the natural sciences dealing with the various aspects of the phenomena of life and vital processes."
+          ],
+          "iri": "http://aims.fao.org/aos/agrovoc/c_4318",
+          "synonyms": [
+            "Life Sciences"
+          ]
+        },
+        {
+          "label": "Epidemiology",
+          "id": 833,
+          "definitions": [
+            "The study of the causes, incidence and distribution of disease in the population and its application for prevention or control."
+          ],
+          "iri": "http://purl.obolibrary.org/obo/NCIT_C16556",
+          "synonyms": []
+        }
+      ],
+      "taxonomies": [
+        {
+          "label": "All"
+        }
+      ],
+      "userDefinedTags": [],
+      "recordAssociations": [],
+      "reverseRecordAssociations": [
+        {
+          "fairsharingRecord": {
+            "name": "eLife Recommended Repositories and Standards",
+            "id": 3478,
+            "registry": "Policy"
+          },
+          "recordAssocLabel": "recommends"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "PeerJ Data and Materials Sharing Policies",
+            "id": 3480,
+            "registry": "Policy"
+          },
+          "recordAssocLabel": "recommends"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "COVID-19 Resources",
+            "id": 3538,
+            "registry": "Collection"
+          },
+          "recordAssocLabel": "collects"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "RDA Covid-19 WG Resources",
+            "id": 3540,
+            "registry": "Collection"
+          },
+          "recordAssocLabel": "collects"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "ATCC Genome Portal",
+            "id": 3780,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "related_to"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "MNI Open Research",
+            "id": 3353,
+            "registry": "Policy"
+          },
+          "recordAssocLabel": "recommends"
+        }
+      ],
+      "status": "ready",
+      "isRecommended": true
+    },
+    {
+      "id": 1858,
+      "type": "repository",
+      "name": "IPD-MHC - Major Histocompatibility Complex Database",
+      "abbreviation": "IPD-MHC",
+      "doi": "10.25504/FAIRsharing.32hxxa",
+      "registry": "Database",
+      "description": "The IPD-MHC Database provides a centralised repository for sequences of the Major Histocompatibility Complex (MHC) from a number of different species. Through a number of international collaborations IPD is able to provide the MHC sequences of different species. The sequences provided by each group are curated by experts in the field and then submitted to the central database.",
+      "domains": [
+        {
+          "label": "Nucleic acid sequence",
+          "id": 1040,
+          "definitions": [
+            "One or more nucleic acid sequences, possibly with associated annotation."
+          ],
+          "iri": "http://edamontology.org/data_2977",
+          "synonyms": [
+            "DNA sequence",
+            "Nucleotide sequences",
+            "Nucleotide sequence",
+            "Nucleic acid sequences"
+          ],
+          "inFairsharing": true
+        },
+        {
+          "label": "Major histocompatibility complex",
+          "id": 1718,
+          "definitions": [],
+          "iri": "http://purl.obolibrary.org/obo/OMIT_0009360",
+          "synonyms": [
+            "MHC"
+          ],
+          "inFairsharing": true
+        },
+        {
+          "label": "Protein",
+          "id": 1753,
+          "definitions": [
+            "An amino acid chain that is produced de novo by ribosome-mediated translation of a genetically-encoded mRNA, and any derivatives thereof."
+          ],
+          "iri": "http://purl.obolibrary.org/obo/PR_000000001",
+          "synonyms": [
+            "natural protein",
+            "native protein"
+          ],
+          "inFairsharing": true
+        },
+        {
+          "label": "Allele",
+          "id": 1825,
+          "definitions": [
+            "An allele is one of a set of coexisting sequence variants of a gene."
+          ],
+          "iri": "http://purl.obolibrary.org/obo/SO_0001023",
+          "synonyms": [
+            "allelomorph"
+          ],
+          "inFairsharing": true
+        },
+        {
+          "label": "Allele frequency",
+          "id": 1855,
+          "definitions": [
+            "The allele frequency is a data item which denotes the incidence of a gene variant in a population. It is calculated as a ratio, by dividing the number of copies of a particular allele by the number of copies of all alleles at the genetic place (locus) in a population."
+          ],
+          "iri": "http://purl.obolibrary.org/obo/STATO_0000254",
+          "synonyms": [
+            ""
+          ],
+          "inFairsharing": true
+        }
+      ],
+      "subjects": [
+        {
+          "label": "Immunogenetics",
+          "id": 578,
+          "definitions": [
+            "A sub-field of genetics that uses both genetic and immunological analyses to study the genetics behind antibody formation and the immune response. (Biotech Life Science Dictionary)"
+          ],
+          "iri": "http://purl.obolibrary.org/obo/NCIT_C16715",
+          "synonyms": []
+        },
+        {
+          "label": "Immunology",
+          "id": 632,
+          "definitions": [
+            "The study of the immune system and its reaction to pathogens, as well as its malfunctions (autoimmune diseases, allergies, rejection of organ transplants)."
+          ],
+          "iri": "http://purl.obolibrary.org/obo/NCIT_C18011",
+          "synonyms": []
+        }
+      ],
+      "taxonomies": [
+        {
+          "label": "Aotus azarae"
+        },
+        {
+          "label": "Aotus nancymaae"
+        },
+        {
+          "label": "Aotus nigriceps"
+        },
+        {
+          "label": "Aotus trivirgatus"
+        },
+        {
+          "label": "Aotus vociferans"
+        },
+        {
+          "label": "Ateles belzebuth"
+        },
+        {
+          "label": "Ateles fusciceps"
+        },
+        {
+          "label": "Bison bison"
+        },
+        {
+          "label": "Bos taurus"
+        },
+        {
+          "label": "Callicebus moloch"
+        },
+        {
+          "label": "Callithrix jacchus"
+        },
+        {
+          "label": "Canis"
+        },
+        {
+          "label": "Cebuella pygmaea"
+        },
+        {
+          "label": "Cebus apella"
+        },
+        {
+          "label": "Cercopithecus mitis"
+        },
+        {
+          "label": "Cercopithicus neglectus"
+        },
+        {
+          "label": "Chlorocebus aethiops"
+        },
+        {
+          "label": "Colobus guereza"
+        },
+        {
+          "label": "Equus caballus"
+        },
+        {
+          "label": "Felis catus"
+        },
+        {
+          "label": "Gallus gallus"
+        },
+        {
+          "label": "Gorilla gorilla"
+        },
+        {
+          "label": "Hylobates lar"
+        },
+        {
+          "label": "Lemur catta"
+        },
+        {
+          "label": "Leontopithecus rosalia"
+        },
+        {
+          "label": "Lophocebus aterrimus"
+        },
+        {
+          "label": "Macaca arctoides"
+        },
+        {
+          "label": "Macaca fascicularis"
+        },
+        {
+          "label": "Macaca fuscata"
+        },
+        {
+          "label": "Macaca mulatta"
+        },
+        {
+          "label": "Macaca nemestrina"
+        },
+        {
+          "label": "Macaca silenus"
+        },
+        {
+          "label": "Mandrillus leucophaeus"
+        },
+        {
+          "label": "Mandrillus sphinx"
+        },
+        {
+          "label": "Oncorhynchus mykiss"
+        },
+        {
+          "label": "Ovis aries"
+        },
+        {
+          "label": "Pan paniscus"
+        },
+        {
+          "label": "Pan troglodytes"
+        },
+        {
+          "label": "Papio anubis"
+        },
+        {
+          "label": "Papio cynocephalus"
+        },
+        {
+          "label": "Papio hamadryas"
+        },
+        {
+          "label": "Papio papio"
+        },
+        {
+          "label": "Papio ursinus"
+        },
+        {
+          "label": "Pithecia pithecia"
+        },
+        {
+          "label": "Pongo pygmaeus abelii"
+        },
+        {
+          "label": "Presbytis entellus"
+        },
+        {
+          "label": "Rattus norvegicus"
+        },
+        {
+          "label": "Rattus rattus"
+        },
+        {
+          "label": "Saguinus fuscicollis"
+        },
+        {
+          "label": "Saguinus geoffroyi"
+        },
+        {
+          "label": "Saguinus mystax"
+        },
+        {
+          "label": "Saguinus oedipus"
+        },
+        {
+          "label": "Saimiri sciureus"
+        },
+        {
+          "label": "Salmo salar"
+        },
+        {
+          "label": "Sus scrofa"
+        },
+        {
+          "label": "Theropithecus gelada"
+        }
+      ],
+      "userDefinedTags": [],
+      "recordAssociations": [
+        {
+          "linkedRecord": {
+            "name": "MHC Restriction Ontology",
+            "id": 849,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "implements"
+        }
+      ],
+      "reverseRecordAssociations": [
+        {
+          "fairsharingRecord": {
+            "name": "IPD-IMGT/HLA - Human Leukocyte Antigen Sequence Database",
+            "id": 1714,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "related_to"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "IPD-NHKIR - Non-Human Killer-cell Immunoglobulin-like Receptors",
+            "id": 1715,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "related_to"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "The European Searchable Tumour Line Database",
+            "id": 1855,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "related_to"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "Human Platelet Antigens",
+            "id": 1856,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "related_to"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "IPD-KIR - Killer-cell Immunoglobulin-like Receptors",
+            "id": 1857,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "related_to"
+        }
+      ],
+      "status": "ready",
+      "isRecommended": false
+    },
+    {
+      "id": 3108,
+      "type": "repository",
+      "name": "LSHTM Research Online",
+      "abbreviation": null,
+      "doi": "10.25504/FAIRsharing.tNQAlF",
+      "registry": "Database",
+      "description": "LSHTM Research Online is a freely accessible open access repository of research conducted by staff from the London School of Hygiene & Tropical Medicine.",
+      "domains": [],
+      "subjects": [
+        {
+          "label": "Health Science",
+          "id": 587,
+          "definitions": [
+            "The sciences concerned with health promotion and maintenance."
+          ],
+          "iri": "http://purl.obolibrary.org/obo/NCIT_C19199",
+          "synonyms": []
+        },
+        {
+          "label": "Humanities and Social Science",
+          "id": 613,
+          "definitions": [
+            "Humanities and Social Sciences is a broad multi-disciplinary research area incorporating both the Humanities and the Social Sciences. One differentiator for these two closely-related subjects is that humanities are predominately interested in studying the specifics and the 'unique', while social sciences are mainly interested in the general / population level."
+          ],
+          "iri": "http://www.fairsharing.org/ontology/subject/SRAO_0000002",
+          "synonyms": []
+        },
+        {
+          "label": "Microbiology",
+          "id": 788,
+          "definitions": [
+            "The science that deals with the study of microorganisms, including algae, archaea, bacteria, fungi, protozoa, and viruses."
+          ],
+          "iri": "http://purl.obolibrary.org/obo/NCIT_C16851",
+          "synonyms": []
+        },
+        {
+          "label": "Tropical Medicine",
+          "id": 813,
+          "definitions": [
+            "Health problems that are prevalent in tropical and subtropical regions."
+          ],
+          "iri": "http://edamontology.org/topic_3575",
+          "synonyms": []
+        },
+        {
+          "label": "Epidemiology",
+          "id": 833,
+          "definitions": [
+            "The study of the causes, incidence and distribution of disease in the population and its application for prevention or control."
+          ],
+          "iri": "http://purl.obolibrary.org/obo/NCIT_C16556",
+          "synonyms": []
+        }
+      ],
+      "taxonomies": [
+        {
+          "label": "Homo sapiens"
+        }
+      ],
+      "userDefinedTags": [
+        {
+          "label": "infectious disease"
+        },
+        {
+          "label": "institutional repository"
+        },
+        {
+          "label": "tropical disease"
+        }
+      ],
+      "recordAssociations": [
+        {
+          "linkedRecord": {
+            "name": "Electronic Theses Online Service UKETD_DC Schema",
+            "id": 1410,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "implements"
+        },
+        {
+          "linkedRecord": {
+            "name": "Dublin Core Metadata Element Set",
+            "id": 1245,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "implements"
+        },
+        {
+          "linkedRecord": {
+            "name": "Metadata Object Description Schema",
+            "id": 1456,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "implements"
+        }
+      ],
+      "reverseRecordAssociations": [],
+      "status": "ready",
+      "isRecommended": false
+    },
+    {
+      "id": 3114,
+      "type": "repository",
+      "name": "Global Terrestrial Network for Permafrost - Database",
+      "abbreviation": "GTN-P",
+      "doi": "10.25504/FAIRsharing.44a554",
+      "registry": "Database",
+      "description": "The Global Terrestrial Network for Permafrost (GTN-P) database stores information regarding essential climate variables (ECV) as part of the Global Terrestrial Network on Permafrost (GTN-P) programme. The database aims to provide information on the relationships between ground temperature, gas fluxes and the Earth’s climate system. GTN-P contains time series for borehole temperatures and grids of active layer thickness (TSP, CALM) plus air and surface temperature and moisture (DUE Permafrost, MODIS) measured in the terrestrial Panarctic, Antarctic and Mountainous realms.",
+      "domains": [
+        {
+          "label": "Climate",
+          "id": 1297,
+          "definitions": [
+            "The disposition of an environmental system, particularly those influencing atmospheres, to manifest a cyclic pattern of weather over time."
+          ],
+          "iri": "http://purl.obolibrary.org/obo/ENVO_01001082",
+          "synonyms": [],
+          "inFairsharing": true
+        }
+      ],
+      "subjects": [
+        {
+          "label": "Earth Science",
+          "id": 708,
+          "definitions": [
+            "Earth Science is the science that deals with the earth or any part thereof; includes the disciplines of geology, geography, oceanography and meteorology, among others. [GEMET https://www.eionet.europa.eu/gemet/en/concept/2405, AL 12.6.2019]"
+          ],
+          "iri": "http://purl.obolibrary.org/obo/OMIT_0026615",
+          "synonyms": [
+            "Geoscience"
+          ]
+        }
+      ],
+      "taxonomies": [
+        {
+          "label": "All"
+        }
+      ],
+      "userDefinedTags": [
+        {
+          "label": "permafrost"
+        }
+      ],
+      "recordAssociations": [
+        {
+          "linkedRecord": {
+            "name": "Keyhole Markup Language",
+            "id": 1320,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "implements"
+        },
+        {
+          "linkedRecord": {
+            "name": "Digital Object Identifier",
+            "id": 1332,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "implements"
+        },
+        {
+          "linkedRecord": {
+            "name": "Environmental Systems Research Institute Shapefile",
+            "id": 1318,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "implements"
+        }
+      ],
+      "reverseRecordAssociations": [
+        {
+          "fairsharingRecord": {
+            "name": "PANGAEA - Data Publisher for Earth and Environmental Science",
+            "id": 2161,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "related_to"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "Arctic Permafrost Geospatial Centre",
+            "id": 3113,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "related_to"
+        }
+      ],
+      "status": "ready",
+      "isRecommended": false
+    },
+    {
+      "id": 3300,
+      "type": "repository",
+      "name": "bio.tools",
+      "abbreviation": "bio.tools",
+      "doi": "10.25504/FAIRsharing.63520c",
+      "registry": "Database",
+      "description": "bio.tools is a registry of information about bioinformatics software and data services. It was created to help researchers in biological and biomedical science to find and use such resources.",
+      "domains": [
+        {
+          "label": "Software",
+          "id": 1929,
+          "definitions": [
+            "Computer software, or generally just software, is any set of machine-readable instructions (most often in the form of a computer program) that conform to a given syntax (sometimes referred to as a language) that is interpretable by a given processor and that directs a computer's processor to perform specific operations."
+          ],
+          "iri": "http://www.ebi.ac.uk/swo/SWO_0000001",
+          "synonyms": [],
+          "inFairsharing": true
+        }
+      ],
+      "subjects": [
+        {
+          "label": "Bioinformatics",
+          "id": 548,
+          "definitions": [
+            "Bioinformatics derives knowledge from computer analysis of biological data. These can consist of the information stored in the genetic code, but also experimental results from various sources, patient statistics, and scientific literature. Research in bioinformatics includes method development for storage, retrieval, and analysis of the data. Bioinformatics is a rapidly developing branch of biology and is highly interdisciplinary, using techniques and concepts from informatics, statistics, mathematics, chemistry, biochemistry, physics, and linguistics. It has many practical applications in different areas of biology and medicine. (M. Nilges and Jens P. Linge, Unite de Bio-informatique Structurale, Institut Pasteur, Paris)"
+          ],
+          "iri": "http://purl.obolibrary.org/obo/NCIT_C17964",
+          "synonyms": [
+            "Computational Biology"
+          ]
+        },
+        {
+          "label": "Biomedical Science",
+          "id": 780,
+          "definitions": [
+            "Research concerned with the application of biological and physiological principles to clinical medicine."
+          ],
+          "iri": "http://purl.obolibrary.org/obo/NCIT_C15188",
+          "synonyms": []
+        },
+        {
+          "label": "Biology",
+          "id": 812,
+          "definitions": [
+            "The scientific study of living organisms."
+          ],
+          "iri": "http://purl.obolibrary.org/obo/NCIT_C16345",
+          "synonyms": []
+        }
+      ],
+      "taxonomies": [
+        {
+          "label": "Not applicable"
+        }
+      ],
+      "userDefinedTags": [
+        {
+          "label": "COVID-19"
+        }
+      ],
+      "recordAssociations": [
+        {
+          "linkedRecord": {
+            "name": "EMBRACE Data and Methods Ontology",
+            "id": 1205,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "implements"
+        }
+      ],
+      "reverseRecordAssociations": [],
+      "status": "ready",
+      "isRecommended": false
+    },
+    {
+      "id": 2829,
+      "type": "repository",
+      "name": "BIOchemical PathwaY DataBase",
+      "abbreviation": "BIOPYDB",
+      "doi": "10.25504/FAIRsharing.ANR6qz",
+      "registry": "Database",
+      "description": "BIOPYDB is a manually-curated database of human cell specific biochemical pathway data. The information within BIOPYDB is primarily extracted from published scientific literature and a selection of databases. The reconstructed pathways contain information about proteins, protein complexes, inorganic molecules, mutated and onco-proteins of signalling, disease and immunological pathways. Every molecule and interaction listed in the database contains at least one reference in a peer reviewed journal.",
+      "domains": [
+        {
+          "label": "Computational biological predictions",
+          "id": 1075,
+          "definitions": [
+            "Predict, recognise, detect or identify some properties of a biomolecule."
+          ],
+          "iri": "http://edamontology.org/operation_2423",
+          "synonyms": [
+            "Prediction and recognition",
+            "Detection",
+            "Prediction",
+            "Recognition"
+          ],
+          "inFairsharing": true
+        },
+        {
+          "label": "Signaling",
+          "id": 1428,
+          "definitions": [
+            "The entirety of a process in which information is transmitted within a biological system. This process begins with an active signal and ends when a cellular response has been triggered."
+          ],
+          "iri": "http://purl.obolibrary.org/obo/GO_0023052",
+          "synonyms": [
+            "signaling process",
+            "signalling",
+            "biological signaling"
+          ],
+          "inFairsharing": true
+        },
+        {
+          "label": "Protein-containing complex",
+          "id": 1438,
+          "definitions": [
+            "A stable assembly of two or more macromolecules, i.e. proteins, nucleic acids, carbohydrates or lipids, in which at least one component is a protein and the constituent parts function together."
+          ],
+          "iri": "http://purl.obolibrary.org/obo/GO_0032991",
+          "synonyms": [
+            "macromolecular complex",
+            "macromolecule complex",
+            "protein complex",
+            "protein containing complex",
+            "protein-protein complex"
+          ],
+          "inFairsharing": true
+        },
+        {
+          "label": "Mutation",
+          "id": 1543,
+          "definitions": [
+            "A change in a sequence or structure in comparison to a reference entity due to a  insertion, deletion or substitution event."
+          ],
+          "iri": "http://purl.obolibrary.org/obo/MI_0118",
+          "synonyms": [],
+          "inFairsharing": true
+        },
+        {
+          "label": "High-throughput screening",
+          "id": 1580,
+          "definitions": [
+            "Temporary, non-covalent binding between protein molecules. Protein-protein interactions occur as a result of intermolecular physical forces and spatial complementation between domains or motifs. This interaction can be either homotypic or heterotypic and effect protein structure, conformation, and function."
+          ],
+          "iri": "http://purl.obolibrary.org/obo/NCIT_C18469",
+          "synonyms": [
+            "Protein-protein interaction"
+          ],
+          "inFairsharing": true
+        },
+        {
+          "label": "Curated information",
+          "id": 1677,
+          "definitions": [
+            "A information content entity that has undergone a digital curation performed by a curator for accuracy checks and compliance with curation requirements. Information which has been assessed for accuracy by domain experts."
+          ],
+          "iri": "http://purl.obolibrary.org/obo/OBI_0302840",
+          "synonyms": [],
+          "inFairsharing": true
+        },
+        {
+          "label": "Disease",
+          "id": 1708,
+          "definitions": [
+            "A disposition (i) to undergo pathological processes that (ii) exists in an organism because of one or more disorders in that organism."
+          ],
+          "iri": "http://purl.obolibrary.org/obo/OGMS_0000031",
+          "synonyms": [],
+          "inFairsharing": true
+        },
+        {
+          "label": "Biocuration",
+          "id": 1934,
+          "definitions": [
+            "Biocuration is the extraction of knowledge from unstructured biological and biomedical data into a standard, structured, computable form. [PMQ 2018.09.10 & International Society for Biocuration. DOI: 10.1371/journal.pbio.2002846]"
+          ],
+          "iri": "http://www.fairsharing.org/ontology/domain/DRAO_0000289",
+          "synonyms": [],
+          "inFairsharing": true
+        }
+      ],
+      "subjects": [
+        {
+          "label": "Biochemistry",
+          "id": 534,
+          "definitions": [
+            "Chemical substances and physico-chemical processes and that occur within living organisms."
+          ],
+          "iri": "http://edamontology.org/topic_3292",
+          "synonyms": [
+            "Biological chemistry"
+          ]
+        },
+        {
+          "label": "Proteomics",
+          "id": 596,
+          "definitions": [
+            "The global analysis of cellular proteins. Proteomics uses a combination of sophisticated techniques including two-dimensional (2D) gel electrophoresis, image analysis, mass spectrometry, amino acid sequencing, and bio-informatics to resolve comprehensively, to quantify, and to characterize proteins. The application of proteomics provides major opportunities to elucidate disease mechanisms and to identify new diagnostic markers and therapeutic targets."
+          ],
+          "iri": "http://purl.obolibrary.org/obo/NCIT_C20085",
+          "synonyms": []
+        },
+        {
+          "label": "Life Science",
+          "id": 742,
+          "definitions": [
+            "Life Science is the study of all of the divisions of the natural sciences dealing with the various aspects of the phenomena of life and vital processes."
+          ],
+          "iri": "http://aims.fao.org/aos/agrovoc/c_4318",
+          "synonyms": [
+            "Life Sciences"
+          ]
+        }
+      ],
+      "taxonomies": [
+        {
+          "label": "Homo sapiens"
+        }
+      ],
+      "userDefinedTags": [],
+      "recordAssociations": [
+        {
+          "linkedRecord": {
+            "name": "Pathway Ontology",
+            "id": 1182,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "implements"
+        }
+      ],
+      "reverseRecordAssociations": [
+        {
+          "fairsharingRecord": {
+            "name": "Molecular INTeraction Database",
+            "id": 1609,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "related_to"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "WikiPathways",
+            "id": 1698,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "related_to"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "Agile Protein Interactomes Dataserver",
+            "id": 1776,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "related_to"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "ArrayExpress",
+            "id": 1845,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "related_to"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "Reactome",
+            "id": 1866,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "related_to"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "Gene Expression Omnibus",
+            "id": 1975,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "related_to"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "PubMed",
+            "id": 1990,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "related_to"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "Database of Interacting Proteins",
+            "id": 2089,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "related_to"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "Kyoto Encyclopedia of Genes and Genomes",
+            "id": 2189,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "related_to"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "MalaCards",
+            "id": 2371,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "related_to"
+        }
+      ],
+      "status": "deprecated",
+      "isRecommended": false
+    },
+    {
+      "id": 3576,
+      "type": "repository",
+      "name": "depositar",
+      "abbreviation": null,
+      "doi": "10.25504/FAIRsharing.58a42b",
+      "registry": "Database",
+      "description": "depositar — taking the term from the Portuguese/Spanish verb for to deposit — is an online repository for research data. The site is built by the researchers for the researchers. You are free to deposit, discover, and reuse datasets on depositar for all your research purposes.",
+      "domains": [
+        {
+          "label": "Data storage",
+          "id": 1930,
+          "definitions": [
+            "The storing of digital information. Often this is done for archiving and retrieval purposes."
+          ],
+          "iri": "http://www.ebi.ac.uk/swo/SWO_0000143",
+          "synonyms": [],
+          "inFairsharing": true
+        }
+      ],
+      "subjects": [
+        {
+          "label": "Data Management",
+          "id": 588,
+          "definitions": [
+            "The development and use of architectures, policies, practices and procedures for management of data."
+          ],
+          "iri": "http://edamontology.org/topic_3071",
+          "synonyms": []
+        },
+        {
+          "label": "Subject Agnostic",
+          "id": 768,
+          "definitions": [
+            "Subject Agnostic provides a way of describing research and resources that are applicable across all subject areas. Please note that this term does not, by default, mean that an object tagged with it is completely generic.\n\nExample: \"JPEG\" is Subject Agnostic, which means that the resource is applicable regardless of subject, but it does not mean that it can or should be used for any type of data."
+          ],
+          "iri": "http://www.fairsharing.org/ontology/subject/SRAO_0000401",
+          "synonyms": []
+        }
+      ],
+      "taxonomies": [
+        {
+          "label": "All"
+        }
+      ],
+      "userDefinedTags": [
+        {
+          "label": "data sharing"
+        },
+        {
+          "label": "Open Science"
+        },
+        {
+          "label": "Researcher data"
+        }
+      ],
+      "recordAssociations": [
+        {
+          "linkedRecord": {
+            "name": "Data Catalog Vocabulary",
+            "id": 747,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "implements"
+        },
+        {
+          "linkedRecord": {
+            "name": "JavaScript Object Notation for Linking Data",
+            "id": 150,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "outputs"
+        },
+        {
+          "linkedRecord": {
+            "name": "Extensible Markup Language",
+            "id": 1277,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "outputs"
+        },
+        {
+          "linkedRecord": {
+            "name": "JavaScript Object Notation",
+            "id": 475,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "outputs"
+        },
+        {
+          "linkedRecord": {
+            "name": "GeoJSON",
+            "id": 358,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "accepts"
+        }
+      ],
+      "reverseRecordAssociations": [],
+      "status": "ready",
+      "isRecommended": false
+    },
+    {
+      "id": 1905,
+      "type": "repository",
+      "name": "Drosophila Species Genomes",
+      "abbreviation": "DroSpeGe",
+      "doi": "10.25504/FAIRsharing.me577e",
+      "registry": "Database",
+      "description": "The D. melanogaster and eight other eukaryote model genomes, and gene predictions from several groups. Summaries of essential genome statistics include sizes, genes found and predicted, homology among genomes, phylogenetic trees of species, and comparisons of several gene predictions for sensitivity and specificity in finding new and known genes.",
+      "domains": [
+        {
+          "label": "Gene prediction",
+          "id": 1078,
+          "definitions": [
+            "Detect, predict and identify genes or components of genes in DNA sequences, including promoters, coding regions, splice sites, etc."
+          ],
+          "iri": "http://edamontology.org/operation_2454",
+          "synonyms": [
+            "Whole gene prediction",
+            "Gene calling",
+            "Gene finding"
+          ],
+          "inFairsharing": true
+        },
+        {
+          "label": "Gene",
+          "id": 1800,
+          "definitions": [
+            "A region (or regions) that includes all of the sequence elements necessary to encode a functional transcript. A gene may include regulatory regions, transcribed regions and/or other functional sequence regions."
+          ],
+          "iri": "http://purl.obolibrary.org/obo/SO_0000704",
+          "synonyms": [
+            "INSDC_feature:gene"
+          ],
+          "inFairsharing": true
+        },
+        {
+          "label": "Homologous",
+          "id": 1815,
+          "definitions": [
+            "Similarity due to common ancestry."
+          ],
+          "iri": "http://purl.obolibrary.org/obo/SO_0000857",
+          "synonyms": [],
+          "inFairsharing": true
+        },
+        {
+          "label": "Orthologous",
+          "id": 1816,
+          "definitions": [
+            "An attribute describing a kind of homology where divergence occurred after a speciation event."
+          ],
+          "iri": "http://purl.obolibrary.org/obo/SO_0000858",
+          "synonyms": [],
+          "inFairsharing": true
+        },
+        {
+          "label": "Genome",
+          "id": 1826,
+          "definitions": [
+            "A genome is the sum of genetic material within a cell or virion."
+          ],
+          "iri": "http://purl.obolibrary.org/obo/SO_0001026",
+          "synonyms": [],
+          "inFairsharing": true
+        }
+      ],
+      "subjects": [
+        {
+          "label": "Phylogenetics",
+          "id": 629,
+          "definitions": [
+            "The study of evolutionary relationships amongst organisms from analysis of genetic information (typically gene or protein sequences)."
+          ],
+          "iri": "http://edamontology.org/topic_3293",
+          "synonyms": [
+            "Biological Systematics"
+          ]
+        },
+        {
+          "label": "Life Science",
+          "id": 742,
+          "definitions": [
+            "Life Science is the study of all of the divisions of the natural sciences dealing with the various aspects of the phenomena of life and vital processes."
+          ],
+          "iri": "http://aims.fao.org/aos/agrovoc/c_4318",
+          "synonyms": [
+            "Life Sciences"
+          ]
+        }
+      ],
+      "taxonomies": [
+        {
+          "label": "Drosophila"
+        }
+      ],
+      "userDefinedTags": [],
+      "recordAssociations": [
+        {
+          "linkedRecord": {
+            "name": "FASTA Sequence Format",
+            "id": 620,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "implements"
+        },
+        {
+          "linkedRecord": {
+            "name": "Generic Feature Format Version 3",
+            "id": 1348,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "implements"
+        }
+      ],
+      "reverseRecordAssociations": [],
+      "status": "ready",
+      "isRecommended": false
+    },
+    {
+      "id": 1684,
+      "type": "repository",
+      "name": "Predictive Networks",
+      "abbreviation": null,
+      "doi": "10.25504/FAIRsharing.znvzhj",
+      "registry": "Database",
+      "description": "Integration, navigation, visualization, and analysis of gene interaction networks. This record has been marked as \"Uncertain\" because its homepage no longer exists. If you have any information on the current status of this resource, please contact us via the \"Ask Question\" button at the top of this page, or contact us through any of the methods described in the footer.",
+      "domains": [
+        {
+          "label": "Genetic interaction",
+          "id": 1544,
+          "definitions": [
+            "An effect in which two genetic perturbations, when combined, result in a phenotype that does not appear to be merely explained by the superimposition or addition of effects of the original perturbations.\nab (not=) E"
+          ],
+          "iri": "http://purl.obolibrary.org/obo/MI_0208",
+          "synonyms": [],
+          "inFairsharing": true
+        },
+        {
+          "label": "Gene",
+          "id": 1800,
+          "definitions": [
+            "A region (or regions) that includes all of the sequence elements necessary to encode a functional transcript. A gene may include regulatory regions, transcribed regions and/or other functional sequence regions."
+          ],
+          "iri": "http://purl.obolibrary.org/obo/SO_0000704",
+          "synonyms": [
+            "INSDC_feature:gene"
+          ],
+          "inFairsharing": true
+        },
+        {
+          "label": "Genome",
+          "id": 1826,
+          "definitions": [
+            "A genome is the sum of genetic material within a cell or virion."
+          ],
+          "iri": "http://purl.obolibrary.org/obo/SO_0001026",
+          "synonyms": [],
+          "inFairsharing": true
+        }
+      ],
+      "subjects": [
+        {
+          "label": "Life Science",
+          "id": 742,
+          "definitions": [
+            "Life Science is the study of all of the divisions of the natural sciences dealing with the various aspects of the phenomena of life and vital processes."
+          ],
+          "iri": "http://aims.fao.org/aos/agrovoc/c_4318",
+          "synonyms": [
+            "Life Sciences"
+          ]
+        }
+      ],
+      "taxonomies": [
+        {
+          "label": "All"
+        }
+      ],
+      "userDefinedTags": [],
+      "recordAssociations": [
+        {
+          "linkedRecord": {
+            "name": "Resource Description Framework Schema",
+            "id": 982,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "implements"
+        },
+        {
+          "linkedRecord": {
+            "name": "Portable Network Graphics",
+            "id": 880,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "implements"
+        }
+      ],
+      "reverseRecordAssociations": [],
+      "status": "deprecated",
+      "isRecommended": false
+    }
+  ]
+}

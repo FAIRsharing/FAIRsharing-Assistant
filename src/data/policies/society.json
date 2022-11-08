@@ -1,0 +1,1097 @@
+{
+  "data": [
+    {
+      "id": 3359,
+      "type": "society",
+      "name": "De Nederlandse Gedragscode Wetenschapsbeoefening",
+      "abbreviation": null,
+      "doi": "10.25504/FAIRsharing.ad8nyj",
+      "registry": "Policy",
+      "description": "General policy (or code of honour) for scientific practice in the Netherlands, which includes principles for reproducability and verifiability.",
+      "domains": [],
+      "subjects": [],
+      "taxonomies": [
+        {
+          "label": "All"
+        }
+      ],
+      "userDefinedTags": [],
+      "recordAssociations": [
+        {
+          "linkedRecord": {
+            "name": "Netherlands Code of Conduct for Research Integrity 2018",
+            "id": 3440,
+            "registry": "Policy"
+          },
+          "recordAssocLabel": "related_to"
+        }
+      ],
+      "reverseRecordAssociations": [],
+      "status": "deprecated",
+      "isRecommended": false
+    },
+    {
+      "id": 3362,
+      "type": "society",
+      "name": "International Virtual Observatory Alliance Document Standards Policy",
+      "abbreviation": "IVOA Doc Std Policy",
+      "doi": "10.25504/FAIRsharing.YEsQFH",
+      "registry": "Policy",
+      "description": "This document describes the types of official IVOA documents and the process by which documents are advanced from Working Drafts to formal Recommendations and from Notes to Endorsed Notes.",
+      "domains": [],
+      "subjects": [
+        {
+          "label": "Astrophysics and Astronomy",
+          "id": 637,
+          "definitions": [
+            "Astronomy and astrophysics are the study of objects and phenomena that are found beyond our solar system. This combines theoretical simulations and observation with both terrestrial and space-craft-borne instruments of the electromagnetic radiation and high-energy particles emitted by celestial bodies."
+          ],
+          "iri": "http://www.fairsharing.org/ontology/subject/SRAO_0000189",
+          "synonyms": []
+        }
+      ],
+      "taxonomies": [
+        {
+          "label": "Not applicable"
+        }
+      ],
+      "userDefinedTags": [],
+      "recordAssociations": [],
+      "reverseRecordAssociations": [
+        {
+          "fairsharingRecord": {
+            "name": "International Virtual Observatory Alliance",
+            "id": 3515,
+            "registry": "Collection"
+          },
+          "recordAssocLabel": "collects"
+        }
+      ],
+      "status": "ready",
+      "isRecommended": false
+    },
+    {
+      "id": 3363,
+      "type": "society",
+      "name": "SCAR report No 30 June 2011 - SCAR Data Policy",
+      "abbreviation": null,
+      "doi": "10.25504/FAIRsharing.f2axyv",
+      "registry": "Policy",
+      "description": "SCAR (see www.scar.org) is charged with initiating, developing and coordinating high quality international scientific research in the Antarctic region, and advising on the role of the Antarctic region in the Earth system. The scientific business of SCAR is conducted by its Standing Scientific Groups in the Physical-, Life- and Geo- Sciences which represent the scientific disciplines active in Antarctic research. These groups share information on disciplinary scientific research being conducted by national Antarctic programmes; identify research areas or fields where current research is lacking; coordinate proposals for future research by national Antarctic programmes to achieve maximum scientific and logistical effectiveness; identify research areas or fields that might be best investigated by a major SCAR Scientific Research Programme; and establish Action and Expert Groups to address specific research topics within the discipline. SCAR related research data is highly multidisciplinary and disparate. This policy aims to provide a framework for these data to be handled in a consistent manner, and to strike a balance between the rights of investigators and the need for widespread access through the free and unrestricted sharing and exchange of both data and metadata. This policy is compatible with the data principles of SCAR’s parent body, ICSU and other relevant international agencies (e.g. WMO), and with the goals of Article III 1 c of the Antarctic Treaty. Since SCAR coordinates a distributed programme of research, generally implemented through a number of nationally self-managed projects, the principles enshrined in this Data Policy should be applied to data in each SCAR-endorsed Project. In order to be considered part of a SCAR Research Programme, each Project should follow the SCAR Data Policy, submit metadata and linked datasets to the Antarctic Master Directory (AMD - gcmd.gsfc.nasa.gov/Data/portals/amd/) in a reasonable timeframe, and should have an appropriately funded data management plan in place before the Project begins. Nations affiliated with SCAR are urged to establish a National Antarctic Data Centre (NADC) or assign NADC responsibilities to an existing national institution capable of carrying out NADC obligations. NADCs in collaboration with SCAR Research Projects and Programmes will work towards developing a SCAR Antarctic Data and Information System (ADMS). The SCAR Standing Committee on Antarctic Data Management (SCADM) is responsible for this Data Policy. Questions about the policy and its implementation should be directed to the SCADM Executive (see http://scadm.scar.org).",
+      "domains": [],
+      "subjects": [
+        {
+          "label": "Earth Science",
+          "id": 708,
+          "definitions": [
+            "Earth Science is the science that deals with the earth or any part thereof; includes the disciplines of geology, geography, oceanography and meteorology, among others. [GEMET https://www.eionet.europa.eu/gemet/en/concept/2405, AL 12.6.2019]"
+          ],
+          "iri": "http://purl.obolibrary.org/obo/OMIT_0026615",
+          "synonyms": [
+            "Geoscience"
+          ]
+        },
+        {
+          "label": "Life Science",
+          "id": 742,
+          "definitions": [
+            "Life Science is the study of all of the divisions of the natural sciences dealing with the various aspects of the phenomena of life and vital processes."
+          ],
+          "iri": "http://aims.fao.org/aos/agrovoc/c_4318",
+          "synonyms": [
+            "Life Sciences"
+          ]
+        }
+      ],
+      "taxonomies": [],
+      "userDefinedTags": [],
+      "recordAssociations": [
+        {
+          "linkedRecord": {
+            "name": "Directory Interchange Format",
+            "id": 335,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "recommends"
+        },
+        {
+          "linkedRecord": {
+            "name": "NASA Global Change Master Directory / CEOS International Directory Network",
+            "id": 2430,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "recommends"
+        }
+      ],
+      "reverseRecordAssociations": [],
+      "status": "ready",
+      "isRecommended": false
+    },
+    {
+      "id": 3373,
+      "type": "society",
+      "name": "JRC Data Policy",
+      "abbreviation": null,
+      "doi": "10.25504/FAIRsharing.gct90r",
+      "registry": "Policy",
+      "description": "The work on the JRC Data Policy followed the task identified in the JRC Management Plan 2014 to develop a dedicated data policy to complement the JRC Policy on Open Access to Scientific Publications and Supporting Guidance, and to promote open access to research data in the context of Horizon 2020. Important policy commitments and the relevant regulatory basis within the European Union and the European Commission include: the Commission Decision on the reuse of Commission documents, Commission communication on better access to scientific information, Commission communication on a reinforced European research area partnership for excellence and growth, Commission recommendation on access to and preservation of scientific information, and the EU implementation of the G8 Open Data Charter.",
+      "domains": [],
+      "subjects": [],
+      "taxonomies": [
+        {
+          "label": "All"
+        }
+      ],
+      "userDefinedTags": [],
+      "recordAssociations": [
+        {
+          "linkedRecord": {
+            "name": "JRC Data Catalogue",
+            "id": 2563,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "recommends"
+        }
+      ],
+      "reverseRecordAssociations": [],
+      "status": "ready",
+      "isRecommended": false
+    },
+    {
+      "id": 3417,
+      "type": "society",
+      "name": "Transparency and Openness Promotion Guidelines",
+      "abbreviation": "TOP",
+      "doi": "10.25504/FAIRsharing.yvmb9y",
+      "registry": "Policy",
+      "description": "Transparency, open sharing, and reproducibility are core values of science, but not always part of daily practice. Journals, funders, and scholarly societies can increase reproducibility of research by adopting the Transparency and Openness Promotion (TOP) Guidelines and helping them evolve to meet the needs of researchers and publishers while pursuing the most transparent practices. Published in 2015, the TOP guidelines include eight modular standards, each with three levels of increasing stringency. Journals and funders select which of the eight transparency standards they wish to adopt and select a level of implementation for each standard. These features provide flexibility for adoption depending on disciplinary variation, but simultaneously establish community standards.",
+      "domains": [],
+      "subjects": [
+        {
+          "label": "Data Management",
+          "id": 588,
+          "definitions": [
+            "The development and use of architectures, policies, practices and procedures for management of data."
+          ],
+          "iri": "http://edamontology.org/topic_3071",
+          "synonyms": []
+        }
+      ],
+      "taxonomies": [
+        {
+          "label": "All"
+        }
+      ],
+      "userDefinedTags": [
+        {
+          "label": "Open Science"
+        }
+      ],
+      "recordAssociations": [],
+      "reverseRecordAssociations": [
+        {
+          "fairsharingRecord": {
+            "name": "Oxford University Press Journal Research Data Policy",
+            "id": 3434,
+            "registry": "Policy"
+          },
+          "recordAssocLabel": "related_to"
+        }
+      ],
+      "status": "ready",
+      "isRecommended": false
+    },
+    {
+      "id": 3420,
+      "type": "society",
+      "name": "International Virtual Observatory Alliance UCD Maintenance Policy",
+      "abbreviation": "IVOA UCD Policy",
+      "doi": "10.25504/FAIRsharing.uo8Q3Z",
+      "registry": "Policy",
+      "description": "According to the IVOA Recommendation 'An IVOA standard for Unified Content Descriptors', this procedural document describes the maintenance (add, change, suppress words) of the IVOA list of UCD1+ words 'The UCD1+ Controlled Vocabulary'.",
+      "domains": [],
+      "subjects": [
+        {
+          "label": "Astrophysics and Astronomy",
+          "id": 637,
+          "definitions": [
+            "Astronomy and astrophysics are the study of objects and phenomena that are found beyond our solar system. This combines theoretical simulations and observation with both terrestrial and space-craft-borne instruments of the electromagnetic radiation and high-energy particles emitted by celestial bodies."
+          ],
+          "iri": "http://www.fairsharing.org/ontology/subject/SRAO_0000189",
+          "synonyms": []
+        }
+      ],
+      "taxonomies": [
+        {
+          "label": "Not applicable"
+        }
+      ],
+      "userDefinedTags": [],
+      "recordAssociations": [
+        {
+          "linkedRecord": {
+            "name": "The UCD1+ controlled vocabulary",
+            "id": 1386,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "recommends"
+        }
+      ],
+      "reverseRecordAssociations": [
+        {
+          "fairsharingRecord": {
+            "name": "International Virtual Observatory Alliance",
+            "id": 3515,
+            "registry": "Collection"
+          },
+          "recordAssocLabel": "collects"
+        }
+      ],
+      "status": "ready",
+      "isRecommended": false
+    },
+    {
+      "id": 3440,
+      "type": "society",
+      "name": "Netherlands Code of Conduct for Research Integrity 2018",
+      "abbreviation": null,
+      "doi": "10.25504/FAIRsharing.NwHuvp",
+      "registry": "Policy",
+      "description": "The Code of Conduct has been adopted by all universities and applies as from 1 October 2018. The Code includes the five principles which form the basis of integrity in research: - Honesty - Scrupulousness - Transparency - Independence - Responsibility In the Code, these five principles are further elaborated into 61 standards for good research practices. The Code also contains guidelines for dealing with alleged instances of research misconduct.",
+      "domains": [],
+      "subjects": [
+        {
+          "label": "Subject Agnostic",
+          "id": 768,
+          "definitions": [
+            "Subject Agnostic provides a way of describing research and resources that are applicable across all subject areas. Please note that this term does not, by default, mean that an object tagged with it is completely generic.\n\nExample: \"JPEG\" is Subject Agnostic, which means that the resource is applicable regardless of subject, but it does not mean that it can or should be used for any type of data."
+          ],
+          "iri": "http://www.fairsharing.org/ontology/subject/SRAO_0000401",
+          "synonyms": []
+        }
+      ],
+      "taxonomies": [],
+      "userDefinedTags": [],
+      "recordAssociations": [],
+      "reverseRecordAssociations": [
+        {
+          "fairsharingRecord": {
+            "name": "De Nederlandse Gedragscode Wetenschapsbeoefening",
+            "id": 3359,
+            "registry": "Policy"
+          },
+          "recordAssocLabel": "related_to"
+        }
+      ],
+      "status": "ready",
+      "isRecommended": false
+    },
+    {
+      "id": 3444,
+      "type": "society",
+      "name": "WMA Declaration of Helsinki – Ethical Principles for Medical Research involving Human Subjects",
+      "abbreviation": null,
+      "doi": "10.25504/FAIRsharing.a596f9",
+      "registry": "Policy",
+      "description": "The World Medical Association (WMA) has developed the Declaration of Helsinki as a statement of ethical principles for medical research involving human subjects, including research on identifiable human material and data. The Declaration is intended to be read as a whole and each of its constituent paragraphs should be applied with consideration of all other relevant paragraphs. Consistent with the mandate of the WMA, the Declaration is addressed primarily to physicians. The WMA encourages others who are involved in medical research involving human subjects to adopt these principles.",
+      "domains": [],
+      "subjects": [
+        {
+          "label": "Health Science",
+          "id": 587,
+          "definitions": [
+            "The sciences concerned with health promotion and maintenance."
+          ],
+          "iri": "http://purl.obolibrary.org/obo/NCIT_C19199",
+          "synonyms": []
+        },
+        {
+          "label": "Global Health",
+          "id": 641,
+          "definitions": [
+            "Global health is field of study concerned with the health of populations in a global context; this includes worldwide health improvement (including mental health), reduction of disparities, and protection against global threats that disregard national borders. Global health can be measured as a function of various global diseases and their prevalence in the world and threat to decrease life in the present day."
+          ],
+          "iri": "http://purl.obolibrary.org/obo/OMIT_0015767",
+          "synonyms": []
+        },
+        {
+          "label": "Virology",
+          "id": 710,
+          "definitions": [
+            "Study of viruses, e.g. sequence and structural data, interactions of viral proteins, or a viral genome including molecular sequences, genes and annotation."
+          ],
+          "iri": "http://edamontology.org/topic_0781",
+          "synonyms": []
+        },
+        {
+          "label": "Epidemiology",
+          "id": 833,
+          "definitions": [
+            "The study of the causes, incidence and distribution of disease in the population and its application for prevention or control."
+          ],
+          "iri": "http://purl.obolibrary.org/obo/NCIT_C16556",
+          "synonyms": []
+        }
+      ],
+      "taxonomies": [
+        {
+          "label": "Homo sapiens"
+        }
+      ],
+      "userDefinedTags": [
+        {
+          "label": "COVID-19"
+        },
+        {
+          "label": "Ethical principles"
+        }
+      ],
+      "recordAssociations": [
+        {
+          "linkedRecord": {
+            "name": "WHO Guideline for Good Clinical Practice",
+            "id": 3447,
+            "registry": "Policy"
+          },
+          "recordAssocLabel": "related_to"
+        }
+      ],
+      "reverseRecordAssociations": [
+        {
+          "fairsharingRecord": {
+            "name": "COVID-19 Resources",
+            "id": 3538,
+            "registry": "Collection"
+          },
+          "recordAssocLabel": "collects"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "RDA Covid-19 WG Resources",
+            "id": 3540,
+            "registry": "Collection"
+          },
+          "recordAssocLabel": "collects"
+        }
+      ],
+      "status": "ready",
+      "isRecommended": false
+    },
+    {
+      "id": 3445,
+      "type": "society",
+      "name": "OECD Principles and Guidelines for Access to Research Data from Public Funding",
+      "abbreviation": null,
+      "doi": "10.25504/FAIRsharing.n6vfkv",
+      "registry": "Policy",
+      "description": "Science and Technology Ministers called on the OECD in 2004 to develop a set of guidelines based on commonly agreed principles to facilitate cost-effective access to digital research data from public funding. The Principles and Guidelines for Access to Research Data from Public Funding are the outcome of this request. They are intended to assist all actors involved when trying to improve the international sharing of, and access to, research data.",
+      "domains": [],
+      "subjects": [
+        {
+          "label": "Life Science",
+          "id": 742,
+          "definitions": [
+            "Life Science is the study of all of the divisions of the natural sciences dealing with the various aspects of the phenomena of life and vital processes."
+          ],
+          "iri": "http://aims.fao.org/aos/agrovoc/c_4318",
+          "synonyms": [
+            "Life Sciences"
+          ]
+        },
+        {
+          "label": "Biomedical Science",
+          "id": 780,
+          "definitions": [
+            "Research concerned with the application of biological and physiological principles to clinical medicine."
+          ],
+          "iri": "http://purl.obolibrary.org/obo/NCIT_C15188",
+          "synonyms": []
+        },
+        {
+          "label": "Preclinical Studies",
+          "id": 844,
+          "definitions": [
+            "An investigation that tests a drug, procedure or medical treatment in animals to determine any toxic effects before trials can be carried out in humans."
+          ],
+          "iri": "http://purl.obolibrary.org/obo/NCIT_C142642",
+          "synonyms": []
+        }
+      ],
+      "taxonomies": [
+        {
+          "label": "All"
+        }
+      ],
+      "userDefinedTags": [
+        {
+          "label": "Researcher data"
+        }
+      ],
+      "recordAssociations": [
+        {
+          "linkedRecord": {
+            "name": "Wellcome Trust: Sharing research data to improve public health: joint statement of purpose",
+            "id": 3466,
+            "registry": "Policy"
+          },
+          "recordAssocLabel": "related_to"
+        },
+        {
+          "linkedRecord": {
+            "name": "Wellcome Trust Policy on Data Management and Sharing",
+            "id": 3457,
+            "registry": "Policy"
+          },
+          "recordAssocLabel": "related_to"
+        }
+      ],
+      "reverseRecordAssociations": [
+        {
+          "fairsharingRecord": {
+            "name": "UK Medical Research Council Data Sharing Policy",
+            "id": 3375,
+            "registry": "Policy"
+          },
+          "recordAssocLabel": "related_to"
+        }
+      ],
+      "status": "ready",
+      "isRecommended": false
+    },
+    {
+      "id": 3447,
+      "type": "society",
+      "name": "WHO Guideline for Good Clinical Practice",
+      "abbreviation": "WHO GCP",
+      "doi": "10.25504/FAIRsharing.41de90",
+      "registry": "Policy",
+      "description": "Good Clinical Practice (GCP) is an international ethical and scientific quality standard for designing, conducting, recording and reporting trials that involve the participation of human subjects. Compliance with this standard provides public assurance that the rights, safety and well-being of trial subjects are protected, consistent with the principles that have their origin in the Declaration of Helsinki, and that the clinical trial data are credible. The objective of this ICH GCP Guideline is to provide a unified standard for the European Union (EU), Japan and the United States to facilitate the mutual acceptance of clinical data by the regulatory authorities in these jurisdictions. The guideline was developed with consideration of the current good clinical practices of the European Union, Japan, and the United States, as well as those of Australia, Canada, the Nordic countries and the World Health Organization (WHO).",
+      "domains": [],
+      "subjects": [
+        {
+          "label": "Clinical Studies",
+          "id": 581,
+          "definitions": [
+            "Research conducted with human subjects or on material of human origin in which an investigator directly interacts with human subjects; includes development of new technologies, study of mechanisms of human diseases, therapy, clinical trials, epidemiologic, behavior, and health services research."
+          ],
+          "iri": "http://purl.obolibrary.org/obo/NCIT_C15206",
+          "synonyms": []
+        },
+        {
+          "label": "Global Health",
+          "id": 641,
+          "definitions": [
+            "Global health is field of study concerned with the health of populations in a global context; this includes worldwide health improvement (including mental health), reduction of disparities, and protection against global threats that disregard national borders. Global health can be measured as a function of various global diseases and their prevalence in the world and threat to decrease life in the present day."
+          ],
+          "iri": "http://purl.obolibrary.org/obo/OMIT_0015767",
+          "synonyms": []
+        },
+        {
+          "label": "Virology",
+          "id": 710,
+          "definitions": [
+            "Study of viruses, e.g. sequence and structural data, interactions of viral proteins, or a viral genome including molecular sequences, genes and annotation."
+          ],
+          "iri": "http://edamontology.org/topic_0781",
+          "synonyms": []
+        },
+        {
+          "label": "Biomedical Science",
+          "id": 780,
+          "definitions": [
+            "Research concerned with the application of biological and physiological principles to clinical medicine."
+          ],
+          "iri": "http://purl.obolibrary.org/obo/NCIT_C15188",
+          "synonyms": []
+        },
+        {
+          "label": "Epidemiology",
+          "id": 833,
+          "definitions": [
+            "The study of the causes, incidence and distribution of disease in the population and its application for prevention or control."
+          ],
+          "iri": "http://purl.obolibrary.org/obo/NCIT_C16556",
+          "synonyms": []
+        }
+      ],
+      "taxonomies": [
+        {
+          "label": "Homo sapiens"
+        }
+      ],
+      "userDefinedTags": [
+        {
+          "label": "COVID-19"
+        },
+        {
+          "label": "Ethical principles"
+        }
+      ],
+      "recordAssociations": [
+        {
+          "linkedRecord": {
+            "name": "International Clinical Trials Registry Platform",
+            "id": 2650,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "recommends"
+        }
+      ],
+      "reverseRecordAssociations": [
+        {
+          "fairsharingRecord": {
+            "name": "WMA Declaration of Helsinki – Ethical Principles for Medical Research involving Human Subjects",
+            "id": 3444,
+            "registry": "Policy"
+          },
+          "recordAssocLabel": "related_to"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "COVID-19 Resources",
+            "id": 3538,
+            "registry": "Collection"
+          },
+          "recordAssocLabel": "collects"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "RDA Covid-19 WG Resources",
+            "id": 3540,
+            "registry": "Collection"
+          },
+          "recordAssocLabel": "collects"
+        }
+      ],
+      "status": "ready",
+      "isRecommended": false
+    },
+    {
+      "id": 3450,
+      "type": "society",
+      "name": "WHO norms for sharing data and results during public health emergencies",
+      "abbreviation": null,
+      "doi": null,
+      "registry": "Policy",
+      "description": "Leading international stakeholders from multiple sectors convened at a WHO consultation in September 2015, where they affirmed that timely and transparent pre-publication sharing of data and results during public health emergencies must become the global norm.",
+      "domains": [],
+      "subjects": [
+        {
+          "label": "Health Science",
+          "id": 587,
+          "definitions": [
+            "The sciences concerned with health promotion and maintenance."
+          ],
+          "iri": "http://purl.obolibrary.org/obo/NCIT_C19199",
+          "synonyms": []
+        },
+        {
+          "label": "Global Health",
+          "id": 641,
+          "definitions": [
+            "Global health is field of study concerned with the health of populations in a global context; this includes worldwide health improvement (including mental health), reduction of disparities, and protection against global threats that disregard national borders. Global health can be measured as a function of various global diseases and their prevalence in the world and threat to decrease life in the present day."
+          ],
+          "iri": "http://purl.obolibrary.org/obo/OMIT_0015767",
+          "synonyms": []
+        },
+        {
+          "label": "Virology",
+          "id": 710,
+          "definitions": [
+            "Study of viruses, e.g. sequence and structural data, interactions of viral proteins, or a viral genome including molecular sequences, genes and annotation."
+          ],
+          "iri": "http://edamontology.org/topic_0781",
+          "synonyms": []
+        },
+        {
+          "label": "Epidemiology",
+          "id": 833,
+          "definitions": [
+            "The study of the causes, incidence and distribution of disease in the population and its application for prevention or control."
+          ],
+          "iri": "http://purl.obolibrary.org/obo/NCIT_C16556",
+          "synonyms": []
+        }
+      ],
+      "taxonomies": [
+        {
+          "label": "Not applicable"
+        }
+      ],
+      "userDefinedTags": [
+        {
+          "label": "COVID-19"
+        },
+        {
+          "label": "Ethical principles"
+        }
+      ],
+      "recordAssociations": [
+        {
+          "linkedRecord": {
+            "name": "International Clinical Trials Registry Platform",
+            "id": 2650,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "recommends"
+        }
+      ],
+      "reverseRecordAssociations": [
+        {
+          "fairsharingRecord": {
+            "name": "COVID-19 Resources",
+            "id": 3538,
+            "registry": "Collection"
+          },
+          "recordAssocLabel": "collects"
+        },
+        {
+          "fairsharingRecord": {
+            "name": "RDA Covid-19 WG Resources",
+            "id": 3540,
+            "registry": "Collection"
+          },
+          "recordAssocLabel": "collects"
+        }
+      ],
+      "status": "ready",
+      "isRecommended": false
+    },
+    {
+      "id": 3453,
+      "type": "society",
+      "name": "American Geophysical Union Data and Software for Authors Guidance",
+      "abbreviation": "AGU Data and Software Guidance",
+      "doi": "10.25504/FAIRsharing.17x4p4",
+      "registry": "Policy",
+      "description": "AGU affirmed in its 2012 position statement that “Earth and space science data should be widely accessible in multiple formats and long‐term preservation of data is an integral responsibility of scientists and sponsoring institutions.” Following this statement and to advance scientific exploration and discovery, and allow a full assessment of results presented in AGU’s journals, all data necessary to understand, evaluate, replicate, and build upon the reported research must be made available and accessible whenever possible.",
+      "domains": [],
+      "subjects": [
+        {
+          "label": "Environmental Science",
+          "id": 445,
+          "definitions": [
+            "Environmental Science is a broad interdisciplinary field in which ecologists work with other physical, chemical, and biological researchers to study and seek solutions to environmental problems. Environmental science focuses on the environment and how humans can manage and utilise its resources and the effects our actions have on the environment."
+          ],
+          "iri": "http://aims.fao.org/aos/agrovoc/c_331559",
+          "synonyms": [
+            "Environmental Sciences"
+          ]
+        },
+        {
+          "label": "Earth Science",
+          "id": 708,
+          "definitions": [
+            "Earth Science is the science that deals with the earth or any part thereof; includes the disciplines of geology, geography, oceanography and meteorology, among others. [GEMET https://www.eionet.europa.eu/gemet/en/concept/2405, AL 12.6.2019]"
+          ],
+          "iri": "http://purl.obolibrary.org/obo/OMIT_0026615",
+          "synonyms": [
+            "Geoscience"
+          ]
+        }
+      ],
+      "taxonomies": [
+        {
+          "label": "Not applicable"
+        }
+      ],
+      "userDefinedTags": [
+        {
+          "label": "Publishing"
+        },
+        {
+          "label": "Researcher data"
+        }
+      ],
+      "recordAssociations": [
+        {
+          "linkedRecord": {
+            "name": "FORCE 11 Data Citation Synthesis Group: Joint Declaration of Data Citation Principles",
+            "id": 939,
+            "registry": "Standard"
+          },
+          "recordAssocLabel": "recommends"
+        },
+        {
+          "linkedRecord": {
+            "name": "Dryad Digital Repository",
+            "id": 1998,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "recommends"
+        },
+        {
+          "linkedRecord": {
+            "name": "Knowledge Network for Biocomplexity",
+            "id": 2157,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "recommends"
+        },
+        {
+          "linkedRecord": {
+            "name": "PANGAEA - Data Publisher for Earth and Environmental Science",
+            "id": 2161,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "recommends"
+        },
+        {
+          "linkedRecord": {
+            "name": "Aerosol Comparison between Observations and Models",
+            "id": 2408,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "recommends"
+        },
+        {
+          "linkedRecord": {
+            "name": "Atmospheric Radiation Measurement Data Archive",
+            "id": 2409,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "recommends"
+        },
+        {
+          "linkedRecord": {
+            "name": "National Geoscience Data Centre Data Archive",
+            "id": 2410,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "recommends"
+        },
+        {
+          "linkedRecord": {
+            "name": "Carbon Dioxide Information Analysis Centre Database",
+            "id": 2411,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "recommends"
+        },
+        {
+          "linkedRecord": {
+            "name": "Centre for Ecology & Hydrology Data",
+            "id": 2412,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "recommends"
+        },
+        {
+          "linkedRecord": {
+            "name": "DataONE",
+            "id": 2414,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "recommends"
+        },
+        {
+          "linkedRecord": {
+            "name": "NOAA National Centers for Environmental Information Data Access Portal",
+            "id": 2416,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "recommends"
+        },
+        {
+          "linkedRecord": {
+            "name": "Earthref.org",
+            "id": 2418,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "recommends"
+        },
+        {
+          "linkedRecord": {
+            "name": "National Center for Atmospheric Research Climate Data Gateway",
+            "id": 2420,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "recommends"
+        },
+        {
+          "linkedRecord": {
+            "name": "Fluxdata",
+            "id": 2421,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "recommends"
+        },
+        {
+          "linkedRecord": {
+            "name": "International Ocean Discovery Program Laboratory Information Management System",
+            "id": 2422,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "recommends"
+        },
+        {
+          "linkedRecord": {
+            "name": "Interdisciplinary Earth Data Alliance",
+            "id": 2423,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "recommends"
+        },
+        {
+          "linkedRecord": {
+            "name": "EarthChem",
+            "id": 2424,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "recommends"
+        },
+        {
+          "linkedRecord": {
+            "name": "Marine Geoscience Data System",
+            "id": 2425,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "recommends"
+        },
+        {
+          "linkedRecord": {
+            "name": "Incorporated Research Institutions for Seismology Data",
+            "id": 2426,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "recommends"
+        },
+        {
+          "linkedRecord": {
+            "name": "Academic Seismic Portal",
+            "id": 2427,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "recommends"
+        },
+        {
+          "linkedRecord": {
+            "name": "Met Office Hadley Centre Observations Dataset",
+            "id": 2428,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "recommends"
+        },
+        {
+          "linkedRecord": {
+            "name": "National Snow and Ice Data Center Data Portal",
+            "id": 2429,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "recommends"
+        },
+        {
+          "linkedRecord": {
+            "name": "NASA Global Change Master Directory / CEOS International Directory Network",
+            "id": 2430,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "recommends"
+        },
+        {
+          "linkedRecord": {
+            "name": "NASA Data Portal",
+            "id": 2431,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "recommends"
+        },
+        {
+          "linkedRecord": {
+            "name": "NCAR Community Data Portal",
+            "id": 2432,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "recommends"
+        },
+        {
+          "linkedRecord": {
+            "name": "Research Data Archive at NCAR",
+            "id": 2433,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "recommends"
+        },
+        {
+          "linkedRecord": {
+            "name": "UK Polar Data Centre Data Archive",
+            "id": 2434,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "recommends"
+        },
+        {
+          "linkedRecord": {
+            "name": "Oak Ridge National Laboratory Distributed Active Archive Center for Biogeochemical Dynamics",
+            "id": 2435,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "recommends"
+        },
+        {
+          "linkedRecord": {
+            "name": "Orfeus - European Integrated Data Archive",
+            "id": 2436,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "recommends"
+        },
+        {
+          "linkedRecord": {
+            "name": "OpenTopography",
+            "id": 2437,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "recommends"
+        },
+        {
+          "linkedRecord": {
+            "name": "UNAVCO Data",
+            "id": 2438,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "recommends"
+        },
+        {
+          "linkedRecord": {
+            "name": "Unidata Data Services",
+            "id": 2440,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "recommends"
+        },
+        {
+          "linkedRecord": {
+            "name": "University of East Anglia Climatic Research Unit Datasets",
+            "id": 2441,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "recommends"
+        },
+        {
+          "linkedRecord": {
+            "name": "British Geological Survey GeoScenic",
+            "id": 2443,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "recommends"
+        },
+        {
+          "linkedRecord": {
+            "name": "Science Data Bank",
+            "id": 2768,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "recommends"
+        }
+      ],
+      "reverseRecordAssociations": [],
+      "status": "ready",
+      "isRecommended": false
+    },
+    {
+      "id": 3681,
+      "type": "society",
+      "name": "International recommendation on standards for open image data formats and repositories",
+      "abbreviation": null,
+      "doi": "10.25504/FAIRsharing.149d3c",
+      "registry": "Policy",
+      "description": "International recommendation on standards for open image data formats and repositories was developed by a panel of international experts under the umbrella of Global BioImaging (globalbioimaging.org) consisting of representatives of national and international imaging infrastructures and networks. These include but not limited to Canada BioImaging, National Laboratory for Advanced Microscopy (Mexico), Latin America BioImaging, Euro-BioImaging ERIC, South Africa BioImaging, Advanced BioImaging Support (Japan), Microscopy Australia, and National Imaging Facility (Australia). This recommendation has since been published in Nature Methods and provides guidelines for image data tools and resources.",
+      "domains": [
+        {
+          "label": "Resource collection",
+          "id": 1332,
+          "definitions": [
+            "A group of physical or digital resources that share a common identity, purpose, or theme."
+          ],
+          "iri": "http://purl.obolibrary.org/obo/ERO_0002190",
+          "synonyms": [],
+          "inFairsharing": true
+        },
+        {
+          "label": "Curated information",
+          "id": 1677,
+          "definitions": [
+            "A information content entity that has undergone a digital curation performed by a curator for accuracy checks and compliance with curation requirements. Information which has been assessed for accuracy by domain experts."
+          ],
+          "iri": "http://purl.obolibrary.org/obo/OBI_0302840",
+          "synonyms": [],
+          "inFairsharing": true
+        },
+        {
+          "label": "Digital curation",
+          "id": 1680,
+          "definitions": [
+            "Digital curation is the process of establishing and developing long term repositories of digital assets for current and future reference by researchers, scientists, and historians, and scholars generally."
+          ],
+          "iri": "http://purl.obolibrary.org/obo/OBI_0302914",
+          "synonyms": [],
+          "inFairsharing": true
+        },
+        {
+          "label": "Data storage",
+          "id": 1930,
+          "definitions": [
+            "The storing of digital information. Often this is done for archiving and retrieval purposes."
+          ],
+          "iri": "http://www.ebi.ac.uk/swo/SWO_0000143",
+          "synonyms": [],
+          "inFairsharing": true
+        }
+      ],
+      "subjects": [
+        {
+          "label": "Data Management",
+          "id": 588,
+          "definitions": [
+            "The development and use of architectures, policies, practices and procedures for management of data."
+          ],
+          "iri": "http://edamontology.org/topic_3071",
+          "synonyms": []
+        }
+      ],
+      "taxonomies": [
+        {
+          "label": "Not applicable"
+        }
+      ],
+      "userDefinedTags": [
+        {
+          "label": "Data Curation"
+        },
+        {
+          "label": "data sharing"
+        }
+      ],
+      "recordAssociations": [
+        {
+          "linkedRecord": {
+            "name": "BioImage Archive",
+            "id": 2830,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "recommends"
+        },
+        {
+          "linkedRecord": {
+            "name": "Electron Microscopy Public Image Archive",
+            "id": 2649,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "recommends"
+        },
+        {
+          "linkedRecord": {
+            "name": "Image Data Resource",
+            "id": 2303,
+            "registry": "Database"
+          },
+          "recordAssocLabel": "recommends"
+        }
+      ],
+      "reverseRecordAssociations": [],
+      "status": "ready",
+      "isRecommended": false
+    }
+  ]
+}

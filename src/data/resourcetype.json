@@ -1,0 +1,74 @@
+{
+  "name": "Resource",
+  "value": 0,
+  "children": [
+    {
+      "name": "Policies",
+      "children": [
+        {
+          "name": "Journal",
+          "value": ""
+        },
+        {
+          "name": "Society",
+          "value": ""
+        },
+        {
+          "name": "Funder",
+          "value": ""
+        },
+        {
+          "name": "Project",
+          "value": ""
+        },
+        {
+          "name": "Institution",
+          "value": ""
+        },
+        {
+          "name": "Journal Publisher",
+          "value": ""
+        }
+      ]
+    },
+    {
+      "name": "Standards",
+      "children": [
+        {
+          "name": "Model and Format",
+          "value": ""
+        },
+        {
+          "name": "Terminology Artefact",
+          "value": ""
+        },
+        {
+          "name": "Reporting Guideline",
+          "value": ""
+        },
+        {
+          "name": "Identifier Schema",
+          "value": ""
+        }
+      ]
+    },
+    {
+      "name": "Database",
+
+      "children": [
+        {
+          "name": "Repository",
+          "value": ""
+        },
+        {
+          "name": "Knowledgebase",
+          "value": ""
+        },
+        {
+          "name": "Knowledgebase and Repository",
+          "value": ""
+        }
+      ]
+    }
+  ]
+}

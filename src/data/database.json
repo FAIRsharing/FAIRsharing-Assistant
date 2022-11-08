@@ -1,0 +1,701 @@
+{
+  "data": [
+    {
+      "name": "knowledgebase",
+      "children": [
+        {
+          "name": "Natural Science",
+          "value": 71,
+          "children": [
+            {
+              "name": "KB-NS1",
+              "children": [
+                {
+                  "name": "KB-NS11",
+                  "value": 71,
+                  "url": ""
+                },
+                {
+                  "name": "KB-NS12",
+                  "value": 33,
+                  "url": "https://www.google.com/"
+                },
+                {
+                  "name": "KB-NS13",
+                  "value": 2,
+                  "url": "https://www.google.com/"
+                }
+              ]
+            },
+            {
+              "name": "KB-NS2",
+              "children": [
+                {
+                  "name": "KB-NS21",
+                  "value": 71,
+                  "url": "https://www.google.com/"
+                },
+                {
+                  "name": "KB-NS22",
+                  "value": 33,
+                  "url": "https://www.google.com/"
+                },
+                {
+                  "name": "KB-NS23",
+                  "value": 2,
+                  "url": "https://www.google.com/"
+                }
+              ]
+            },
+            {
+              "name": "KB-NS3",
+              "children": [
+                {
+                  "name": "KB-NS31",
+                  "value": 71
+                },
+                {
+                  "name": "KB-NS32",
+                  "value": 33
+                },
+                {
+                  "name": "KB-NS33",
+                  "value": 2
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Humanities and Social Science",
+          "value": 71,
+          "children": [
+            {
+              "name": "KB-HSS1",
+              "children": [
+                {
+                  "name": "KB-HSS11",
+                  "value": 71
+                },
+                {
+                  "name": "KB-HSS12",
+                  "value": 33
+                },
+                {
+                  "name": "KB-HSS13",
+                  "value": 2
+                }
+              ]
+            },
+            {
+              "name": "KB-HSS2",
+              "children": [
+                {
+                  "name": "KB-HSS21",
+                  "value": 71
+                },
+                {
+                  "name": "KB-HSS22",
+                  "value": 33
+                },
+                {
+                  "name": "KB-HSS23",
+                  "value": 2
+                }
+              ]
+            },
+            {
+              "name": "KB-HSS3",
+              "children": [
+                {
+                  "name": "KB-HSS31",
+                  "value": 71
+                },
+                {
+                  "name": "KB-HSS32",
+                  "value": 33
+                },
+                {
+                  "name": "KB-HSS33",
+                  "value": 2
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Subject Agnostic",
+          "value": 71,
+          "children": [
+            {
+              "name": "KB-SA1",
+              "children": [
+                {
+                  "name": "KB-SA11",
+                  "value": 71
+                },
+                {
+                  "name": "KB-SA12",
+                  "value": 33
+                },
+                {
+                  "name": "KB-SA13",
+                  "value": 2
+                }
+              ]
+            },
+            {
+              "name": "KB-SA2",
+              "children": [
+                {
+                  "name": "KB-SA21",
+                  "value": 71
+                },
+                {
+                  "name": "KB-SA22",
+                  "value": 33
+                },
+                {
+                  "name": "KB-SA23",
+                  "value": 2
+                }
+              ]
+            },
+            {
+              "name": "KB-SA3",
+              "children": [
+                {
+                  "name": "KB-SA31",
+                  "value": 71
+                },
+                {
+                  "name": "KB-SA32",
+                  "value": 33
+                },
+                {
+                  "name": "KB-SA33",
+                  "value": 2
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Engineering Science",
+          "value": 71,
+          "children": [
+            {
+              "name": "KB-ES1",
+              "children": [
+                {
+                  "name": "KB-ES11",
+                  "value": 71
+                },
+                {
+                  "name": "KB-ES12",
+                  "value": 33
+                },
+                {
+                  "name": "KB-ES13",
+                  "value": 2
+                }
+              ]
+            },
+            {
+              "name": "KB-ES2",
+              "children": [
+                {
+                  "name": "KB-ES21",
+                  "value": 71
+                },
+                {
+                  "name": "KB-ES22",
+                  "value": 33
+                },
+                {
+                  "name": "KB-ES23",
+                  "value": 2
+                }
+              ]
+            },
+            {
+              "name": "KB-ES3",
+              "children": [
+                {
+                  "name": "KB-ES31",
+                  "value": 71
+                },
+                {
+                  "name": "KB-ES32",
+                  "value": 33
+                },
+                {
+                  "name": "KB-ES33",
+                  "value": 2
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "knowledgebaseandrepository",
+      "children": [
+        {
+          "name": "Natural Science",
+          "children": [
+            {
+              "name": "KR-NS1",
+              "children": [
+                {
+                  "name": "KR-NS11",
+                  "value": 71
+                },
+                {
+                  "name": "KR-NS12",
+                  "value": 33
+                },
+                {
+                  "name": "KR-NS13",
+                  "value": 2
+                }
+              ]
+            },
+            {
+              "name": "KR-NS2",
+              "children": [
+                {
+                  "name": "KR-NS21",
+                  "value": 71
+                },
+                {
+                  "name": "KR-NS22",
+                  "value": 33
+                },
+                {
+                  "name": "KR-NS23",
+                  "value": 2
+                }
+              ]
+            },
+            {
+              "name": "KR-NS3",
+              "children": [
+                {
+                  "name": "KR-NS31",
+                  "value": 71
+                },
+                {
+                  "name": "KR-NS32",
+                  "value": 33
+                },
+                {
+                  "name": "KR-NS33",
+                  "value": 2
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Humanities and Social Science",
+          "children": [
+            {
+              "name": "KR-HSS1",
+              "children": [
+                {
+                  "name": "KR-HSS11",
+                  "value": 71
+                },
+                {
+                  "name": "KR-HSS12",
+                  "value": 33
+                },
+                {
+                  "name": "KR-HSS13",
+                  "value": 2
+                }
+              ]
+            },
+            {
+              "name": "KR-HSS2",
+              "children": [
+                {
+                  "name": "KR-HSS21",
+                  "value": 71
+                },
+                {
+                  "name": "KR-HSS22",
+                  "value": 33
+                },
+                {
+                  "name": "KR-HSS23",
+                  "value": 2
+                }
+              ]
+            },
+            {
+              "name": "KR-HSS3",
+              "children": [
+                {
+                  "name": "KR-HSS31",
+                  "value": 71
+                },
+                {
+                  "name": "KR-HSS32",
+                  "value": 33
+                },
+                {
+                  "name": "KR-HSS33",
+                  "value": 2
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Subject Agnostic",
+          "children": [
+            {
+              "name": "KR-SA1",
+              "children": [
+                {
+                  "name": "KR-SA11",
+                  "value": 71
+                },
+                {
+                  "name": "KR-SA12",
+                  "value": 33
+                },
+                {
+                  "name": "KR-SA13",
+                  "value": 2
+                }
+              ]
+            },
+            {
+              "name": "KR-SA2",
+              "children": [
+                {
+                  "name": "KR-SA21",
+                  "value": 71
+                },
+                {
+                  "name": "KR-SA22",
+                  "value": 33
+                },
+                {
+                  "name": "KR-SA23",
+                  "value": 2
+                }
+              ]
+            },
+            {
+              "name": "KR-SA3",
+              "children": [
+                {
+                  "name": "KR-SA31",
+                  "value": 71
+                },
+                {
+                  "name": "KR-SA32",
+                  "value": 33
+                },
+                {
+                  "name": "KR-SA33",
+                  "value": 2
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Engineering Science",
+          "children": [
+            {
+              "name": "KR-ES1",
+              "children": [
+                {
+                  "name": "KR-ES11",
+                  "value": 71
+                },
+                {
+                  "name": "KR-ES12",
+                  "value": 33
+                },
+                {
+                  "name": "KR-ES13",
+                  "value": 2
+                }
+              ]
+            },
+            {
+              "name": "KR-ES2",
+              "children": [
+                {
+                  "name": "KR-ES21",
+                  "value": 71
+                },
+                {
+                  "name": "KR-ES22",
+                  "value": 33
+                },
+                {
+                  "name": "KR-ES23",
+                  "value": 2
+                }
+              ]
+            },
+            {
+              "name": "KR-ES3",
+              "children": [
+                {
+                  "name": "KR-ES31",
+                  "value": 71
+                },
+                {
+                  "name": "KR-ES32",
+                  "value": 33
+                },
+                {
+                  "name": "KR-ES33",
+                  "value": 2
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "repository",
+      "children": [
+        {
+          "name": "Natural Science",
+          "children": [
+            {
+              "name": "R-NS1",
+              "children": [
+                {
+                  "name": "R-NS11",
+                  "value": 71
+                },
+                {
+                  "name": "R-NS12",
+                  "value": 33
+                },
+                {
+                  "name": "R-NS13",
+                  "value": 2
+                }
+              ]
+            },
+            {
+              "name": "R-NS2",
+              "children": [
+                {
+                  "name": "R-NS21",
+                  "value": 71
+                },
+                {
+                  "name": "R-NS22",
+                  "value": 33
+                },
+                {
+                  "name": "R-NS23",
+                  "value": 2
+                }
+              ]
+            },
+            {
+              "name": "R-NS3",
+              "children": [
+                {
+                  "name": "R-NS31",
+                  "value": 71
+                },
+                {
+                  "name": "R-NS32",
+                  "value": 33
+                },
+                {
+                  "name": "R-NS33",
+                  "value": 2
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Humanities and Social Science",
+          "children": [
+            {
+              "name": "R-HSS1",
+              "children": [
+                {
+                  "name": "R-HSS11",
+                  "value": 71
+                },
+                {
+                  "name": "R-HSS12",
+                  "value": 33
+                },
+                {
+                  "name": "R-HSS13",
+                  "value": 2
+                }
+              ]
+            },
+            {
+              "name": "R-HSS2",
+              "children": [
+                {
+                  "name": "R-HSS21",
+                  "value": 71
+                },
+                {
+                  "name": "R-HSS22",
+                  "value": 33
+                },
+                {
+                  "name": "R-HSS23",
+                  "value": 2
+                }
+              ]
+            },
+            {
+              "name": "R-HSS3",
+              "children": [
+                {
+                  "name": "R-HSS31",
+                  "value": 71
+                },
+                {
+                  "name": "R-HSS32",
+                  "value": 33
+                },
+                {
+                  "name": "R-HSS33",
+                  "value": 2
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Subject Agnostic",
+          "children": [
+            {
+              "name": "R-SA1",
+              "children": [
+                {
+                  "name": "R-SA11",
+                  "value": 71
+                },
+                {
+                  "name": "R-SA12",
+                  "value": 33
+                },
+                {
+                  "name": "R-SA13",
+                  "value": 2
+                }
+              ]
+            },
+            {
+              "name": "R-SA2",
+              "children": [
+                {
+                  "name": "R-SA21",
+                  "value": 71
+                },
+                {
+                  "name": "R-SA22",
+                  "value": 33
+                },
+                {
+                  "name": "R-SA23",
+                  "value": 2
+                }
+              ]
+            },
+            {
+              "name": "R-SA3",
+              "children": [
+                {
+                  "name": "R-SA31",
+                  "value": 71
+                },
+                {
+                  "name": "R-SA32",
+                  "value": 33
+                },
+                {
+                  "name": "R-SA33",
+                  "value": 2
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Engineering Science",
+          "children": [
+            {
+              "name": "R-ES1",
+              "children": [
+                {
+                  "name": "R-ES11",
+                  "value": 71
+                },
+                {
+                  "name": "R-ES12",
+                  "value": 33
+                },
+                {
+                  "name": "R-ES13",
+                  "value": 2
+                }
+              ]
+            },
+            {
+              "name": "R-ES2",
+              "children": [
+                {
+                  "name": "R-ES21",
+                  "value": 71
+                },
+                {
+                  "name": "R-ES22",
+                  "value": 33
+                },
+                {
+                  "name": "R-ES23",
+                  "value": 2
+                }
+              ]
+            },
+            {
+              "name": "R-ES3",
+              "children": [
+                {
+                  "name": "R-ES31",
+                  "value": 71
+                },
+                {
+                  "name": "R-ES32",
+                  "value": 33
+                },
+                {
+                  "name": "R-ES33",
+                  "value": 2
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

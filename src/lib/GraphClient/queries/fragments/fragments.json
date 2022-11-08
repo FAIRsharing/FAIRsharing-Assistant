@@ -1,0 +1,19 @@
+{
+  "keywords": [
+    "label",
+    "id",
+    "definitions",
+    "iri",
+    "synonyms"
+  ],
+  "subjects": [
+    {
+      "queryName": "subjects",
+      "fields": [
+        {
+          "$ref": "keywords"
+        }
+      ]
+    }
+  ]
+}
