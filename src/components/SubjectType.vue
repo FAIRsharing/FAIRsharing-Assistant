@@ -1,7 +1,7 @@
 <template>
   <div>
 
-      <p v-if="resourceSelected">Resource Type Selected: {{resourceSelected}}</p>
+      <p v-if="getResource">Resource Type Selected: {{getResource}}</p>
     <p>Subject Type Selected: {{ itemClicked }}</p>
       <div id="subjectBubbleChart" class="charts" ref="circlesDiv" />
 
@@ -45,9 +45,6 @@ export default {
       itemClicked: "",
     }
   },
-  props:[
-    "resourceSelected",
-  ],
   computed:{
     ...mapState("subjectStore", ["subjectBubbleTree", "loadingData"]),
     ...mapState("topSubjectStore", ["topSubjectBubbleTree", "loadingData"]),
@@ -103,54 +100,26 @@ export default {
       }
     },
 
-    async fetchAllLevelSubjectData() {
-      const childrenLevelOne = this.allSubjectsData["children"]
-
-      for (let i=0; i<childrenLevelOne.length; i++) {
-        const childrenLevelTwo = childrenLevelOne[i]["children"]
-        await this.getChildren(childrenLevelTwo)
-        // if (childrenLevelTwo){
-        //   for (let j=0; j< childrenLevelTwo.length; j++){
-        //     const childId = childrenLevelTwo[j]["id"]
-        //
-        //     await this.fetchOtherSubject([childId, this.formatString(this.getResource)])
-        //     if (this.otherSubjectBubble[0] && this.otherSubjectBubble[0]["children"] && this.otherSubjectBubble[0]["children"].length){
-        //       childrenLevelTwo[j]["children"] = this.otherSubjectBubble[0]["children"]
-        //     }
-        //   }
-        // }
-      }
-    },
-
-
     async getChildren(arr) {
-      if (arr) {
+      if (arr && arr.length) {
         for (let j=0; j< arr.length; j++){
           const childId = arr[j]["id"]
           await this.fetchOtherSubject([childId, this.formatString(this.getResource)])
           if (this.otherSubjectBubble[0] && this.otherSubjectBubble[0]["children"] && this.otherSubjectBubble[0]["children"].length){
             arr[j]["children"] = this.otherSubjectBubble[0]["children"]
-            console.log("arr[j][\"label\"]::", arr[j]["label"])
-            console.log("arr[j][\"children\"]::", arr[j]["children"])
             await this.getChildren(arr[j]["children"])
-          } else {
-            return
           }
         }
-        }
-      },
+      }
+    },
 
-
-      // arr.forEach(subArr => {
-      //   if (subArr["children"] && subArr["children"].length) {
-      //     this.getChildren(subArr["children"])
-      //   } else {
-      //     console.log("subArr.id::", subArr["id"])
-      //     console.log("subArr::", subArr)
-      //     return subArr["id"]
-      //   }
-      // })
-    // },
+    async fetchAllLevelSubjectData() {
+      const childrenLevelOne = this.allSubjectsData["children"]
+      for (let i=0; i<childrenLevelOne.length; i++) {
+        const childrenLevelTwo = childrenLevelOne[i]["children"]
+        await this.getChildren(childrenLevelTwo)
+      }
+    },
 
     getCircles() {
       let data // Set data
@@ -187,7 +156,8 @@ export default {
         minRadius: 60,
         // maxRadius: 90,
         // minRadius: am5.percent(5),
-        maxRadius: am5.percent(10),
+        // maxRadius: am5.percent(10),
+        maxRadius: am5.percent(8),
         xField: "x",
         yField: "y",
       }));
@@ -209,9 +179,6 @@ export default {
 
       series.links.template.set("strength", 0.5)
       data = this.allSubjectsData
-
-
-
        // When a bubble is clicked
        series.nodes.template.events.on("click", (e) => {
          // const basicSubjectTypes = ['Natural Science', 'Engineering Science', 'Subject Agnostic', 'Humanities and Social Science'];
@@ -231,7 +198,6 @@ export default {
            }
        });
 
-      console.log("data::", data)
        series.data.setAll([data]);
        series.set("selectedDataItem", series.dataItems[0]);
        series.appear(1000, 100); // Make stuff animate on load
