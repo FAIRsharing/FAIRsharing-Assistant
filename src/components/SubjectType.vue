@@ -34,7 +34,7 @@ export default {
   data:() => {
     return {
       loading: false,
-      allSubjects: false,
+      browseSubjects: false,
       allSubjectsData: {
         name: "Subject",
         value: 0,
@@ -72,17 +72,17 @@ export default {
         await this.fetchTopSubjectTerms(resourceTypeData)
         this.allSubjectsData["children"] = this.topSubjectBubbleTree
         this.displayAllTopSubjects()
-        await this.fetchAllLevelSubjectData()
-
         //Update key "name" to "label" and assign value
         let { name: label, ...rest } = this.allSubjectsData;
         this.allSubjectsData = { label, ...rest }
         this.allSubjectsData["label"] = "Subject"
+
+        await this.fetchAllLevelSubjectData()
       }
       //When user lands on subject type as the entry point in the application
       else {
+        this.browseSubjects= true
         await this.fetchTerms()
-        this.allSubjects= true
         this.allSubjectsData["children"] = this.subjectBubbleTree
       }
     },
@@ -100,23 +100,44 @@ export default {
       }
     },
 
+    // Create an array of ids. Change the fetchRecordTypes method to consume a list of ids instead of single id
+
+    //Single id is passed as argument in the fetchRequest resulting more graphQL calls
+    // async getChildren(arr) {
+    //   if (arr && arr.length) {
+    //     for (let j=0; j< arr.length; j++){
+    //       const childId = arr[j]["id"]
+    //       await this.fetchOtherSubject([childId, this.formatString(this.getResource)])
+    //       if (this.otherSubjectBubble[0] && this.otherSubjectBubble[0]["children"] && this.otherSubjectBubble[0]["children"].length){
+    //         arr[j]["children"] = this.otherSubjectBubble[0]["children"]
+    //         await this.getChildren(arr[j]["children"])
+    //       }
+    //     }
+    //   }
+    // },
+
+
+    //Array of ids are passed as arguments in the fetchRequest resulting lesser graphQL calls
     async getChildren(arr) {
       if (arr && arr.length) {
-        for (let j=0; j< arr.length; j++){
-          const childId = arr[j]["id"]
-          await this.fetchOtherSubject([childId, this.formatString(this.getResource)])
-          if (this.otherSubjectBubble[0] && this.otherSubjectBubble[0]["children"] && this.otherSubjectBubble[0]["children"].length){
-            arr[j]["children"] = this.otherSubjectBubble[0]["children"]
-            await this.getChildren(arr[j]["children"])
+        const arrIds = arr.map(({id}) => id)
+        await this.fetchOtherSubject([arrIds, this.formatString(this.getResource)])
+        arr.filter(async subItem => {
+          const matchedData = this.otherSubjectBubble.find (ele => ele.id === subItem.id)
+          if(matchedData !== undefined && matchedData.id === subItem.id) {
+            subItem["children"] = matchedData["children"]
+            subItem["descendants_count"] = matchedData["children"].length
+            await this.getChildren(subItem["children"])
           }
-        }
+        })
       }
     },
 
     async fetchAllLevelSubjectData() {
       const childrenLevelOne = this.allSubjectsData["children"]
-      for (let i=0; i<childrenLevelOne.length; i++) {
-        const childrenLevelTwo = childrenLevelOne[i]["children"]
+      for (const child of childrenLevelOne) {
+        const childrenLevelTwo = child["children"]
+        console.log("childrenLevelTwo::", childrenLevelTwo)
         await this.getChildren(childrenLevelTwo)
       }
     },
@@ -145,7 +166,7 @@ export default {
         upDepth: 1,
         topDepth: 1,
         initialDepth: 0,
-        valueField: "records_count",
+        valueField: "descendants_count",
         //Update the name field to label field in topSubjects query to make all the bubble name in sync
         categoryField: "label",//Label displayed
         childDataField: "children",
@@ -154,15 +175,15 @@ export default {
         manyBodyStrength: -20,
         centerStrength: 0.8,
         minRadius: 60,
-        // maxRadius: 90,
+        // maxRadius: 200,
         // minRadius: am5.percent(5),
-        // maxRadius: am5.percent(10),
-        maxRadius: am5.percent(8),
-        xField: "x",
-        yField: "y",
+        maxRadius: am5.percent(30),
+        // maxRadius: am5.percent(8),
+        // xField: "x",
+        // yField: "y",
       }));
 
-       if (this.allSubjects) {
+       if (this.browseSubjects) {
          series.set("categoryField", "name");
        }
       series.get("colors").setAll({
@@ -197,7 +218,7 @@ export default {
            this.$store.commit("bubbleSelectedStore/subjectSelected", this.itemClicked)
            }
        });
-
+        console.log("data::", data)
        series.data.setAll([data]);
        series.set("selectedDataItem", series.dataItems[0]);
        series.appear(1000, 100); // Make stuff animate on load

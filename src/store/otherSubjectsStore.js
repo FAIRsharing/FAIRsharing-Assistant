@@ -12,9 +12,11 @@ export const state = {
 }
 
 export const actions = {
+    //change arg as ids instead of id
     async fetchOtherSubject({commit}, [subjectId, resource]) {
         commit("setLoadingData", true)
         OTHER_SUBJECTS.queryParam= {
+            //ids: ids
             ids: subjectId,
             types: resource
         }

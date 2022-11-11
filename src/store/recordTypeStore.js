@@ -11,6 +11,7 @@ export const state = {
 }
 
 export const actions = {
+
     async fetchRecordTypes({commit}, id) {
         commit("setLoadingData", true)
         RECORD_TYPE.queryParam= {

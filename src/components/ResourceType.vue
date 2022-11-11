@@ -62,12 +62,19 @@ export default {
    async displayResources() {
     //Fetching the resource/records id children record from the graphQl query
     const resourceIds = this.allRecords.map(({ id }) => id)
+     //  for (const id of resourceIds) {
+    //
+    //    await this.fetchRecordTypes(id)
+    //    //Pushing all children list into the array
+    //    this.recordTypesList.push(this.recordTypes)
+    //  }
 
-     for (const id of resourceIds) {
+    // Using Promise.all the records are fetched in parallel which optimises the performance
+     await Promise.all(resourceIds.map(async (id) => {
        await this.fetchRecordTypes(id)
-       //Pushing all children list into the array
        this.recordTypesList.push(this.recordTypes)
-     }
+     }));
+
      //Fetching the children from resourceType json data
      const otherResources = this.allResourceData["children"].map(({children}) => children)
      const otherResourceType = otherResources.flatMap(child => child)
