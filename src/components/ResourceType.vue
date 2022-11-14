@@ -110,7 +110,6 @@ export default {
       }));
       // Create series
       let series = container.children.push(am5hierarchy.ForceDirected.new(root, {
-          focusable: true,
           ariaLabel: "FAIRassist: Resource Type",
           singleBranchOnly: false,
           downDepth: 1,

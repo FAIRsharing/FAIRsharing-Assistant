@@ -1,10 +1,6 @@
 <template>
   <div>
 
-      <p v-if="getResource">Resource Type Selected: {{getResource}}</p>
-    <p>Subject Type Selected: {{ itemClicked }}</p>
-      <div id="subjectBubbleChart" class="charts" ref="circlesDiv" />
-
     <v-fade-transition v-if="loading">
       <v-overlay
           :absolute="false"
@@ -13,6 +9,12 @@
         <Loaders />
       </v-overlay>
     </v-fade-transition>
+
+      <p v-if="getResource">Resource Type Selected: {{getResource}}</p>
+      <p>Subject Type Selected: {{ itemClicked }}</p>
+      <div id="subjectBubbleChart" class="charts" ref="circlesDiv" />
+
+
   </div>
 
 </template>
@@ -39,7 +41,7 @@ export default {
         name: "Subject",
         value: 0,
         children: '',
-        records_count: 0
+        descendants_count: 0
       },
       topSubjects: ["Natural Science", "Humanities and Social Science", "Subject Agnostic", "Engineering Science"],
       itemClicked: "",
@@ -48,7 +50,8 @@ export default {
   computed:{
     ...mapState("subjectStore", ["subjectBubbleTree", "loadingData"]),
     ...mapState("topSubjectStore", ["topSubjectBubbleTree", "loadingData"]),
-    ...mapState("otherSubjectsStore", ["otherSubjectBubble", "loadingData"]),
+    ...mapState("otherSubjectsStore", ["otherSubjectBubble", "loadingStatus"]),
+    ...mapGetters("otherSubjectsStore", ['loadingStatus']),
     ...mapGetters("bubbleSelectedStore", ['getResource'])
   },
   async mounted() {
@@ -103,43 +106,61 @@ export default {
     // Create an array of ids. Change the fetchRecordTypes method to consume a list of ids instead of single id
 
     //Single id is passed as argument in the fetchRequest resulting more graphQL calls
+    async getChildren(arr) {
+      if (arr && arr.length) {
+        for (let j=0; j< arr.length; j++){
+          const childId = arr[j]["id"]
+          await this.fetchOtherSubject([childId, this.formatString(this.getResource)])
+          if (this.otherSubjectBubble[0] && this.otherSubjectBubble[0]["children"] && this.otherSubjectBubble[0]["children"].length){
+            arr[j]["children"] = this.otherSubjectBubble[0]["children"]
+            arr[j]["descendants_count"] = this.otherSubjectBubble[0]["children"].length
+            await this.getChildren(arr[j]["children"])
+          }
+        }
+      }
+    },
+
+
+    //Array of ids are passed as arguments in the fetchRequest resulting lesser graphQL calls
     // async getChildren(arr) {
     //   if (arr && arr.length) {
-    //     for (let j=0; j< arr.length; j++){
-    //       const childId = arr[j]["id"]
-    //       await this.fetchOtherSubject([childId, this.formatString(this.getResource)])
-    //       if (this.otherSubjectBubble[0] && this.otherSubjectBubble[0]["children"] && this.otherSubjectBubble[0]["children"].length){
-    //         arr[j]["children"] = this.otherSubjectBubble[0]["children"]
-    //         await this.getChildren(arr[j]["children"])
+    //     const arrIds = arr.map(({id}) => id)
+    //     await this.fetchOtherSubject([arrIds, this.formatString(this.getResource)])
+    //     arr.filter(async subItem => {
+    //       const matchedData = this.otherSubjectBubble.find (ele => ele.id === subItem.id)
+    //       if(matchedData !== undefined && matchedData.id === subItem.id ) {
+    //         if(matchedData["children"] && matchedData["children"].length) {
+    //           subItem["children"] = matchedData["children"]
+    //           console.log("matchedData[\"label\"].::", matchedData["label"])
+    //           console.log("matchedData[\"children\"].length::", matchedData["children"].length)
+    //           subItem["descendants_count"] = matchedData["children"].length
+    //           await this.getChildren(subItem["children"])
+    //         }
     //       }
-    //     }
+    //     })
     //   }
     // },
 
 
-    //Array of ids are passed as arguments in the fetchRequest resulting lesser graphQL calls
-    async getChildren(arr) {
-      if (arr && arr.length) {
-        const arrIds = arr.map(({id}) => id)
-        await this.fetchOtherSubject([arrIds, this.formatString(this.getResource)])
-        arr.filter(async subItem => {
-          const matchedData = this.otherSubjectBubble.find (ele => ele.id === subItem.id)
-          if(matchedData !== undefined && matchedData.id === subItem.id) {
-            subItem["children"] = matchedData["children"]
-            subItem["descendants_count"] = matchedData["children"].length
-            await this.getChildren(subItem["children"])
-          }
-        })
+    countChildren(subject) {
+      console.log("subject::", subject)
+      subject["totalChildren"] = 0;
+      if (subject["children"] && subject["children"].length) {
+        for (const child of subject["children"]){
+          subject["totalChildren"] += this.countChildren(child);
+        }
       }
+      subject["totalChildren"] = subject["descendants_count"] ? subject["totalChildren"] + subject["descendants_count"] : subject["totalChildren"]
+      return subject["totalChildren"];
     },
 
     async fetchAllLevelSubjectData() {
       const childrenLevelOne = this.allSubjectsData["children"]
       for (const child of childrenLevelOne) {
         const childrenLevelTwo = child["children"]
-        console.log("childrenLevelTwo::", childrenLevelTwo)
         await this.getChildren(childrenLevelTwo)
       }
+      this.countChildren(this.allSubjectsData)
     },
 
     getCircles() {
@@ -159,14 +180,13 @@ export default {
 
       // Create series
       let series = container.children.push(am5hierarchy.ForceDirected.new(root, {
-        focusable: true,
         ariaLabel: "FAIRassist: Subject Type",
         singleBranchOnly: true,
         downDepth: 1,
         upDepth: 1,
         topDepth: 1,
         initialDepth: 0,
-        valueField: "descendants_count",
+        valueField: "totalChildren",
         //Update the name field to label field in topSubjects query to make all the bubble name in sync
         categoryField: "label",//Label displayed
         childDataField: "children",
@@ -177,14 +197,17 @@ export default {
         minRadius: 60,
         // maxRadius: 200,
         // minRadius: am5.percent(5),
-        maxRadius: am5.percent(30),
+        maxRadius: am5.percent(20),
         // maxRadius: am5.percent(8),
         // xField: "x",
         // yField: "y",
       }));
 
        if (this.browseSubjects) {
-         series.set("categoryField", "name");
+         series.setAll({
+           categoryField: "name",
+           valueField: "descendants_count"
+         });
        }
       series.get("colors").setAll({
         step: 8

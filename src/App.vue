@@ -1,27 +1,19 @@
 <template>
   <v-app id="app">
-
-
     <v-main>
-      <TabsView />
+      <Menu />
       <router-view />
-
     </v-main>
   </v-app>
 </template>
 
 <script>
-import TabsView from "@/views/TabsView"
+import Menu from "@/components/Navigation/Menu"
 
 export default {
   name: 'App',
-
   components: {
-    TabsView
+    Menu
   },
-
-  data: () => ({
-    //
-  }),
 };
 </script>
