@@ -11,7 +11,7 @@
     </v-fade-transition>
 
       <p v-if="getResource">Resource Type Selected: {{getResource}}</p>
-      <p>Subject Type Selected: {{ itemClicked }}</p>
+      <p>Subject Type Selected: {{ itemClicked["name"] }}</p>
       <div id="subjectBubbleChart" class="charts" ref="circlesDiv" />
 
 
@@ -44,12 +44,14 @@ export default {
         descendants_count: 0
       },
       topSubjects: ["Natural Science", "Humanities and Social Science", "Subject Agnostic", "Engineering Science"],
-      itemClicked: "",
-      counter: 0
+      itemClicked: {
+        id: '',
+        name: ''
+      },
     }
   },
   computed:{
-    ...mapState("subjectStore", ["subjectBubbleTree", "loadingData"]),
+    ...mapState("browseSubjectsStore", ["subjectBubbleTree", "loadingData"]),
     ...mapState("topSubjectStore", ["topSubjectBubbleTree", "loadingData"]),
     ...mapState("otherSubjectsStore", ["otherSubjectBubble", "loadingStatus"]),
     ...mapGetters("otherSubjectsStore", ['loadingStatus']),
@@ -64,9 +66,8 @@ export default {
       this.loading = false
     })
   },
-
   methods: {
-    ...mapActions("subjectStore", ["fetchTerms"]),
+    ...mapActions("browseSubjectsStore", ["fetchTerms"]),
     ...mapActions("topSubjectStore", ["fetchTopSubjectTerms"]),
     ...mapActions("otherSubjectsStore", ["fetchOtherSubject"]),
 
@@ -83,7 +84,6 @@ export default {
         let { name: label, ...rest } = this.allSubjectsData;
         this.allSubjectsData = { label, ...rest }
         this.allSubjectsData["label"] = "Subject"
-
       }
       //When user lands on subject type as the entry point in the application
       else {
@@ -248,10 +248,13 @@ export default {
            console.log("nodeId::", node["id"])
          } else {
            nodeName = node["name"]
+           console.log("nodeName::", nodeName)
+           console.log("nodeId::", node["id"])
          }
-         if( this.itemClicked !== nodeName) {
-           this.itemClicked = nodeName
-           console.log("itemClicked::", this.itemClicked)
+         if( this.itemClicked["name"] !== nodeName) {
+           this.itemClicked["id"] = node["id"]
+           this.itemClicked["name"] = nodeName
+           console.log("itemClicked::", this.itemClicked["name"])
            this.$store.commit("bubbleSelectedStore/subjectSelected", this.itemClicked)
            }
        });

@@ -1,0 +1,16 @@
+{
+  "queryName": "subject",
+  "queryParam": null,
+  "fields": [
+    "id",
+    "label",
+    {
+      "name": "fairsharingRecords",
+      "fields": [
+        "id",
+        "registry",
+        "type"
+      ]
+    }
+  ]
+}

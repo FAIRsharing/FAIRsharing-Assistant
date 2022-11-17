@@ -1,6 +1,6 @@
 <template>
 <div>
-  <p v-if="subjectSelected">Subject Type Selected: {{subjectSelected}}</p>
+  <p v-if="getSubject['name']">Subject Type Selected: {{getSubject['name']}}</p>
   <p>Resource Type Selected: {{itemClicked}}</p>
   <div id="resourceBubbleChart" class="charts" ref="chartdiv">
   </div>
@@ -38,54 +38,72 @@ export default {
   computed:{
     ...mapGetters("bubbleSelectedStore", ['getSubject']),
     ...mapState("recordTypeStore", ["recordTypes", "loadingData"]),
+    ...mapState("subjectStore", ["subjectRecords", "loadingData"]),
   },
 
   async mounted() {
-    await this.getResourceData()
-    await this.displayResources()
+    // await this.getResourceData()
+    // await this.displayResources()
 
     this.$nextTick(async () =>{
-      if (this.getSubject !== undefined) {
-        console.log("Subject Selected::", this.getSubject)
-      }
-      this.getCircles()
+      // if (this.getSubject !== undefined) {
+      //   console.log("Subject Selected::", this.getSubject)
+      // }
+      await this.displayResources()
+      await this.getCircles()
     })
 
   },
   methods: {
     ...mapActions("recordTypeStore", ["fetchRecordTypes"]),
+    ...mapActions("subjectStore", ["fetchSubjectRecords"]),
 
     async getResourceData() {
       this.allRecords = await restClient.getRecordsData()
     },
 
    async displayResources() {
-    //Fetching the resource/records id children record from the graphQl query
-    const resourceIds = this.allRecords.map(({ id }) => id)
-     //  for (const id of resourceIds) {
-    //
-    //    await this.fetchRecordTypes(id)
-    //    //Pushing all children list into the array
-    //    this.recordTypesList.push(this.recordTypes)
-    //  }
-
-    // Using Promise.all the records are fetched in parallel which optimises the performance
-     await Promise.all(resourceIds.map(async (id) => {
-       await this.fetchRecordTypes(id)
-       this.recordTypesList.push(this.recordTypes)
-     }));
-
      //Fetching the children from resourceType json data
      const otherResources = this.allResourceData["children"].map(({children}) => children)
      const otherResourceType = otherResources.flatMap(child => child)
+     if (this.getSubject !== '') {
+       // console.log("Subject Selected::", this.getSubject)
+       await this.fetchSubjectRecords(this.getSubject["id"])
+       console.log("this.subjectRecords::", this.subjectRecords)
+       console.log("otherResourceType::", otherResourceType)
+       //Assigning total number of fairsharingRecords to resourceTypes
+       for (let childResource of otherResourceType) {
+        this.subjectRecords["fairsharingRecords"].filter(ele => {
+          if (ele.type === this.formatString(childResource.name)) {
+            console.log("ele.type::", ele.type)
+            childResource.value++
+          }
+        })
+       }
+     } else {
+       this.allRecords = await restClient.getRecordsData()
+       //Fetching the resource/records id children record from the graphQl query
+       const resourceIds = this.allRecords.map(({id}) => id)
+       //  for (const id of resourceIds) {
+       //
+       //    await this.fetchRecordTypes(id)
+       //    //Pushing all children list into the array
+       //    this.recordTypesList.push(this.recordTypes)
+       //  }
 
-     //Assigning total number of fairsharingRecords to resourceTypes
-     otherResourceType.filter(item => {
-       const commonItem = this.recordTypesList.find(ele => this.formatString(item.name) === ele.name)
-         if(this.formatString(item.name) === commonItem.name) {
-          item.value = commonItem["fairsharingRecords"].length
+       // Using Promise.all the records are fetched in parallel which optimises the performance
+       await Promise.all(resourceIds.map(async (id) => {
+         await this.fetchRecordTypes(id)
+         this.recordTypesList.push(this.recordTypes)
+       }));
+       //Assigning total number of fairsharingRecords to resourceTypes
+       otherResourceType.filter(item => {
+         const commonItem = this.recordTypesList.find(ele => this.formatString(item.name) === ele.name)
+         if (this.formatString(item.name) === commonItem.name) {
+           item.value = commonItem["fairsharingRecords"].length
          }
-     })
+       })
+     }
   },
     getCircles() {
       // Create root element
