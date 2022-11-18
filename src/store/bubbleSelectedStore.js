@@ -1,9 +1,6 @@
 const state = {
     resourceType: '',
-    subjectType: {
-        id: "",
-        name: ""
-    }
+    subjectType: {}
 };
 
 const mutations = {

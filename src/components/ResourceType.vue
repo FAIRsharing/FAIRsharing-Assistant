@@ -66,17 +66,19 @@ export default {
      //Fetching the children from resourceType json data
      const otherResources = this.allResourceData["children"].map(({children}) => children)
      const otherResourceType = otherResources.flatMap(child => child)
-     if (this.getSubject !== '') {
+
+     if (Object.values(this.getSubject).length) {
        // console.log("Subject Selected::", this.getSubject)
        await this.fetchSubjectRecords(this.getSubject["id"])
        console.log("this.subjectRecords::", this.subjectRecords)
        console.log("otherResourceType::", otherResourceType)
        //Assigning total number of fairsharingRecords to resourceTypes
        for (let childResource of otherResourceType) {
+         childResource["value"] = 0
         this.subjectRecords["fairsharingRecords"].filter(ele => {
           if (ele.type === this.formatString(childResource.name)) {
             console.log("ele.type::", ele.type)
-            childResource.value++
+            childResource["value"]++
           }
         })
        }

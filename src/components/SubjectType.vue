@@ -43,7 +43,24 @@ export default {
         children: '',
         descendants_count: 0
       },
-      topSubjects: ["Natural Science", "Humanities and Social Science", "Subject Agnostic", "Engineering Science"],
+      topSubjects: [
+        {
+          id: 700,
+          label: "Natural Science"
+        },
+        {
+          id: 468,
+          label: "Engineering Science"
+        },
+        {
+          id: 613,
+          label: "Humanities and Social Science",
+        },
+        {
+          id: 768,
+          label: "Subject Agnostic"
+        }
+      ],
       itemClicked: {
         id: '',
         name: ''
@@ -96,10 +113,10 @@ export default {
     displayAllTopSubjects() {
       const fetchedSubjectNames = this.topSubjectBubbleTree.map(({ label }) => label)
       //All the selected resource
-      const missingSubject = this.topSubjects.filter( subject =>!fetchedSubjectNames.includes(subject));
+      const missingSubject = this.topSubjects.filter( ({ label }) =>!fetchedSubjectNames.includes(label));
       if (missingSubject && missingSubject.length) {
         missingSubject.forEach((subject) => {
-          this.allSubjectsData["children"].push({"label" : subject})
+          this.allSubjectsData["children"].push(subject)
         })
       }
     },
@@ -123,22 +140,27 @@ export default {
 
     //Array of ids are passed as arguments in the fetchRequest resulting lesser graphQL calls
     async getChildren(arr) {
+      let nextReqIds = []
       if (arr && arr.length) {
         const arrIds = arr.map(({id}) => id)
         await this.fetchOtherSubject([arrIds, this.formatString(this.getResource)])
         const response  = this.otherSubjectBubble
         if (response && response.length) {
+          // let nextReqIds = []
           arr.filter(async subItem => {
             const matchedData = response.find(ele => ele.id === subItem.id)
             if (matchedData !== undefined && matchedData.id === subItem.id && matchedData["children"] && matchedData["children"].length) {
               subItem["children"] = matchedData["children"]
               console.log("matchedData[\"label\"].::", matchedData["label"])
               subItem["descendants_count"] = matchedData["children"].length
-              await this.getChildren(subItem["children"])
+              nextReqIds = [...subItem["children"], ...nextReqIds]
+              // await this.getChildren(subItem["children"])
             }
           })
+          await this.getChildren(nextReqIds)
         }
       }
+      // return nextReqIds
     },
 
     countChildren(subject) {
@@ -164,6 +186,12 @@ export default {
       await Promise.all(childrenLevelOne.map(async ({ children }) => {
         await this.getChildren(children)
       }));
+      // let allChildren = []
+      // childrenLevelOne.forEach(child => {
+      //   let myArr = this.getChildren(child)
+      //   allChildren = [...myArr, ...allChildren]
+      // })
+      // await this.fetchOtherSubject([allChildren, this.formatString(this.getResource)])
       this.countChildren(this.allSubjectsData)
       console.log("LOOP ENDS")
     },
