@@ -1,7 +1,7 @@
 <template>
   <div>
     <p>This is a Resource View</p>
-  <ResourceType @resourceTypeSelected="resourceBubbleSelected"/>
+    <ResourceType />
   </div>
 </template>
 
@@ -13,16 +13,5 @@ export default {
   components: {
     ResourceType
   },
-  data() {
-    return {
-      resourceTypeSelected: ""
-    }
-  },
-  methods: {
-    resourceBubbleSelected(item) {
-      this.$emit('resourceTypeSelected', item);
-      console.log("item::", item)
-    },
-  }
 };
 </script>

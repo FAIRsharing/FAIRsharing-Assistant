@@ -1,4 +1,5 @@
-import GraphClient from "@/lib/GraphClient/GraphClient.js";
+// import GraphClient from "@/lib/GraphClient/GraphClient.js";
+import GraphClient from "@/lib/GraphClient/GraphClientProd.js";
 import browseSubjects from "@/lib/GraphClient/queries/subject/browseSubjects.json";
 
 //cache for 2 days i.e. 172,800,000 ms

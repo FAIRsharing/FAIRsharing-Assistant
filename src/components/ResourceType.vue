@@ -1,7 +1,15 @@
 <template>
 <div>
-  <p v-if="getSubject['name']">Subject Type Selected: {{getSubject['name']}}</p>
-  <p>Resource Type Selected: {{itemClicked}}</p>
+  <v-fade-transition v-if="loading">
+    <v-overlay
+        :absolute="false"
+        opacity="0.8"
+    >
+      <Loaders />
+    </v-overlay>
+  </v-fade-transition>
+  <p class="ma-0" v-if="getSubject['name']">Subject Type Selected: {{getSubject['name']}}</p>
+  <p class="ma-0" >Resource Type Selected: {{itemClicked}}</p>
   <div id="resourceBubbleChart" class="charts" ref="chartdiv">
   </div>
 </div>
@@ -16,6 +24,7 @@ import * as am5hierarchy from "@amcharts/amcharts5/hierarchy";
 import am5themes_Animated from '@amcharts/amcharts5/themes/Animated';
 import StringMixin from "@/utils/stringMixin.js"
 import { canvasGetImageData } from "@/utils/canvasRenderingContext"
+import Loaders from "@/components/Loaders"
 import { breadCrumbBar } from "@/utils/breadCrumbBar"
 import { resourcetype } from '@/data'
 
@@ -23,18 +32,17 @@ const restClient = new RestClient();
 
 export default {
   name: 'ResourceType',
+  components: { Loaders },
   mixins: [StringMixin],
   data:() => {
     return {
+      loading: false,
       allRecords: [],
       allResourceData: resourcetype,
       itemClicked: "",
       recordTypesList: []
     }
   },
-  props:[
-    "subjectSelected",
-  ],
   computed:{
     ...mapGetters("bubbleSelectedStore", ['getSubject']),
     ...mapState("recordTypeStore", ["recordTypes", "loadingData"]),
@@ -42,15 +50,11 @@ export default {
   },
 
   async mounted() {
-    // await this.getResourceData()
-    // await this.displayResources()
-
     this.$nextTick(async () =>{
-      // if (this.getSubject !== undefined) {
-      //   console.log("Subject Selected::", this.getSubject)
-      // }
+      this.loading = true
       await this.displayResources()
       await this.getCircles()
+      this.loading = false
     })
 
   },

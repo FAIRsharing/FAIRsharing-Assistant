@@ -10,8 +10,8 @@
       </v-overlay>
     </v-fade-transition>
 
-      <p v-if="getResource">Resource Type Selected: {{getResource}}</p>
-      <p>Subject Type Selected: {{ itemClicked["name"] }}</p>
+      <p class="ma-0" v-if="getResource">Resource Type Selected: {{getResource}}</p>
+      <p class="ma-0">Subject Type Selected: {{ itemClicked["name"] }}</p>
       <div id="subjectBubbleChart" class="charts" ref="circlesDiv" />
 
 
@@ -41,7 +41,7 @@ export default {
         name: "Subject",
         value: 0,
         children: '',
-        descendants_count: 0
+        records_count: 0
       },
       topSubjects: [
         {
@@ -152,7 +152,7 @@ export default {
             if (matchedData !== undefined && matchedData.id === subItem.id && matchedData["children"] && matchedData["children"].length) {
               subItem["children"] = matchedData["children"]
               console.log("matchedData[\"label\"].::", matchedData["label"])
-              subItem["descendants_count"] = matchedData["children"].length
+              subItem["records_count"] = matchedData["children"].length
               nextReqIds = [...subItem["children"], ...nextReqIds]
               // await this.getChildren(subItem["children"])
             }
@@ -170,7 +170,7 @@ export default {
           subject["totalChildren"] += this.countChildren(child);
         }
       }
-      subject["totalChildren"] = subject["descendants_count"] ? subject["totalChildren"] + subject["descendants_count"] : subject["totalChildren"]
+      subject["totalChildren"] = subject["records_count"] ? subject["totalChildren"] + subject["records_count"] : subject["totalChildren"]
       return subject["totalChildren"];
     },
 
@@ -227,7 +227,7 @@ export default {
         linkWithField: "linkWith",
         manyBodyStrength: -20,
         centerStrength: 0.8,
-        minRadius: 60,
+        minRadius: 20,
         // maxRadius: 200,
         // minRadius: am5.percent(5),
         maxRadius: am5.percent(20),
@@ -239,11 +239,11 @@ export default {
        if (this.browseSubjects) {
          series.setAll({
            categoryField: "name",
-           valueField: "descendants_count"
+           valueField: "records_count"
          });
        }
       series.get("colors").setAll({
-        step: 8
+        step: 2
       });
       series.labels.template.setAll({
         fontSize: 20,
@@ -267,17 +267,12 @@ export default {
        data = this.allSubjectsData
        // When a bubble is clicked
        series.nodes.template.events.on("click", (e) => {
-         // const basicSubjectTypes = ['Natural Science', 'Engineering Science', 'Subject Agnostic', 'Humanities and Social Science'];
          const node = e.target.dataItem.dataContext
          let nodeName
          if (node["label"]) {
            nodeName = node["label"]
-           console.log("nodeName::", nodeName)
-           console.log("nodeId::", node["id"])
          } else {
            nodeName = node["name"]
-           console.log("nodeName::", nodeName)
-           console.log("nodeId::", node["id"])
          }
          if( this.itemClicked["name"] !== nodeName) {
            this.itemClicked["id"] = node["id"]
@@ -286,7 +281,7 @@ export default {
            this.$store.commit("bubbleSelectedStore/subjectSelected", this.itemClicked)
            }
        });
-        console.log("data::", data)
+       console.log("data::", data)
        series.data.setAll([data]);
        series.set("selectedDataItem", series.dataItems[0]);
        series.appear(1000, 100); // Make stuff animate on load

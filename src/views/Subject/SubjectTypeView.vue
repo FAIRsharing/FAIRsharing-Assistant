@@ -1,5 +1,6 @@
 <template>
   <div>
+  <p>This is a Subject View</p>
   <SubjectType />
   </div>
 </template>

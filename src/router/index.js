@@ -7,16 +7,17 @@ import {
     ResourceTypeView,
     SubjectTypeView,
     SunBurstView,
+    HomeView,
     // TabsView
 } from './routes'
 
 
 let routes = [
-    // {
-    //     name: "TabsView",
-    //     path: "/",
-    //     component: TabsView,
-    // },
+    {
+        name: "HomeView",
+        path: "/",
+        component: HomeView,
+    },
     {
         name: "ResourceTypeView",
         path: "/resource",
