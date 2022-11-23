@@ -13,5 +13,8 @@ export default {
   components: {
     ResourceType
   },
+  mounted() {
+    console.log("currentPageName::", this)
+  },
 };
 </script>

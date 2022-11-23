@@ -9,9 +9,10 @@
         <Loaders />
       </v-overlay>
     </v-fade-transition>
-
-      <p class="ma-0" v-if="getResource">Resource Type Selected: {{getResource}}</p>
-      <p class="ma-0">Subject Type Selected: {{ itemClicked["name"] }}</p>
+      <div>
+        <p class="ma-0" v-if="getResource">Resource Type Selected: {{getResource}}</p>
+        <p class="ma-0">Subject Type Selected: {{ itemClicked["name"] }}</p>
+      </div>
       <div id="subjectBubbleChart" class="charts" ref="circlesDiv" />
 
 
@@ -24,10 +25,11 @@ import { mapState, mapActions, mapGetters } from "vuex"
 import * as am5 from '@amcharts/amcharts5';
 import * as am5hierarchy from "@amcharts/amcharts5/hierarchy";
 import am5themes_Animated from '@amcharts/amcharts5/themes/Animated';
-import StringMixin from "@/utils/stringMixin.js"
 import { canvasGetImageData } from "@/utils/canvasRenderingContext"
-import Loaders from "@/components/Loaders"
 import { breadCrumbBar } from "@/utils/breadCrumbBar";
+import StringMixin from "@/utils/stringMixin.js"
+import Loaders from "@/components/Loaders"
+
 
 export default {
   name: 'SubjectType',
@@ -36,7 +38,9 @@ export default {
   data:() => {
     return {
       loading: false,
+      fairSharingButton: false,
       browseSubjects: false,
+      resourceSelected: null,
       allSubjectsData: {
         name: "Subject",
         value: 0,
@@ -72,10 +76,10 @@ export default {
     ...mapState("topSubjectStore", ["topSubjectBubbleTree", "loadingData"]),
     ...mapState("otherSubjectsStore", ["otherSubjectBubble", "loadingStatus"]),
     ...mapGetters("otherSubjectsStore", ['loadingStatus']),
-    ...mapGetters("bubbleSelectedStore", ['getResource'])
+    ...mapGetters("bubbleSelectedStore", ['getResource']),
   },
-
   async mounted() {
+    // console.log("currentPageName::", this.currentPageName)
     this.$nextTick(async () =>{
       this.loading = true
       await this.displaySubjects()
@@ -88,11 +92,16 @@ export default {
     ...mapActions("topSubjectStore", ["fetchTopSubjectTerms"]),
     ...mapActions("otherSubjectsStore", ["fetchOtherSubject"]),
 
+    onBubbleSelection() {
+      this.fairSharingButton = true
+      this.$emit('enableFairSharingButton', this.fairSharingButton)
+    },
+
     async displaySubjects() {
       //When user lands on subject type after selecting the resource type
       if(this.getResource !== '') {
-        console.log("Resource Selected::", this.getResource)
-        const resourceTypeData = this.formatString(this.getResource)
+        this.resourceSelected = this.formatString(this.getResource)
+        const resourceTypeData = this.resourceSelected
         await this.fetchTopSubjectTerms(resourceTypeData)
         this.allSubjectsData["children"] = this.topSubjectBubbleTree
         this.displayAllTopSubjects()
@@ -128,7 +137,7 @@ export default {
     //   if (arr && arr.length) {
     //     for (let j=0; j< arr.length; j++){
     //       const childId = arr[j]["id"]
-    //       await this.fetchOtherSubject([childId, this.formatString(this.getResource)])
+    //       await this.fetchOtherSubject([childId, this.formatString(this.resourceSelected)])
     //       if (this.otherSubjectBubble[0] && this.otherSubjectBubble[0]["children"] && this.otherSubjectBubble[0]["children"].length){
     //         arr[j]["children"] = this.otherSubjectBubble[0]["children"]
     //         arr[j]["descendants_count"] = this.otherSubjectBubble[0]["children"].length
@@ -140,27 +149,27 @@ export default {
 
     //Array of ids are passed as arguments in the fetchRequest resulting lesser graphQL calls
     async getChildren(arr) {
-      let nextReqIds = []
       if (arr && arr.length) {
         const arrIds = arr.map(({id}) => id)
-        await this.fetchOtherSubject([arrIds, this.formatString(this.getResource)])
+
+        await this.fetchOtherSubject([arrIds, this.resourceSelected])
         const response  = this.otherSubjectBubble
+
         if (response && response.length) {
-          // let nextReqIds = []
+          let nextReqIds = []
+
           arr.filter(async subItem => {
             const matchedData = response.find(ele => ele.id === subItem.id)
             if (matchedData !== undefined && matchedData.id === subItem.id && matchedData["children"] && matchedData["children"].length) {
               subItem["children"] = matchedData["children"]
-              console.log("matchedData[\"label\"].::", matchedData["label"])
+              console.log("Subject Label.::", matchedData["label"])
               subItem["records_count"] = matchedData["children"].length
               nextReqIds = [...subItem["children"], ...nextReqIds]
-              // await this.getChildren(subItem["children"])
             }
           })
           await this.getChildren(nextReqIds)
         }
       }
-      // return nextReqIds
     },
 
     countChildren(subject) {
@@ -176,25 +185,19 @@ export default {
 
     async fetchAllLevelSubjectData() {
       const childrenLevelOne = this.allSubjectsData["children"]
+      console.log("LOOP STARTS")
       // for (const child of childrenLevelOne) {
       //   const childrenLevelTwo = child["children"]
       //   await this.getChildren(childrenLevelTwo)
       // }
-
       //Optimised performance
-      console.log("LOOP STARTS")
       await Promise.all(childrenLevelOne.map(async ({ children }) => {
         await this.getChildren(children)
       }));
-      // let allChildren = []
-      // childrenLevelOne.forEach(child => {
-      //   let myArr = this.getChildren(child)
-      //   allChildren = [...myArr, ...allChildren]
-      // })
-      // await this.fetchOtherSubject([allChildren, this.formatString(this.getResource)])
       this.countChildren(this.allSubjectsData)
       console.log("LOOP ENDS")
     },
+
 
      getCircles() {
       let data // Set data
@@ -267,6 +270,7 @@ export default {
        data = this.allSubjectsData
        // When a bubble is clicked
        series.nodes.template.events.on("click", (e) => {
+         this.onBubbleSelection()
          const node = e.target.dataItem.dataContext
          let nodeName
          if (node["label"]) {

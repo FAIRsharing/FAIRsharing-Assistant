@@ -8,10 +8,12 @@
       <Loaders />
     </v-overlay>
   </v-fade-transition>
-  <p class="ma-0" v-if="getSubject['name']">Subject Type Selected: {{getSubject['name']}}</p>
-  <p class="ma-0" >Resource Type Selected: {{itemClicked}}</p>
-  <div id="resourceBubbleChart" class="charts" ref="chartdiv">
+  <div>
+    <p class="ma-0" v-if="getSubject['name']">Subject Type Selected: {{getSubject['name']}}</p>
+    <p class="ma-0" >Resource Type Selected: {{itemClicked}}</p>
   </div>
+  <div id="resourceBubbleChart" class="charts" ref="chartdiv" />
+
 </div>
 
 </template>
@@ -22,11 +24,12 @@ import RestClient from "@/lib/Client/RESTClient.js"
 import * as am5 from '@amcharts/amcharts5';
 import * as am5hierarchy from "@amcharts/amcharts5/hierarchy";
 import am5themes_Animated from '@amcharts/amcharts5/themes/Animated';
-import StringMixin from "@/utils/stringMixin.js"
 import { canvasGetImageData } from "@/utils/canvasRenderingContext"
-import Loaders from "@/components/Loaders"
 import { breadCrumbBar } from "@/utils/breadCrumbBar"
+import StringMixin from "@/utils/stringMixin.js"
+import Loaders from "@/components/Loaders"
 import { resourcetype } from '@/data'
+
 
 const restClient = new RestClient();
 
@@ -50,6 +53,7 @@ export default {
   },
 
   async mounted() {
+
     this.$nextTick(async () =>{
       this.loading = true
       await this.displayResources()
