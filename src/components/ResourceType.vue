@@ -8,10 +8,7 @@
       <Loaders />
     </v-overlay>
   </v-fade-transition>
-  <div>
-    <p class="ma-0" v-if="getSubject['name']">Subject Type Selected: {{getSubject['name']}}</p>
-    <p class="ma-0" >Resource Type Selected: {{itemClicked}}</p>
-  </div>
+
   <div id="resourceBubbleChart" class="charts" ref="chartdiv" />
 
 </div>
@@ -40,10 +37,11 @@ export default {
   data:() => {
     return {
       loading: false,
+      fairSharingButton: false,
       allRecords: [],
       allResourceData: resourcetype,
       itemClicked: "",
-      recordTypesList: []
+      recordTypesList: [],
     }
   },
   computed:{
@@ -53,18 +51,21 @@ export default {
   },
 
   async mounted() {
-
     this.$nextTick(async () =>{
       this.loading = true
       await this.displayResources()
       await this.getCircles()
       this.loading = false
     })
-
   },
   methods: {
     ...mapActions("recordTypeStore", ["fetchRecordTypes"]),
     ...mapActions("subjectStore", ["fetchSubjectRecords"]),
+
+    onBubbleSelection() {
+      this.fairSharingButton = true
+      this.$emit('enableFairSharingButton', this.fairSharingButton)
+    },
 
     async getResourceData() {
       this.allRecords = await restClient.getRecordsData()
@@ -172,11 +173,27 @@ export default {
 
       // When a bubble is clicked
       series.nodes.template.events.on("click", (e) => {
-        const basicResourceTypes = ['Database', 'Standards', 'Policies'];
-        const nodeName = e.target.dataItem.dataContext.name
-        if( this.itemClicked !== nodeName && !basicResourceTypes.includes(nodeName)) {
-          this.itemClicked = nodeName
-          this.$store.commit("bubbleSelectedStore/resourceSelected", this.itemClicked)
+        this.onBubbleSelection()
+        // const basicResourceTypes = ['Database', 'Standards', 'Policies'];
+
+        const nodeParent = e.target.dataItem._settings.parent.dataContext.name
+        const node = e.target.dataItem.dataContext
+
+        if(this.itemClicked !== node["name"]) {
+          if (node["children"] && node["children"].length) {
+            this.itemClicked = node["name"]
+
+            this.$store.commit("bubbleSelectedStore/resourceSelected", {
+              topResourceSelected: this.itemClicked,
+              childResourceSelected: ''
+            })
+          } else {
+            this.itemClicked = node["name"]
+            this.$store.commit("bubbleSelectedStore/resourceSelected", {
+              topResourceSelected: nodeParent,
+              childResourceSelected: this.itemClicked
+            })
+          }
         }
       });
 

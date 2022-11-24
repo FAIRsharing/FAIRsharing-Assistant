@@ -1,6 +1,5 @@
 <template>
   <div>
-
     <v-fade-transition v-if="loading">
       <v-overlay
           :absolute="false"
@@ -9,13 +8,7 @@
         <Loaders />
       </v-overlay>
     </v-fade-transition>
-      <div>
-        <p class="ma-0" v-if="getResource">Resource Type Selected: {{getResource}}</p>
-        <p class="ma-0">Subject Type Selected: {{ itemClicked["name"] }}</p>
-      </div>
-      <div id="subjectBubbleChart" class="charts" ref="circlesDiv" />
-
-
+    <div id="subjectBubbleChart" class="charts" ref="circlesDiv" />
   </div>
 
 </template>
@@ -79,7 +72,6 @@ export default {
     ...mapGetters("bubbleSelectedStore", ['getResource']),
   },
   async mounted() {
-    // console.log("currentPageName::", this.currentPageName)
     this.$nextTick(async () =>{
       this.loading = true
       await this.displaySubjects()
@@ -162,7 +154,7 @@ export default {
             const matchedData = response.find(ele => ele.id === subItem.id)
             if (matchedData !== undefined && matchedData.id === subItem.id && matchedData["children"] && matchedData["children"].length) {
               subItem["children"] = matchedData["children"]
-              console.log("Subject Label.::", matchedData["label"])
+              console.log("Subject Label::", matchedData["label"])
               subItem["records_count"] = matchedData["children"].length
               nextReqIds = [...subItem["children"], ...nextReqIds]
             }

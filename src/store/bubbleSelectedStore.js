@@ -1,11 +1,13 @@
 const state = {
+    topResourceType:'',
     resourceType: '',
     subjectType: {}
 };
 
 const mutations = {
     resourceSelected (state, resource) {
-        state.resourceType = resource
+        state.topResourceType = resource["topResourceSelected"]
+        state.resourceType = resource["childResourceSelected"]
     },
     subjectSelected (state, subject) {
         state.subjectType = subject
@@ -13,6 +15,9 @@ const mutations = {
 };
 
 const getters = {
+    getTopResource(state)  {
+        return state.topResourceType;
+    },
     getResource(state)  {
         return state.resourceType;
     },

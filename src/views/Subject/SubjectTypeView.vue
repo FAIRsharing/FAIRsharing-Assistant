@@ -1,24 +1,29 @@
 <template>
   <div>
   <p>This is a Subject View</p>
-  <FAIRsharing
-    :pageName="currentPageName"
+
+  <p class="ma-0" v-if="getResource">Resource Type Selected: {{getResource}}</p>
+  <p class="ma-0">Subject Type Selected: {{ getSubject["name"] }}</p>
+
+  <FairSharingLink
     :fairSharingButton="fairSharingButton"
   />
-
-  <SubjectType @enableFairSharingButton="enableFairSharingButton"/>
+    <SubjectType
+    @enableFairSharingButton="enableFairSharingButton"
+  />
   </div>
 </template>
 
 <script>
-
+import { mapGetters } from "vuex";
 import SubjectType from "@/components/SubjectType";
-import FAIRsharing from "@/components/Navigation/FAIRsharing";
+import FairSharingLink from "@/components/Navigation/FairSharingLink";
+
 export default {
   name:'SubjectTypeView',
   components: {
     SubjectType,
-    FAIRsharing
+    FairSharingLink
   },
   data:() => {
     return {
@@ -26,14 +31,8 @@ export default {
     }
   },
   computed:{
-    currentPageName() {
-      return this.$children;
-    }
+    ...mapGetters("bubbleSelectedStore", ['getSubject', 'getResource']),
   },
-  mounted() {
-    console.log("currentPageName::", this)
-  },
-
   methods: {
     enableFairSharingButton(value) {
       this.fairSharingButton = value
