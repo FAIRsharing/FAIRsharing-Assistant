@@ -1,7 +1,8 @@
 const state = {
     topResourceType:'',
     resourceType: '',
-    subjectType: {}
+    subjectType: {},
+    domainType: ''
 };
 
 const mutations = {
@@ -11,6 +12,9 @@ const mutations = {
     },
     subjectSelected (state, subject) {
         state.subjectType = subject
+    },
+    domainSelected (state, domain) {
+        state.domainType = domain
     }
 };
 
@@ -23,6 +27,9 @@ const getters = {
     },
     getSubject(state)  {
         return state.subjectType;
+    },
+    getDomain(state)  {
+        return state.domainType;
     }
 }
 const bubbleSelectedStore = {

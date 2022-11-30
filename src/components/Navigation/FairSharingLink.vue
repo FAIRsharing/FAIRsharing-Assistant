@@ -6,16 +6,7 @@
           v-if="currentRouteName === 'ResourceTypeView'"
           v-bind="button['attributes']"
           :disabled="!fairSharingButton"
-          :href="
-          subjectSelected
-          ?
-           `https://fairsharing.org/search?fairsharingRegistry=${getTopResource}&recordType=${resourceSelected}&subjects=${subjectSelected}`
-          :
-          resourceSelected
-          ?
-           `https://fairsharing.org/search?fairsharingRegistry=${getTopResource}&recordType=${resourceSelected}`
-          :
-           `https://fairsharing.org/search?fairsharingRegistry=${getTopResource}`"
+          :href="resourceRedirectionLink"
       >
         {{button["text"]}}
       </v-btn>
@@ -25,12 +16,17 @@
         v-else-if="currentRouteName === 'SubjectTypeView'"
         v-bind="button['attributes']"
         :disabled="!fairSharingButton"
-        :href="
-         resourceSelected
-         ?
-          `https://fairsharing.org/search??fairsharingRegistry=${getTopResource}&recordType=${resourceSelected}&subjects=${subjectSelected}`
-         :
-          `https://fairsharing.org/search?subjects=${subjectSelected}`"
+        :href="subjectRedirectionLink"
+      >
+        {{button["text"]}}
+      </v-btn>
+
+      <!-- Domain Page Button -->
+      <v-btn
+          v-else-if="currentRouteName === 'DomainTypeView'"
+          v-bind="button['attributes']"
+          :disabled="!fairSharingButton"
+          :href="domainRedirectionLink"
       >
         {{button["text"]}}
       </v-btn>
@@ -50,6 +46,7 @@ export default {
   mixins: [StringMixin],
   data:() => {
     return {
+      fairSharingURL: process.env.VUE_APP_FAIRSHARING_URL,
       button: {
         text: "See FAIRsharing",
         attributes: {
@@ -63,7 +60,7 @@ export default {
     }
   },
   computed:{
-    ...mapGetters("bubbleSelectedStore", ['getTopResource', 'getResource', 'getSubject']),
+    ...mapGetters("bubbleSelectedStore", ['getTopResource', 'getResource', 'getSubject', 'getDomain']),
     currentRouteName() {
       return this.$route.name;
     },
@@ -73,7 +70,39 @@ export default {
     subjectSelected() {
       return Object.values(this.getSubject).length ? this.getSubject["name"].toLowerCase() : null
     },
-
+    domainSelected() {
+      return this.getDomain ? this.getDomain.toLowerCase() : null
+    },
+    resourceRedirectionLink() {
+      if (this.subjectSelected && this.resourceSelected) {
+        return `${this.fairSharingURL}/search?fairsharingRegistry=${this.getTopResource}&recordType=${this.resourceSelected}&subjects=${this.subjectSelected}`
+      }
+      else if (this.subjectSelected) {
+        return `${this.fairSharingURL}/search?fairsharingRegistry=${this.getTopResource}&subjects=${this.subjectSelected}`
+      }
+      else if (this.resourceSelected) {
+        return `${this.fairSharingURL}/search?fairsharingRegistry=${this.getTopResource}&recordType=${this.resourceSelected}`
+      }
+      else {
+        return`${this.fairSharingURL}/search?fairsharingRegistry=${this.getTopResource}`
+      }
+    },
+    subjectRedirectionLink() {
+      if (this.resourceSelected) {
+        return `${this.fairSharingURL}/search?fairsharingRegistry=${this.getTopResource}&recordType=${this.resourceSelected}&subjects=${this.subjectSelected}`
+      }
+      else {
+        return `${this.fairSharingURL}/search?subjects=${this.subjectSelected}`
+      }
+    },
+    domainRedirectionLink() {
+      // if (this.domainSelected) {
+      //   return `${this.fairSharingURL}/search?fairsharingRegistry=${this.getTopResource}&recordType=${this.resourceSelected}&subjects=${this.subjectSelected}`
+      // }
+      // else {
+        return `${this.fairSharingURL}/search?domains=${this.domainSelected}`
+      // }
+    }
   },
 };
 </script>

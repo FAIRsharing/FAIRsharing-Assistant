@@ -4,10 +4,11 @@ import VueRouter from "vue-router";
 Vue.use(VueRouter);
 
 import {
+    HomeView,
     ResourceTypeView,
     SubjectTypeView,
     SunBurstView,
-    HomeView,
+    DomainTypeView,
     // TabsView
 } from './routes'
 
@@ -31,10 +32,15 @@ let routes = [
 
     },
     {
+        name: "DomainTypeView",
+        path: "/domain",
+        component: DomainTypeView,
+
+    },
+    {
         name: "SunBurstView",
         path: "/sunburst",
         component: SunBurstView,
-
     },
 ]
 

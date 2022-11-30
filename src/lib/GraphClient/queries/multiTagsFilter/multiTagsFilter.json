@@ -1,0 +1,38 @@
+{
+  "queryName": "multiTagFilter",
+  "queryParam": null,
+  "fields": [
+    "id",
+    "name",
+    "type",
+    "registry",
+    {
+      "name": "subjects",
+      "fields": [
+        "id",
+        "label",
+        {
+          "queryName": "children",
+          "fields": [
+            "id",
+            "label"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "domains",
+      "fields": [
+        "id",
+        "label",
+        {
+          "queryName": "children",
+          "fields": [
+            "id",
+            "label"
+          ]
+        }
+      ]
+    }
+  ]
+}

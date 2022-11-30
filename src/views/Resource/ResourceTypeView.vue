@@ -1,9 +1,8 @@
 <template>
   <div>
     <p>This is a Resource View</p>
-
-    <p class="ma-0" v-if="getSubject['name']">Subject Type Selected: {{getSubject['name']}}</p>
-    <p class="ma-0" >Resource Type Selected: {{getResource ? getResource : getTopResource}}</p>
+    <p class="ma-0 text-capitalize" v-if="getSubject['name']">Subject Type Selected: {{getSubject['name']}}</p>
+    <p class="ma-0 text-capitalize" >Resource Type Selected: {{getResource ? getResource : getTopResource}}</p>
 
     <FairSharingLink
         :fairSharingButton="fairSharingButton"

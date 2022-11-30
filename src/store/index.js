@@ -6,6 +6,8 @@ import bubbleSelectedStore from './bubbleSelectedStore'
 import recordTypeStore from './recordTypeStore'
 import otherSubjectsStore from './otherSubjectsStore'
 import subjectStore from './subjectStore'
+import topDomainsStore from "./topDomainsStore"
+import multiTagsStore from "./multiTagsStore"
 
 
 Vue.use(Vuex);
@@ -18,7 +20,9 @@ export default new Vuex.Store({
         otherSubjectsStore,
         bubbleSelectedStore,
         recordTypeStore,
-        subjectStore
+        subjectStore,
+        topDomainsStore,
+        multiTagsStore
     }
 })
 

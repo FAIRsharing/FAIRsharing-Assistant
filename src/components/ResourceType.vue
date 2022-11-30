@@ -45,7 +45,7 @@ export default {
     }
   },
   computed:{
-    ...mapGetters("bubbleSelectedStore", ['getSubject']),
+    ...mapGetters("bubbleSelectedStore", ['getSubject','getDomain']),
     ...mapState("recordTypeStore", ["recordTypes", "loadingData"]),
     ...mapState("subjectStore", ["subjectRecords", "loadingData"]),
   },

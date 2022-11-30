@@ -34,6 +34,7 @@ export default {
       fairSharingButton: false,
       browseSubjects: false,
       resourceSelected: null,
+      domainSelected: null,
       allSubjectsData: {
         name: "Subject",
         value: 0,
@@ -68,8 +69,10 @@ export default {
     ...mapState("browseSubjectsStore", ["subjectBubbleTree", "loadingData"]),
     ...mapState("topSubjectStore", ["topSubjectBubbleTree", "loadingData"]),
     ...mapState("otherSubjectsStore", ["otherSubjectBubble", "loadingStatus"]),
+    // ...mapState("multiTagsStore", ["result", "registry", "type", "subjects", "domains", "loadingStatus"]),
+    ...mapState("multiTagsStore", ["result", "subjects", "loadingStatus"]),
     ...mapGetters("otherSubjectsStore", ['loadingStatus']),
-    ...mapGetters("bubbleSelectedStore", ['getResource']),
+    ...mapGetters("bubbleSelectedStore", ['getResource','getDomain']),
   },
   async mounted() {
     this.$nextTick(async () =>{
@@ -83,6 +86,7 @@ export default {
     ...mapActions("browseSubjectsStore", ["fetchTerms"]),
     ...mapActions("topSubjectStore", ["fetchTopSubjectTerms"]),
     ...mapActions("otherSubjectsStore", ["fetchOtherSubject"]),
+    ...mapActions("multiTagsStore", ["fetchMultiTagsTerms"]),
 
     onBubbleSelection() {
       this.fairSharingButton = true
@@ -103,11 +107,26 @@ export default {
         this.allSubjectsData = { label, ...rest }
         this.allSubjectsData["label"] = "Subject"
       }
+      //When user lands on subject type after selecting the domain type
+      // else if (this.getDomain !== ''){
+      //   this.domainSelected = this.getDomain.toLowerCase()
+      //   await this.fetchMultiTagsTerms([null, null, this.domainSelected])
+      //   console.log("result::", this.result)
+      // }
       //When user lands on subject type as the entry point in the application
       else {
         this.browseSubjects= true
         await this.fetchTerms()
         this.allSubjectsData["children"] = this.subjectBubbleTree
+
+        if (this.getDomain !== ''){
+          this.domainSelected = this.getDomain.toLowerCase()
+          await this.fetchMultiTagsTerms([null, null, this.domainSelected])
+          console.log("subjects::", this.subjects)
+          let uniqueArray = Array.from(new Set(this.subjects.map(JSON.stringify)), JSON.parse);
+          console.log("uniqueArray::", uniqueArray)
+        }
+
       }
     },
 
