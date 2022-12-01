@@ -20,11 +20,15 @@ export const actions = {
         commit("setTopDomainsBubbleTree", response['topDomains'].data)
         commit("setLoadingData", false)
     },
+    leavePage({commit}) {
+        commit('resetDomainsBubbleTree');
+    }
 }
 
 export const mutations = {
     setTopDomainsBubbleTree(state, domainsType) { state.domainsType = domainsType },
     setLoadingData(state, loadingData) { state.loadingData = loadingData},
+    resetDomainsBubbleTree(state) {state.domainsType = []},
 }
 const topDomainsStore = {
     namespaced: true,

@@ -45,9 +45,10 @@ export default {
     }
   },
   computed:{
-    ...mapGetters("bubbleSelectedStore", ['getSubject','getDomain']),
     ...mapState("recordTypeStore", ["recordTypes", "loadingData"]),
     ...mapState("subjectStore", ["subjectRecords", "loadingData"]),
+    ...mapState("multiTagsStore", ["result", "subjects", "loadingStatus"]),
+    ...mapGetters("bubbleSelectedStore", ['getSubject', 'getDomain']),
   },
 
   async mounted() {

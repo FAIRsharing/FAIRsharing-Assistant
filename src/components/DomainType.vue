@@ -59,10 +59,13 @@ export default {
       this.loading = false
     })
   },
+  destroyed() {
+    this.leavePage()
+  },
   methods: {
     ...mapActions("recordTypeStore", ["fetchRecordTypes", "fetchAllRecordTypes"]),
     ...mapActions("subjectStore", ["fetchSubjectRecords"]),
-    ...mapActions("topDomainsStore", ["fetchTopDomainTerms"]),
+    ...mapActions("topDomainsStore", ["fetchTopDomainTerms", "leavePage"]),
 
     onBubbleSelection() {
       this.fairSharingButton = true

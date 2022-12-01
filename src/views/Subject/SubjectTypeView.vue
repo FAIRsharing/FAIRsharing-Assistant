@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters} from "vuex";
 import SubjectType from "@/components/SubjectType";
 import FairSharingLink from "@/components/Navigation/FairSharingLink";
 

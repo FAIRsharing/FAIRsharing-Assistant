@@ -22,7 +22,8 @@ import { canvasGetImageData } from "@/utils/canvasRenderingContext"
 import { breadCrumbBar } from "@/utils/breadCrumbBar";
 import StringMixin from "@/utils/stringMixin.js"
 import Loaders from "@/components/Loaders"
-
+//Temporary
+import { resourcetype } from '@/data'
 
 export default {
   name: 'SubjectType',
@@ -82,11 +83,15 @@ export default {
       this.loading = false
     })
   },
+  destroyed() {
+    this.leavePage()
+  },
   methods: {
-    ...mapActions("browseSubjectsStore", ["fetchTerms"]),
+    ...mapActions("browseSubjectsStore", ["fetchTerms", "leavePage"]),
     ...mapActions("topSubjectStore", ["fetchTopSubjectTerms"]),
     ...mapActions("otherSubjectsStore", ["fetchOtherSubject"]),
     ...mapActions("multiTagsStore", ["fetchMultiTagsTerms"]),
+
 
     onBubbleSelection() {
       this.fairSharingButton = true
@@ -108,25 +113,20 @@ export default {
         this.allSubjectsData["label"] = "Subject"
       }
       //When user lands on subject type after selecting the domain type
-      // else if (this.getDomain !== ''){
-      //   this.domainSelected = this.getDomain.toLowerCase()
-      //   await this.fetchMultiTagsTerms([null, null, this.domainSelected])
-      //   console.log("result::", this.result)
-      // }
+      else if (this.getDomain !== ''){
+        //Temporary
+        this.allSubjectsData = resourcetype
+        this.domainSelected = this.getDomain.toLowerCase()
+        await this.fetchMultiTagsTerms([null, null, this.domainSelected])
+        console.log("subjects::", this.subjects)
+        let uniqueArray = Array.from(new Set(this.subjects.map(JSON.stringify)), JSON.parse);
+        console.log("uniqueArray::", uniqueArray)
+      }
       //When user lands on subject type as the entry point in the application
       else {
         this.browseSubjects= true
         await this.fetchTerms()
         this.allSubjectsData["children"] = this.subjectBubbleTree
-
-        if (this.getDomain !== ''){
-          this.domainSelected = this.getDomain.toLowerCase()
-          await this.fetchMultiTagsTerms([null, null, this.domainSelected])
-          console.log("subjects::", this.subjects)
-          let uniqueArray = Array.from(new Set(this.subjects.map(JSON.stringify)), JSON.parse);
-          console.log("uniqueArray::", uniqueArray)
-        }
-
       }
     },
 
@@ -210,14 +210,14 @@ export default {
     },
 
 
-     getCircles() {
+    getCircles() {
       let data // Set data
       let root = am5.Root.new(this.$refs.circlesDiv); // Create root element
 
-       const canvas = this.$el.querySelector("canvas")
-       canvasGetImageData(canvas)
-       root._logo.dispose() //To remove amcharts logo
-       root.setThemes([am5themes_Animated.new(root)]); // Set themes
+      const canvas = this.$el.querySelector("canvas")
+      canvasGetImageData(canvas)
+      root._logo.dispose() //To remove amcharts logo
+      root.setThemes([am5themes_Animated.new(root)]); // Set themes
       // Create wrapper container
       let container = root.container.children.push(am5.Container.new(root, {
         width: am5.percent(100),
@@ -250,12 +250,12 @@ export default {
         // yField: "y",
       }));
 
-       if (this.browseSubjects) {
-         series.setAll({
-           categoryField: "name",
-           valueField: "records_count"
-         });
-       }
+      if (this.browseSubjects) {
+        series.setAll({
+          categoryField: "name",
+          valueField: "records_count"
+        });
+      }
       series.get("colors").setAll({
         step: 2
       });
@@ -270,41 +270,41 @@ export default {
 
       series.links.template.set("strength", 0.5)
 
-       //When all four subjects have no children bubble size is same
-       const noChild = this.allSubjectsData["children"].every(({totalChildren}) => totalChildren === 0 )
-       if (noChild) {
-         series.setAll({
-           minRadius: 100,
-           maxRadius: 100
-         });
-       }
-       data = this.allSubjectsData
-       // When a bubble is clicked
-       series.nodes.template.events.on("click", (e) => {
-         this.onBubbleSelection()
-         const node = e.target.dataItem.dataContext
-         let nodeName
-         if (node["label"]) {
-           nodeName = node["label"]
-         } else {
-           nodeName = node["name"]
-         }
-         if( this.itemClicked["name"] !== nodeName) {
-           this.itemClicked["id"] = node["id"]
-           this.itemClicked["name"] = nodeName
-           console.log("itemClicked::", this.itemClicked["name"])
-           this.$store.commit("bubbleSelectedStore/subjectSelected", this.itemClicked)
-           }
-       });
-       console.log("data::", data)
-       series.data.setAll([data]);
-       series.set("selectedDataItem", series.dataItems[0]);
-       series.appear(1000, 100); // Make stuff animate on load
+      //When all four subjects have no children bubble size is same
+      const noChild = this.allSubjectsData["children"].every(({totalChildren}) => totalChildren === 0 )
+      if (noChild) {
+        series.setAll({
+          minRadius: 100,
+          maxRadius: 100
+        });
+      }
+      data = this.allSubjectsData
+      // When a bubble is clicked
+      series.nodes.template.events.on("click", (e) => {
+        this.onBubbleSelection()
+        const node = e.target.dataItem.dataContext
+        let nodeName
+        if (node["label"]) {
+          nodeName = node["label"]
+        } else {
+          nodeName = node["name"]
+        }
+        if( this.itemClicked["name"] !== nodeName) {
+          this.itemClicked["id"] = node["id"]
+          this.itemClicked["name"] = nodeName
+          console.log("itemClicked::", this.itemClicked["name"])
+          this.$store.commit("bubbleSelectedStore/subjectSelected", this.itemClicked)
+        }
+      });
+      console.log("data::", data)
+      series.data.setAll([data]);
+      series.set("selectedDataItem", series.dataItems[0]);
+      series.appear(1000, 100); // Make stuff animate on load
 
       // Add Breadcrumbs
       setTimeout(() => {
         breadCrumbBar(container, root, series)
-       }, 300);
+      }, 300);
     }
   }
 }

@@ -31,8 +31,6 @@ export const actions = {
         console.log("MULTI_TAGS.queryParam::", MULTI_TAGS.queryParam)
         let response = await CLIENT.executeQuery(MULTI_TAGS);
         commit("setResult", response['multiTagFilter'])
-
-
         // commit("setRegistry", response['multiTagFilter'].registry)
         // commit("setType", response['multiTagFilter'].type)
         this.subjects = response['multiTagFilter'].map(({subjects}) => subjects)
