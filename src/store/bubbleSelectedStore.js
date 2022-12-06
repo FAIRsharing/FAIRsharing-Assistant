@@ -29,7 +29,8 @@ const getters = {
         return state.subjectType;
     },
     getDomain(state)  {
-        return state.domainType;
+        console.log("state::", state)
+        return "peptide library";
     }
 }
 const bubbleSelectedStore = {

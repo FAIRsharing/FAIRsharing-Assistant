@@ -11,6 +11,34 @@
         "registry",
         "type"
       ]
+    },
+    {
+      "name": "topAncestors",
+      "fields": [
+        "id",
+        "label"
+      ]
+    },
+    {
+      "name": "ancestors",
+      "fields": [
+        "id",
+        "label"
+      ]
+    },
+    {
+      "name": "parents",
+      "fields": [
+        "id",
+        "label"
+      ]
+    },
+    {
+      "name": "children",
+      "fields": [
+        "id",
+        "label"
+      ]
     }
   ]
 }

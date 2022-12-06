@@ -12,6 +12,27 @@
         "id",
         "label",
         {
+          "queryName": "topAncestors",
+          "fields": [
+            "id",
+            "label"
+          ]
+        },
+        {
+          "queryName": "ancestors",
+          "fields": [
+            "id",
+            "label"
+          ]
+        },
+        {
+          "queryName": "parents",
+          "fields": [
+            "id",
+            "label"
+          ]
+        },
+        {
           "queryName": "children",
           "fields": [
             "id",

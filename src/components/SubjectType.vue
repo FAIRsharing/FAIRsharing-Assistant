@@ -23,7 +23,7 @@ import { breadCrumbBar } from "@/utils/breadCrumbBar";
 import StringMixin from "@/utils/stringMixin.js"
 import Loaders from "@/components/Loaders"
 //Temporary
-import { resourcetype } from '@/data'
+// import { resourcetype } from '@/data'
 
 export default {
   name: 'SubjectType',
@@ -70,6 +70,7 @@ export default {
     ...mapState("browseSubjectsStore", ["subjectBubbleTree", "loadingData"]),
     ...mapState("topSubjectStore", ["topSubjectBubbleTree", "loadingData"]),
     ...mapState("otherSubjectsStore", ["otherSubjectBubble", "loadingStatus"]),
+    ...mapState("subjectStore", ["subjectRecords", "loadingData"]),
     // ...mapState("multiTagsStore", ["result", "registry", "type", "subjects", "domains", "loadingStatus"]),
     ...mapState("multiTagsStore", ["result", "subjects", "loadingStatus"]),
     ...mapGetters("otherSubjectsStore", ['loadingStatus']),
@@ -91,6 +92,7 @@ export default {
     ...mapActions("topSubjectStore", ["fetchTopSubjectTerms"]),
     ...mapActions("otherSubjectsStore", ["fetchOtherSubject"]),
     ...mapActions("multiTagsStore", ["fetchMultiTagsTerms"]),
+    ...mapActions("subjectStore", ["fetchSubjectRecords"]),
 
 
     onBubbleSelection() {
@@ -115,12 +117,72 @@ export default {
       //When user lands on subject type after selecting the domain type
       else if (this.getDomain !== ''){
         //Temporary
-        this.allSubjectsData = resourcetype
+        // this.allSubjectsData = resourcetype
         this.domainSelected = this.getDomain.toLowerCase()
         await this.fetchMultiTagsTerms([null, null, this.domainSelected])
-        console.log("subjects::", this.subjects)
-        let uniqueArray = Array.from(new Set(this.subjects.map(JSON.stringify)), JSON.parse);
-        console.log("uniqueArray::", uniqueArray)
+
+        // console.log("subjects::", this.subjects)
+        // const uniqueArray = Array.from(new Set(this.subjects.map(JSON.stringify)), JSON.parse);
+        // console.log("uniqueArray::", uniqueArray)
+
+        let subjectsArray = []
+        for (let childLevelOne of this.subjects) {
+          for (let childLevelTwo of childLevelOne) {
+            subjectsArray.push(childLevelTwo)
+          }
+        }
+        // console.log("subjectsArray::", subjectsArray)
+        const ids = subjectsArray.map(({id}) => id)
+        const uniqueSubjectsArray = subjectsArray.filter(({id}, index) => !ids.includes(id, index + 1))
+
+        console.log("uniqueSubjectsArray::", uniqueSubjectsArray)
+
+        uniqueSubjectsArray.map((ele) => {
+          if (ele["children"] && ele["children"].length)
+            ele["totalChildren"] = ele["children"].length
+        })
+        this.allSubjectsData["children"] = uniqueSubjectsArray
+
+        let { name: label, ...rest } = this.allSubjectsData;
+        this.allSubjectsData = { label, ...rest }
+        this.allSubjectsData["label"] = "Subject"
+
+        for (let subject of uniqueSubjectsArray) {
+          // let newLevels = {
+          //   item: '',
+          //   children: {}
+          // }
+          if (subject["children"]?.length) {
+            for (let child of subject["children"]) {
+
+
+              let lostChild = await this.findItem(uniqueSubjectsArray, child["label"])
+              if (lostChild !== undefined) {
+                console.log("subject[label]::", subject["label"])
+                console.log("child::", child["label"])
+                console.log("this.findItem::", await this.findItem(uniqueSubjectsArray, child["label"]))
+                // subject["children"].push(lostChild)
+              }
+
+            }
+          }
+        }
+
+
+        // await this.fetchTerms()
+        // console.log("subjectBubbleTree::", this.subjectBubbleTree)
+        // console.log("getFlatSubjectBubbleTree::", this.getFlatSubjectBubbleTree(this.subjectBubbleTree))
+        // const findSubjectByID = await this.findById(this.subjectBubbleTree, 596)
+        // console.log("findSubjectByID::", await findSubjectByID)
+
+
+
+        // await this.fetchSubjectRecords(842)
+        // console.log("this.subjectRecords::", this.subjectRecords)
+        // const hierarchy = this.hierarchy(uniqueSubjectsArray);
+        // console.log("hierarchy::", hierarchy)
+
+
       }
       //When user lands on subject type as the entry point in the application
       else {
@@ -128,6 +190,80 @@ export default {
         await this.fetchTerms()
         this.allSubjectsData["children"] = this.subjectBubbleTree
       }
+    },
+
+   // hierarchy (data) {
+   //   const tree = [];
+   //   const childOf = {};
+   //   data.forEach((item) => {
+   //     // const { id, parents } = item;
+   //     const id  = item["id"]
+   //     const parents  = item["parents"][0]["label"]
+   //     // console.log("id::", id)
+   //     // console.log("parents::", parents)
+   //     childOf[id] = childOf[id] || [];
+   //     console.log("childOf['id']::", childOf[id])
+   //     item.children = childOf[id];
+   //     console.log("item.children::", item.children)
+   //     parents ? (childOf[parents] = childOf[parents] || []).push(item) : tree.push(item);
+   //   });
+   //   return tree;
+   //  },
+
+
+    async findItem (array, label) {
+      for (const item of array) {
+        if (item["label"] === label) return item;
+      }
+    },
+    //Find the subject from browseSubject response
+    // async findItem (array, id) {
+    //   for (const item of array) {
+    //     if (item.id === id) return item;
+    //     if (item.children?.length) {
+    //       const innerResult = await this.findItem(item.children, id);
+    //       if (innerResult) return innerResult;
+    //     }
+    //   }
+    // },
+
+     // async findById(array, id) {
+     //
+     //   console.log("findItemInBrowseSubjectArray::", await this.findItemInBrowseSubjectArray(array, id))
+
+      // array.filter(async (item) =>{
+      // // for (const item of array) {
+      //   if (item.id === id) {
+      //     // return item;
+      //     await this.fetchSubjectRecords(item.id)
+      //     console.log("this.subjectRecords::", this.subjectRecords)
+      //     if (this.subjectRecords["parents"]?.length) {
+      //       for (const parent of this.subjectRecords["parents"]) {
+      //         console.log("parent::", parent["label"])
+      //         await this.fetchSubjectRecords(parent["id"])
+      //         console.log("this.subjectRecords::", this.subjectRecords)
+      //       }
+      //     }
+      //     return  array.filter((item) => item.id === id)
+      //   }
+      //   if (item["children"]?.length) {
+      //     const innerResult = await this.findById(item["children"], id);
+      //     if (innerResult) {
+      //       return innerResult;
+      //     }
+      //   }
+      //   })
+    // },
+
+
+    getFlatSubjectBubbleTree(members) {
+      let children = [];
+      return members.map(m => {
+        if (m.children && m.children.length) {
+          children = [...children, ...m.children];
+        }
+        return m;
+      }).concat(children.length ? this.getFlatSubjectBubbleTree(children) : children);
     },
 
     displayAllTopSubjects() {

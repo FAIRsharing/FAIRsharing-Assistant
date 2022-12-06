@@ -79,7 +79,7 @@ export default {
 
      if (Object.values(this.getSubject).length) {
        // console.log("Subject Selected::", this.getSubject)
-       await this.fetchSubjectRecords(this.getSubject["id"])
+       await this.fetchSubjectRecords(842)
        console.log("this.subjectRecords::", this.subjectRecords)
        console.log("otherResourceType::", otherResourceType)
        //Assigning total number of fairsharingRecords to resourceTypes
