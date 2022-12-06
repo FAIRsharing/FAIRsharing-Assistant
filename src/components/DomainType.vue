@@ -155,6 +155,7 @@ export default {
         const node = e.target.dataItem.dataContext
         if(this.itemClicked !== node["label"]) {
           this.itemClicked = node["label"]
+          console.log("itemClicked::", this.itemClicked)
           this.$store.commit("bubbleSelectedStore/domainSelected", this.itemClicked)
         }
       });

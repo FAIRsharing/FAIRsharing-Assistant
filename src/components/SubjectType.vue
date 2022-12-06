@@ -34,6 +34,7 @@ export default {
       loading: false,
       fairSharingButton: false,
       browseSubjects: false,
+      variableFilter: false,
       resourceSelected: null,
       domainSelected: null,
       allSubjectsData: {
@@ -45,19 +46,23 @@ export default {
       topSubjects: [
         {
           id: 700,
-          label: "Natural Science"
+          label: "Natural Science",
+          name: "Natural Science"
         },
         {
           id: 468,
-          label: "Engineering Science"
+          label: "Engineering Science",
+          name: "Engineering Science"
         },
         {
           id: 613,
           label: "Humanities and Social Science",
+          name: "Humanities and Social Science",
         },
         {
           id: 768,
-          label: "Subject Agnostic"
+          label: "Subject Agnostic",
+          name: "Subject Agnostic"
         }
       ],
       itemClicked: {
@@ -71,8 +76,8 @@ export default {
     ...mapState("topSubjectStore", ["topSubjectBubbleTree", "loadingData"]),
     ...mapState("otherSubjectsStore", ["otherSubjectBubble", "loadingStatus"]),
     ...mapState("subjectStore", ["subjectRecords", "loadingData"]),
-    // ...mapState("multiTagsStore", ["result", "registry", "type", "subjects", "domains", "loadingStatus"]),
     ...mapState("multiTagsStore", ["result", "subjects", "loadingStatus"]),
+    ...mapState("variableTagStore", ["variableResponse", "loadingStatus"]),
     ...mapGetters("otherSubjectsStore", ['loadingStatus']),
     ...mapGetters("bubbleSelectedStore", ['getResource','getDomain']),
   },
@@ -92,6 +97,8 @@ export default {
     ...mapActions("topSubjectStore", ["fetchTopSubjectTerms"]),
     ...mapActions("otherSubjectsStore", ["fetchOtherSubject"]),
     ...mapActions("multiTagsStore", ["fetchMultiTagsTerms"]),
+    ...mapActions("variableTagStore", ["fetchVariableTags"]),
+    //Temperary
     ...mapActions("subjectStore", ["fetchSubjectRecords"]),
 
 
@@ -107,7 +114,7 @@ export default {
         const resourceTypeData = this.resourceSelected
         await this.fetchTopSubjectTerms(resourceTypeData)
         this.allSubjectsData["children"] = this.topSubjectBubbleTree
-        this.displayAllTopSubjects()
+        this.displayAllTopSubjects(this.topSubjectBubbleTree)
         await this.fetchAllLevelSubjectData()
         //Update key "name" to "label" and assign value
         let { name: label, ...rest } = this.allSubjectsData;
@@ -119,54 +126,75 @@ export default {
         //Temporary
         // this.allSubjectsData = resourcetype
         this.domainSelected = this.getDomain.toLowerCase()
-        await this.fetchMultiTagsTerms([null, null, this.domainSelected])
 
-        // console.log("subjects::", this.subjects)
-        // const uniqueArray = Array.from(new Set(this.subjects.map(JSON.stringify)), JSON.parse);
-        // console.log("uniqueArray::", uniqueArray)
-
-        let subjectsArray = []
-        for (let childLevelOne of this.subjects) {
-          for (let childLevelTwo of childLevelOne) {
-            subjectsArray.push(childLevelTwo)
-          }
-        }
-        // console.log("subjectsArray::", subjectsArray)
-        const ids = subjectsArray.map(({id}) => id)
-        const uniqueSubjectsArray = subjectsArray.filter(({id}, index) => !ids.includes(id, index + 1))
-
-        console.log("uniqueSubjectsArray::", uniqueSubjectsArray)
-
-        uniqueSubjectsArray.map((ele) => {
-          if (ele["children"] && ele["children"].length)
-            ele["totalChildren"] = ele["children"].length
-        })
-        this.allSubjectsData["children"] = uniqueSubjectsArray
-
-        let { name: label, ...rest } = this.allSubjectsData;
-        this.allSubjectsData = { label, ...rest }
-        this.allSubjectsData["label"] = "Subject"
-
-        for (let subject of uniqueSubjectsArray) {
-          // let newLevels = {
-          //   item: '',
-          //   children: {}
-          // }
-          if (subject["children"]?.length) {
-            for (let child of subject["children"]) {
+        //Using multiTagFilter query
+        // await this.fetchMultiTagsTerms([null, null, this.domainSelected])
+        //
+        // // console.log("subjects::", this.subjects)
+        // // const uniqueArray = Array.from(new Set(this.subjects.map(JSON.stringify)), JSON.parse);
+        // // console.log("uniqueArray::", uniqueArray)
+        //
+        // let subjectsArray = []
+        // for (let childLevelOne of this.subjects) {
+        //   for (let childLevelTwo of childLevelOne) {
+        //     subjectsArray.push(childLevelTwo)
+        //   }
+        // }
+        // // console.log("subjectsArray::", subjectsArray)
+        // const ids = subjectsArray.map(({id}) => id)
+        // const uniqueSubjectsArray = subjectsArray.filter(({id}, index) => !ids.includes(id, index + 1))
+        //
+        // // console.log("uniqueSubjectsArray::", uniqueSubjectsArray)
+        //
+        // uniqueSubjectsArray.map((ele) => {
+        //   if (ele["children"] && ele["children"].length)
+        //     ele["totalChildren"] = ele["children"].length
+        // })
+        // this.allSubjectsData["children"] = uniqueSubjectsArray
+        //
+        // let { name: label, ...rest } = this.allSubjectsData;
+        // this.allSubjectsData = { label, ...rest }
+        // this.allSubjectsData["label"] = "Subject"
 
 
-              let lostChild = await this.findItem(uniqueSubjectsArray, child["label"])
-              if (lostChild !== undefined) {
-                console.log("subject[label]::", subject["label"])
-                console.log("child::", child["label"])
-                console.log("this.findItem::", await this.findItem(uniqueSubjectsArray, child["label"]))
-                // subject["children"].push(lostChild)
-              }
+        //Using variableFilter query
+        await this.fetchVariableTags([null, null, this.domainSelected, 'subject'])
+        console.log("variableResponse::", this.variableResponse)
+        await this.addRecordNumber(this.variableResponse)
+        this.variableFilter= true
+        this.allSubjectsData["children"] = this.variableResponse
+        this.countRecords(this.allSubjectsData)
+        this.allSubjectsData = this.filterNoRecordSubject(this.allSubjectsData)
+        this.displayAllTopSubjects(this.allSubjectsData["children"])
 
-            }
-          }
-        }
+
+
+
+        // // let combinedSubjectArray = []
+        // for (let subject of uniqueSubjectsArray) {
+        //   // let newLevels = {
+        //   //   item: '',
+        //   //   children: {}
+        //   // }
+        //   let filteredChildren = []
+        //   if (subject["children"]?.length) {
+        //     for (let child of subject["children"]) {
+        //       let lostChild = await this.findItem(uniqueSubjectsArray, child["label"])
+        //       if (lostChild !== undefined) {
+        //         console.log("subject[label]::", subject["label"])
+        //         console.log("child::", child["label"])
+        //         console.log("subject[\"children\"]::", subject["children"])
+        //         const lostChild = await this.findItem(uniqueSubjectsArray, child["label"])
+        //         console.log("lostChild::", lostChild)
+        //         filteredChildren = subject["children"].filter(childItem =>
+        //           childItem["label"] !== child["label"]
+        //         )
+        //         filteredChildren.push(lostChild)
+        //         console.log("filteredChildren::", filteredChildren)
+        //       }
+        //     }
+        //   }
+        // }
 
 
         // await this.fetchTerms()
@@ -210,12 +238,45 @@ export default {
    //   return tree;
    //  },
 
+     filterNoRecordSubject(subject) {
+      const filteredSubTasks = subject["children"]
+          .filter( item => item["totalChildren"] > 0)
+          .map( item =>  this.filterNoRecordSubject(item))
+      return {
+        ...subject,
+        children: filteredSubTasks
+      }
 
-    async findItem (array, label) {
+
+      //     array.filter(async (item) => {
+      //   if(item["totalChildren"] > 0 ) {
+      //     console.log("item::", item["name"])
+      //     if(item["children"]?.length) {
+      //       await this.filterNoRecordSubject(item["children"]);
+      //     }
+      //   }
+      // })
+
+    },
+
+
+    async addRecordNumber (array) {
       for (const item of array) {
-        if (item["label"] === label) return item;
+        if (item["fairsharing_records"] && item["fairsharing_records"].length) {
+          item["totalRecords"] = item["fairsharing_records"].length
+        }
+        if(item["children"]?.length) {
+          const innerResult = await this.addRecordNumber(item["children"]);
+          if (innerResult) return innerResult;
+        }
       }
     },
+
+    // async findItem (array, label) {
+    //   for (const item of array) {
+    //     if (item["label"] === label) return item;
+    //   }
+    // },
     //Find the subject from browseSubject response
     // async findItem (array, id) {
     //   for (const item of array) {
@@ -256,20 +317,35 @@ export default {
     // },
 
 
-    getFlatSubjectBubbleTree(members) {
-      let children = [];
-      return members.map(m => {
-        if (m.children && m.children.length) {
-          children = [...children, ...m.children];
-        }
-        return m;
-      }).concat(children.length ? this.getFlatSubjectBubbleTree(children) : children);
-    },
+    // getFlatSubjectBubbleTree(members) {
+    //   let children = [];
+    //   return members.map(m => {
+    //     if (m.children && m.children.length) {
+    //       children = [...children, ...m.children];
+    //     }
+    //     return m;
+    //   }).concat(children.length ? this.getFlatSubjectBubbleTree(children) : children);
+    // },
 
-    displayAllTopSubjects() {
-      const fetchedSubjectNames = this.topSubjectBubbleTree.map(({ label }) => label)
+    // displayAllTopSubjects(subjects) {
+    //   // const fetchedSubjectNames = subjects.map(({ label }) => label)
+    //   const fetchedSubjectNames = subjects.map((subject) => {
+    //     if (subject["label"]) return subject["label"]
+    //     else return subject["name"]
+    //   })
+    //   //All the selected resource
+    //   const missingSubject = this.topSubjects.filter( ({ label }) =>!fetchedSubjectNames.includes(label));
+    //   if (missingSubject && missingSubject.length) {
+    //     missingSubject.forEach((subject) => {
+    //       this.allSubjectsData["children"].push(subject)
+    //     })
+    //   }
+    // },
+
+    displayAllTopSubjects(subjects) {
+      const fetchedSubjectNames = subjects.map(({ id }) => id)
       //All the selected resource
-      const missingSubject = this.topSubjects.filter( ({ label }) =>!fetchedSubjectNames.includes(label));
+      const missingSubject = this.topSubjects.filter( ({ id }) =>!fetchedSubjectNames.includes(id));
       if (missingSubject && missingSubject.length) {
         missingSubject.forEach((subject) => {
           this.allSubjectsData["children"].push(subject)
@@ -319,9 +395,18 @@ export default {
       }
     },
 
+    countRecords(subject) {
+      subject["totalChildren"] = 0;
+      for (const child of subject["children"]){
+        subject["totalChildren"] +=  this.countRecords(child);
+      }
+      subject["totalChildren"] =  subject["totalRecords"] ? subject["totalChildren"] + subject["totalRecords"]: subject["totalChildren"];
+      return subject["totalChildren"]
+    },
+
     countChildren(subject) {
       subject["totalChildren"] = 0;
-      if (subject["children"] && subject["children"].length) {
+      if (subject["children"]?.length) {
         for (const child of subject["children"]){
           subject["totalChildren"] += this.countChildren(child);
         }
@@ -390,6 +475,13 @@ export default {
         series.setAll({
           categoryField: "name",
           valueField: "records_count"
+        });
+      }
+      if(this.variableFilter) {
+        series.setAll({
+          categoryField: "name",
+          minRadius: 20,
+          maxRadius: am5.percent(15),
         });
       }
       series.get("colors").setAll({

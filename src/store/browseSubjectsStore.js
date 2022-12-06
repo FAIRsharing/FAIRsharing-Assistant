@@ -1,7 +1,7 @@
-// import GraphClient from "@/lib/GraphClient/GraphClient.js";
-import GraphClient from "@/lib/GraphClient/GraphClientProd.js";
-import browseSubjects from "@/lib/GraphClient/queries/subject/browseSubjects.json";
-// import subjectSummary from "@/lib/GraphClient/queries/subject/subjectSummary.json";
+import GraphClient from "@/lib/GraphClient/GraphClient.js";
+// import GraphClient from "@/lib/GraphClient/GraphClientProd.js";
+// import browseSubjects from "@/lib/GraphClient/queries/subject/browseSubjects.json";
+import subjectSummary from "@/lib/GraphClient/queries/subject/subjectSummary.json";
 
 
 //cache for 2 days i.e. 172,800,000 ms
@@ -38,8 +38,8 @@ export const actions = {
         // let response = await CLIENT.executeQuery(browseSubjects)
         // commit("setSubjectBubbleTree", response['browseSubjects'].data)
 
-        let response = await CLIENT.executeQuery(browseSubjects)
-        commit("setSubjectBubbleTree", response['browseSubjects'].data)
+        let response = await CLIENT.executeQuery(subjectSummary)
+        commit("setSubjectBubbleTree", response['subjectSummary'].data)
         commit("setLoadingData", false)
     },
      leavePage({commit}) {
