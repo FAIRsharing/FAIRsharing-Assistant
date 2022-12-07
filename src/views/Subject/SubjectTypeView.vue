@@ -1,7 +1,7 @@
 <template>
   <div>
   <p>This is a Subject View</p>
-    <p class="ma-0 text-capitalize" v-if="getResource">Resource Type Selected: {{getResource}}</p>
+    <p class="ma-0 text-capitalize" v-if="(getTopResource || getResource)">Resource Type Selected: {{getResource ? getResource : getTopResource}}</p>
     <p class="ma-0 text-capitalize">Subject Type Selected: {{ getSubject["name"] }}</p>
     <p class="ma-0 text-capitalize" v-if="getDomain">Domain Type Selected: {{getDomain}}</p>
     <FairSharingLink
@@ -30,7 +30,7 @@ export default {
     }
   },
   computed:{
-    ...mapGetters("bubbleSelectedStore", ['getResource', 'getSubject', 'getDomain']),
+    ...mapGetters("bubbleSelectedStore", ['getTopResource', 'getResource', 'getSubject', 'getDomain']),
   },
   methods: {
     enableFairSharingButton(value) {

@@ -48,12 +48,14 @@ export default {
     ...mapState("recordTypeStore", ["recordTypes", "loadingData"]),
     ...mapState("subjectStore", ["subjectRecords", "loadingData"]),
     ...mapState("multiTagsStore", ["result", "subjects", "loadingStatus"]),
-    ...mapGetters("bubbleSelectedStore", ['getSubject', 'getDomain']),
+    ...mapGetters("bubbleSelectedStore", ['getResource', 'getSubject', 'getDomain']),
+    ...mapState("variableTagStore", ["variableResponse", "loadingStatus"]),
   },
 
   async mounted() {
     this.$nextTick(async () =>{
       this.loading = true
+      this.getResource = ""
       await this.displayResources()
       await this.getCircles()
       this.loading = false
@@ -62,6 +64,7 @@ export default {
   methods: {
     ...mapActions("recordTypeStore", ["fetchRecordTypes"]),
     ...mapActions("subjectStore", ["fetchSubjectRecords"]),
+    ...mapActions("variableTagStore", ["fetchVariableTags"]),
 
     onBubbleSelection() {
       this.fairSharingButton = true
@@ -77,9 +80,56 @@ export default {
      const otherResources = this.allResourceData["children"].map(({children}) => children)
      const otherResourceType = otherResources.flatMap(child => child)
 
-     if (Object.values(this.getSubject).length) {
+     //When user lands on resource type after selecting the Subject type & Domain  type
+     if(Object.keys(this.getSubject).length && this.getDomain !== "" ){
+       console.log("SUBJECT & DOMAIN")
+       this.subjectSelected = this.getSubject["name"].toLowerCase()
+       this.domainSelected = this.getDomain.toLowerCase()
+       //Using variableFilter query
+
+       await this.fetchVariableTags([null, this.subjectSelected, this.domainSelected, "resource"])
+       console.log("this.variableResponse::", this.variableResponse)
+       console.log("otherResourceType::", otherResourceType)
+       //Assigning total number of fairsharingRecords to resourceTypes
+
+       for (let childResource of otherResourceType) {
+         childResource["value"] = 0
+         this.variableResponse.filter(ele => {
+           if (ele.type === this.formatString(childResource.name)) {
+             console.log("ele.type::", ele.type)
+             childResource["value"]++
+           }
+         })
+       }
+     }
+
+     //When user lands on resource type after selecting the Domain  type
+     if(!Object.keys(this.getSubject).length && this.getDomain !== "" ){
+       console.log("ONLY DOMAIN")
+       this.domainSelected = this.getDomain.toLowerCase()
+       //Using variableFilter query
+
+       await this.fetchVariableTags([null, null, this.domainSelected, "resource"])
+       console.log("this.variableResponse::", this.variableResponse)
+       console.log("otherResourceType::", otherResourceType)
+       //Assigning total number of fairsharingRecords to resourceTypes
+
+       for (let childResource of otherResourceType) {
+         childResource["value"] = 0
+         this.variableResponse.filter(ele => {
+           if (ele.type === this.formatString(childResource.name)) {
+             console.log("ele.type::", ele.type)
+             childResource["value"]++
+           }
+         })
+       }
+     }
+
+      //When User lands on Resource page after selecting the Subject type
+     if (Object.keys(this.getSubject).length && this.getDomain === "") {
        // console.log("Subject Selected::", this.getSubject)
-       await this.fetchSubjectRecords(842)
+       console.log("ONLY SUBJECT")
+       await this.fetchSubjectRecords(this.getSubject["id"])
        console.log("this.subjectRecords::", this.subjectRecords)
        console.log("otherResourceType::", otherResourceType)
        //Assigning total number of fairsharingRecords to resourceTypes
@@ -92,7 +142,10 @@ export default {
           }
         })
        }
-     } else {
+     }
+     //When User lands on Resource page as an entry point
+     if(this.getResource === "" && !Object.keys(this.getSubject).length && this.getDomain === "") {
+       console.log("ALL RESOURCES")
        this.allRecords = await restClient.getRecordsData()
        //Fetching the resource/records id children record from the graphQl query
        const resourceIds = this.allRecords.map(({id}) => id)

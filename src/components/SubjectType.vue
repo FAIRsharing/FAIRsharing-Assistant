@@ -79,7 +79,7 @@ export default {
     ...mapState("multiTagsStore", ["result", "subjects", "loadingStatus"]),
     ...mapState("variableTagStore", ["variableResponse", "loadingStatus"]),
     ...mapGetters("otherSubjectsStore", ['loadingStatus']),
-    ...mapGetters("bubbleSelectedStore", ['getResource','getDomain']),
+    ...mapGetters("bubbleSelectedStore", ['getResource','getSubject', 'getDomain']),
   },
   async mounted() {
     this.$nextTick(async () =>{
@@ -108,8 +108,29 @@ export default {
     },
 
     async displaySubjects() {
+
+      //When user lands on subject type after selecting the resource & domain type
+     if (this.getResource !== '' && this.getDomain !== '') {
+       console.log("BOTH")
+        //Temporary
+        // this.allSubjectsData = resourcetype
+       this.resourceSelected = this.getResource.toLowerCase()
+       this.domainSelected = this.getDomain.toLowerCase()
+
+        //Using variableFilter query
+        await this.fetchVariableTags([this.resourceSelected, null, this.domainSelected, 'subject'])
+        console.log("variableResponse::", this.variableResponse)
+        await this.addRecordNumber(this.variableResponse)
+        this.variableFilter = true
+        this.allSubjectsData["children"] = this.variableResponse
+        this.countRecords(this.allSubjectsData)
+        this.allSubjectsData = this.filterNoRecordSubject(this.allSubjectsData)
+        this.displayAllTopSubjects(this.allSubjectsData["children"])
+    }
+
       //When user lands on subject type after selecting the resource type
-      if(this.getResource !== '') {
+      if(this.getResource !== '' && this.getDomain === '') {
+        console.log("ONLY RESOURCE")
         this.resourceSelected = this.formatString(this.getResource)
         const resourceTypeData = this.resourceSelected
         await this.fetchTopSubjectTerms(resourceTypeData)
@@ -122,10 +143,21 @@ export default {
         this.allSubjectsData["label"] = "Subject"
       }
       //When user lands on subject type after selecting the domain type
-      else if (this.getDomain !== ''){
-        //Temporary
-        // this.allSubjectsData = resourcetype
+        if (this.getResource === '' && this.getDomain !== ''){
+          console.log("ONLY DOMAIN")
         this.domainSelected = this.getDomain.toLowerCase()
+
+        //Using variableFilter query
+        await this.fetchVariableTags([null, null, this.domainSelected, 'subject'])
+        console.log("variableResponse::", this.variableResponse)
+        await this.addRecordNumber(this.variableResponse)
+        this.variableFilter = true
+        this.allSubjectsData["children"] = this.variableResponse
+        this.countRecords(this.allSubjectsData)
+        this.allSubjectsData = this.filterNoRecordSubject(this.allSubjectsData)
+        this.displayAllTopSubjects(this.allSubjectsData["children"])
+
+
 
         //Using multiTagFilter query
         // await this.fetchMultiTagsTerms([null, null, this.domainSelected])
@@ -155,20 +187,6 @@ export default {
         // let { name: label, ...rest } = this.allSubjectsData;
         // this.allSubjectsData = { label, ...rest }
         // this.allSubjectsData["label"] = "Subject"
-
-
-        //Using variableFilter query
-        await this.fetchVariableTags([null, null, this.domainSelected, 'subject'])
-        console.log("variableResponse::", this.variableResponse)
-        await this.addRecordNumber(this.variableResponse)
-        this.variableFilter= true
-        this.allSubjectsData["children"] = this.variableResponse
-        this.countRecords(this.allSubjectsData)
-        this.allSubjectsData = this.filterNoRecordSubject(this.allSubjectsData)
-        this.displayAllTopSubjects(this.allSubjectsData["children"])
-
-
-
 
         // // let combinedSubjectArray = []
         // for (let subject of uniqueSubjectsArray) {
@@ -213,7 +231,8 @@ export default {
 
       }
       //When user lands on subject type as the entry point in the application
-      else {
+      if(this.getResource === '' && this.getDomain === '') {
+        console.log("ALL SUBJECTS")
         this.browseSubjects= true
         await this.fetchTerms()
         this.allSubjectsData["children"] = this.subjectBubbleTree

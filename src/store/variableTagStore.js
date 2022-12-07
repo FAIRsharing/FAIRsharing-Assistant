@@ -14,7 +14,7 @@ export const actions = {
     async fetchVariableTags({commit}, [resource, subject, domain, tag]) {
         commit("setLoadingStatus", true)
         MULTI_TAGS.queryParam = {
-            recordTypes: resource,
+            recordType: resource,
             subjectsExact: subject,
             domainsExact: domain,
             groupBy: tag
