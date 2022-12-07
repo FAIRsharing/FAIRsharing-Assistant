@@ -74,27 +74,23 @@ export default {
       return this.getDomain ? this.getDomain.toLowerCase() : null
     },
     resourceRedirectionLink() {
-      if (this.subjectSelected && this.resourceSelected) {
+      if (this.domainSelected && this.subjectSelected) {
+        if (this.resourceSelected){
+          return `${this.fairSharingURL}/search?fairsharingRegistry=${this.getTopResource}&recordType=${this.resourceSelected}&subjects=${this.subjectSelected}&domains=${this.domainSelected}`
+      } else {
+        return `${this.fairSharingURL}/search?fairsharingRegistry=${this.getTopResource}&subjects=${this.subjectSelected}&domains=${this.domainSelected}`
+      }
+    }
+     // else if (this.getTopResource && this.domainSelected && this.subjectSelected) {
+     //
+     // }
+      else if (this.subjectSelected && this.resourceSelected) {
         return `${this.fairSharingURL}/search?fairsharingRegistry=${this.getTopResource}&recordType=${this.resourceSelected}&subjects=${this.subjectSelected}`
       }
       else if (this.domainSelected && this.resourceSelected) {
         return `${this.fairSharingURL}/search?fairsharingRegistry=${this.getTopResource}&recordType=${this.resourceSelected}&domains=${this.domainSelected}`
       }
-      else if (this.domainSelected && this.subjectSelected) {
-        console.log("this.getTopResource::", this.getTopResource)
-        console.log("this.resourceSelected::", this.resourceSelected)
-        console.log("2")
-        let redirection
-        if (this.getTopResource && this.resourceSelected === null) {
-          console.log("1")
-          redirection =  `${this.fairSharingURL}/search?fairsharingRegistry=${this.getTopResource}&subjects=${this.subjectSelected}&domains=${this.domainSelected}`
-        }
-        if (this.getTopResource && this.resourceSelected) {
-          console.log("2")
-          redirection = `${this.fairSharingURL}/search?fairsharingRegistry=${this.getTopResource}&recordType=${this.resourceSelected}&subjects=${this.subjectSelected}&domains=${this.domainSelected}`
-        }
-        return redirection
-      }
+
       else if (this.subjectSelected) {
         return `${this.fairSharingURL}/search?fairsharingRegistry=${this.getTopResource}&subjects=${this.subjectSelected}`
       }

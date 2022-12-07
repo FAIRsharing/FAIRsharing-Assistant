@@ -111,7 +111,7 @@ export default {
 
       //When user lands on subject type after selecting the resource & domain type
      if (this.getResource !== '' && this.getDomain !== '') {
-       console.log("BOTH")
+       console.log("RESOURCE & DOMAIN")
         //Temporary
         // this.allSubjectsData = resourcetype
        this.resourceSelected = this.getResource.toLowerCase()
