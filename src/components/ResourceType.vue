@@ -55,7 +55,6 @@ export default {
   async mounted() {
     this.$nextTick(async () =>{
       this.loading = true
-      this.getResource = ""
       await this.displayResources()
       await this.getCircles()
       this.loading = false

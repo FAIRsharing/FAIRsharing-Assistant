@@ -50,7 +50,42 @@
           "queryName": "children",
           "fields": [
             "id",
-            "label"
+            "label",
+            {
+              "name": "children",
+              "fields": [
+                "id",
+                "label",
+                {
+                  "queryName": "children",
+                  "fields": [
+                    "id",
+                    "label",
+                    {
+                      "name": "children",
+                      "fields": [
+                        "id",
+                        "label",
+                        {
+                          "queryName": "children",
+                          "fields": [
+                            "id",
+                            "label",
+                            {
+                              "name": "children",
+                              "fields": [
+                                "id",
+                                "label"
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
           ]
         }
       ]

@@ -18,7 +18,7 @@ export const actions = {
     async fetchMultiTagsTerms({commit}, [resource, subject, domain]) {
         commit("setLoadingStatus", true)
         MULTI_TAGS.queryParam = {
-            recordTypes: resource,
+            recordType: resource,
             subjectsExact: subject,
             domainsExact: domain
         }
@@ -33,6 +33,10 @@ export const actions = {
 
         this.subjects = response['multiTagFilter'].map(({subjects}) => subjects)
         commit("setSubjects", this.subjects)
+
+        this.domains = response['multiTagFilter'].map(({domains}) => domains)
+
+        commit("setDomains", this.domains)
         commit("setLoadingStatus", false)
     },
 }
@@ -40,6 +44,7 @@ export const actions = {
 export const mutations = {
     setResult(state, result) { state.result = result },
     setSubjects(state, subjects) { state.subjects = subjects },
+    setDomains(state, domains) { state.domains = domains },
     setLoadingStatus(state, loadingStatus) { state.loadingStatus = loadingStatus},
 }
 const multiTagsStore = {

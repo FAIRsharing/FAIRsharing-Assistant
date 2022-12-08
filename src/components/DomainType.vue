@@ -1,17 +1,17 @@
 <template>
-<div>
-  <v-fade-transition v-if="loading">
-    <v-overlay
-        :absolute="false"
-        opacity="0.8"
-    >
-      <Loaders />
-    </v-overlay>
-  </v-fade-transition>
+  <div>
+    <v-fade-transition v-if="loading">
+      <v-overlay
+          :absolute="false"
+          opacity="0.8"
+      >
+        <Loaders />
+      </v-overlay>
+    </v-fade-transition>
 
-  <div id="domainBubbleChart" class="charts" ref="chartdiv" />
+    <div id="domainBubbleChart" class="charts" ref="chartdiv" />
 
-</div>
+  </div>
 
 </template>
 
@@ -39,6 +39,7 @@ export default {
       variableFilter: false,
       allDomainData: {
         label: "Domain",
+        name: "Domain",
         value: 0,
         children: "",
       },
@@ -51,12 +52,12 @@ export default {
     ...mapState("topDomainsStore", ["domainsType", "loadingData"]),
     ...mapState("recordTypeStore", ["allRecordTypes", "recordTypes", "loadingData"]),
     ...mapState("variableTagStore", ["variableResponse", "loadingStatus"]),
+    ...mapState("multiTagsStore", ["domains", "loadingStatus"]),
   },
 
   async mounted() {
     this.$nextTick(async () =>{
       this.loading = true
-      this.getDomain = ""
       await this.displayDomains()
       await this.getCircles()
       this.loading = false
@@ -70,6 +71,7 @@ export default {
     ...mapActions("subjectStore", ["fetchSubjectRecords"]),
     ...mapActions("topDomainsStore", ["fetchTopDomainTerms", "leavePage"]),
     ...mapActions("variableTagStore", ["fetchVariableTags"]),
+    ...mapActions("multiTagsStore", ["fetchMultiTagsTerms"]),
 
     onBubbleSelection() {
       this.fairSharingButton = true
@@ -86,113 +88,181 @@ export default {
     //   return domain["totalChildren"];
     // },
 
-   async displayDomains() {
-     //When user lands on domain type after selecting the TOPResource type
-     if(this.getTopResource !== '' && this.getResource === '' && !Object.keys(this.getSubject).length){
-       console.log("ONLY TOP RESOURCE")
-       this.resourceSelected = this.getTopResource.toLowerCase()
-       console.log("this.resourceSelected::", this.resourceSelected)
-       //Using variableFilter query
+    async displayDomains() {
+      //When user lands on domain type after selecting the TOPResource type
+      if(this.getTopResource !== '' && this.getResource === '' && !Object.keys(this.getSubject).length && this.getDomain === ""){
+        console.log("ONLY TOP RESOURCE")
+        // this.resourceSelected = this.getTopResource.toLowerCase()
 
-       await this.fetchVariableTags([this.resourceSelected, null, null, 'domain'])
-       console.log("this.variableResponse::", this.variableResponse)
-       this.allDomainData["children"] = this.variableResponse
-       this.variableFilter = true
-       for (let child of this.allDomainData["children"]) {
-         if (child["children"] && child["children"].length) {
-           child["totalChildren"] = child["children"].length
-         }
-       }
-     }
 
-     //When user lands on domain type after selecting the OtherResource type
-     if(this.getTopResource !== '' && this.getResource !== '' && !Object.keys(this.getSubject).length){
-       console.log("ONLY OTHER RESOURCE")
-       console.log("this.getResource::", this.getResource)
-       this.resourceSelected = this.formatString(this.getResource)
-       console.log("this.resourceSelected::", this.resourceSelected)
-       //Using topDomains query instead variableFilter query because it is taking more
-       //than 30secs to get the content which is making the page unresponsive
-       await this.fetchTopDomainTerms(this.resourceSelected)
-       console.log("this.domainsType::", this.domainsType)
-       this.allDomainData["children"] = this.domainsType
-       for (let child of this.allDomainData["children"]) {
-         if (child["children"] && child["children"].length) {
-           child["totalChildren"] = child["children"].length
-         }
-       }
-     }
+        if (this.getTopResource.toLowerCase() === 'database'){
+          this.resourceSelected =  ["repository", "knowledgebase", "knowledgebase_and_repository"]
+        }
+        else if (this.getTopResource.toLowerCase() === 'standards') {
+          this.resourceSelected =  ["model_and_format", "metric", "terminology_artefact", "reporting_guideline", "identifier_schema"]
+        }
+        else if (this.getTopResource.toLowerCase() === 'policies') {
+          this.resourceSelected =  ["journal", "journal_publisher", "society", "funder", "project", "institution"]
+        }
 
-     //When user lands on domain type after selecting the TopResource & SubjectType type
-     if(this.getTopResource !== '' && this.getResource === '' && Object.keys(this.getSubject).length){
-       console.log("TOP RESOURCE & SUBJECT")
-       this.resourceSelected = this.getTopResource.toLowerCase()
-       this.subjectSelected = this.getSubject["name"].toLowerCase()
-       console.log("this.resourceSelected::", this.resourceSelected)
-       console.log("this.subjectSelected::", this.subjectSelected)
-       //Using variableFilter query
-       this.variableFilter = true
-       await this.fetchVariableTags([this.resourceSelected, this.subjectSelected, null, 'domain'])
-       console.log("this.variableResponse::", this.variableResponse)
-       this.allDomainData["children"] = this.variableResponse
-       for (let child of this.allDomainData["children"]) {
-         if (child["children"] && child["children"].length) {
-           child["totalChildren"] = child["children"].length
-         }
-       }
-     }
+        console.log("this.resourceSelected::", this.resourceSelected)
 
-     //When user lands on domain type after selecting the OtherResource & SubjectType type
-     if(this.getTopResource !== '' && this.getResource !== '' && Object.keys(this.getSubject).length){
-       console.log("OTHER RESOURCE & SUBJECT")
-       this.resourceSelected = this.getResource.toLowerCase()
-       this.subjectSelected = this.getSubject["name"].toLowerCase()
-       console.log("this.resourceSelected::", this.resourceSelected)
-       console.log("this.subjectSelected::", this.subjectSelected)
-       //Using variableFilter query
 
-       await this.fetchVariableTags([this.resourceSelected, this.subjectSelected, null, 'domain'])
-       console.log("this.variableResponse::", this.variableResponse)
-       this.allDomainData["children"] = this.variableResponse
-       this.variableFilter = true
-       for (let child of this.allDomainData["children"]) {
-         if (child["children"] && child["children"].length) {
-           child["totalChildren"] = child["children"].length
-         }
-       }
-     }
 
-     //When user lands on domain type after selecting SubjectType type
-     if(this.getTopResource === '' && this.getResource === '' && Object.keys(this.getSubject).length){
-       console.log("ONLY SUBJECT")
-       this.subjectSelected = this.getSubject["name"].toLowerCase()
-       console.log("this.subjectSelected::", this.subjectSelected)
-       //Using variableFilter query
-       await this.fetchVariableTags([null, this.subjectSelected, null, 'domain'])
-       console.log("this.variableResponse::", this.variableResponse)
-       this.allDomainData["children"] = this.variableResponse
-       this.variableFilter = true
-       for (let child of this.allDomainData["children"]) {
-         if (child["children"] && child["children"].length) {
-           child["totalChildren"] = child["children"].length
-         }
-       }
-     }
+        //Using topDomains query instead variableFilter query because it is taking more
+        //than 30secs to get the content which is making the page unresponsive
+        await this.fetchTopDomainTerms(this.resourceSelected)
+        console.log("this.domainsType::", this.domainsType)
+        this.allDomainData["children"] = this.domainsType
+        for (let child of this.allDomainData["children"]) {
+          if (child["children"] && child["children"].length) {
+            child["totalChildren"] = child["children"].length
+          }
+        }
 
-     //Fetching the children from resourceType json data
-     if(this.getTopResource === '' && this.getResource === '' && !Object.keys(this.getSubject).length && this.getDomain === "") {
-       console.log("ALL DOMAINS")
-       await this.fetchAllRecordTypes()
-       this.allRecords = this.allRecordTypes["records"].map(({name}) => name)
-       await this.fetchTopDomainTerms(this.allRecords)
-       this.allDomainData["children"] = this.domainsType
-       for (let child of this.allDomainData["children"]) {
-         if (child["children"] && child["children"].length) {
-           child["totalChildren"] = child["children"].length
-         }
-       }
-     }
-  },
+
+
+        // //Using variableFilter query
+        // this.variableFilter = true
+        // await this.fetchVariableTags([this.resourceSelected, null, null, 'domain'])
+        // console.log("this.variableResponse::", this.variableResponse)
+        //
+        //
+        // this.allDomainData["children"] = this.variableResponse
+        // console.log("this.allDomainData[\"children\"]::", this.allDomainData["children"])
+        //
+        // for (let child of this.allDomainData["children"]) {
+        //   if (child["children"] && child["children"].length) {
+        //     child["totalChildren"] = child["children"].length
+        //   }
+        // }
+      }
+
+      //When user lands on domain type after selecting the OtherResource type
+      if(this.getTopResource !== '' && this.getResource !== '' && !Object.keys(this.getSubject).length){
+        console.log("ONLY OTHER RESOURCE")
+        console.log("this.getResource::", this.getResource)
+        this.resourceSelected = this.formatString(this.getResource)
+        console.log("this.resourceSelected::", this.resourceSelected)
+        //Using topDomains query instead variableFilter query because it is taking more
+        //than 30secs to get the content which is making the page unresponsive
+        await this.fetchTopDomainTerms(this.resourceSelected)
+        console.log("this.domainsType::", this.domainsType)
+        this.allDomainData["children"] = this.domainsType
+        for (let child of this.allDomainData["children"]) {
+          if (child["children"] && child["children"].length) {
+            child["totalChildren"] = child["children"].length
+          }
+        }
+      }
+
+      //When user lands on domain type after selecting the TopResource & SubjectType type
+      if(this.getTopResource !== '' && this.getResource === '' && Object.keys(this.getSubject).length){
+        console.log("TOP RESOURCE & SUBJECT")
+
+        if (this.getTopResource.toLowerCase() === 'database'){
+          this.resourceSelected =  ["repository", "knowledgebase", "knowledgebase_and_repository"]
+        }
+        else if (this.getTopResource.toLowerCase() === 'standards') {
+          this.resourceSelected =  ["model_and_format", "metric", "terminology_artefact", "reporting_guideline", "identifier_schema"]
+        }
+        else if (this.getTopResource.toLowerCase() === 'policies') {
+          this.resourceSelected =  ["journal", "journal_publisher", "society", "funder", "project", "institution"]
+        }
+
+        this.subjectSelected = this.getSubject["name"].toLowerCase()
+        console.log("this.resourceSelected::", this.resourceSelected)
+        console.log("this.subjectSelected::", this.subjectSelected)
+        //Using multiTagFilter query
+        await this.fetchMultiTagsTerms([this.resourceSelected, this.subjectSelected, null])
+
+        let domainsArray = []
+        for (let childLevelOne of this.domains) {
+          for (let childLevelTwo of childLevelOne) {
+            domainsArray.push(childLevelTwo)
+          }
+        }
+        // console.log("domainsArray::", domainsArray)
+        await this.addRecordNumber(domainsArray)
+
+        this.allDomainData["children"] = domainsArray
+        this.countChildren(this.allDomainData)
+      }
+
+      //When user lands on domain type after selecting the OtherResource & SubjectType type
+      if(this.getTopResource === '' && this.getResource !== '' && Object.keys(this.getSubject).length){
+        console.log("OTHER RESOURCE & SUBJECT")
+        this.resourceSelected = this.getResource.toLowerCase()
+        this.subjectSelected = this.getSubject["name"].toLowerCase()
+        console.log("this.resourceSelected::", this.resourceSelected)
+        console.log("this.subjectSelected::", this.subjectSelected)
+        //Using multiTagFilter query
+        await this.fetchMultiTagsTerms([this.resourceSelected, this.subjectSelected, null])
+
+        let domainsArray = []
+        for (let childLevelOne of this.domains) {
+          for (let childLevelTwo of childLevelOne) {
+            domainsArray.push(childLevelTwo)
+          }
+        }
+        // console.log("domainsArray::", domainsArray)
+        await this.addRecordNumber(domainsArray)
+
+        this.allDomainData["children"] = domainsArray
+        this.countChildren(this.allDomainData)
+      }
+
+      //When user lands on domain type after selecting SubjectType type
+      if(this.getTopResource === '' && this.getResource === '' && Object.keys(this.getSubject).length){
+        console.log("ONLY SUBJECT")
+        this.subjectSelected = this.getSubject["name"].toLowerCase()
+        console.log("this.subjectSelected::", this.subjectSelected)
+        //Using variableFilter query
+        await this.fetchVariableTags([null, this.subjectSelected, null, 'domain'])
+        console.log("this.variableResponse::", this.variableResponse)
+        this.allDomainData["children"] = this.variableResponse
+        this.variableFilter = true
+        for (let child of this.allDomainData["children"]) {
+          if (child["children"] && child["children"].length) {
+            child["totalChildren"] = child["children"].length
+          }
+        }
+      }
+
+      //Fetching the children from resourceType json data
+      if(this.getTopResource === '' && this.getResource === '' && !Object.keys(this.getSubject).length && this.getDomain === "") {
+        console.log("ALL DOMAINS")
+        await this.fetchAllRecordTypes()
+        this.allRecords = this.allRecordTypes["records"].map(({name}) => name)
+        await this.fetchTopDomainTerms(this.allRecords)
+        this.allDomainData["children"] = this.domainsType
+        for (let child of this.allDomainData["children"]) {
+          if (child["children"] && child["children"].length) {
+            child["totalChildren"] = child["children"].length
+          }
+        }
+      }
+    },
+
+    async addRecordNumber (array) {
+      for (const item of array) {
+        if(item["children"]?.length) {
+          item["childrenNumber"] = item["children"].length
+          const innerResult = await this.addRecordNumber(item["children"]);
+          if (innerResult) return innerResult;
+        }
+      }
+    },
+    countChildren(domain) {
+      domain["totalChildren"] = 0;
+      if (domain["children"]?.length) {
+        for (const child of domain["children"]){
+          domain["totalChildren"] +=  this.countChildren(child);
+        }
+      }
+      domain["totalChildren"] =  domain["childrenNumber"] ? domain["totalChildren"] + domain["childrenNumber"]: domain["totalChildren"];
+      return domain["totalChildren"]
+    },
     getCircles() {
       // Create root element
       let root = am5.Root.new(this.$refs.chartdiv);
@@ -216,23 +286,23 @@ export default {
       }));
       // Create series
       let series = container.children.push(am5hierarchy.ForceDirected.new(root, {
-          ariaLabel: "FAIRassist: Domain Type",
-          singleBranchOnly: false,
-          downDepth: 1,
-          upDepth: 1,
-          topDepth: 1,
-          initialDepth: 0,
-          valueField: "totalChildren",
-          categoryField: "label",//Label displayed
-          childDataField: "children",
-          idField: "label",
-          linkWithField: "linkWith",
-          manyBodyStrength: -20,
-          centerStrength: 0.8,
-          minRadius: 10,
-          // maxRadius: 90,
-          // minRadius: am5.percent(2.5),
-          maxRadius: am5.percent(20),
+        ariaLabel: "FAIRassist: Domain Type",
+        singleBranchOnly: false,
+        downDepth: 1,
+        upDepth: 1,
+        topDepth: 1,
+        initialDepth: 0,
+        valueField: "totalChildren",
+        categoryField: "label",//Label displayed
+        childDataField: "children",
+        idField: "label",
+        linkWithField: "linkWith",
+        manyBodyStrength: -20,
+        centerStrength: 0.8,
+        minRadius: 10,
+        // maxRadius: 90,
+        // minRadius: am5.percent(2.5),
+        maxRadius: am5.percent(20),
       }));
 
       if(this.variableFilter) {
@@ -244,7 +314,7 @@ export default {
       }
 
       series.get("colors").setAll({
-          step: 2
+        step: 2
       });
 
       series.labels.template.setAll({

@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex"
+import {mapGetters} from "vuex"
 import ResourceType from "@/components/ResourceType";
 import FairSharingLink from "@/components/Navigation/FairSharingLink";
 export default {
@@ -31,7 +31,11 @@ export default {
   },
   computed:{
     ...mapGetters("bubbleSelectedStore", ['getTopResource', 'getResource', 'getSubject', 'getDomain']),
+    // ...mapMutations("bubbleSelectedStore", ["resourceSelected"])
   },
+  // mounted() {
+  //   console.log("resourceSelected::", this.resourceSelected)
+  // },
   methods: {
     enableFairSharingButton(value) {
       this.fairSharingButton = value

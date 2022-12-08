@@ -79,7 +79,7 @@ export default {
     ...mapState("multiTagsStore", ["result", "subjects", "loadingStatus"]),
     ...mapState("variableTagStore", ["variableResponse", "loadingStatus"]),
     ...mapGetters("otherSubjectsStore", ['loadingStatus']),
-    ...mapGetters("bubbleSelectedStore", ['getResource','getSubject', 'getDomain']),
+    ...mapGetters("bubbleSelectedStore", ['getTopResource','getResource','getSubject', 'getDomain']),
   },
   async mounted() {
     this.$nextTick(async () =>{
@@ -127,6 +127,32 @@ export default {
         this.allSubjectsData = this.filterNoRecordSubject(this.allSubjectsData)
         this.displayAllTopSubjects(this.allSubjectsData["children"])
     }
+
+      //When user lands on subject type after selecting the TOP Resource type
+      if(this.getTopResource !== '' && this.getResource === '' && this.getDomain === '') {
+
+        console.log("ONLY TOP RESOURCE")
+        if (this.getTopResource.toLowerCase() === 'database'){
+          this.resourceSelected =  ["repository", "knowledgebase", "knowledgebase_and_repository"]
+        }
+        else if (this.getTopResource.toLowerCase() === 'standards') {
+          this.resourceSelected =  ["model_and_format", "metric", "terminology_artefact", "reporting_guideline", "identifier_schema"]
+        }
+        else if (this.getTopResource.toLowerCase() === 'policies') {
+          this.resourceSelected =  ["journal", "journal_publisher", "society", "funder", "project", "institution"]
+        }
+
+        console.log("this.resourceSelected::", this.resourceSelected)
+
+        await this.fetchTopSubjectTerms(this.resourceSelected)
+        this.allSubjectsData["children"] = this.topSubjectBubbleTree
+        this.displayAllTopSubjects(this.topSubjectBubbleTree)
+        await this.fetchAllLevelSubjectData()
+        //Update key "name" to "label" and assign value
+        let { name: label, ...rest } = this.allSubjectsData;
+        this.allSubjectsData = { label, ...rest }
+        this.allSubjectsData["label"] = "Subject"
+      }
 
       //When user lands on subject type after selecting the resource type
       if(this.getResource !== '' && this.getDomain === '') {
@@ -231,7 +257,7 @@ export default {
 
       }
       //When user lands on subject type as the entry point in the application
-      if(this.getResource === '' && this.getDomain === '') {
+      if(this.getTopResource ==="" && this.getResource === '' && this.getDomain === '') {
         console.log("ALL SUBJECTS")
         this.browseSubjects= true
         await this.fetchTerms()

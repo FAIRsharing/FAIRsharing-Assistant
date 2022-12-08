@@ -23,9 +23,16 @@ const getters = {
         return state.topResourceType;
     },
     getResource(state)  {
+        // console.log("state::", state)
+        // return "Repository";
         return state.resourceType;
     },
     getSubject(state)  {
+        // console.log("state::", state)
+        // return {
+        //     id: 700,
+        //     name: "natural science"
+        // };
         return state.subjectType;
     },
     getDomain(state)  {
