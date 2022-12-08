@@ -90,7 +90,7 @@ export default {
 
     async displayDomains() {
       //When user lands on domain type after selecting the TOPResource type
-      if(this.getTopResource !== '' && this.getResource === '' && !Object.keys(this.getSubject).length && this.getDomain === ""){
+      if(this.getTopResource !== '' && this.getResource === '' && !Object.keys(this.getSubject).length){
         console.log("ONLY TOP RESOURCE")
         // this.resourceSelected = this.getTopResource.toLowerCase()
 
@@ -190,7 +190,7 @@ export default {
       }
 
       //When user lands on domain type after selecting the OtherResource & SubjectType type
-      if(this.getTopResource === '' && this.getResource !== '' && Object.keys(this.getSubject).length){
+      if(this.getTopResource !== '' && this.getResource !== '' && Object.keys(this.getSubject).length){
         console.log("OTHER RESOURCE & SUBJECT")
         this.resourceSelected = this.getResource.toLowerCase()
         this.subjectSelected = this.getSubject["name"].toLowerCase()

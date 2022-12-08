@@ -81,9 +81,6 @@ export default {
         return `${this.fairSharingURL}/search?fairsharingRegistry=${this.getTopResource}&subjects=${this.subjectSelected}&domains=${this.domainSelected}`
       }
     }
-     // else if (this.getTopResource && this.domainSelected && this.subjectSelected) {
-     //
-     // }
       else if (this.subjectSelected && this.resourceSelected) {
         return `${this.fairSharingURL}/search?fairsharingRegistry=${this.getTopResource}&recordType=${this.resourceSelected}&subjects=${this.subjectSelected}`
       }
@@ -107,6 +104,9 @@ export default {
     subjectRedirectionLink() {
       if (this.resourceSelected && this.domainSelected) {
         return `${this.fairSharingURL}/search?fairsharingRegistry=${this.getTopResource}&recordType=${this.resourceSelected}&subjects=${this.subjectSelected}&domains=${this.domainSelected}`
+      }
+      else if (this.getTopResource && this.domainSelected) {
+        return `${this.fairSharingURL}/search?fairsharingRegistry=${this.getTopResource}&subjects=${this.subjectSelected}&domains=${this.domainSelected}`
       }
       else if (this.resourceSelected) {
         return `${this.fairSharingURL}/search?fairsharingRegistry=${this.getTopResource}&recordType=${this.resourceSelected}&subjects=${this.subjectSelected}`

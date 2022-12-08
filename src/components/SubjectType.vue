@@ -109,9 +109,37 @@ export default {
 
     async displaySubjects() {
 
+      //When user lands on subject type after selecting the TopResource & domainType type
+      if(this.getTopResource !== '' && this.getResource === '' && this.getDomain !== ''){
+        console.log("TOP RESOURCE & DOMAIN")
+
+        if (this.getTopResource.toLowerCase() === 'database'){
+          this.resourceSelected =  ["repository", "knowledgebase", "knowledgebase_and_repository"]
+        }
+        else if (this.getTopResource.toLowerCase() === 'standards') {
+          this.resourceSelected =  ["model_and_format", "metric", "terminology_artefact", "reporting_guideline", "identifier_schema"]
+        }
+        else if (this.getTopResource.toLowerCase() === 'policies') {
+          this.resourceSelected =  ["journal", "journal_publisher", "society", "funder", "project", "institution"]
+        }
+
+        this.domainSelected = this.getDomain.toLowerCase()
+        console.log("this.resourceSelected::", this.resourceSelected)
+        console.log("this.domainSelected::", this.domainSelected)
+        //Using multiTagFilter query
+        await this.fetchVariableTags([this.resourceSelected, null, this.domainSelected, 'subject'])
+        console.log("variableResponse::", this.variableResponse)
+        await this.addRecordNumber(this.variableResponse)
+        this.variableFilter = true
+        this.allSubjectsData["children"] = this.variableResponse
+        this.countRecords(this.allSubjectsData)
+        this.allSubjectsData = this.filterNoRecordSubject(this.allSubjectsData)
+        this.displayAllTopSubjects(this.allSubjectsData["children"])
+      }
+
       //When user lands on subject type after selecting the resource & domain type
      if (this.getResource !== '' && this.getDomain !== '') {
-       console.log("RESOURCE & DOMAIN")
+       console.log("OTHER RESOURCE & DOMAIN")
         //Temporary
         // this.allSubjectsData = resourcetype
        this.resourceSelected = this.getResource.toLowerCase()
@@ -169,7 +197,7 @@ export default {
         this.allSubjectsData["label"] = "Subject"
       }
       //When user lands on subject type after selecting the domain type
-        if (this.getResource === '' && this.getDomain !== ''){
+        if (this.getTopResource === '' && this.getResource === '' && this.getDomain !== ''){
           console.log("ONLY DOMAIN")
         this.domainSelected = this.getDomain.toLowerCase()
 
