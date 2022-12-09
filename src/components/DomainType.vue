@@ -157,10 +157,17 @@ export default {
             domainsArray.push(childLevelTwo)
           }
         }
-        console.log("domainsArray::", domainsArray)
-        await this.addRecordNumber(domainsArray)
+        // console.log("domainsArray::", domainsArray)
+        // await this.addRecordNumber(domainsArray)
+        //
+        // this.allDomainData["children"] = domainsArray
 
-        this.allDomainData["children"] = domainsArray
+        const ids = domainsArray.map(({id}) => id)
+
+        const uniqueArray = domainsArray.filter(({id}, index) => !ids.includes(id, index + 1))
+        console.log("uniqueArray::", uniqueArray)
+        await this.addRecordNumber(uniqueArray)
+        this.allDomainData["children"] = uniqueArray
         this.countChildren(this.allDomainData)
 
 
@@ -203,10 +210,12 @@ export default {
             domainsArray.push(childLevelTwo)
           }
         }
-        console.log("domainsArray::", domainsArray)
-        await this.addRecordNumber(domainsArray)
+        const ids = domainsArray.map(({id}) => id)
 
-        this.allDomainData["children"] = domainsArray
+        const uniqueArray = domainsArray.filter(({id}, index) => !ids.includes(id, index + 1))
+        console.log("uniqueArray::", uniqueArray)
+        await this.addRecordNumber(uniqueArray)
+        this.allDomainData["children"] = uniqueArray
         this.countChildren(this.allDomainData)
       }
 
@@ -219,17 +228,19 @@ export default {
         console.log("this.subjectSelected::", this.subjectSelected)
         //Using multiTagFilter query
         await this.fetchMultiTagsTerms([this.resourceSelected, this.subjectSelected, null])
-
+        console.log("this.domains::", this.domains)
         let domainsArray = []
         for (let childLevelOne of this.domains) {
           for (let childLevelTwo of childLevelOne) {
             domainsArray.push(childLevelTwo)
           }
         }
-        console.log("domainsArray::", domainsArray)
-        await this.addRecordNumber(domainsArray)
+        const ids = domainsArray.map(({id}) => id)
 
-        this.allDomainData["children"] = domainsArray
+        const uniqueArray = domainsArray.filter(({id}, index) => !ids.includes(id, index + 1))
+        console.log("uniqueArray::", uniqueArray)
+        await this.addRecordNumber(uniqueArray)
+        this.allDomainData["children"] = uniqueArray
         this.countChildren(this.allDomainData)
       }
 
