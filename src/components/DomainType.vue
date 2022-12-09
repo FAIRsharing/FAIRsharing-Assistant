@@ -35,6 +35,7 @@ export default {
     return {
       loading: false,
       fairSharingButton: false,
+      showDomainSelected: false,
       allRecords: [],
       variableFilter: false,
       allDomainData: {
@@ -75,7 +76,9 @@ export default {
 
     onBubbleSelection() {
       this.fairSharingButton = true
+      this.showDomainSelected = true
       this.$emit('enableFairSharingButton', this.fairSharingButton)
+      this.$emit('showDomainSelected', this.showDomainSelected)
     },
 
     // countChildren(domain) {
@@ -144,16 +147,34 @@ export default {
         console.log("this.getResource::", this.getResource)
         this.resourceSelected = this.formatString(this.getResource)
         console.log("this.resourceSelected::", this.resourceSelected)
-        //Using topDomains query instead variableFilter query because it is taking more
-        //than 30secs to get the content which is making the page unresponsive
-        await this.fetchTopDomainTerms(this.resourceSelected)
-        console.log("this.domainsType::", this.domainsType)
-        this.allDomainData["children"] = this.domainsType
-        for (let child of this.allDomainData["children"]) {
-          if (child["children"] && child["children"].length) {
-            child["totalChildren"] = child["children"].length
+
+        //Using multiTagFilter query
+        await this.fetchMultiTagsTerms([this.resourceSelected, null, null])
+
+        let domainsArray = []
+        for (let childLevelOne of this.domains) {
+          for (let childLevelTwo of childLevelOne) {
+            domainsArray.push(childLevelTwo)
           }
         }
+        console.log("domainsArray::", domainsArray)
+        await this.addRecordNumber(domainsArray)
+
+        this.allDomainData["children"] = domainsArray
+        this.countChildren(this.allDomainData)
+
+
+
+        // //Using topDomains query instead variableFilter query because it is taking more
+        // //than 30secs to get the content which is making the page unresponsive
+        // await this.fetchTopDomainTerms(this.resourceSelected)
+        // console.log("this.domainsType::", this.domainsType)
+        // this.allDomainData["children"] = this.domainsType
+        // for (let child of this.allDomainData["children"]) {
+        //   if (child["children"] && child["children"].length) {
+        //     child["totalChildren"] = child["children"].length
+        //   }
+        // }
       }
 
       //When user lands on domain type after selecting the TopResource & SubjectType type
@@ -182,7 +203,7 @@ export default {
             domainsArray.push(childLevelTwo)
           }
         }
-        // console.log("domainsArray::", domainsArray)
+        console.log("domainsArray::", domainsArray)
         await this.addRecordNumber(domainsArray)
 
         this.allDomainData["children"] = domainsArray
@@ -205,7 +226,7 @@ export default {
             domainsArray.push(childLevelTwo)
           }
         }
-        // console.log("domainsArray::", domainsArray)
+        console.log("domainsArray::", domainsArray)
         await this.addRecordNumber(domainsArray)
 
         this.allDomainData["children"] = domainsArray

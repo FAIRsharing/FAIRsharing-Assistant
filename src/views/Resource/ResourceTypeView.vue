@@ -1,7 +1,7 @@
 <template>
   <div>
     <p>This is a Resource View</p>
-    <p class="ma-0 text-capitalize" >Resource Type Selected: {{getResource ? getResource : getTopResource}}</p>
+    <p class="ma-0 text-capitalize" v-if="showResource">Resource Type Selected: {{getResource ? getResource : getTopResource}}</p>
     <p class="ma-0 text-capitalize" v-if="getSubject['name']">Subject Type Selected: {{getSubject['name']}}</p>
     <p class="ma-0 text-capitalize" v-if="getDomain">Domain Type Selected: {{getDomain}}</p>
 
@@ -10,6 +10,7 @@
     />
     <ResourceType
       @enableFairSharingButton="enableFairSharingButton"
+      @showResourceSelected = "showResourceSelected"
     />
   </div>
 </template>
@@ -26,19 +27,22 @@ export default {
   },
   data:() => {
     return {
-      fairSharingButton: false
+      fairSharingButton: false,
+      showResource: false,
     }
   },
   computed:{
     ...mapGetters("bubbleSelectedStore", ['getTopResource', 'getResource', 'getSubject', 'getDomain']),
-    // ...mapMutations("bubbleSelectedStore", ["resourceSelected"])
   },
-  // mounted() {
-  //   console.log("resourceSelected::", this.resourceSelected)
-  // },
+  destroyed() {
+    this.showResource = false
+  },
   methods: {
     enableFairSharingButton(value) {
       this.fairSharingButton = value
+    },
+    showResourceSelected(value){
+      this.showResource = value
     }
   }
 };

@@ -38,6 +38,7 @@ export default {
     return {
       loading: false,
       fairSharingButton: false,
+      showResourceSelected: false,
       allRecords: [],
       allResourceData: resourcetype,
       itemClicked: "",
@@ -67,7 +68,9 @@ export default {
 
     onBubbleSelection() {
       this.fairSharingButton = true
+      this.showResourceSelected = true
       this.$emit('enableFairSharingButton', this.fairSharingButton)
+      this.$emit('showResourceSelected', this.showResourceSelected)
     },
 
     async getResourceData() {
