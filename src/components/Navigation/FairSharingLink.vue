@@ -64,6 +64,24 @@ export default {
     currentRouteName() {
       return this.$route.name;
     },
+    topResourceSelected() {
+      let topResource;
+      switch(this.getTopResource) {
+        case "Databases":
+          topResource = "Database"
+          break;
+        case "Standards":
+          topResource = "Standard"
+          break;
+        case "Policies":
+          topResource = "Policy"
+          break;
+        default:
+          topResource = this.getTopResource;
+          break;
+      }
+      return topResource
+    },
     resourceSelected() {
       return this.getResource ? this.formatString(this.getResource) : null
     },
@@ -76,40 +94,40 @@ export default {
     resourceRedirectionLink() {
       if (this.domainSelected && this.subjectSelected) {
         if (this.resourceSelected){
-          return `${this.fairSharingURL}/search?fairsharingRegistry=${this.getTopResource}&recordType=${this.resourceSelected}&subjects=${this.subjectSelected}&domains=${this.domainSelected}`
+          return `${this.fairSharingURL}/search?fairsharingRegistry=${this.topResourceSelected}&recordType=${this.resourceSelected}&subjects=${this.subjectSelected}&domains=${this.domainSelected}`
       } else {
-        return `${this.fairSharingURL}/search?fairsharingRegistry=${this.getTopResource}&subjects=${this.subjectSelected}&domains=${this.domainSelected}`
+        return `${this.fairSharingURL}/search?fairsharingRegistry=${this.topResourceSelected}&subjects=${this.subjectSelected}&domains=${this.domainSelected}`
       }
     }
       else if (this.subjectSelected && this.resourceSelected) {
-        return `${this.fairSharingURL}/search?fairsharingRegistry=${this.getTopResource}&recordType=${this.resourceSelected}&subjects=${this.subjectSelected}`
+        return `${this.fairSharingURL}/search?fairsharingRegistry=${this.topResourceSelected}&recordType=${this.resourceSelected}&subjects=${this.subjectSelected}`
       }
       else if (this.domainSelected && this.resourceSelected) {
-        return `${this.fairSharingURL}/search?fairsharingRegistry=${this.getTopResource}&recordType=${this.resourceSelected}&domains=${this.domainSelected}`
+        return `${this.fairSharingURL}/search?fairsharingRegistry=${this.topResourceSelected}&recordType=${this.resourceSelected}&domains=${this.domainSelected}`
       }
 
       else if (this.subjectSelected) {
-        return `${this.fairSharingURL}/search?fairsharingRegistry=${this.getTopResource}&subjects=${this.subjectSelected}`
+        return `${this.fairSharingURL}/search?fairsharingRegistry=${this.topResourceSelected}&subjects=${this.subjectSelected}`
       }
       else if (this.domainSelected) {
-        return `${this.fairSharingURL}/search?fairsharingRegistry=${this.getTopResource}&domains=${this.domainSelected}`
+        return `${this.fairSharingURL}/search?fairsharingRegistry=${this.topResourceSelected}&domains=${this.domainSelected}`
       }
       else if (this.resourceSelected) {
-        return `${this.fairSharingURL}/search?fairsharingRegistry=${this.getTopResource}&recordType=${this.resourceSelected}`
+        return `${this.fairSharingURL}/search?fairsharingRegistry=${this.topResourceSelected}&recordType=${this.resourceSelected}`
       }
       else {
-        return`${this.fairSharingURL}/search?fairsharingRegistry=${this.getTopResource}`
+        return`${this.fairSharingURL}/search?fairsharingRegistry=${this.topResourceSelected}`
       }
     },
     subjectRedirectionLink() {
       if (this.resourceSelected && this.domainSelected) {
-        return `${this.fairSharingURL}/search?fairsharingRegistry=${this.getTopResource}&recordType=${this.resourceSelected}&subjects=${this.subjectSelected}&domains=${this.domainSelected}`
+        return `${this.fairSharingURL}/search?fairsharingRegistry=${this.topResourceSelected}&recordType=${this.resourceSelected}&subjects=${this.subjectSelected}&domains=${this.domainSelected}`
       }
-      else if (this.getTopResource && this.domainSelected) {
-        return `${this.fairSharingURL}/search?fairsharingRegistry=${this.getTopResource}&subjects=${this.subjectSelected}&domains=${this.domainSelected}`
+      else if (this.topResourceSelected && this.domainSelected) {
+        return `${this.topResourceSelected}/search?fairsharingRegistry=${this.topResourceSelected}&subjects=${this.subjectSelected}&domains=${this.domainSelected}`
       }
       else if (this.resourceSelected) {
-        return `${this.fairSharingURL}/search?fairsharingRegistry=${this.getTopResource}&recordType=${this.resourceSelected}&subjects=${this.subjectSelected}`
+        return `${this.fairSharingURL}/search?fairsharingRegistry=${this.topResourceSelected}&recordType=${this.resourceSelected}&subjects=${this.subjectSelected}`
       }
       else if(this.domainSelected) {
         return `${this.fairSharingURL}/search?subjects=${this.subjectSelected}&domains=${this.domainSelected}`
@@ -120,16 +138,16 @@ export default {
     },
     domainRedirectionLink() {
       if (this.resourceSelected && this.subjectSelected) {
-        return `${this.fairSharingURL}/search?fairsharingRegistry=${this.getTopResource}&recordType=${this.resourceSelected}&subjects=${this.subjectSelected}&domains=${this.domainSelected}`
+        return `${this.fairSharingURL}/search?fairsharingRegistry=${this.topResourceSelected}&recordType=${this.resourceSelected}&subjects=${this.subjectSelected}&domains=${this.domainSelected}`
       }
-      else if (this.getTopResource && this.subjectSelected) {
-        return `${this.fairSharingURL}/search?fairsharingRegistry=${this.getTopResource}&subjects=${this.subjectSelected}&domains=${this.domainSelected}`
+      else if (this.topResourceSelected && this.subjectSelected) {
+        return `${this.fairSharingURL}/search?fairsharingRegistry=${this.topResourceSelected}&subjects=${this.subjectSelected}&domains=${this.domainSelected}`
       }
       else if (this.resourceSelected) {
-        return `${this.fairSharingURL}/search?fairsharingRegistry=${this.getTopResource}&recordType=${this.resourceSelected}&domains=${this.domainSelected}`
+        return `${this.fairSharingURL}/search?fairsharingRegistry=${this.topResourceSelected}&recordType=${this.resourceSelected}&domains=${this.domainSelected}`
       }
-      else if (this.getTopResource) {
-        return `${this.fairSharingURL}/search?fairsharingRegistry=${this.getTopResource}&domains=${this.domainSelected}`
+      else if (this.topResourceSelected) {
+        return `${this.fairSharingURL}/search?fairsharingRegistry=${this.topResourceSelected}&domains=${this.domainSelected}`
       }
       else if (this.subjectSelected) {
         return `${this.fairSharingURL}/search?subjects=${this.subjectSelected}&domains=${this.domainSelected}`

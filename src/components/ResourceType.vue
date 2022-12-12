@@ -151,13 +151,6 @@ export default {
        this.allRecords = await restClient.getRecordsData()
        //Fetching the resource/records id children record from the graphQl query
        const resourceIds = this.allRecords.map(({id}) => id)
-       //  for (const id of resourceIds) {
-       //
-       //    await this.fetchRecordTypes(id)
-       //    //Pushing all children list into the array
-       //    this.recordTypesList.push(this.recordTypes)
-       //  }
-
        // Using Promise.all the records are fetched in parallel which optimises the performance
        await Promise.all(resourceIds.map(async (id) => {
          await this.fetchRecordTypes(id)

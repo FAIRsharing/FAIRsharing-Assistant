@@ -25,8 +25,6 @@ import { breadCrumbBar } from "@/utils/breadCrumbBar"
 import StringMixin from "@/utils/stringMixin.js"
 import Loaders from "@/components/Loaders"
 
-// const restClient = new RestClient();
-
 export default {
   name: 'DomainType',
   components: { Loaders },
@@ -81,23 +79,10 @@ export default {
       this.$emit('showDomainSelected', this.showDomainSelected)
     },
 
-    // countChildren(domain) {
-    //   domain["totalChildren"] = 0;
-    //   if (domain["children"] && domain["children"].length) {
-    //     for (const child of domain["children"]){
-    //       domain["totalChildren"] += this.countChildren(child);
-    //     }
-    //   }
-    //   return domain["totalChildren"];
-    // },
-
     async displayDomains() {
       //When user lands on domain type after selecting the TOPResource type
       if(this.getTopResource !== '' && this.getResource === '' && !Object.keys(this.getSubject).length){
         console.log("ONLY TOP RESOURCE")
-        // this.resourceSelected = this.getTopResource.toLowerCase()
-
-
         if (this.getTopResource.toLowerCase() === 'database'){
           this.resourceSelected =  ["repository", "knowledgebase", "knowledgebase_and_repository"]
         }
@@ -107,11 +92,7 @@ export default {
         else if (this.getTopResource.toLowerCase() === 'policies') {
           this.resourceSelected =  ["journal", "journal_publisher", "society", "funder", "project", "institution"]
         }
-
         console.log("this.resourceSelected::", this.resourceSelected)
-
-
-
         //Using topDomains query instead variableFilter query because it is taking more
         //than 30secs to get the content which is making the page unresponsive
         await this.fetchTopDomainTerms(this.resourceSelected)
@@ -122,23 +103,6 @@ export default {
             child["totalChildren"] = child["children"].length
           }
         }
-
-
-
-        // //Using variableFilter query
-        // this.variableFilter = true
-        // await this.fetchVariableTags([this.resourceSelected, null, null, 'domain'])
-        // console.log("this.variableResponse::", this.variableResponse)
-        //
-        //
-        // this.allDomainData["children"] = this.variableResponse
-        // console.log("this.allDomainData[\"children\"]::", this.allDomainData["children"])
-        //
-        // for (let child of this.allDomainData["children"]) {
-        //   if (child["children"] && child["children"].length) {
-        //     child["totalChildren"] = child["children"].length
-        //   }
-        // }
       }
 
       //When user lands on domain type after selecting the OtherResource type
@@ -157,31 +121,12 @@ export default {
             domainsArray.push(childLevelTwo)
           }
         }
-        // console.log("domainsArray::", domainsArray)
-        // await this.addRecordNumber(domainsArray)
-        //
-        // this.allDomainData["children"] = domainsArray
-
         const ids = domainsArray.map(({id}) => id)
-
         const uniqueArray = domainsArray.filter(({id}, index) => !ids.includes(id, index + 1))
         console.log("uniqueArray::", uniqueArray)
         await this.addRecordNumber(uniqueArray)
         this.allDomainData["children"] = uniqueArray
         this.countChildren(this.allDomainData)
-
-
-
-        // //Using topDomains query instead variableFilter query because it is taking more
-        // //than 30secs to get the content which is making the page unresponsive
-        // await this.fetchTopDomainTerms(this.resourceSelected)
-        // console.log("this.domainsType::", this.domainsType)
-        // this.allDomainData["children"] = this.domainsType
-        // for (let child of this.allDomainData["children"]) {
-        //   if (child["children"] && child["children"].length) {
-        //     child["totalChildren"] = child["children"].length
-        //   }
-        // }
       }
 
       //When user lands on domain type after selecting the TopResource & SubjectType type
@@ -249,16 +194,22 @@ export default {
         console.log("ONLY SUBJECT")
         this.subjectSelected = this.getSubject["name"].toLowerCase()
         console.log("this.subjectSelected::", this.subjectSelected)
-        //Using variableFilter query
-        await this.fetchVariableTags([null, this.subjectSelected, null, 'domain'])
-        console.log("this.variableResponse::", this.variableResponse)
-        this.allDomainData["children"] = this.variableResponse
-        this.variableFilter = true
-        for (let child of this.allDomainData["children"]) {
-          if (child["children"] && child["children"].length) {
-            child["totalChildren"] = child["children"].length
+        //Using multiTagFilter query
+        await this.fetchMultiTagsTerms([null, this.subjectSelected, null])
+        console.log("this.domains::", this.domains)
+        let domainsArray = []
+        for (let childLevelOne of this.domains) {
+          for (let childLevelTwo of childLevelOne) {
+            domainsArray.push(childLevelTwo)
           }
         }
+        const ids = domainsArray.map(({id}) => id)
+
+        const uniqueArray = domainsArray.filter(({id}, index) => !ids.includes(id, index + 1))
+        console.log("uniqueArray::", uniqueArray)
+        await this.addRecordNumber(uniqueArray)
+        this.allDomainData["children"] = uniqueArray
+        this.countChildren(this.allDomainData)
       }
 
       //Fetching the children from resourceType json data

@@ -7,9 +7,7 @@ import {
     HomeView,
     ResourceTypeView,
     SubjectTypeView,
-    SunBurstView,
-    DomainTypeView,
-    // TabsView
+    DomainTypeView
 } from './routes'
 
 
@@ -36,12 +34,7 @@ let routes = [
         path: "/domain",
         component: DomainTypeView,
 
-    },
-    {
-        name: "SunBurstView",
-        path: "/sunburst",
-        component: SunBurstView,
-    },
+    }
 ]
 
 

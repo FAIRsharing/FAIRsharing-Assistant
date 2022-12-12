@@ -29,8 +29,6 @@ const getters = {
         return state.subjectType;
     },
     getDomain(state)  {
-        // console.log("state::", state)
-        // return "peptide library";
         return state.domainType;
     },
 }
