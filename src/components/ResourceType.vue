@@ -48,9 +48,9 @@ export default {
   computed:{
     ...mapState("recordTypeStore", ["recordTypes", "loadingData"]),
     ...mapState("subjectStore", ["subjectRecords", "loadingData"]),
-    ...mapState("multiTagsStore", ["result", "subjects", "loadingStatus"]),
     ...mapGetters("bubbleSelectedStore", ['getResource', 'getSubject', 'getDomain']),
     ...mapState("variableTagStore", ["variableResponse", "loadingStatus"]),
+    ...mapState("multiTagsNonExactStore", ["fairSharingRecords", "loadingStatus"]),
   },
 
   async mounted() {
@@ -61,10 +61,16 @@ export default {
       this.loading = false
     })
   },
+  destroyed() {
+    this.resetRecords()
+    this.resetNonExactMultiTags()
+    this.resetSubjects()
+  },
   methods: {
-    ...mapActions("recordTypeStore", ["fetchRecordTypes"]),
-    ...mapActions("subjectStore", ["fetchSubjectRecords"]),
+    ...mapActions("recordTypeStore", ["fetchRecordTypes", "resetRecords"]),
+    ...mapActions("subjectStore", ["fetchSubjectRecords", "resetSubjects"]),
     ...mapActions("variableTagStore", ["fetchVariableTags"]),
+    ...mapActions("multiTagsNonExactStore", ["fetchNonExactMultiTagsTerms", "resetNonExactMultiTags"]),
 
     onBubbleSelection() {
       this.fairSharingButton = true
@@ -87,16 +93,18 @@ export default {
        console.log("SUBJECT & DOMAIN")
        this.subjectSelected = this.getSubject["name"].toLowerCase()
        this.domainSelected = this.getDomain.toLowerCase()
-       //Using variableFilter query
+       //Using Non Exact multiTagFilter Query
+       await this.fetchNonExactMultiTagsTerms([null, this.subjectSelected, this.domainSelected])
 
-       await this.fetchVariableTags([null, this.subjectSelected, this.domainSelected, "resource"])
-       console.log("this.variableResponse::", this.variableResponse)
-       console.log("otherResourceType::", otherResourceType)
+       //Using variableFilter query
+       // await this.fetchVariableTags([null, this.subjectSelected, this.domainSelected, "resource"])
+       // console.log("this.variableResponse::", this.variableResponse)
+       // console.log("otherResourceType::", otherResourceType)
        //Assigning total number of fairsharingRecords to resourceTypes
 
        for (let childResource of otherResourceType) {
          childResource["value"] = 0
-         this.variableResponse.filter(ele => {
+         this.fairSharingRecords.filter(ele => {
            if (ele.type === this.formatString(childResource.name)) {
              console.log("ele.type::", ele.type)
              childResource["value"]++
@@ -109,16 +117,18 @@ export default {
      if(!Object.keys(this.getSubject).length && this.getDomain !== "" ){
        console.log("ONLY DOMAIN")
        this.domainSelected = this.getDomain.toLowerCase()
+       //Using Non Exact multiTagFilter Query
+       await this.fetchNonExactMultiTagsTerms([null, null, this.domainSelected])
+
        //Using variableFilter query
-
-       await this.fetchVariableTags([null, null, this.domainSelected, "resource"])
-       console.log("this.variableResponse::", this.variableResponse)
-       console.log("otherResourceType::", otherResourceType)
-       //Assigning total number of fairsharingRecords to resourceTypes
-
+       // await this.fetchVariableTags([null, null, this.domainSelected, "resource"])
+       // console.log("this.variableResponse::", this.variableResponse)
+       // console.log("otherResourceType::", otherResourceType)
+       // //Assigning total number of fairsharingRecords to resourceTypes
+       //
        for (let childResource of otherResourceType) {
          childResource["value"] = 0
-         this.variableResponse.filter(ele => {
+         this.fairSharingRecords.filter(ele => {
            if (ele.type === this.formatString(childResource.name)) {
              console.log("ele.type::", ele.type)
              childResource["value"]++
@@ -131,13 +141,16 @@ export default {
      if (Object.keys(this.getSubject).length && this.getDomain === "") {
        // console.log("Subject Selected::", this.getSubject)
        console.log("ONLY SUBJECT")
-       await this.fetchSubjectRecords(this.getSubject["id"])
-       console.log("this.subjectRecords::", this.subjectRecords)
-       console.log("otherResourceType::", otherResourceType)
+       this.subjectSelected = this.getSubject["name"].toLowerCase()
+       //Using Non Exact multiTagFilter Query
+       await this.fetchNonExactMultiTagsTerms([null, this.subjectSelected, null])
+       // await this.fetchSubjectRecords(this.getSubject["id"])
+       // console.log("this.subjectRecords::", this.subjectRecords)
+       // console.log("otherResourceType::", otherResourceType)
        //Assigning total number of fairsharingRecords to resourceTypes
        for (let childResource of otherResourceType) {
          childResource["value"] = 0
-        this.subjectRecords["fairsharingRecords"].filter(ele => {
+        this.fairSharingRecords.filter(ele => {
           if (ele.type === this.formatString(childResource.name)) {
             console.log("ele.type::", ele.type)
             childResource["value"]++

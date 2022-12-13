@@ -21,11 +21,15 @@ export const actions = {
         commit("setSubjectRecords", response["subject"])
         commit("setLoadingData", false)
     },
+    resetSubjects({commit}) {
+        commit('resetSubjectRecords');
+    }
 }
 
 export const mutations = {
     setSubjectRecords(state, subjectRecords) { state.subjectRecords = subjectRecords },
     setLoadingData(state, loadingData) { state.loadingData = loadingData},
+    resetSubjectRecords(state) {state.subjectRecords = []},
 }
 const subjectStore = {
     namespaced: true,

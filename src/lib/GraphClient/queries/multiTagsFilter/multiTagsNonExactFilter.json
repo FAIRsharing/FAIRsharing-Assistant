@@ -1,0 +1,10 @@
+{
+  "queryName": "multiTagFilter",
+  "queryParam": null,
+  "fields": [
+    "id",
+    "name",
+    "type",
+    "registry"
+  ]
+}

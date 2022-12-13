@@ -28,12 +28,18 @@ export const actions = {
         commit("setAllRecordTypes", response['recordTypes'])
         commit("setLoadingData", false)
     },
+    resetRecords({commit}) {
+        commit('resetRecordTypes');
+        commit('resetAllRecordTypes');
+    }
 }
 
 export const mutations = {
     setRecordTypes(state, recordTypes) { state.recordTypes = recordTypes },
     setAllRecordTypes(state, allRecordTypes) { state.allRecordTypes = allRecordTypes },
     setLoadingData(state, loadingData) { state.loadingData = loadingData},
+    resetRecordTypes(state) {state.recordTypes = []},
+    resetAllRecordTypes(state) {state.allRecordTypes = []},
 }
 const recordTypeStore = {
     namespaced: true,
