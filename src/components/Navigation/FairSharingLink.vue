@@ -129,6 +129,9 @@ export default {
       else if (this.resourceSelected) {
         return `${this.fairSharingURL}/search?fairsharingRegistry=${this.topResourceSelected}&recordType=${this.resourceSelected}&subjects=${this.subjectSelected}`
       }
+      else if (this.topResourceSelected) {
+        return `${this.fairSharingURL}/search?fairsharingRegistry=${this.topResourceSelected}&subjects=${this.subjectSelected}`
+      }
       else if(this.domainSelected) {
         return `${this.fairSharingURL}/search?subjects=${this.subjectSelected}&domains=${this.domainSelected}`
       }

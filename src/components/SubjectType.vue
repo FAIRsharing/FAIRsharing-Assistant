@@ -22,8 +22,6 @@ import { canvasGetImageData } from "@/utils/canvasRenderingContext"
 import { breadCrumbBar } from "@/utils/breadCrumbBar";
 import StringMixin from "@/utils/stringMixin.js"
 import Loaders from "@/components/Loaders"
-//Temporary
-// import { resourcetype } from '@/data'
 
 export default {
   name: 'SubjectType',
@@ -99,9 +97,6 @@ export default {
     ...mapActions("otherSubjectsStore", ["fetchOtherSubject"]),
     ...mapActions("multiTagsStore", ["fetchMultiTagsTerms"]),
     ...mapActions("variableTagStore", ["fetchVariableTags"]),
-    //Temperary
-    ...mapActions("subjectStore", ["fetchSubjectRecords"]),
-
 
     onBubbleSelection() {
       this.fairSharingButton = true
@@ -132,30 +127,28 @@ export default {
         //Using multiTagFilter query
         await this.fetchVariableTags([this.resourceSelected, null, this.domainSelected, 'subject'])
         console.log("variableResponse::", this.variableResponse)
-        await this.addRecordNumber(this.variableResponse)
+        // await this.addRecordNumber(this.variableResponse)
         this.variableFilter = true
         this.allSubjectsData["children"] = this.variableResponse
-        this.countRecords(this.allSubjectsData)
-        this.allSubjectsData = this.filterNoRecordSubject(this.allSubjectsData)
+        // this.countRecords(this.allSubjectsData)
+        // this.allSubjectsData = this.filterNoRecordSubject(this.allSubjectsData)
         this.displayAllTopSubjects(this.allSubjectsData["children"])
       }
 
       //When user lands on subject type after selecting the resource & domain type
      if (this.getResource !== '' && this.getDomain !== '') {
        console.log("OTHER RESOURCE & DOMAIN")
-        //Temporary
-        // this.allSubjectsData = resourcetype
        this.resourceSelected = this.getResource.toLowerCase()
        this.domainSelected = this.getDomain.toLowerCase()
 
         //Using variableFilter query
         await this.fetchVariableTags([this.resourceSelected, null, this.domainSelected, 'subject'])
         console.log("variableResponse::", this.variableResponse)
-        await this.addRecordNumber(this.variableResponse)
+        // await this.addRecordNumber(this.variableResponse)
         this.variableFilter = true
         this.allSubjectsData["children"] = this.variableResponse
-        this.countRecords(this.allSubjectsData)
-        this.allSubjectsData = this.filterNoRecordSubject(this.allSubjectsData)
+        // this.countRecords(this.allSubjectsData)
+        // this.allSubjectsData = this.filterNoRecordSubject(this.allSubjectsData)
         this.displayAllTopSubjects(this.allSubjectsData["children"])
     }
 
@@ -175,29 +168,43 @@ export default {
 
         console.log("this.resourceSelected::", this.resourceSelected)
 
-        await this.fetchTopSubjectTerms(this.resourceSelected)
-        this.allSubjectsData["children"] = this.topSubjectBubbleTree
-        this.displayAllTopSubjects(this.topSubjectBubbleTree)
-        await this.fetchAllLevelSubjectData()
-        //Update key "name" to "label" and assign value
-        let { name: label, ...rest } = this.allSubjectsData;
-        this.allSubjectsData = { label, ...rest }
-        this.allSubjectsData["label"] = "Subject"
+        //Using variableFilter query
+        await this.fetchVariableTags([this.resourceSelected, null, null, 'subject'])
+        console.log("variableResponse::", this.variableResponse)
+        this.variableFilter = true
+        this.allSubjectsData["children"] = this.variableResponse
+        this.displayAllTopSubjects(this.allSubjectsData["children"])
+
+        // await this.fetchTopSubjectTerms(this.resourceSelected)
+        // this.allSubjectsData["children"] = this.topSubjectBubbleTree
+        // this.displayAllTopSubjects(this.topSubjectBubbleTree)
+        // await this.fetchAllLevelSubjectData()
+        // //Update key "name" to "label" and assign value
+        // let { name: label, ...rest } = this.allSubjectsData;
+        // this.allSubjectsData = { label, ...rest }
+        // this.allSubjectsData["label"] = "Subject"
       }
 
       //When user lands on subject type after selecting the resource type
       if(this.getResource !== '' && this.getDomain === '') {
         console.log("ONLY RESOURCE")
         this.resourceSelected = this.formatString(this.getResource)
-        const resourceTypeData = this.resourceSelected
-        await this.fetchTopSubjectTerms(resourceTypeData)
-        this.allSubjectsData["children"] = this.topSubjectBubbleTree
-        this.displayAllTopSubjects(this.topSubjectBubbleTree)
-        await this.fetchAllLevelSubjectData()
-        //Update key "name" to "label" and assign value
-        let { name: label, ...rest } = this.allSubjectsData;
-        this.allSubjectsData = { label, ...rest }
-        this.allSubjectsData["label"] = "Subject"
+        //Using variableFilter query
+        await this.fetchVariableTags([this.resourceSelected, null, null, 'subject'])
+        console.log("variableResponse::", this.variableResponse)
+        this.variableFilter = true
+        this.allSubjectsData["children"] = this.variableResponse
+        this.displayAllTopSubjects(this.allSubjectsData["children"])
+
+        // const resourceTypeData = this.resourceSelected
+        // await this.fetchTopSubjectTerms(resourceTypeData)
+        // this.allSubjectsData["children"] = this.topSubjectBubbleTree
+        // this.displayAllTopSubjects(this.topSubjectBubbleTree)
+        // await this.fetchAllLevelSubjectData()
+        // //Update key "name" to "label" and assign value
+        // let { name: label, ...rest } = this.allSubjectsData;
+        // this.allSubjectsData = { label, ...rest }
+        // this.allSubjectsData["label"] = "Subject"
       }
       //When user lands on subject type after selecting the domain type
         if (this.getTopResource === '' && this.getResource === '' && this.getDomain !== ''){
@@ -207,85 +214,12 @@ export default {
         //Using variableFilter query
         await this.fetchVariableTags([null, null, this.domainSelected, 'subject'])
         console.log("variableResponse::", this.variableResponse)
-        await this.addRecordNumber(this.variableResponse)
+        // await this.addRecordNumber(this.variableResponse)
         this.variableFilter = true
         this.allSubjectsData["children"] = this.variableResponse
-        this.countRecords(this.allSubjectsData)
-        this.allSubjectsData = this.filterNoRecordSubject(this.allSubjectsData)
+        // this.countRecords(this.allSubjectsData)
+        // this.allSubjectsData = this.filterNoRecordSubject(this.allSubjectsData)
         this.displayAllTopSubjects(this.allSubjectsData["children"])
-
-
-
-        //Using multiTagFilter query
-        // await this.fetchMultiTagsTerms([null, null, this.domainSelected])
-        //
-        // // console.log("subjects::", this.subjects)
-        // // const uniqueArray = Array.from(new Set(this.subjects.map(JSON.stringify)), JSON.parse);
-        // // console.log("uniqueArray::", uniqueArray)
-        //
-        // let subjectsArray = []
-        // for (let childLevelOne of this.subjects) {
-        //   for (let childLevelTwo of childLevelOne) {
-        //     subjectsArray.push(childLevelTwo)
-        //   }
-        // }
-        // // console.log("subjectsArray::", subjectsArray)
-        // const ids = subjectsArray.map(({id}) => id)
-        // const uniqueSubjectsArray = subjectsArray.filter(({id}, index) => !ids.includes(id, index + 1))
-        //
-        // // console.log("uniqueSubjectsArray::", uniqueSubjectsArray)
-        //
-        // uniqueSubjectsArray.map((ele) => {
-        //   if (ele["children"] && ele["children"].length)
-        //     ele["totalChildren"] = ele["children"].length
-        // })
-        // this.allSubjectsData["children"] = uniqueSubjectsArray
-        //
-        // let { name: label, ...rest } = this.allSubjectsData;
-        // this.allSubjectsData = { label, ...rest }
-        // this.allSubjectsData["label"] = "Subject"
-
-        // // let combinedSubjectArray = []
-        // for (let subject of uniqueSubjectsArray) {
-        //   // let newLevels = {
-        //   //   item: '',
-        //   //   children: {}
-        //   // }
-        //   let filteredChildren = []
-        //   if (subject["children"]?.length) {
-        //     for (let child of subject["children"]) {
-        //       let lostChild = await this.findItem(uniqueSubjectsArray, child["label"])
-        //       if (lostChild !== undefined) {
-        //         console.log("subject[label]::", subject["label"])
-        //         console.log("child::", child["label"])
-        //         console.log("subject[\"children\"]::", subject["children"])
-        //         const lostChild = await this.findItem(uniqueSubjectsArray, child["label"])
-        //         console.log("lostChild::", lostChild)
-        //         filteredChildren = subject["children"].filter(childItem =>
-        //           childItem["label"] !== child["label"]
-        //         )
-        //         filteredChildren.push(lostChild)
-        //         console.log("filteredChildren::", filteredChildren)
-        //       }
-        //     }
-        //   }
-        // }
-
-
-        // await this.fetchTerms()
-        // console.log("subjectBubbleTree::", this.subjectBubbleTree)
-        // console.log("getFlatSubjectBubbleTree::", this.getFlatSubjectBubbleTree(this.subjectBubbleTree))
-        // const findSubjectByID = await this.findById(this.subjectBubbleTree, 596)
-        // console.log("findSubjectByID::", await findSubjectByID)
-
-
-
-        // await this.fetchSubjectRecords(842)
-        // console.log("this.subjectRecords::", this.subjectRecords)
-        // const hierarchy = this.hierarchy(uniqueSubjectsArray);
-        // console.log("hierarchy::", hierarchy)
-
-
       }
       //When user lands on subject type as the entry point in the application
       if(this.getTopResource ==="" && this.getResource === '' && this.getDomain === '') {
@@ -296,24 +230,6 @@ export default {
       }
     },
 
-   // hierarchy (data) {
-   //   const tree = [];
-   //   const childOf = {};
-   //   data.forEach((item) => {
-   //     // const { id, parents } = item;
-   //     const id  = item["id"]
-   //     const parents  = item["parents"][0]["label"]
-   //     // console.log("id::", id)
-   //     // console.log("parents::", parents)
-   //     childOf[id] = childOf[id] || [];
-   //     console.log("childOf['id']::", childOf[id])
-   //     item.children = childOf[id];
-   //     console.log("item.children::", item.children)
-   //     parents ? (childOf[parents] = childOf[parents] || []).push(item) : tree.push(item);
-   //   });
-   //   return tree;
-   //  },
-
      filterNoRecordSubject(subject) {
       const filteredSubTasks = subject["children"]
           .filter( item => item["totalChildren"] > 0)
@@ -322,20 +238,7 @@ export default {
         ...subject,
         children: filteredSubTasks
       }
-
-
-      //     array.filter(async (item) => {
-      //   if(item["totalChildren"] > 0 ) {
-      //     console.log("item::", item["name"])
-      //     if(item["children"]?.length) {
-      //       await this.filterNoRecordSubject(item["children"]);
-      //     }
-      //   }
-      // })
-
     },
-
-
     async addRecordNumber (array) {
       for (const item of array) {
         if (item["fairsharing_records"] && item["fairsharing_records"].length) {
@@ -347,77 +250,6 @@ export default {
         }
       }
     },
-
-    // async findItem (array, label) {
-    //   for (const item of array) {
-    //     if (item["label"] === label) return item;
-    //   }
-    // },
-    //Find the subject from browseSubject response
-    // async findItem (array, id) {
-    //   for (const item of array) {
-    //     if (item.id === id) return item;
-    //     if (item.children?.length) {
-    //       const innerResult = await this.findItem(item.children, id);
-    //       if (innerResult) return innerResult;
-    //     }
-    //   }
-    // },
-
-     // async findById(array, id) {
-     //
-     //   console.log("findItemInBrowseSubjectArray::", await this.findItemInBrowseSubjectArray(array, id))
-
-      // array.filter(async (item) =>{
-      // // for (const item of array) {
-      //   if (item.id === id) {
-      //     // return item;
-      //     await this.fetchSubjectRecords(item.id)
-      //     console.log("this.subjectRecords::", this.subjectRecords)
-      //     if (this.subjectRecords["parents"]?.length) {
-      //       for (const parent of this.subjectRecords["parents"]) {
-      //         console.log("parent::", parent["label"])
-      //         await this.fetchSubjectRecords(parent["id"])
-      //         console.log("this.subjectRecords::", this.subjectRecords)
-      //       }
-      //     }
-      //     return  array.filter((item) => item.id === id)
-      //   }
-      //   if (item["children"]?.length) {
-      //     const innerResult = await this.findById(item["children"], id);
-      //     if (innerResult) {
-      //       return innerResult;
-      //     }
-      //   }
-      //   })
-    // },
-
-
-    // getFlatSubjectBubbleTree(members) {
-    //   let children = [];
-    //   return members.map(m => {
-    //     if (m.children && m.children.length) {
-    //       children = [...children, ...m.children];
-    //     }
-    //     return m;
-    //   }).concat(children.length ? this.getFlatSubjectBubbleTree(children) : children);
-    // },
-
-    // displayAllTopSubjects(subjects) {
-    //   // const fetchedSubjectNames = subjects.map(({ label }) => label)
-    //   const fetchedSubjectNames = subjects.map((subject) => {
-    //     if (subject["label"]) return subject["label"]
-    //     else return subject["name"]
-    //   })
-    //   //All the selected resource
-    //   const missingSubject = this.topSubjects.filter( ({ label }) =>!fetchedSubjectNames.includes(label));
-    //   if (missingSubject && missingSubject.length) {
-    //     missingSubject.forEach((subject) => {
-    //       this.allSubjectsData["children"].push(subject)
-    //     })
-    //   }
-    // },
-
     displayAllTopSubjects(subjects) {
       const fetchedSubjectNames = subjects.map(({ id }) => id)
       //All the selected resource
@@ -431,32 +263,14 @@ export default {
 
     // Create an array of ids. Change the fetchRecordTypes method to consume a list of ids instead of single id
 
-    //Single id is passed as argument in the fetchRequest resulting more graphQL calls
-    // async getChildren(arr) {
-    //   if (arr && arr.length) {
-    //     for (let j=0; j< arr.length; j++){
-    //       const childId = arr[j]["id"]
-    //       await this.fetchOtherSubject([childId, this.formatString(this.resourceSelected)])
-    //       if (this.otherSubjectBubble[0] && this.otherSubjectBubble[0]["children"] && this.otherSubjectBubble[0]["children"].length){
-    //         arr[j]["children"] = this.otherSubjectBubble[0]["children"]
-    //         arr[j]["descendants_count"] = this.otherSubjectBubble[0]["children"].length
-    //         await this.getChildren(arr[j]["children"])
-    //       }
-    //     }
-    //   }
-    // },
-
     //Array of ids are passed as arguments in the fetchRequest resulting lesser graphQL calls
     async getChildren(arr) {
       if (arr && arr.length) {
         const arrIds = arr.map(({id}) => id)
-
         await this.fetchOtherSubject([arrIds, this.resourceSelected])
         const response  = this.otherSubjectBubble
-
         if (response && response.length) {
           let nextReqIds = []
-
           arr.filter(async subItem => {
             const matchedData = response.find(ele => ele.id === subItem.id)
             if (matchedData !== undefined && matchedData.id === subItem.id && matchedData["children"] && matchedData["children"].length) {
@@ -479,7 +293,6 @@ export default {
       subject["totalChildren"] =  subject["totalRecords"] ? subject["totalChildren"] + subject["totalRecords"]: subject["totalChildren"];
       return subject["totalChildren"]
     },
-
     countChildren(subject) {
       subject["totalChildren"] = 0;
       if (subject["children"]?.length) {
@@ -494,10 +307,6 @@ export default {
     async fetchAllLevelSubjectData() {
       const childrenLevelOne = this.allSubjectsData["children"]
       console.log("LOOP STARTS")
-      // for (const child of childrenLevelOne) {
-      //   const childrenLevelTwo = child["children"]
-      //   await this.getChildren(childrenLevelTwo)
-      // }
       //Optimised performance
       await Promise.all(childrenLevelOne.map(async ({ children }) => {
         await this.getChildren(children)
@@ -558,6 +367,7 @@ export default {
           categoryField: "name",
           minRadius: 20,
           maxRadius: am5.percent(15),
+          valueField: "records_count",
         });
       }
       series.get("colors").setAll({
@@ -576,7 +386,8 @@ export default {
 
       //When all four subjects have no children bubble size is same
       const noChild = this.allSubjectsData["children"].every(({totalChildren}) => totalChildren === 0 )
-      if (noChild) {
+      const noRecords = this.allSubjectsData["children"].every(child => child["records_count"] === undefined )
+      if (noChild  || noRecords) {
         series.setAll({
           minRadius: 100,
           maxRadius: 100

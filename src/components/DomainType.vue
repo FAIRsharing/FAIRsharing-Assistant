@@ -194,22 +194,29 @@ export default {
         console.log("ONLY SUBJECT")
         this.subjectSelected = this.getSubject["name"].toLowerCase()
         console.log("this.subjectSelected::", this.subjectSelected)
-        //Using multiTagFilter query
-        await this.fetchMultiTagsTerms([null, this.subjectSelected, null])
-        console.log("this.domains::", this.domains)
-        let domainsArray = []
-        for (let childLevelOne of this.domains) {
-          for (let childLevelTwo of childLevelOne) {
-            domainsArray.push(childLevelTwo)
-          }
-        }
-        const ids = domainsArray.map(({id}) => id)
 
-        const uniqueArray = domainsArray.filter(({id}, index) => !ids.includes(id, index + 1))
-        console.log("uniqueArray::", uniqueArray)
-        await this.addRecordNumber(uniqueArray)
-        this.allDomainData["children"] = uniqueArray
-        this.countChildren(this.allDomainData)
+        //Using variableFilter query
+        await this.fetchVariableTags([null, this.subjectSelected, null, 'domain'])
+        console.log("variableResponse::", this.variableResponse)
+        this.variableFilter = true
+        this.allDomainData["children"] = this.variableResponse
+
+        //Using multiTagFilter query
+        // await this.fetchMultiTagsTerms([null, this.subjectSelected, null])
+        // console.log("this.domains::", this.domains)
+        // let domainsArray = []
+        // for (let childLevelOne of this.domains) {
+        //   for (let childLevelTwo of childLevelOne) {
+        //     domainsArray.push(childLevelTwo)
+        //   }
+        // }
+        // const ids = domainsArray.map(({id}) => id)
+        //
+        // const uniqueArray = domainsArray.filter(({id}, index) => !ids.includes(id, index + 1))
+        // console.log("uniqueArray::", uniqueArray)
+        // await this.addRecordNumber(uniqueArray)
+        // this.allDomainData["children"] = uniqueArray
+        // this.countChildren(this.allDomainData)
       }
 
       //Fetching the children from resourceType json data
@@ -289,7 +296,11 @@ export default {
       }));
 
       if(this.variableFilter) {
-        series.set("categoryField", "name");
+        series.setAll({
+          categoryField: "name",
+          valueField: "records_count",
+        });
+
       }
 
       if (!this.allDomainData["children"].length){

@@ -15,8 +15,8 @@ export const actions = {
         commit("setLoadingStatus", true)
         MULTI_TAGS.queryParam = {
             recordType: resource,
-            subjectsExact: subject,
-            domainsExact: domain,
+            subjects: subject,
+            domains: domain,
             groupBy: tag
         }
         //Delete the null/empty parameter
