@@ -184,7 +184,7 @@ export default {
       //When user lands on domain type after selecting the OtherResource & SubjectType type
       if(this.getTopResource !== '' && this.getResource !== '' && Object.keys(this.getSubject).length){
         console.log("OTHER RESOURCE & SUBJECT")
-        this.resourceSelected = this.getResource.toLowerCase()
+        this.resourceSelected = this.formatString(this.getResource)
         this.subjectSelected = this.getSubject["name"].toLowerCase()
         console.log("this.resourceSelected::", this.resourceSelected)
         console.log("this.subjectSelected::", this.subjectSelected)
