@@ -65,11 +65,12 @@ export default {
     this.resetRecords()
     this.resetNonExactMultiTags()
     this.resetSubjects()
+    this.resetVariableTags()
   },
   methods: {
     ...mapActions("recordTypeStore", ["fetchRecordTypes", "resetRecords"]),
     ...mapActions("subjectStore", ["fetchSubjectRecords", "resetSubjects"]),
-    ...mapActions("variableTagStore", ["fetchVariableTags"]),
+    ...mapActions("variableTagStore", ["fetchVariableTags", "resetVariableTags"]),
     ...mapActions("multiTagsNonExactStore", ["fetchNonExactMultiTagsTerms", "resetNonExactMultiTags"]),
 
     onBubbleSelection() {

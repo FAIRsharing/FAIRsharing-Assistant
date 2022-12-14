@@ -89,14 +89,15 @@ export default {
     })
   },
   destroyed() {
-    this.leavePage()
+    this.leavePage(),
+    this.resetVariableTags()
   },
   methods: {
     ...mapActions("browseSubjectsStore", ["fetchTerms", "leavePage"]),
     ...mapActions("topSubjectStore", ["fetchTopSubjectTerms"]),
     ...mapActions("otherSubjectsStore", ["fetchOtherSubject"]),
     ...mapActions("multiTagsStore", ["fetchMultiTagsTerms"]),
-    ...mapActions("variableTagStore", ["fetchVariableTags"]),
+    ...mapActions("variableTagStore", ["fetchVariableTags", "resetVariableTags"]),
 
     onBubbleSelection() {
       this.fairSharingButton = true

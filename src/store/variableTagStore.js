@@ -30,11 +30,15 @@ export const actions = {
         commit("setVariableResponse", response['variableFilter'].data)
         commit("setLoadingStatus", false)
     },
+    resetVariableTags({commit}) {
+        commit('resetVariableResponse');
+    }
 }
 
 export const mutations = {
     setVariableResponse(state, variableResponse) { state.variableResponse = variableResponse },
     setLoadingStatus(state, loadingStatus) { state.loadingStatus = loadingStatus},
+    resetVariableResponse(state) {state.variableResponse = []}
 }
 const variableTagStore = {
     namespaced: true,
