@@ -247,13 +247,20 @@ export default {
         console.log("ALL DOMAINS")
         await this.fetchAllRecordTypes()
         this.allRecords = this.allRecordTypes["records"].map(({name}) => name)
-        await this.fetchTopDomainTerms(this.allRecords)
-        this.allDomainData["children"] = this.domainsType
-        for (let child of this.allDomainData["children"]) {
-          if (child["children"] && child["children"].length) {
-            child["totalChildren"] = child["children"].length
-          }
-        }
+        //Using variableFilter query
+        await this.fetchVariableTags([this.allRecords, null, null, 'domain'])
+        console.log("variableResponse::", this.variableResponse)
+        this.variableFilter = true
+        this.allDomainData["children"] = this.variableResponse
+
+
+        // await this.fetchTopDomainTerms(this.allRecords)
+        // this.allDomainData["children"] = this.domainsType
+        // for (let child of this.allDomainData["children"]) {
+        //   if (child["children"] && child["children"].length) {
+        //     child["totalChildren"] = child["children"].length
+        //   }
+        // }
       }
     },
 
