@@ -236,8 +236,8 @@ export default {
 
     filterNoRecordSubject(subject) {
       const filteredSubTasks = subject["children"]
-        .filter( item => item["totalChildren"] > 0)
-        .map( item =>  this.filterNoRecordSubject(item))
+        .filter(item => item["totalChildren"] > 0)
+        .map(item =>  this.filterNoRecordSubject(item))
       return {
         ...subject,
         children: filteredSubTasks
@@ -257,7 +257,7 @@ export default {
     displayAllTopSubjects(subjects) {
       const fetchedSubjectNames = subjects.map(({ id }) => id)
       //All the selected resource
-      const missingSubject = this.topSubjects.filter( ({ id }) =>!fetchedSubjectNames.includes(id));
+      const missingSubject = this.topSubjects.filter(({ id }) =>!fetchedSubjectNames.includes(id));
       if (missingSubject && missingSubject.length) {
         missingSubject.forEach((subject) => {
           this.allSubjectsData["children"].push(subject)
@@ -389,8 +389,8 @@ export default {
       series.links.template.set("strength", 0.5)
 
       //When all four subjects have no children bubble size is same
-      const noChild = this.allSubjectsData["children"].every(({totalChildren}) => totalChildren === 0 )
-      const noRecords = this.allSubjectsData["children"].every(child => child["records_count"] === undefined )
+      const noChild = this.allSubjectsData["children"].every(({totalChildren}) => totalChildren === 0)
+      const noRecords = this.allSubjectsData["children"].every(child => child["records_count"] === undefined)
       if (noChild  || noRecords) {
         series.setAll({
           minRadius: 100,
@@ -409,7 +409,7 @@ export default {
         else {
           nodeName = node["name"]
         }
-        if( this.itemClicked["name"] !== nodeName) {
+        if(this.itemClicked["name"] !== nodeName) {
           this.itemClicked["id"] = node["id"]
           this.itemClicked["name"] = nodeName
           console.log("itemClicked::", this.itemClicked["name"])

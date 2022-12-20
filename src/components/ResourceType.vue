@@ -92,7 +92,7 @@ export default {
       const otherResourceType = otherResources.flatMap(child => child)
 
       //When user lands on resource type after selecting the Subject type & Domain  type
-      if(Object.keys(this.getSubject).length && this.getDomain !== "" ){
+      if(Object.keys(this.getSubject).length && this.getDomain !== ""){
         console.log("SUBJECT & DOMAIN")
         this.subjectSelected = this.getSubject["name"].toLowerCase()
         this.domainSelected = this.getDomain.toLowerCase()
@@ -117,7 +117,7 @@ export default {
       }
 
       //When user lands on resource type after selecting the Domain  type
-      if(!Object.keys(this.getSubject).length && this.getDomain !== "" ){
+      if(!Object.keys(this.getSubject).length && this.getDomain !== ""){
         console.log("ONLY DOMAIN")
         this.domainSelected = this.getDomain.toLowerCase()
         //Using Non Exact multiTagFilter Query

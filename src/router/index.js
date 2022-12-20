@@ -27,13 +27,11 @@ let routes = [
     name: "SubjectTypeView",
     path: "/subject",
     component: SubjectTypeView,
-
   },
   {
     name: "DomainTypeView",
     path: "/domain",
     component: DomainTypeView,
-
   }
 ]
 

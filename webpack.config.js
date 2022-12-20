@@ -3,9 +3,9 @@ const VueLoaderPlugin = require("vue-loader/dist/plugin");
 
 const path = require("path");
 const webpack = require('webpack');
-const dotenv = require('dotenv').config( {
+const dotenv = require('dotenv').config({
   path: path.join(__dirname, '.env')
-} );
+});
 
 module.exports = {
   mode: "development",
@@ -61,9 +61,9 @@ module.exports = {
   plugins: [
     // make sure to include the plugin for the magic
     new VueLoaderPlugin(),
-    new webpack.DefinePlugin( {
+    new webpack.DefinePlugin({
       "process.env": dotenv.parsed
-    } ),
+    }),
   ],
 
 };

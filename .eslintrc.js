@@ -57,7 +57,8 @@ module.exports = {
         'allowSingleLine': true
       }
     ],
-    "indent": ["error", 2]
+    "indent": ["error", 2],
+    "space-in-parens": ["error", "never"]
   },
   parser: "vue-eslint-parser",
   parserOptions: {
