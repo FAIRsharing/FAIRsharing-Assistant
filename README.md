@@ -1,4 +1,4 @@
-# fairassist
+# FAIRsharing-Assistant
 
 ## Project setup
 ```
