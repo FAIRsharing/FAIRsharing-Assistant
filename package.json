@@ -5,8 +5,12 @@
   "scripts": {
     "serve": "vue-cli-service serve --port 8082",
     "build": "vue-cli-service build",
-    "test:unit": "vue-cli-service test:unit",
-    "lint": "vue-cli-service lint"
+    "test:unit": "vue-cli-service test:unit --coverage",
+    "lint": "vue-cli-service lint",
+    "lint:fix": "vue-cli-service lint --fix",
+    "codacy": "cat ./coverage/lcov.info | codacy-coverage -t ",
+    "doc:full": "jsdoc -c documentation/doc.conf.json -R README.md",
+    "doc:dev": "jsdoc -c documentatioN/doc.conf.json -d docTemp"
   },
   "dependencies": {
     "@amcharts/amcharts5": "^5.2.26",

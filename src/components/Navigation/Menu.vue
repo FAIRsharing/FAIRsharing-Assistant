@@ -1,27 +1,27 @@
 <template>
   <div
-      class="navSecond d-flex justify-space-around align-center full-width"
+    class="navSecond d-flex justify-space-around align-center full-width"
   >
     <nav class="full-width">
       <ul
-          class="d-flex flex-row align-center px-0 justify-space-around"
+        class="d-flex flex-row align-center px-0 justify-space-around"
       >
         <li
-            v-for="(item, itemIndex) in links"
-            :key="'navBarTopMenuItem_' + itemIndex"
-            class="ma-5"
+          v-for="(item, itemIndex) in links"
+          :key="'navBarTopMenuItem_' + itemIndex"
+          class="ma-5"
         >
           <v-btn
-              :small="$vuetify.breakpoint.mdAndDown"
-              :x-large="$vuetify.breakpoint.xlOnly"
-              class="mr-1 mt-sm-1 menuLinks"
-              :class="{'px-2': $vuetify.breakpoint.lgAndDown}"
-              :color="item.color"
-              :outlined="!item.active"
-              :to="item.link"
-              width="100%"
-              min-width="167px"
-              max-width="184px"
+            :small="$vuetify.breakpoint.mdAndDown"
+            :x-large="$vuetify.breakpoint.xlOnly"
+            class="mr-1 mt-sm-1 menuLinks"
+            :class="{'px-2': $vuetify.breakpoint.lgAndDown}"
+            :color="item.color"
+            :outlined="!item.active"
+            :to="item.link"
+            width="100%"
+            min-width="167px"
+            max-width="184px"
           >
             <span :class="['white--text',{'primary--text': !item.active}, {'accent3--text': item.primary && !item.active}]">{{ item.label }}</span>
           </v-btn>

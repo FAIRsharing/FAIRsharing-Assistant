@@ -1,14 +1,15 @@
 <template>
   <div>
-    <p class="ma-0">Link to FAIRsharing:
+    <p class="ma-0">
+      Link to FAIRsharing:
       <!-- Resource Page Button -->
       <v-btn
-          v-if="currentRouteName === 'ResourceTypeView'"
-          v-bind="button['attributes']"
-          :disabled="!fairSharingButton"
-          :href="resourceRedirectionLink"
+        v-if="currentRouteName === 'ResourceTypeView'"
+        v-bind="button['attributes']"
+        :disabled="!fairSharingButton"
+        :href="resourceRedirectionLink"
       >
-        {{button["text"]}}
+        {{ button["text"] }}
       </v-btn>
 
       <!-- Subject Page Button -->
@@ -18,17 +19,17 @@
         :disabled="!fairSharingButton"
         :href="subjectRedirectionLink"
       >
-        {{button["text"]}}
+        {{ button["text"] }}
       </v-btn>
 
       <!-- Domain Page Button -->
       <v-btn
-          v-else-if="currentRouteName === 'DomainTypeView'"
-          v-bind="button['attributes']"
-          :disabled="!fairSharingButton"
-          :href="domainRedirectionLink"
+        v-else-if="currentRouteName === 'DomainTypeView'"
+        v-bind="button['attributes']"
+        :disabled="!fairSharingButton"
+        :href="domainRedirectionLink"
       >
-        {{button["text"]}}
+        {{ button["text"] }}
       </v-btn>
     </p>
   </div>
@@ -40,10 +41,10 @@ import StringMixin from "@/utils/stringMixin.js"
 
 export default {
   name: "FairSharingLink",
-  props:[
-    "fairSharingButton"
-  ],
   mixins: [StringMixin],
+  props:{
+    fairSharingButton: Boolean,
+  },
   data:() => {
     return {
       fairSharingURL: process.env.VUE_APP_FAIRSHARING_URL,

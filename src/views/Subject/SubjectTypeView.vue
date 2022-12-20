@@ -1,16 +1,31 @@
 <template>
   <div>
-  <p>This is a Subject View</p>
-    <p class="ma-0 text-capitalize" v-if="(getTopResource || getResource)">Resource Type Selected: {{getResource ? getResource : getTopResource}}</p>
-    <p class="ma-0 text-capitalize" v-if="showSubject">Subject Type Selected: {{ getSubject["name"] }}</p>
-    <p class="ma-0 text-capitalize" v-if="getDomain">Domain Type Selected: {{getDomain}}</p>
+    <p>This is a Subject View</p>
+    <p
+      v-if="(getTopResource || getResource)"
+      class="ma-0 text-capitalize"
+    >
+      Resource Type Selected: {{ getResource ? getResource : getTopResource }}
+    </p>
+    <p
+      v-if="showSubject"
+      class="ma-0 text-capitalize"
+    >
+      Subject Type Selected: {{ getSubject["name"] }}
+    </p>
+    <p
+      v-if="getDomain"
+      class="ma-0 text-capitalize"
+    >
+      Domain Type Selected: {{ getDomain }}
+    </p>
     <FairSharingLink
-    :fairSharingButton="fairSharingButton"
-  />
+      :fair-sharing-button="fairSharingButton"
+    />
     <SubjectType
-    @enableFairSharingButton="enableFairSharingButton"
-    @showSubjectSelected="showSubjectSelected"
-  />
+      @enableFairSharingButton="enableFairSharingButton"
+      @showSubjectSelected="showSubjectSelected"
+    />
   </div>
 </template>
 

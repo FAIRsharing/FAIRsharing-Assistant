@@ -1,19 +1,19 @@
 <template>
   <v-app-bar
-      id="mainHeader"
-      short
-      height="150"
-      max-height="150"
-      class="header-container"
-      :class="[{'largeScreen': $vuetify.breakpoint.xlOnly}, {'smallScreen': $vuetify.breakpoint.mdAndDown}]"
+    id="mainHeader"
+    short
+    height="150"
+    max-height="150"
+    class="header-container"
+    :class="[{'largeScreen': $vuetify.breakpoint.xlOnly}, {'smallScreen': $vuetify.breakpoint.mdAndDown}]"
   >
     <!-- First Level Menu -->
     <div
-        class="navFirst d-flex"
-        :class="{'full-width': $vuetify.breakpoint.mdAndDown}"
+      class="navFirst d-flex"
+      :class="{'full-width': $vuetify.breakpoint.mdAndDown}"
     >
       <router-link to="/">
-          <span class="blue">FAIR</span><span class="black">assist</span><span class="blue">.org</span>
+        <span class="blue">FAIR</span><span class="black">assist</span><span class="blue">.org</span>
       </router-link>
     </div>
   </v-app-bar>

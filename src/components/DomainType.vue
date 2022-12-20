@@ -2,17 +2,19 @@
   <div>
     <v-fade-transition v-if="loading">
       <v-overlay
-          :absolute="false"
-          opacity="0.8"
+        :absolute="false"
+        opacity="0.8"
       >
         <Loaders />
       </v-overlay>
     </v-fade-transition>
 
-    <div id="domainBubbleChart" class="charts" ref="chartdiv" />
-
+    <div
+      id="domainBubbleChart"
+      ref="chartdiv"
+      class="charts"
+    />
   </div>
-
 </template>
 
 <script>

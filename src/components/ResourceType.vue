@@ -1,18 +1,20 @@
 <template>
-<div>
-  <v-fade-transition v-if="loading">
-    <v-overlay
+  <div>
+    <v-fade-transition v-if="loading">
+      <v-overlay
         :absolute="false"
         opacity="0.8"
-    >
-      <Loaders />
-    </v-overlay>
-  </v-fade-transition>
+      >
+        <Loaders />
+      </v-overlay>
+    </v-fade-transition>
 
-  <div id="resourceBubbleChart" class="charts" ref="chartdiv" />
-
-</div>
-
+    <div
+      id="resourceBubbleChart"
+      ref="chartdiv"
+      class="charts"
+    />
+  </div>
 </template>
 
 <script>
