@@ -140,10 +140,10 @@ export default {
       }
 
       //When user lands on subject type after selecting the resource & domain type
-     if (this.getResource !== '' && this.getDomain !== '') {
-       console.log("OTHER RESOURCE & DOMAIN")
-       this.resourceSelected = this.getResource.toLowerCase()
-       this.domainSelected = this.getDomain.toLowerCase()
+      if (this.getResource !== '' && this.getDomain !== '') {
+        console.log("OTHER RESOURCE & DOMAIN")
+        this.resourceSelected = this.getResource.toLowerCase()
+        this.domainSelected = this.getDomain.toLowerCase()
 
         //Using variableFilter query
         await this.fetchVariableTags([this.resourceSelected, null, this.domainSelected, 'subject'])
@@ -154,7 +154,7 @@ export default {
         // this.countRecords(this.allSubjectsData)
         // this.allSubjectsData = this.filterNoRecordSubject(this.allSubjectsData)
         this.displayAllTopSubjects(this.allSubjectsData["children"])
-    }
+      }
 
       //When user lands on subject type after selecting the TOP Resource type
       if(this.getTopResource !== '' && this.getResource === '' && this.getDomain === '') {
@@ -211,8 +211,8 @@ export default {
         // this.allSubjectsData["label"] = "Subject"
       }
       //When user lands on subject type after selecting the domain type
-        if (this.getTopResource === '' && this.getResource === '' && this.getDomain !== ''){
-          console.log("ONLY DOMAIN")
+      if (this.getTopResource === '' && this.getResource === '' && this.getDomain !== ''){
+        console.log("ONLY DOMAIN")
         this.domainSelected = this.getDomain.toLowerCase()
 
         //Using variableFilter query
@@ -234,10 +234,10 @@ export default {
       }
     },
 
-     filterNoRecordSubject(subject) {
+    filterNoRecordSubject(subject) {
       const filteredSubTasks = subject["children"]
-          .filter( item => item["totalChildren"] > 0)
-          .map( item =>  this.filterNoRecordSubject(item))
+        .filter( item => item["totalChildren"] > 0)
+        .map( item =>  this.filterNoRecordSubject(item))
       return {
         ...subject,
         children: filteredSubTasks
@@ -405,7 +405,8 @@ export default {
         let nodeName
         if (node["label"]) {
           nodeName = node["label"]
-        } else {
+        }
+        else {
           nodeName = node["name"]
         }
         if( this.itemClicked["name"] !== nodeName) {

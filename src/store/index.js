@@ -15,18 +15,18 @@ import multiTagsNonExactStore from "./multiTagsNonExactStore"
 Vue.use(Vuex);
 
 export default new Vuex.Store({
-    namespaced: true,
-    modules: {
-        browseSubjectsStore,
-        topSubjectStore,
-        otherSubjectsStore,
-        bubbleSelectedStore,
-        recordTypeStore,
-        subjectStore,
-        topDomainsStore,
-        multiTagsStore,
-        variableTagStore,
-        multiTagsNonExactStore
-    }
+  namespaced: true,
+  modules: {
+    browseSubjectsStore,
+    topSubjectStore,
+    otherSubjectsStore,
+    bubbleSelectedStore,
+    recordTypeStore,
+    subjectStore,
+    topDomainsStore,
+    multiTagsStore,
+    variableTagStore,
+    multiTagsNonExactStore
+  }
 })
 

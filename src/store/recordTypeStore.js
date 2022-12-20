@@ -6,46 +6,46 @@ const CLIENT = new GraphClient(),
   RECORD_TYPE = JSON.parse(JSON.stringify(recordType))
 
 export const state = {
-    recordTypes: [],
-    allRecordTypes: [],
-    error: false,
-    loadingData: false,
+  recordTypes: [],
+  allRecordTypes: [],
+  error: false,
+  loadingData: false,
 }
 
 export const actions = {
-    async fetchRecordTypes({commit}, id) {
-        commit("setLoadingData", true)
-        RECORD_TYPE.queryParam= {
-            id: id
-        }
-        let response = await CLIENT.executeQuery(RECORD_TYPE);
-        commit("setRecordTypes", response['recordType'])
-        commit("setLoadingData", false)
-    },
-    async fetchAllRecordTypes({commit}) {
-        commit("setLoadingData", true)
-        let response = await CLIENT.executeQuery(allRecordsTypes);
-        commit("setAllRecordTypes", response['recordTypes'])
-        commit("setLoadingData", false)
-    },
-    resetRecords({commit}) {
-        commit('resetRecordTypes');
-        commit('resetAllRecordTypes');
+  async fetchRecordTypes({commit}, id) {
+    commit("setLoadingData", true)
+    RECORD_TYPE.queryParam= {
+      id: id
     }
+    let response = await CLIENT.executeQuery(RECORD_TYPE);
+    commit("setRecordTypes", response['recordType'])
+    commit("setLoadingData", false)
+  },
+  async fetchAllRecordTypes({commit}) {
+    commit("setLoadingData", true)
+    let response = await CLIENT.executeQuery(allRecordsTypes);
+    commit("setAllRecordTypes", response['recordTypes'])
+    commit("setLoadingData", false)
+  },
+  resetRecords({commit}) {
+    commit('resetRecordTypes');
+    commit('resetAllRecordTypes');
+  }
 }
 
 export const mutations = {
-    setRecordTypes(state, recordTypes) { state.recordTypes = recordTypes },
-    setAllRecordTypes(state, allRecordTypes) { state.allRecordTypes = allRecordTypes },
-    setLoadingData(state, loadingData) { state.loadingData = loadingData},
-    resetRecordTypes(state) {state.recordTypes = []},
-    resetAllRecordTypes(state) {state.allRecordTypes = []},
+  setRecordTypes(state, recordTypes) { state.recordTypes = recordTypes },
+  setAllRecordTypes(state, allRecordTypes) { state.allRecordTypes = allRecordTypes },
+  setLoadingData(state, loadingData) { state.loadingData = loadingData},
+  resetRecordTypes(state) {state.recordTypes = []},
+  resetAllRecordTypes(state) {state.allRecordTypes = []},
 }
 const recordTypeStore = {
-    namespaced: true,
-    state,
-    actions,
-    mutations,
+  namespaced: true,
+  state,
+  actions,
+  mutations,
 }
 
 export default recordTypeStore

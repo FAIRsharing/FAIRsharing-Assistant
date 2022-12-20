@@ -359,7 +359,8 @@ export default {
         let nodeName
         if (node["label"]) {
           nodeName = node["label"]
-        } else {
+        }
+        else {
           nodeName = node["name"]
         }
         if(this.itemClicked["name"] !== nodeName) {

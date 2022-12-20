@@ -5,10 +5,10 @@ import light from './theme'
 Vue.use(Vuetify);
 
 export default new Vuetify({
-    theme: {
-        themes: {light},
-        options: {
-            customProperties: true,
-        },
+  theme: {
+    themes: {light},
+    options: {
+      customProperties: true,
     },
+  },
 });

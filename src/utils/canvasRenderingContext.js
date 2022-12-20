@@ -4,6 +4,6 @@
  */
 
 export  function canvasGetImageData(canvas) {
-    return canvas.getContext("2d", {willReadFrequently: true});
+  return canvas.getContext("2d", {willReadFrequently: true});
 }
 

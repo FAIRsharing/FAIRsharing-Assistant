@@ -68,18 +68,18 @@ export default {
     topResourceSelected() {
       let topResource;
       switch(this.getTopResource) {
-        case "Databases":
-          topResource = "Database"
-          break;
-        case "Standards":
-          topResource = "Standard"
-          break;
-        case "Policies":
-          topResource = "Policy"
-          break;
-        default:
-          topResource = this.getTopResource;
-          break;
+      case "Databases":
+        topResource = "Database"
+        break;
+      case "Standards":
+        topResource = "Standard"
+        break;
+      case "Policies":
+        topResource = "Policy"
+        break;
+      default:
+        topResource = this.getTopResource;
+        break;
       }
       return topResource
     },
@@ -96,10 +96,11 @@ export default {
       if (this.domainSelected && this.subjectSelected) {
         if (this.resourceSelected){
           return `${this.fairSharingURL}/search?fairsharingRegistry=${this.topResourceSelected}&recordType=${this.resourceSelected}&subjects=${this.subjectSelected}&domains=${this.domainSelected}`
-      } else {
-        return `${this.fairSharingURL}/search?fairsharingRegistry=${this.topResourceSelected}&subjects=${this.subjectSelected}&domains=${this.domainSelected}`
+        }
+        else {
+          return `${this.fairSharingURL}/search?fairsharingRegistry=${this.topResourceSelected}&subjects=${this.subjectSelected}&domains=${this.domainSelected}`
+        }
       }
-    }
       else if (this.subjectSelected && this.resourceSelected) {
         return `${this.fairSharingURL}/search?fairsharingRegistry=${this.topResourceSelected}&recordType=${this.resourceSelected}&subjects=${this.subjectSelected}`
       }

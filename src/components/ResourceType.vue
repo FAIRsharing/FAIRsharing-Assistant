@@ -86,101 +86,101 @@ export default {
       this.allRecords = await restClient.getRecordsData()
     },
 
-   async displayResources() {
-     //Fetching the children from resourceType json data
-     const otherResources = this.allResourceData["children"].map(({children}) => children)
-     const otherResourceType = otherResources.flatMap(child => child)
+    async displayResources() {
+      //Fetching the children from resourceType json data
+      const otherResources = this.allResourceData["children"].map(({children}) => children)
+      const otherResourceType = otherResources.flatMap(child => child)
 
-     //When user lands on resource type after selecting the Subject type & Domain  type
-     if(Object.keys(this.getSubject).length && this.getDomain !== "" ){
-       console.log("SUBJECT & DOMAIN")
-       this.subjectSelected = this.getSubject["name"].toLowerCase()
-       this.domainSelected = this.getDomain.toLowerCase()
-       //Using Non Exact multiTagFilter Query
-       await this.fetchNonExactMultiTagsTerms([null, this.subjectSelected, this.domainSelected])
+      //When user lands on resource type after selecting the Subject type & Domain  type
+      if(Object.keys(this.getSubject).length && this.getDomain !== "" ){
+        console.log("SUBJECT & DOMAIN")
+        this.subjectSelected = this.getSubject["name"].toLowerCase()
+        this.domainSelected = this.getDomain.toLowerCase()
+        //Using Non Exact multiTagFilter Query
+        await this.fetchNonExactMultiTagsTerms([null, this.subjectSelected, this.domainSelected])
 
-       //Using variableFilter query
-       // await this.fetchVariableTags([null, this.subjectSelected, this.domainSelected, "resource"])
-       // console.log("this.variableResponse::", this.variableResponse)
-       // console.log("otherResourceType::", otherResourceType)
-       //Assigning total number of fairsharingRecords to resourceTypes
+        //Using variableFilter query
+        // await this.fetchVariableTags([null, this.subjectSelected, this.domainSelected, "resource"])
+        // console.log("this.variableResponse::", this.variableResponse)
+        // console.log("otherResourceType::", otherResourceType)
+        //Assigning total number of fairsharingRecords to resourceTypes
 
-       for (let childResource of otherResourceType) {
-         childResource["value"] = 0
-         this.fairSharingRecords.filter(ele => {
-           if (ele.type === this.formatString(childResource.name)) {
-             console.log("ele.type::", ele.type)
-             childResource["value"]++
-           }
-         })
-       }
-     }
+        for (let childResource of otherResourceType) {
+          childResource["value"] = 0
+          this.fairSharingRecords.filter(ele => {
+            if (ele.type === this.formatString(childResource.name)) {
+              console.log("ele.type::", ele.type)
+              childResource["value"]++
+            }
+          })
+        }
+      }
 
-     //When user lands on resource type after selecting the Domain  type
-     if(!Object.keys(this.getSubject).length && this.getDomain !== "" ){
-       console.log("ONLY DOMAIN")
-       this.domainSelected = this.getDomain.toLowerCase()
-       //Using Non Exact multiTagFilter Query
-       await this.fetchNonExactMultiTagsTerms([null, null, this.domainSelected])
+      //When user lands on resource type after selecting the Domain  type
+      if(!Object.keys(this.getSubject).length && this.getDomain !== "" ){
+        console.log("ONLY DOMAIN")
+        this.domainSelected = this.getDomain.toLowerCase()
+        //Using Non Exact multiTagFilter Query
+        await this.fetchNonExactMultiTagsTerms([null, null, this.domainSelected])
 
-       //Using variableFilter query
-       // await this.fetchVariableTags([null, null, this.domainSelected, "resource"])
-       // console.log("this.variableResponse::", this.variableResponse)
-       // console.log("otherResourceType::", otherResourceType)
-       // //Assigning total number of fairsharingRecords to resourceTypes
-       //
-       for (let childResource of otherResourceType) {
-         childResource["value"] = 0
-         this.fairSharingRecords.filter(ele => {
-           if (ele.type === this.formatString(childResource.name)) {
-             console.log("ele.type::", ele.type)
-             childResource["value"]++
-           }
-         })
-       }
-     }
+        //Using variableFilter query
+        // await this.fetchVariableTags([null, null, this.domainSelected, "resource"])
+        // console.log("this.variableResponse::", this.variableResponse)
+        // console.log("otherResourceType::", otherResourceType)
+        // //Assigning total number of fairsharingRecords to resourceTypes
+        //
+        for (let childResource of otherResourceType) {
+          childResource["value"] = 0
+          this.fairSharingRecords.filter(ele => {
+            if (ele.type === this.formatString(childResource.name)) {
+              console.log("ele.type::", ele.type)
+              childResource["value"]++
+            }
+          })
+        }
+      }
 
       //When User lands on Resource page after selecting the Subject type
-     if (Object.keys(this.getSubject).length && this.getDomain === "") {
-       // console.log("Subject Selected::", this.getSubject)
-       console.log("ONLY SUBJECT")
-       this.subjectSelected = this.getSubject["name"].toLowerCase()
-       //Using Non Exact multiTagFilter Query
-       await this.fetchNonExactMultiTagsTerms([null, this.subjectSelected, null])
-       // await this.fetchSubjectRecords(this.getSubject["id"])
-       // console.log("this.subjectRecords::", this.subjectRecords)
-       // console.log("otherResourceType::", otherResourceType)
-       //Assigning total number of fairsharingRecords to resourceTypes
-       for (let childResource of otherResourceType) {
-         childResource["value"] = 0
-        this.fairSharingRecords.filter(ele => {
-          if (ele.type === this.formatString(childResource.name)) {
-            console.log("ele.type::", ele.type)
-            childResource["value"]++
+      if (Object.keys(this.getSubject).length && this.getDomain === "") {
+        // console.log("Subject Selected::", this.getSubject)
+        console.log("ONLY SUBJECT")
+        this.subjectSelected = this.getSubject["name"].toLowerCase()
+        //Using Non Exact multiTagFilter Query
+        await this.fetchNonExactMultiTagsTerms([null, this.subjectSelected, null])
+        // await this.fetchSubjectRecords(this.getSubject["id"])
+        // console.log("this.subjectRecords::", this.subjectRecords)
+        // console.log("otherResourceType::", otherResourceType)
+        //Assigning total number of fairsharingRecords to resourceTypes
+        for (let childResource of otherResourceType) {
+          childResource["value"] = 0
+          this.fairSharingRecords.filter(ele => {
+            if (ele.type === this.formatString(childResource.name)) {
+              console.log("ele.type::", ele.type)
+              childResource["value"]++
+            }
+          })
+        }
+      }
+      //When User lands on Resource page as an entry point
+      if(this.getResource === "" && !Object.keys(this.getSubject).length && this.getDomain === "") {
+        console.log("ALL RESOURCES")
+        this.allRecords = await restClient.getRecordsData()
+        //Fetching the resource/records id children record from the graphQl query
+        const resourceIds = this.allRecords.map(({id}) => id)
+        // Using Promise.all the records are fetched in parallel which optimises the performance
+        await Promise.all(resourceIds.map(async (id) => {
+          await this.fetchRecordTypes(id)
+          this.recordTypesList.push(this.recordTypes)
+        }));
+        //Assigning total number of fairsharingRecords to resourceTypes
+        otherResourceType.filter(item => {
+          const commonItem = this.recordTypesList.find(ele => this.formatString(item.name) === ele.name)
+          if (this.formatString(item.name) === commonItem.name) {
+            item.value = commonItem["fairsharingRecords"].length
           }
         })
-       }
-     }
-     //When User lands on Resource page as an entry point
-     if(this.getResource === "" && !Object.keys(this.getSubject).length && this.getDomain === "") {
-       console.log("ALL RESOURCES")
-       this.allRecords = await restClient.getRecordsData()
-       //Fetching the resource/records id children record from the graphQl query
-       const resourceIds = this.allRecords.map(({id}) => id)
-       // Using Promise.all the records are fetched in parallel which optimises the performance
-       await Promise.all(resourceIds.map(async (id) => {
-         await this.fetchRecordTypes(id)
-         this.recordTypesList.push(this.recordTypes)
-       }));
-       //Assigning total number of fairsharingRecords to resourceTypes
-       otherResourceType.filter(item => {
-         const commonItem = this.recordTypesList.find(ele => this.formatString(item.name) === ele.name)
-         if (this.formatString(item.name) === commonItem.name) {
-           item.value = commonItem["fairsharingRecords"].length
-         }
-       })
-     }
-  },
+      }
+    },
     getCircles() {
       // Create root element
       let root = am5.Root.new(this.$refs.chartdiv);
@@ -204,27 +204,27 @@ export default {
       }));
       // Create series
       let series = container.children.push(am5hierarchy.ForceDirected.new(root, {
-          ariaLabel: "FAIRassist: Resource Type",
-          singleBranchOnly: false,
-          downDepth: 1,
-          upDepth: 1,
-          topDepth: 1,
-          initialDepth: 0,
-          valueField: "value",
-          categoryField: "name",//Label displayed
-          childDataField: "children",
-          idField: "name",
-          linkWithField: "linkWith",
-          manyBodyStrength: -20,
-          centerStrength: 0.8,
-          minRadius: 60,
-          // maxRadius: 90,
-          // minRadius: am5.percent(6),
-          maxRadius: am5.percent(10),
+        ariaLabel: "FAIRassist: Resource Type",
+        singleBranchOnly: false,
+        downDepth: 1,
+        upDepth: 1,
+        topDepth: 1,
+        initialDepth: 0,
+        valueField: "value",
+        categoryField: "name",//Label displayed
+        childDataField: "children",
+        idField: "name",
+        linkWithField: "linkWith",
+        manyBodyStrength: -20,
+        centerStrength: 0.8,
+        minRadius: 60,
+        // maxRadius: 90,
+        // minRadius: am5.percent(6),
+        maxRadius: am5.percent(10),
       }));
 
       series.get("colors").setAll({
-          step: 2
+        step: 2
       });
 
       series.labels.template.setAll({
@@ -252,7 +252,8 @@ export default {
               topResourceSelected: this.itemClicked,
               childResourceSelected: ''
             })
-          } else {
+          }
+          else {
             this.itemClicked = node["name"]
             this.$store.commit("bubbleSelectedStore/resourceSelected", {
               topResourceSelected: nodeParent,
