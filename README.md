@@ -1,5 +1,7 @@
 # FAIRsharing-Assistant
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/4c40a85c5c314e9ca09522ec6122c5db)](https://app.codacy.com/gh/FAIRsharing/FAIRsharing-Assistant?utm_source=github.com&utm_medium=referral&utm_content=FAIRsharing/FAIRsharing-Assistant&utm_campaign=Badge_Grade_Settings)
+
 ## Project setup
 ```
 npm install
