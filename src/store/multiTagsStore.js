@@ -1,15 +1,11 @@
 import GraphClient from "@/lib/GraphClient/GraphClient.js";
-import multiTagsFilter from "@/lib/GraphClient/queries/multiTagsFilter/multiTagsFilter.json";
+import multiTagsNonExactFilter from "@/lib/GraphClient/queries/multiTagsFilter/multiTagsFilter.json";
 
 const CLIENT = new GraphClient(),
-  MULTI_TAGS = JSON.parse(JSON.stringify(multiTagsFilter))
+  MULTI_TAGS = JSON.parse(JSON.stringify(multiTagsNonExactFilter))
 
 export const state = {
-  result:[],
-  registry:"",
-  type:"",
-  subjects: [],
-  domains: [],
+  fairSharingRecords:[],
   error: false,
   loadingStatus: false,
 }
@@ -19,8 +15,8 @@ export const actions = {
     commit("setLoadingStatus", true)
     MULTI_TAGS.queryParam = {
       recordType: resource,
-      subjectsExact: subject,
-      domainsExact: domain
+      subjects: subject,
+      domains: domain
     }
     //Delete the null/empty parameter
     for (const key in MULTI_TAGS.queryParam) {
@@ -29,23 +25,18 @@ export const actions = {
       }
     }
     let response = await CLIENT.executeQuery(MULTI_TAGS);
-    commit("setResult", response['multiTagFilter'])
-
-    this.subjects = response['multiTagFilter'].map(({subjects}) => subjects)
-    commit("setSubjects", this.subjects)
-
-    this.domains = response['multiTagFilter'].map(({domains}) => domains)
-
-    commit("setDomains", this.domains)
+    commit("setFairSharingRecords", response['multiTagFilter'])
     commit("setLoadingStatus", false)
   },
+  resetMultiTags({commit}) {
+    commit('resetFairSharingRecords');
+  }
 }
 
 export const mutations = {
-  setResult(state, result) { state.result = result },
-  setSubjects(state, subjects) { state.subjects = subjects },
-  setDomains(state, domains) { state.domains = domains },
+  setFairSharingRecords(state, fairSharingRecords) { state.fairSharingRecords = fairSharingRecords },
   setLoadingStatus(state, loadingStatus) { state.loadingStatus = loadingStatus},
+  resetFairSharingRecords(state) {state.fairSharingRecords = []},
 }
 const multiTagsStore = {
   namespaced: true,

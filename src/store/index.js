@@ -9,7 +9,6 @@ import subjectStore from './subjectStore'
 import topDomainsStore from "./topDomainsStore"
 import multiTagsStore from "./multiTagsStore"
 import variableTagStore from "./variableTagStore";
-import multiTagsNonExactStore from "./multiTagsNonExactStore"
 
 
 Vue.use(Vuex);
@@ -26,7 +25,6 @@ export default new Vuex.Store({
     topDomainsStore,
     multiTagsStore,
     variableTagStore,
-    multiTagsNonExactStore
   }
 })
 

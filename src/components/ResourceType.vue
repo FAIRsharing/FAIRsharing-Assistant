@@ -8,7 +8,6 @@
         <Loaders />
       </v-overlay>
     </v-fade-transition>
-
     <div
       id="resourceBubbleChart"
       ref="chartdiv"
@@ -19,7 +18,6 @@
 
 <script>
 import {mapActions, mapGetters, mapState} from "vuex"
-import RestClient from "@/lib/Client/RESTClient.js"
 import * as am5 from '@amcharts/amcharts5';
 import * as am5hierarchy from "@amcharts/amcharts5/hierarchy";
 import am5themes_Animated from '@amcharts/amcharts5/themes/Animated';
@@ -27,10 +25,6 @@ import { canvasGetImageData } from "@/utils/canvasRenderingContext"
 import { breadCrumbBar } from "@/utils/breadCrumbBar"
 import StringMixin from "@/utils/stringMixin.js"
 import Loaders from "@/components/Loaders"
-import { resourcetype } from '@/data'
-
-
-const restClient = new RestClient();
 
 export default {
   name: 'ResourceType',
@@ -42,17 +36,22 @@ export default {
       fairSharingButton: false,
       showResourceSelected: false,
       allRecords: [],
-      allResourceData: resourcetype,
+      allResourceData: {
+        label: "Resource",
+        name: "Resource",
+        value: 0,
+        children: [],
+      },
       itemClicked: "",
       recordTypesList: [],
     }
   },
   computed:{
-    ...mapState("recordTypeStore", ["recordTypes", "loadingData"]),
+    ...mapState("recordTypeStore", ["allRecordTypes", "recordTypes", "loadingData"]),
     ...mapState("subjectStore", ["subjectRecords", "loadingData"]),
     ...mapGetters("bubbleSelectedStore", ['getResource', 'getSubject', 'getDomain']),
     ...mapState("variableTagStore", ["variableResponse", "loadingStatus"]),
-    ...mapState("multiTagsNonExactStore", ["fairSharingRecords", "loadingStatus"]),
+    ...mapState("multiTagsStore", ["fairSharingRecords", "loadingStatus"]),
   },
 
   async mounted() {
@@ -65,122 +64,108 @@ export default {
   },
   destroyed() {
     this.resetRecords()
-    this.resetNonExactMultiTags()
+    this.resetMultiTags()
     this.resetSubjects()
     this.resetVariableTags()
   },
   methods: {
-    ...mapActions("recordTypeStore", ["fetchRecordTypes", "resetRecords"]),
+    ...mapActions("recordTypeStore", ["fetchAllRecordTypes", "fetchRecordTypes", "resetRecords"]),
     ...mapActions("subjectStore", ["fetchSubjectRecords", "resetSubjects"]),
     ...mapActions("variableTagStore", ["fetchVariableTags", "resetVariableTags"]),
-    ...mapActions("multiTagsNonExactStore", ["fetchNonExactMultiTagsTerms", "resetNonExactMultiTags"]),
-
-    onBubbleSelection() {
+    ...mapActions("multiTagsStore", ["fetchMultiTagsTerms", "resetMultiTags"]),onBubbleSelection() {
       this.fairSharingButton = true
       this.showResourceSelected = true
       this.$emit('enableFairSharingButton', this.fairSharingButton)
       this.$emit('showResourceSelected', this.showResourceSelected)
     },
 
-    async getResourceData() {
-      this.allRecords = await restClient.getRecordsData()
-    },
-
-    async displayResources() {
-      //Fetching the children from resourceType json data
-      const otherResources = this.allResourceData["children"].map(({children}) => children)
-      const otherResourceType = otherResources.flatMap(child => child)
-
-      //When user lands on resource type after selecting the Subject type & Domain  type
-      if(Object.keys(this.getSubject).length && this.getDomain !== ""){
-        console.log("SUBJECT & DOMAIN")
-        this.subjectSelected = this.getSubject["name"].toLowerCase()
-        this.domainSelected = this.getDomain.toLowerCase()
-        //Using Non Exact multiTagFilter Query
-        await this.fetchNonExactMultiTagsTerms([null, this.subjectSelected, this.domainSelected])
-
-        //Using variableFilter query
-        // await this.fetchVariableTags([null, this.subjectSelected, this.domainSelected, "resource"])
-        // console.log("this.variableResponse::", this.variableResponse)
-        // console.log("otherResourceType::", otherResourceType)
-        //Assigning total number of fairsharingRecords to resourceTypes
-
-        for (let childResource of otherResourceType) {
-          childResource["value"] = 0
-          this.fairSharingRecords.filter(ele => {
-            if (ele.type === this.formatString(childResource.name)) {
-              console.log("ele.type::", ele.type)
-              childResource["value"]++
-            }
-          })
-        }
-      }
-
-      //When user lands on resource type after selecting the Domain  type
-      if(!Object.keys(this.getSubject).length && this.getDomain !== ""){
-        console.log("ONLY DOMAIN")
-        this.domainSelected = this.getDomain.toLowerCase()
-        //Using Non Exact multiTagFilter Query
-        await this.fetchNonExactMultiTagsTerms([null, null, this.domainSelected])
-
-        //Using variableFilter query
-        // await this.fetchVariableTags([null, null, this.domainSelected, "resource"])
-        // console.log("this.variableResponse::", this.variableResponse)
-        // console.log("otherResourceType::", otherResourceType)
-        // //Assigning total number of fairsharingRecords to resourceTypes
-        //
-        for (let childResource of otherResourceType) {
-          childResource["value"] = 0
-          this.fairSharingRecords.filter(ele => {
-            if (ele.type === this.formatString(childResource.name)) {
-              console.log("ele.type::", ele.type)
-              childResource["value"]++
-            }
-          })
-        }
-      }
-
-      //When User lands on Resource page after selecting the Subject type
-      if (Object.keys(this.getSubject).length && this.getDomain === "") {
-        // console.log("Subject Selected::", this.getSubject)
-        console.log("ONLY SUBJECT")
-        this.subjectSelected = this.getSubject["name"].toLowerCase()
-        //Using Non Exact multiTagFilter Query
-        await this.fetchNonExactMultiTagsTerms([null, this.subjectSelected, null])
-        // await this.fetchSubjectRecords(this.getSubject["id"])
-        // console.log("this.subjectRecords::", this.subjectRecords)
-        // console.log("otherResourceType::", otherResourceType)
-        //Assigning total number of fairsharingRecords to resourceTypes
-        for (let childResource of otherResourceType) {
-          childResource["value"] = 0
-          this.fairSharingRecords.filter(ele => {
-            if (ele.type === this.formatString(childResource.name)) {
-              console.log("ele.type::", ele.type)
-              childResource["value"]++
-            }
-          })
-        }
-      }
-      //When User lands on Resource page as an entry point
-      if(this.getResource === "" && !Object.keys(this.getSubject).length && this.getDomain === "") {
-        console.log("ALL RESOURCES")
-        this.allRecords = await restClient.getRecordsData()
-        //Fetching the resource/records id children record from the graphQl query
-        const resourceIds = this.allRecords.map(({id}) => id)
-        // Using Promise.all the records are fetched in parallel which optimises the performance
-        await Promise.all(resourceIds.map(async (id) => {
-          await this.fetchRecordTypes(id)
-          this.recordTypesList.push(this.recordTypes)
-        }));
-        //Assigning total number of fairsharingRecords to resourceTypes
-        otherResourceType.filter(item => {
-          const commonItem = this.recordTypesList.find(ele => this.formatString(item.name) === ele.name)
-          if (this.formatString(item.name) === commonItem.name) {
-            item.value = commonItem["fairsharingRecords"].length
+    /**
+     * Calculate the number of fairSharing records for each record type and assign the total
+     * @param {String} resourceSelected - The resource selected
+     * @param {String} subjectSelected - The subject selected
+     * @param {String} domainSelected - The domain selected
+     * @param {Array} otherResourceType - All the recordTypes
+     * @returns {Number} - Number of  each recordsTpe
+     */
+    async calculateRecords(resourceSelected, subjectSelected, domainSelected, otherResourceType) {
+      //Using multiTagFilter Query
+      await this.fetchMultiTagsTerms([resourceSelected, subjectSelected, domainSelected])
+      for (let childResource of otherResourceType) {
+        childResource["value"] = 0
+        this.fairSharingRecords.filter(ele => {
+          if (ele["type"] === this.formatString(childResource["name"])) {
+            childResource["value"]++
           }
         })
       }
     },
+    /**
+     * Creates initial skeleton/structure for resource page as array of objects
+     * Level -1 : 3 Registries (Database, Standards, Policy)
+     * Level -2 : 14 Record types (e.g knowledgebase, repository, metric etc. )
+     * @returns {Array} - Array of objects
+     */
+    async createResourceStructure() {
+      await this.fetchAllRecordTypes()
+      let topResources = [...new Set(this.allRecordTypes["records"].map(({fairsharingRegistry}) => fairsharingRegistry["name"]))]
+      //Removing "Collection" topResource/registry
+      topResources = topResources.filter(item => item !== "Collection")
+      //Converting array of topResource/registry to object
+      const topResourceTypeObj = topResources.map((name) => ({name}))
+      //Creating Array of object for topResource/registry with chidlren (array of objects)
+      topResourceTypeObj.forEach((ele) => {
+        ele["children"] = []
+        this.allRecordTypes["records"].filter(({name, fairsharingRegistry}) => {
+          if(fairsharingRegistry["name"] === ele["name"]) {
+            ele["children"].push({
+              name: this.normalString(name),
+              value: 0
+            })
+          }
+        })
+        this.allResourceData["children"].push(ele)
+      })
+    },
+
+    async displayResources() {
+      await this.createResourceStructure()
+      const otherResources = this.allResourceData["children"].map(({children}) => children)
+      const otherResourceType = otherResources.flatMap(child => child)
+
+      //When User lands on Resource page after selecting the Subject & Domain
+      if(Object.keys(this.getSubject).length && this.getDomain !== ""){
+        console.log("SUBJECT & DOMAIN")
+        this.subjectSelected = this.getSubject["name"].toLowerCase()
+        this.domainSelected = this.getDomain.toLowerCase()
+        await this.calculateRecords(null, this.subjectSelected, this.domainSelected, otherResourceType)
+      }
+
+      //When User lands on Resource page after selecting the Domain
+      if(!Object.keys(this.getSubject).length && this.getDomain !== ""){
+        console.log("ONLY DOMAIN")
+        this.domainSelected = this.getDomain.toLowerCase()
+        await this.calculateRecords(null, null, this.domainSelected, otherResourceType)
+      }
+
+      //When User lands on Resource page after selecting the Subject
+      if (Object.keys(this.getSubject).length && this.getDomain === "") {
+        console.log("ONLY SUBJECT")
+        this.subjectSelected = this.getSubject["name"].toLowerCase()
+        await this.calculateRecords(null, this.subjectSelected, null, otherResourceType)
+      }
+      //When User lands on Resource page as an entry point
+      if(this.getResource === "" && !Object.keys(this.getSubject).length && this.getDomain === "") {
+        console.log("ALL RESOURCES")
+        //Fetching all resources/records
+        await this.fetchAllRecordTypes()
+        this.allRecords = this.allRecordTypes["records"].map(({name}) => name)
+        await this.calculateRecords(this.allRecords, null, null, otherResourceType)
+      }
+    },
+
+    /**
+     * Plot the hierarchy bubble chart using AmCharts5 library
+     */
     getCircles() {
       // Create root element
       let root = am5.Root.new(this.$refs.chartdiv);
@@ -218,8 +203,6 @@ export default {
         manyBodyStrength: -20,
         centerStrength: 0.8,
         minRadius: 60,
-        // maxRadius: 90,
-        // minRadius: am5.percent(6),
         maxRadius: am5.percent(10),
       }));
 
@@ -247,7 +230,6 @@ export default {
         if(this.itemClicked !== node["name"]) {
           if (node["children"] && node["children"].length) {
             this.itemClicked = node["name"]
-
             this.$store.commit("bubbleSelectedStore/resourceSelected", {
               topResourceSelected: this.itemClicked,
               childResourceSelected: ''
@@ -272,8 +254,7 @@ export default {
       setTimeout(() => {
         breadCrumbBar(container, root, series)
       }, 300);
-    }
-  }
+    }}
 }
 </script>
 

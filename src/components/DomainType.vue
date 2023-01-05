@@ -53,7 +53,6 @@ export default {
     ...mapState("topDomainsStore", ["domainsType", "loadingData"]),
     ...mapState("recordTypeStore", ["allRecordTypes", "recordTypes", "loadingData"]),
     ...mapState("variableTagStore", ["variableResponse", "loadingStatus"]),
-    ...mapState("multiTagsStore", ["domains", "loadingStatus"]),
   },
 
   async mounted() {
@@ -73,7 +72,6 @@ export default {
     ...mapActions("subjectStore", ["fetchSubjectRecords"]),
     ...mapActions("topDomainsStore", ["fetchTopDomainTerms", "leavePage"]),
     ...mapActions("variableTagStore", ["fetchVariableTags", "resetVariableTags"]),
-    ...mapActions("multiTagsStore", ["fetchMultiTagsTerms"]),
 
     onBubbleSelection() {
       this.fairSharingButton = true
@@ -101,16 +99,6 @@ export default {
         console.log("variableResponse::", this.variableResponse)
         this.variableFilter = true
         this.allDomainData["children"] = this.variableResponse
-        // //Using topDomains query instead variableFilter query because it is taking more
-        // //than 30secs to get the content which is making the page unresponsive
-        // await this.fetchTopDomainTerms(this.resourceSelected)
-        // console.log("this.domainsType::", this.domainsType)
-        // this.allDomainData["children"] = this.domainsType
-        // for (let child of this.allDomainData["children"]) {
-        //   if (child["children"] && child["children"].length) {
-        //     child["totalChildren"] = child["children"].length
-        //   }
-        // }
       }
 
       //When user lands on domain type after selecting the OtherResource type
@@ -124,22 +112,6 @@ export default {
         console.log("variableResponse::", this.variableResponse)
         this.variableFilter = true
         this.allDomainData["children"] = this.variableResponse
-
-        //Using multiTagFilter query
-        // await this.fetchMultiTagsTerms([this.resourceSelected, null, null])
-        //
-        // let domainsArray = []
-        // for (let childLevelOne of this.domains) {
-        //   for (let childLevelTwo of childLevelOne) {
-        //     domainsArray.push(childLevelTwo)
-        //   }
-        // }
-        // const ids = domainsArray.map(({id}) => id)
-        // const uniqueArray = domainsArray.filter(({id}, index) => !ids.includes(id, index + 1))
-        // console.log("uniqueArray::", uniqueArray)
-        // await this.addRecordNumber(uniqueArray)
-        // this.allDomainData["children"] = uniqueArray
-        // this.countChildren(this.allDomainData)
       }
 
       //When user lands on domain type after selecting the TopResource & SubjectType type
@@ -164,23 +136,6 @@ export default {
         console.log("variableResponse::", this.variableResponse)
         this.variableFilter = true
         this.allDomainData["children"] = this.variableResponse
-
-        //Using multiTagFilter query
-        // await this.fetchMultiTagsTerms([this.resourceSelected, this.subjectSelected, null])
-        //
-        // let domainsArray = []
-        // for (let childLevelOne of this.domains) {
-        //   for (let childLevelTwo of childLevelOne) {
-        //     domainsArray.push(childLevelTwo)
-        //   }
-        // }
-        // const ids = domainsArray.map(({id}) => id)
-        //
-        // const uniqueArray = domainsArray.filter(({id}, index) => !ids.includes(id, index + 1))
-        // console.log("uniqueArray::", uniqueArray)
-        // await this.addRecordNumber(uniqueArray)
-        // this.allDomainData["children"] = uniqueArray
-        // this.countChildren(this.allDomainData)
       }
 
       //When user lands on domain type after selecting the OtherResource & SubjectType type
@@ -195,23 +150,6 @@ export default {
         console.log("variableResponse::", this.variableResponse)
         this.variableFilter = true
         this.allDomainData["children"] = this.variableResponse
-
-        //Using multiTagFilter query
-        // await this.fetchMultiTagsTerms([this.resourceSelected, this.subjectSelected, null])
-        // console.log("this.domains::", this.domains)
-        // let domainsArray = []
-        // for (let childLevelOne of this.domains) {
-        //   for (let childLevelTwo of childLevelOne) {
-        //     domainsArray.push(childLevelTwo)
-        //   }
-        // }
-        // const ids = domainsArray.map(({id}) => id)
-        //
-        // const uniqueArray = domainsArray.filter(({id}, index) => !ids.includes(id, index + 1))
-        // console.log("uniqueArray::", uniqueArray)
-        // await this.addRecordNumber(uniqueArray)
-        // this.allDomainData["children"] = uniqueArray
-        // this.countChildren(this.allDomainData)
       }
 
       //When user lands on domain type after selecting SubjectType type
@@ -225,23 +163,6 @@ export default {
         console.log("variableResponse::", this.variableResponse)
         this.variableFilter = true
         this.allDomainData["children"] = this.variableResponse
-
-        //Using multiTagFilter query
-        // await this.fetchMultiTagsTerms([null, this.subjectSelected, null])
-        // console.log("this.domains::", this.domains)
-        // let domainsArray = []
-        // for (let childLevelOne of this.domains) {
-        //   for (let childLevelTwo of childLevelOne) {
-        //     domainsArray.push(childLevelTwo)
-        //   }
-        // }
-        // const ids = domainsArray.map(({id}) => id)
-        //
-        // const uniqueArray = domainsArray.filter(({id}, index) => !ids.includes(id, index + 1))
-        // console.log("uniqueArray::", uniqueArray)
-        // await this.addRecordNumber(uniqueArray)
-        // this.allDomainData["children"] = uniqueArray
-        // this.countChildren(this.allDomainData)
       }
 
       //Fetching the children from resourceType json data
@@ -254,15 +175,6 @@ export default {
         console.log("variableResponse::", this.variableResponse)
         this.variableFilter = true
         this.allDomainData["children"] = this.variableResponse
-
-
-        // await this.fetchTopDomainTerms(this.allRecords)
-        // this.allDomainData["children"] = this.domainsType
-        // for (let child of this.allDomainData["children"]) {
-        //   if (child["children"] && child["children"].length) {
-        //     child["totalChildren"] = child["children"].length
-        //   }
-        // }
       }
     },
 
@@ -322,8 +234,6 @@ export default {
         manyBodyStrength: -20,
         centerStrength: 0.8,
         minRadius: 20,
-        // maxRadius: 90,
-        // minRadius: am5.percent(2.5),
         maxRadius: am5.percent(20),
       }));
 

@@ -107,7 +107,6 @@ export default {
       else if (this.domainSelected && this.resourceSelected) {
         return `${this.fairSharingURL}/search?fairsharingRegistry=${this.topResourceSelected}&recordType=${this.resourceSelected}&domains=${this.domainSelected}`
       }
-
       else if (this.subjectSelected) {
         return `${this.fairSharingURL}/search?fairsharingRegistry=${this.topResourceSelected}&subjects=${this.subjectSelected}`
       }

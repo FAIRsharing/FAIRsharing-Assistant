@@ -78,7 +78,6 @@ export default {
     ...mapState("topSubjectStore", ["topSubjectBubbleTree", "loadingData"]),
     ...mapState("otherSubjectsStore", ["otherSubjectBubble", "loadingStatus"]),
     ...mapState("subjectStore", ["subjectRecords", "loadingData"]),
-    ...mapState("multiTagsStore", ["result", "subjects", "loadingStatus"]),
     ...mapState("variableTagStore", ["variableResponse", "loadingStatus"]),
     ...mapGetters("otherSubjectsStore", ['loadingStatus']),
     ...mapGetters("bubbleSelectedStore", ['getTopResource','getResource','getSubject', 'getDomain']),
@@ -99,7 +98,6 @@ export default {
     ...mapActions("browseSubjectsStore", ["fetchTerms", "leavePage"]),
     ...mapActions("topSubjectStore", ["fetchTopSubjectTerms"]),
     ...mapActions("otherSubjectsStore", ["fetchOtherSubject"]),
-    ...mapActions("multiTagsStore", ["fetchMultiTagsTerms"]),
     ...mapActions("variableTagStore", ["fetchVariableTags", "resetVariableTags"]),
 
     onBubbleSelection() {
@@ -131,11 +129,8 @@ export default {
         //Using multiTagFilter query
         await this.fetchVariableTags([this.resourceSelected, null, this.domainSelected, 'subject'])
         console.log("variableResponse::", this.variableResponse)
-        // await this.addRecordNumber(this.variableResponse)
         this.variableFilter = true
         this.allSubjectsData["children"] = this.variableResponse
-        // this.countRecords(this.allSubjectsData)
-        // this.allSubjectsData = this.filterNoRecordSubject(this.allSubjectsData)
         this.displayAllTopSubjects(this.allSubjectsData["children"])
       }
 
@@ -151,8 +146,6 @@ export default {
         // await this.addRecordNumber(this.variableResponse)
         this.variableFilter = true
         this.allSubjectsData["children"] = this.variableResponse
-        // this.countRecords(this.allSubjectsData)
-        // this.allSubjectsData = this.filterNoRecordSubject(this.allSubjectsData)
         this.displayAllTopSubjects(this.allSubjectsData["children"])
       }
 
@@ -178,15 +171,6 @@ export default {
         this.variableFilter = true
         this.allSubjectsData["children"] = this.variableResponse
         this.displayAllTopSubjects(this.allSubjectsData["children"])
-
-        // await this.fetchTopSubjectTerms(this.resourceSelected)
-        // this.allSubjectsData["children"] = this.topSubjectBubbleTree
-        // this.displayAllTopSubjects(this.topSubjectBubbleTree)
-        // await this.fetchAllLevelSubjectData()
-        // //Update key "name" to "label" and assign value
-        // let { name: label, ...rest } = this.allSubjectsData;
-        // this.allSubjectsData = { label, ...rest }
-        // this.allSubjectsData["label"] = "Subject"
       }
 
       //When user lands on subject type after selecting the resource type
@@ -199,30 +183,16 @@ export default {
         this.variableFilter = true
         this.allSubjectsData["children"] = this.variableResponse
         this.displayAllTopSubjects(this.allSubjectsData["children"])
-
-        // const resourceTypeData = this.resourceSelected
-        // await this.fetchTopSubjectTerms(resourceTypeData)
-        // this.allSubjectsData["children"] = this.topSubjectBubbleTree
-        // this.displayAllTopSubjects(this.topSubjectBubbleTree)
-        // await this.fetchAllLevelSubjectData()
-        // //Update key "name" to "label" and assign value
-        // let { name: label, ...rest } = this.allSubjectsData;
-        // this.allSubjectsData = { label, ...rest }
-        // this.allSubjectsData["label"] = "Subject"
       }
       //When user lands on subject type after selecting the domain type
       if (this.getTopResource === '' && this.getResource === '' && this.getDomain !== ''){
         console.log("ONLY DOMAIN")
         this.domainSelected = this.getDomain.toLowerCase()
-
         //Using variableFilter query
         await this.fetchVariableTags([null, null, this.domainSelected, 'subject'])
         console.log("variableResponse::", this.variableResponse)
-        // await this.addRecordNumber(this.variableResponse)
         this.variableFilter = true
         this.allSubjectsData["children"] = this.variableResponse
-        // this.countRecords(this.allSubjectsData)
-        // this.allSubjectsData = this.filterNoRecordSubject(this.allSubjectsData)
         this.displayAllTopSubjects(this.allSubjectsData["children"])
       }
       //When user lands on subject type as the entry point in the application
@@ -338,7 +308,7 @@ export default {
       // Create series
       let series = container.children.push(am5hierarchy.ForceDirected.new(root, {
         ariaLabel: "FAIRassist: Subject Type",
-        singleBranchOnly: true,
+        singleBranchOnly: false,
         downDepth: 1,
         upDepth: 1,
         topDepth: 1,
@@ -352,12 +322,7 @@ export default {
         manyBodyStrength: -20,
         centerStrength: 0.8,
         minRadius: 20,
-        // maxRadius: 200,
-        // minRadius: am5.percent(5),
         maxRadius: am5.percent(20),
-        // maxRadius: am5.percent(8),
-        // xField: "x",
-        // yField: "y",
       }));
 
       if (this.browseSubjects) {
