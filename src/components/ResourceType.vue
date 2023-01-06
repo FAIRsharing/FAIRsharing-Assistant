@@ -37,17 +37,18 @@ export default {
       showResourceSelected: false,
       allRecords: [],
       allResourceData: {
-        label: "Resource",
         name: "Resource",
         value: 0,
         children: [],
       },
       itemClicked: "",
       recordTypesList: [],
+      subjectSelected: "",
+      domainSelected: ""
     }
   },
   computed:{
-    ...mapState("recordTypeStore", ["allRecordTypes", "recordTypes", "loadingData"]),
+    ...mapState("recordTypeStore", ["allRecordTypes", "loadingData"]),
     ...mapState("subjectStore", ["subjectRecords", "loadingData"]),
     ...mapGetters("bubbleSelectedStore", ['getResource', 'getSubject', 'getDomain']),
     ...mapState("variableTagStore", ["variableResponse", "loadingStatus"]),
@@ -69,10 +70,12 @@ export default {
     this.resetVariableTags()
   },
   methods: {
-    ...mapActions("recordTypeStore", ["fetchAllRecordTypes", "fetchRecordTypes", "resetRecords"]),
+    ...mapActions("recordTypeStore", ["fetchAllRecordTypes", "resetRecords"]),
     ...mapActions("subjectStore", ["fetchSubjectRecords", "resetSubjects"]),
     ...mapActions("variableTagStore", ["fetchVariableTags", "resetVariableTags"]),
-    ...mapActions("multiTagsStore", ["fetchMultiTagsTerms", "resetMultiTags"]),onBubbleSelection() {
+    ...mapActions("multiTagsStore", ["fetchMultiTagsTerms", "resetMultiTags"]),
+
+    onBubbleSelection() {
       this.fairSharingButton = true
       this.showResourceSelected = true
       this.$emit('enableFairSharingButton', this.fairSharingButton)
@@ -108,6 +111,7 @@ export default {
     async createResourceStructure() {
       await this.fetchAllRecordTypes()
       let topResources = [...new Set(this.allRecordTypes["records"].map(({fairsharingRegistry}) => fairsharingRegistry["name"]))]
+
       //Removing "Collection" topResource/registry
       topResources = topResources.filter(item => item !== "Collection")
       //Converting array of topResource/registry to object
@@ -123,8 +127,11 @@ export default {
             })
           }
         })
+        if (ele["name"] === "Standard") ele["name"] = "Standards"
+        else if (ele["name"] === "Policy") ele["name"] = "Policies"
         this.allResourceData["children"].push(ele)
       })
+      return this.allResourceData
     },
 
     async displayResources() {
@@ -144,14 +151,14 @@ export default {
       if(!Object.keys(this.getSubject).length && this.getDomain !== ""){
         console.log("ONLY DOMAIN")
         this.domainSelected = this.getDomain.toLowerCase()
-        await this.calculateRecords(null, null, this.domainSelected, otherResourceType)
+        await this.calculateRecords(null,null, this.domainSelected, otherResourceType)
       }
 
       //When User lands on Resource page after selecting the Subject
       if (Object.keys(this.getSubject).length && this.getDomain === "") {
         console.log("ONLY SUBJECT")
         this.subjectSelected = this.getSubject["name"].toLowerCase()
-        await this.calculateRecords(null, this.subjectSelected, null, otherResourceType)
+        await this.calculateRecords(null, this.subjectSelected,null, otherResourceType)
       }
       //When User lands on Resource page as an entry point
       if(this.getResource === "" && !Object.keys(this.getSubject).length && this.getDomain === "") {
@@ -159,28 +166,20 @@ export default {
         //Fetching all resources/records
         await this.fetchAllRecordTypes()
         this.allRecords = this.allRecordTypes["records"].map(({name}) => name)
-        await this.calculateRecords(this.allRecords, null, null, otherResourceType)
+        await this.calculateRecords(this.allRecords,null,null, otherResourceType)
       }
     },
 
     /**
-     * Plot the hierarchy bubble chart using AmCharts5 library
+     * Plotting the hierarchy bubble chart using AmCharts5 library
      */
     getCircles() {
-      // Create root element
-      let root = am5.Root.new(this.$refs.chartdiv);
-
+      let data = this.allResourceData; // Set data
+      let root = am5.Root.new(this.$refs.chartdiv); // Create root element
       const canvas = this.$el.querySelector("canvas")
       canvasGetImageData(canvas)
-
-      //To remove amcharts logo
-      root._logo.dispose()
-
-      // Set themes
-      root.setThemes([am5themes_Animated.new(root)]);
-
-      // Set data
-      let data = this.allResourceData;
+      root._logo.dispose() //To remove amcharts logo
+      root.setThemes([am5themes_Animated.new(root)]); // Set themes
       // Create wrapper container
       let container = root.container.children.push(am5.Container.new(root, {
         width: am5.percent(100),
@@ -189,7 +188,7 @@ export default {
       }));
       // Create series
       let series = container.children.push(am5hierarchy.ForceDirected.new(root, {
-        ariaLabel: "FAIRassist: Resource Type",
+        ariaLabel: "Resource Type",
         singleBranchOnly: false,
         downDepth: 1,
         upDepth: 1,
@@ -209,10 +208,7 @@ export default {
       series.get("colors").setAll({
         step: 2
       });
-
-      series.labels.template.setAll({
-        fontSize: 20,
-      });
+      series.labels.template.set("fontSize", 20)
       series.outerCircles.template.states.create("disabled", {
         fillOpacity: 0.1,
         strokeOpacity: 1,
@@ -222,8 +218,6 @@ export default {
       // When a bubble is clicked
       series.nodes.template.events.on("click", (e) => {
         this.onBubbleSelection()
-        // const basicResourceTypes = ['Database', 'Standards', 'Policies'];
-
         const nodeParent = e.target.dataItem._settings.parent.dataContext.name
         const node = e.target.dataItem.dataContext
 

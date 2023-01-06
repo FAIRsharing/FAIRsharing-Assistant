@@ -1,9 +1,7 @@
 import GraphClient from "@/lib/GraphClient/GraphClient.js";
-import recordType from "@/lib/GraphClient/queries/resource/recordType.json";
 import allRecordsTypes from "@/lib/GraphClient/queries/resource/allRecordsTypes.json";
 
-const CLIENT = new GraphClient(),
-  RECORD_TYPE = JSON.parse(JSON.stringify(recordType))
+const CLIENT = new GraphClient()
 
 export const state = {
   recordTypes: [],
@@ -13,15 +11,6 @@ export const state = {
 }
 
 export const actions = {
-  async fetchRecordTypes({commit}, id) {
-    commit("setLoadingData", true)
-    RECORD_TYPE.queryParam= {
-      id: id
-    }
-    let response = await CLIENT.executeQuery(RECORD_TYPE);
-    commit("setRecordTypes", response['recordType'])
-    commit("setLoadingData", false)
-  },
   async fetchAllRecordTypes({commit}) {
     commit("setLoadingData", true)
     let response = await CLIENT.executeQuery(allRecordsTypes);
@@ -29,16 +18,13 @@ export const actions = {
     commit("setLoadingData", false)
   },
   resetRecords({commit}) {
-    commit('resetRecordTypes');
     commit('resetAllRecordTypes');
   }
 }
 
 export const mutations = {
-  setRecordTypes(state, recordTypes) { state.recordTypes = recordTypes },
   setAllRecordTypes(state, allRecordTypes) { state.allRecordTypes = allRecordTypes },
   setLoadingData(state, loadingData) { state.loadingData = loadingData},
-  resetRecordTypes(state) {state.recordTypes = []},
   resetAllRecordTypes(state) {state.allRecordTypes = []},
 }
 const recordTypeStore = {

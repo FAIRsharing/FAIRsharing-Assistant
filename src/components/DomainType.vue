@@ -68,7 +68,7 @@ export default {
     this.resetVariableTags()
   },
   methods: {
-    ...mapActions("recordTypeStore", ["fetchRecordTypes", "fetchAllRecordTypes"]),
+    ...mapActions("recordTypeStore", ["fetchAllRecordTypes"]),
     ...mapActions("subjectStore", ["fetchSubjectRecords"]),
     ...mapActions("topDomainsStore", ["fetchTopDomainTerms", "leavePage"]),
     ...mapActions("variableTagStore", ["fetchVariableTags", "resetVariableTags"]),

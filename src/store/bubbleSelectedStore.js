@@ -1,8 +1,8 @@
 const state = {
-  topResourceType:'',
-  resourceType: '',
-  subjectType: {},
-  domainType: ''
+  topResourceType:"",
+  resourceType: "",
+  subjectType: "",
+  domainType: ""
 };
 
 const mutations = {
