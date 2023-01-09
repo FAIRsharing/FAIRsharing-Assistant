@@ -220,7 +220,6 @@ export default {
         strokeOpacity: 1,
         strokeDasharray: 3
       });
-      console.log("this.allSubjectsData[\"children\"]::", this.allSubjectsData["children"])
       //When all four subjects have no records bubble size is same
       const noRecords = this.allSubjectsData["children"].every(({records_count}) => records_count === 0)
       if (noRecords) {
@@ -233,8 +232,7 @@ export default {
       series.nodes.template.events.on("click", (e) => {
         this.onBubbleSelection()
         const node = e.target.dataItem.dataContext
-
-        if(this.itemClicked === node["name"]) {
+        if(this.itemClicked !== node["name"]) {
           this.itemClicked = node["name"]
           console.log("itemClicked::", this.itemClicked)
           this.$store.commit("bubbleSelectedStore/subjectSelected", this.itemClicked)

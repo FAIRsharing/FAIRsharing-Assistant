@@ -140,9 +140,9 @@ export default {
       const otherResourceType = otherResources.flatMap(child => child)
 
       //When User lands on Resource page after selecting the Subject & Domain
-      if(Object.keys(this.getSubject).length && this.getDomain !== ""){
+      if(this.getSubject !=="" && this.getDomain !== ""){
         console.log("SUBJECT & DOMAIN")
-        this.subjectSelected = this.getSubject["name"].toLowerCase()
+        this.subjectSelected = this.getSubject.toLowerCase()
         this.domainSelected = this.getDomain.toLowerCase()
         await this.calculateRecords(null, this.subjectSelected, this.domainSelected, otherResourceType)
       }
@@ -155,9 +155,9 @@ export default {
       }
 
       //When User lands on Resource page after selecting the Subject
-      if (Object.keys(this.getSubject).length && this.getDomain === "") {
+      if (this.getSubject !=="" && this.getDomain === "") {
         console.log("ONLY SUBJECT")
-        this.subjectSelected = this.getSubject["name"].toLowerCase()
+        this.subjectSelected = this.getSubject.toLowerCase()
         await this.calculateRecords(null, this.subjectSelected,null, otherResourceType)
       }
       //When User lands on Resource page as an entry point

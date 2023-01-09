@@ -87,7 +87,7 @@ export default {
       return this.getResource ? this.formatString(this.getResource) : null
     },
     subjectSelected() {
-      return Object.values(this.getSubject).length ? this.getSubject["name"].toLowerCase() : null
+      return this.getSubject ? this.getSubject.toLowerCase() : null
     },
     domainSelected() {
       return this.getDomain ? this.getDomain.toLowerCase() : null

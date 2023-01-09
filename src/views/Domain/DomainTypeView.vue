@@ -8,10 +8,10 @@
       Resource Type Selected: {{ getResource ? getResource : getTopResource }}
     </p>
     <p
-      v-if="getSubject['name']"
+      v-if="getSubject"
       class="ma-0 text-capitalize"
     >
-      Subject Type Selected: {{ getSubject['name'] }}
+      Subject Type Selected: {{ getSubject }}
     </p>
     <p
       v-if="showDomain"

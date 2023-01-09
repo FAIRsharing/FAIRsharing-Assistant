@@ -11,7 +11,7 @@
       v-if="showSubject"
       class="ma-0 text-capitalize"
     >
-      Subject Type Selected: {{ getSubject["name"] }}
+      Subject Type Selected: {{ getSubject }}
     </p>
     <p
       v-if="getDomain"

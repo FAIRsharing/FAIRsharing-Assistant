@@ -64,7 +64,7 @@ export default {
     })
   },
   destroyed() {
-    this.leavePage(),
+    this.leavePage()
     this.resetVariableTags()
   },
   methods: {
@@ -82,7 +82,7 @@ export default {
 
     async displayDomains() {
       //When user lands on domain type after selecting the TOPResource type
-      if(this.getTopResource !== '' && this.getResource === '' && !Object.keys(this.getSubject).length){
+      if(this.getTopResource !== '' && this.getResource === '' && this.getSubject === ""){
         console.log("ONLY TOP RESOURCE")
         if (this.getTopResource.toLowerCase() === 'database'){
           this.resourceSelected =  ["repository", "knowledgebase", "knowledgebase_and_repository"]
@@ -102,7 +102,7 @@ export default {
       }
 
       //When user lands on domain type after selecting the OtherResource type
-      if(this.getTopResource !== '' && this.getResource !== '' && !Object.keys(this.getSubject).length){
+      if(this.getTopResource !== '' && this.getResource !== '' && this.getSubject === ""){
         console.log("ONLY OTHER RESOURCE")
         console.log("this.getResource::", this.getResource)
         this.resourceSelected = this.formatString(this.getResource)
@@ -115,7 +115,7 @@ export default {
       }
 
       //When user lands on domain type after selecting the TopResource & SubjectType type
-      if(this.getTopResource !== '' && this.getResource === '' && Object.keys(this.getSubject).length){
+      if(this.getTopResource !== '' && this.getResource === '' && this.getSubject !== ""){
         console.log("TOP RESOURCE & SUBJECT")
 
         if (this.getTopResource.toLowerCase() === 'database'){
@@ -128,7 +128,7 @@ export default {
           this.resourceSelected =  ["journal", "journal_publisher", "society", "funder", "project", "institution"]
         }
 
-        this.subjectSelected = this.getSubject["name"].toLowerCase()
+        this.subjectSelected = this.getSubject.toLowerCase()
         console.log("this.resourceSelected::", this.resourceSelected)
         console.log("this.subjectSelected::", this.subjectSelected)
         //Using variableFilter query
@@ -139,10 +139,10 @@ export default {
       }
 
       //When user lands on domain type after selecting the OtherResource & SubjectType type
-      if(this.getTopResource !== '' && this.getResource !== '' && Object.keys(this.getSubject).length){
+      if(this.getTopResource !== '' && this.getResource !== '' && this.getSubject !==""){
         console.log("OTHER RESOURCE & SUBJECT")
         this.resourceSelected = this.formatString(this.getResource)
-        this.subjectSelected = this.getSubject["name"].toLowerCase()
+        this.subjectSelected = this.getSubject.toLowerCase()
         console.log("this.resourceSelected::", this.resourceSelected)
         console.log("this.subjectSelected::", this.subjectSelected)
         //Using variableFilter query
@@ -153,9 +153,9 @@ export default {
       }
 
       //When user lands on domain type after selecting SubjectType type
-      if(this.getTopResource === '' && this.getResource === '' && Object.keys(this.getSubject).length){
+      if(this.getTopResource === '' && this.getResource === '' && this.getSubject !==""){
         console.log("ONLY SUBJECT")
-        this.subjectSelected = this.getSubject["name"].toLowerCase()
+        this.subjectSelected = this.getSubject.toLowerCase()
         console.log("this.subjectSelected::", this.subjectSelected)
 
         //Using variableFilter query
@@ -166,7 +166,7 @@ export default {
       }
 
       //Fetching the children from resourceType json data
-      if(this.getTopResource === '' && this.getResource === '' && !Object.keys(this.getSubject).length && this.getDomain === "") {
+      if(this.getTopResource === '' && this.getResource === '' && this.getSubject === "" && this.getDomain === "") {
         console.log("ALL DOMAINS")
         await this.fetchAllRecordTypes()
         this.allRecords = this.allRecordTypes["records"].map(({name}) => name)
