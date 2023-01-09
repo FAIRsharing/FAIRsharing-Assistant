@@ -64,14 +64,11 @@ export default {
     }
   },
   computed:{
+    ...mapGetters("bubbleSelectedStore", ['getTopResource','getResource','getSubject', 'getDomain']),
+    ...mapState("recordTypeStore", ["allRecordTypes", "loadingData"]),
+    ...mapState("variableTagStore", ["variableResponse", "loadingStatus"]),
     ...mapState("browseSubjectsStore", ["subjectBubbleTree", "loadingData"]),
     ...mapState("topSubjectStore", ["topSubjectBubbleTree", "loadingData"]),
-    ...mapState("otherSubjectsStore", ["otherSubjectBubble", "loadingStatus"]),
-    ...mapState("subjectStore", ["subjectRecords", "loadingData"]),
-    ...mapState("variableTagStore", ["variableResponse", "loadingStatus"]),
-    ...mapGetters("otherSubjectsStore", ['loadingStatus']),
-    ...mapGetters("bubbleSelectedStore", ['getTopResource','getResource','getSubject', 'getDomain']),
-    ...mapState("recordTypeStore", ["allRecordTypes", "loadingData"])
   },
   async mounted() {
     this.$nextTick(async () =>{
@@ -89,7 +86,6 @@ export default {
   methods: {
     ...mapActions("browseSubjectsStore", ["fetchTerms", "leavePage"]),
     ...mapActions("topSubjectStore", ["fetchTopSubjectTerms"]),
-    ...mapActions("otherSubjectsStore", ["fetchOtherSubject"]),
     ...mapActions("variableTagStore", ["fetchVariableTags", "resetVariableTags"]),
     ...mapActions("recordTypeStore", ["fetchAllRecordTypes", "resetRecords"]),
 
@@ -147,7 +143,7 @@ export default {
       //When user lands on subject type after selecting the resource & domain type
       if (this.getResource !== '' && this.getDomain !== '') {
         console.log("OTHER RESOURCE & DOMAIN")
-        this.resourceSelected = this.getResource.toLowerCase()
+        this.resourceSelected = this.formatString(this.getResource)
         this.domainSelected = this.getDomain.toLowerCase()
         await this.calculateRecords(this.resourceSelected, null, this.domainSelected, "subject")
       }
@@ -158,10 +154,9 @@ export default {
         await this.recordTypes()
         await this.calculateRecords(this.resourceSelected, null, null, "subject")
       }
-
       //When user lands on subject type after selecting the resource type
       if(this.getResource !== '' && this.getDomain === '') {
-        console.log("ONLY RESOURCE")
+        console.log("ONLY OTHER RESOURCE")
         this.resourceSelected = this.formatString(this.getResource)
         await this.calculateRecords(this.resourceSelected, null, null, "subject")
       }
@@ -221,6 +216,11 @@ export default {
         strokeDasharray: 3
       });
       //When all four subjects have no records bubble size is same
+      // console.log("this.allSubjectsData[\"children\"]::", this.allSubjectsData)
+      // const noChild = this.allSubjectsData["children"].every((child) => {
+      //   Object.hasOwn(child, "records_count")
+      // })
+      // console.log("noChild::", noChild)
       const noRecords = this.allSubjectsData["children"].every(({records_count}) => records_count === 0)
       if (noRecords) {
         series.setAll({

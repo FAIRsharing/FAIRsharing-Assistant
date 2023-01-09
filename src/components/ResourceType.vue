@@ -48,9 +48,8 @@ export default {
     }
   },
   computed:{
-    ...mapState("recordTypeStore", ["allRecordTypes", "loadingData"]),
-    ...mapState("subjectStore", ["subjectRecords", "loadingData"]),
     ...mapGetters("bubbleSelectedStore", ['getResource', 'getSubject', 'getDomain']),
+    ...mapState("recordTypeStore", ["allRecordTypes", "loadingData"]),
     ...mapState("variableTagStore", ["variableResponse", "loadingStatus"]),
     ...mapState("multiTagsStore", ["fairSharingRecords", "loadingStatus"]),
   },
@@ -66,12 +65,10 @@ export default {
   destroyed() {
     this.resetRecords()
     this.resetMultiTags()
-    this.resetSubjects()
     this.resetVariableTags()
   },
   methods: {
     ...mapActions("recordTypeStore", ["fetchAllRecordTypes", "resetRecords"]),
-    ...mapActions("subjectStore", ["fetchSubjectRecords", "resetSubjects"]),
     ...mapActions("variableTagStore", ["fetchVariableTags", "resetVariableTags"]),
     ...mapActions("multiTagsStore", ["fetchMultiTagsTerms", "resetMultiTags"]),
 
@@ -148,7 +145,7 @@ export default {
       }
 
       //When User lands on Resource page after selecting the Domain
-      if(!Object.keys(this.getSubject).length && this.getDomain !== ""){
+      if(this.getSubject ==="" && this.getDomain !== ""){
         console.log("ONLY DOMAIN")
         this.domainSelected = this.getDomain.toLowerCase()
         await this.calculateRecords(null,null, this.domainSelected, otherResourceType)
@@ -161,7 +158,7 @@ export default {
         await this.calculateRecords(null, this.subjectSelected,null, otherResourceType)
       }
       //When User lands on Resource page as an entry point
-      if(this.getResource === "" && !Object.keys(this.getSubject).length && this.getDomain === "") {
+      if(this.getResource === "" && this.getSubject ==="" && this.getDomain === "") {
         console.log("ALL RESOURCES")
         //Fetching all resources/records
         await this.fetchAllRecordTypes()

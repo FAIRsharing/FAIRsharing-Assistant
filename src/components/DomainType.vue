@@ -36,22 +36,19 @@ export default {
       loading: false,
       fairSharingButton: false,
       showDomainSelected: false,
-      allRecords: [],
-      variableFilter: false,
+      resourceSelected: "" || [],
+      subjectSelected: "",
       allDomainData: {
-        label: "Domain",
         name: "Domain",
         value: 0,
         children: "",
       },
       itemClicked: "",
-      recordTypesList: [],
     }
   },
   computed:{
     ...mapGetters("bubbleSelectedStore", ['getTopResource', 'getResource', 'getSubject', 'getDomain']),
-    ...mapState("topDomainsStore", ["domainsType", "loadingData"]),
-    ...mapState("recordTypeStore", ["allRecordTypes", "recordTypes", "loadingData"]),
+    ...mapState("recordTypeStore", ["allRecordTypes", "loadingData"]),
     ...mapState("variableTagStore", ["variableResponse", "loadingStatus"]),
   },
 
@@ -64,13 +61,11 @@ export default {
     })
   },
   destroyed() {
-    this.leavePage()
+    this.resetRecords()
     this.resetVariableTags()
   },
   methods: {
-    ...mapActions("recordTypeStore", ["fetchAllRecordTypes"]),
-    ...mapActions("subjectStore", ["fetchSubjectRecords"]),
-    ...mapActions("topDomainsStore", ["fetchTopDomainTerms", "leavePage"]),
+    ...mapActions("recordTypeStore", ["fetchAllRecordTypes", "resetRecords"]),
     ...mapActions("variableTagStore", ["fetchVariableTags", "resetVariableTags"]),
 
     onBubbleSelection() {
@@ -80,123 +75,67 @@ export default {
       this.$emit('showDomainSelected', this.showDomainSelected)
     },
 
+    topResource() {
+      switch(this.getTopResource) {
+      case "Standards":
+        return "Standard"
+      case "Policies":
+        return "Policy"
+      default:
+        return this.getTopResource
+      }
+    },
+
+    async recordTypes() {
+      await this.fetchAllRecordTypes()
+      this.allRecordTypes["records"].filter(({name, fairsharingRegistry}) =>{
+        if (this.topResource() === fairsharingRegistry["name"]) {
+          this.resourceSelected.push(name)
+        }
+      })
+    },
+
+    async calculateRecords(resourceSelected, subjectSelected, domainSelected, groupBy) {
+      //Using variableFilter query
+      await this.fetchVariableTags([resourceSelected, subjectSelected, domainSelected, groupBy])
+      this.allDomainData["children"] = this.variableResponse
+    },
+
     async displayDomains() {
-      //When user lands on domain type after selecting the TOPResource type
-      if(this.getTopResource !== '' && this.getResource === '' && this.getSubject === ""){
-        console.log("ONLY TOP RESOURCE")
-        if (this.getTopResource.toLowerCase() === 'database'){
-          this.resourceSelected =  ["repository", "knowledgebase", "knowledgebase_and_repository"]
-        }
-        else if (this.getTopResource.toLowerCase() === 'standards') {
-          this.resourceSelected =  ["model_and_format", "metric", "terminology_artefact", "reporting_guideline", "identifier_schema"]
-        }
-        else if (this.getTopResource.toLowerCase() === 'policies') {
-          this.resourceSelected =  ["journal", "journal_publisher", "society", "funder", "project", "institution"]
-        }
-        console.log("this.resourceSelected::", this.resourceSelected)
-        //Using variableFilter query
-        await this.fetchVariableTags([this.resourceSelected, null, null, 'domain'])
-        console.log("variableResponse::", this.variableResponse)
-        this.variableFilter = true
-        this.allDomainData["children"] = this.variableResponse
-      }
-
-      //When user lands on domain type after selecting the OtherResource type
-      if(this.getTopResource !== '' && this.getResource !== '' && this.getSubject === ""){
-        console.log("ONLY OTHER RESOURCE")
-        console.log("this.getResource::", this.getResource)
-        this.resourceSelected = this.formatString(this.getResource)
-        console.log("this.resourceSelected::", this.resourceSelected)
-        //Using variableFilter query
-        await this.fetchVariableTags([this.resourceSelected, null, null, 'domain'])
-        console.log("variableResponse::", this.variableResponse)
-        this.variableFilter = true
-        this.allDomainData["children"] = this.variableResponse
-      }
-
       //When user lands on domain type after selecting the TopResource & SubjectType type
       if(this.getTopResource !== '' && this.getResource === '' && this.getSubject !== ""){
         console.log("TOP RESOURCE & SUBJECT")
-
-        if (this.getTopResource.toLowerCase() === 'database'){
-          this.resourceSelected =  ["repository", "knowledgebase", "knowledgebase_and_repository"]
-        }
-        else if (this.getTopResource.toLowerCase() === 'standards') {
-          this.resourceSelected =  ["model_and_format", "metric", "terminology_artefact", "reporting_guideline", "identifier_schema"]
-        }
-        else if (this.getTopResource.toLowerCase() === 'policies') {
-          this.resourceSelected =  ["journal", "journal_publisher", "society", "funder", "project", "institution"]
-        }
-
+        await this.recordTypes()
         this.subjectSelected = this.getSubject.toLowerCase()
-        console.log("this.resourceSelected::", this.resourceSelected)
-        console.log("this.subjectSelected::", this.subjectSelected)
-        //Using variableFilter query
-        await this.fetchVariableTags([this.resourceSelected, this.subjectSelected, null, 'domain'])
-        console.log("variableResponse::", this.variableResponse)
-        this.variableFilter = true
-        this.allDomainData["children"] = this.variableResponse
+        await this.calculateRecords(this.resourceSelected, this.subjectSelected, null, "domain")
       }
-
       //When user lands on domain type after selecting the OtherResource & SubjectType type
       if(this.getTopResource !== '' && this.getResource !== '' && this.getSubject !==""){
         console.log("OTHER RESOURCE & SUBJECT")
         this.resourceSelected = this.formatString(this.getResource)
         this.subjectSelected = this.getSubject.toLowerCase()
-        console.log("this.resourceSelected::", this.resourceSelected)
-        console.log("this.subjectSelected::", this.subjectSelected)
-        //Using variableFilter query
-        await this.fetchVariableTags([this.resourceSelected, this.subjectSelected, null, 'domain'])
-        console.log("variableResponse::", this.variableResponse)
-        this.variableFilter = true
-        this.allDomainData["children"] = this.variableResponse
+        await this.calculateRecords(this.resourceSelected, this.subjectSelected, null, "domain")
       }
-
+      //When user lands on domain type after selecting the TOPResource type
+      if(this.getTopResource !== '' && this.getResource === '' && this.getSubject === ""){
+        console.log("ONLY TOP RESOURCE")
+        await this.recordTypes()
+        await this.calculateRecords(this.resourceSelected, null, null, "domain")
+      }
+      //When user lands on domain type after selecting the OtherResource type
+      if(this.getTopResource !== '' && this.getResource !== '' && this.getSubject === ""){
+        console.log("ONLY OTHER RESOURCE")
+        this.resourceSelected = this.formatString(this.getResource)
+        await this.calculateRecords(this.resourceSelected, null, null, "domain")
+      }
       //When user lands on domain type after selecting SubjectType type
       if(this.getTopResource === '' && this.getResource === '' && this.getSubject !==""){
         console.log("ONLY SUBJECT")
         this.subjectSelected = this.getSubject.toLowerCase()
-        console.log("this.subjectSelected::", this.subjectSelected)
-
-        //Using variableFilter query
-        await this.fetchVariableTags([null, this.subjectSelected, null, 'domain'])
-        console.log("variableResponse::", this.variableResponse)
-        this.variableFilter = true
-        this.allDomainData["children"] = this.variableResponse
-      }
-
-      //Fetching the children from resourceType json data
-      if(this.getTopResource === '' && this.getResource === '' && this.getSubject === "" && this.getDomain === "") {
-        console.log("ALL DOMAINS")
-        await this.fetchAllRecordTypes()
-        this.allRecords = this.allRecordTypes["records"].map(({name}) => name)
-        //Using variableFilter query
-        await this.fetchVariableTags([this.allRecords, null, null, 'domain'])
-        console.log("variableResponse::", this.variableResponse)
-        this.variableFilter = true
-        this.allDomainData["children"] = this.variableResponse
+        await this.calculateRecords(null, this.subjectSelected, null, "domain")
       }
     },
 
-    async addRecordNumber (array) {
-      for (const item of array) {
-        if(item["children"]?.length) {
-          item["childrenNumber"] = item["children"].length
-          const innerResult = await this.addRecordNumber(item["children"]);
-          if (innerResult) return innerResult;
-        }
-      }
-    },
-    countChildren(domain) {
-      domain["totalChildren"] = 0;
-      if (domain["children"]?.length) {
-        for (const child of domain["children"]){
-          domain["totalChildren"] +=  this.countChildren(child);
-        }
-      }
-      domain["totalChildren"] =  domain["childrenNumber"] ? domain["totalChildren"] + domain["childrenNumber"]: domain["totalChildren"];
-      return domain["totalChildren"]
-    },
     getCircles() {
       // Create root element
       let root = am5.Root.new(this.$refs.chartdiv);
@@ -226,8 +165,8 @@ export default {
         upDepth: 1,
         topDepth: 1,
         initialDepth: 0,
-        valueField: "totalChildren",
-        categoryField: "label",//Label displayed
+        valueField: "records_count",
+        categoryField: "name",//Label displayed
         childDataField: "children",
         idField: "label",
         linkWithField: "linkWith",
@@ -236,14 +175,6 @@ export default {
         minRadius: 20,
         maxRadius: am5.percent(20),
       }));
-
-      if(this.variableFilter) {
-        series.setAll({
-          categoryField: "name",
-          valueField: "records_count",
-        });
-
-      }
 
       if (!this.allDomainData["children"].length){
         series.set("topDepth", 0);
