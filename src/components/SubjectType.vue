@@ -223,11 +223,11 @@ export default {
       });
 
       //When all four subjects have no records_count/records_count is 0 bubble size is same
-      const noChild = !this.allSubjectsData["children"].some((child) => {
-        Object.hasOwn(child, "records_count")
-      })
+      // const noChild = !this.allSubjectsData["children"].some((child) => {
+      //   Object.hasOwn(child, "records_count")
+      // })
       const noRecords = this.allSubjectsData["children"].every(({records_count}) => records_count === 0)
-      if (noChild || noRecords) {
+      if (noRecords) {
         series.setAll({
           minRadius: 100,
           maxRadius: 100
