@@ -134,6 +134,7 @@ export default {
     async displaySubjects() {
       //When user lands on subject type after selecting the TopResource & domainType type
       if(this.getTopResource !== '' && this.getResource === '' && this.getDomain !== ''){
+        // eslint-disable-next-line no-console
         console.log("TOP RESOURCE & DOMAIN")
         await this.recordTypes()
         this.domainSelected = this.getDomain.toLowerCase()
@@ -142,6 +143,7 @@ export default {
 
       //When user lands on subject type after selecting the resource & domain type
       if (this.getResource !== '' && this.getDomain !== '') {
+        // eslint-disable-next-line no-console
         console.log("OTHER RESOURCE & DOMAIN")
         this.resourceSelected = this.formatString(this.getResource)
         this.domainSelected = this.getDomain.toLowerCase()
@@ -150,24 +152,28 @@ export default {
 
       //When user lands on subject type after selecting the TOP Resource type
       if(this.getTopResource !== '' && this.getResource === '' && this.getDomain === '') {
+        // eslint-disable-next-line no-console
         console.log("ONLY TOP RESOURCE")
         await this.recordTypes()
         await this.calculateRecords(this.resourceSelected, null, null, "subject")
       }
       //When user lands on subject type after selecting the resource type
       if(this.getResource !== '' && this.getDomain === '') {
+        // eslint-disable-next-line no-console
         console.log("ONLY OTHER RESOURCE")
         this.resourceSelected = this.formatString(this.getResource)
         await this.calculateRecords(this.resourceSelected, null, null, "subject")
       }
       //When user lands on subject type after selecting the domain type
       if (this.getTopResource === '' && this.getResource === '' && this.getDomain !== ''){
+        // eslint-disable-next-line no-console
         console.log("ONLY DOMAIN")
         this.domainSelected = this.getDomain.toLowerCase()
         await this.calculateRecords(null, null, this.domainSelected, "subject")
       }
       //When user lands on subject type as the entry point in the application
       if(this.getTopResource ==="" && this.getResource === '' && this.getDomain === '') {
+        // eslint-disable-next-line no-console
         console.log("ALL SUBJECTS")
         await this.fetchTerms()
         this.allSubjectsData["children"] = this.subjectBubbleTree
@@ -215,14 +221,13 @@ export default {
         strokeOpacity: 1,
         strokeDasharray: 3
       });
-      //When all four subjects have no records bubble size is same
-      // console.log("this.allSubjectsData[\"children\"]::", this.allSubjectsData)
-      // const noChild = this.allSubjectsData["children"].every((child) => {
-      //   Object.hasOwn(child, "records_count")
-      // })
-      // console.log("noChild::", noChild)
+
+      //When all four subjects have no records_count/records_count is 0 bubble size is same
+      const noChild = !this.allSubjectsData["children"].some((child) => {
+        Object.hasOwn(child, "records_count")
+      })
       const noRecords = this.allSubjectsData["children"].every(({records_count}) => records_count === 0)
-      if (noRecords) {
+      if (noChild || noRecords) {
         series.setAll({
           minRadius: 100,
           maxRadius: 100
@@ -234,7 +239,6 @@ export default {
         const node = e.target.dataItem.dataContext
         if(this.itemClicked !== node["name"]) {
           this.itemClicked = node["name"]
-          console.log("itemClicked::", this.itemClicked)
           this.$store.commit("bubbleSelectedStore/subjectSelected", this.itemClicked)
         }
       });

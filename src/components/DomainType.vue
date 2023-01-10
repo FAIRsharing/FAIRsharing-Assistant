@@ -104,6 +104,7 @@ export default {
     async displayDomains() {
       //When user lands on domain type after selecting the TopResource & SubjectType type
       if(this.getTopResource !== '' && this.getResource === '' && this.getSubject !== ""){
+        // eslint-disable-next-line no-console
         console.log("TOP RESOURCE & SUBJECT")
         await this.recordTypes()
         this.subjectSelected = this.getSubject.toLowerCase()
@@ -111,6 +112,7 @@ export default {
       }
       //When user lands on domain type after selecting the OtherResource & SubjectType type
       if(this.getTopResource !== '' && this.getResource !== '' && this.getSubject !==""){
+        // eslint-disable-next-line no-console
         console.log("OTHER RESOURCE & SUBJECT")
         this.resourceSelected = this.formatString(this.getResource)
         this.subjectSelected = this.getSubject.toLowerCase()
@@ -118,18 +120,21 @@ export default {
       }
       //When user lands on domain type after selecting the TOPResource type
       if(this.getTopResource !== '' && this.getResource === '' && this.getSubject === ""){
+        // eslint-disable-next-line no-console
         console.log("ONLY TOP RESOURCE")
         await this.recordTypes()
         await this.calculateRecords(this.resourceSelected, null, null, "domain")
       }
       //When user lands on domain type after selecting the OtherResource type
       if(this.getTopResource !== '' && this.getResource !== '' && this.getSubject === ""){
+        // eslint-disable-next-line no-console
         console.log("ONLY OTHER RESOURCE")
         this.resourceSelected = this.formatString(this.getResource)
         await this.calculateRecords(this.resourceSelected, null, null, "domain")
       }
       //When user lands on domain type after selecting SubjectType type
       if(this.getTopResource === '' && this.getResource === '' && this.getSubject !==""){
+        // eslint-disable-next-line no-console
         console.log("ONLY SUBJECT")
         this.subjectSelected = this.getSubject.toLowerCase()
         await this.calculateRecords(null, this.subjectSelected, null, "domain")
@@ -206,12 +211,11 @@ export default {
         }
         if(this.itemClicked["name"] !== nodeName) {
           this.itemClicked = nodeName
-          console.log("itemClicked::", this.itemClicked)
           this.$store.commit("bubbleSelectedStore/domainSelected", this.itemClicked)
         }
       });
 
-      console.log("data::", data)
+
       series.links.template.set("strength", 0.5);
       series.data.setAll([data]);
       series.set("selectedDataItem", series.dataItems[0]);

@@ -138,6 +138,7 @@ export default {
 
       //When User lands on Resource page after selecting the Subject & Domain
       if(this.getSubject !=="" && this.getDomain !== ""){
+        // eslint-disable-next-line no-console
         console.log("SUBJECT & DOMAIN")
         this.subjectSelected = this.getSubject.toLowerCase()
         this.domainSelected = this.getDomain.toLowerCase()
@@ -146,6 +147,7 @@ export default {
 
       //When User lands on Resource page after selecting the Domain
       if(this.getSubject ==="" && this.getDomain !== ""){
+        // eslint-disable-next-line no-console
         console.log("ONLY DOMAIN")
         this.domainSelected = this.getDomain.toLowerCase()
         await this.calculateRecords(null,null, this.domainSelected, otherResourceType)
@@ -153,12 +155,14 @@ export default {
 
       //When User lands on Resource page after selecting the Subject
       if (this.getSubject !=="" && this.getDomain === "") {
+        // eslint-disable-next-line no-console
         console.log("ONLY SUBJECT")
         this.subjectSelected = this.getSubject.toLowerCase()
         await this.calculateRecords(null, this.subjectSelected,null, otherResourceType)
       }
       //When User lands on Resource page as an entry point
       if(this.getResource === "" && this.getSubject ==="" && this.getDomain === "") {
+        // eslint-disable-next-line no-console
         console.log("ALL RESOURCES")
         //Fetching all resources/records
         await this.fetchAllRecordTypes()
