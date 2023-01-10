@@ -163,7 +163,7 @@ export default {
       //When User lands on Resource page as an entry point
       if(this.getResource === "" && this.getSubject ==="" && this.getDomain === "") {
         // eslint-disable-next-line no-console
-        console.log("ALL RESOURCES 1")
+        console.log("ALL RESOURCES 2")
         //Fetching all resources/records
         await this.fetchAllRecordTypes()
         this.allRecords = this.allRecordTypes["records"].map(({name}) => name)

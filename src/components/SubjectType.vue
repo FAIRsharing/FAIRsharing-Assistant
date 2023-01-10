@@ -24,12 +24,13 @@ import am5themes_Animated from '@amcharts/amcharts5/themes/Animated';
 import { canvasGetImageData } from "@/utils/canvasRenderingContext"
 import { breadCrumbBar } from "@/utils/breadCrumbBar";
 import StringMixin from "@/utils/stringMixin.js"
+import RecordTypes from "@/utils/recordTypes.js";
 import Loaders from "@/components/Loaders"
 
 export default {
   name: 'SubjectType',
   components: { Loaders },
-  mixins: [StringMixin],
+  mixins: [StringMixin, RecordTypes],
   data:() => {
     return {
       loading: false,
@@ -95,25 +96,6 @@ export default {
       this.$emit('enableFairSharingButton', this.fairSharingButton)
       this.$emit('showSubjectSelected', this.showSubjectSelected)
     },
-    topResource() {
-      switch(this.getTopResource) {
-      case "Standards":
-        return "Standard"
-      case "Policies":
-        return "Policy"
-      default:
-        return this.getTopResource
-      }
-    },
-
-    async recordTypes() {
-      await this.fetchAllRecordTypes()
-      this.allRecordTypes["records"].filter(({name, fairsharingRegistry}) =>{
-        if (this.topResource() === fairsharingRegistry["name"]) {
-          this.resourceSelected.push(name)
-        }
-      })
-    },
     displayAllTopSubjects(subjects) {
       const fetchedSubjectNames = subjects.map(({ id }) => id)
       //All the selected resource
@@ -136,7 +118,7 @@ export default {
       if(this.getTopResource !== '' && this.getResource === '' && this.getDomain !== ''){
         // eslint-disable-next-line no-console
         console.log("TOP RESOURCE & DOMAIN")
-        await this.recordTypes()
+        await this.allOtherRecordTypes(this.resourceSelected)
         this.domainSelected = this.getDomain.toLowerCase()
         await this.calculateRecords(this.resourceSelected, null, this.domainSelected, "subject")
       }
@@ -154,7 +136,7 @@ export default {
       if(this.getTopResource !== '' && this.getResource === '' && this.getDomain === '') {
         // eslint-disable-next-line no-console
         console.log("ONLY TOP RESOURCE")
-        await this.recordTypes()
+        await this.allOtherRecordTypes(this.resourceSelected)
         await this.calculateRecords(this.resourceSelected, null, null, "subject")
       }
       //When user lands on subject type after selecting the resource type

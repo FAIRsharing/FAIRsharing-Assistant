@@ -25,12 +25,13 @@ import am5themes_Animated from '@amcharts/amcharts5/themes/Animated';
 import { canvasGetImageData } from "@/utils/canvasRenderingContext"
 import { breadCrumbBar } from "@/utils/breadCrumbBar"
 import StringMixin from "@/utils/stringMixin.js"
+import RecordTypes from "@/utils/recordTypes.js";
 import Loaders from "@/components/Loaders"
 
 export default {
   name: 'DomainType',
   components: { Loaders },
-  mixins: [StringMixin],
+  mixins: [StringMixin, RecordTypes],
   data:() => {
     return {
       loading: false,
@@ -75,26 +76,6 @@ export default {
       this.$emit('showDomainSelected', this.showDomainSelected)
     },
 
-    topResource() {
-      switch(this.getTopResource) {
-      case "Standards":
-        return "Standard"
-      case "Policies":
-        return "Policy"
-      default:
-        return this.getTopResource
-      }
-    },
-
-    async recordTypes() {
-      await this.fetchAllRecordTypes()
-      this.allRecordTypes["records"].filter(({name, fairsharingRegistry}) =>{
-        if (this.topResource() === fairsharingRegistry["name"]) {
-          this.resourceSelected.push(name)
-        }
-      })
-    },
-
     async calculateRecords(resourceSelected, subjectSelected, domainSelected, groupBy) {
       //Using variableFilter query
       await this.fetchVariableTags([resourceSelected, subjectSelected, domainSelected, groupBy])
@@ -106,7 +87,7 @@ export default {
       if(this.getTopResource !== '' && this.getResource === '' && this.getSubject !== ""){
         // eslint-disable-next-line no-console
         console.log("TOP RESOURCE & SUBJECT")
-        await this.recordTypes()
+        await this.allOtherRecordTypes(this.resourceSelected)
         this.subjectSelected = this.getSubject.toLowerCase()
         await this.calculateRecords(this.resourceSelected, this.subjectSelected, null, "domain")
       }
@@ -122,7 +103,8 @@ export default {
       if(this.getTopResource !== '' && this.getResource === '' && this.getSubject === ""){
         // eslint-disable-next-line no-console
         console.log("ONLY TOP RESOURCE")
-        await this.recordTypes()
+        // await this.recordTypes()
+        await this.allOtherRecordTypes(this.resourceSelected)
         await this.calculateRecords(this.resourceSelected, null, null, "domain")
       }
       //When user lands on domain type after selecting the OtherResource type
