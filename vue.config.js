@@ -8,4 +8,11 @@ module.exports = defineConfig({
     config.plugins.delete('prefetch');
     config.plugin('CompressionPlugin').use(CompressionPlugin);
   },
+  css: {
+    loaderOptions: {
+      scss: {
+        additionalData: `@import "@/styles/index.scss";`,
+      },
+    },
+  },
 })

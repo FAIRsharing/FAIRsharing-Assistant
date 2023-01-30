@@ -23,14 +23,13 @@ import * as am5hierarchy from "@amcharts/amcharts5/hierarchy";
 import am5themes_Animated from '@amcharts/amcharts5/themes/Animated';
 import { canvasGetImageData } from "@/utils/canvasRenderingContext"
 import { breadCrumbBar } from "@/utils/breadCrumbBar"
-import calculateRecords from "@/utils/calculateRecords"
 import StringMixin from "@/utils/stringMixin.js"
 import Loaders from "@/components/Loaders"
 
 export default {
   name: 'ResourceType',
   components: { Loaders },
-  mixins: [StringMixin, calculateRecords],
+  mixins: [StringMixin],
   data:() => {
     return {
       loading: false,
@@ -81,6 +80,26 @@ export default {
     },
 
     /**
+     * Calculate the number of fairSharing records for each record type and assign the total
+     * @param {String} resourceSelected - The resource selected
+     * @param {String} subjectSelected - The subject selected
+     * @param {String} domainSelected - The domain selected
+     * @param {Array} otherResourceType - All the recordTypes
+     * @returns {Number} - Number of  each recordsTpe
+     */
+    async calculateRecords(resourceSelected, subjectSelected, domainSelected, otherResourceType) {
+      //Using multiTagFilter Query
+      await this.fetchMultiTagsTerms([resourceSelected, subjectSelected, domainSelected])
+      for (let childResource of otherResourceType) {
+        childResource["value"] = 0
+        this.fairSharingRecords.filter(ele => {
+          if (ele["type"] === this.formatString(childResource["name"])) {
+            childResource["value"]++
+          }
+        })
+      }
+    },
+    /**
      * Creates initial skeleton/structure for resource page as array of objects
      * Level -1 : 3 Registries (Database, Standards, Policy)
      * Level -2 : 14 Record types (e.g knowledgebase, repository, metric etc. )
@@ -89,9 +108,9 @@ export default {
     async createResourceStructure() {
       await this.fetchAllRecordTypes()
       let topResources = [...new Set(this.allRecordTypes["records"].map(({fairsharingRegistry}) => fairsharingRegistry["name"]))]
+      //Filtering "Database" topResource/registry
+      topResources = topResources.filter(item => item === "Database")
 
-      //Removing "Collection" topResource/registry
-      topResources = topResources.filter(item => item !== "Collection")
       //Converting array of topResource/registry to object
       const topResourceTypeObj = topResources.map((name) => ({name}))
       //Creating Array of object for topResource/registry with chidlren (array of objects)
@@ -144,7 +163,7 @@ export default {
       //When User lands on Resource page as an entry point
       if(this.getResource === "" && this.getSubject ==="" && this.getDomain === "") {
         // eslint-disable-next-line no-console
-        console.log("ALL RESOURCES")
+        console.log("ALL Database")
         //Fetching all resources/records
         await this.fetchAllRecordTypes()
         this.allRecords = this.allRecordTypes["records"].map(({name}) => name)

@@ -1,0 +1,40 @@
+{
+  "questionSetOne": [
+    {
+      "id": 1,
+      "title": "Standards",
+      "question" : "Are you looking for a (meta)data standard?",
+      "color": "primary",
+      "arrow": "assets/Home/Arrow/whiteArrow.png",
+      "link": "/standards"
+    },
+    {
+      "id": 2,
+      "title": "Database",
+      "question" : "We can help you find databases according to what’s most important to you. Tell us a little about what you need.",
+      "color": "accent3",
+      "arrow": "assets/Home/Arrow/whiteArrow.png",
+      "link": "/database"
+    }
+  ],
+  "questionSetTwo": [
+    {
+      "id": 3,
+      "title": "Policies",
+      "question" : "Would you like to find data policies, selecting them according to the ways in which they enable FAIR data?",
+      "color": "accent3",
+      "mobilecolour": "primary",
+      "arrow": "assets/Home/Arrow/whiteArrow.png",
+      "link": "/policies"
+    },
+    {
+      "id": 4,
+      "title": "Subjects",
+      "question" : "Would you like to explore a particular subject area?",
+      "color": "primary",
+      "mobilecolour": "accent3",
+      "arrow": "assets/Home/Arrow/whiteArrow.png",
+      "link": "/subject"
+    }
+  ]
+}

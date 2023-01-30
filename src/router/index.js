@@ -7,7 +7,11 @@ import {
   HomeView,
   ResourceTypeView,
   SubjectTypeView,
-  DomainTypeView
+  SubjectTypeView_1,
+  DomainTypeView,
+  DatabaseView,
+  StandardsView,
+  PoliciesView
 } from './routes'
 
 
@@ -29,9 +33,29 @@ let routes = [
     component: SubjectTypeView,
   },
   {
+    name: "SubjectTypeView_1",
+    path: "/subject_1",
+    component: SubjectTypeView_1,
+  },
+  {
     name: "DomainTypeView",
     path: "/domain",
     component: DomainTypeView,
+  },
+  {
+    name: "DatabaseView",
+    path: "/database",
+    component: DatabaseView,
+  },
+  {
+    name: "StandardsView",
+    path: "/standards",
+    component: StandardsView,
+  },
+  {
+    name: "PoliciesView",
+    path: "/policies",
+    component: PoliciesView,
   }
 ]
 

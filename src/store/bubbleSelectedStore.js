@@ -1,6 +1,7 @@
 const state = {
   topResourceType:"",
   resourceType: "",
+  resources: [],
   subjectType: "",
   domainType: ""
 };
@@ -9,6 +10,14 @@ const mutations = {
   resourceSelected (state, resource) {
     state.topResourceType = resource["topResourceSelected"]
     state.resourceType = resource["childResourceSelected"]
+    const found = state.resources.find(({records}) => records === resource["childResourceSelected"])
+    if(!found) {
+      state.resources.push({
+        registry : resource["topResourceSelected"],
+        records : resource["childResourceSelected"]
+      })
+    }
+
   },
   subjectSelected (state, subject) {
     state.subjectType = subject

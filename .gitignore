@@ -5,6 +5,8 @@ docTemp
 /source/index.html
 package-lock.json
 coverage
+/src/components/SubjectType_1.vue
+/src/views/Subject/SubjectTypeView_1.vue
 
 # local env files
 .env.local

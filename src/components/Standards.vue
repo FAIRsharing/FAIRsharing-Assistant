@@ -28,7 +28,7 @@ import StringMixin from "@/utils/stringMixin.js"
 import Loaders from "@/components/Loaders"
 
 export default {
-  name: 'ResourceType',
+  name: 'Standards',
   components: { Loaders },
   mixins: [StringMixin, calculateRecords],
   data:() => {
@@ -89,16 +89,16 @@ export default {
     async createResourceStructure() {
       await this.fetchAllRecordTypes()
       let topResources = [...new Set(this.allRecordTypes["records"].map(({fairsharingRegistry}) => fairsharingRegistry["name"]))]
+      //Filtering "Database" topResource/registry
+      topResources = topResources.filter(item => item === "Standard")
 
-      //Removing "Collection" topResource/registry
-      topResources = topResources.filter(item => item !== "Collection")
       //Converting array of topResource/registry to object
       const topResourceTypeObj = topResources.map((name) => ({name}))
       //Creating Array of object for topResource/registry with chidlren (array of objects)
       topResourceTypeObj.forEach((ele) => {
         ele["children"] = []
         this.allRecordTypes["records"].filter(({name, fairsharingRegistry}) => {
-          if(fairsharingRegistry["name"] === ele["name"]) {
+          if(fairsharingRegistry["name"] === ele["name"] && name !== "metric") {
             ele["children"].push({
               name: this.normalString(name),
               value: 0
@@ -144,7 +144,7 @@ export default {
       //When User lands on Resource page as an entry point
       if(this.getResource === "" && this.getSubject ==="" && this.getDomain === "") {
         // eslint-disable-next-line no-console
-        console.log("ALL RESOURCES")
+        console.log("ALL Standards")
         //Fetching all resources/records
         await this.fetchAllRecordTypes()
         this.allRecords = this.allRecordTypes["records"].map(({name}) => name)

@@ -28,7 +28,7 @@ import StringMixin from "@/utils/stringMixin.js"
 import Loaders from "@/components/Loaders"
 
 export default {
-  name: 'ResourceType',
+  name: 'Policies',
   components: { Loaders },
   mixins: [StringMixin, calculateRecords],
   data:() => {
@@ -79,7 +79,6 @@ export default {
       this.$emit('enableFairSharingButton', this.fairSharingButton)
       this.$emit('showResourceSelected', this.showResourceSelected)
     },
-
     /**
      * Creates initial skeleton/structure for resource page as array of objects
      * Level -1 : 3 Registries (Database, Standards, Policy)
@@ -89,9 +88,9 @@ export default {
     async createResourceStructure() {
       await this.fetchAllRecordTypes()
       let topResources = [...new Set(this.allRecordTypes["records"].map(({fairsharingRegistry}) => fairsharingRegistry["name"]))]
+      //Filtering "Database" topResource/registry
+      topResources = topResources.filter(item => item === "Policy")
 
-      //Removing "Collection" topResource/registry
-      topResources = topResources.filter(item => item !== "Collection")
       //Converting array of topResource/registry to object
       const topResourceTypeObj = topResources.map((name) => ({name}))
       //Creating Array of object for topResource/registry with chidlren (array of objects)
@@ -144,7 +143,7 @@ export default {
       //When User lands on Resource page as an entry point
       if(this.getResource === "" && this.getSubject ==="" && this.getDomain === "") {
         // eslint-disable-next-line no-console
-        console.log("ALL RESOURCES")
+        console.log("ALL Policies")
         //Fetching all resources/records
         await this.fetchAllRecordTypes()
         this.allRecords = this.allRecordTypes["records"].map(({name}) => name)
@@ -188,7 +187,7 @@ export default {
       }));
 
       series.get("colors").setAll({
-        step: 2
+        step: 10
       });
       series.labels.template.set("fontSize", 20)
       series.outerCircles.template.states.create("disabled", {

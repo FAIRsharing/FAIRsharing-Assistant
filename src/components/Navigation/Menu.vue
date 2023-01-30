@@ -55,6 +55,14 @@ export default {
           primary: true
         },
         {
+          label: "Subject_1",
+          name: "Subject_1",
+          link: "/subject_1",
+          color: "accent3",
+          active: false,
+          primary: true
+        },
+        {
           label: "Domain",
           name: "Domain",
           link: "/domain",

@@ -4,7 +4,7 @@
       Link to FAIRsharing:
       <!-- Resource Page Button -->
       <v-btn
-        v-if="currentRouteName === 'ResourceTypeView'"
+        v-if="currentRouteName === 'ResourceTypeView' || 'DatabaseView' ||'StandardsView'|| 'PoliciesView'"
         v-bind="button['attributes']"
         :disabled="!fairSharingButton"
         :href="resourceRedirectionLink"
