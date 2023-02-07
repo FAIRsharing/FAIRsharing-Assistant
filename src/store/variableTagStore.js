@@ -2,7 +2,7 @@ import GraphClient from "@/lib/GraphClient/GraphClient.js";
 import variableFilter from "@/lib/GraphClient/queries/variableFilter/variableFilter.json";
 
 const CLIENT = new GraphClient(),
-  MULTI_TAGS = JSON.parse(JSON.stringify(variableFilter))
+  VARIABLE_TAGS = JSON.parse(JSON.stringify(variableFilter))
 
 export const state = {
   variableResponse: [],
@@ -11,23 +11,24 @@ export const state = {
 }
 
 export const actions = {
-  async fetchVariableTags({commit}, [resource, subject, domain, tag]) {
+  async fetchVariableTags({commit}, [resource, subject, domain, tag, dataPreservationPolicy]) {
     commit("setLoadingStatus", true)
-    MULTI_TAGS.queryParam = {
+    VARIABLE_TAGS.queryParam = {
       recordType: resource,
       subjects: subject,
       domains: domain,
-      groupBy: tag
+      groupBy: tag,
+      dataPreservationPolicy: dataPreservationPolicy
     }
     //Delete the null/empty parameter
-    for (const key in MULTI_TAGS.queryParam) {
-      if (MULTI_TAGS.queryParam[key] === null || MULTI_TAGS.queryParam[key] === '') {
-        delete MULTI_TAGS.queryParam[key];
+    for (const key in VARIABLE_TAGS.queryParam) {
+      if (VARIABLE_TAGS.queryParam[key] === null || VARIABLE_TAGS.queryParam[key] === '' || VARIABLE_TAGS.queryParam[key] === undefined) {
+        delete VARIABLE_TAGS.queryParam[key];
       }
     }
     // eslint-disable-next-line no-console
-    console.log("MULTI_TAGS.queryParam::", MULTI_TAGS.queryParam)
-    let response = await CLIENT.executeQuery(MULTI_TAGS);
+    console.log("VARIABLE_TAGS.queryParam::", VARIABLE_TAGS.queryParam)
+    let response = await CLIENT.executeQuery(VARIABLE_TAGS);
     commit("setVariableResponse", response['variableFilter'].data)
     commit("setLoadingStatus", false)
   },

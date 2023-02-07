@@ -32,7 +32,7 @@
 
 <script>
 import { mapGetters } from "vuex"
-import DomainType from "@/components/DomainType";
+import DomainType from "@/components/Domain/DomainType";
 import FairSharingLink from "@/components/Navigation/FairSharingLink";
 
 export default {

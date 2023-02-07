@@ -1,0 +1,26 @@
+[
+  {
+    "pageName": "HomeView",
+    "title": "FAIRsharing Assistant"
+  },
+  {
+    "pageName": "StandardsView",
+    "title": "Are you looking for a (meta)data standard?",
+    "subTitle": "Here are the types of standards we describe in FAIRsharing. Choose one or more subtypes. Click on “Refine my choice” and the Assistant will give you more options, or “View in FAIRsharing” to see all of the currently selected records in FAIRsharing."
+  },
+  {
+    "pageName": "DatabaseView",
+    "title": "We can help you find databases according to what’s most important to you. Tell us a little about what you need.",
+    "subTitle": "Here are the types of databases we describe in FAIRsharing. Choose one or more subtypes. Click on “Refine my choice” and the Assistant will give you more options, or “View in FAIRsharing” to see all of the currently selected records in FAIRsharing."
+  },
+  {
+    "pageName": "PoliciesView",
+    "title": "Are you looking for a data policy?",
+    "subTitle": "Here are the types of data policies we describe in FAIRsharing. Choose one or more subtypes. Click on “Refine my choice” and the Assistant will give you more options, or “View in FAIRsharing” to see all of the currently selected records in FAIRsharing."
+  },
+  {
+    "pageName": "RefineView",
+    "title": "Tell us a little more about what’s most important to you",
+    "subTitle": "You have a few choices here. Start by choosing the one that is most important to you. Explore how adding the filters you need affect the number of records selected."
+  }
+]

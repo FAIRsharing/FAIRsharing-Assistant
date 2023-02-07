@@ -1,13 +1,13 @@
 <template>
   <div>
     <p class="ma-0">
-      Link to FAIRsharing:
       <!-- Resource Page Button -->
       <v-btn
         v-if="currentRouteName === 'ResourceTypeView' || 'DatabaseView' ||'StandardsView'|| 'PoliciesView'"
         v-bind="button['attributes']"
         :disabled="!fairSharingButton"
         :href="resourceRedirectionLink"
+        class="fairSharingBtn"
       >
         {{ button["text"] }}
       </v-btn>
@@ -18,6 +18,7 @@
         v-bind="button['attributes']"
         :disabled="!fairSharingButton"
         :href="subjectRedirectionLink"
+        class="fairSharingBtn"
       >
         {{ button["text"] }}
       </v-btn>
@@ -28,6 +29,7 @@
         v-bind="button['attributes']"
         :disabled="!fairSharingButton"
         :href="domainRedirectionLink"
+        class="fairSharingBtn"
       >
         {{ button["text"] }}
       </v-btn>
@@ -49,7 +51,7 @@ export default {
     return {
       fairSharingURL: process.env.VUE_APP_FAIRSHARING_URL,
       button: {
-        text: "See FAIRsharing",
+        text: "View in FAIRsharing",
         attributes: {
           elevation:"2",
           raised: true,
@@ -163,3 +165,9 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+.fairSharingBtn {
+  text-transform: initial;
+}
+</style>

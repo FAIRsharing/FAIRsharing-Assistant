@@ -31,7 +31,7 @@
 
 <script>
 import { mapGetters} from "vuex";
-import SubjectType from "@/components/SubjectType";
+import SubjectType from "@/components/Subject/SubjectType";
 import FairSharingLink from "@/components/Navigation/FairSharingLink";
 
 export default {

@@ -32,7 +32,7 @@
 
 <script>
 import {mapGetters} from "vuex"
-import ResourceType from "@/components/ResourceType";
+import ResourceType from "@/components/Resource/ResourceType";
 import FairSharingLink from "@/components/Navigation/FairSharingLink";
 export default {
   name: 'ResourceTypeView',

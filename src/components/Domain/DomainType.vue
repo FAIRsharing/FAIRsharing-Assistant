@@ -26,7 +26,7 @@ import { canvasGetImageData } from "@/utils/canvasRenderingContext"
 import { breadCrumbBar } from "@/utils/breadCrumbBar"
 import StringMixin from "@/utils/stringMixin.js"
 import RecordTypes from "@/utils/recordTypes.js";
-import Loaders from "@/components/Loaders"
+import Loaders from "@/components/Loaders/Loaders"
 
 export default {
   name: 'DomainType',

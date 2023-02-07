@@ -11,7 +11,8 @@ import {
   DomainTypeView,
   DatabaseView,
   StandardsView,
-  PoliciesView
+  PoliciesView,
+  RefineView
 } from './routes'
 
 
@@ -56,6 +57,11 @@ let routes = [
     name: "PoliciesView",
     path: "/policies",
     component: PoliciesView,
+  },
+  {
+    name: "RefineView",
+    path: "/refine-my-choice",
+    component: RefineView,
   }
 ]
 

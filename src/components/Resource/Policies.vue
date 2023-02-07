@@ -25,7 +25,7 @@ import { canvasGetImageData } from "@/utils/canvasRenderingContext"
 import { breadCrumbBar } from "@/utils/breadCrumbBar"
 import calculateRecords from "@/utils/calculateRecords"
 import StringMixin from "@/utils/stringMixin.js"
-import Loaders from "@/components/Loaders"
+import Loaders from "@/components/Loaders/Loaders"
 
 export default {
   name: 'Policies',
@@ -62,16 +62,17 @@ export default {
       await this.getCircles()
       this.loading = false
     })
+
   },
   destroyed() {
     this.resetRecords()
-    this.resetMultiTags()
-    this.resetVariableTags()
+    // this.resetMultiTags()
+    // this.resetVariableTags()
   },
   methods: {
     ...mapActions("recordTypeStore", ["fetchAllRecordTypes", "resetRecords"]),
-    ...mapActions("variableTagStore", ["fetchVariableTags", "resetVariableTags"]),
-    ...mapActions("multiTagsStore", ["fetchMultiTagsTerms", "resetMultiTags"]),
+    // ...mapActions("variableTagStore", ["fetchVariableTags", "resetVariableTags"]),
+    // ...mapActions("multiTagsStore", ["fetchMultiTagsTerms", "resetMultiTags"]),
 
     onBubbleSelection() {
       this.fairSharingButton = true
@@ -201,7 +202,6 @@ export default {
         this.onBubbleSelection()
         const nodeParent = e.target.dataItem._settings.parent.dataContext.name
         const node = e.target.dataItem.dataContext
-
         if(this.itemClicked !== node["name"]) {
           if (node["children"] && node["children"].length) {
             this.itemClicked = node["name"]
@@ -214,7 +214,8 @@ export default {
             this.itemClicked = node["name"]
             this.$store.commit("bubbleSelectedStore/resourceSelected", {
               topResourceSelected: nodeParent,
-              childResourceSelected: this.itemClicked
+              childResourceSelected: this.itemClicked,
+              recordsNumber: node["value"]
             })
           }
         }

@@ -1,7 +1,7 @@
 const state = {
   topResourceType:"",
   resourceType: "",
-  resources: [],
+  allResources: [],
   subjectType: "",
   domainType: ""
 };
@@ -10,14 +10,14 @@ const mutations = {
   resourceSelected (state, resource) {
     state.topResourceType = resource["topResourceSelected"]
     state.resourceType = resource["childResourceSelected"]
-    const found = state.resources.find(({records}) => records === resource["childResourceSelected"])
+    const found = state.allResources.find(({records}) => records === resource["childResourceSelected"])
     if(!found) {
-      state.resources.push({
+      state.allResources.push({
         registry : resource["topResourceSelected"],
-        records : resource["childResourceSelected"]
+        records : resource["childResourceSelected"],
+        recordsNumber: resource["recordsNumber"]
       })
     }
-
   },
   subjectSelected (state, subject) {
     state.subjectType = subject
@@ -33,6 +33,9 @@ const getters = {
   },
   getResource(state)  {
     return state.resourceType;
+  },
+  getAllResources(state)  {
+    return state.allResources;
   },
   getSubject(state)  {
     return state.subjectType;

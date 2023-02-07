@@ -23,13 +23,14 @@ import * as am5hierarchy from "@amcharts/amcharts5/hierarchy";
 import am5themes_Animated from '@amcharts/amcharts5/themes/Animated';
 import { canvasGetImageData } from "@/utils/canvasRenderingContext"
 import { breadCrumbBar } from "@/utils/breadCrumbBar"
+import calculateRecords from "@/utils/calculateRecords"
 import StringMixin from "@/utils/stringMixin.js"
-import Loaders from "@/components/Loaders"
+import Loaders from "@/components/Loaders/Loaders"
 
 export default {
   name: 'ResourceType',
   components: { Loaders },
-  mixins: [StringMixin],
+  mixins: [StringMixin, calculateRecords],
   data:() => {
     return {
       loading: false,
@@ -79,26 +80,6 @@ export default {
       this.$emit('showResourceSelected', this.showResourceSelected)
     },
 
-    /**
-     * Calculate the number of fairSharing records for each record type and assign the total
-     * @param {String} resourceSelected - The resource selected
-     * @param {String} subjectSelected - The subject selected
-     * @param {String} domainSelected - The domain selected
-     * @param {Array} otherResourceType - All the recordTypes
-     * @returns {Number} - Number of  each recordsTpe
-     */
-    async calculateRecords(resourceSelected, subjectSelected, domainSelected, otherResourceType) {
-      //Using multiTagFilter Query
-      await this.fetchMultiTagsTerms([resourceSelected, subjectSelected, domainSelected])
-      for (let childResource of otherResourceType) {
-        childResource["value"] = 0
-        this.fairSharingRecords.filter(ele => {
-          if (ele["type"] === this.formatString(childResource["name"])) {
-            childResource["value"]++
-          }
-        })
-      }
-    },
     /**
      * Creates initial skeleton/structure for resource page as array of objects
      * Level -1 : 3 Registries (Database, Standards, Policy)
@@ -234,7 +215,8 @@ export default {
             this.itemClicked = node["name"]
             this.$store.commit("bubbleSelectedStore/resourceSelected", {
               topResourceSelected: nodeParent,
-              childResourceSelected: this.itemClicked
+              childResourceSelected: this.itemClicked,
+              recordsNumber: node["value"]
             })
           }
         }

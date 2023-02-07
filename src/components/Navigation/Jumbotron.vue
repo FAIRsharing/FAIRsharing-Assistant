@@ -1,11 +1,12 @@
 <template>
   <section
-    class="px-md-10 pa-5 d-flex flex-column justify-center heroBlock"
+    class="px-md-10 pa-5 d-flex flex-column justify-center mb-6"
     :style="['z-index: 2', {
       backgroundImage: 'linear-gradient(180deg, rgba(37, 52, 66, 1) 0%, rgba(39, 170, 225, 1) 200%),url(' + '/assets/Home/BlockHero/pattern3.jpg',
       backgroundRepeat: 'repeat',
       backgroundBlendMode: 'multiply',
     }]"
+    :class="getJumbotronData['pageName'] === 'HomeView' ? 'heroBlock' : null"
   >
     <!-- eslint-disable vue/no-v-html -->
     <Particles
@@ -13,16 +14,34 @@
       :options="options"
     />
     <h1
-      class="full-width white--text font-weight-medium text-sm-h3 text-md-h3 text-lg-h3 text-xl-h3 text-center"
+      class="text-body-1 text-sm-h6 pt-2 text-md-h6 text-lg-h4 text-xl-h4 font-weight-medium white--text"
+      style="z-index: 2"
+      :class="getJumbotronData['pageName'] === 'HomeView' ? 'text-center' : 'text-left'"
+    >
+      {{ getJumbotronData["title"] }}
+    </h1>
+
+    <h2
+      v-if="getJumbotronData['subTitle']"
+      :class="[
+        'lato-font-medium my-4 primary--text px-1 font-weight-thin',
+        {
+          'lato-text-md': $vuetify.breakpoint.mdOnly,
+          'lato-text-lg': $vuetify.breakpoint.lgAndUp,
+          'lato-text-sm': $vuetify.breakpoint.smAndDown
+        },
+        getJumbotronData['pageName'] === 'HomeView' ? 'text-center' : 'text-left'
+      ]"
       style="z-index: 2"
     >
-      FAIRsharing Assistant
-    </h1>
+      {{ getJumbotronData["subTitle"] }}
+    </h2>
     <!--    <LandingPage />-->
   </section>
 </template>
 
 <script>
+import jumbotronData from "@/data/jumbotronData.json";
 export default {
   name: "Jumbotron",
   data:() => {
@@ -77,28 +96,22 @@ export default {
         },
         detectRetina: true
       },
+      jumbotronData
     }
   },
-  // computed: {
-  //   getJumbotronData(){
-  //     if (this.$route.name) {
-  //       let route = this.$route.name;
-  //       if (route === "search" && Object.keys(this.$route.query).includes("fairsharingRegistry")) {
-  //         route = this.$route.query.fairsharingRegistry
-  //       }
-  //       return jumbotronData[route.toLowerCase()] || null
-  //     }
-  //     return null
-  //   }
-  // }
+  computed: {
+    getJumbotronData(){
+      let currentPage = []
+      if (this.$route.name) {
+        let route = this.$route.name;
+        currentPage = jumbotronData.filter(({pageName}) => pageName === route)
+      }
+      return currentPage[0]
+    }
+  }
 }
 </script>
 
-<style scoped>
-/*section {*/
-/*  height: 100px;*/
-/*}*/
-</style>
 
 <style>
 .heroBlock {
@@ -116,9 +129,6 @@ export default {
       opacity: 1;
     }
   }
-
-
-
 
   #particles canvas{
     position: absolute;
