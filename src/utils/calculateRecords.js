@@ -1,31 +1,73 @@
 import {mapActions, mapState} from "vuex";
 
+const allSubjectsData = {
+  name: "Subject",
+  value: 0,
+  children: '',
+}
+
+const topSubjects = [
+  {
+    id: 700,
+    name: "Natural Science",
+    records_count: 0
+  },
+  {
+    id: 468,
+    name: "Engineering Science",
+    records_count: 0
+  },
+  {
+    id: 613,
+    name: "Humanities and Social Science",
+    records_count: 0
+  },
+  {
+    id: 768,
+    name: "Subject Agnostic",
+    records_count: 0
+  }
+]
+
 const calculateRecords = {
+
   computed: {
-    ...mapState("multiTagsStore", ["fairSharingRecords", "loadingStatus"]),
+    ...mapState("variableTagStore", ["variableResponse", "loadingStatus"]),
   },
   methods: {
-    ...mapActions("multiTagsStore", ["fetchMultiTagsTerms", "resetMultiTags"]),
+    ...mapActions("variableTagStore", ["fetchVariableTags", "resetVariableTags"]),
     /**
-     * Calculate the number of fairSharing records for each record type and assign the total
+     *
+     * @param {Array} Subjects - Subjects array
+     * @returns {Object} - All four subjects i.e. Engineering Science, Natural Science, Subject Agnostic, Humanities And Social Science with
+     */
+    displayAllTopSubjects(subjects) {
+      const fetchedSubjectNames = subjects.map(({ id }) => id)
+      //All the selected resource
+      const missingSubject = topSubjects.filter(({ id }) =>!fetchedSubjectNames.includes(id));
+      if (missingSubject && missingSubject.length) {
+        missingSubject.forEach((subject) => {
+          allSubjectsData["children"].push(subject)
+        })
+      }
+      return allSubjectsData
+    },
+    /**
+     *
      * @param {String} resourceSelected - The resource selected
      * @param {String} subjectSelected - The subject selected
      * @param {String} domainSelected - The domain selected
-     * @param {Array} otherResourceType - All the recordTypes
-     * @returns {Number} - Number of  each recordsTpe
+     * @param {String} groupBy - group by Subject/Domain
+     * @param addonfilters - adding more filters
+     * @returns {Object} - All Subjects Data
      */
-    async calculateRecords(resourceSelected, subjectSelected, domainSelected, otherResourceType) {
-      //Using multiTagFilter Query
-      await this.fetchMultiTagsTerms([resourceSelected, subjectSelected, domainSelected])
-      for (let childResource of otherResourceType) {
-        childResource["value"] = 0
-        this.fairSharingRecords.filter(ele => {
-          if (ele["type"] === this.formatString(childResource["name"])) {
-            childResource["value"]++
-          }
-        })
-      }
-    }
+    async calculateRecords(resourceSelected, subjectSelected, domainSelected, groupBy, addonfilters) {
+      //Using variableFilter query
+      await this.fetchVariableTags([resourceSelected, subjectSelected, domainSelected, groupBy, addonfilters])
+      allSubjectsData["children"] = this.variableResponse
+      const result = this.displayAllTopSubjects(allSubjectsData["children"])
+      return result
+    },
   }
 }
 

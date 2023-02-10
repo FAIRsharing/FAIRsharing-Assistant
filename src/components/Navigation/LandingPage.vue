@@ -77,13 +77,13 @@
 </template>
 
 <script>
-import {questionSetOne, questionSetTwo} from "@/data/landingPageData.json";
+import questionSets from "@/data/landingPageData.json";
 export default {
   name: 'LandingPage',
   data: () => {
     return {
-      questionSetOne,
-      questionSetTwo
+      questionSetOne: questionSets["questionSetOne"],
+      questionSetTwo: questionSets["questionSetTwo"]
     }
   }
 };

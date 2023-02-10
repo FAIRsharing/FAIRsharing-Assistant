@@ -23,14 +23,14 @@ import * as am5hierarchy from "@amcharts/amcharts5/hierarchy";
 import am5themes_Animated from '@amcharts/amcharts5/themes/Animated';
 import { canvasGetImageData } from "@/utils/canvasRenderingContext"
 import { breadCrumbBar } from "@/utils/breadCrumbBar"
-import calculateRecords from "@/utils/calculateRecords"
+import calculateResourceRecords from "@/utils/calculateResourceRecords"
 import StringMixin from "@/utils/stringMixin.js"
 import Loaders from "@/components/Loaders/Loaders"
 
 export default {
   name: 'ResourceType',
   components: { Loaders },
-  mixins: [StringMixin, calculateRecords],
+  mixins: [StringMixin, calculateResourceRecords],
   data:() => {
     return {
       loading: false,

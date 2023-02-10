@@ -1,31 +1,17 @@
 <template>
   <div>
-    <p>This is a Subject View</p>
-    <p
-      v-if="(getTopResource || getResource)"
-      class="ma-0 text-capitalize"
-    >
-      Resource Type Selected: {{ getResource ? getResource : getTopResource }}
-    </p>
-    <p
-      v-if="showSubject"
-      class="ma-0 text-capitalize"
-    >
-      Subject Type Selected: {{ getSubject }}
-    </p>
-    <p
-      v-if="getDomain"
-      class="ma-0 text-capitalize"
-    >
-      Domain Type Selected: {{ getDomain }}
-    </p>
-    <FairSharingLink
-      :fair-sharing-button="fairSharingButton"
-    />
-    <SubjectType
-      @enableFairSharingButton="enableFairSharingButton"
-      @showSubjectSelected="showSubjectSelected"
-    />
+    <Jumbotron />
+    <div class="px-md-10 pa-5 mb-8">
+      <Selection />
+      <SubjectType
+        @enableFairSharingButton="enableFairSharingButton"
+        @showSubjectSelected="showSubjectSelected"
+      />
+      <FairSharingLink
+        :fair-sharing-button="fairSharingButton"
+      />
+      <StartOver />
+    </div>
   </div>
 </template>
 
@@ -33,12 +19,18 @@
 import { mapGetters} from "vuex";
 import SubjectType from "@/components/Subject/SubjectType";
 import FairSharingLink from "@/components/Navigation/FairSharingLink";
+import StartOver from "@/components/Navigation/StartOver"
+import Jumbotron from "@/components/Navigation/Jumbotron"
+import Selection from "@/components/Others/Selection"
 
 export default {
   name:'SubjectTypeView',
   components: {
     SubjectType,
-    FairSharingLink
+    FairSharingLink,
+    StartOver,
+    Jumbotron,
+    Selection
   },
   data:() => {
     return {

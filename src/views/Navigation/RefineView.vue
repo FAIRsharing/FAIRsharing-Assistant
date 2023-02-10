@@ -2,12 +2,7 @@
   <div>
     <Jumbotron />
     <div class="px-md-10 pa-5 mb-8">
-      <p
-        v-if="getTopResource"
-        class="ma-0 text-capitalize"
-      >
-        Resource Type Selected: {{ getResource ? getResource : getTopResource }}
-      </p>
+      <Selection />
       <FairSharingLink
         :fair-sharing-button="fairSharingButton"
       />
@@ -30,6 +25,7 @@ import Jumbotron from "@/components/Navigation/Jumbotron";
 import SubjectButton from "@/components/Navigation/SubjectButton";
 import RecordsTable from "@/components/Others/RecordsTable"
 import AddOnFilters from "@/components/Others/AddOnFilters.vue";
+import Selection from "@/components/Others/Selection";
 
 export default {
   name: 'RefineView',
@@ -39,7 +35,8 @@ export default {
     StartOver,
     SubjectButton,
     RecordsTable,
-    AddOnFilters
+    AddOnFilters,
+    Selection,
   },
   data:() => {
     return {
@@ -49,11 +46,6 @@ export default {
   computed:{
     ...mapGetters("bubbleSelectedStore", ['getAllResources', 'getTopResource', 'getResource', 'getSubject', 'getDomain']),
   },
-  methods: {
-    selectRefineOption() {
-      return this.refineToggle
-    }
-  }
 };
 </script>
 

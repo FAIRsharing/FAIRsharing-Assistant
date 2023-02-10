@@ -1,33 +1,58 @@
 <template>
-  <v-row>
-    <v-col cols="12">
+  <v-container class="ma-0">
+    <div
+      v-for="(filter, index) in addOnFilters"
+      :key="index"
+    >
       <v-switch
-        v-model="refineToggle"
+        v-if="filter['switch']"
+        v-model="filter['refineToggle']"
         class="d-inline-block mr-2"
-        label="Data preservation policy"
+        :label="filter['filterName']"
         inset
-        @change="selectRefineOption()"
+        :value="filter['refineToggle']"
+        @change="selectToggle()"
       />
-    </v-col>
-  </v-row>
+      <v-select
+        v-if="filter['select']"
+        v-model="filter['refineToggle']"
+        :items="filter['options']"
+        :label="filter['filterName']"
+        class="optionsList"
+        @change="selectToggle()"
+      />
+    </div>
+  </v-container>
 </template>
 
 <script>
 import {mapGetters} from "vuex";
+import addOnFilters from "@/data/addOnFilters.json"
 
 export default {
   name: 'AddOnFilters',
   data:() => {
     return {
-      refineToggle: false
+      addOnFilters: addOnFilters
     }
   },
   computed:{
     ...mapGetters("bubbleSelectedStore", ['getAllResources', 'getTopResource', 'getResource', 'getSubject', 'getDomain']),
   },
+  mounted() {
+    let map = new Map();
+    for (let filter of this.addOnFilters) {
+      map.set(`${filter["filterQuery"]}`, `${filter["refineToggle"]}`)
+    }
+    this.$store.commit("addOnFilterSelectedStore/filtersSelected", map)
+  },
   methods: {
-    selectRefineOption() {
-      return this.refineToggle
+    selectToggle() {
+      let map = new Map();
+      for (let filter of this.addOnFilters) {
+        map.set(`${filter["filterQuery"]}`, `${filter["refineToggle"]}`)
+      }
+      this.$store.commit("addOnFilterSelectedStore/filtersSelected", map)
     }
   }
 };

@@ -10,19 +10,35 @@ export const state = {
   loadingStatus: false,
 }
 
+// let filterStatus = false
+
 export const actions = {
-  async fetchVariableTags({commit}, [resource, subject, domain, tag, dataPreservationPolicy]) {
+  async fetchVariableTags({commit}, [resource, subject, domain, tag, addonfilters]) {
+    console.log("addonfilters::", addonfilters)
+
     commit("setLoadingStatus", true)
     VARIABLE_TAGS.queryParam = {
       recordType: resource,
       subjects: subject,
       domains: domain,
       groupBy: tag,
-      dataPreservationPolicy: dataPreservationPolicy
+      hasPublication: JSON.parse(addonfilters.get("hasPublication")),
+      isRecommended: JSON.parse(addonfilters.get("isRecommended")),
+      isImplemented: JSON.parse(addonfilters.get("isImplemented")),
+      usesPersistentIdentifier: JSON.parse(addonfilters.get("usesPersistentIdentifier")),
+      dataPreservationPolicy: JSON.parse(addonfilters.get("dataPreservationPolicy")),
+      resourceSustainability: JSON.parse(addonfilters.get("resourceSustainability")),
+      dataAccessCondition: addonfilters.get("dataAccessCondition"),
+      dataCuration: addonfilters.get("dataCuration"),
+      dataDepositionCondition: addonfilters.get("dataDepositionCondition"),
+      citationToRelatedPublications: addonfilters.get("citationToRelatedPublications"),
+      dataAccessForPrePublicationReview: addonfilters.get("dataAccessForPrePublicationReview"),
+      dataContactInformation: addonfilters.get("dataContactInformation"),
+      dataVersioning: addonfilters.get("dataVersioning")
     }
     //Delete the null/empty parameter
     for (const key in VARIABLE_TAGS.queryParam) {
-      if (VARIABLE_TAGS.queryParam[key] === null || VARIABLE_TAGS.queryParam[key] === '' || VARIABLE_TAGS.queryParam[key] === undefined) {
+      if (VARIABLE_TAGS.queryParam[key] === null || VARIABLE_TAGS.queryParam[key] === '' || VARIABLE_TAGS.queryParam[key] === undefined || VARIABLE_TAGS.queryParam[key] === false) {
         delete VARIABLE_TAGS.queryParam[key];
       }
     }

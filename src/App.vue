@@ -1,23 +1,14 @@
 <template>
   <v-app id="app">
     <v-main>
-      <!--      <Menu />-->
-      <!--      <Jumbotron />-->
       <router-view />
     </v-main>
   </v-app>
 </template>
 
 <script>
-// import Menu from "@/components/Navigation/Menu"
-// import Jumbotron from "@/components/Navigation/Jumbotron";
-
 export default {
   name: 'App',
-  components: {
-    // Menu,
-    // Jumbotron
-  },
 };
 </script>
 

@@ -26,11 +26,11 @@ import { breadCrumbBar } from "@/utils/breadCrumbBar";
 import StringMixin from "@/utils/stringMixin.js"
 import RecordTypes from "@/utils/recordTypes.js";
 import Loaders from "@/components/Loaders/Loaders"
-
+import calculateRecords from "@/utils/calculateRecords";
 export default {
   name: 'SubjectType',
   components: { Loaders },
-  mixins: [StringMixin, RecordTypes],
+  mixins: [StringMixin, RecordTypes, calculateRecords],
   data:() => {
     return {
       loading: false,
@@ -38,34 +38,13 @@ export default {
       showSubjectSelected: false,
       resourceSelected: "" || [],
       domainSelected: "",
-      allSubjectsData: {
-        name: "Subject",
-        value: 0,
-        children: '',
-      },
-      topSubjects: [
-        {
-          id: 700,
-          name: "Natural Science"
-        },
-        {
-          id: 468,
-          name: "Engineering Science"
-        },
-        {
-          id: 613,
-          name: "Humanities and Social Science",
-        },
-        {
-          id: 768,
-          name: "Subject Agnostic"
-        }
-      ],
+      allSubjectsData: {},
       itemClicked: ""
     }
   },
   computed:{
     ...mapGetters("bubbleSelectedStore", ['getTopResource','getResource','getSubject', 'getDomain']),
+    ...mapGetters("addOnFilterSelectedStore", ["getFilters"]),
     ...mapState("recordTypeStore", ["allRecordTypes", "loadingData"]),
     ...mapState("variableTagStore", ["variableResponse", "loadingStatus"]),
     ...mapState("browseSubjectsStore", ["subjectBubbleTree", "loadingData"]),
@@ -96,23 +75,7 @@ export default {
       this.$emit('enableFairSharingButton', this.fairSharingButton)
       this.$emit('showSubjectSelected', this.showSubjectSelected)
     },
-    displayAllTopSubjects(subjects) {
-      const fetchedSubjectNames = subjects.map(({ id }) => id)
-      //All the selected resource
-      const missingSubject = this.topSubjects.filter(({ id }) =>!fetchedSubjectNames.includes(id));
-      if (missingSubject && missingSubject.length) {
-        missingSubject.forEach((subject) => {
-          this.allSubjectsData["children"].push(subject)
-        })
-      }
-    },
 
-    async calculateRecords(resourceSelected, subjectSelected, domainSelected, groupBy) {
-      //Using variableFilter query
-      await this.fetchVariableTags([resourceSelected, subjectSelected, domainSelected, groupBy])
-      this.allSubjectsData["children"] = this.variableResponse
-      this.displayAllTopSubjects(this.allSubjectsData["children"])
-    },
     async displaySubjects() {
       //When user lands on subject type after selecting the TopResource & domainType type
       if(this.getTopResource !== '' && this.getResource === '' && this.getDomain !== ''){
@@ -120,7 +83,7 @@ export default {
         console.log("TOP RESOURCE & DOMAIN")
         await this.allOtherRecordTypes(this.resourceSelected)
         this.domainSelected = this.getDomain.toLowerCase()
-        await this.calculateRecords(this.resourceSelected, null, this.domainSelected, "subject")
+        this.allSubjectsData = await this.calculateRecords(this.resourceSelected, null, this.domainSelected, "subject")
       }
 
       //When user lands on subject type after selecting the resource & domain type
@@ -129,7 +92,7 @@ export default {
         console.log("OTHER RESOURCE & DOMAIN")
         this.resourceSelected = this.formatString(this.getResource)
         this.domainSelected = this.getDomain.toLowerCase()
-        await this.calculateRecords(this.resourceSelected, null, this.domainSelected, "subject")
+        this.allSubjectsData = await this.calculateRecords(this.resourceSelected, null, this.domainSelected, "subject")
       }
 
       //When user lands on subject type after selecting the TOP Resource type
@@ -137,27 +100,32 @@ export default {
         // eslint-disable-next-line no-console
         console.log("ONLY TOP RESOURCE")
         await this.allOtherRecordTypes(this.resourceSelected)
-        await this.calculateRecords(this.resourceSelected, null, null, "subject")
+        this.allSubjectsData = await this.calculateRecords(this.resourceSelected, null, null, "subject")
       }
       //When user lands on subject type after selecting the resource type
       if(this.getResource !== '' && this.getDomain === '') {
         // eslint-disable-next-line no-console
         console.log("ONLY OTHER RESOURCE")
         this.resourceSelected = this.formatString(this.getResource)
-        await this.calculateRecords(this.resourceSelected, null, null, "subject")
+        this.allSubjectsData = await this.calculateRecords(this.resourceSelected, null, null, "subject", this.getFilters)
       }
       //When user lands on subject type after selecting the domain type
       if (this.getTopResource === '' && this.getResource === '' && this.getDomain !== ''){
         // eslint-disable-next-line no-console
         console.log("ONLY DOMAIN")
         this.domainSelected = this.getDomain.toLowerCase()
-        await this.calculateRecords(null, null, this.domainSelected, "subject")
+        this.allSubjectsData = await this.calculateRecords(null, null, this.domainSelected, "subject")
       }
       //When user lands on subject type as the entry point in the application
       if(this.getTopResource ==="" && this.getResource === '' && this.getDomain === '') {
         // eslint-disable-next-line no-console
         console.log("ALL SUBJECTS")
         await this.fetchTerms()
+        this.allSubjectsData = {
+          name: "Subject",
+          value: 0,
+          children: '',
+        }
         this.allSubjectsData["children"] = this.subjectBubbleTree
       }
     },
@@ -204,10 +172,7 @@ export default {
         strokeDasharray: 3
       });
 
-      //When all four subjects have no records_count/records_count is 0 bubble size is same
-      // const noChild = !this.allSubjectsData["children"].some((child) => {
-      //   Object.hasOwn(child, "records_count")
-      // })
+      //When all four subjects have no records_count/records_count is zero bubble size is same
       const noRecords = this.allSubjectsData["children"].every(({records_count}) => records_count === 0)
       if (noRecords) {
         series.setAll({

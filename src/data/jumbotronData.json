@@ -22,5 +22,10 @@
     "pageName": "RefineView",
     "title": "Tell us a little more about what’s most important to you",
     "subTitle": "You have a few choices here. Start by choosing the one that is most important to you. Explore how adding the filters you need affect the number of records selected."
+  },
+  {
+    "pageName": "SubjectTypeView",
+    "title": "Would you like to explore a particular subject area?",
+    "subTitle": "We’ll show you a browsable view of our subject areas, where the size of the circle represents how many of our records are part of that hierarchy. At any time, you can search for a particular subject or browse to the subject you’re interested in."
   }
 ]

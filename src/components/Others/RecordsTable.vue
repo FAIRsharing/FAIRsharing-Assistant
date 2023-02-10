@@ -116,7 +116,10 @@
 export default {
   name: 'RecordsTable',
   props:{
-    getAllResources: Array,
+    getAllResources: {
+      type: Array,
+      required: true
+    },
   },
   computed:{
     totalRecords() {

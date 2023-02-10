@@ -7,6 +7,7 @@ import recordTypeStore from './recordTypeStore'
 import topDomainsStore from "./topDomainsStore"
 import multiTagsStore from "./multiTagsStore"
 import variableTagStore from "./variableTagStore";
+import addOnFilterSelectedStore from "./addOnFilterSelectedStore.js"
 
 
 Vue.use(Vuex);
@@ -21,6 +22,7 @@ export default new Vuex.Store({
     topDomainsStore,
     multiTagsStore,
     variableTagStore,
+    addOnFilterSelectedStore
   }
 })
 
