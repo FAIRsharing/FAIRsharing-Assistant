@@ -23,7 +23,7 @@ import * as am5hierarchy from "@amcharts/amcharts5/hierarchy";
 import am5themes_Animated from '@amcharts/amcharts5/themes/Animated';
 import { canvasGetImageData } from "@/utils/canvasRenderingContext"
 import { breadCrumbBar } from "@/utils/breadCrumbBar"
-import calculateResourceRecords from "@/utils/calculateResourceRecords"
+import calculateResourceRecords from "@/utils/ResourceUtils/calculateResourceRecords"
 import StringMixin from "@/utils/stringMixin.js"
 import Loaders from "@/components/Loaders/Loaders"
 

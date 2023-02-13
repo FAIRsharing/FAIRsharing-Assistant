@@ -22,6 +22,7 @@ export const actions = {
       subjects: subject,
       domains: domain,
       groupBy: tag,
+      status: addonfilters.get("status"),
       hasPublication: JSON.parse(addonfilters.get("hasPublication")),
       isRecommended: JSON.parse(addonfilters.get("isRecommended")),
       isImplemented: JSON.parse(addonfilters.get("isImplemented")),

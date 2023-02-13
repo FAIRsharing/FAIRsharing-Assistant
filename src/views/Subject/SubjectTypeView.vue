@@ -3,6 +3,7 @@
     <Jumbotron />
     <div class="px-md-10 pa-5 mb-8">
       <Selection />
+      <RefineButton :refine-button="refineButton" />
       <SubjectType
         @enableFairSharingButton="enableFairSharingButton"
         @showSubjectSelected="showSubjectSelected"
@@ -20,6 +21,7 @@ import { mapGetters} from "vuex";
 import SubjectType from "@/components/Subject/SubjectType";
 import FairSharingLink from "@/components/Navigation/FairSharingLink";
 import StartOver from "@/components/Navigation/StartOver"
+import RefineButton from "@/components/Navigation/RefineButton"
 import Jumbotron from "@/components/Navigation/Jumbotron"
 import Selection from "@/components/Others/Selection"
 
@@ -29,13 +31,15 @@ export default {
     SubjectType,
     FairSharingLink,
     StartOver,
+    RefineButton,
     Jumbotron,
     Selection
   },
   data:() => {
     return {
       fairSharingButton: false,
-      showSubject: false
+      showSubject: false,
+      refineButton: false,
     }
   },
   computed:{
@@ -47,6 +51,7 @@ export default {
   methods: {
     enableFairSharingButton(value) {
       this.fairSharingButton = value
+      this.refineButton = value
     },
     showSubjectSelected(value){
       this.showSubject = value

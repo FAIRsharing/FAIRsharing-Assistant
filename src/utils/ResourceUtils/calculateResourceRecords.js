@@ -4,6 +4,9 @@ const calculateResourceRecords = {
   computed: {
     ...mapState("multiTagsStore", ["fairSharingRecords", "loadingStatus"]),
   },
+  destroyed() {
+    this.resetMultiTags()
+  },
   methods: {
     ...mapActions("multiTagsStore", ["fetchMultiTagsTerms", "resetMultiTags"]),
     /**

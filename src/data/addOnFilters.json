@@ -1,87 +1,107 @@
 [
-  {
-    "filterName": "Has Publication",
-    "filterQuery": "hasPublication",
-    "refineToggle": false,
-    "switch": true
-  },
-  {
-    "filterName": "Is Recommended",
-    "filterQuery": "isRecommended",
-    "refineToggle": false,
-    "switch": true
-  },
-  {
-    "filterName": "Is Implemented",
-    "filterQuery": "isImplemented",
-    "refineToggle": false,
-    "switch": true
-  },
-  {
-    "filterName": "Uses Persistent Identifier",
-    "filterQuery": "usesPersistentIdentifier",
-    "refineToggle": false,
-    "switch": true
-  },
-  {
-    "filterName": "Data Preservation Policy",
-    "filterQuery": "dataPreservationPolicy",
-    "refineToggle": false,
-    "switch": true
-  },
-  {
-    "filterName": "Resource Sustainability",
-    "filterQuery": "resourceSustainability",
-    "refineToggle": false,
-    "switch": true
-  },
-  {
-    "filterName": "Data Access Condition",
-    "filterQuery": "dataAccessCondition",
-    "refineToggle": "",
-    "options": ["Open", "Partially open", "Controlled"],
-    "select": true
-  },
-  {
-    "filterName": "Data curation",
-    "filterQuery": "dataCuration",
-    "refineToggle": "",
-    "options": ["Manual", "Automated", "Manual/Automated", "None"],
-    "select": true
-  },
-  {
-    "filterName": "Data Deposition Condition",
-    "filterQuery": "dataDepositionCondition",
-    "refineToggle": "",
-    "options": ["Open", "Controlled"],
-    "select": true
-  },
-  {
-    "filterName": "Citation To Related Publications",
-    "filterQuery": "citationToRelatedPublications",
-    "refineToggle": "",
-    "options": ["Yes", "No"],
-    "select": true
-  },
-  {
-    "filterName": "Data Access For PrePublication Review",
-    "filterQuery": "dataAccessForPrePublicationReview",
-    "refineToggle": "",
-    "options": ["Yes", "No"],
-    "select": true
-  },
-  {
-    "filterName": "Data Contact Information",
-    "filterQuery": "dataContactInformation",
-    "refineToggle": "",
-    "options": ["Yes", "No"],
-    "select": true
-  },
-  {
-    "filterName": "Data Versioning",
-    "filterQuery": "dataVersioning",
-    "refineToggle": "",
-    "options": ["Yes", "No"],
-    "select": true
-  }
+    {
+      "filterName": "Has Publication",
+      "filterQuery": "hasPublication",
+      "refineToggle": false,
+      "switch": true,
+      "filterTypes": ["database", "standards"]
+    },
+    {
+      "filterName": "Is Recommended",
+      "filterQuery": "isRecommended",
+      "refineToggle": false,
+      "switch": true,
+      "filterTypes": ["standards"]
+    },
+    {
+      "filterName": "Is Implemented",
+      "filterQuery": "isImplemented",
+      "refineToggle": false,
+      "switch": true,
+      "filterTypes": ["standards"]
+    },
+    {
+      "filterName": "Uses Persistent Identifier",
+      "filterQuery": "usesPersistentIdentifier",
+      "refineToggle": false,
+      "switch": true,
+      "filterTypes": ["database"]
+    },
+    {
+      "filterName": "Data Preservation Policy",
+      "filterQuery": "dataPreservationPolicy",
+      "refineToggle": false,
+      "switch": true,
+      "filterTypes": ["database"]
+    },
+    {
+      "filterName": "Resource Sustainability",
+      "filterQuery": "resourceSustainability",
+      "refineToggle": false,
+      "switch": true,
+      "filterTypes": ["database"]
+    },
+    {
+      "filterName": "Life Cycle Status",
+      "filterQuery": "status",
+      "refineToggle": "",
+      "options": ["Ready", "In dev", "Dep", "Uncertain"],
+      "select": true,
+      "filterTypes": ["database", "standards", "policies"]
+    },
+    {
+      "filterName": "Data Access Condition",
+      "filterQuery": "dataAccessCondition",
+      "refineToggle": "",
+      "options": ["Open", "Partially open", "Controlled"],
+      "select": true,
+      "filterTypes": ["database"]
+    },
+    {
+      "filterName": "Data curation",
+      "filterQuery": "dataCuration",
+      "refineToggle": "",
+      "options": ["Manual", "Automated", "Manual/Automated", "None"],
+      "select": true,
+      "filterTypes": ["database"]
+    },
+    {
+      "filterName": "Data Deposition Condition",
+      "filterQuery": "dataDepositionCondition",
+      "refineToggle": "",
+      "options": ["Open", "Controlled"],
+      "select": true,
+      "filterTypes": ["database"]
+    },
+    {
+      "filterName": "Citation To Related Publications",
+      "filterQuery": "citationToRelatedPublications",
+      "refineToggle": "",
+      "options": ["Yes", "No"],
+      "filterTypes": ["database"]
+    },
+    {
+      "filterName": "Data Access For PrePublication Review",
+      "filterQuery": "dataAccessForPrePublicationReview",
+      "refineToggle": "",
+      "options": ["Yes", "No"],
+      "select": true,
+      "filterTypes": ["database"]
+    },
+    {
+      "filterName": "Data Contact Information",
+      "filterQuery": "dataContactInformation",
+      "refineToggle": "",
+      "options": ["Yes", "No"],
+      "select": true,
+      "filterTypes": ["database"]
+    },
+    {
+      "filterName": "Data Versioning",
+      "filterQuery": "dataVersioning",
+      "refineToggle": "",
+      "options": ["Yes", "No"],
+      "select": true,
+      "filterTypes": ["database"]
+    }
 ]

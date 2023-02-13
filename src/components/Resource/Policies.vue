@@ -23,25 +23,22 @@ import * as am5hierarchy from "@amcharts/amcharts5/hierarchy";
 import am5themes_Animated from '@amcharts/amcharts5/themes/Animated';
 import { canvasGetImageData } from "@/utils/canvasRenderingContext"
 import { breadCrumbBar } from "@/utils/breadCrumbBar"
-import calculateResourceRecords from "@/utils/calculateResourceRecords"
+import calculateResourceRecords from "@/utils/ResourceUtils/calculateResourceRecords"
+import createResourceStructure from "@/utils/ResourceUtils/createResourceStructure"
 import StringMixin from "@/utils/stringMixin.js"
 import Loaders from "@/components/Loaders/Loaders"
 
 export default {
   name: 'Policies',
   components: { Loaders },
-  mixins: [StringMixin, calculateResourceRecords],
+  mixins: [StringMixin, calculateResourceRecords, createResourceStructure],
   data:() => {
     return {
       loading: false,
       fairSharingButton: false,
       showResourceSelected: false,
       allRecords: [],
-      allResourceData: {
-        name: "Resource",
-        value: 0,
-        children: [],
-      },
+      allResourceData: {},
       itemClicked: "",
       recordTypesList: [],
       subjectSelected: "",
@@ -51,8 +48,8 @@ export default {
   computed:{
     ...mapGetters("bubbleSelectedStore", ['getResource', 'getSubject', 'getDomain']),
     ...mapState("recordTypeStore", ["allRecordTypes", "loadingData"]),
-    ...mapState("variableTagStore", ["variableResponse", "loadingStatus"]),
-    ...mapState("multiTagsStore", ["fairSharingRecords", "loadingStatus"]),
+    // ...mapState("variableTagStore", ["variableResponse", "loadingStatus"]),
+    // ...mapState("multiTagsStore", ["fairSharingRecords", "loadingStatus"]),
   },
 
   async mounted() {
@@ -80,40 +77,9 @@ export default {
       this.$emit('enableFairSharingButton', this.fairSharingButton)
       this.$emit('showResourceSelected', this.showResourceSelected)
     },
-    /**
-     * Creates initial skeleton/structure for resource page as array of objects
-     * Level -1 : 3 Registries (Database, Standards, Policy)
-     * Level -2 : 14 Record types (e.g knowledgebase, repository, metric etc. )
-     * @returns {Array} - Array of objects
-     */
-    async createResourceStructure() {
-      await this.fetchAllRecordTypes()
-      let topResources = [...new Set(this.allRecordTypes["records"].map(({fairsharingRegistry}) => fairsharingRegistry["name"]))]
-      //Filtering "Database" topResource/registry
-      topResources = topResources.filter(item => item === "Policy")
-
-      //Converting array of topResource/registry to object
-      const topResourceTypeObj = topResources.map((name) => ({name}))
-      //Creating Array of object for topResource/registry with chidlren (array of objects)
-      topResourceTypeObj.forEach((ele) => {
-        ele["children"] = []
-        this.allRecordTypes["records"].filter(({name, fairsharingRegistry}) => {
-          if(fairsharingRegistry["name"] === ele["name"]) {
-            ele["children"].push({
-              name: this.normalString(name),
-              value: 0
-            })
-          }
-        })
-        if (ele["name"] === "Standard") ele["name"] = "Standards"
-        else if (ele["name"] === "Policy") ele["name"] = "Policies"
-        this.allResourceData["children"].push(ele)
-      })
-      return this.allResourceData
-    },
 
     async displayResources() {
-      await this.createResourceStructure()
+      this.allResourceData = await this.createResourceStructure("Policy")
       const otherResources = this.allResourceData["children"].map(({children}) => children)
       const otherResourceType = otherResources.flatMap(child => child)
 

@@ -35,7 +35,7 @@
               to="/"
               @click="overlay = false"
             >
-              Ok
+              OK
             </v-btn>
             <v-btn
               class="white--text startOverBtn"
@@ -43,7 +43,7 @@
               raised
               @click="overlay = false"
             >
-              Cancel
+              CANCEL
             </v-btn>
           </v-card-actions>
         </v-card>
