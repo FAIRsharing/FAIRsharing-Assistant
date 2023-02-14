@@ -7,7 +7,7 @@ import {
   HomeView,
   ResourceTypeView,
   SubjectTypeView,
-  SubjectTypeView_1,
+  // SubjectTypeView_1,
   DomainTypeView,
   DatabaseView,
   StandardsView,
@@ -33,11 +33,11 @@ let routes = [
     path: "/subject",
     component: SubjectTypeView,
   },
-  {
-    name: "SubjectTypeView_1",
-    path: "/subject_1",
-    component: SubjectTypeView_1,
-  },
+  // {
+  //   name: "SubjectTypeView_1",
+  //   path: "/subject_1",
+  //   component: SubjectTypeView_1,
+  // },
   {
     name: "DomainTypeView",
     path: "/domain",
