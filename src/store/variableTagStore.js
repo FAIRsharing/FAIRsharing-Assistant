@@ -14,8 +14,6 @@ export const state = {
 
 export const actions = {
   async fetchVariableTags({commit}, [resource, subject, domain, tag, addonfilters]) {
-    console.log("addonfilters::", addonfilters)
-
     commit("setLoadingStatus", true)
     VARIABLE_TAGS.queryParam = {
       recordType: resource,
