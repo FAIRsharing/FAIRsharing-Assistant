@@ -4,7 +4,7 @@
   >
     <v-btn
       v-bind="button['attributes']"
-      class="white--text subjectBtn"
+      class="white--text domainBtn"
     >
       {{ button["text"] }}
     </v-btn>
@@ -13,16 +13,16 @@
 
 <script>
 export default {
-  name: "SubjectButton",
+  name: "DomainButton",
   data () {
     return {
       button: {
-        text: "Subject",
+        text: "Domain",
         attributes: {
           elevation:"2",
           raised: true,
-          color: "accent",
-          to:"/subject",
+          color: "accent3",
+          to:"/domain",
         }
       },
     }
@@ -32,7 +32,7 @@ export default {
 
 
 <style scoped>
-.subjectBtn {
+.domainBtn {
   text-transform: initial;
 }
 

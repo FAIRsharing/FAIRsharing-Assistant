@@ -5,6 +5,11 @@ const allSubjectsData = {
   value: 0,
   children: '',
 }
+const allDomainData = {
+  name: "Domain",
+  value: 0,
+  children: "",
+}
 
 const topSubjects = [
   {
@@ -62,10 +67,17 @@ const calculateRecords = {
      * @returns {Object} - All Subjects Data
      */
     async calculateRecords(resourceSelected, subjectSelected, domainSelected, groupBy, addonfilters) {
+      let result
       //Using variableFilter query
       await this.fetchVariableTags([resourceSelected, subjectSelected, domainSelected, groupBy, addonfilters])
-      allSubjectsData["children"] = this.variableResponse
-      const result = this.displayAllTopSubjects(allSubjectsData["children"])
+      if (groupBy === "subject") {
+        allSubjectsData["children"] = this.variableResponse
+        result = this.displayAllTopSubjects(allSubjectsData["children"])
+      }
+      else if(groupBy === "domain"){
+        allDomainData["children"] = this.variableResponse
+        result = allDomainData
+      }
       return result
     },
   }

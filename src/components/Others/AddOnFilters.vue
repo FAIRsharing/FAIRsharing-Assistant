@@ -1,11 +1,14 @@
 <template>
-  <v-container class="ma-0">
+  <v-container
+    class="filterWrapper ma-0 d-flex flex-row align-stretch"
+  >
     <div
-      v-for="(filter) in addOnFilters"
-      :key="filter['filterQuery']"
+      class="switchWrapper flex-column full-width"
+      :class="switchDisplay"
     >
       <v-switch
-        v-if="filter['switch']"
+        v-for="(filter) in switchTypeFilters"
+        :key="filter['filterQuery']"
         v-model="filter['refineToggle']"
         class="d-inline-block mr-2"
         :label="filter['filterName']"
@@ -13,12 +16,19 @@
         :value="filter['refineToggle']"
         @change="selectToggle()"
       />
+    </div>
+    <div
+      class="selectWrapper flex-column full-width"
+      :class="selectDisplay"
+    >
       <v-select
-        v-if="filter['select']"
+        v-for="(filter) in selectTypeFilters"
+        :key="filter['filterQuery']"
         v-model="filter['refineToggle']"
         :items="filter['options']"
         :label="filter['filterName']"
-        class="optionsList"
+        clearable
+        variant="underlined"
         @change="selectToggle()"
       />
     </div>
@@ -33,11 +43,23 @@ export default {
   name: 'AddOnFilters',
   data:() => {
     return {
-      addOnFilters: addOnFilters,
+      switchTypeFilters: addOnFilters["switch"],
+      selectTypeFilters: addOnFilters["select"],
+      allFilters: [],
+      addOnFilters: [...addOnFilters["switch"], ...addOnFilters["select"]],
+      onlySwitch: false,
+      onlySelect: false,
+
     }
   },
   computed:{
     ...mapGetters("bubbleSelectedStore", ['getAllResources', 'getTopResource', 'getResource', 'getSubject', 'getDomain']),
+    switchDisplay() {
+      return this.onlySelect ? 'd-none' : 'd-flex'
+    },
+    selectDisplay() {
+      return this.onlySwitch ? 'd-none' : 'd-flex'
+    }
   },
   mounted() {
     this.selectFilters()
@@ -47,26 +69,57 @@ export default {
     selectFilters(){
       const prevRoute = this.$router.history._startLocation
       if(prevRoute === "/database") {
-        const databaseFilters = this.addOnFilters.filter(({filterTypes}) => filterTypes.includes("database"))
-        this.addOnFilters = databaseFilters
+        const databaseSwitchFilters = this.switchTypeFilters.filter(({filterTypes}) => filterTypes.includes("database"))
+        this.switchTypeFilters = databaseSwitchFilters
+        const databaseSelectFilters = this.selectTypeFilters.filter(({filterTypes}) => filterTypes.includes("database"))
+        this.selectTypeFilters = databaseSelectFilters
+        this.conditionalDisplay()
       }
       else if(prevRoute === "/standards") {
-        const standardsFilters = this.addOnFilters.filter(({filterTypes}) => filterTypes.includes("standards"))
-        this.addOnFilters = standardsFilters
+        const standardsSwitchFilters = this.switchTypeFilters.filter(({filterTypes}) => filterTypes.includes("standards"))
+        this.switchTypeFilters = standardsSwitchFilters
+        const standardsSelectFilters = this.selectTypeFilters.filter(({filterTypes}) => filterTypes.includes("standards"))
+        this.selectTypeFilters = standardsSelectFilters
+        this.conditionalDisplay()
       }
       else if(prevRoute === "/policies") {
-        const policiesFilters = this.addOnFilters.filter(({filterTypes}) => filterTypes.includes("policies"))
-        this.addOnFilters = policiesFilters
+        const policiesSwitchFilters = this.switchTypeFilters.filter(({filterTypes}) => filterTypes.includes("policies"))
+        this.switchTypeFilters = policiesSwitchFilters
+        const policiesSelectFilters = this.selectTypeFilters.filter(({filterTypes}) => filterTypes.includes("policies"))
+        this.selectTypeFilters = policiesSelectFilters
+        this.conditionalDisplay()
+
       }
     },
-
     selectToggle() {
       let map = new Map();
       for (let filter of this.addOnFilters) {
         map.set(`${filter["filterQuery"]}`, `${filter["refineToggle"]}`)
       }
       this.$store.commit("addOnFilterSelectedStore/filtersSelected", map)
+    },
+
+    conditionalDisplay() {
+      if (!this.switchTypeFilters?.length && this.selectTypeFilters?.length) {
+        this.onlySelect = true
+      }
+      else if (this.switchTypeFilters?.length && !this.selectTypeFilters?.length) {
+        this.onlySwitch = true
+      }
     }
   }
 };
 </script>
+
+<style scoped lang="scss">
+.filterWrapper {
+  justify-content: space-evenly;
+}
+.switchWrapper {
+  max-width: 250px;
+}
+
+.selectWrapper {
+  max-width: 350px;
+}
+</style>

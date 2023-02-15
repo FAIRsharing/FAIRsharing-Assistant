@@ -83,7 +83,7 @@ export default {
         console.log("TOP RESOURCE & DOMAIN")
         await this.allOtherRecordTypes(this.resourceSelected)
         this.domainSelected = this.getDomain.toLowerCase()
-        this.allSubjectsData = await this.calculateRecords(this.resourceSelected, null, this.domainSelected, "subject")
+        this.allSubjectsData = await this.calculateRecords(this.resourceSelected, null, this.domainSelected, "subject", this.getFilters)
       }
 
       //When user lands on subject type after selecting the resource & domain type
@@ -92,7 +92,7 @@ export default {
         console.log("OTHER RESOURCE & DOMAIN")
         this.resourceSelected = this.formatString(this.getResource)
         this.domainSelected = this.getDomain.toLowerCase()
-        this.allSubjectsData = await this.calculateRecords(this.resourceSelected, null, this.domainSelected, "subject")
+        this.allSubjectsData = await this.calculateRecords(this.resourceSelected, null, this.domainSelected, "subject", this.getFilters)
       }
 
       //When user lands on subject type after selecting the TOP Resource type
@@ -100,7 +100,7 @@ export default {
         // eslint-disable-next-line no-console
         console.log("ONLY TOP RESOURCE")
         await this.allOtherRecordTypes(this.resourceSelected)
-        this.allSubjectsData = await this.calculateRecords(this.resourceSelected, null, null, "subject")
+        this.allSubjectsData = await this.calculateRecords(this.resourceSelected, null, null, "subject", this.getFilters)
       }
       //When user lands on subject type after selecting the resource type
       if(this.getResource !== '' && this.getDomain === '') {
@@ -114,7 +114,7 @@ export default {
         // eslint-disable-next-line no-console
         console.log("ONLY DOMAIN")
         this.domainSelected = this.getDomain.toLowerCase()
-        this.allSubjectsData = await this.calculateRecords(null, null, this.domainSelected, "subject")
+        this.allSubjectsData = await this.calculateRecords(null, null, this.domainSelected, "subject", this.getFilters)
       }
       //When user lands on subject type as the entry point in the application
       if(this.getTopResource ==="" && this.getResource === '' && this.getDomain === '') {

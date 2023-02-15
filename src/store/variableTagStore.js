@@ -14,26 +14,27 @@ export const state = {
 
 export const actions = {
   async fetchVariableTags({commit}, [resource, subject, domain, tag, addonfilters]) {
+    console.log("addonfilters::", addonfilters)
     commit("setLoadingStatus", true)
     VARIABLE_TAGS.queryParam = {
       recordType: resource,
       subjects: subject,
       domains: domain,
       groupBy: tag,
-      status: addonfilters.get("status"),
-      hasPublication: JSON.parse(addonfilters.get("hasPublication")),
-      isRecommended: JSON.parse(addonfilters.get("isRecommended")),
-      isImplemented: JSON.parse(addonfilters.get("isImplemented")),
-      usesPersistentIdentifier: JSON.parse(addonfilters.get("usesPersistentIdentifier")),
-      dataPreservationPolicy: JSON.parse(addonfilters.get("dataPreservationPolicy")),
-      resourceSustainability: JSON.parse(addonfilters.get("resourceSustainability")),
-      dataAccessCondition: addonfilters.get("dataAccessCondition"),
-      dataCuration: addonfilters.get("dataCuration"),
-      dataDepositionCondition: addonfilters.get("dataDepositionCondition"),
-      citationToRelatedPublications: addonfilters.get("citationToRelatedPublications"),
-      dataAccessForPrePublicationReview: addonfilters.get("dataAccessForPrePublicationReview"),
-      dataContactInformation: addonfilters.get("dataContactInformation"),
-      dataVersioning: addonfilters.get("dataVersioning")
+      status: addonfilters.get("status") ? addonfilters.get("status") : null,
+      hasPublication: addonfilters.get("hasPublication")? JSON.parse(addonfilters.get("hasPublication")): false,
+      isRecommended: addonfilters.get("isRecommended")? JSON.parse(addonfilters.get("isRecommended")): false,
+      isImplemented: addonfilters.get("isImplemented")? JSON.parse(addonfilters.get("isImplemented")): false,
+      usesPersistentIdentifier: addonfilters.get("usesPersistentIdentifier")? JSON.parse(addonfilters.get("usesPersistentIdentifier")): false,
+      dataPreservationPolicy: addonfilters.get("dataPreservationPolicy")? JSON.parse(addonfilters.get("dataPreservationPolicy")): false,
+      resourceSustainability: addonfilters.get("resourceSustainability")? JSON.parse(addonfilters.get("resourceSustainability")): false,
+      dataAccessCondition: addonfilters.get("dataAccessCondition")? addonfilters.get("dataAccessCondition"): null,
+      dataCuration: addonfilters.get("dataCuration")? addonfilters.get("dataCuration"): null,
+      dataDepositionCondition: addonfilters.get("dataDepositionCondition")? addonfilters.get("dataDepositionCondition"): null,
+      citationToRelatedPublications: addonfilters.get("citationToRelatedPublications")? addonfilters.get("citationToRelatedPublications"): null,
+      dataAccessForPrePublicationReview: addonfilters.get("dataAccessForPrePublicationReview")? addonfilters.get("dataAccessForPrePublicationReview"): null,
+      dataContactInformation: addonfilters.get("dataContactInformation")? addonfilters.get("dataContactInformation"): null,
+      dataVersioning: addonfilters.get("dataVersioning")? addonfilters.get("dataVersioning"): null
     }
     //Delete the null/empty parameter
     for (const key in VARIABLE_TAGS.queryParam) {

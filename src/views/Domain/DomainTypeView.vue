@@ -1,32 +1,18 @@
 <template>
   <div>
-    <p>This is a Domain View</p>
-    <p
-      v-if="(getTopResource || getResource)"
-      class="ma-0 text-capitalize"
-    >
-      Resource Type Selected: {{ getResource ? getResource : getTopResource }}
-    </p>
-    <p
-      v-if="getSubject"
-      class="ma-0 text-capitalize"
-    >
-      Subject Type Selected: {{ getSubject }}
-    </p>
-    <p
-      v-if="showDomain"
-      class="ma-0 text-capitalize"
-    >
-      Domain Type Selected: {{ getDomain }}
-    </p>
-
-    <FairSharingLink
-      :fair-sharing-button="fairSharingButton"
-    />
-    <DomainType
-      @enableFairSharingButton="enableFairSharingButton"
-      @showDomainSelected="showDomainSelected"
-    />
+    <Jumbotron />
+    <div class="px-md-10 pa-5 mb-8">
+      <Selection />
+      <RefineButton :refine-button="refineButton" />
+      <DomainType
+        @enableFairSharingButton="enableFairSharingButton"
+        @showDomainSelected="showDomainSelected"
+      />
+      <FairSharingLink
+        :fair-sharing-button="fairSharingButton"
+      />
+      <StartOver />
+    </div>
   </div>
 </template>
 
@@ -34,17 +20,26 @@
 import { mapGetters } from "vuex"
 import DomainType from "@/components/Domain/DomainType";
 import FairSharingLink from "@/components/Navigation/FairSharingLink";
+import StartOver from "@/components/Navigation/StartOver"
+import RefineButton from "@/components/Navigation/RefineButton"
+import Jumbotron from "@/components/Navigation/Jumbotron"
+import Selection from "@/components/Others/Selection"
 
 export default {
   name: 'DomainTypeView',
   components: {
     DomainType,
-    FairSharingLink
+    FairSharingLink,
+    StartOver,
+    RefineButton,
+    Jumbotron,
+    Selection
   },
   data:() => {
     return {
       fairSharingButton: false,
-      showDomain: false
+      showDomain: false,
+      refineButton: false,
     }
   },
   computed:{
@@ -56,6 +51,7 @@ export default {
   methods: {
     enableFairSharingButton(value) {
       this.fairSharingButton = value
+      this.refineButton = value
     },
     showDomainSelected(value) {
       this.showDomain = value

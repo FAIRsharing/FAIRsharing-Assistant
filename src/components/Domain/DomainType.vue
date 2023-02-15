@@ -8,7 +8,6 @@
         <Loaders />
       </v-overlay>
     </v-fade-transition>
-
     <div
       id="domainBubbleChart"
       ref="chartdiv"
@@ -27,11 +26,12 @@ import { breadCrumbBar } from "@/utils/breadCrumbBar"
 import StringMixin from "@/utils/stringMixin.js"
 import RecordTypes from "@/utils/recordTypes.js";
 import Loaders from "@/components/Loaders/Loaders"
+import calculateRecords from "@/utils/calculateRecords";
 
 export default {
   name: 'DomainType',
   components: { Loaders },
-  mixins: [StringMixin, RecordTypes],
+  mixins: [StringMixin, RecordTypes, calculateRecords],
   data:() => {
     return {
       loading: false,
@@ -39,16 +39,13 @@ export default {
       showDomainSelected: false,
       resourceSelected: "" || [],
       subjectSelected: "",
-      allDomainData: {
-        name: "Domain",
-        value: 0,
-        children: "",
-      },
+      allDomainData: {},
       itemClicked: "",
     }
   },
   computed:{
     ...mapGetters("bubbleSelectedStore", ['getTopResource', 'getResource', 'getSubject', 'getDomain']),
+    ...mapGetters("addOnFilterSelectedStore", ["getFilters"]),
     ...mapState("recordTypeStore", ["allRecordTypes", "loadingData"]),
     ...mapState("variableTagStore", ["variableResponse", "loadingStatus"]),
   },
@@ -76,11 +73,6 @@ export default {
       this.$emit('showDomainSelected', this.showDomainSelected)
     },
 
-    async calculateRecords(resourceSelected, subjectSelected, domainSelected, groupBy) {
-      //Using variableFilter query
-      await this.fetchVariableTags([resourceSelected, subjectSelected, domainSelected, groupBy])
-      this.allDomainData["children"] = this.variableResponse
-    },
 
     async displayDomains() {
       //When user lands on domain type after selecting the TopResource & SubjectType type
@@ -89,7 +81,7 @@ export default {
         console.log("TOP RESOURCE & SUBJECT")
         await this.allOtherRecordTypes(this.resourceSelected)
         this.subjectSelected = this.getSubject.toLowerCase()
-        await this.calculateRecords(this.resourceSelected, this.subjectSelected, null, "domain")
+        this.allDomainData = await this.calculateRecords(this.resourceSelected, this.subjectSelected, null, "domain", this.getFilters)
       }
       //When user lands on domain type after selecting the OtherResource & SubjectType type
       if(this.getTopResource !== '' && this.getResource !== '' && this.getSubject !==""){
@@ -97,7 +89,7 @@ export default {
         console.log("OTHER RESOURCE & SUBJECT")
         this.resourceSelected = this.formatString(this.getResource)
         this.subjectSelected = this.getSubject.toLowerCase()
-        await this.calculateRecords(this.resourceSelected, this.subjectSelected, null, "domain")
+        this.allDomainData = await this.calculateRecords(this.resourceSelected, this.subjectSelected, null, "domain", this.getFilters)
       }
       //When user lands on domain type after selecting the TOPResource type
       if(this.getTopResource !== '' && this.getResource === '' && this.getSubject === ""){
@@ -105,21 +97,21 @@ export default {
         console.log("ONLY TOP RESOURCE")
         // await this.recordTypes()
         await this.allOtherRecordTypes(this.resourceSelected)
-        await this.calculateRecords(this.resourceSelected, null, null, "domain")
+        this.allDomainData = await this.calculateRecords(this.resourceSelected, null, null, "domain", this.getFilters)
       }
       //When user lands on domain type after selecting the OtherResource type
       if(this.getTopResource !== '' && this.getResource !== '' && this.getSubject === ""){
         // eslint-disable-next-line no-console
         console.log("ONLY OTHER RESOURCE")
         this.resourceSelected = this.formatString(this.getResource)
-        await this.calculateRecords(this.resourceSelected, null, null, "domain")
+        this.allDomainData = await this.calculateRecords(this.resourceSelected, null, null, "domain", this.getFilters)
       }
       //When user lands on domain type after selecting SubjectType type
       if(this.getTopResource === '' && this.getResource === '' && this.getSubject !==""){
         // eslint-disable-next-line no-console
         console.log("ONLY SUBJECT")
         this.subjectSelected = this.getSubject.toLowerCase()
-        await this.calculateRecords(null, this.subjectSelected, null, "domain")
+        this.allDomainData = await this.calculateRecords(null, this.subjectSelected, null, "domain", this.getFilters)
       }
     },
 
@@ -163,7 +155,7 @@ export default {
         maxRadius: am5.percent(20),
       }));
 
-      if (!this.allDomainData["children"].length){
+      if (!this.allDomainData["children"]?.length){
         series.set("topDepth", 0);
       }
 

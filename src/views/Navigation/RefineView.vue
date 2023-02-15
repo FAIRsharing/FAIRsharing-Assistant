@@ -3,16 +3,22 @@
     <Jumbotron />
     <div class="px-md-10 pa-5 mb-8">
       <Selection />
+      <div
+        class="d-flex full-width mb-8"
+        style="max-width: 300px; margin: 0 auto"
+      >
+        <SubjectButton />
+        <DomainButton />
+      </div>
+      <AddOnFilters />
       <FairSharingLink
         :fair-sharing-button="fairSharingButton"
       />
-      <StartOver />
-      <SubjectButton />
       <RecordsTable
         v-if="getResource"
         :get-all-resources="getAllResources"
       />
-      <AddOnFilters />
+      <StartOver />
     </div>
   </div>
 </template>
@@ -23,6 +29,7 @@ import FairSharingLink from "@/components/Navigation/FairSharingLink";
 import StartOver from "@/components/Navigation/StartOver";
 import Jumbotron from "@/components/Navigation/Jumbotron";
 import SubjectButton from "@/components/Navigation/SubjectButton";
+import DomainButton from "@/components/Navigation/DomainButton";
 import RecordsTable from "@/components/Others/RecordsTable"
 import AddOnFilters from "@/components/Others/AddOnFilters.vue";
 import Selection from "@/components/Others/Selection";
@@ -34,6 +41,7 @@ export default {
     Jumbotron,
     StartOver,
     SubjectButton,
+    DomainButton,
     RecordsTable,
     AddOnFilters,
     Selection,
