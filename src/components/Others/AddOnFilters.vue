@@ -1,46 +1,53 @@
 <template>
-  <v-container
-    class="filterWrapper ma-0 d-flex flex-row align-stretch"
-  >
-    <div
-      class="switchWrapper flex-column full-width"
-      :class="switchDisplay"
+  <div>
+    <v-container
+      class="filterWrapper ma-0 d-flex flex-row align-stretch"
     >
-      <v-switch
-        v-for="(filter) in switchTypeFilters"
-        :key="filter['filterQuery']"
-        v-model="filter['refineToggle']"
-        class="d-inline-block mr-2"
-        :label="filter['filterName']"
-        inset
-        :value="filter['refineToggle']"
-        @change="selectToggle()"
-      />
-    </div>
-    <div
-      class="selectWrapper flex-column full-width"
-      :class="selectDisplay"
-    >
-      <v-select
-        v-for="(filter) in selectTypeFilters"
-        :key="filter['filterQuery']"
-        v-model="filter['refineToggle']"
-        :items="filter['options']"
-        :label="filter['filterName']"
-        clearable
-        variant="underlined"
-        @change="selectToggle()"
-      />
-    </div>
-  </v-container>
+      <div
+        class="switchWrapper flex-column full-width"
+        :class="switchDisplay"
+      >
+        <v-switch
+          v-for="(filter) in switchTypeFilters"
+          :key="filter['filterQuery']"
+          v-model="filter['refineToggle']"
+          class="d-inline-block mr-2"
+          :label="filter['filterName']"
+          inset
+          :value="filter['refineToggle']"
+          @change="selectToggle()"
+        />
+      </div>
+      <div
+        class="selectWrapper flex-column full-width"
+        :class="selectDisplay"
+      >
+        <v-select
+          v-for="(filter) in selectTypeFilters"
+          :key="filter['filterQuery']"
+          v-model="filter['refineToggle']"
+          :items="filter['options']"
+          :label="filter['filterName']"
+          clearable
+          variant="underlined"
+          @change="selectToggle()"
+        />
+      </div>
+    </v-container>
+    <ApplyFilterButton />
+  </div>
 </template>
 
 <script>
 import {mapGetters} from "vuex";
 import addOnFilters from "@/data/addOnFilters.json"
+import ApplyFilterButton from "@/components/Navigation/ApplyFilterButton";
 
 export default {
   name: 'AddOnFilters',
+  components: {
+    ApplyFilterButton
+  },
   data:() => {
     return {
       switchTypeFilters: addOnFilters["switch"],

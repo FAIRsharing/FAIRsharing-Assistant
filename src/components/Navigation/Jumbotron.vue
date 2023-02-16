@@ -14,7 +14,7 @@
       :options="options"
     />
     <h1
-      class="text-body-1 text-sm-h6 pt-2 text-md-h6 text-lg-h4 text-xl-h4 font-weight-medium white--text"
+      class="text-body-1 pt-2 text-sm-h4 text-md-h4 text-lg-h4 text-xl-h4 font-weight-medium white--text"
       style="z-index: 2"
       :class="getJumbotronData['pageName'] === 'HomeView' ? 'text-center' : 'text-left'"
     >
