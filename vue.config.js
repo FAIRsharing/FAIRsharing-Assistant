@@ -1,8 +1,7 @@
-const { defineConfig } = require('@vue/cli-service')
 const CompressionPlugin = require('compression-webpack-plugin');
-module.exports = defineConfig({
-  transpileDependencies: [
-    'vuetify'
+module.exports = {
+  "transpileDependencies": [
+    "vuetify"
   ],
   chainWebpack(config) {
     config.plugins.delete('prefetch');
@@ -14,5 +13,5 @@ module.exports = defineConfig({
         additionalData: `@import "@/styles/index.scss";`,
       },
     },
-  },
-})
+  }
+}
