@@ -11,6 +11,8 @@
     <!-- eslint-disable vue/no-v-html -->
     <Particles
       id="particles"
+      :particles-init="particlesInit"
+      :particles-loaded="particlesLoaded"
       :options="options"
     />
     <h1
@@ -36,16 +38,24 @@
     >
       {{ getJumbotronData["subTitle"] }}
     </h2>
-    <!--    <LandingPage />-->
   </section>
 </template>
 
 <script>
 import jumbotronData from "@/data/jumbotronData.json";
+import { loadFull } from "tsparticles";
+
+// These consts appear to be called by the tests but aren't shown as covered.
+/* istanbul ignore next */
+const particlesInit = async engine => {
+  await loadFull(engine);
+};
+
 export default {
   name: "Jumbotron",
   data:() => {
     return {
+      particlesInit,
       options: {
         background: {
           color: {
@@ -71,7 +81,7 @@ export default {
           move: {
             direction: 'none',
             enable: true,
-            outMode: 'bounce',
+            outModes: 'bounce',
             random: false,
             speed: 1,
             straight: false

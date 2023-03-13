@@ -1,5 +1,11 @@
 <template>
   <v-app id="app">
+    <div
+      v-if="loading"
+      style="height:100vh; color: white"
+    >
+      loading-hidden
+    </div>
     <v-main>
       <router-view />
     </v-main>

@@ -45,7 +45,10 @@ export default {
   name: "FairSharingLink",
   mixins: [StringMixin],
   props:{
-    fairSharingButton: Boolean,
+    fairSharingButton: {
+      type: Boolean,
+      default: false
+    },
   },
   data:() => {
     return {
