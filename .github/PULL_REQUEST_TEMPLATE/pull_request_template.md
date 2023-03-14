@@ -12,8 +12,8 @@ A clear and concise description of what the pull request is.
 
 **To Reproduce**
 Steps to reproduce the behavior:
-1. Go to 'https://assist.fairsharing.org/...'
-2. Click on 'Tab/Bubble'
+1. Go to 'https://assist.fairsharing.org/...' 
+2. Click on 'Tab/Bubble' 
 
 
 **Expected behavior**

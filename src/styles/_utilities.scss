@@ -1,6 +1,7 @@
 //Utilities classes---------------------------------
 .underline-effect {
-  &:hover, &:focus {
+  &:hover,
+  &:focus {
     text-decoration: underline;
     outline: 0;
   }
@@ -27,9 +28,11 @@
   opacity: 0.3;
   -moz-opacity: 0.3;
 }
+
 .half-width {
   width: 50%;
 }
+
 .full-width {
   width: 100%;
 }
@@ -64,6 +67,7 @@
 
 .ellipse-150 {
   @extend .ellipse;
+
   max-width: 150px;
 }
 
@@ -81,16 +85,17 @@
 
 .ellipse-width-450 {
   @extend .ellipse;
+
   max-width: 450px;
 }
 
 .dashed-line {
-  border: none!important;
-  border-top: 4px dotted gray!important;
-  color: #fff!important;
-  background-color: #fff!important;
-  height: 1px!important;
-  opacity: 0.4!important;
+  border: none !important;
+  border-top: 4px dotted gray !important;
+  color: #fff !important;
+  background-color: #fff !important;
+  height: 1px !important;
+  opacity: 0.4 !important;
 }
 
 .word-break {
@@ -98,7 +103,6 @@
 }
 
 // end of utility classes
-
 
 //margins & sizes
 
@@ -210,7 +214,7 @@
 }
 
 .width-25-percent {
-width: 25%;
+  width: 25%;
 }
 
 .width-35 {
@@ -252,7 +256,7 @@ width: 25%;
 .line-height-20 {
   line-height: 20px;
 }
-//end of margins & sizes
+// end of margins & sizes
 
 .pabsolute {
   position: absolute;

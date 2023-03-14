@@ -16,7 +16,10 @@
 export default {
   name: "BackButton",
   props:{
-    previousPage: String,
+    previousPage: {
+      type: String,
+      default: null
+    },
   },
   data () {
     return {
