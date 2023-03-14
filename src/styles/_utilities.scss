@@ -1,4 +1,6 @@
-//Utilities classes---------------------------------
+/**
+  Utilities classes
+ */
 .underline-effect {
   &:hover,
   &:focus {
@@ -55,6 +57,7 @@
 
 .text-ellipses-height-3lines {
   @extend .text-ellipses-height-2lines;
+
   -webkit-line-clamp: 3;
 }
 
@@ -80,6 +83,7 @@
 
 .ellipse-width-600 {
   @extend .ellipse;
+
   max-width: 600px;
 }
 
@@ -101,11 +105,13 @@
 .word-break {
   word-break: break-all;
 }
+/**
+end of utility classes
+ */
 
-// end of utility classes
-
-//margins & sizes
-
+/*
+  margins & sizes
+ */
 .mx-25-percent {
   margin-right: 25%;
   margin-left: 25%;
@@ -120,7 +126,6 @@
   margin-left: 25%;
 }
 
-//sizes
 .max-width-32-percent {
   max-width: 32%;
 }
@@ -226,7 +231,7 @@
 }
 
 .width-100 {
-  width:100px;
+  width: 100px;
 }
 
 .width-15-percent-flex {
@@ -256,11 +261,10 @@
 .line-height-20 {
   line-height: 20px;
 }
-// end of margins & sizes
+/*
+  end of margins & sizes
+ */
 
 .pabsolute {
   position: absolute;
 }
-
-
-
