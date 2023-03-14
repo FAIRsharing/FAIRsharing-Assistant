@@ -1,3 +1,4 @@
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/f6491df81c744d2592006665d6567261)](https://app.codacy.com/gh/FAIRsharing/FAIRsharing-Assistant?utm_source=github.com&utm_medium=referral&utm_content=FAIRsharing/FAIRsharing-Assistant&utm_campaign=Badge_Grade_Settings)
 [![Coverage Status](https://coveralls.io/repos/github/FAIRsharing/FAIRsharing-Assistant/badge.svg?branch=master)](https://coveralls.io/github/FAIRsharing/FAIRsharing-Assistant?branch=master)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/a28a700ad99545a58dfef51a3630e0d9)](https://www.codacy.com/gh/FAIRsharing/FAIRsharing-Assistant/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=FAIRsharing/FAIRsharing-Assistant&amp;utm_campaign=Badge_Grade)
 [![njsscan](https://github.com/FAIRsharing/FAIRsharing-Assistant/actions/workflows/njsscan-analysis.yml/badge.svg)](https://github.com/FAIRsharing/FAIRsharing-Assistant/actions/workflows/njsscan-analysis.yml)
