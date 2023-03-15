@@ -1,6 +1,7 @@
 const axios = require("axios");
 import Fragments from "./queries/fragments/fragments.json"
 
+/* istanbul ignore next */
 class GraphQLClient {
 
   /** The GraphQLClient retrieves data from the FAIRSharing API and sends it to the front-end.

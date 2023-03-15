@@ -1,0 +1,18 @@
+{
+  "data": {
+    "multiTagFilter": [
+      {
+        "id": 1883,
+        "name": "ToxoDB",
+        "type": "knowledgebase",
+        "registry": "Database"
+      },
+      {
+        "id": 1884,
+        "name": "TrichDB",
+        "type": "knowledgebase",
+        "registry": "Database"
+      }
+    ]
+  }
+}
