@@ -10,7 +10,7 @@
     ]
   },
   {
-    "filterName": "Is Recommended",
+    "filterName": "Recommended by at least one policy",
     "filterQuery": "isRecommended",
     "refineToggle": false,
     "filterTypes": [
@@ -18,7 +18,7 @@
     ]
   },
   {
-    "filterName": "Is Implemented",
+    "filterName": "Implemented by at least one database",
     "filterQuery": "isImplemented",
     "refineToggle": false,
     "filterTypes": [

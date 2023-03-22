@@ -1,6 +1,6 @@
 <template>
   <div
-    class="navSecond d-flex justify-space-around align-center full-width"
+    class="navSecond d-flex justify-space-around align-center full-width mx-3"
   >
     <v-btn
       v-bind="button['attributes']"
@@ -17,7 +17,7 @@ export default {
   data () {
     return {
       button: {
-        text: "Domain",
+        text: "Refine by Domain",
         attributes: {
           elevation:"2",
           raised: true,

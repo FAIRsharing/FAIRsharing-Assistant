@@ -3,7 +3,7 @@
     {
       "id": 1,
       "title": "Standards",
-      "question" : "Are you looking for a (meta)data standard?",
+      "question" : "Are you looking for a standard?",
       "color": "primary",
       "arrow": "assets/Home/Arrow/whiteArrow.png",
       "link": "/standards"
