@@ -9,6 +9,7 @@ import {
   SubjectTypeView,
   // SubjectTypeView_1,
   DomainTypeView,
+  DomainTypeViewD3JS,
   DatabaseView,
   StandardsView,
   PoliciesView,
@@ -42,6 +43,11 @@ let routes = [
     name: "DomainTypeView",
     path: "/domain",
     component: DomainTypeView,
+  },
+  {
+    name: "DomainTypeViewD3JS",
+    path: "/domaind3js",
+    component: DomainTypeViewD3JS,
   },
   {
     name: "DatabaseView",
