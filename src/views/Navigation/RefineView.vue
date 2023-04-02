@@ -9,6 +9,7 @@
       >
         <SubjectButton />
         <DomainButton />
+        <DomainButtonD3 />
       </div>
       <AddOnFilters />
       <FairSharingLink
@@ -33,6 +34,7 @@ import DomainButton from "@/components/Navigation/DomainButton";
 import RecordsTable from "@/components/Others/RecordsTable"
 import AddOnFilters from "@/components/Others/AddOnFilters.vue";
 import Selection from "@/components/Others/Selection";
+import DomainButtonD3 from "@/components/Navigation/DomainButton_d3";
 
 export default {
   name: 'RefineView',
@@ -45,6 +47,7 @@ export default {
     RecordsTable,
     AddOnFilters,
     Selection,
+    DomainButtonD3
   },
   data:() => {
     return {

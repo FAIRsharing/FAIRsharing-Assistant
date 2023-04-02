@@ -43,7 +43,7 @@ export const actions = {
       }
     }
     // eslint-disable-next-line no-console
-    // console.log("VARIABLE_TAGS.queryParam::", VARIABLE_TAGS.queryParam)
+    console.log("VARIABLE_TAGS.queryParam::", VARIABLE_TAGS.queryParam)
     let response = await CLIENT.executeQuery(VARIABLE_TAGS);
     commit("setVariableResponse", response['variableFilter'].data)
     commit("setLoadingStatus", false)

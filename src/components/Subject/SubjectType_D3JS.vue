@@ -17,13 +17,13 @@
 </template>
 
 <script>
-import d3data from "@/data/domain.json"
+import d3data from "@/data/subject.json"
 import * as d3 from 'd3'
-import {mapActions, mapGetters, mapState} from "vuex";
-import Loaders from "@/components/Loaders/Loaders"
+import {mapActions, mapState} from "vuex";
+import Loaders from "@/components/Loaders/Loaders.vue"
 
 export default {
-  name: 'DomainTypeD3JS',
+  name: 'SubjectTypeD3JS',
   components: { Loaders },
   data:() => {
     return {
@@ -32,8 +32,6 @@ export default {
     }
   },
   computed:{
-    ...mapState("variableTagStore", ["variableResponse", "loadingStatus"]),
-    ...mapGetters("addOnFilterSelectedStore", ["getFilters"]),
     ...mapState("browseSubjectsStore", ["subjectBubbleTree", "loadingData"])
   },
   async mounted() {
@@ -46,7 +44,6 @@ export default {
   },
 
   methods: {
-    ...mapActions("variableTagStore", ["fetchVariableTags", "resetVariableTags"]),
     ...mapActions("browseSubjectsStore", ["fetchTerms"]),
 
     async d3Chart() {
@@ -70,14 +67,16 @@ export default {
         .classed("svg-content", true);
 
 
-      // await this.fetchVariableTags([["knowledgebase_and_repository", "knowledgebase", "repository"], null, null, "domain", this.getFilters])
-      const allDomainData = {
-        name: "Domain",
-        records_count: 0,
-        // children: this.variableResponse,
-        children: this.d3data.data.variableFilter.data,
-      }
-      root = allDomainData
+      // await this.fetchTerms()
+      // console.log("this.subjectBubbleTree::", this.subjectBubbleTree)
+      // const allSubjectsData = {
+      //   name: "Subject",
+      //   records_count: 0,
+      //   children: this.subjectBubbleTree,
+      // }
+      // root = allSubjectsData
+
+      root = this.d3data
 
 
       function parseLevel(node, level) {
@@ -106,15 +105,16 @@ export default {
       }
 
       function update() {
-        var nodes = flatten(root),
-          links = d3.layout.tree().links(nodes);
+
+        var nodes = flatten(root)
+        var links = d3.layout.tree().links(nodes);
 
         // Restart the force layout.
         force
           .nodes(nodes)
           .links(links)
           .charge(() => {
-            return -2000
+            return -10000
           })
           .linkDistance(50)
           .friction(0.5)
@@ -152,7 +152,7 @@ export default {
           .attr("cx", function(d) { return d.x; })
           .attr("cy", function(d) { return d.y; })
           .attr("r", function (d) {
-            return Math.sqrt(d.records_count) / 0.5 || 30;
+            return Math.sqrt(d.records_count) / 1 || 30;
           })
           .style("fill", color)
           .style("opacity", function(d){
