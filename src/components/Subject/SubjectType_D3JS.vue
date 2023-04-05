@@ -164,6 +164,7 @@ export default {
         // Exit any old nodes.
         node.exit().remove();
 
+
         // t = vis.selectAll(".text")
         //   .data(nodes, (d) =>  d.id)
         //   .style("fill", "white")
@@ -342,6 +343,7 @@ export default {
   }
   .selectedNode {
     outline-style: solid;
+    filter: brightness(1.2);
   }
   .noChlid {
     stroke-width: 0;
