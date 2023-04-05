@@ -29,8 +29,8 @@ export default {
     return {
       loading: false,
       d3data: d3data,
-      width: 1060,
-      height: 800,
+      width: 900,
+      height: 650,
     }
   },
   computed:{
@@ -49,7 +49,7 @@ export default {
     ...mapActions("browseSubjectsStore", ["fetchTerms"]),
 
     async d3Chart() {
-      let node, link, root, t, tooltip;
+      let node, link, root, tooltip;
 
       const force = d3.layout.force()
         .on("tick", tick)
@@ -86,25 +86,15 @@ export default {
       function parseLevel(node, level) {
         node.level = level;
         if (node.children && node.children.length) {
-          node.children.forEach(function(children) {
+          node.children.forEach((children) => {
             parseLevel(children, level + 1);
           });
         }
       }
-      function toggle (d) {
-        if (d.children && d.children.length) {
-          d._children = d.children;
-          d._children.forEach((d) => toggle(d));
-          d.children = null;
-        }
-        update(d);
-      }
-
       function update() {
 
         const nodes = flatten(root)
         const links = d3.layout.tree().links(nodes);
-        const nodeColor = d3.scale.category10();
 
         // Restart the force layout.
         force
@@ -120,12 +110,8 @@ export default {
         // Update the links…
         link = vis.selectAll("line.link")
           .data(links, (d) => d.target.id)
-          .style("fill", (d)=>{
-            return nodeColor(d.target.tree_id)
-          })
-          .style("stroke", (d)=>{
-            return nodeColor(d.target.tree_id)
-          });
+          .style("fill", linkColor)
+          .style("stroke", linkColor)
 
         // Enter any new links.
         link.enter().insert("line", ".node")
@@ -134,12 +120,8 @@ export default {
           .attr("y1", (d) => d.source.y)
           .attr("x2", (d) => d.target.x)
           .attr("y2", (d) => d.target.y)
-          .style("fill", (d)=>{
-            return nodeColor(d.target.tree_id)
-          })
-          .style("stroke", (d)=>{
-            return nodeColor(d.target.tree_id)
-          })
+          .style("fill", linkColor)
+          .style("stroke", linkColor)
           .style("opacity", (d) => {
             return !d.source.level ? 0 : 1;
           })
@@ -153,33 +135,21 @@ export default {
         // Update the nodes…
         node = vis.selectAll("circle.node")
           .data(nodes, (d) => d.id)
-          .style("fill", (d)=>{
-            return nodeColor(d.tree_id)
-          })
-          .style("stroke", ()=>{
-            return "white"
-          })
-          .style("outline-color", (d)=>{
-            return nodeColor(d.tree_id)
-          })
+          .style("fill", fillColor)
+          .style("stroke", strokeColor)
+          .style("outline-color", fillColor)
 
         // Enter any new nodes.
         node.enter().append("circle")
-          .attr("class", "node")
+          .attr("class", addClass)
           .attr("cx", (d) => d.x)
           .attr("cy", (d) => d.y)
           .attr("r",  (d) => {
             return Math.sqrt(d.records_count) / 1 || 30;
           })
-          .style("fill", (d)=>{
-            return nodeColor(d.tree_id)
-          })
-          .style("stroke", ()=>{
-            return "white"
-          })
-          .style("outline-color", (d)=>{
-            return nodeColor(d.tree_id)
-          })
+          .style("fill", fillColor)
+          .style("stroke", strokeColor)
+          .style("outline-color", fillColor)
           .style("opacity", (d) => {
             return d.level === 0 ? 0 : 1;
           })
@@ -194,28 +164,28 @@ export default {
         // Exit any old nodes.
         node.exit().remove();
 
-        t = vis.selectAll(".text")
-          .data(nodes, (d) =>  d.id)
-          .style("fill", "white")
-
-        // Enter any new nodes.
-        t.enter().append("text")
-          .attr("class", "text")
-          .attr("dx", "25px")
-          .attr("y", 0)
-          .text((d) => d.name)
-          .style("fill", "white")
-          .attr('text-anchor', "middle")
-          .style("opacity", (d) => {
-            return d.level === 0 ? 0 : 1;
-          })
-          .style("visibility", (d) => {
-            return d.level === 0 ? "hidden" : "visible";
-          })
-          .call(force.drag);
-
-        // Exit any old nodes.
-        t.exit().remove();
+        // t = vis.selectAll(".text")
+        //   .data(nodes, (d) =>  d.id)
+        //   .style("fill", "white")
+        //
+        // // Enter any new nodes.
+        // t.enter().append("text")
+        //   .attr("class", "text")
+        //   .attr("dx", "25px")
+        //   .attr("y", 0)
+        //   .text((d) => d.name)
+        //   .style("fill", "white")
+        //   .attr('text-anchor', "middle")
+        //   .style("opacity", (d) => {
+        //     return d.level === 0 ? 0 : 1;
+        //   })
+        //   .style("visibility", (d) => {
+        //     return d.level === 0 ? "hidden" : "visible";
+        //   })
+        //   .call(force.drag);
+        //
+        // // Exit any old nodes.
+        // t.exit().remove();
 
         //Adding tooltip
         tooltip = d3.select(divSelected).append("div")
@@ -233,22 +203,78 @@ export default {
         node.attr("cx", (d) => d.x)
           .attr("cy", (d) => d.y);
 
-        t.attr("x", (d) => d.x)
-          .attr("y", (d) => d.y);
+        // t.attr("x", (d) => d.x)
+        //   .attr("y", (d) => d.y);
 
       }
 
-      // Color leaf nodes orange, and packages white or blue.
-      // function color(d) {
-      //   return d._children ? "#3182bd" : d.children ? "#c6dbef" : "#fd8d3c";
-      // }
+      function addClass(d) {
+        if (d._children?.length || d.children?.length) return "node"
+        return "node noChlid"
+      }
+
+      // Color for nodes
+      function fillColor(d) {
+        switch(d.tree_id) {
+        case 1:
+          return "#3182bd"
+        case 2:
+          return "#f02d47"
+        case 3:
+          return "#94b72f"
+        case 4:
+          return "#f8a841"
+        default:
+          return "#87BCE593"
+        }
+      }
+
+      // Color for links
+      function linkColor(d) {
+        switch(d.source.tree_id) {
+        case 1:
+          return "#3182bd"
+        case 2:
+          return "#f02d47"
+        case 3:
+          return "#94b72f"
+        case 4:
+          return "#f8a841"
+        default:
+          return "#87BCE593"
+        }
+      }
+
+      function strokeColor(d) {
+        switch(d.tree_id) {
+        case 1:
+          return "#3182BD12"
+        case 2:
+          return "#F02D4712"
+        case 3:
+          return "#94B72F11"
+        case 4:
+          return "#F8A84112"
+        default:
+          return "#87BCE593"
+        }
+      }
+
+      function toggle (d) {
+        if (d.children && d.children.length) {
+          d._children = d.children;
+          d._children.forEach((d) => toggle(d));
+          d.children = null;
+        }
+        update(d);
+      }
 
       // Toggle children on click.
       function click(d) {
         if (d3.event.defaultPrevented) return; // ignore drag
         hideTooltip()
-        const selectedNode = d3.select(this).select("node")
-        console.log("selectedNode::", selectedNode)
+        const selectedNode = d3.select(this)
+        selectedNode.classed("selectedNode", !selectedNode.classed("selectedNode"));
         if (d.children) {
           toggle(d)
           d.children = null;
@@ -283,7 +309,9 @@ export default {
         let i = 0;
 
         function recurse(node) {
-          if (node.children) node.children.forEach(recurse);
+          if (node.children) {
+            node.children.forEach(recurse);
+          }
           if (!node.id) node.id = ++i;
           nodes.push(node);
         }
@@ -301,14 +329,25 @@ export default {
 ::v-deep {
   .node {
     cursor: pointer;
-    //stroke: #3182bd;
-    stroke-width: 5px;
+    stroke: #3182bd;
+    stroke-width: 8px;
     //stroke-dasharray: 3;
     outline-style: dashed;
     outline-width: 1.5px;
     border-radius: 50%;
+    //&:hover{
+    //  animation: dash 2s linear forwards;
+    //    -webkit-animation: dash 2s linear forwards;
+    //  }
   }
-
+  .selectedNode {
+    outline-style: solid;
+  }
+  .noChlid {
+    stroke-width: 0;
+    outline-style: none;
+    cursor: default
+  }
   .link {
     fill: none;
     stroke: #9ecae1;
@@ -324,6 +363,26 @@ export default {
     border: 1px solid honeydew;
     border-radius: 8px;
     pointer-events: none; /* keep the mouseover when over the tooltip */
+  }
+  @keyframes dash {
+    0%{
+      stroke-dashoffset:0;
+      stroke-dasharray:0;
+    }
+    100% {
+      stroke-dashoffset:3;
+      stroke-dasharray:3;
+    }
+  }
+  @-webkit-keyframes dash {
+    0%{
+      stroke-dashoffset:0;
+      stroke-dasharray:0;
+    }
+    100% {
+      stroke-dashoffset:3;
+      stroke-dasharray:3;
+    }
   }
 }
 </style>
