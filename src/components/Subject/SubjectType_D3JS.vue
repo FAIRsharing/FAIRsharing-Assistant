@@ -29,8 +29,6 @@ export default {
     return {
       loading: false,
       d3data: d3data,
-      width: 900,
-      height: 650,
     }
   },
   computed:{
@@ -50,21 +48,23 @@ export default {
 
     async d3Chart() {
       let node, link, root, tooltip;
+      const width = 900
+      const height = 650
+      const radius = 30
 
       const force = d3.layout.force()
         .on("tick", tick)
-        .size([this.width, this.height]);
+        .size([width, height]);
 
       const divSelected = this.$refs.chartdiv;
       const vis = d3.select(divSelected).append("svg")
-        .attr("width", "100%")
-        .attr("height", this.height)
+        .attr("width", width)
+        .attr("height", height)
         .attr("preserveAspectRatio", "xMinYMin meet")
         .classed("svg-content", true);
 
 
       // await this.fetchTerms()
-      // console.log("this.subjectBubbleTree::", this.subjectBubbleTree)
       // const allSubjectsData = {
       //   name: "Subject",
       //   records_count: 0,
@@ -100,11 +100,12 @@ export default {
         force
           .nodes(nodes)
           .links(links)
-          .charge(function (d){
-            return d.level >= 2 ? -1000 : -10000
-          })
+          .charge(nodeDistance)
           .linkDistance(50)
           .friction(0.5)
+          .gravity(0.6)
+          .theta(0.8)
+          .alpha(0.1)
           .start();
 
         // Update the links…
@@ -144,9 +145,7 @@ export default {
           .attr("class", addClass)
           .attr("cx", (d) => d.x)
           .attr("cy", (d) => d.y)
-          .attr("r",  (d) => {
-            return Math.sqrt(d.records_count) / 1 || 30;
-          })
+          .attr("r",  nodeSize)
           .style("fill", fillColor)
           .style("stroke", strokeColor)
           .style("outline-color", fillColor)
@@ -196,22 +195,73 @@ export default {
       }
 
       function tick() {
-        link.attr("x1", (d) => d.source.x)
+        link
+          .attr("x1", (d) => d.source.x)
           .attr("y1", (d) => d.source.y)
           .attr("x2", (d) => d.target.x)
           .attr("y2", (d) => d.target.y);
 
-        node.attr("cx", (d) => d.x)
-          .attr("cy", (d) => d.y);
+        // node.attr("cx", (d) => d.x)
+        //   .attr("cy", (d) => d.y);
+        // Restrict nodes within svg area
+        node
+          .attr("cx", (d) => {
+            return d.x = Math.max(radius, Math.min(width - radius, d.x))
+          })
+          .attr("cy", (d) => {
+            return d.y = Math.max(radius, Math.min(height - radius, d.y))
+          });
 
         // t.attr("x", (d) => d.x)
         //   .attr("y", (d) => d.y);
 
       }
 
+      function nodeDistance(d) {
+        const level = d.level;
+        const treeId = d.tree_id
+
+        if (level === 1) return -20000
+        if (level === 2) {
+          if (treeId === 3) return -5000
+          else return -2000
+        }
+        if (level === 3 && treeId === 3) return -5000
+        else return -1000
+      }
+
       function addClass(d) {
         if (d._children?.length || d.children?.length) return "node"
         return "node noChlid"
+      }
+
+      //Size of nodes
+      function nodeSize(d) {
+        const count = d.records_count
+        switch(true) {
+        case(count > 7000):
+          return Math.sqrt(count) / 1
+        case(5000 < count && count <= 7000):
+          return Math.sqrt(count) / 1.1
+        case(2000 <= count && count <= 5000):
+          return Math.sqrt(count) / 1.4
+        case(1500 <= count && count < 2000):
+          return Math.sqrt(count) / 1.1
+        case(1000 <= count && count < 1500):
+          return Math.sqrt(count) / 1.2
+        case(500 <= count && count < 1000):
+          return Math.sqrt(count) / 1.1
+        case(200 <= count && count < 500):
+          return 21
+        case(100 <= count && count < 200):
+          return 18
+        case(20 <= count && count < 100):
+          return 12
+        case(8 <= count && count < 20):
+          return 8
+        default:
+          return  4
+        }
       }
 
       // Color for nodes
@@ -328,6 +378,14 @@ export default {
 
 <style lang="scss" scoped>
 ::v-deep {
+  .bubbleChart{
+    margin: 0 auto;
+    text-align: center;
+    width:100%;
+    max-width: 1024px;
+    height: 100%;
+    min-height: 650px;
+  }
   .node {
     cursor: pointer;
     stroke: #3182bd;
