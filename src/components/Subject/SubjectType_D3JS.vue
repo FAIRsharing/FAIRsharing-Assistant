@@ -47,7 +47,7 @@ export default {
     ...mapActions("browseSubjectsStore", ["fetchTerms"]),
 
     async d3Chart() {
-      let node, link, root, tooltip;
+      let node, link, root, tooltip, text;
       const width = 900
       const height = 650
       const radius = 30
@@ -60,7 +60,7 @@ export default {
       const vis = d3.select(divSelected).append("svg")
         .attr("width", width)
         .attr("height", height)
-        .attr("preserveAspectRatio", "xMinYMin meet")
+        .attr("preserveAspectRatio", "xMaxYMax meet")
         .classed("svg-content", true);
 
 
@@ -163,35 +163,34 @@ export default {
         // Exit any old nodes.
         node.exit().remove();
 
+        //Text on the nodes
+        text = vis.selectAll(".text")
+          .data(nodes, (d) =>  d.id)
+          .style("fill", "white")
 
-        // t = vis.selectAll(".text")
-        //   .data(nodes, (d) =>  d.id)
-        //   .style("fill", "white")
-        //
-        // // Enter any new nodes.
-        // t.enter().append("text")
-        //   .attr("class", "text")
-        //   .attr("dx", "25px")
-        //   .attr("y", 0)
-        //   .text((d) => d.name)
-        //   .style("fill", "white")
-        //   .attr('text-anchor', "middle")
-        //   .style("opacity", (d) => {
-        //     return d.level === 0 ? 0 : 1;
-        //   })
-        //   .style("visibility", (d) => {
-        //     return d.level === 0 ? "hidden" : "visible";
-        //   })
-        //   .call(force.drag);
-        //
-        // // Exit any old nodes.
-        // t.exit().remove();
+        // Enter any new nodes.
+        text.enter().append("text")
+          .attr("class", "text")
+          .attr("dx", 0)
+          .attr("y", 0)
+          .attr('text-anchor', "middle")
+          .attr('alignment-baseline', "middle")
+          .text((d) => d.name)
+          .style("fill", "white")
+          .style("font-size", fontSize)
+          .style("opacity", (d) => {
+            return d.level === 0 ? 0 : 1;
+          })
+          .style("visibility", showText)
+          .call(force.drag);
+
+        // Exit any old nodes.
+        text.exit().remove();
 
         //Adding tooltip
         tooltip = d3.select(divSelected).append("div")
           .classed("tooltip", true)
           .style("opacity", 0)
-
       }
 
       function tick() {
@@ -212,22 +211,32 @@ export default {
             return d.y = Math.max(radius, Math.min(height - radius, d.y))
           });
 
-        // t.attr("x", (d) => d.x)
-        //   .attr("y", (d) => d.y);
+        text
+          .attr("x", (d) => d.x)
+          .attr("y", (d) => d.y);
 
       }
 
+      function fontSize(d) {
+        return Math.sqrt(nodeSize(d)) * 2 + "px"
+      }
+
+      function showText(d) {
+        const text = d.name
+        if (text.length > Math.sqrt(nodeSize(d)) * 2) return "hidden"
+        return "visible"
+      }
+
       function nodeDistance(d) {
-        const level = d.level;
-        const treeId = d.tree_id
+        const {level, tree_id} = d
 
         if (level === 1) return -20000
         if (level === 2) {
-          if (treeId === 3) return -5000
-          else return -2000
+          if (tree_id === 3) return -5000
+          return -2000
         }
-        if (level === 3 && treeId === 3) return -5000
-        else return -1000
+        if (level === 3 && tree_id === 3) return -5000
+        return -1000
       }
 
       function addClass(d) {
@@ -240,7 +249,7 @@ export default {
         const count = d.records_count
         switch(true) {
         case(count > 7000):
-          return Math.sqrt(count) / 1
+          return Math.sqrt(count) / 0.7
         case(5000 < count && count <= 7000):
           return Math.sqrt(count) / 1.1
         case(2000 <= count && count <= 5000):
@@ -299,15 +308,15 @@ export default {
       function strokeColor(d) {
         switch(d.tree_id) {
         case 1:
-          return "#3182BD12"
+          return "#3182BD19"
         case 2:
-          return "#F02D4712"
+          return "#F02D4719"
         case 3:
-          return "#94B72F11"
+          return "#94B72F1A"
         case 4:
-          return "#F8A84112"
+          return "#F8A8411A"
         default:
-          return "#87BCE593"
+          return "#87BCE598"
         }
       }
 
@@ -339,17 +348,21 @@ export default {
       
       function showTooltip(d){
         if (d.level > 0) {
-          tooltip.transition()
+          tooltip
+            .transition()
             .duration(300)
-            .style("opacity", 1) // show the tooltip
-          tooltip.html(d.name + ":" + d.records_count)
+            .style("opacity", 0.9) // show the tooltip
+            .style("background-color", fillColor(d))
+          tooltip
+            .html(d.name + ": " + d.records_count)
             .style("left", (d3.event.pageX - d3.select('.tooltip').node().offsetWidth - 5) + "px")
             .style("top", (d3.event.pageY - d3.select('.tooltip').node().offsetHeight) + "px");
         }
       }
 
       function hideTooltip() {
-        tooltip.transition()
+        tooltip
+          .transition()
           .duration(200)
           .style("opacity", 0)
       }
@@ -419,10 +432,11 @@ export default {
     text-align: center;
     padding: 5px;
     font-size: 16px;
-    background: honeydew;
-    border: 1px solid honeydew;
-    border-radius: 8px;
+    color: white;
+    border: 1px solid white;
+    border-radius: 4px;
     pointer-events: none; /* keep the mouseover when over the tooltip */
+    box-shadow: 10px 6px 17px 0px rgba(145,145,145,0.44);
   }
   @keyframes dash {
     0%{
