@@ -48,8 +48,8 @@ export default {
 
     async d3Chart() {
       let node, link, root, tooltip, text;
-      const width = 900
-      const height = 650
+      const width = 1200
+      const height = 700
       const radius = 30
 
       const force = d3.layout.force()
@@ -57,7 +57,7 @@ export default {
         .size([width, height]);
 
       const divSelected = this.$refs.chartdiv;
-      const vis = d3.select(divSelected).append("svg")
+      const svg = d3.select(divSelected).append("svg")
         .attr("width", width)
         .attr("height", height)
         .attr("preserveAspectRatio", "xMaxYMax meet")
@@ -105,11 +105,11 @@ export default {
           .friction(0.5)
           .gravity(0.6)
           .theta(0.8)
-          .alpha(0.1)
+          .alpha(0)
           .start();
 
         // Update the links…
-        link = vis.selectAll("line.link")
+        link = svg.selectAll("line.link")
           .data(links, (d) => d.target.id)
           .style("fill", linkColor)
           .style("stroke", linkColor)
@@ -134,14 +134,14 @@ export default {
         link.exit().remove();
 
         // Update the nodes…
-        node = vis.selectAll("circle.node")
+        node = svg.selectAll("circle.node")
           .data(nodes, (d) => d.id)
           .style("fill", fillColor)
           .style("stroke", strokeColor)
           .style("outline-color", fillColor)
 
         // Enter any new nodes.
-        node.enter().append("circle")
+        node.enter().append("svg:circle")
           .attr("class", addClass)
           .attr("cx", (d) => d.x)
           .attr("cy", (d) => d.y)
@@ -164,12 +164,12 @@ export default {
         node.exit().remove();
 
         //Text on the nodes
-        text = vis.selectAll(".text")
+        text = svg.selectAll(".text")
           .data(nodes, (d) =>  d.id)
           .style("fill", "white")
 
         // Enter any new nodes.
-        text.enter().append("text")
+        text.enter().append("svg:text")
           .attr("class", "text")
           .attr("dx", 0)
           .attr("y", 0)
@@ -182,7 +182,7 @@ export default {
             return d.level === 0 ? 0 : 1;
           })
           .style("visibility", showText)
-          .call(force.drag);
+          .call(force.drag)
 
         // Exit any old nodes.
         text.exit().remove();
@@ -228,14 +228,14 @@ export default {
       }
 
       function nodeDistance(d) {
-        const {level, tree_id} = d
+        const { level, tree_id } = d
 
-        if (level === 1) return -20000
+        if (level === 1) return -30000
         if (level === 2) {
-          if (tree_id === 3) return -5000
+          if (tree_id === 3) return -15000
           return -2000
         }
-        if (level === 3 && tree_id === 3) return -5000
+        if (level === 3 && tree_id === 3) return -3000
         return -1000
       }
 
@@ -320,6 +320,7 @@ export default {
         }
       }
 
+      //Toggle node having children
       function toggle (d) {
         if (d.children && d.children.length) {
           d._children = d.children;
@@ -333,8 +334,12 @@ export default {
       function click(d) {
         if (d3.event.defaultPrevented) return; // ignore drag
         hideTooltip()
-        const selectedNode = d3.select(this)
-        selectedNode.classed("selectedNode", !selectedNode.classed("selectedNode"));
+        const itemClicked = d3.select(this)
+        const nodeClicked = d3.select(this).classed("node")
+        const textClicked = d3.select(this).classed("text")
+        console.log("nodeClicked::", nodeClicked)
+        console.log("textClicked::", textClicked)
+        itemClicked.classed("selectedNode", !itemClicked.classed("selectedNode"));
         if (d.children) {
           toggle(d)
           d.children = null;
@@ -345,7 +350,8 @@ export default {
         }
         update();
       }
-      
+
+      //Show tooltip on node hover
       function showTooltip(d){
         if (d.level > 0) {
           tooltip

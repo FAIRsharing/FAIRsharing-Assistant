@@ -1,6 +1,14 @@
 <template>
   <div>
     <div>This is D3 page</div>
+    <v-fade-transition v-if="loading">
+      <v-overlay
+        :absolute="false"
+        opacity="0.8"
+      >
+        <Loaders />
+      </v-overlay>
+    </v-fade-transition>
     <div
       ref="chartdiv"
       class="bubbleChart"
@@ -9,82 +17,112 @@
 </template>
 
 <script>
-import d3data from "@/data/sunburst.json"
+import d3data from "@/data/domain.json"
 import * as d3 from 'd3'
-import {mapActions, mapState} from "vuex";
+import {mapActions, mapGetters, mapState} from "vuex";
+import Loaders from "@/components/Loaders/Loaders"
 
 export default {
   name: 'DomainTypeD3JS',
+  components: { Loaders },
   data:() => {
     return {
+      loading: false,
       d3data: d3data,
     }
   },
   computed:{
+    ...mapState("variableTagStore", ["variableResponse", "loadingStatus"]),
+    ...mapGetters("addOnFilterSelectedStore", ["getFilters"]),
     ...mapState("browseSubjectsStore", ["subjectBubbleTree", "loadingData"])
   },
   async mounted() {
     await this.d3Chart()
+    // this.$nextTick(async () =>{
+    //   this.loading = true
+    //   await this.d3Chart()
+    //   this.loading = false
+    // })
   },
 
   methods: {
+    ...mapActions("variableTagStore", ["fetchVariableTags", "resetVariableTags"]),
     ...mapActions("browseSubjectsStore", ["fetchTerms"]),
 
     async d3Chart() {
-      // var root = d3.hierarchy(this.d3data, function (d) {
-      //   return d.children;
-      // });
-      // var links = root.links();
-      // var nodes = flatten(root);
-      var width = 960;
-      var height = 700;
+      var w = 1060,
+        h = 800,
+        node,
+        link,
+        root,
+        t;
+      // var COLLAPSE_LEVEL = 1;
 
-
-      var simulation = d3.forceSimulation()
-        .force("link", d3.forceLink().id(d => d.id).distance(0).strength(1))
-        .force("charge", d3.forceManyBody().strength(-50))
-        .force('center', d3.forceCenter(width / 2, height / 2))
-        .force("x", d3.forceX())
-        .force("y", d3.forceY())
-        .force('collision', d3.forceCollide().radius(function (d) {
-          return d.data.records_count + 10
-        }));
+      var force = d3.layout.force()
+        .on("tick", tick)
+        .size([w, h]);
 
       var divSelected = this.$refs.chartdiv;
-
-      var svg = d3.select(divSelected).append("svg")
-        .attr("width", width)
-        .attr("height", height)
-        .append("g")
-        .attr("transform", `translate(${width/2},${height/2})`);
-
-      var link = svg.selectAll(".link"),
-        node = svg.selectAll(".node");
-
-      var root = d3.hierarchy(this.d3data);
+      var vis = d3.select(divSelected).append("svg")
+        .attr("width", "100%")
+        .attr("height", h)
+        .attr("preserveAspectRatio", "xMinYMin meet")
+        .classed("svg-content", true);
 
 
+      // await this.fetchVariableTags([["knowledgebase_and_repository", "knowledgebase", "repository"], null, null, "domain", this.getFilters])
+      const allDomainData = {
+        name: "Domain",
+        records_count: 0,
+        // children: this.variableResponse,
+        children: this.d3data.data.variableFilter.data,
+      }
+      root = allDomainData
 
 
+      function parseLevel(node, level) {
+        node.level = level;
+        if (typeof node.children !== 'undefined') {
+          node.children.forEach(function(children) {
+            parseLevel(children, level + 1);
+          });
+        }
+      }
 
-      // var svg = d3.select(divSelected)
-      //   .attr("viewBox", [0, 0, width, height])
-      collapse(root);
+      parseLevel(root, 0);
+      // Initialize the display to show level 0
+      // toggle(root)
+      // Initialize the display to show level 1
+      root.children.forEach(toggle);
+
       update();
+      function toggle (d) {
+        if (d.children && d.children.length) {
+          d._children = d.children;
+          d._children.forEach((d) => toggle(d));
+          d.children = null;
+        }
+        update(d);
+      }
 
-      // return svg.node();
-
-      // eslint-disable-next-line no-unused-vars
       function update() {
+        var nodes = flatten(root),
+          links = d3.layout.tree().links(nodes);
 
-        var nodes = flatten(root)
-        var links = root.links(nodes);
-        simulation
+        // Restart the force layout.
+        force
           .nodes(nodes)
-          .force("link").links(links);
+          .links(links)
+          .charge(() => {
+            return -2000
+          })
+          .linkDistance(50)
+          .friction(0.5)
+          .start();
 
-        link = link.data(links, function(d) { return d.target.id; });
-        link.exit().remove();
+        // Update the links…
+        link = vis.selectAll("line.link")
+          .data(links, function(d) { return d.target.id; });
 
         // Enter any new links.
         link.enter().insert("line", ".node")
@@ -92,99 +130,100 @@ export default {
           .attr("x1", function(d) { return d.source.x; })
           .attr("y1", function(d) { return d.source.y; })
           .attr("x2", function(d) { return d.target.x; })
-          .attr("y2", function(d) { return d.target.y; });
+          .attr("y2", function(d) { return d.target.y; })
+          .style("opacity", function(d){
+            return !d.source.level ? 0 : 1;
+          })
+          .style("pointer-events", function(d){
+            return !d.source.level ? "none" : "all";
+          });
+
+        // Exit any old links.
+        link.exit().remove();
 
         // Update the nodes…
-        node = node.data(nodes, function(d) { return d.id; }).style("fill", color);
-
-        // Exit any old nodes.
-        node.exit().remove();
+        node = vis.selectAll("circle.node")
+          .data(nodes, function(d) { return d.id; })
+          .style("fill", color);
 
         // Enter any new nodes.
         node.enter().append("circle")
           .attr("class", "node")
           .attr("cx", function(d) { return d.x; })
           .attr("cy", function(d) { return d.y; })
-          .attr("r", function(d) { return Math.sqrt(d.records_count) / 1 || 10; })
+          .attr("r", function (d) {
+            return Math.sqrt(d.records_count) / 0.5 || 30;
+          })
           .style("fill", color)
+          .style("opacity", function(d){
+            return !d.level ? 0 : 1;
+          })
+          .style("pointer-events", function(d){
+            return !d.level ? "none" : "cursor";
+          })
           .on("click", click)
+          .call(force.drag);
 
+        // Exit any old nodes.
+        node.exit().remove();
 
-        // var link = svg.append("g")
-        //   .attr("stroke", "#999")
-        //   .attr("stroke-opacity", 0.6)
-        //   .selectAll("line")
-        //   .data(links)
-        //   .join("line");
-        //
-        // var node = svg.append("g")
-        //   .attr("fill", "#fff")
-        //   .attr("stroke", "#000")
-        //   .attr("stroke-width", 1.5)
-        //   .selectAll("circle")
-        //   .data(nodes)
-        //   .join("circle")
-        //   .attr("fill", color)
-        //   .attr("stroke", d => d.children?.length ? null : "#fff")
-        //   .attr('r', (d) => {
-        //     return d.data.records_count;
-        //   })
-        //
-        // node.on("click", click)
-        //
-        // node.append("title")
-        //   .text(d => d.name);
+        t = vis.selectAll(".t-node")
+          .data(nodes, function(d) { return d.id; })
+          .style("fill", color);
 
-        //On action tick
-        simulation.on("tick", () => {
-          link
-            .attr("x1", d => d.source.x)
-            .attr("y1", d => d.source.y)
-            .attr("x2", d => d.target.x)
-            .attr("y2", d => d.target.y);
-          node
-            .attr("cx", d => d.x)
-            .attr("cy", d => d.y);
-        });
+        // Enter any new nodes.
+        t.enter().append("svg:text")
+          .attr("class", "t-node")
+          .attr("dx", "25px")
+          .attr("y", 0)
+          .text(function(d){return d.name + " " + (d.level ? d.level:'')})
+          .style("opacity", function(d){
+            return !d.level ? 0 : 1;
+          });
+        // .call(force.drag);
+
+        // Exit any old nodes.
+        t.exit().remove();
+
       }
 
-      // Collapse all child nodes
-      // eslint-disable-next-line no-unused-vars
-      function collapse (d) {
-        if (d.children && d.children.length) {
-          d._children = d.children;
-          d._children.forEach((d) => collapse(d));
-          d.children = null;
-        }
-        update();
-      }
+      function tick() {
+        link.attr("x1", function(d) { return d.source.x; })
+          .attr("y1", function(d) { return d.source.y; })
+          .attr("x2", function(d) { return d.target.x; })
+          .attr("y2", function(d) { return d.target.y; });
 
+        node.attr("cx", function(d) { return d.x; })
+          .attr("cy", function(d) { return d.y; });
+
+        t.attr("x", function(d) { return d.x; })
+          .attr("y", function(d) { return d.y; });
+
+      }
 
       // Color leaf nodes orange, and packages white or blue.
       function color(d) {
-        return d._children?.length ? "#3182bd" : d.children?.length ? "#c6dbef" : "#fd8d3c";
+        return d._children ? "#3182bd" : d.children ? "#c6dbef" : "#fd8d3c";
       }
-      // Toggle children on click.
-      function click(e, d) {
 
-        // if (!d3.event.defaultPrevented) {
-        if (d.children && d.children.length) {
-          collapse(d);
+      // Toggle children on click.
+      function click(d) {
+        if (d.children) {
+          toggle(d)
           d.children = null;
         }
         else {
           d.children = d._children;
           d._children = null;
         }
-        update(d);
-        // }
+        update();
       }
-      //
+
       // Returns a list of all nodes under the root.
       function flatten(root) {
         var nodes = [], i = 0;
 
-        function recurse (node) {
+        function recurse(node) {
           if (node.children) node.children.forEach(recurse);
           if (!node.id) node.id = ++i;
           nodes.push(node);
@@ -193,7 +232,6 @@ export default {
         recurse(root);
         return nodes;
       }
-      return svg.node()
     }
 
   }
@@ -215,3 +253,5 @@ export default {
   }
 }
 </style>
+
+
