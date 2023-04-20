@@ -21,11 +21,11 @@ import {mapActions, mapGetters, mapState} from "vuex"
 import * as am5 from '@amcharts/amcharts5';
 import * as am5hierarchy from "@amcharts/amcharts5/hierarchy";
 import am5themes_Animated from '@amcharts/amcharts5/themes/Animated';
-import { canvasGetImageData } from "@/utils/canvasRenderingContext"
-import { breadCrumbBar } from "@/utils/breadCrumbBar"
+import { canvasGetImageData } from "@/utils/Others/canvasRenderingContext"
+import { breadCrumbBar } from "@/utils/Others/breadCrumbBar"
 import calculateResourceRecords from "@/utils/ResourceUtils/calculateResourceRecords"
 import createResourceStructure from "@/utils/ResourceUtils/createResourceStructure";
-import StringMixin from "@/utils/stringMixin.js"
+import StringMixin from "@/utils/Others/stringMixin.js"
 import Loaders from "@/components/Loaders/Loaders"
 
 

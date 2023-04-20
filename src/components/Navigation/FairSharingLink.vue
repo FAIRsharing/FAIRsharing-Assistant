@@ -39,7 +39,7 @@
 
 <script>
 import { mapGetters } from "vuex"
-import StringMixin from "@/utils/stringMixin.js"
+import StringMixin from "@/utils/Others/stringMixin.js"
 
 export default {
   name: "FairSharingLink",

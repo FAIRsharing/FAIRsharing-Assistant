@@ -315,7 +315,7 @@ export default {
           d._children.forEach((d) => toggle(d));
           d.children = null;
         }
-        update(d);
+        // update(d);
       }
 
       // Toggle children on click.

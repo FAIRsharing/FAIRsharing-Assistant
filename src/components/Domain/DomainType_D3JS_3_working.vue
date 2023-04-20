@@ -61,7 +61,7 @@ export default {
       update();
 
       // eslint-disable-next-line no-unused-vars
-      function update() {
+      function updateTick() {
 
         var nodes = flatten(root)
         var links = root.links(nodes);
@@ -127,7 +127,7 @@ export default {
           d._children.forEach((d) => collapse(d));
           d.children = null;
         }
-        // update();
+        // updateTick();
       }
 
 

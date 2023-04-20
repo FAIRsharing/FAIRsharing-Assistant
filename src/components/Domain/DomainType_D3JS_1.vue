@@ -105,7 +105,7 @@ export default {
         update(d);
       }
 
-      function update() {
+      function updateTick() {
         var nodes = flatten(root),
           links = d3.layout.tree().links(nodes);
 
