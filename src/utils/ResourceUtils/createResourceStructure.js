@@ -1,6 +1,5 @@
 import {mapActions, mapState} from "vuex";
 
-
 const allResourceData = {
   name: "Resource",
   value: 0,

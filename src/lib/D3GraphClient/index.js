@@ -1,3 +1,5 @@
+import svgGraph from "@/lib/D3GraphClient/svgGraph";
+import forceGraph from "@/lib/D3GraphClient/force";
 import parseLevel from "@/lib/D3GraphClient/parseLevel";
 import flatten from "@/lib/D3GraphClient/flatten";
 import addClass from "@/lib/D3GraphClient/addClass";
@@ -9,6 +11,8 @@ import {click, toggle} from "@/lib/D3GraphClient/click"
 import {showTooltip, hideTooltip} from "@/lib/D3GraphClient/tooltip";
 
 export {
+  svgGraph,
+  forceGraph,
   parseLevel,
   flatten,
   addClass,

@@ -323,7 +323,7 @@ export default {
         if (d3.event.defaultPrevented) return; // ignore drag
         hideTooltip()
         const itemClicked = d3.select(this)
-
+        console.log("itemClicked::", itemClicked)
         itemClicked.classed("selectedNode", !itemClicked.classed("selectedNode"));
         if (d.children) {
           toggle(d)

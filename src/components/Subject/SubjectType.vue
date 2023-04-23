@@ -17,12 +17,11 @@
 
 <script>
 import { mapState, mapActions, mapGetters } from "vuex"
-import * as d3 from 'd3'
 import StringMixin from "@/utils/Others/stringMixin.js"
 import RecordTypes from "@/utils/Others/recordTypes.js";
 import Loaders from "@/components/Loaders/Loaders"
 import calculateRecords from "@/utils/Others/calculateRecords";
-import { parseLevel, update, toggle, tick } from "@/lib/D3GraphClient";
+import { svgGraph, forceGraph, parseLevel, update, toggle } from "@/lib/D3GraphClient";
 // import d3data from "@/data/subject.json"
 export default {
   name: 'SubjectType',
@@ -129,26 +128,13 @@ export default {
     },
 
     async d3Chart() {
-      const dimensions = {
-        "width" : 1200,
-        "height": 700,
-        "radius": 30
-      }
-
-      const force = d3.layout.force()
-        .on("tick", (d) => tick(d, dimensions))
-        .size([dimensions["width"], dimensions["height"]]);
-
+      const force = forceGraph()
       const divSelected = this.$refs.chartdiv;
-      const svg = d3.select(divSelected).append("svg")
-        .attr("width", dimensions["width"])
-        .attr("height", dimensions["height"])
-        .attr("preserveAspectRatio", "xMaxYMax meet")
-        .classed("svg-content", true);
-
+      const svg = svgGraph(divSelected)
       const root = this.allSubjectsData
       // root = this.d3data
       parseLevel(root, 0);
+
       // Initialize the display to show level 1
       root.children.forEach(toggle);
       update(root, force, svg, divSelected);
