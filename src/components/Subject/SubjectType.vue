@@ -47,6 +47,11 @@ export default {
     ...mapState("browseSubjectsStore", ["subjectBubbleTree", "loadingData"]),
     ...mapState("topSubjectStore", ["topSubjectBubbleTree", "loadingData"]),
   },
+  watch:{
+    getSubject(){
+      this.onBubbleSelection()
+    }
+  },
   async mounted() {
     this.$nextTick(async () =>{
       this.loading = true
@@ -138,7 +143,6 @@ export default {
       // Initialize the display to show level 1
       root.children.forEach(toggle);
       update(root, force, svg, divSelected);
-
     },
   }
 }

@@ -4,6 +4,7 @@ import { fillColor, linkColor, strokeColor, nodeSize} from "@/lib/D3GraphClient/
 
 
 let node, link, text, tooltip;
+const pathName = window.location.pathname
 
 const update = (root, force, svg, divSelected) => {
   const nodes = flatten(root)
@@ -48,19 +49,17 @@ const update = (root, force, svg, divSelected) => {
   // Update the nodes…
   node = svg.selectAll("circle.node")
     .data(nodes, (d) => d.id)
-    .style("fill", fillColor)
-    .style("stroke", strokeColor)
-    .style("outline-color", fillColor)
+    .style(colors())
 
   // Enter any new nodes.
   node.enter().append("svg:circle")
-    .attr("class", addClass)
-    .attr("cx", (d) => d.x)
-    .attr("cy", (d) => d.y)
-    .attr("r",  nodeSize)
-    .style("fill", fillColor)
-    .style("stroke", strokeColor)
-    .style("outline-color", fillColor)
+    .attr({
+      "class": addClass,
+      "cx": (d) => d.x,
+      "cy": (d) => d.y,
+      "r":  nodeSizes()
+    })
+    .style(colors())
     .style("opacity", (d) => {
       return d.level === 0 ? 0 : 1;
     })
@@ -129,6 +128,22 @@ const tick = (d, dimensions) => {
     .attr("x", (d) => d.x)
     .attr("y", (d) => d.y);
 
+}
+
+const colors = () => {
+  if (pathName === "/subject") {
+    return ({
+      "fill": fillColor,
+      "stroke": strokeColor,
+      "outline-color": fillColor
+    })
+  }
+}
+
+const nodeSizes = () => {
+  if (pathName === "/subject") {
+    return nodeSize
+  }
 }
 
 export {update, tick}

@@ -9,6 +9,7 @@ import showText from "@/lib/D3GraphClient/showText";
 import {update , tick} from "@/lib/D3GraphClient/updateTick";
 import {click, toggle} from "@/lib/D3GraphClient/click"
 import {showTooltip, hideTooltip} from "@/lib/D3GraphClient/tooltip";
+import storeNode from "@/lib/D3GraphClient/storeNode"
 
 export {
   svgGraph,
@@ -24,5 +25,6 @@ export {
   click,
   toggle,
   showTooltip,
-  hideTooltip
+  hideTooltip,
+  storeNode
 }
