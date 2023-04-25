@@ -1,9 +1,11 @@
-import {fillColor, linkColor, strokeColor} from "./subjectColors"
-import nodeSize from "./subjectNodeSize"
+import {subjectFillColors, subjectLinkColors, subjectStrokeColors} from "./subjectColors"
+import subjectNodesSize from "./subjectNodeSize"
+import subjectNodeDistance from "./subjectNodeDistance"
 
 export {
-  fillColor,
-  linkColor,
-  strokeColor,
-  nodeSize
+  subjectFillColors,
+  subjectLinkColors,
+  subjectStrokeColors,
+  subjectNodesSize,
+  subjectNodeDistance
 }

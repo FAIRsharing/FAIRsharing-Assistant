@@ -1,14 +1,14 @@
 import * as d3 from "d3";
-import { fillColor } from "@/lib/D3GraphClient/SubjectGraphUtils";
+import { tooltipColors } from "@/lib/D3GraphClient";
 
 //Show tooltip on mouse-in
-const showTooltip = (d, tooltip) =>{
+const showTooltip = (d, tooltip, routeName) =>{
   if (d.level > 0) {
     tooltip
       .transition()
       .duration(300)
       .style("opacity", 0.9) // show the tooltip
-      .style("background-color", fillColor(d))
+      .style("background-color", tooltipColors(d, routeName))
     tooltip
       .html(d.name + ": " + d.records_count)
       .style("left", (d3.event.pageX - d3.select('.tooltip').node().offsetWidth + 100) + "px")

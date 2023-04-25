@@ -5,11 +5,13 @@ import flatten from "@/lib/D3GraphClient/flatten";
 import addClass from "@/lib/D3GraphClient/addClass";
 import nodeDistance from "@/lib/D3GraphClient/nodeDistance";
 import fontSize from "@/lib/D3GraphClient/fontSize";
-import showText from "@/lib/D3GraphClient/showText";
+import nodeText from "@/lib/D3GraphClient/nodeText";
 import {update , tick} from "@/lib/D3GraphClient/updateTick";
 import {click, toggle} from "@/lib/D3GraphClient/click"
 import {showTooltip, hideTooltip} from "@/lib/D3GraphClient/tooltip";
 import storeNode from "@/lib/D3GraphClient/storeNode"
+import {nodeColors, linkColors, tooltipColors} from "@/lib/D3GraphClient/nodeColors";
+import nodeSize from "@/lib/D3GraphClient/nodeSize";
 
 export {
   svgGraph,
@@ -19,12 +21,16 @@ export {
   addClass,
   nodeDistance,
   fontSize,
-  showText,
+  nodeText,
   update,
   tick,
   click,
   toggle,
   showTooltip,
   hideTooltip,
-  storeNode
+  storeNode,
+  nodeColors,
+  linkColors,
+  tooltipColors,
+  nodeSize
 }

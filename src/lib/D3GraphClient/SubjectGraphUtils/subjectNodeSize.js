@@ -1,5 +1,5 @@
 //Size of nodes
-const nodeSize = (d) => {
+const subjectNodesSize = (d) => {
   const count = d.records_count
   switch(true) {
   case(count > 7000):
@@ -27,4 +27,4 @@ const nodeSize = (d) => {
   }
 }
 
-export default nodeSize
+export default subjectNodesSize

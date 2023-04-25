@@ -1,14 +1,14 @@
-// Distance in-between the nodes
-const nodeDistance = (d) => {
-  const { level, tree_id } = d
+import { subjectNodeDistance } from "@/lib/D3GraphClient/SubjectGraphUtils"
+import { domainNodeDistance } from "@/lib/D3GraphClient/DomainGraphUtils"
 
-  if (level === 1) return -30000
-  if (level === 2) {
-    if (tree_id === 3) return -15000
-    return -2000
+// Distance in-between the nodes
+const nodeDistance = (routeName) => {
+  if (routeName === "SubjectTypeView") {
+    return subjectNodeDistance
   }
-  if (level === 3 && tree_id === 3) return -3000
-  return -1000
+  else if (routeName === "DomainTypeView") {
+    return domainNodeDistance
+  }
 }
 
 export default nodeDistance

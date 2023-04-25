@@ -133,6 +133,7 @@ export default {
     },
 
     async d3Chart() {
+      const routeName = this.$route.name
       const force = forceGraph()
       const divSelected = this.$refs.chartdiv;
       const svg = svgGraph(divSelected)
@@ -142,55 +143,12 @@ export default {
 
       // Initialize the display to show level 1
       root.children.forEach(toggle);
-      update(root, force, svg, divSelected);
+      update(root, force, svg, divSelected, routeName);
     },
   }
 }
 </script>
 
 <style lang="scss" scoped>
-::v-deep {
-  .bubbleChart{
-    margin: 0 auto;
-    text-align: center;
-    width:100%;
-    max-width: 1024px;
-    height: 100%;
-    min-height: 650px;
-  }
-  .node {
-    cursor: pointer;
-    stroke: #3182bd;
-    stroke-width: 8px;
-    outline-style: dashed;
-    outline-width: 1.5px;
-    border-radius: 50%;
-  }
-  .selectedNode {
-    outline-style: solid;
-    filter: brightness(1.2);
-  }
-  .noChlid {
-    stroke-width: 0;
-    outline-style: none;
-    cursor: default
-  }
-  .link {
-    fill: none;
-    stroke: #9ecae1;
-    stroke-width: 1.5px;
-  }
-
-  .tooltip {
-    position: absolute;
-    text-align: center;
-    padding: 5px;
-    font-size: 16px;
-    color: white;
-    border: 1px solid white;
-    border-radius: 4px;
-    pointer-events: none; /* keep the mouseover when over the tooltip */
-    box-shadow: 10px 6px 17px 0px rgba(145,145,145,0.44);
-  }
-}
+  @import "@/lib/D3GraphClient/Styles/d3graph.scss";
 </style>

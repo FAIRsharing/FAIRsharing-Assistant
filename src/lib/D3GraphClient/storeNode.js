@@ -1,11 +1,10 @@
 import bubbleSelectedStore from "@/store"
 
-const pathName = window.location.pathname
 let itemClicked = ""
 // Commit the node in store
-const storeNode = (d) => {
+const storeNode = (d, routeName) => {
   // When user is on Database, Standards, Policy Page
-  if((pathName === "/database") || (pathName === "/policies") || (pathName === "/standards")) {
+  if((routeName === "DatabaseView") || (routeName === "StandardsView") || (routeName === "PoliciesView")) {
     if(itemClicked !== d["name"]) {
       if (d["children"] && d["children"].length) {
         itemClicked = d["name"]
@@ -24,15 +23,17 @@ const storeNode = (d) => {
       }
     }
   }
+
   // When user is on Subject Page
-  else if (pathName === "/subject") {
+  else if (routeName === "SubjectTypeView") {
     if(itemClicked !== d["name"]) {
       itemClicked = d["name"]
       bubbleSelectedStore.commit("bubbleSelectedStore/subjectSelected", itemClicked)
     }
   }
+
   // When user is on Domain page
-  else if (pathName === "/domain") {
+  else if (routeName === "DomainTypeView") {
     if(itemClicked !== d["name"]) {
       itemClicked = d["name"]
       bubbleSelectedStore.commit("bubbleSelectedStore/domainSelected", itemClicked)

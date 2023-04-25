@@ -1,19 +1,16 @@
 import * as d3 from "d3";
-import {addClass, flatten, nodeDistance, fontSize, click, showText, showTooltip, hideTooltip} from "@/lib/D3GraphClient/index";
-import { fillColor, linkColor, strokeColor, nodeSize} from "@/lib/D3GraphClient/SubjectGraphUtils"
-
+import {addClass, flatten, nodeDistance, fontSize, click, nodeText, showTooltip, hideTooltip, nodeColors, linkColors, nodeSize} from "@/lib/D3GraphClient";
 
 let node, link, text, tooltip;
-const pathName = window.location.pathname
 
-const update = (root, force, svg, divSelected) => {
+const update = (root, force, svg, divSelected, routeName) => {
   const nodes = flatten(root)
   const links = d3.layout.tree().links(nodes);
   // Restart the force layout.
   force
     .nodes(nodes)
     .links(links)
-    .charge(nodeDistance)
+    .charge(nodeDistance(routeName))
     .linkDistance(50)
     .friction(0.5)
     .gravity(0.6)
@@ -24,8 +21,8 @@ const update = (root, force, svg, divSelected) => {
   // Update the links…
   link = svg.selectAll("line.link")
     .data(links, (d) => d.target.id)
-    .style("fill", linkColor)
-    .style("stroke", linkColor)
+    .style("fill", linkColors(routeName))
+    .style("stroke", linkColors(routeName))
 
   // Enter any new links.
   link.enter().insert("line", ".node")
@@ -34,8 +31,8 @@ const update = (root, force, svg, divSelected) => {
     .attr("y1", (d) => d.source.y)
     .attr("x2", (d) => d.target.x)
     .attr("y2", (d) => d.target.y)
-    .style("fill", linkColor)
-    .style("stroke", linkColor)
+    .style("fill", linkColors(routeName))
+    .style("stroke", linkColors(routeName))
     .style("opacity", (d) => {
       return !d.source.level ? 0 : 1;
     })
@@ -49,7 +46,7 @@ const update = (root, force, svg, divSelected) => {
   // Update the nodes…
   node = svg.selectAll("circle.node")
     .data(nodes, (d) => d.id)
-    .style(colors())
+    .style(nodeColors(routeName))
 
   // Enter any new nodes.
   node.enter().append("svg:circle")
@@ -57,9 +54,9 @@ const update = (root, force, svg, divSelected) => {
       "class": addClass,
       "cx": (d) => d.x,
       "cy": (d) => d.y,
-      "r":  nodeSizes()
+      "r":  nodeSize(routeName),
     })
-    .style(colors())
+    .style(nodeColors(routeName))
     .style("opacity", (d) => {
       return d.level === 0 ? 0 : 1;
     })
@@ -67,8 +64,8 @@ const update = (root, force, svg, divSelected) => {
       return d.level === 0 ? "hidden" : "visible";
     })
     .on("click", (d) => click(d, root, force, svg,
-      tooltip, divSelected))
-    .on("mouseover", (d) => showTooltip(d, tooltip))
+      tooltip, divSelected, routeName))
+    .on("mouseover", (d) => showTooltip(d, tooltip, routeName))
     .on("mouseout", () => hideTooltip(tooltip))
     .call(force.drag);
 
@@ -93,7 +90,7 @@ const update = (root, force, svg, divSelected) => {
     .style("opacity", (d) => {
       return d.level === 0 ? 0 : 1;
     })
-    .style("visibility", showText)
+    .style("visibility", nodeText)
     .call(force.drag)
 
   // Exit any old nodes.
@@ -128,22 +125,6 @@ const tick = (d, dimensions) => {
     .attr("x", (d) => d.x)
     .attr("y", (d) => d.y);
 
-}
-
-const colors = () => {
-  if (pathName === "/subject") {
-    return ({
-      "fill": fillColor,
-      "stroke": strokeColor,
-      "outline-color": fillColor
-    })
-  }
-}
-
-const nodeSizes = () => {
-  if (pathName === "/subject") {
-    return nodeSize
-  }
 }
 
 export {update, tick}

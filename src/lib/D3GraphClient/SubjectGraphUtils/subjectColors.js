@@ -1,6 +1,6 @@
 
 // Color for nodes
-const fillColor = (d) => {
+const subjectFillColors = (d) => {
   switch(d.tree_id) {
   case 1:
     return "#3182bd"
@@ -15,7 +15,7 @@ const fillColor = (d) => {
   }
 }
 // Color for links
-const linkColor = (d) => {
+const subjectLinkColors = (d) => {
   switch(d.source.tree_id) {
   case 1:
     return "#3182bd"
@@ -31,7 +31,7 @@ const linkColor = (d) => {
 }
 
 // Color for strokes
-const strokeColor = (d) => {
+const subjectStrokeColors = (d) => {
   switch(d.tree_id) {
   case 1:
     return "#3182BD19"
@@ -47,8 +47,8 @@ const strokeColor = (d) => {
 }
 
 export {
-  fillColor,
-  linkColor,
-  strokeColor
+  subjectFillColors,
+  subjectLinkColors,
+  subjectStrokeColors
 }
 
