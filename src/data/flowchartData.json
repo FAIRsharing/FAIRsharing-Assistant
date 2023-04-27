@@ -1,0 +1,80 @@
+{
+  "destinations": {
+    "a1": "/standards",
+    "b1": "/database"
+  },
+  "questions": [
+    {
+      "type": "multiplechoice",
+      "id": "question_a",
+      "tagline": "Welcome to our demo interactive question thingy!",
+      "title": "First question from the flowchart",
+      "multiple": false,
+      "required": true,
+      "helpTextShow": false,
+      "options": [
+        {
+          "label": "Would you like to explore a particular subject area?",
+          "value": "a1"
+        },
+        {
+          "label": "Are you interested in accessing, publishing or managing digital objects?",
+          "value": "a2"
+        },
+        {
+          "label": "Are you looking for (meta)data standards?",
+          "value": "a3"
+        },
+        {
+          "label": "Are you interested in guidance and educational material?",
+          "value": "a4"
+        }
+      ],
+      "jump": {
+        "a1": "_submit",
+        "a2": "question_b",
+        "a3": "",
+        "a4": ""
+      },
+      "model": ""
+    },
+    {
+      "type": "multiplechoice",
+      "id": "question_b",
+      "tagline": "Finding out about databases!",
+      "title": "Please select an answer",
+      "multiple": false,
+      "required": true,
+      "helpTextShow": false,
+      "options": [
+        {
+          "label": "Find databases according to what's most important to you",
+          "value": "b1"
+        },
+        {
+          "label": "Find databases that allow you to access the data you're looking for",
+          "value": "b2"
+        },
+        {
+          "label": "Find out where - and how - to deposit and publish digital objects",
+          "value": "b3"
+        },
+        {
+          "label": "Learn about our database registry",
+          "value": "b4"
+        },
+        {
+          "label": "Learn how FAIRsharing helps researchers",
+          "value": "Learn about preparing a data management plan or policy"
+        }
+      ],
+      "jump": {
+        "b1": "_submit",
+        "b2": "",
+        "b3": "",
+        "b4": ""
+      },
+      "model": ""
+    }
+  ]
+}
