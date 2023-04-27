@@ -1,29 +1,34 @@
 <template>
-  <flow-form
-    ref="flowform"
-    :progressbar="false"
-    :standalone="true"
-    @submit="onSubmit"
-  >
-    <question
-      v-for="(question, index) in questions"
-      v-bind="question"
-      :key="'m' + index"
-      v-model="question.model"
-    />
-  </flow-form>
+  <div class="fill-height d-flex flex-column justify-start align-stretch">
+    <Jumbotron />
+    <flow-form
+      ref="flowform"
+      :progressbar="false"
+      :standalone="true"
+      @submit="onSubmit"
+    >
+      <question
+        v-for="(question, index) in questions"
+        v-bind="question"
+        :key="'m' + index"
+        v-model="question.model"
+      />
+    </flow-form>
+  </div>
 </template>
 
 <script>
 //import FlowForm, { QuestionModel, QuestionType, ChoiceOption, LanguageModel } from '@ditdot-dev/vue-flow-form';
 import FlowForm, { Question } from '@ditdot-dev/vue-flow-form';
+import Jumbotron from "@/components/Navigation/Jumbotron";
 import flowchartData from '@/data/flowchartData.json'
 
 export default {
   name: "Flowchart",
   components: {
     FlowForm,
-    Question
+    Question,
+    Jumbotron
   },
   data: () => {
     return {

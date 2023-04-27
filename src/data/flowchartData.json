@@ -1,40 +1,63 @@
 {
   "destinations": {
-    "a1": "/standards",
-    "b1": "/database"
+    "a1": "/subjects",
+    "b1": "https://fairsharing.org/educational#databases",
+    "b2": "/database",
+    "c1": "/database#under_construction",
+    "c2": "/database#under_construction",
+    "c3": "/database#under_construction",
+    "c4": "/database#under_construction",
+    "c5": "/database#under_construction",
+    "d1": "https://fairsharing.org/educational#standards",
+    "d2": "/standards",
+    "e1": "/standards#under_construction",
+    "f2": "/standards#under_construction",
+    "f3": "/standards#under_construction",
+    "f3": "/standards#under_construction",
+    "f3": "/standards#under_construction",
+    "g1": "https://fairsharing.org/educational#publishers",
+    "g2": "https://fairsharing.org/educational#funders",
+    "g3": "/policies",
+    "h1": "https://fairsharing.gitbook.io/fairsharing",
+    "h2": "https://fairsharing.org/educational"
   },
   "questions": [
     {
       "type": "multiplechoice",
       "id": "question_a",
       "tagline": "Welcome to our demo interactive question thingy!",
-      "title": "First question from the flowchart",
+      "title": "Get started by selecting from the choices below",
       "multiple": false,
       "required": true,
       "helpTextShow": false,
       "options": [
         {
-          "label": "Would you like to explore a particular subject area?",
+          "label": "Explore all databases, standards and policies from a particular subject area",
           "value": "a1"
         },
         {
-          "label": "Are you interested in accessing, publishing or managing digital objects?",
+          "label": "Explore and learn about databases for sharing and discovering data",
           "value": "a2"
         },
         {
-          "label": "Are you looking for (meta)data standards?",
+          "label": "Explore and learn about standards to identify, annotate and share data",
           "value": "a3"
         },
         {
-          "label": "Are you interested in guidance and educational material?",
+          "label": "Explore and learn about policies for managing and sharing data",
           "value": "a4"
+        },
+        {
+          "label": "Are you interested in guidance and educational material",
+          "value": "a5"
         }
       ],
       "jump": {
         "a1": "_submit",
         "a2": "question_b",
-        "a3": "",
-        "a4": ""
+        "a3": "question_d",
+        "a4": "question_g",
+        "a5": "question_h"
       },
       "model": ""
     },
@@ -48,31 +71,201 @@
       "helpTextShow": false,
       "options": [
         {
-          "label": "Find databases according to what's most important to you",
+          "label": "Learn about types of database and their relationships to other resources",
           "value": "b1"
         },
         {
-          "label": "Find databases that allow you to access the data you're looking for",
+          "label": "See all databases; filter based on the attributes most relevant to you",
           "value": "b2"
         },
         {
-          "label": "Find out where - and how - to deposit and publish digital objects",
+          "label": "Filter databases according to access and deposition conditions",
           "value": "b3"
-        },
-        {
-          "label": "Learn about our database registry",
-          "value": "b4"
-        },
-        {
-          "label": "Learn how FAIRsharing helps researchers",
-          "value": "Learn about preparing a data management plan or policy"
         }
       ],
       "jump": {
         "b1": "_submit",
-        "b2": "",
-        "b3": "",
-        "b4": ""
+        "b2": "_submit",
+        "b3": "question_c"
+      },
+      "model": ""
+    },
+    {
+      "type": "multiplechoice",
+      "id": "question_c",
+      "tagline": "Database filtering",
+      "title": "Please select an answer",
+      "multiple": false,
+      "required": true,
+      "helpTextShow": false,
+      "options": [
+        {
+          "label": "Filter on access: See those databases with open access to data",
+          "value": "c1"
+        },
+        {
+          "label": "Filter on access: See those databases with partially open access to data",
+          "value": "c2"
+        },
+        {
+          "label": "Filter on access: See those databases with controlled access to data",
+          "value": "c3"
+        },
+        {
+          "label": "Filter on deposit: See those databases that are open to the deposition of data",
+          "value": "c4"
+        },
+        {
+          "label": "Filter on deposit: See those databases that are closed to the deposition of data",
+          "value": "c5"
+        }
+      ],
+      "jump": {
+        "c1": "_submit",
+        "c2": "_submit",
+        "c3": "_submit",
+        "c4": "_submit",
+        "c5": "_submit"
+      },
+      "model": ""
+    },
+    {
+      "type": "multiplechoice",
+      "id": "question_d",
+      "tagline": "Standard filtering",
+      "title": "Please select an answer",
+      "multiple": false,
+      "required": true,
+      "helpTextShow": false,
+      "options": [
+        {
+          "label": "Learn about types of standards and their relationship to other resources",
+          "value": "d1"
+        },
+        {
+          "label": "See all standards: Filter on the attributes most relevant to you",
+          "value": "d2"
+        },
+        {
+          "label": "Filter standards according to their use for (meta)data annotation or citation.",
+          "value": "d3"
+        }
+      ],
+      "jump": {
+        "d1": "_submit",
+        "d2": "_submit",
+        "d3": "question_e"
+      },
+      "model": ""
+    },
+    {
+      "type": "multiplechoice",
+      "id": "question_e",
+      "tagline": "Standards for metadata annotation or citation",
+      "title": "Please select an answer",
+      "multiple": false,
+      "required": true,
+      "helpTextShow": false,
+      "options": [
+        {
+          "label": "Learn about types of standards and their relationship to other resources",
+          "value": "e1"
+        },
+        {
+          "label": "See all standards: Filter on the attributes most relevant to you",
+          "value": "e2"
+        }
+      ],
+      "jump": {
+        "e1": "_submit",
+        "e2": "question_f"
+      },
+      "model": ""
+    },
+    {
+      "type": "multiplechoice",
+      "id": "question_f",
+      "tagline": "Data and metadata standards",
+      "title": "Please select an answer",
+      "multiple": false,
+      "required": true,
+      "helpTextShow": false,
+      "options": [
+        {
+          "label": "Explore conceptual models, schemas, and exchange formats",
+          "value": "f1"
+        },
+        {
+          "label": "Explore minimum information requirements, checklists and other reporting guidelines",
+          "value": "f2"
+        },
+        {
+          "label": "Explore individual controlled vocabularies, taxonomies, ontologies and other terminology artefacts",
+          "value": "f3"
+        },
+        {
+          "label": "Explore terminology repositories",
+          "value": "f4"
+        }
+      ],
+      "jump": {
+        "f1": "_submit",
+        "f2": "_submit",
+        "f3": "_submit",
+        "f3": "_submit"
+      },
+      "model": ""
+    },
+    {
+      "type": "multiplechoice",
+      "id": "question_g",
+      "tagline": "Journal publishers and funders",
+      "title": "Please select an answer",
+      "multiple": false,
+      "required": true,
+      "helpTextShow": false,
+      "options": [
+        {
+          "label": "Learn about how we help journal publishers",
+          "value": "g1"
+        },
+        {
+          "label": "Learn about how we help funders",
+          "value": "g2"
+        },
+        {
+          "label": "See all policies: Filter based on stakeholder including institutions, publishers and funders",
+          "value": "g3"
+        }
+      ],
+      "jump": {
+        "g1": "_submit",
+        "g2": "_submit",
+        "g3": "_submit"
+      },
+      "model": ""
+    },
+    {
+      "type": "multiplechoice",
+      "id": "question_h",
+      "tagline": "Using FAIRsharing",
+      "title": "Please select an answer",
+      "multiple": false,
+      "required": true,
+      "helpTextShow": false,
+      "options": [
+        {
+          "label": "Increase the findability of your resource (for humans and machines) by adding content to FAIRsharing",
+          "value": "h1"
+        },
+        {
+          "label": "Learn more about FAIRsharing by exploring all of our educational factsheets",
+          "value": "h2"
+        }
+      ],
+      "jump": {
+        "h1": "_submit",
+        "h2": "_submit"
       },
       "model": ""
     }
