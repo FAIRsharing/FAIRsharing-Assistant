@@ -53,9 +53,7 @@ export default {
       // Check the ID of the answered question in the last element
       let answer = questionList.at(-1).answer
       let link = this.destinations[answer];
-      //console.log(link);
-      let route = this.$router.resolve({ path: link });
-      window.open(route.href);
+      window.open(link);
     }
   }
 

@@ -1,6 +1,6 @@
 {
   "destinations": {
-    "a1": "/subjects",
+    "a1": "/subject",
     "b1": "https://fairsharing.org/educational#databases",
     "b2": "/database",
     "c1": "/database#under_construction",

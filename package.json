@@ -29,6 +29,7 @@
     "fibers": "^5.0.3",
     "jest": "^29.4.0",
     "jest-offline": "^1.0.1",
+    "jsdoc-vuejs": "^4.0.0",
     "roboto-fontface": "*",
     "trace-unhandled": "^2.0.1",
     "tsparticles": "^2.8.0",
