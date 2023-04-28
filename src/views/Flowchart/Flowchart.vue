@@ -13,6 +13,16 @@
         :key="'m' + index"
         v-model="question.model"
       />
+      <template #complete>
+        <div class="f-section-wrap">
+          <p>
+            <span class="fh2">Finished!</span>
+            <span class="f-section-text">
+              Click submit or press Enter to be redirected to the relevant resource.
+            </span>
+          </p>
+        </div>
+      </template>
     </flow-form>
   </div>
 </template>
@@ -55,6 +65,6 @@ export default {
 
 <style scoped>
 @import '~@ditdot-dev/vue-flow-form/dist/vue-flow-form.css';
-@import '~@ditdot-dev/vue-flow-form/dist/vue-flow-form.theme-purple.css';
+@import '~@ditdot-dev/vue-flow-form/dist/vue-flow-form.theme-minimal.css';
 
 </style>
