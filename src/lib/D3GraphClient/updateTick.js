@@ -20,7 +20,7 @@ const update = (root, force, svg, divSelected, routeName) => {
 
   // Update the links…
   link = svg.selectAll("line.link")
-    .data(links, (d) => d.target.id)
+    .data(links, (d) => d.target.name)
     .style("fill", linkColors(routeName))
     .style("stroke", linkColors(routeName))
 
@@ -45,7 +45,7 @@ const update = (root, force, svg, divSelected, routeName) => {
 
   // Update the nodes…
   node = svg.selectAll("circle.node")
-    .data(nodes, (d) => d.id)
+    .data(nodes, (d) => d.name)
     .style(nodeColors(routeName))
 
   // Enter any new nodes.

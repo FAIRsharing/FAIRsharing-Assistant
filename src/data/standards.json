@@ -1,0 +1,44 @@
+{
+  "name": "Resource",
+  "records_count": 0,
+  "children": [
+    {
+      "id": 123,
+      "name": "Standards",
+      "tree_id": 2,
+      "records_count": 1622,
+      "children": [
+        {
+          "id": 24,
+          "name": "Model and format",
+          "records_count": 530,
+          "tree_id": 2
+        },
+        {
+          "id": 2,
+          "name": "Metric",
+          "records_count": 0,
+          "tree_id": 2
+        },
+        {
+          "id": 3,
+          "name": "Terminology artefact",
+          "records_count": 821,
+          "tree_id": 2
+        },
+        {
+          "id": 4,
+          "name": "Reporting guideline",
+          "records_count": 246,
+          "tree_id": 2
+        },
+        {
+          "id": 5,
+          "name": "Identifier schema",
+          "records_count": 25,
+          "tree_id": 2
+        }
+      ]
+    }
+  ]
+}

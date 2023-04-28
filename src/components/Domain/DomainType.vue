@@ -45,7 +45,7 @@ export default {
     ...mapState("variableTagStore", ["variableResponse", "loadingStatus"]),
   },
   watch:{
-    getSubject(){
+    getDomain(){
       this.onBubbleSelection()
     }
   },

@@ -22,7 +22,6 @@ import RecordTypes from "@/utils/Others/recordTypes.js";
 import Loaders from "@/components/Loaders/Loaders"
 import calculateRecords from "@/utils/Others/calculateRecords";
 import { svgGraph, forceGraph, parseLevel, update, toggle } from "@/lib/D3GraphClient";
-// import d3data from "@/data/subject.json"
 export default {
   name: 'SubjectType',
   components: { Loaders },
@@ -36,7 +35,6 @@ export default {
       domainSelected: "",
       allSubjectsData: {},
       itemClicked: "",
-      // d3data: d3data,
     }
   },
   computed:{
@@ -138,7 +136,6 @@ export default {
       const divSelected = this.$refs.chartdiv;
       const svg = svgGraph(divSelected)
       const root = this.allSubjectsData
-      // root = this.d3data
       parseLevel(root, 0);
 
       // Initialize the display to show level 1

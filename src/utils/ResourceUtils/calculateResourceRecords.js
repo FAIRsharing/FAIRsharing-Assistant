@@ -1,4 +1,5 @@
 import {mapActions, mapState} from "vuex";
+import otherResourcesSelectedStore from "@/store"
 
 const calculateResourceRecords = {
   computed: {
@@ -20,15 +21,17 @@ const calculateResourceRecords = {
     async calculateRecords(resourceSelected, subjectSelected, domainSelected, otherResourceType) {
       //Using multiTagFilter Query
       await this.fetchMultiTagsTerms([resourceSelected, subjectSelected, domainSelected])
+
       for (let childResource of otherResourceType) {
-        childResource["value"] = 0
+        childResource["records_count"] = 0
         this.fairSharingRecords.filter(ele => {
           if (ele["type"] === this.formatString(childResource["name"])) {
-            childResource["value"]++
+            childResource["records_count"]++
           }
         })
       }
-    }
+      otherResourcesSelectedStore.commit("otherResourcesSelectedStore/otherResourceSelected", otherResourceType)
+    },
   }
 }
 

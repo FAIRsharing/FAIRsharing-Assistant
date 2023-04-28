@@ -1,6 +1,6 @@
 import * as d3 from "d3";
 import dimensions from "@/data/dimension.json"
-import {tick} from "@/lib/D3GraphClient/updateTick";
+import { tick } from "@/lib/D3GraphClient";
 
 //Add d3 force graph on the page
 const forceGraph = () => {

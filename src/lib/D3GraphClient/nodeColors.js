@@ -1,8 +1,16 @@
+import { resourceFillColors, resourceLinkColors, resourceStrokeColors} from "@/lib/D3GraphClient/ResourceGraphUtils";
 import { subjectFillColors, subjectLinkColors, subjectStrokeColors} from "@/lib/D3GraphClient/SubjectGraphUtils";
 import { domainFillColors, domainLinkColors, domainStrokeColors } from "@/lib/D3GraphClient/DomainGraphUtils";
 
 const nodeColors = (routeName) => {
-  if (routeName === "SubjectTypeView") {
+  if ((routeName === "DatabaseView") || (routeName === "StandardsView") || (routeName === "PoliciesView")) {
+    return ({
+      "fill": resourceFillColors,
+      "stroke": resourceStrokeColors,
+      "outline-color": resourceFillColors
+    })
+  }
+  else if (routeName === "SubjectTypeView") {
     return ({
       "fill": subjectFillColors,
       "stroke": subjectStrokeColors,
@@ -19,7 +27,10 @@ const nodeColors = (routeName) => {
 }
 
 const linkColors = (routeName) => {
-  if (routeName === "SubjectTypeView") {
+  if ((routeName === "DatabaseView") || (routeName === "StandardsView") || (routeName === "PoliciesView")) {
+    return resourceLinkColors
+  }
+  else if (routeName === "SubjectTypeView") {
     return subjectLinkColors
   }
   else if (routeName === "DomainTypeView") {
@@ -28,7 +39,10 @@ const linkColors = (routeName) => {
 }
 
 const tooltipColors = (d, routeName) => {
-  if (routeName === "SubjectTypeView") {
+  if ((routeName === "DatabaseView") || (routeName === "StandardsView") || (routeName === "PoliciesView")) {
+    return resourceFillColors(d)
+  }
+  else if (routeName === "SubjectTypeView") {
     return subjectFillColors(d)
   }
   else if (routeName === "DomainTypeView") {

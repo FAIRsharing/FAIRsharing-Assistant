@@ -6,7 +6,7 @@ import addClass from "@/lib/D3GraphClient/addClass";
 import nodeDistance from "@/lib/D3GraphClient/nodeDistance";
 import fontSize from "@/lib/D3GraphClient/fontSize";
 import nodeText from "@/lib/D3GraphClient/nodeText";
-import {update , tick} from "@/lib/D3GraphClient/updateTick";
+import {update, tick} from "@/lib/D3GraphClient/updateTick";
 import {click, toggle} from "@/lib/D3GraphClient/click"
 import {showTooltip, hideTooltip} from "@/lib/D3GraphClient/tooltip";
 import storeNode from "@/lib/D3GraphClient/storeNode"

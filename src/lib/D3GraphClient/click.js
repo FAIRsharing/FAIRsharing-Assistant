@@ -8,7 +8,7 @@ const click = (d, root, force, svg, tooltip, divSelected, routeName) => {
   nodeClicked.classList.toggle("selectedNode")
   storeNode(d, routeName)
   hideTooltip(tooltip)
-  if (d.children) {
+  if (d.children && d.children.length) {
     toggle(d)
     d.children = null;
   }
