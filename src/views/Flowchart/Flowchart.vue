@@ -34,6 +34,7 @@ export default {
     return {
       destinations: flowchartData.destinations,
       questions: flowchartData.questions,
+      loading: false
     }
   },
   methods: {
