@@ -43,8 +43,7 @@ export default {
   data: () => {
     return {
       destinations: flowchartData.destinations,
-      questions: flowchartData.questions,
-      loading: false
+      questions: flowchartData.questions
     }
   },
   methods: {
@@ -63,6 +62,6 @@ export default {
 
 <style scoped>
 @import '~@ditdot-dev/vue-flow-form/dist/vue-flow-form.css';
-@import '~@ditdot-dev/vue-flow-form/dist/vue-flow-form.theme-minimal.css';
-
+//@import '~@ditdot-dev/vue-flow-form/dist/vue-flow-form.theme-minimal.css';
+@import '@/styles/flowchart/fairsharing_flowchart.css';
 </style>
