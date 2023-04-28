@@ -23,7 +23,6 @@ import StringMixin from "@/utils/Others/stringMixin.js"
 import Loaders from "@/components/Loaders/Loaders"
 import { svgGraph, forceGraph, parseLevel, update, toggle } from "@/lib/D3GraphClient";
 import totalResourceRecords from "@/utils/ResourceUtils/totalResourceRecords";
-import standardsData from "@/data/standards.json"
 
 export default {
   name: 'Standards',
@@ -124,7 +123,6 @@ export default {
       const force = forceGraph()
       const divSelected = this.$refs.chartdiv;
       const svg = svgGraph(divSelected)
-      console.log("standardsData::", standardsData)
       const root = this.allResourceData
       parseLevel(root, 0);
 

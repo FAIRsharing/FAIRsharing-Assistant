@@ -21,24 +21,30 @@ const update = (root, force, svg, divSelected, routeName) => {
   // Update the links…
   link = svg.selectAll("line.link")
     .data(links, (d) => d.target.name)
-    .style("fill", linkColors(routeName))
-    .style("stroke", linkColors(routeName))
+    .style({
+      "fill": linkColors(routeName),
+      "stroke": linkColors(routeName)
+    })
 
   // Enter any new links.
   link.enter().insert("line", ".node")
-    .attr("class", "link")
-    .attr("x1", (d) => d.source.x)
-    .attr("y1", (d) => d.source.y)
-    .attr("x2", (d) => d.target.x)
-    .attr("y2", (d) => d.target.y)
-    .style("fill", linkColors(routeName))
-    .style("stroke", linkColors(routeName))
-    .style("opacity", (d) => {
-      return !d.source.level ? 0 : 1;
+    .attr({
+      "class": "link",
+      "x1": (d) => d.source.x,
+      "y1": (d) => d.source.y,
+      "x2": (d) => d.target.x,
+      "y2": (d) => d.target.y
     })
-    .style("pointer-events", (d) =>{
-      return !d.source.level ? "none" : "all";
-    });
+    .style({
+      "fill": linkColors(routeName),
+      "stroke": linkColors(routeName),
+      "opacity": (d) => {
+        return !d.source.level ? 0 : 1;
+      },
+      "pointer-events": (d) => {
+        return !d.source.level ? "none" : "all";
+      }
+    })
 
   // Exit any old links.
   link.exit().remove();
@@ -57,16 +63,20 @@ const update = (root, force, svg, divSelected, routeName) => {
       "r":  nodeSize(routeName),
     })
     .style(nodeColors(routeName))
-    .style("opacity", (d) => {
-      return d.level === 0 ? 0 : 1;
+    .style({
+      "opacity": (d) => {
+        return d.level === 0 ? 0 : 1;
+      },
+      "visibility": (d) => {
+        return d.level === 0 ? "hidden" : "visible";
+      }
     })
-    .style("visibility", (d) => {
-      return d.level === 0 ? "hidden" : "visible";
+    .on({
+      "click": (d) => click(d, root, force, svg,
+        tooltip, divSelected, routeName),
+      "mouseover": (d) => showTooltip(d, tooltip, routeName),
+      "mouseout": () => hideTooltip(tooltip)
     })
-    .on("click", (d) => click(d, root, force, svg,
-      tooltip, divSelected, routeName))
-    .on("mouseover", (d) => showTooltip(d, tooltip, routeName))
-    .on("mouseout", () => hideTooltip(tooltip))
     .call(force.drag);
 
   // Exit any old nodes.
@@ -74,23 +84,27 @@ const update = (root, force, svg, divSelected, routeName) => {
 
   //Text on the nodes
   text = svg.selectAll(".text")
-    .data(nodes, (d) =>  d.id)
+    .data(nodes, (d) =>  d.name)
     .style("fill", "white")
 
   // Enter any new nodes.
   text.enter().append("svg:text")
-    .attr("class", "text")
-    .attr("dx", 0)
-    .attr("y", 0)
-    .attr('text-anchor', "middle")
-    .attr('alignment-baseline', "middle")
-    .text((d) => d.name)
-    .style("fill", "white")
-    .style("font-size", fontSize)
-    .style("opacity", (d) => {
-      return d.level === 0 ? 0 : 1;
+    .attr({
+      "class": "text",
+      "dx": 0,
+      "y": 0,
+      "text-anchor": "middle",
+      "alignment-baseline": "middle"
     })
-    .style("visibility", nodeText)
+    .text((d) => d.name)
+    .style({
+      "fill": "white",
+      "font-size": (d) => fontSize(d, routeName),
+      "opacity": (d) => {
+        return d.level === 0 ? 0 : 1;
+      },
+      "visibility": nodeText
+    })
     .call(force.drag)
 
   // Exit any old nodes.
@@ -105,25 +119,31 @@ const update = (root, force, svg, divSelected, routeName) => {
 
 const tick = (d, dimensions) => {
   link
-    .attr("x1", (d) => d.source.x)
-    .attr("y1", (d) => d.source.y)
-    .attr("x2", (d) => d.target.x)
-    .attr("y2", (d) => d.target.y);
+    .attr({
+      "x1": (d) => d.source.x,
+      "y1": (d) => d.source.y,
+      "x2": (d) => d.target.x,
+      "y2": (d) => d.target.y
+    })
 
   // node.attr("cx", (d) => d.x)
   //   .attr("cy", (d) => d.y);
   // Restrict nodes within svg area
   node
-    .attr("cx", (d) => {
-      return d.x = Math.max(dimensions["radius"], Math.min(dimensions["width"] - dimensions["radius"], d.x))
+    .attr({
+      "cx": (d) => {
+        return d.x = Math.max(dimensions["radius"], Math.min(dimensions["width"] - dimensions["radius"], d.x))
+      },
+      "cy": (d) => {
+        return d.y = Math.max(dimensions["radius"], Math.min(dimensions["height"] - dimensions["radius"], d.y))
+      }
     })
-    .attr("cy", (d) => {
-      return d.y = Math.max(dimensions["radius"], Math.min(dimensions["height"] - dimensions["radius"], d.y))
-    });
 
   text
-    .attr("x", (d) => d.x)
-    .attr("y", (d) => d.y);
+    .attr({
+      "x": (d) => d.x,
+      "y": (d) => d.y
+    })
 
 }
 
