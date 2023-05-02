@@ -7,7 +7,7 @@ const resourceFillColors = (d) => {
   case 2:
     return "#f02d47"
   case 3:
-    return "#94b72f"
+    return "#A020F0"
   default:
     return "#87BCE593"
   }
@@ -20,7 +20,7 @@ const resourceLinkColors = (d) => {
   case 2:
     return "#f02d47"
   case 3:
-    return "#94b72f"
+    return "#A020F0"
   default:
     return "#87BCE593"
   }
@@ -34,7 +34,7 @@ const resourceStrokeColors = (d) => {
   case 2:
     return "#F02D4719"
   case 3:
-    return "#94B72F1A"
+    return "#A020F01A"
   default:
     return "#87BCE598"
   }

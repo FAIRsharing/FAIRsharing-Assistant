@@ -14,8 +14,6 @@ import {
   RefineView
 } from './routes'
 
-import Flowchart from '@/views/Flowchart/Flowchart.vue'
-
 let routes = [
   {
     name: "HomeView",
@@ -57,11 +55,6 @@ let routes = [
     name: "RefineView",
     path: "/refine-my-choice",
     component: RefineView,
-  },
-  {
-    name: "Flowchart",
-    path: "/flowchart",
-    component: Flowchart
   }
 ]
 

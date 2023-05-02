@@ -42,12 +42,12 @@ export default {
     }
   },
   computed:{
-    ...mapGetters("bubbleSelectedStore", ['getResource', 'getSubject', 'getDomain']),
+    ...mapGetters("bubbleSelectedStore", ['getTopResource','getResource','getSubject', 'getDomain']),
     ...mapGetters("otherResourcesSelectedStore", ["getOtherResourceSelected"]),
     ...mapState("recordTypeStore", ["allRecordTypes", "loadingData"]),
   },
   watch:{
-    getResource(){
+    getTopResource(){
       this.onBubbleSelection()
     }
   },

@@ -70,6 +70,7 @@ export default {
     ...mapActions("recordTypeStore", ["fetchAllRecordTypes", "resetRecords"]),
 
     onBubbleSelection() {
+      console.log("SUBJECT")
       this.fairSharingButton = true
       this.showSubjectSelected = true
       this.$emit('enableFairSharingButton', this.fairSharingButton)

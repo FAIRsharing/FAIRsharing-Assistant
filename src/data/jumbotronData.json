@@ -32,10 +32,5 @@
     "pageName": "DomainTypeView",
     "title": "Would you like to explore a particular domain?",
     "subTitle": "We’ll show you a browsable view of our domains, where the size of the circle represents how many of our records are part of that hierarchy. At any time, you can search for a particular domain or browse to the domain you’re interested in."
-  },
-  {
-    "pageName": "Flowchart",
-    "title": "How can FAIRsharing assist you?",
-    "subTitle": "Select from the options below and we'll guide you to the information you need."
   }
 ]
