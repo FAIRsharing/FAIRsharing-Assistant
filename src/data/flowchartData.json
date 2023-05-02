@@ -25,30 +25,30 @@
     {
       "type": "multiplechoice",
       "id": "question_a",
-      "tagline": "Welcome to our demo interactive question thingy!",
+      "tagline": "TODO: A tagline to go here...",
       "title": "Get started by selecting from the choices below",
       "multiple": false,
       "required": true,
       "helpTextShow": false,
       "options": [
         {
-          "label": "Explore all databases, standards and policies from a particular subject area",
+          "label": "Explore all databases, standards and policies from a particular subject area.",
           "value": "a1"
         },
         {
-          "label": "Explore and learn about databases for sharing and discovering data",
+          "label": "Explore and learn about databases for sharing and discovering data.",
           "value": "a2"
         },
         {
-          "label": "Explore and learn about standards to identify, annotate and share data",
+          "label": "Explore and learn about standards to identify, annotate and share data.",
           "value": "a3"
         },
         {
-          "label": "Explore and learn about policies for managing and sharing data",
+          "label": "Explore and learn about policies for managing and sharing data.",
           "value": "a4"
         },
         {
-          "label": "Are you interested in guidance and educational material",
+          "label": "Are you interested in guidance and educational material?",
           "value": "a5"
         }
       ],
@@ -71,15 +71,15 @@
       "helpTextShow": false,
       "options": [
         {
-          "label": "Learn about types of database and their relationships to other resources",
+          "label": "Learn about types of database and their relationships to other resources.",
           "value": "b1"
         },
         {
-          "label": "See all databases; filter based on the attributes most relevant to you",
+          "label": "See all databases; filter based on the attributes most relevant to you.",
           "value": "b2"
         },
         {
-          "label": "Filter databases according to access and deposition conditions",
+          "label": "Filter databases according to access and deposition conditions.",
           "value": "b3"
         }
       ],
@@ -100,23 +100,23 @@
       "helpTextShow": false,
       "options": [
         {
-          "label": "Filter on access: See those databases with open access to data",
+          "label": "Filter on access: See those databases with open access to data.",
           "value": "c1"
         },
         {
-          "label": "Filter on access: See those databases with partially open access to data",
+          "label": "Filter on access: See those databases with partially open access to data.",
           "value": "c2"
         },
         {
-          "label": "Filter on access: See those databases with controlled access to data",
+          "label": "Filter on access: See those databases with controlled access to data.",
           "value": "c3"
         },
         {
-          "label": "Filter on deposit: See those databases that are open to the deposition of data",
+          "label": "Filter on deposit: See those databases that are open to the deposition of data.",
           "value": "c4"
         },
         {
-          "label": "Filter on deposit: See those databases that are closed to the deposition of data",
+          "label": "Filter on deposit: See those databases that are closed to the deposition of data.",
           "value": "c5"
         }
       ],
@@ -139,11 +139,11 @@
       "helpTextShow": false,
       "options": [
         {
-          "label": "Learn about types of standards and their relationship to other resources",
+          "label": "Learn about types of standards and their relationship to other resources.",
           "value": "d1"
         },
         {
-          "label": "See all standards: Filter on the attributes most relevant to you",
+          "label": "See all standards: Filter on the attributes most relevant to you.",
           "value": "d2"
         },
         {
@@ -168,11 +168,11 @@
       "helpTextShow": false,
       "options": [
         {
-          "label": "Learn about types of standards and their relationship to other resources",
+          "label": "Learn about types of standards and their relationship to other resources.",
           "value": "e1"
         },
         {
-          "label": "See all standards: Filter on the attributes most relevant to you",
+          "label": "See all standards: Filter on the attributes most relevant to you.",
           "value": "e2"
         }
       ],
@@ -192,19 +192,19 @@
       "helpTextShow": false,
       "options": [
         {
-          "label": "Explore conceptual models, schemas, and exchange formats",
+          "label": "Explore conceptual models, schemas, and exchange formats.",
           "value": "f1"
         },
         {
-          "label": "Explore minimum information requirements, checklists and other reporting guidelines",
+          "label": "Explore minimum information requirements, checklists and other reporting guidelines.",
           "value": "f2"
         },
         {
-          "label": "Explore individual controlled vocabularies, taxonomies, ontologies and other terminology artefacts",
+          "label": "Explore individual controlled vocabularies, taxonomies, ontologies and other terminology artefacts.",
           "value": "f3"
         },
         {
-          "label": "Explore terminology repositories",
+          "label": "Explore terminology repositories.",
           "value": "f4"
         }
       ],
@@ -226,15 +226,15 @@
       "helpTextShow": false,
       "options": [
         {
-          "label": "Learn about how we help journal publishers",
+          "label": "Learn about how we help journal publishers.",
           "value": "g1"
         },
         {
-          "label": "Learn about how we help funders",
+          "label": "Learn about how we help funders.",
           "value": "g2"
         },
         {
-          "label": "See all policies: Filter based on stakeholder including institutions, publishers and funders",
+          "label": "See all policies: Filter based on stakeholder including institutions, publishers and funders.",
           "value": "g3"
         }
       ],
@@ -255,11 +255,11 @@
       "helpTextShow": false,
       "options": [
         {
-          "label": "Increase the findability of your resource (for humans and machines) by adding content to FAIRsharing",
+          "label": "Increase the findability of your resource (for humans and machines) by adding content to FAIRsharing.",
           "value": "h1"
         },
         {
-          "label": "Learn more about FAIRsharing by exploring all of our educational factsheets",
+          "label": "Learn more about FAIRsharing by exploring all of our educational factsheets.",
           "value": "h2"
         }
       ],
