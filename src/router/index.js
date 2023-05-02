@@ -15,9 +15,10 @@ import {
 } from './routes'
 
 let routes = [
+  // See below for further questions...
   {
     name: "HomeView",
-    path: "/",
+    path: "/:id(\\d+)?",
     component: HomeView,
   },
   {
