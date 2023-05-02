@@ -39,6 +39,14 @@
         </v-card>
       </v-col>
     </v-row>
+    <v-btn
+      elevated
+      default
+      :disabled="history.length === 0"
+      @click="goBack()"
+    >
+      Previous step
+    </v-btn>
   </v-container>
 </template>
 
@@ -48,7 +56,8 @@ export default {
   name: 'LandingPage',
   data: () => {
     return {
-      questions: {}
+      questions: {},
+      history: []
     }
   },
   watch: {
@@ -73,8 +82,18 @@ export default {
         window.open(link);
       }
       else {
-        this.$router.push({path: link})
+        if (this.$route.params.id) {
+          this.history.push(this.$route.params.id);
+        }
+        else {
+          this.history.push(0);
+        }
+        this.$router.push({path: link});
       }
+    },
+    goBack() {
+      let previous = this.history.pop();
+      this.$router.push({path: "/" + previous});
     }
   }
 };
