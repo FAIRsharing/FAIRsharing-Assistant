@@ -4,12 +4,13 @@
     class="wrapperClass fill-height d-flex align-stretch align-content-stretch"
   >
     <v-row
-      v-if="questionSetOne.length"
+      v-for="(question, index) in questions"
+      :key="'question_' + index"
       dense
       class="align-stretch justify-center"
     >
       <v-col
-        v-for="item in questionSetOne"
+        v-for="item in question"
         :key="item.id"
         cols="12"
         lg="5"
@@ -20,42 +21,7 @@
           class="full-width d-flex align-stretch flex-column pa-6 questionCard fill-height"
           elevation="4"
           :class="item.color"
-          :href="item.link"
-        >
-          <v-card-text
-            class="full-width white--text font-weight-medium text-xl-h4 text-lg-h5 text-md-h5 text-sm-h5 text-xs-h5 questionText"
-          >
-            {{ item.question }}
-          </v-card-text>
-          <v-img
-            :src="item.arrow"
-            class="pabsolute questionText"
-            contain
-            width="100"
-            height="100"
-            style="bottom: 0; right: 40px"
-          />
-        </v-card>
-      </v-col>
-    </v-row>
-    <v-row
-      v-if="questionSetTwo.length"
-      dense
-      class="align-stretch justify-center"
-    >
-      <v-col
-        v-for="item in questionSetTwo"
-        :key="item.id"
-        cols="12"
-        lg="5"
-        md="5"
-        sm="12"
-      >
-        <v-card
-          class="full-width d-flex align-stretch flex-column pa-6 questionCard fill-height"
-          elevation="4"
-          :class="$vuetify.breakpoint.smAndDown ? item.mobilecolour: item.color"
-          :href="item.link"
+          @click="processLink(item.link)"
         >
           <v-card-text
             class="full-width white--text font-weight-medium text-xl-h4 text-lg-h5 text-md-h5 text-sm-h5 text-xs-h5 questionText"
@@ -82,8 +48,33 @@ export default {
   name: 'LandingPage',
   data: () => {
     return {
-      questionSetOne: questionSets["questionSetOne"],
-      questionSetTwo: questionSets["questionSetTwo"]
+      questions: {}
+    }
+  },
+  watch: {
+    '$route' () {
+      this.getQuestions();
+    }
+  },
+  mounted() {
+    this.getQuestions();
+  },
+  methods: {
+    getQuestions() {
+      try {
+        this.questions = questionSets.questionSets[parseInt(this.$route.params.id)].rows;
+      }
+      catch {
+        this.questions = questionSets.questionSets[0].rows;
+      }
+    },
+    processLink(link) {
+      if (link.match(/^http/)) {
+        window.open(link);
+      }
+      else {
+        this.$router.push({path: link})
+      }
     }
   }
 };

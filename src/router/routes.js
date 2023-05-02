@@ -6,5 +6,4 @@ export const DatabaseView = () => import('@/views/Resource/DatabaseView.vue');
 export const StandardsView = () => import('@/views/Resource/StandardsView.vue');
 export const PoliciesView = () => import('@/views/Resource/PoliciesView.vue');
 export const RefineView = () => import('@/views/Navigation/RefineView.vue');
-export const Flowchart = () => import('@/views/Flowchart/Flowchart.vue');
 
