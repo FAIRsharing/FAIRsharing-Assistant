@@ -66,11 +66,34 @@ export default {
     },
     selectDisplay() {
       return this.onlySwitch ? 'd-none' : 'd-flex'
-    }
+    },
+    currentPath: function () {
+      const client = this;
+      let queryParams = {};
+      Object.keys(this.$route.query).forEach(function (prop) {
+        let queryVal = client.$route.query[prop];
+        if (queryVal) {
+          queryParams[prop] = decodeURI(queryVal);
+        }
+      });
+      return queryParams;
+
+    },
   },
   mounted() {
-    this.selectFilters()
-    this.selectToggle()
+    let _module = this;
+    _module.selectFilters()
+    _module.selectToggle()
+    let params = _module.currentPath;
+    [_module.switchTypeFilters, _module.selectTypeFilters].forEach(function(group) {
+      group.forEach(function(filter) {
+        Object.keys(params).forEach(function(key) {
+          if (filter.filterQuery === key) {
+            filter.refineToggle = params[key];
+          }
+        })
+      })
+    })
   },
   methods: {
     selectFilters(){

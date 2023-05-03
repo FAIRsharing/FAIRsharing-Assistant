@@ -96,17 +96,17 @@
             "id": 1,
             "title": "question_c1",
             "question": "Filter on access: See those databases with open access to data.",
-            "color": "primary",
+            "color": "accent3",
             "arrow": "assets/Home/Arrow/whiteArrow.png",
-            "link": "/database#under_construction"
+            "link": "/database?dataAccessCondition=open"
           },
           {
             "id": 2,
             "title": "question_c2",
             "question": "Filter on access: See those databases with partially open access to data.",
-            "color": "primary",
+            "color": "accent3",
             "arrow": "assets/Home/Arrow/whiteArrow.png",
-            "link": "/database#under_construction"
+            "link": "/database?dataAccessCondition=Partially open"
           }
         ],
         [
@@ -114,10 +114,10 @@
             "id": 3,
             "title": "question_c3",
             "question": "Filter on access: See those databases with controlled access to data.",
-            "color": "primary",
+            "color": "accent3",
             "mobilecolour": "primary",
             "arrow": "assets/Home/Arrow/whiteArrow.png",
-            "link": "/database#under_construction"
+            "link": "/database?dataAccessCondition=Controlled"
           },
           {
             "id": 4,
@@ -126,7 +126,7 @@
             "color": "accent3",
             "mobilecolour": "accent3",
             "arrow": "assets/Home/Arrow/whiteArrow.png",
-            "link": "/database#under_construction"
+            "link": "/database?dataDepositionCondition=Open"
           }
         ],
         [
@@ -137,7 +137,7 @@
             "color": "accent3",
             "mobilecolour": "accent3",
             "arrow": "assets/Home/Arrow/whiteArrow.png",
-            "link": "/database#under_construction"
+            "link": "/database?dataDepositionCondition=Closed"
           }
         ]
       ]
@@ -183,7 +183,7 @@
           {
             "id": 1,
             "title": "question_e1",
-            "question": "Learn about types of standards and their relationship to other resources.",
+            "question": "Explore unambiguous, persistent and context-independent schemas.",
             "color": "accent3",
             "arrow": "assets/Home/Arrow/whiteArrow.png",
             "link": "/standards#under_construction"
@@ -191,7 +191,7 @@
           {
             "id": 2,
             "title": "question_e2",
-            "question": "See all standards: Filter on the attributes most relevant to you.",
+            "question": "Explore data and metadata standards (terminologies, models/formats and guidelines).",
             "color": "accent3",
             "arrow": "assets/Home/Arrow/whiteArrow.png",
             "link": "/5"
@@ -281,7 +281,7 @@
           {
             "id": 1,
             "title": "question_h1",
-            "question": "",
+            "question": "Increase the findability of your resource (for humans and machines) by adding content to FAIRsharing",
             "color": "primary",
             "arrow": "assets/Home/Arrow/whiteArrow.png",
             "link": "https://fairsharing.gitbook.io/fairsharing"
@@ -289,7 +289,7 @@
           {
             "id": 2,
             "title": "question_h2",
-            "question": "",
+            "question": "Learn more about FAIRsharing by exploring all of our educational factsheets",
             "color": "primary",
             "arrow": "assets/Home/Arrow/whiteArrow.png",
             "link": "https://fairsharing.org/educational"
