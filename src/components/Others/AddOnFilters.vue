@@ -77,25 +77,33 @@ export default {
         }
       });
       return queryParams;
-
     },
+  },
+  watch: {
+    '$route' () {
+      this.readFilterParams();
+    }
   },
   mounted() {
     let _module = this;
-    _module.selectFilters()
-    _module.selectToggle()
-    let params = _module.currentPath;
-    [_module.switchTypeFilters, _module.selectTypeFilters].forEach(function(group) {
-      group.forEach(function(filter) {
-        Object.keys(params).forEach(function(key) {
-          if (filter.filterQuery === key) {
-            filter.refineToggle = params[key];
-          }
-        })
-      })
-    })
+    _module.selectFilters();
+    _module.selectToggle();
+    _module.readFilterParams();
   },
   methods: {
+    readFilterParams() {
+      let _module = this;
+      let params = _module.currentPath;
+      [_module.switchTypeFilters, _module.selectTypeFilters].forEach(function(group) {
+        group.forEach(function(filter) {
+          Object.keys(params).forEach(function(key) {
+            if (filter.filterQuery === key) {
+              filter.refineToggle = params[key];
+            }
+          })
+        })
+      })
+    },
     selectFilters(){
       const prevRoute = this.$router.history._startLocation
       if(prevRoute === "/database") {
