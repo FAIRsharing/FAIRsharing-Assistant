@@ -39,7 +39,7 @@
 </template>
 
 <script>
-import {mapGetters} from "vuex";
+import {mapGetters, mapMutations} from "vuex";
 import addOnFilters from "@/data/addOnFilters.json"
 import ApplyFilterButton from "@/components/Navigation/ApplyFilterButton";
 
@@ -56,11 +56,29 @@ export default {
       addOnFilters: [...addOnFilters["switch"], ...addOnFilters["select"]],
       onlySwitch: false,
       onlySelect: false,
-
+      allowedRegistries: ['Database', 'Standard', 'Policy', 'Collection'],
+      allowedTypes: [
+        "repository",
+        "knowledgebase",
+        "model_and_format",
+        "metric",
+        "terminology_artefact",
+        "reporting_guideline",
+        "identifier_schema",
+        "journal",
+        "society",
+        "project",
+        "institution",
+        "collection",
+        "journal_publisher",
+        "knowledgebase_and_repository",
+        "funder"
+      ]
     }
   },
   computed:{
     ...mapGetters("bubbleSelectedStore", ['getAllResources', 'getTopResource', 'getResource', 'getSubject', 'getDomain']),
+    ...mapMutations("bubbleSelectedStore", ['resourceSelected']),
     switchDisplay() {
       return this.onlySelect ? 'd-none' : 'd-flex'
     },
@@ -82,17 +100,33 @@ export default {
   watch: {
     '$route' () {
       this.readFilterParams();
+    },
+    'switchTypeFilters': {
+      handler: function () {
+        this.applyFilters();
+      },
+      deep: true
+    },
+    'selectTypeFilters': {
+      handler: function () {
+        this.applyFilters();
+      },
+      deep: true
     }
   },
   mounted() {
     let _module = this;
     _module.selectFilters();
     _module.selectToggle();
+    _module.applyFilters();
     _module.readFilterParams();
   },
   methods: {
     readFilterParams() {
       let _module = this;
+      let modified = false;
+      let topResult = '';
+      let childResult = '';
       let params = _module.currentPath;
       [_module.switchTypeFilters, _module.selectTypeFilters].forEach(function(group) {
         group.forEach(function(filter) {
@@ -100,9 +134,38 @@ export default {
             if (filter.filterQuery === key) {
               filter.refineToggle = params[key];
             }
+            if (key === 'registry') {
+              if (_module.allowedRegistries.indexOf(params[key]) > -1) {
+                topResult = params[key];
+                modified = true;
+              }
+            }
+            if (key === 'record_type') {
+              if (_module.allowedTypes.indexOf(params[key]) > -1) {
+                childResult = params[key];
+                modified = true;
+              }
+            }
           })
         })
+      });
+      Object.keys(params).forEach(function(key) {
+        if (key === 'registry') {
+          if (_module.allowedRegistries.indexOf(params[key]) > -1) {
+            topResult = params[key];
+            modified = true;
+          }
+        }
+        if (key === 'record_type') {
+          if (_module.allowedTypes.indexOf(params[key]) > -1) {
+            childResult = params[key];
+            modified = true;
+          }
+        }
       })
+      if (modified) {
+        this.$store.commit('bubbleSelectedStore/resourceSelected', {topResourceSelected: topResult, childResourceSelected: childResult})
+      }
     },
     selectFilters(){
       const prevRoute = this.$router.history._startLocation
@@ -128,6 +191,10 @@ export default {
         this.conditionalDisplay()
 
       }
+    },
+    applyFilters() {
+      console.log("Applying filters!");
+
     },
     selectToggle() {
       let map = new Map();
