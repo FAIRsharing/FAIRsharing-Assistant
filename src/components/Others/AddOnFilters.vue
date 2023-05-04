@@ -102,8 +102,8 @@ export default {
       this.readFilterParams();
     },
     'switchTypeFilters': {
-      handler: function () {
-        this.applyFilters();
+      handler: function (before, after) {
+        this.applyFilters(before, after);
       },
       deep: true
     },
@@ -133,18 +133,6 @@ export default {
           Object.keys(params).forEach(function(key) {
             if (filter.filterQuery === key) {
               filter.refineToggle = params[key];
-            }
-            if (key === 'registry') {
-              if (_module.allowedRegistries.indexOf(params[key]) > -1) {
-                topResult = params[key];
-                modified = true;
-              }
-            }
-            if (key === 'record_type') {
-              if (_module.allowedTypes.indexOf(params[key]) > -1) {
-                childResult = params[key];
-                modified = true;
-              }
             }
           })
         })
@@ -193,8 +181,39 @@ export default {
       }
     },
     applyFilters() {
-      console.log("Applying filters!");
-
+      let _module = this;
+      let params = _module.currentPath;
+      let newParams = {};
+      // Set the list of parameters of interest
+      if ('registry' in params) {
+        newParams.registry = params.registry;
+      }
+      if ('record_type' in params) {
+        newParams.record_type = params.record_type;
+      }
+      [_module.switchTypeFilters, _module.selectTypeFilters].forEach(function(group) {
+        group.forEach(function (filter) {
+          if (typeof(filter.refineToggle) != 'undefined' &&
+            filter.refineToggle != null &&
+            filter.refineToggle !== ''
+          ) {
+            newParams[filter.filterQuery] = filter.refineToggle;
+          }
+        })
+      })
+      _module.$router.push({
+        name: _module.$route.name,
+        query: newParams
+      }).catch(err => {
+        // Ignore the vuex err regarding  navigating to the page they are already on.
+        if (
+          err.name !== 'NavigationDuplicated' &&
+          !err.message.includes('Avoided redundant navigation to current location')
+        ) {
+          // But print any other errors to the console
+          //console.log(err);
+        }
+      });
     },
     selectToggle() {
       let map = new Map();
