@@ -12,6 +12,7 @@ import {showTooltip, hideTooltip} from "@/lib/D3GraphClient/tooltip";
 import storeNode from "@/lib/D3GraphClient/storeNode"
 import {nodeColors, linkColors, tooltipColors} from "@/lib/D3GraphClient/nodeColors";
 import nodeSize from "@/lib/D3GraphClient/nodeSize";
+import breadcrumb from "@/lib/D3GraphClient/breadcrumb";
 
 export {
   svgGraph,
@@ -32,5 +33,6 @@ export {
   nodeColors,
   linkColors,
   tooltipColors,
-  nodeSize
+  nodeSize,
+  breadcrumb
 }

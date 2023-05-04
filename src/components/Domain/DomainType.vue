@@ -9,6 +9,12 @@
       </v-overlay>
     </v-fade-transition>
     <div
+      ref="breadcrumbdiv"
+      class="breadcrumbs"
+    >
+      {{ getBreadCrumbs }}
+    </div>
+    <div
       ref="chartdiv"
       class="bubbleChart"
     />
@@ -41,6 +47,7 @@ export default {
   computed:{
     ...mapGetters("bubbleSelectedStore", ['getTopResource', 'getResource', 'getSubject', 'getDomain']),
     ...mapGetters("addOnFilterSelectedStore", ["getFilters"]),
+    ...mapGetters("breadCrumbStore", ["getBreadCrumbs"]),
     ...mapState("recordTypeStore", ["allRecordTypes", "loadingData"]),
     ...mapState("variableTagStore", ["variableResponse", "loadingStatus"]),
   },
@@ -60,10 +67,12 @@ export default {
   destroyed() {
     this.resetRecords()
     this.resetVariableTags()
+    this.resetbreadCrumbs()
   },
   methods: {
     ...mapActions("recordTypeStore", ["fetchAllRecordTypes", "resetRecords"]),
     ...mapActions("variableTagStore", ["fetchVariableTags", "resetVariableTags"]),
+    ...mapActions("breadCrumbStore", ["resetbreadCrumbs"]),
 
     onBubbleSelection() {
       this.fairSharingButton = true

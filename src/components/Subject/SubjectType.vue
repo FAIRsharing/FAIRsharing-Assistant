@@ -9,6 +9,12 @@
       </v-overlay>
     </v-fade-transition>
     <div
+      ref="breadcrumbdiv"
+      class="breadcrumbs"
+    >
+      {{ getBreadCrumbs }}
+    </div>
+    <div
       ref="chartdiv"
       class="bubbleChart"
     />
@@ -40,6 +46,7 @@ export default {
   computed:{
     ...mapGetters("bubbleSelectedStore", ['getTopResource','getResource','getSubject', 'getDomain']),
     ...mapGetters("addOnFilterSelectedStore", ["getFilters"]),
+    ...mapGetters("breadCrumbStore", ["getBreadCrumbs"]),
     ...mapState("recordTypeStore", ["allRecordTypes", "loadingData"]),
     ...mapState("variableTagStore", ["variableResponse", "loadingStatus"]),
     ...mapState("browseSubjectsStore", ["subjectBubbleTree", "loadingData"]),
@@ -62,15 +69,16 @@ export default {
     this.leavePage()
     this.resetVariableTags()
     this.resetRecords()
+    this.resetbreadCrumbs()
   },
   methods: {
     ...mapActions("browseSubjectsStore", ["fetchTerms", "leavePage"]),
     ...mapActions("topSubjectStore", ["fetchTopSubjectTerms"]),
     ...mapActions("variableTagStore", ["fetchVariableTags", "resetVariableTags"]),
     ...mapActions("recordTypeStore", ["fetchAllRecordTypes", "resetRecords"]),
+    ...mapActions("breadCrumbStore", ["resetbreadCrumbs"]),
 
     onBubbleSelection() {
-      console.log("SUBJECT")
       this.fairSharingButton = true
       this.showSubjectSelected = true
       this.$emit('enableFairSharingButton', this.fairSharingButton)

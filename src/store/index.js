@@ -9,6 +9,7 @@ import multiTagsStore from "./multiTagsStore"
 import variableTagStore from "./variableTagStore";
 import addOnFilterSelectedStore from "./addOnFilterSelectedStore.js"
 import otherResourcesSelectedStore from "./otherResourcesSelectedStore"
+import breadCrumbStore from "@/store/breadCrumbStore";
 
 
 Vue.use(Vuex);
@@ -24,7 +25,8 @@ export default new Vuex.Store({
     multiTagsStore,
     variableTagStore,
     addOnFilterSelectedStore,
-    otherResourcesSelectedStore
+    otherResourcesSelectedStore,
+    breadCrumbStore
   }
 })
 

@@ -1,5 +1,5 @@
 import * as d3 from "d3";
-import {update, hideTooltip, storeNode} from "@/lib/D3GraphClient";
+import {update, hideTooltip, storeNode, breadcrumb} from "@/lib/D3GraphClient";
 
 // When a node is clicked
 const click = (d, root, force, svg, tooltip, divSelected, routeName) => {
@@ -8,6 +8,7 @@ const click = (d, root, force, svg, tooltip, divSelected, routeName) => {
   nodeClicked.classList.toggle("selectedNode")
   storeNode(d, routeName)
   hideTooltip(tooltip)
+  breadcrumb(d, root)
   if (d.children && d.children.length) {
     toggle(d)
     d.children = null;
