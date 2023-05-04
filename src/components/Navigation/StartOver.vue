@@ -33,7 +33,7 @@
               color="ready_color"
               raised
               to="/"
-              @click="overlay = false"
+              @click="onStartOver"
             >
               OK
             </v-btn>
@@ -53,6 +53,8 @@
 </template>
 
 <script>
+import {mapActions} from "vuex";
+
 export default {
   name: "StartOver",
   data () {
@@ -70,8 +72,19 @@ export default {
     }
   },
 
+  methods:{
+    ...mapActions("bubbleSelectedStore", ["resetAllSelectedValues", "resetSubjectValue"]),
+
+    onStartOver() {
+      this.overlay = false
+      this.resetAllSelectedValues()
+      this.resetSubjectValue()
+    }
+  }
+
 }
 </script>
+
 
 
 <style scoped>

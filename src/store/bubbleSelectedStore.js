@@ -1,10 +1,19 @@
 const state = {
-  topResourceType:"",
+  topResourceType: "",
   resourceType: "",
   allResources: [],
   subjectType: "",
   domainType: ""
 };
+
+const actions = {
+  resetAllSelectedValues({commit}) {
+    commit('resetAllBubbles');
+  },
+  resetSubjectValue({commit}) {
+    commit('resetSubjectSelected');
+  }
+}
 
 const mutations = {
   resourceSelected (state, resource) {
@@ -24,6 +33,16 @@ const mutations = {
   },
   domainSelected (state, domain) {
     state.domainType = domain
+  },
+  resetAllBubbles(state) {
+    state.topResourceType = "",
+    state.resourceType = "",
+    state.allResources = [],
+    // state.subjectType = "",
+    state.domainType = ""
+  },
+  resetSubjectSelected(state) {
+    state.subjectType = ""
   }
 };
 
@@ -49,6 +68,7 @@ const bubbleSelectedStore = {
   state,
   getters,
   mutations,
+  actions
 }
 
 export default bubbleSelectedStore

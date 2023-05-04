@@ -3,7 +3,10 @@
     <p class="ma-0">
       <!-- Resource Page Button -->
       <v-btn
-        v-if="currentRouteName === 'ResourceTypeView' || 'DatabaseView' ||'StandardsView'|| 'PoliciesView'"
+        v-if="(currentRouteName === 'ResourceTypeView') ||
+          (currentRouteName ==='DatabaseView') ||
+          (currentRouteName === 'StandardsView') ||
+          (currentRouteName === 'PoliciesView')"
         v-bind="button['attributes']"
         :disabled="!fairSharingButton"
         :href="resourceRedirectionLink"
@@ -71,22 +74,16 @@ export default {
       return this.$route.name;
     },
     topResourceSelected() {
-      let topResource;
       switch(this.getTopResource) {
       case "Databases":
-        topResource = "Database"
-        break;
+        return "Database"
       case "Standards":
-        topResource = "Standard"
-        break;
+        return "Standard"
       case "Policies":
-        topResource = "Policy"
-        break;
+        return "Policy"
       default:
-        topResource = this.getTopResource;
-        break;
+        return this.getTopResource;
       }
-      return topResource
     },
     resourceSelected() {
       return this.getResource ? this.formatString(this.getResource) : null
@@ -135,7 +132,7 @@ export default {
       else if (this.resourceSelected) {
         return `${this.fairSharingURL}/search?fairsharingRegistry=${this.topResourceSelected}&recordType=${this.resourceSelected}&subjects=${this.subjectSelected}`
       }
-      else if (this.topResourceSelected) {
+      else if (this.topResourceSelected !== "") {
         return `${this.fairSharingURL}/search?fairsharingRegistry=${this.topResourceSelected}&subjects=${this.subjectSelected}`
       }
       else if(this.domainSelected) {

@@ -10,9 +10,19 @@
     </v-fade-transition>
     <div
       ref="breadcrumbdiv"
-      class="breadcrumbs"
+      class="breadcrumbs my-8"
     >
-      {{ getBreadCrumbs }}
+      <span
+        v-for="(name, i) in getBreadCrumbs"
+        :key="name"
+        class="breadCrumbName"
+      >{{ name }}
+        <span
+          v-if="i+1 < getBreadCrumbs.length"
+          class="connector"
+        > >
+        </span>
+      </span>
     </div>
     <div
       ref="chartdiv"
@@ -68,10 +78,14 @@ export default {
     })
   },
   destroyed() {
+    this.leavePage()
+    this.resetVariableTags()
     this.resetRecords()
     this.resetbreadCrumbs()
   },
   methods: {
+    ...mapActions("browseSubjectsStore", ["leavePage"]),
+    ...mapActions("variableTagStore", [ "resetVariableTags"]),
     ...mapActions("recordTypeStore", ["fetchAllRecordTypes", "resetRecords"]),
     ...mapActions("breadCrumbStore", ["resetbreadCrumbs"]),
 

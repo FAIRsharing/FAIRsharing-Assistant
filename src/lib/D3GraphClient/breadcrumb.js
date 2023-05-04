@@ -1,13 +1,14 @@
 import breadCrumbStore from "@/store"
 const breadcrumb = (d, root) => {
   const breadCrumbArray = pathTo(root, d.name)
-  const breadCrumbBar = breadCrumbArray.map(d => d.name).join(" > ")
+  // const breadCrumbBar = breadCrumbArray.map(d => d.name).join(" > ")
+  const breadCrumbBar = breadCrumbArray.map(({name}) => name)
   breadCrumbStore.commit("breadCrumbStore/displayBreadCrumbs", breadCrumbBar)
 }
 
 /**
 *
-* @param {Object} - name
+* @param {String} - name
 * @param {Array of Objects } - node (All the nodes)
 * @returns {Array}
 */

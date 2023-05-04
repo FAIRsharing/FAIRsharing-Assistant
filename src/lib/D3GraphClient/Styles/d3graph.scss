@@ -10,7 +10,7 @@
   .node {
     cursor: pointer;
     stroke: #3182bd;
-    stroke-width: 8px;
+    stroke-width: 1em;
     outline-style: dashed;
     outline-width: 1.5px;
     border-radius: 50%;
@@ -40,5 +40,13 @@
     border-radius: 4px;
     pointer-events: none; /* keep the mouseover when over the tooltip */
     box-shadow: 10px 6px 17px 0px rgba(145,145,145,0.44);
+  }
+  .breadCrumbName {
+    font-weight: bold;
+    color: #004d9f
+  }
+  .connector {
+    font-weight: normal;
+    color: #000000
   }
 }
