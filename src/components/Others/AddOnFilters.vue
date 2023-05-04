@@ -98,9 +98,6 @@ export default {
     },
   },
   watch: {
-    '$route' () {
-      this.readFilterParams();
-    },
     'switchTypeFilters': {
       handler: function (before, after) {
         this.applyFilters(before, after);
