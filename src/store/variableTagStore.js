@@ -4,13 +4,13 @@ import variableFilter from "@/lib/GraphClient/queries/variableFilter/variableFil
 const CLIENT = new GraphClient(),
   VARIABLE_TAGS = JSON.parse(JSON.stringify(variableFilter))
 
-export const state = {
+const state = {
   variableResponse: [],
   error: false,
   loadingStatus: false,
 }
 
-export const actions = {
+const actions = {
   /* istanbul ignore next */
   async fetchVariableTags({commit}, [resource, subject, domain, tag, addonfilters]) {
     // eslint-disable-next-line no-console
@@ -53,7 +53,7 @@ export const actions = {
   }
 }
 
-export const mutations = {
+const mutations = {
   setVariableResponse(state, variableResponse) { state.variableResponse = variableResponse },
   setLoadingStatus(state, loadingStatus) { state.loadingStatus = loadingStatus},
   resetVariableResponse(state) {state.variableResponse = []}

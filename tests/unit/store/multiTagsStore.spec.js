@@ -1,10 +1,10 @@
-import {actions, mutations} from "@/store/multiTagsStore"
+import multiTagsStore from "@/store/multiTagsStore"
 import sinon from "sinon"
 import GraphClient from "@/lib/GraphClient/GraphClient.js";
 import MultitagData from '../../../tests/fixtures/multiTag.json'
 
 describe('MultiTags store methods', () => {
-
+  const {actions, mutations} = multiTagsStore
   const returnedVal = MultitagData;
   let state = {
     fairSharingRecords: [],

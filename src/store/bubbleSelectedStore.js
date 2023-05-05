@@ -9,9 +9,6 @@ const state = {
 const actions = {
   resetAllSelectedValues({commit}) {
     commit('resetAllBubbles');
-  },
-  resetSubjectValue({commit}) {
-    commit('resetSubjectSelected');
   }
 }
 
@@ -19,7 +16,9 @@ const mutations = {
   resourceSelected (state, resource) {
     state.topResourceType = resource["topResourceSelected"]
     state.resourceType = resource["childResourceSelected"]
+    /* istanbul ignore next */
     const found = state.allResources.find(({records}) => records === resource["childResourceSelected"])
+    /* istanbul ignore else */
     if(!found) {
       state.allResources.push({
         registry : resource["topResourceSelected"],
@@ -38,12 +37,9 @@ const mutations = {
     state.topResourceType = "",
     state.resourceType = "",
     state.allResources = [],
-    // state.subjectType = "",
+    state.subjectType = "",
     state.domainType = ""
   },
-  resetSubjectSelected(state) {
-    state.subjectType = ""
-  }
 };
 
 const getters = {

@@ -1,10 +1,10 @@
-import {actions, mutations} from "@/store/recordTypeStore.js"
+import recordTypeStore from "@/store/recordTypeStore.js"
 import sinon from "sinon"
 import GraphClient from "@/lib/GraphClient/GraphClient.js";
 import RecordsData from '../../../tests/fixtures/recordTypes.json'
 
 describe('RecordType store methods', () => {
-
+  const {actions, mutations} = recordTypeStore
   const returnedVal = RecordsData;
   let state = {
     recordTypes: [],

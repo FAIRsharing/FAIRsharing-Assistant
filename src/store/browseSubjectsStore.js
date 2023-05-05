@@ -2,13 +2,13 @@ import GraphClient from "@/lib/GraphClient/GraphClient.js";
 import subjectSummary from "@/lib/GraphClient/queries/subject/subjectSummary.json";
 
 const CLIENT = new GraphClient()
-export const state = {
+const state = {
   subjectBubbleTree: [],
   error: false,
   loadingData: false,
 }
 
-export const actions = {
+const actions = {
   async fetchTerms({commit}) {
     commit("setLoadingData", true)
     let response = await CLIENT.executeQuery(subjectSummary)
@@ -20,7 +20,7 @@ export const actions = {
   }
 }
 
-export const mutations = {
+const mutations = {
   setSubjectBubbleTree(state, subjectBubbleTree) { state.subjectBubbleTree = subjectBubbleTree },
   setLoadingData(state, loading) { state.loadingData = loading},
   resetSubjectBubbleTree(state) {state.subjectBubbleTree = []},

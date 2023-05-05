@@ -83,7 +83,6 @@ export default {
   },
   methods: {
     ...mapActions("browseSubjectsStore", ["fetchTerms", "leavePage"]),
-    ...mapActions("topSubjectStore", ["fetchTopSubjectTerms"]),
     ...mapActions("variableTagStore", ["fetchVariableTags", "resetVariableTags"]),
     ...mapActions("recordTypeStore", ["fetchAllRecordTypes", "resetRecords"]),
     ...mapActions("breadCrumbStore", ["resetbreadCrumbs"]),

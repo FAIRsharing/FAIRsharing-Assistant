@@ -1,10 +1,10 @@
-import {actions, mutations} from "@/store/variableTagStore.js"
+import variableTagStore  from "@/store/variableTagStore.js"
 import sinon from "sinon"
 import GraphClient from "@/lib/GraphClient/GraphClient.js";
 import VariableData from '../../../tests/fixtures/variableTag.json'
 
 describe('VariableTag store methods', () => {
-
+  const {actions, mutations} = variableTagStore
   const returnedVal = VariableData;
   let state = {
     variableResponse: [],

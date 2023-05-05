@@ -4,13 +4,13 @@ import multiTagsNonExactFilter from "@/lib/GraphClient/queries/multiTagsFilter/m
 const CLIENT = new GraphClient(),
   MULTI_TAGS = JSON.parse(JSON.stringify(multiTagsNonExactFilter))
 
-export const state = {
+const state = {
   fairSharingRecords:[],
   error: false,
   loadingStatus: false,
 }
 
-export const actions = {
+const actions = {
   async fetchMultiTagsTerms({commit}, [resource, subject, domain]) {
     commit("setLoadingStatus", true)
     MULTI_TAGS.queryParam = {
@@ -33,7 +33,7 @@ export const actions = {
   }
 }
 
-export const mutations = {
+const mutations = {
   setFairSharingRecords(state, fairSharingRecords) { state.fairSharingRecords = fairSharingRecords },
   setLoadingStatus(state, loadingStatus) { state.loadingStatus = loadingStatus},
   resetFairSharingRecords(state) {state.fairSharingRecords = []},

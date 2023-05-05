@@ -32,8 +32,7 @@
               class="white--text startOverBtn"
               color="ready_color"
               raised
-              to="/"
-              @click="onStartOver"
+              @click="onStartOver()"
             >
               OK
             </v-btn>
@@ -73,12 +72,12 @@ export default {
   },
 
   methods:{
-    ...mapActions("bubbleSelectedStore", ["resetAllSelectedValues", "resetSubjectValue"]),
+    ...mapActions("bubbleSelectedStore", ["resetAllSelectedValues"]),
 
     onStartOver() {
       this.overlay = false
+      this.$router.push("/")
       this.resetAllSelectedValues()
-      this.resetSubjectValue()
     }
   }
 
