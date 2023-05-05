@@ -5,7 +5,6 @@ Vue.use(VueRouter);
 
 import {
   HomeView,
-  ResourceTypeView,
   SubjectTypeView,
   DomainTypeView,
   DatabaseView,
@@ -20,12 +19,6 @@ let routes = [
     name: "HomeView",
     path: "/:id(\\d+)?",
     component: HomeView,
-  },
-  {
-    name: "ResourceTypeView",
-    path: "/resource",
-    component: ResourceTypeView,
-
   },
   {
     name: "SubjectTypeView",
