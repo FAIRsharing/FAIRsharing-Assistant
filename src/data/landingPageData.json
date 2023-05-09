@@ -186,7 +186,7 @@
             "question": "Explore unambiguous, persistent and context-independent schemas.",
             "color": "primary",
             "arrow": "assets/Home/Arrow/whiteArrow.png",
-            "link": "/standards?record_type=identifier_schema"
+            "link": "/refine-my-choice?record_type=identifier_schema&registry=Standard"
           },
           {
             "id": 2,
@@ -209,7 +209,7 @@
             "question": "Explore conceptual models, schemas, and exchange formats.",
             "color": "primary",
             "arrow": "assets/Home/Arrow/whiteArrow.png",
-            "link": "/standards?record_type=model_and_format"
+            "link": "/refine-my-choice?record_type=model_and_format&registry=Standard"
           },
           {
             "id": 2,
@@ -217,7 +217,7 @@
             "question": "Explore minimum information requirements, checklists and other reporting guidelines.",
             "color": "primary",
             "arrow": "assets/Home/Arrow/whiteArrow.png",
-            "link": "/standard?record_type=reporting_guideline"
+            "link": "/refine-my-choice?record_type=reporting_guideline&registry=Standard"
           }
         ],
         [
@@ -227,7 +227,7 @@
             "question": "Explore individual controlled vocabularies, taxonomies, ontologies and other terminology artefacts.",
             "color": "primary",
             "arrow": "assets/Home/Arrow/whiteArrow.png",
-            "link": "/standards?record_type=terminology_artefact"
+            "link": "/refine-my-choice?record_type=terminology_artefact&registry=Standard"
           },
           {
             "id": 4,

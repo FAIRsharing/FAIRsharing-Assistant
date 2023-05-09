@@ -115,7 +115,6 @@ export default {
     let _module = this;
     _module.selectFilters();
     _module.selectToggle();
-    _module.applyFilters();
     _module.readFilterParams();
   },
   methods: {
