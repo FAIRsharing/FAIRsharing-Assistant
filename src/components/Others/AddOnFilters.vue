@@ -99,23 +99,6 @@ export default {
       return queryParams;
     },
   },
-  /*
-  watch: {
-    'switchTypeFilters': {
-      handler: function (before, after) {
-        this.applyFilters(before, after);
-      },
-      deep: true
-    },
-    'selectTypeFilters': {
-      handler: function () {
-        console.log("Filters changed!");
-        this.applyFilters();
-      },
-      deep: true
-    }
-  },
-   */
   mounted() {
     let _module = this;
     //_module.selectToggle();
@@ -131,13 +114,18 @@ export default {
         group.forEach(function(filter) {
           Object.keys(params).forEach(function(key) {
             if (filter.filterQuery === key) {
-              console.log("Setting " + filter.filterQuery + " to " + params[key]);
+              //console.log("Setting " + filter.filterQuery + " to " + params[key]);
               filter.refineToggle = params[key];
-              console.log(filter.refineToggle);
+              //console.log(filter.refineToggle);
+              let map = new Map();
+              map.set(`${filter.filterQuery}`, `${filter.refineToggle}`)
+              _module.$store.commit("addOnFilterSelectedStore/filtersSelected", map);
             }
           })
         })
       });
+      //console.log("Switch: " + JSON.stringify(_module.switchTypeFilters));
+      //console.log("Select: " + JSON.stringify(_module.selectTypeFilters));
     },
     readRegAndTypeFilterParams() {
       let _module = this;
@@ -162,11 +150,9 @@ export default {
       }
     },
     selectFilters(){
-      console.log("Running selectFilters");
       const prevRoute = this.$router.history._startLocation;
       const selectedRegistry = this.topResult;
       if(prevRoute === "/database" || selectedRegistry === 'Database') {
-        console.log("Database selected");
         const databaseSwitchFilters = this.switchTypeFilters.filter(({filterTypes}) => filterTypes.includes("database"))
         this.switchTypeFilters = databaseSwitchFilters
         const databaseSelectFilters = this.selectTypeFilters.filter(({filterTypes}) => filterTypes.includes("database"))
@@ -174,7 +160,6 @@ export default {
         this.conditionalDisplay()
       }
       else if(prevRoute === "/standards" || selectedRegistry === 'Standard') {
-        console.log("Standard selected");
         const standardsSwitchFilters = this.switchTypeFilters.filter(({filterTypes}) => filterTypes.includes("standards"))
         this.switchTypeFilters = standardsSwitchFilters
         const standardsSelectFilters = this.selectTypeFilters.filter(({filterTypes}) => filterTypes.includes("standards"))
@@ -182,7 +167,6 @@ export default {
         this.conditionalDisplay()
       }
       else if(prevRoute === "/policies" || selectedRegistry === 'Policy') {
-        console.log("Policy  selected");
         const policiesSwitchFilters = this.switchTypeFilters.filter(({filterTypes}) => filterTypes.includes("policies"))
         this.switchTypeFilters = policiesSwitchFilters
         const policiesSelectFilters = this.selectTypeFilters.filter(({filterTypes}) => filterTypes.includes("policies"))
