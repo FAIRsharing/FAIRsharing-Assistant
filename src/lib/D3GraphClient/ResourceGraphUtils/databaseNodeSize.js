@@ -1,5 +1,5 @@
 //Size of nodes
-const resourceNodesSize = (d) => {
+const databaseNodeSize = (d) => {
   const count = d.records_count
   switch(true) {
   case(count > 2000):
@@ -27,4 +27,4 @@ const resourceNodesSize = (d) => {
   }
 }
 
-export default resourceNodesSize
+export default databaseNodeSize

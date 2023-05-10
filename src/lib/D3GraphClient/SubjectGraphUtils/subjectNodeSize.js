@@ -63,26 +63,30 @@ const filteredSubjectsNodeSize = (d) => {
     return Math.sqrt(count) * 2.8
   case(10 <= count && count < 20):
     return Math.sqrt(count) * 2.7
-  case(1 <= count && count < 10):
-    return count * 2.7
+  case(4 <= count && count < 10):
+    return count * 3.7
+  case(1 <= count && count < 4):
+    return count * 8
   default:
     return  10
   }
 }
 
 //Size when all top four nodes have zero records count
-const noRecordsNodeSize = (d) => {
-  const { level, children } = d
-  if (level === 0) {
-    return children.every(childNode => childNode.records_count === 0)
-  }
-}
+// const noRecordsNodeSize = (d) => {
+//   let noRecords = false
+//   const { level, children } = d
+//   if (level === 0) {
+//     noRecords = children.every(childNode => childNode.records_count === 0)
+//   }
+//   if (noRecords) return 50
+// }
 
 const subjectNodesSize = (d) => {
   const allSubjects = bubbleSelectedStore.getters["bubbleSelectedStore/getAllSubjects"]
   if (allSubjects) return allSubjectsNodeSize(d)
-  if (noRecordsNodeSize(d)) return 50
   return filteredSubjectsNodeSize(d)
+  // else return noRecordsNodeSize(d)
 
 }
 
