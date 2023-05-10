@@ -3,8 +3,10 @@ const state = {
   resourceType: "",
   allResources: [],
   subjectType: "",
+  subjectList: [],
   allSubjects: false,
   domainType: "",
+  domainList: [],
 };
 
 const actions = {
@@ -32,13 +34,33 @@ const mutations = {
     }
   },
   subjectSelected (state, subject) {
-    state.subjectType = subject
+    state.subjectType = subject["subjectSelected"]
+    /* istanbul ignore next */
+    const found = state.subjectList.find(({records}) => records === state.subjectType)
+
+    /* istanbul ignore else */
+    if(!found) {
+      state.subjectList.push({
+        records: subject["subjectSelected"],
+        recordsNumber: subject["recordsNumber"]
+      })
+    }
   },
   allSubjectsSelected (state, allSubjects) {
     state.allSubjects = allSubjects
   },
   domainSelected (state, domain) {
-    state.domainType = domain
+    state.domainType = domain["domainSelected"]
+    // /* istanbul ignore next */
+    const found = state.domainList.find(({records}) => records === state.domainType)
+
+    /* istanbul ignore else */
+    if(!found) {
+      state.domainList.push({
+        records: domain["domainSelected"],
+        recordsNumber: domain["recordsNumber"]
+      })
+    }
   },
   resetAllSubjects(state) {
     state.allSubjects = false
@@ -48,8 +70,10 @@ const mutations = {
     state.resourceType = "",
     state.allResources = [],
     state.subjectType = "",
+    state.subjectList = [],
     state.allSubjects = false,
-    state.domainType = ""
+    state.domainType = "",
+    state.domainList = []
   },
 };
 
@@ -66,11 +90,17 @@ const getters = {
   getSubject(state)  {
     return state.subjectType;
   },
+  getSubjectList(state)  {
+    return state.subjectList;
+  },
   getAllSubjects(state)  {
     return state.allSubjects;
   },
   getDomain(state)  {
     return state.domainType;
+  },
+  getDomainList(state)  {
+    return state.domainList;
   },
 }
 const bubbleSelectedStore = {

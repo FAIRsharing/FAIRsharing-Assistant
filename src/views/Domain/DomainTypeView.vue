@@ -11,6 +11,10 @@
       <FairSharingLink
         :fair-sharing-button="fairSharingButton"
       />
+      <RecordsTable
+        v-if="getDomain"
+        :get-all-data="getDomainList"
+      />
       <StartOver />
     </div>
   </div>
@@ -24,6 +28,7 @@ import StartOver from "@/components/Navigation/StartOver"
 import RefineButton from "@/components/Navigation/RefineButton"
 import Jumbotron from "@/components/Navigation/Jumbotron"
 import Selection from "@/components/Others/Selection"
+import RecordsTable from "@/components/Others/RecordsTable.vue";
 
 export default {
   name: 'DomainTypeView',
@@ -32,6 +37,7 @@ export default {
     FairSharingLink,
     StartOver,
     RefineButton,
+    RecordsTable,
     Jumbotron,
     Selection
   },
@@ -43,7 +49,7 @@ export default {
     }
   },
   computed:{
-    ...mapGetters("bubbleSelectedStore", ['getTopResource', 'getResource', 'getSubject', 'getDomain']),
+    ...mapGetters("bubbleSelectedStore", ['getDomain', 'getDomainList']),
   },
   destroyed() {
     this.showDomain = false

@@ -38,7 +38,7 @@
       </v-col>
     </v-row>
     <v-row
-      v-for="(item, index) in getAllResources"
+      v-for="(item, index) in getAllData"
       :key="index"
       dense
       no-gutters
@@ -116,7 +116,7 @@
 export default {
   name: 'RecordsTable',
   props:{
-    getAllResources: {
+    getAllData: {
       type: Array,
       required: true
     },
@@ -124,7 +124,7 @@ export default {
   computed:{
     totalRecords() {
       let sum = 0
-      this.getAllResources.forEach(({recordsNumber}) => {
+      this.getAllData.forEach(({recordsNumber}) => {
         if (recordsNumber) sum += recordsNumber
       })
       return sum

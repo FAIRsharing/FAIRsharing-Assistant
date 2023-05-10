@@ -29,7 +29,7 @@ const domainNodeSize = (d) => {
   case(10 <= count && count < 20):
     return 12
   default:
-    return  8
+    return  10
   }
 }
 

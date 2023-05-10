@@ -29,7 +29,10 @@ const storeNode = (d, routeName) => {
   else if (routeName === "SubjectTypeView") {
     if(itemClicked !== d["name"]) {
       itemClicked = d["name"]
-      bubbleSelectedStore.commit("bubbleSelectedStore/subjectSelected", itemClicked)
+      bubbleSelectedStore.commit("bubbleSelectedStore/subjectSelected", {
+        subjectSelected: itemClicked,
+        recordsNumber: d["records_count"]
+      })
     }
   }
 
@@ -37,7 +40,10 @@ const storeNode = (d, routeName) => {
   else if (routeName === "DomainTypeView") {
     if(itemClicked !== d["name"]) {
       itemClicked = d["name"]
-      bubbleSelectedStore.commit("bubbleSelectedStore/domainSelected", itemClicked)
+      bubbleSelectedStore.commit("bubbleSelectedStore/domainSelected", {
+        domainSelected: itemClicked,
+        recordsNumber: d["records_count"]
+      })
     }
   }
 }
