@@ -50,6 +50,8 @@ export default {
   },
   data:() => {
     return {
+      topResult: '',
+      childResult: '',
       switchTypeFilters: addOnFilters["switch"],
       selectTypeFilters: addOnFilters["select"],
       allFilters: [],
@@ -97,6 +99,7 @@ export default {
       return queryParams;
     },
   },
+  /*
   watch: {
     'switchTypeFilters': {
       handler: function (before, after) {
@@ -106,74 +109,85 @@ export default {
     },
     'selectTypeFilters': {
       handler: function () {
+        console.log("Filters changed!");
         this.applyFilters();
       },
       deep: true
     }
   },
+   */
   mounted() {
     let _module = this;
+    //_module.selectToggle();
+    _module.readRegAndTypeFilterParams();
     _module.selectFilters();
-    _module.selectToggle();
-    _module.readFilterParams();
+    _module.readGeneralFilterParams();
   },
   methods: {
-    readFilterParams() {
+    readGeneralFilterParams() {
       let _module = this;
-      let modified = false;
-      let topResult = '';
-      let childResult = '';
       let params = _module.currentPath;
       [_module.switchTypeFilters, _module.selectTypeFilters].forEach(function(group) {
         group.forEach(function(filter) {
           Object.keys(params).forEach(function(key) {
             if (filter.filterQuery === key) {
+              console.log("Setting " + filter.filterQuery + " to " + params[key]);
               filter.refineToggle = params[key];
+              console.log(filter.refineToggle);
             }
           })
         })
       });
+    },
+    readRegAndTypeFilterParams() {
+      let _module = this;
+      let modified = false;
+      let params = _module.currentPath;
       Object.keys(params).forEach(function(key) {
         if (key === 'registry') {
           if (_module.allowedRegistries.indexOf(params[key]) > -1) {
-            topResult = params[key];
+            _module.topResult = params[key];
             modified = true;
           }
         }
         if (key === 'record_type') {
           if (_module.allowedTypes.indexOf(params[key]) > -1) {
-            childResult = params[key];
+            _module.childResult = params[key];
             modified = true;
           }
         }
       })
       if (modified) {
-        this.$store.commit('bubbleSelectedStore/resourceSelected', {topResourceSelected: topResult, childResourceSelected: childResult})
+        this.$store.commit('bubbleSelectedStore/resourceSelected', {topResourceSelected: _module.topResult, childResourceSelected: _module.childResult})
       }
     },
     selectFilters(){
-      const prevRoute = this.$router.history._startLocation
-      if(prevRoute === "/database") {
+      console.log("Running selectFilters");
+      const prevRoute = this.$router.history._startLocation;
+      const selectedRegistry = this.topResult;
+      if(prevRoute === "/database" || selectedRegistry === 'Database') {
+        console.log("Database selected");
         const databaseSwitchFilters = this.switchTypeFilters.filter(({filterTypes}) => filterTypes.includes("database"))
         this.switchTypeFilters = databaseSwitchFilters
         const databaseSelectFilters = this.selectTypeFilters.filter(({filterTypes}) => filterTypes.includes("database"))
         this.selectTypeFilters = databaseSelectFilters
         this.conditionalDisplay()
       }
-      else if(prevRoute === "/standards") {
+      else if(prevRoute === "/standards" || selectedRegistry === 'Standard') {
+        console.log("Standard selected");
         const standardsSwitchFilters = this.switchTypeFilters.filter(({filterTypes}) => filterTypes.includes("standards"))
         this.switchTypeFilters = standardsSwitchFilters
         const standardsSelectFilters = this.selectTypeFilters.filter(({filterTypes}) => filterTypes.includes("standards"))
         this.selectTypeFilters = standardsSelectFilters
         this.conditionalDisplay()
       }
-      else if(prevRoute === "/policies") {
+      else if(prevRoute === "/policies" || selectedRegistry === 'Policy') {
+        console.log("Policy  selected");
         const policiesSwitchFilters = this.switchTypeFilters.filter(({filterTypes}) => filterTypes.includes("policies"))
         this.switchTypeFilters = policiesSwitchFilters
         const policiesSelectFilters = this.selectTypeFilters.filter(({filterTypes}) => filterTypes.includes("policies"))
         this.selectTypeFilters = policiesSelectFilters
         this.conditionalDisplay()
-
       }
     },
     applyFilters() {
@@ -189,6 +203,7 @@ export default {
       }
       [_module.switchTypeFilters, _module.selectTypeFilters].forEach(function(group) {
         group.forEach(function (filter) {
+          //console.log(JSON.stringify(filter));
           if (typeof(filter.refineToggle) != 'undefined' &&
             filter.refineToggle != null &&
             filter.refineToggle !== ''
@@ -216,9 +231,9 @@ export default {
       for (let filter of this.addOnFilters) {
         map.set(`${filter["filterQuery"]}`, `${filter["refineToggle"]}`)
       }
+      this.applyFilters();
       this.$store.commit("addOnFilterSelectedStore/filtersSelected", map)
     },
-
     conditionalDisplay() {
       if (!this.switchTypeFilters?.length && this.selectTypeFilters?.length) {
         this.onlySelect = true
