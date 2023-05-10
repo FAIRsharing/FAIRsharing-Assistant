@@ -21,10 +21,8 @@ const calculateResourceRecords = {
     async calculateRecords(resourceSelected, subjectSelected, domainSelected, otherResourceType) {
       //Using multiTagFilter Query
       await this.fetchMultiTagsTerms([resourceSelected, subjectSelected, domainSelected])
-
-
       for (let childResource of otherResourceType) {
-        childResource["records_count"] = 0
+        if (childResource !== null) childResource["records_count"] = 0
         this.fairSharingRecords.filter(ele => {
           if (ele["type"] === this.formatString(childResource["name"])) {
             childResource["records_count"]++

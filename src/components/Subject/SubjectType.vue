@@ -80,12 +80,14 @@ export default {
     this.resetVariableTags()
     this.resetRecords()
     this.resetbreadCrumbs()
+    this.resetAllSubjects()
   },
   methods: {
     ...mapActions("browseSubjectsStore", ["fetchTerms", "leavePage"]),
     ...mapActions("variableTagStore", ["fetchVariableTags", "resetVariableTags"]),
     ...mapActions("recordTypeStore", ["fetchAllRecordTypes", "resetRecords"]),
     ...mapActions("breadCrumbStore", ["resetbreadCrumbs"]),
+    ...mapActions("bubbleSelectedStore", ["resetAllSubjects"]),
 
     onBubbleSelection() {
       this.fairSharingButton = true
@@ -138,6 +140,7 @@ export default {
       if(this.getTopResource ==="" && this.getResource === '' && this.getDomain === '') {
         // eslint-disable-next-line no-console
         console.log("ALL SUBJECTS")
+        this.$store.commit("bubbleSelectedStore/allSubjectsSelected", true)
         await this.fetchTerms()
         this.allSubjectsData = {
           name: "Subject",

@@ -3,12 +3,16 @@ const state = {
   resourceType: "",
   allResources: [],
   subjectType: "",
-  domainType: ""
+  allSubjects: false,
+  domainType: "",
 };
 
 const actions = {
   resetAllSelectedValues({commit}) {
     commit('resetAllBubbles');
+  },
+  resetAllSubjects({commit}) {
+    commit('resetAllSubjects');
   }
 }
 
@@ -30,14 +34,21 @@ const mutations = {
   subjectSelected (state, subject) {
     state.subjectType = subject
   },
+  allSubjectsSelected (state, allSubjects) {
+    state.allSubjects = allSubjects
+  },
   domainSelected (state, domain) {
     state.domainType = domain
+  },
+  resetAllSubjects(state) {
+    state.allSubjects = false
   },
   resetAllBubbles(state) {
     state.topResourceType = "",
     state.resourceType = "",
     state.allResources = [],
     state.subjectType = "",
+    state.allSubjects = false,
     state.domainType = ""
   },
 };
@@ -54,6 +65,9 @@ const getters = {
   },
   getSubject(state)  {
     return state.subjectType;
+  },
+  getAllSubjects(state)  {
+    return state.allSubjects;
   },
   getDomain(state)  {
     return state.domainType;
