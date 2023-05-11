@@ -7,6 +7,7 @@ const state = {
   allSubjects: false,
   domainType: "",
   domainList: [],
+  nodeList: {}
 };
 
 const actions = {
@@ -22,6 +23,19 @@ const mutations = {
   resourceSelected (state, resource) {
     state.topResourceType = resource["topResourceSelected"]
     state.resourceType = resource["childResourceSelected"]
+    if (resource["childResourceSelected"] === "") {
+      state.nodeList = {
+        name: resource["topResourceSelected"],
+        recordsNumber: resource["recordsNumber"]
+      }
+    }
+    else {
+      state.nodeList = {
+        name: resource["childResourceSelected"],
+        recordsNumber: resource["recordsNumber"]
+      }
+    }
+
     /* istanbul ignore next */
     const found = state.allResources.find(({records}) => records === resource["childResourceSelected"])
     /* istanbul ignore else */
@@ -35,6 +49,10 @@ const mutations = {
   },
   subjectSelected (state, subject) {
     state.subjectType = subject["subjectSelected"]
+    state.nodeList = {
+      name: subject["subjectSelected"],
+      recordsNumber: subject["recordsNumber"]
+    }
     /* istanbul ignore next */
     const found = state.subjectList.find(({records}) => records === state.subjectType)
 
@@ -51,6 +69,10 @@ const mutations = {
   },
   domainSelected (state, domain) {
     state.domainType = domain["domainSelected"]
+    state.nodeList = {
+      name: domain["domainSelected"],
+      recordsNumber: domain["recordsNumber"]
+    }
     // /* istanbul ignore next */
     const found = state.domainList.find(({records}) => records === state.domainType)
 
@@ -73,7 +95,8 @@ const mutations = {
     state.subjectList = [],
     state.allSubjects = false,
     state.domainType = "",
-    state.domainList = []
+    state.domainList = [],
+    state.nodeList = {}
   },
 };
 
@@ -101,6 +124,9 @@ const getters = {
   },
   getDomainList(state)  {
     return state.domainList;
+  },
+  getNodes(state)  {
+    return state.nodeList;
   },
 }
 const bubbleSelectedStore = {

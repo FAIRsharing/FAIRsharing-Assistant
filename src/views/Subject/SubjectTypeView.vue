@@ -2,8 +2,10 @@
   <div>
     <Jumbotron />
     <div class="px-md-10 pa-5 mb-8">
-      <Selection />
-      <RefineButton :refine-button="refineButton" />
+      <div class="d-flex align-center">
+        <Selection /> <AddNodeButton />
+      </div>
+      <ContinueButton :continue-button="continueButton" />
       <SubjectType
         @enableFairSharingButton="enableFairSharingButton"
         @showSubjectSelected="showSubjectSelected"
@@ -25,10 +27,11 @@ import { mapGetters} from "vuex";
 import SubjectType from "@/components/Subject/SubjectType";
 import FairSharingLink from "@/components/Navigation/FairSharingLink";
 import StartOver from "@/components/Navigation/StartOver"
-import RefineButton from "@/components/Navigation/RefineButton"
+import ContinueButton from "@/components/Navigation/ContinueButton"
 import Jumbotron from "@/components/Navigation/Jumbotron"
 import Selection from "@/components/Others/Selection"
 import RecordsTable from "@/components/Others/RecordsTable.vue";
+import AddNodeButton from "@/components/Navigation/AddNodeButton.vue";
 
 export default {
   name:'SubjectTypeView',
@@ -36,16 +39,17 @@ export default {
     SubjectType,
     FairSharingLink,
     StartOver,
-    RefineButton,
+    ContinueButton,
     RecordsTable,
     Jumbotron,
-    Selection
+    Selection,
+    AddNodeButton
   },
   data:() => {
     return {
       fairSharingButton: false,
       showSubject: false,
-      refineButton: false,
+      continueButton: false,
     }
   },
   computed:{
@@ -57,7 +61,7 @@ export default {
   methods: {
     enableFairSharingButton(value) {
       this.fairSharingButton = value
-      this.refineButton = value
+      this.continueButton = value
     },
     showSubjectSelected(value){
       this.showSubject = value

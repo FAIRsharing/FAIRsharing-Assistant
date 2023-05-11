@@ -5,7 +5,7 @@
     <v-btn
       v-bind="button['attributes']"
       class="white--text refineBtn"
-      :disabled="!refineButton"
+      :disabled="!continueButton"
     >
       {{ button["text"] }}
     </v-btn>
@@ -14,9 +14,9 @@
 
 <script>
 export default {
-  name: "RefineButton",
+  name: "ContinueButton",
   props:{
-    refineButton: Boolean,
+    continueButton: Boolean,
   },
   data () {
     return {

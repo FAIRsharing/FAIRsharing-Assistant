@@ -8,6 +8,7 @@ import variableTagStore from "./variableTagStore";
 import addOnFilterSelectedStore from "./addOnFilterSelectedStore.js"
 import otherResourcesSelectedStore from "./otherResourcesSelectedStore"
 import breadCrumbStore from "@/store/breadCrumbStore";
+import nodeListStore from "@/store/nodeListStore"
 
 
 Vue.use(Vuex);
@@ -22,7 +23,8 @@ export default new Vuex.Store({
     variableTagStore,
     addOnFilterSelectedStore,
     otherResourcesSelectedStore,
-    breadCrumbStore
+    breadCrumbStore,
+    nodeListStore
   }
 })
 

@@ -12,6 +12,7 @@ const storeNode = (d, routeName) => {
         bubbleSelectedStore.commit("bubbleSelectedStore/resourceSelected", {
           topResourceSelected: parentResource,
           childResourceSelected: '',
+          recordsNumber: d["records_count"]
         })
       }
       else if (d["level"] === 2) {

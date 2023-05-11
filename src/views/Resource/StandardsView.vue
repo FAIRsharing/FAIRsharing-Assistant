@@ -3,7 +3,7 @@
     <Jumbotron />
     <div class="px-md-10 pa-5 mb-8">
       <Selection />
-      <RefineButton :refine-button="refineButton" />
+      <ContinueButton :continue-button="continueButton" />
       <Standards
         @enableFairSharingButton="enableFairSharingButton"
         @showResourceSelected="showResourceSelected"
@@ -25,7 +25,7 @@ import {mapGetters} from "vuex"
 import Standards from "@/components/Resource/Standards";
 import FairSharingLink from "@/components/Navigation/FairSharingLink";
 import StartOver from "@/components/Navigation/StartOver";
-import RefineButton from "@/components/Navigation/RefineButton"
+import ContinueButton from "@/components/Navigation/ContinueButton"
 import RecordsTable from "@/components/Others/RecordsTable"
 import Jumbotron from "@/components/Navigation/Jumbotron";
 import Selection from "@/components/Others/Selection"
@@ -35,7 +35,7 @@ export default {
     Standards,
     FairSharingLink,
     StartOver,
-    RefineButton,
+    ContinueButton,
     RecordsTable,
     Jumbotron,
     Selection
@@ -44,7 +44,7 @@ export default {
     return {
       fairSharingButton: false,
       showResource: false,
-      refineButton: false,
+      continueButton: false,
     }
   },
   computed:{
@@ -56,7 +56,7 @@ export default {
   methods: {
     enableFairSharingButton(value) {
       this.fairSharingButton = value
-      this.refineButton = value
+      this.continueButton = value
     },
     showResourceSelected(value){
       this.showResource = value

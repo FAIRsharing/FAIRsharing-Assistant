@@ -3,7 +3,7 @@
     <Jumbotron />
     <div class="px-md-10 pa-5 mb-8">
       <Selection />
-      <RefineButton :refine-button="refineButton" />
+      <ContinueButton :continue-button="continueButton" />
       <DomainType
         @enableFairSharingButton="enableFairSharingButton"
         @showDomainSelected="showDomainSelected"
@@ -25,7 +25,7 @@ import { mapGetters } from "vuex"
 import DomainType from "@/components/Domain/DomainType";
 import FairSharingLink from "@/components/Navigation/FairSharingLink";
 import StartOver from "@/components/Navigation/StartOver"
-import RefineButton from "@/components/Navigation/RefineButton"
+import ContinueButton from "@/components/Navigation/ContinueButton"
 import Jumbotron from "@/components/Navigation/Jumbotron"
 import Selection from "@/components/Others/Selection"
 import RecordsTable from "@/components/Others/RecordsTable.vue";
@@ -36,7 +36,7 @@ export default {
     DomainType,
     FairSharingLink,
     StartOver,
-    RefineButton,
+    ContinueButton,
     RecordsTable,
     Jumbotron,
     Selection
@@ -45,7 +45,7 @@ export default {
     return {
       fairSharingButton: false,
       showDomain: false,
-      refineButton: false,
+      continueButton: false,
     }
   },
   computed:{
@@ -57,7 +57,7 @@ export default {
   methods: {
     enableFairSharingButton(value) {
       this.fairSharingButton = value
-      this.refineButton = value
+      this.continueButton = value
     },
     showDomainSelected(value) {
       this.showDomain = value
