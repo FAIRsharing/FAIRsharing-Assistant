@@ -48,7 +48,7 @@ export default {
     }
   },
   computed:{
-    ...mapGetters("bubbleSelectedStore", ['getAllResources', 'getTopResource', 'getResource', 'getSubject', 'getDomain']),
+    ...mapGetters("bubbleSelectedStore", ['getAllResources', 'getTopResource', 'getResource']),
   },
   destroyed() {
     this.showResource = false

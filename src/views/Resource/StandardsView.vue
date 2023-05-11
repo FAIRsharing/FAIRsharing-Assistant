@@ -13,7 +13,7 @@
       />
       <RecordsTable
         v-if="getResource"
-        :get-all-resources="getAllResources"
+        :get-all-data="getAllResources"
       />
       <StartOver />
     </div>
@@ -48,7 +48,7 @@ export default {
     }
   },
   computed:{
-    ...mapGetters("bubbleSelectedStore", ['getAllResources', 'getTopResource', 'getResource', 'getSubject', 'getDomain']),
+    ...mapGetters("bubbleSelectedStore", ['getAllResources', 'getTopResource', 'getResource']),
   },
   destroyed() {
     this.showResource = false

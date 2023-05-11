@@ -127,6 +127,7 @@ export default {
       this.getAllData.forEach(({recordsNumber}) => {
         if (recordsNumber) sum += recordsNumber
       })
+
       return sum
     },
   },

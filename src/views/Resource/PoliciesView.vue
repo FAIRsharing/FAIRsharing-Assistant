@@ -13,7 +13,7 @@
       />
       <RecordsTable
         v-if="getResource"
-        :get-all-resources="getAllResources"
+        :get-all-data="getAllResources"
       />
       <StartOver />
     </div>
