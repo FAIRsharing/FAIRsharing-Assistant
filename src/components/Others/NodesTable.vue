@@ -1,7 +1,7 @@
 <template>
   <v-container
     fluid
-    class="pl-0"
+    class="pa-0"
   >
     <v-chip
       v-for="(item, index) in getNodesData"
@@ -9,6 +9,8 @@
       class="ma-2"
       color="orange"
       text-color="white"
+      close
+      @click:close="deleteItem(item)"
     >
       <v-avatar
         left
@@ -16,7 +18,7 @@
       >
         {{ item["recordsNumber"] }}
       </v-avatar>
-      {{ item["name"] }}
+      {{ item["records"] }}
     </v-chip>
   </v-container>
 </template>
@@ -40,6 +42,11 @@ export default {
   //     return sum
   //   },
   // },
+  methods:{
+    deleteItem (node) {
+      this.$store.commit('nodeListStore/deleteNode', node);
+    },
+  }
 
 };
 </script>

@@ -7,7 +7,7 @@ const state = {
   allSubjects: false,
   domainType: "",
   domainList: [],
-  nodeList: {}
+  nodeSelected: {}
 };
 
 const actions = {
@@ -24,14 +24,14 @@ const mutations = {
     state.topResourceType = resource["topResourceSelected"]
     state.resourceType = resource["childResourceSelected"]
     if (resource["childResourceSelected"] === "") {
-      state.nodeList = {
-        name: resource["topResourceSelected"],
+      state.nodeSelected = {
+        records: resource["topResourceSelected"],
         recordsNumber: resource["recordsNumber"]
       }
     }
     else {
-      state.nodeList = {
-        name: resource["childResourceSelected"],
+      state.nodeSelected = {
+        records: resource["childResourceSelected"],
         recordsNumber: resource["recordsNumber"]
       }
     }
@@ -49,8 +49,8 @@ const mutations = {
   },
   subjectSelected (state, subject) {
     state.subjectType = subject["subjectSelected"]
-    state.nodeList = {
-      name: subject["subjectSelected"],
+    state.nodeSelected = {
+      records: subject["subjectSelected"],
       recordsNumber: subject["recordsNumber"]
     }
     /* istanbul ignore next */
@@ -69,8 +69,8 @@ const mutations = {
   },
   domainSelected (state, domain) {
     state.domainType = domain["domainSelected"]
-    state.nodeList = {
-      name: domain["domainSelected"],
+    state.nodeSelected = {
+      records: domain["domainSelected"],
       recordsNumber: domain["recordsNumber"]
     }
     // /* istanbul ignore next */
@@ -96,7 +96,7 @@ const mutations = {
     state.allSubjects = false,
     state.domainType = "",
     state.domainList = [],
-    state.nodeList = {}
+    state.nodeSelected = {}
   },
 };
 
@@ -126,7 +126,7 @@ const getters = {
     return state.domainList;
   },
   getNodes(state)  {
-    return state.nodeList;
+    return state.nodeSelected;
   },
 }
 const bubbleSelectedStore = {

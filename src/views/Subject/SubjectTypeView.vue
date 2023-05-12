@@ -2,9 +2,16 @@
   <div>
     <Jumbotron />
     <div class="px-md-10 pa-5 mb-8">
-      <div class="d-flex align-center">
-        <Selection /> <AddNodeButton />
+      <div class="d-flex align-center mb-2">
+        <Selection />
+        <AddNodeButton
+          v-if="getSubject"
+        />
       </div>
+      <NodesTable
+        v-if="getNodeList && getNodeList.length"
+        :get-nodes-data="getNodeList"
+      />
       <ContinueButton :continue-button="continueButton" />
       <SubjectType
         @enableFairSharingButton="enableFairSharingButton"
@@ -32,6 +39,7 @@ import Jumbotron from "@/components/Navigation/Jumbotron"
 import Selection from "@/components/Others/Selection"
 import RecordsTable from "@/components/Others/RecordsTable.vue";
 import AddNodeButton from "@/components/Navigation/AddNodeButton.vue";
+import NodesTable from "@/components/Others/NodesTable.vue";
 
 export default {
   name:'SubjectTypeView',
@@ -43,7 +51,8 @@ export default {
     RecordsTable,
     Jumbotron,
     Selection,
-    AddNodeButton
+    AddNodeButton,
+    NodesTable
   },
   data:() => {
     return {
@@ -54,6 +63,7 @@ export default {
   },
   computed:{
     ...mapGetters("bubbleSelectedStore", ['getSubject', 'getSubjectList']),
+    ...mapGetters("nodeListStore", ['getNodeList'])
   },
   destroyed() {
     this.showSubject = false

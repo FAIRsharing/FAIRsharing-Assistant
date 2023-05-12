@@ -2,14 +2,14 @@
   <div>
     <Jumbotron />
     <div class="px-md-10 pa-5 mb-8">
-      <div class="d-flex align-center">
+      <div class="d-flex align-center mb-2">
         <Selection />
         <AddNodeButton
           v-if="getResource"
         />
       </div>
       <NodesTable
-        v-if="getNodeList?.length"
+        v-if="getNodeList && getNodeList.length"
         :get-nodes-data="getNodeList"
       />
       <ContinueButton :continue-button="continueButton" />

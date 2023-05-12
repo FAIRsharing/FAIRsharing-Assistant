@@ -2,7 +2,16 @@
   <div>
     <Jumbotron />
     <div class="px-md-10 pa-5 mb-8">
-      <Selection />
+      <div class="d-flex align-center mb-2">
+        <Selection />
+        <AddNodeButton
+          v-if="getDomain"
+        />
+      </div>
+      <NodesTable
+        v-if="getNodeList && getNodeList.length"
+        :get-nodes-data="getNodeList"
+      />
       <ContinueButton :continue-button="continueButton" />
       <DomainType
         @enableFairSharingButton="enableFairSharingButton"
@@ -29,6 +38,8 @@ import ContinueButton from "@/components/Navigation/ContinueButton"
 import Jumbotron from "@/components/Navigation/Jumbotron"
 import Selection from "@/components/Others/Selection"
 import RecordsTable from "@/components/Others/RecordsTable.vue";
+import NodesTable from "@/components/Others/NodesTable.vue";
+import AddNodeButton from "@/components/Navigation/AddNodeButton.vue";
 
 export default {
   name: 'DomainTypeView',
@@ -39,7 +50,9 @@ export default {
     ContinueButton,
     RecordsTable,
     Jumbotron,
-    Selection
+    Selection,
+    AddNodeButton,
+    NodesTable,
   },
   data:() => {
     return {
@@ -50,6 +63,7 @@ export default {
   },
   computed:{
     ...mapGetters("bubbleSelectedStore", ['getDomain', 'getDomainList']),
+    ...mapGetters("nodeListStore", ['getNodeList'])
   },
   destroyed() {
     this.showDomain = false
