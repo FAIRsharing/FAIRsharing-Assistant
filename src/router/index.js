@@ -59,4 +59,5 @@ const router = new VueRouter({
   // mode: process.env.VUE_APP_MODE // "history" or "hash"
 });
 
+
 export default router;

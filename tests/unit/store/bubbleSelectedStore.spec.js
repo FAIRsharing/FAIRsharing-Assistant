@@ -11,7 +11,11 @@ describe('bubbleSelectedStore store methods', () => {
       resourceType: "",
       allResources: [],
       subjectType: "",
-      domainType: ""
+      domainType: "",
+      subjectList: [],
+      nodeList: {},
+      domainList: [],
+      allSubjects: false
     };
   });
 
@@ -35,13 +39,13 @@ describe('bubbleSelectedStore store methods', () => {
 
   it("can check subjectSelected mutations", () => {
     const returnedVal = "Test"
-    mutations.subjectSelected(state, returnedVal);
+    mutations.subjectSelected(state, {subjectSelected: returnedVal});
     expect(state.subjectType).toBe(returnedVal);
   });
 
   it("can check domainSelected mutations", () => {
     const returnedVal = "Test"
-    mutations.domainSelected(state, returnedVal);
+    mutations.domainSelected(state, {domainSelected: returnedVal});
     expect(state.domainType).toBe(returnedVal);
   });
 
@@ -52,7 +56,11 @@ describe('bubbleSelectedStore store methods', () => {
       resourceType: "",
       allResources: [],
       subjectType: "",
-      domainType: ""
+      domainType: "",
+      subjectList: [],
+      nodeList: {},
+      domainList: [],
+      allSubjects: false
     }
     mutations.resetAllBubbles(state);
     expect(state).toStrictEqual(returnedVal);

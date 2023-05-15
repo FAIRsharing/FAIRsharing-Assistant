@@ -73,7 +73,7 @@ const mutations = {
       name: domain["domainSelected"],
       recordsNumber: domain["recordsNumber"]
     }
-    // /* istanbul ignore next */
+    /* istanbul ignore next */
     const found = state.domainList.find(({records}) => records === state.domainType)
 
     /* istanbul ignore else */

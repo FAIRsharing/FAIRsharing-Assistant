@@ -26,7 +26,7 @@ export default {
           elevation:"2",
           raised: true,
           color: "accent",
-          to:"/refine-my-choice",
+          to: {path: "/refine-my-choice", replace: true},
         }
       },
     }

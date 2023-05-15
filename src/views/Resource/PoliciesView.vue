@@ -64,6 +64,12 @@ export default {
     ...mapGetters("bubbleSelectedStore", ['getAllResources', 'getTopResource', 'getResource', 'getSubject', 'getDomain']),
     ...mapGetters("nodeListStore", ['getNodeList'])
   },
+  mounted() {
+    let _module = this;
+    if (_module.getTopResource || _module.getResource) {
+      _module.enableButton(true);
+    }
+  },
   destroyed() {
     this.showResource = false
   },

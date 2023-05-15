@@ -76,7 +76,6 @@ export default {
       await this.d3Chart()
       this.loading = false
     })
-
   },
   destroyed() {
     this.leavePage()
@@ -127,7 +126,7 @@ export default {
         await this.calculateRecords(null, this.subjectSelected, null, otherResourceType)
       }
       //When User lands on Resource page as an entry point
-      if (this.getResource === "" && this.getSubject === "" && this.getDomain === "") {
+      if (this.getResource === "" && this.getSubject === "" && this.getDomain === "" && this.getResource === "") {
         // eslint-disable-next-line no-console
         console.log("ALL Policies")
         //Fetching all resources/records
