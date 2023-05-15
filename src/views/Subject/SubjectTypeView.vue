@@ -7,8 +7,12 @@
         <AddNodeButton
           v-if="getSubject"
         />
+        <TotalRecords
+          v-if="getNodeList && getNodeList.length"
+          :get-nodes-data="getNodeList"
+        />
       </div>
-      <NodesTable
+      <NodesList
         v-if="getNodeList && getNodeList.length"
         :get-nodes-data="getNodeList"
       />
@@ -19,10 +23,6 @@
       />
       <FairSharingLink
         :fair-sharing-button="fairSharingButton"
-      />
-      <RecordsTable
-        v-if="getSubject"
-        :get-all-data="getSubjectList"
       />
       <StartOver />
     </div>
@@ -37,9 +37,9 @@ import StartOver from "@/components/Navigation/StartOver"
 import ContinueButton from "@/components/Navigation/ContinueButton"
 import Jumbotron from "@/components/Navigation/Jumbotron"
 import Selection from "@/components/Others/Selection"
-import RecordsTable from "@/components/Others/RecordsTable.vue";
 import AddNodeButton from "@/components/Navigation/AddNodeButton.vue";
-import NodesTable from "@/components/Others/NodesTable.vue";
+import NodesList from "@/components/Others/NodesList.vue";
+import TotalRecords from "@/components/Others/TotalRecords.vue";
 
 export default {
   name:'SubjectTypeView',
@@ -48,11 +48,11 @@ export default {
     FairSharingLink,
     StartOver,
     ContinueButton,
-    RecordsTable,
     Jumbotron,
     Selection,
     AddNodeButton,
-    NodesTable
+    NodesList,
+    TotalRecords
   },
   data:() => {
     return {
@@ -64,6 +64,12 @@ export default {
   computed:{
     ...mapGetters("bubbleSelectedStore", ['getSubject', 'getSubjectList']),
     ...mapGetters("nodeListStore", ['getNodeList'])
+  },
+  mounted() {
+    let _module = this;
+    if (_module.getSubject) {
+      _module.enableFairSharingButton(true);
+    }
   },
   destroyed() {
     this.showSubject = false

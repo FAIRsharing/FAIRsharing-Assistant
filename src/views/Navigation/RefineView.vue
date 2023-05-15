@@ -14,10 +14,6 @@
       <FairSharingLink
         :fair-sharing-button="fairSharingButton"
       />
-      <RecordsTable
-        v-if="getResource"
-        :get-all-data="getAllResources"
-      />
       <StartOver />
     </div>
   </div>
@@ -30,7 +26,6 @@ import StartOver from "@/components/Navigation/StartOver";
 import Jumbotron from "@/components/Navigation/Jumbotron";
 import SubjectButton from "@/components/Navigation/SubjectButton";
 import DomainButton from "@/components/Navigation/DomainButton";
-import RecordsTable from "@/components/Others/RecordsTable"
 import AddOnFilters from "@/components/Others/AddOnFilters.vue";
 import Selection from "@/components/Others/Selection";
 
@@ -42,7 +37,6 @@ export default {
     StartOver,
     SubjectButton,
     DomainButton,
-    RecordsTable,
     AddOnFilters,
     Selection,
   },

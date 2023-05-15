@@ -7,8 +7,12 @@
         <AddNodeButton
           v-if="getResource"
         />
+        <TotalRecords
+          v-if="getNodeList && getNodeList.length"
+          :get-nodes-data="getNodeList"
+        />
       </div>
-      <NodesTable
+      <NodesList
         v-if="getNodeList && getNodeList.length"
         :get-nodes-data="getNodeList"
       />
@@ -19,10 +23,6 @@
       />
       <FairSharingLink
         :fair-sharing-button="fairSharingButton"
-      />
-      <RecordsTable
-        v-if="getResource"
-        :get-all-data="getAllResources"
       />
       <StartOver />
     </div>
@@ -35,11 +35,11 @@ import Standards from "@/components/Resource/Standards";
 import FairSharingLink from "@/components/Navigation/FairSharingLink";
 import StartOver from "@/components/Navigation/StartOver";
 import ContinueButton from "@/components/Navigation/ContinueButton"
-import RecordsTable from "@/components/Others/RecordsTable"
 import Jumbotron from "@/components/Navigation/Jumbotron";
 import Selection from "@/components/Others/Selection"
-import NodesTable from "@/components/Others/NodesTable.vue";
+import NodesList from "@/components/Others/NodesList.vue";
 import AddNodeButton from "@/components/Navigation/AddNodeButton.vue";
+import TotalRecords from "@/components/Others/TotalRecords.vue";
 export default {
   name: 'StandardsView',
   components: {
@@ -47,11 +47,11 @@ export default {
     FairSharingLink,
     StartOver,
     ContinueButton,
-    RecordsTable,
     Jumbotron,
     Selection,
     AddNodeButton,
-    NodesTable,
+    NodesList,
+    TotalRecords
   },
   data:() => {
     return {
@@ -63,6 +63,12 @@ export default {
   computed:{
     ...mapGetters("bubbleSelectedStore", ['getAllResources', 'getTopResource', 'getResource']),
     ...mapGetters("nodeListStore", ['getNodeList'])
+  },
+  mounted() {
+    let _module = this;
+    if (_module.getTopResource || _module.getResource) {
+      _module.enableFairSharingButton(true);
+    }
   },
   destroyed() {
     this.showResource = false

@@ -16,7 +16,7 @@
         left
         class="orange darken-3"
       >
-        {{ item["recordsNumber"] }}
+        {{ formatRecordsNumber(item["recordsNumber"]) }}
       </v-avatar>
       {{ item["records"] }}
     </v-chip>
@@ -25,27 +25,20 @@
 
 <script>
 export default {
-  name: 'RecordsTable',
+  name: 'NodesList',
   props:{
     getNodesData: {
       type: Array,
       required: true
     },
   },
-  // computed:{
-  //   totalRecords() {
-  //     let sum = 0
-  //     this.getNodesData.forEach(({recordsNumber}) => {
-  //       if (recordsNumber) sum += recordsNumber
-  //     })
-  //
-  //     return sum
-  //   },
-  // },
   methods:{
     deleteItem (node) {
       this.$store.commit('nodeListStore/deleteNode', node);
     },
+    formatRecordsNumber(num) {
+      return  Math.abs(num) > 999 ? Math.sign(num)*((Math.abs(num)/1000).toFixed(1)) + 'k' : Math.sign(num)*Math.abs(num)
+    }
   }
 
 };

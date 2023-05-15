@@ -3,6 +3,12 @@ const state = {
   nodeFound: false
 };
 
+const actions = {
+  resetNodeLists({commit}) {
+    commit('resetNodeLists');
+  }
+}
+
 const mutations = {
   nodeLists (state, nodeItem) {
     const found = state.nodeList.find(({records}) => records === nodeItem["records"])
@@ -17,7 +23,10 @@ const mutations = {
   },
   deleteNode(state, node) {
     state.nodeList.splice(state.nodeList.indexOf(node), 1)
-  }
+  },
+  resetNodeLists(state) {
+    state.nodeList = []
+  },
 
 };
 
@@ -34,6 +43,7 @@ const nodeListStore = {
   state,
   getters,
   mutations,
+  actions
 }
 
 export default nodeListStore

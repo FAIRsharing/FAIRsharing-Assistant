@@ -73,11 +73,13 @@ export default {
 
   methods:{
     ...mapActions("bubbleSelectedStore", ["resetAllSelectedValues"]),
+    ...mapActions("nodeListStore", ["resetNodeLists"]),
 
     onStartOver() {
       this.overlay = false
       this.$router.push("/")
       this.resetAllSelectedValues()
+      this.resetNodeLists()
     }
   }
 

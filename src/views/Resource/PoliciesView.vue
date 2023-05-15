@@ -7,22 +7,22 @@
         <AddNodeButton
           v-if="getResource"
         />
+        <TotalRecords
+          v-if="getNodeList && getNodeList.length"
+          :get-nodes-data="getNodeList"
+        />
       </div>
-      <NodesTable
+      <NodesList
         v-if="getNodeList && getNodeList.length"
         :get-nodes-data="getNodeList"
       />
       <ContinueButton :continue-button="continueButton" />
       <Policies
-        @enableFairSharingButton="enableButton"
+        @enableFairSharingButton="enableFairSharingButton"
         @showResourceSelected="showResourceSelected"
       />
       <FairSharingLink
         :fair-sharing-button="fairSharingButton"
-      />
-      <RecordsTable
-        v-if="getResource"
-        :get-all-data="getAllResources"
       />
       <StartOver />
     </div>
@@ -35,11 +35,11 @@ import Policies from "@/components/Resource/Policies"
 import FairSharingLink from "@/components/Navigation/FairSharingLink"
 import StartOver from "@/components/Navigation/StartOver"
 import ContinueButton from "@/components/Navigation/ContinueButton"
-import RecordsTable from "@/components/Others/RecordsTable"
 import Jumbotron from "@/components/Navigation/Jumbotron"
 import Selection from "@/components/Others/Selection"
 import AddNodeButton from "@/components/Navigation/AddNodeButton.vue";
-import NodesTable from "@/components/Others/NodesTable.vue";
+import NodesList from "@/components/Others/NodesList.vue";
+import TotalRecords from "@/components/Others/TotalRecords.vue";
 export default {
   name: 'PoliciesView',
   components: {
@@ -47,11 +47,11 @@ export default {
     FairSharingLink,
     StartOver,
     ContinueButton,
-    RecordsTable,
     Jumbotron,
     Selection,
     AddNodeButton,
-    NodesTable
+    NodesList,
+    TotalRecords
   },
   data:() => {
     return {
@@ -64,11 +64,17 @@ export default {
     ...mapGetters("bubbleSelectedStore", ['getAllResources', 'getTopResource', 'getResource', 'getSubject', 'getDomain']),
     ...mapGetters("nodeListStore", ['getNodeList'])
   },
+  mounted() {
+    let _module = this;
+    if (_module.getTopResource || _module.getResource) {
+      _module.enableFairSharingButton(true);
+    }
+  },
   destroyed() {
     this.showResource = false
   },
   methods: {
-    enableButton(value) {
+    enableFairSharingButton(value) {
       this.fairSharingButton = value
       this.continueButton = value
     },
