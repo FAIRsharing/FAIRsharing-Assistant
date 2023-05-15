@@ -12,7 +12,6 @@ const actions = {
 const mutations = {
   nodeLists (state, nodeItem) {
     const found = state.nodeList.find(({records}) => records === nodeItem["records"])
-    /* istanbul ignore else */
     if(!found) {
       state.nodeList.push(nodeItem)
       state.nodeFound = false
@@ -21,8 +20,8 @@ const mutations = {
       state.nodeFound = true
     }
   },
-  deleteNode(state, node) {
-    state.nodeList.splice(state.nodeList.indexOf(node), 1)
+  deleteNode(state, nodeItem) {
+    state.nodeList.splice(state.nodeList.indexOf(nodeItem), 1)
   },
   resetNodeLists(state) {
     state.nodeList = []

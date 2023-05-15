@@ -21,7 +21,7 @@ export default {
   data () {
     return {
       button: {
-        text: "Continue",
+        text: "Refine my choice",
         attributes: {
           elevation:"2",
           raised: true,

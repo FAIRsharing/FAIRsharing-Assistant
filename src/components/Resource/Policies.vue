@@ -62,7 +62,7 @@ export default {
     ...mapGetters("bubbleSelectedStore", ['getTopResource','getResource','getSubject', 'getDomain']),
     ...mapGetters("otherResourcesSelectedStore", ["getOtherResourceSelected"]),
     ...mapGetters("breadCrumbStore", ["getBreadCrumbs"]),
-    ...mapState("recordTypeStore", ["allRecordTypes", "loadingData"]),
+    ...mapState("recordTypeStore", ["allRecordTypes", "loadingData"])
   },
   watch:{
     getTopResource(){

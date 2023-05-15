@@ -61,6 +61,7 @@ export default {
     ...mapState("variableTagStore", ["variableResponse", "loadingStatus"]),
     ...mapState("browseSubjectsStore", ["subjectBubbleTree", "loadingData"]),
     ...mapState("topSubjectStore", ["topSubjectBubbleTree", "loadingData"]),
+    ...mapGetters("nodeListStore", ["getNodeList"]),
   },
   watch:{
     getSubject(){
@@ -97,6 +98,7 @@ export default {
     },
 
     async displaySubjects() {
+      const nodesSelected =  this.getNodeList.map(({records}) => this.formatString(records))
       //When user lands on subject type after selecting the TopResource & domainType type
       if(this.getTopResource !== '' && this.getResource === '' && this.getDomain !== ''){
         // eslint-disable-next-line no-console
@@ -126,7 +128,8 @@ export default {
       if(this.getResource !== '' && this.getDomain === '') {
         // eslint-disable-next-line no-console
         console.log("ONLY OTHER RESOURCE")
-        this.resourceSelected = this.formatString(this.getResource)
+        // this.resourceSelected = this.formatString(this.getResource)
+        this.resourceSelected = nodesSelected
         this.allSubjectsData = await this.calculateRecords(this.resourceSelected, null, null, "subject", this.getFilters)
       }
       //When user lands on subject type after selecting the domain type
