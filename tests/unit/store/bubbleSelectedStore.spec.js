@@ -14,6 +14,7 @@ describe('bubbleSelectedStore store methods', () => {
       domainType: "",
       subjectList: [],
       nodeList: {},
+      nodeSelected: {},
       domainList: [],
       allSubjects: false
     };
@@ -38,15 +39,32 @@ describe('bubbleSelectedStore store methods', () => {
   });
 
   it("can check subjectSelected mutations", () => {
-    const returnedVal = "Test"
-    mutations.subjectSelected(state, {subjectSelected: returnedVal});
-    expect(state.subjectType).toBe(returnedVal);
+    const returnedVal = {
+      subjectSelected : "Test",
+      recordsNumber: 1233
+    }
+    mutations.subjectSelected(state, returnedVal);
+    expect(state.subjectType).toBe(returnedVal.subjectSelected);
+    expect(state.nodeSelected.records).toBe(returnedVal.subjectSelected);
+    expect(state.nodeSelected.recordsNumber).toBe(returnedVal.recordsNumber);
   });
 
+  it("can check allSubjectsSelected mutations", () => {
+    const returnedVal = true
+    mutations.allSubjectsSelected(state, returnedVal);
+    expect(state.allSubjects).toBe(returnedVal);
+  });
+
+
   it("can check domainSelected mutations", () => {
-    const returnedVal = "Test"
-    mutations.domainSelected(state, {domainSelected: returnedVal});
-    expect(state.domainType).toBe(returnedVal);
+    const returnedVal = {
+      domainSelected : "Test",
+      recordsNumber: 1233
+    }
+    mutations.domainSelected(state, returnedVal);
+    expect(state.domainType).toBe(returnedVal.domainSelected);
+    expect(state.nodeSelected.records).toBe(returnedVal.domainSelected);
+    expect(state.nodeSelected.recordsNumber).toBe(returnedVal.recordsNumber);
   });
 
 
@@ -59,6 +77,7 @@ describe('bubbleSelectedStore store methods', () => {
       domainType: "",
       subjectList: [],
       nodeList: {},
+      nodeSelected: {},
       domainList: [],
       allSubjects: false
     }
@@ -98,12 +117,44 @@ describe('bubbleSelectedStore store methods', () => {
     expect(builtData).toBe("Test");
   });
 
+  it("can check getSubjectList getters", () => {
+    const stateValue = {
+      subjectList: ["A", "B"]
+    }
+    const builtData = getters.getSubjectList(stateValue);
+    expect(builtData).toStrictEqual(["A", "B"]);
+  });
+
+  it("can check getAllSubjects getters", () => {
+    const stateValue = {
+      allSubjects: true
+    }
+    const builtData = getters.getAllSubjects(stateValue);
+    expect(builtData).toBe(true);
+  });
+
   it("can check getDomain getters", () => {
     const stateValue = {
       domainType: "Test"
     }
     const builtData = getters.getDomain(stateValue);
     expect(builtData).toBe("Test");
+  });
+
+  it("can check getDomainList getters", () => {
+    const stateValue = {
+      domainList: ["A", "B"]
+    }
+    const builtData = getters.getDomainList(stateValue);
+    expect(builtData).toStrictEqual(["A", "B"]);
+  });
+
+  it("can check getNodes getters", () => {
+    const stateValue = {
+      nodeSelected: {name: "A"}
+    }
+    const builtData = getters.getNodes(stateValue);
+    expect(builtData).toStrictEqual({name: "A"});
   });
 
 })

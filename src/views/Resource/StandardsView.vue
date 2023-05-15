@@ -2,7 +2,16 @@
   <div>
     <Jumbotron />
     <div class="px-md-10 pa-5 mb-8">
-      <Selection />
+      <div class="d-flex align-center mb-2">
+        <Selection />
+        <AddNodeButton
+          v-if="getResource"
+        />
+      </div>
+      <NodesTable
+        v-if="getNodeList && getNodeList.length"
+        :get-nodes-data="getNodeList"
+      />
       <ContinueButton :continue-button="continueButton" />
       <Standards
         @enableFairSharingButton="enableFairSharingButton"
@@ -29,6 +38,8 @@ import ContinueButton from "@/components/Navigation/ContinueButton"
 import RecordsTable from "@/components/Others/RecordsTable"
 import Jumbotron from "@/components/Navigation/Jumbotron";
 import Selection from "@/components/Others/Selection"
+import NodesTable from "@/components/Others/NodesTable.vue";
+import AddNodeButton from "@/components/Navigation/AddNodeButton.vue";
 export default {
   name: 'StandardsView',
   components: {
@@ -38,7 +49,9 @@ export default {
     ContinueButton,
     RecordsTable,
     Jumbotron,
-    Selection
+    Selection,
+    AddNodeButton,
+    NodesTable,
   },
   data:() => {
     return {
@@ -49,6 +62,7 @@ export default {
   },
   computed:{
     ...mapGetters("bubbleSelectedStore", ['getAllResources', 'getTopResource', 'getResource']),
+    ...mapGetters("nodeListStore", ['getNodeList'])
   },
   destroyed() {
     this.showResource = false
