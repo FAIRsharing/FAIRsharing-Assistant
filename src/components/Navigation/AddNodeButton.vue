@@ -53,7 +53,7 @@ export default {
       return this.$route.name;
     },
     ...mapGetters("bubbleSelectedStore", ['getTopResource','getResource','getSubject', 'getDomain', 'getNodes']),
-    ...mapMutations("nodeListStore", ['nodeListStore']),
+    ...mapMutations("nodeListStore", ['nodeLists']),
     ...mapGetters("nodeListStore", ['getNodeFound'])
   },
   beforeDestroy() {
@@ -61,15 +61,28 @@ export default {
   },
   methods:{
     addNodeToList() {
-      this.$store.commit("nodeListStore/nodeLists", this.getNodes)
-      if (this.getNodeFound) {
-        this.showAlertTooltip = true
-        this._timerId = setTimeout(() => this.showAlertTooltip = false, 3000)
-      }
-      else {
-        this.showAlertTooltip = false
+      this.$store.commit("nodeListStore/nodeLists", [this.getNodes, this.currentRouteName])
+
+      //When user is on database/standards/policies page
+      if ((this.currentRouteName === "DatabaseView") || (this.currentRouteName === "StandardsView") || (this.currentRouteName === "PoliciesView")) {
+        if (this.getNodeFound["isResourceNode"]) {
+          this.alertTooltip()
+        }
       }
 
+      //When user is on subject page
+      else if (this.currentRouteName === "SubjectTypeView") {
+        if (this.getNodeFound["isSubjectNode"]) {
+          this.alertTooltip()
+        }
+      }
+
+      //When user is on domain page
+      else if (this.currentRouteName === "DomainTypeView") {
+        if (this.getNodeFound["isDomainNode"]) {
+          this.alertTooltip()
+        }
+      }
     },
     getNodeName() {
       if ((this.currentRouteName === "DatabaseView") || (this.currentRouteName === "StandardsView") || (this.currentRouteName === "PoliciesView")) {
@@ -81,6 +94,10 @@ export default {
       else if (this.currentRouteName === "DomainTypeView") {
         return this.getDomain
       }
+    },
+    alertTooltip() {
+      this.showAlertTooltip = true
+      this._timerId = setTimeout(() => this.showAlertTooltip = false, 3000)
     },
   },
 }

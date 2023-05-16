@@ -7,13 +7,9 @@
         <AddNodeButton
           v-if="getResource"
         />
-        <TotalRecords
-          v-if="getNodeList && getNodeList.length"
-          :get-nodes-data="getNodeList"
-        />
       </div>
       <NodesList
-        v-if="getNodeList && getNodeList.length"
+        v-if="isNodeList"
         :get-nodes-data="getNodeList"
       />
       <ContinueButton :continue-button="continueButton" />
@@ -39,7 +35,7 @@ import Jumbotron from "@/components/Navigation/Jumbotron";
 import Selection from "@/components/Others/Selection"
 import NodesList from "@/components/Others/NodesList.vue";
 import AddNodeButton from "@/components/Navigation/AddNodeButton.vue";
-import TotalRecords from "@/components/Others/TotalRecords.vue";
+
 export default {
   name: 'StandardsView',
   components: {
@@ -50,8 +46,7 @@ export default {
     Jumbotron,
     Selection,
     AddNodeButton,
-    NodesList,
-    TotalRecords
+    NodesList
   },
   data:() => {
     return {
@@ -62,7 +57,12 @@ export default {
   },
   computed:{
     ...mapGetters("bubbleSelectedStore", ['getAllResources', 'getTopResource', 'getResource']),
-    ...mapGetters("nodeListStore", ['getNodeList'])
+    ...mapGetters("nodeListStore", ['getNodeList']),
+    isNodeList() {
+      const {resourceNodeList, subjectNodeList, domainNodeList} = this.getNodeList
+      if ((resourceNodeList.length) || (subjectNodeList.length) || (domainNodeList.length)) return true
+      return false
+    },
   },
   mounted() {
     let _module = this;

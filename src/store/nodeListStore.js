@@ -1,7 +1,33 @@
 const state = {
-  nodeList: [],
-  nodeFound: false
+  nodeList: {
+    resourceNodeList: [],
+    subjectNodeList: [],
+    domainNodeList: []
+  },
+  nodeFound: {
+    isResourceNode: false,
+    isSubjectNode: false,
+    isDomainNode: false,
+  }
 };
+/**
+ *
+ * @param recordArray - array of records
+ * @param nodeItem - Object of a record
+ * @returns {boolean}
+ */
+const isNodePresent = (recordArray, nodeItem) => {
+  return recordArray.find(({records}) => records === nodeItem["records"])
+}
+
+/**
+ *
+ * @param recordArray - array of records
+ * @param nodeItem - Object of a record
+ */
+const deleteNode = (recordArray, nodeItem) => {
+  recordArray.splice(recordArray.indexOf(nodeItem), 1)
+}
 
 const actions = {
   resetNodeLists({commit}) {
@@ -10,21 +36,78 @@ const actions = {
 }
 
 const mutations = {
-  nodeLists (state, nodeItem) {
-    const found = state.nodeList.find(({records}) => records === nodeItem["records"])
-    if(!found) {
-      state.nodeList.push(nodeItem)
-      state.nodeFound = false
+  nodeLists (state, [nodeItem, routeName]) {
+    let {resourceNodeList, subjectNodeList, domainNodeList} = state.nodeList
+
+    // When Resource Node is selected
+    if ((routeName === "DatabaseView") || (routeName === "StandardsView") || (routeName === "PoliciesView")) {
+      const isFound = isNodePresent(resourceNodeList, nodeItem)
+
+      if(!isFound) {
+        resourceNodeList.push(nodeItem)
+        state.nodeFound["isResourceNode"] = false
+      }
+      else {
+        state.nodeFound["isResourceNode"] = true
+      }
     }
-    else {
-      state.nodeFound = true
+
+    // When Subject Node is selected
+    if (routeName === "SubjectTypeView") {
+      const isFound = isNodePresent(subjectNodeList, nodeItem)
+      if(!isFound) {
+        subjectNodeList.push(nodeItem)
+        state.nodeFound["isSubjectNode"] = false
+      }
+      else {
+        state.nodeFound["isSubjectNode"] = true
+      }
     }
+
+    // When Domain Node is selected
+    if (routeName === "DomainTypeView") {
+      const isFound = isNodePresent(domainNodeList, nodeItem)
+      if(!isFound) {
+        domainNodeList.push(nodeItem)
+        state.nodeFound["isDomainNode"] = false
+      }
+      else {
+        state.nodeFound["isDomainNode"] = true
+      }
+    }
+
+
   },
   deleteNode(state, nodeItem) {
-    state.nodeList.splice(state.nodeList.indexOf(nodeItem), 1)
+    let {resourceNodeList, subjectNodeList, domainNodeList} = state.nodeList
+    const {type} = nodeItem
+
+    // For Resource Node is selected
+    if (type === "resource") {
+      deleteNode(resourceNodeList, nodeItem)
+    }
+    else if (type === "subject") {
+      deleteNode(subjectNodeList, nodeItem)
+    }
+    else if (type === "domain") {
+      deleteNode(domainNodeList, nodeItem)
+    }
+   
   },
   resetNodeLists(state) {
-    state.nodeList = []
+    state.nodeList = {
+      resourceNodeList: [],
+      subjectNodeList: [],
+      domainNodeList: []
+    }
+  },
+
+  resetNodeFound(state) {
+    state.nodeFound = {
+      isResourceNode: false,
+      isSubjectNode: false,
+      isDomainNode: false,
+    }
   },
 
 };

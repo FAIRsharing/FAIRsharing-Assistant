@@ -6,7 +6,7 @@
       v-bind="chip['attributes']"
       class="ma-2"
     >
-      {{ chip["text"] }} : {{ totalRecordsNumber }}
+      {{ chip["text"] }} {{ type }} : {{ totalRecordsNumber }}
     </v-chip>
   </div>
 </template>
@@ -19,11 +19,15 @@ export default {
       type: Array,
       required: true
     },
+    type:{
+      type: String,
+      required: true
+    }
   },
   data () {
     return {
       chip: {
-        text: "Total Records",
+        text: "Total",
         attributes: {
           label: true,
           textColor:"white",

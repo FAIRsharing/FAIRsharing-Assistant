@@ -26,13 +26,15 @@ const mutations = {
     if (resource["childResourceSelected"] === "") {
       state.nodeSelected = {
         records: resource["topResourceSelected"],
-        recordsNumber: resource["recordsNumber"]
+        recordsNumber: resource["recordsNumber"],
+        type: "resource"
       }
     }
     else {
       state.nodeSelected = {
         records: resource["childResourceSelected"],
-        recordsNumber: resource["recordsNumber"]
+        recordsNumber: resource["recordsNumber"],
+        type: "resource"
       }
     }
 
@@ -43,7 +45,8 @@ const mutations = {
       state.allResources.push({
         registry : resource["topResourceSelected"],
         records : resource["childResourceSelected"],
-        recordsNumber: resource["recordsNumber"]
+        recordsNumber: resource["recordsNumber"],
+        type: "resource"
       })
     }
   },
@@ -51,7 +54,8 @@ const mutations = {
     state.subjectType = subject["subjectSelected"]
     state.nodeSelected = {
       records: subject["subjectSelected"],
-      recordsNumber: subject["recordsNumber"]
+      recordsNumber: subject["recordsNumber"],
+      type: "subject"
     }
     /* istanbul ignore next */
     const found = state.subjectList.find(({records}) => records === state.subjectType)
@@ -60,7 +64,8 @@ const mutations = {
     if(!found) {
       state.subjectList.push({
         records: subject["subjectSelected"],
-        recordsNumber: subject["recordsNumber"]
+        recordsNumber: subject["recordsNumber"],
+        type: "subject"
       })
     }
   },
@@ -71,7 +76,8 @@ const mutations = {
     state.domainType = domain["domainSelected"]
     state.nodeSelected = {
       records: domain["domainSelected"],
-      recordsNumber: domain["recordsNumber"]
+      recordsNumber: domain["recordsNumber"],
+      type: "domain"
     }
     // /* istanbul ignore next */
     const found = state.domainList.find(({records}) => records === state.domainType)
@@ -80,7 +86,8 @@ const mutations = {
     if(!found) {
       state.domainList.push({
         records: domain["domainSelected"],
-        recordsNumber: domain["recordsNumber"]
+        recordsNumber: domain["recordsNumber"],
+        type: "domain"
       })
     }
   },
