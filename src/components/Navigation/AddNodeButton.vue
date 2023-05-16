@@ -1,6 +1,6 @@
 <template>
   <div
-    class="navSecond align-center ml-4"
+    class="navSecond align-center ml-2"
   >
     <v-tooltip
       v-model="showAlertTooltip"
@@ -19,6 +19,25 @@
         </v-btn>
       </template>
       <span>Already Added!</span>
+    </v-tooltip>
+
+    <v-tooltip
+      color="indigo"
+      right
+    >
+      <template #activator="{ on, attrs }">
+        <v-icon
+          color="primary"
+          dark
+          small
+          v-bind="attrs"
+          class="ml-2"
+          v-on="on"
+        >
+          mdi-wrench
+        </v-icon>
+      </template>
+      <span>Click Add {{ getNodeName() }} to add to the list</span>
     </v-tooltip>
   </div>
 </template>

@@ -1,6 +1,6 @@
 <template>
   <div
-    class="navSecond align-center ml-4"
+    class="navSecond align-center"
   >
     <v-chip
       v-bind="chip['attributes']"

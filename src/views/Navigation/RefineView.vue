@@ -2,7 +2,6 @@
   <div>
     <Jumbotron />
     <div class="px-md-10 pa-5 mb-8">
-      <Selection />
       <div
         class="d-flex full-width mb-8"
         style="max-width: 300px; margin: 0 auto"
@@ -27,7 +26,6 @@ import Jumbotron from "@/components/Navigation/Jumbotron";
 import SubjectButton from "@/components/Navigation/SubjectButton";
 import DomainButton from "@/components/Navigation/DomainButton";
 import AddOnFilters from "@/components/Others/AddOnFilters.vue";
-import Selection from "@/components/Others/Selection";
 
 export default {
   name: 'RefineView',
@@ -38,7 +36,6 @@ export default {
     SubjectButton,
     DomainButton,
     AddOnFilters,
-    Selection,
   },
   data:() => {
     return {

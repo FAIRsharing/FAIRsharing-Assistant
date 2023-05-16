@@ -3,7 +3,6 @@
     <Jumbotron />
     <div class="px-md-10 pa-5 mb-8">
       <div class="d-flex align-center mb-2">
-        <Selection />
         <AddNodeButton
           v-if="getDomain"
         />
@@ -32,7 +31,6 @@ import FairSharingLink from "@/components/Navigation/FairSharingLink";
 import StartOver from "@/components/Navigation/StartOver"
 import ContinueButton from "@/components/Navigation/ContinueButton"
 import Jumbotron from "@/components/Navigation/Jumbotron"
-import Selection from "@/components/Others/Selection"
 import NodesList from "@/components/Others/NodesList.vue";
 import AddNodeButton from "@/components/Navigation/AddNodeButton.vue";
 
@@ -45,7 +43,6 @@ export default {
     StartOver,
     ContinueButton,
     Jumbotron,
-    Selection,
     AddNodeButton,
     NodesList
   },
