@@ -10,10 +10,10 @@
       class="text-left"
     >
       <v-col
-        cols="3"
-        lg="3"
-        md="3"
-        sm="3"
+        cols="2"
+        lg="2"
+        md="2"
+        sm="2"
       >
         <TotalRecords
           :get-nodes-data="getNodesData['resourceNodeList']"
@@ -21,10 +21,10 @@
         />
       </v-col>
       <v-col
-        cols="9"
-        lg="9"
-        md="9"
-        sm="9"
+        cols="10"
+        lg="10"
+        md="10"
+        sm="10"
       >
         <v-chip
           v-for="(item, index) in getNodesData['resourceNodeList']"
@@ -32,7 +32,7 @@
           class="ma-2"
           color="orange"
           text-color="white"
-          close
+          :close="isRefineView"
           @click:close="deleteItem(item)"
         >
           <v-avatar
@@ -52,10 +52,10 @@
       class="text-left"
     >
       <v-col
-        cols="3"
-        lg="3"
-        md="3"
-        sm="3"
+        cols="2"
+        lg="2"
+        md="2"
+        sm="2"
       >
         <TotalRecords
           :get-nodes-data="getNodesData['subjectNodeList']"
@@ -63,10 +63,10 @@
         />
       </v-col>
       <v-col
-        cols="9"
-        lg="9"
-        md="9"
-        sm="9"
+        cols="10"
+        lg="10"
+        md="10"
+        sm="10"
       >
         <v-chip
           v-for="(item, index) in getNodesData['subjectNodeList']"
@@ -74,7 +74,7 @@
           class="ma-2"
           color="orange"
           text-color="white"
-          close
+          :close="isRefineView"
           @click:close="deleteItem(item)"
         >
           <v-avatar
@@ -94,10 +94,10 @@
       class="text-left"
     >
       <v-col
-        cols="3"
-        lg="3"
-        md="3"
-        sm="3"
+        cols="2"
+        lg="2"
+        md="2"
+        sm="2"
       >
         <TotalRecords
           :get-nodes-data="getNodesData['domainNodeList']"
@@ -105,10 +105,10 @@
         />
       </v-col>
       <v-col
-        cols="9"
-        lg="9"
-        md="9"
-        sm="9"
+        cols="10"
+        lg="10"
+        md="10"
+        sm="10"
       >
         <v-chip
           v-for="(item, index) in getNodesData['domainNodeList']"
@@ -116,7 +116,7 @@
           class="ma-2"
           color="orange"
           text-color="white"
-          close
+          :close="isRefineView"
           @click:close="deleteItem(item)"
         >
           <v-avatar
@@ -144,7 +144,14 @@ export default {
       required: true
     },
   },
-
+  computed: {
+    currentRouteName() {
+      return this.$route.name;
+    },
+    isRefineView() {
+      return this.currentRouteName !== "RefineView" ? true : false
+    }
+  },
   methods:{
     deleteItem (node) {
       this.$store.commit('nodeListStore/deleteNode', node);

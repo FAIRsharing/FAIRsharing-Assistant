@@ -103,8 +103,8 @@ export default {
       const { subjectNodeList } = this.getNodeList
       let subjectSelected = ""
       if (subjectNodeList && subjectNodeList.length) {
-        const resources = subjectNodeList.map(({records}) => records).join(",")
-        subjectSelected = resources.toLowerCase()
+        const subjects = subjectNodeList.map(({records}) => records).join(",")
+        subjectSelected = subjects.toLowerCase()
       }
       else {
         subjectSelected = null
@@ -115,8 +115,8 @@ export default {
       const { domainNodeList } = this.getNodeList
       let domainSelected = ""
       if (domainNodeList && domainNodeList.length) {
-        const resources = domainNodeList.map(({records}) => records).join(",")
-        domainSelected = resources.toLowerCase()
+        const domains = domainNodeList.map(({records}) => records).join(",")
+        domainSelected = domains.toLowerCase()
       }
       else {
         domainSelected = null

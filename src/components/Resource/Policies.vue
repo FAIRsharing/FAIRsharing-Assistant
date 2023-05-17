@@ -40,6 +40,7 @@ import StringMixin from "@/utils/Others/stringMixin.js"
 import Loaders from "@/components/Loaders/Loaders"
 import totalResourceRecords from "@/utils/ResourceUtils/totalResourceRecords"
 import {forceGraph, parseLevel, svgGraph, toggle, update} from "@/lib/D3GraphClient";
+import getRecords from "@/utils/Others/getRecords";
 
 export default {
   name: 'Policies',
@@ -62,7 +63,8 @@ export default {
     ...mapGetters("bubbleSelectedStore", ['getTopResource','getResource','getSubject', 'getDomain']),
     ...mapGetters("otherResourcesSelectedStore", ["getOtherResourceSelected"]),
     ...mapGetters("breadCrumbStore", ["getBreadCrumbs"]),
-    ...mapState("recordTypeStore", ["allRecordTypes", "loadingData"])
+    ...mapState("recordTypeStore", ["allRecordTypes", "loadingData"]),
+    ...mapGetters("nodeListStore", ["getNodeList"]),
   },
   watch:{
     getTopResource(){
@@ -98,6 +100,7 @@ export default {
     },
 
     async displayResources() {
+      const { subjectNodeList, domainNodeList } = this.getNodeList
       this.allResourceData = await this.createResourceStructure("Policy")
       const otherResources = this.allResourceData["children"].map(({children}) => children)
       const otherResourceType = otherResources.flatMap(child => child)
@@ -106,8 +109,8 @@ export default {
       if (this.getSubject !== "" && this.getDomain !== "") {
         // eslint-disable-next-line no-console
         console.log("SUBJECT & DOMAIN")
-        this.subjectSelected = this.getSubject.toLowerCase()
-        this.domainSelected = this.getDomain.toLowerCase()
+        this.subjectSelected = getRecords(subjectNodeList)
+        this.domainSelected = getRecords(domainNodeList)
         await this.calculateRecords(null, this.subjectSelected, this.domainSelected, otherResourceType)
       }
 
@@ -115,7 +118,7 @@ export default {
       if (this.getSubject === "" && this.getDomain !== "") {
         // eslint-disable-next-line no-console
         console.log("ONLY DOMAIN")
-        this.domainSelected = this.getDomain.toLowerCase()
+        this.domainSelected = getRecords(domainNodeList)
         await this.calculateRecords(null, null, this.domainSelected, otherResourceType)
       }
 
@@ -123,7 +126,7 @@ export default {
       if (this.getSubject !== "" && this.getDomain === "") {
         // eslint-disable-next-line no-console
         console.log("ONLY SUBJECT")
-        this.subjectSelected = this.getSubject.toLowerCase()
+        this.subjectSelected = getRecords(subjectNodeList)
         await this.calculateRecords(null, this.subjectSelected, null, otherResourceType)
       }
       //When User lands on Resource page as an entry point

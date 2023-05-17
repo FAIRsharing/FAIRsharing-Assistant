@@ -38,6 +38,7 @@ import RecordTypes from "@/utils/Others/recordTypes.js";
 import Loaders from "@/components/Loaders/Loaders"
 import calculateRecords from "@/utils/Others/calculateRecords";
 import { svgGraph, forceGraph, parseLevel, update, toggle } from "@/lib/D3GraphClient";
+import getRecords from "@/utils/Others/getRecords";
 export default {
   name: 'SubjectType',
   components: { Loaders },
@@ -60,7 +61,6 @@ export default {
     ...mapState("recordTypeStore", ["allRecordTypes", "loadingData"]),
     ...mapState("variableTagStore", ["variableResponse", "loadingStatus"]),
     ...mapState("browseSubjectsStore", ["subjectBubbleTree", "loadingData"]),
-    ...mapState("topSubjectStore", ["topSubjectBubbleTree", "loadingData"]),
     ...mapGetters("nodeListStore", ["getNodeList"]),
   },
   watch:{
@@ -98,13 +98,14 @@ export default {
     },
 
     async displaySubjects() {
-      // const nodesSelected =  this.getNodeList.map(({records}) => this.formatString(records))
+      const { resourceNodeList, domainNodeList } = this.getNodeList
+
       //When user lands on subject type after selecting the TopResource & domainType type
       if(this.getTopResource !== '' && this.getResource === '' && this.getDomain !== ''){
         // eslint-disable-next-line no-console
         console.log("TOP RESOURCE & DOMAIN")
         await this.allOtherRecordTypes(this.resourceSelected)
-        this.domainSelected = this.getDomain.toLowerCase()
+        this.domainSelected = getRecords(domainNodeList)
         this.allSubjectsData = await this.calculateRecords(this.resourceSelected, null, this.domainSelected, "subject", this.getFilters)
       }
 
@@ -112,8 +113,8 @@ export default {
       if (this.getResource !== '' && this.getDomain !== '') {
         // eslint-disable-next-line no-console
         console.log("OTHER RESOURCE & DOMAIN")
-        this.resourceSelected = this.formatString(this.getResource)
-        this.domainSelected = this.getDomain.toLowerCase()
+        this.resourceSelected = getRecords(resourceNodeList)
+        this.domainSelected = getRecords(domainNodeList)
         this.allSubjectsData = await this.calculateRecords(this.resourceSelected, null, this.domainSelected, "subject", this.getFilters)
       }
 
@@ -128,15 +129,14 @@ export default {
       if(this.getResource !== '' && this.getDomain === '') {
         // eslint-disable-next-line no-console
         console.log("ONLY OTHER RESOURCE")
-        this.resourceSelected = this.formatString(this.getResource)
-        // this.resourceSelected = nodesSelected
+        this.resourceSelected = getRecords(resourceNodeList)
         this.allSubjectsData = await this.calculateRecords(this.resourceSelected, null, null, "subject", this.getFilters)
       }
       //When user lands on subject type after selecting the domain type
       if (this.getTopResource === '' && this.getResource === '' && this.getDomain !== ''){
         // eslint-disable-next-line no-console
         console.log("ONLY DOMAIN")
-        this.domainSelected = this.getDomain.toLowerCase()
+        this.domainSelected = getRecords(domainNodeList)
         this.allSubjectsData = await this.calculateRecords(null, null, this.domainSelected, "subject", this.getFilters)
       }
       //When user lands on subject type as the entry point in the application
