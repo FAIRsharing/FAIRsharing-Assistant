@@ -70,6 +70,7 @@ export default {
   },
   computed:{
     ...mapGetters("bubbleSelectedStore", ['getTopResource', 'getResource', 'getSubject', 'getDomain']),
+    ...mapGetters("nodeListStore", ['getNodeList']),
     currentRouteName() {
       return this.$route.name;
     },
@@ -86,13 +87,41 @@ export default {
       }
     },
     resourceSelected() {
-      return this.getResource ? this.formatString(this.getResource) : null
+      const { resourceNodeList } = this.getNodeList
+      let resourceSelected = ""
+      if (resourceNodeList && resourceNodeList.length) {
+        const resources = resourceNodeList.map(({records}) => records).join(",")
+        resourceSelected = this.formatString(resources)
+      }
+      else {
+        resourceSelected = null
+      }
+      return resourceSelected
+
     },
     subjectSelected() {
-      return this.getSubject ? this.getSubject.toLowerCase() : null
+      const { subjectNodeList } = this.getNodeList
+      let subjectSelected = ""
+      if (subjectNodeList && subjectNodeList.length) {
+        const resources = subjectNodeList.map(({records}) => records).join(",")
+        subjectSelected = resources.toLowerCase()
+      }
+      else {
+        subjectSelected = null
+      }
+      return subjectSelected
     },
     domainSelected() {
-      return this.getDomain ? this.getDomain.toLowerCase() : null
+      const { domainNodeList } = this.getNodeList
+      let domainSelected = ""
+      if (domainNodeList && domainNodeList.length) {
+        const resources = domainNodeList.map(({records}) => records).join(",")
+        domainSelected = resources.toLowerCase()
+      }
+      else {
+        domainSelected = null
+      }
+      return domainSelected
     },
     resourceRedirectionLink() {
       if (this.domainSelected && this.subjectSelected) {

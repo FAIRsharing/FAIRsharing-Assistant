@@ -34,20 +34,15 @@
         />
       </div>
     </v-container>
-    <ApplyFilterButton />
   </div>
 </template>
 
 <script>
 import {mapGetters, mapMutations} from "vuex";
 import addOnFilters from "@/data/addOnFilters.json"
-import ApplyFilterButton from "@/components/Navigation/ApplyFilterButton";
 
 export default {
   name: 'AddOnFilters',
-  components: {
-    ApplyFilterButton
-  },
   data:() => {
     return {
       topResult: '',

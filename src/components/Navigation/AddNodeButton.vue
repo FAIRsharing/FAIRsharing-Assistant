@@ -32,9 +32,10 @@
           small
           v-bind="attrs"
           class="ml-2"
-          v-on="on"
+          v-on="on
+          "
         >
-          mdi-wrench
+          fa fa-question-circle
         </v-icon>
       </template>
       <span>Click Add {{ getNodeName() }} to add to the list</span>
