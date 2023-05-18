@@ -9,7 +9,7 @@ const breadcrumb = (d, root) => {
 /**
 *
 * @param {String} - name
-* @param {Array of Objects } - node (All the nodes)
+* @param {Array } - node (All the nodes)
 * @returns {Array}
 */
 
