@@ -14,9 +14,17 @@ const actions = {
   /* istanbul ignore next */
   async fetchVariableTags({commit}, [resource, subject, domain, tag, addonfilters]) {
     // eslint-disable-next-line no-console
-    // console.log("addonfilters::", addonfilters)
+    // console.log("addonfilters::", addonfilters.length)
     commit("setLoadingStatus", true)
-    if (addonfilters.length > 0) {
+    if (addonfilters.length === 0) {
+      VARIABLE_TAGS.queryParam = {
+        recordType: resource,
+        subjects: subject,
+        domains: domain,
+        groupBy: tag
+      }
+    }
+    else {
       VARIABLE_TAGS.queryParam = {
         recordType: resource,
         subjects: subject,
@@ -38,17 +46,9 @@ const actions = {
         dataVersioning: addonfilters.get("dataVersioning") ? addonfilters.get("dataVersioning") : null
       }
     }
-    else {
-      VARIABLE_TAGS.queryParam = {
-        recordType: resource,
-        subjects: subject,
-        domains: domain,
-        groupBy: tag
-      }
-    }
     //Delete the null/empty parameter
     for (const key in VARIABLE_TAGS.queryParam) {
-      if (VARIABLE_TAGS.queryParam[key] === null || VARIABLE_TAGS.queryParam[key] === '' || VARIABLE_TAGS.queryParam[key] === undefined || VARIABLE_TAGS.queryParam[key] === false) {
+      if (VARIABLE_TAGS.queryParam[key] === null || VARIABLE_TAGS.queryParam[key] === '' || VARIABLE_TAGS.queryParam[key] === undefined || VARIABLE_TAGS.queryParam[key] === false || VARIABLE_TAGS.queryParam[key].length === 0) {
         delete VARIABLE_TAGS.queryParam[key];
       }
     }
