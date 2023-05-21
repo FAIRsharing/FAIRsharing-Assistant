@@ -105,32 +105,8 @@ export default {
       const otherResources = this.allResourceData["children"].map(({children}) => children)
       const otherResourceType = otherResources.flatMap(child => child)
 
-      //When User lands on Resource page after selecting the Subject & Domain
-      if (this.getSubject !== "" && this.getDomain !== "") {
-        // eslint-disable-next-line no-console
-        console.log("SUBJECT & DOMAIN")
-        this.subjectSelected = getRecords(subjectNodeList)
-        this.domainSelected = getRecords(domainNodeList)
-        await this.calculateRecords(null, this.subjectSelected, this.domainSelected, otherResourceType)
-      }
-
-      //When User lands on Resource page after selecting the Domain
-      if (this.getSubject === "" && this.getDomain !== "") {
-        // eslint-disable-next-line no-console
-        console.log("ONLY DOMAIN")
-        this.domainSelected = getRecords(domainNodeList)
-        await this.calculateRecords(null, null, this.domainSelected, otherResourceType)
-      }
-
-      //When User lands on Resource page after selecting the Subject
-      if (this.getSubject !== "" && this.getDomain === "") {
-        // eslint-disable-next-line no-console
-        console.log("ONLY SUBJECT")
-        this.subjectSelected = getRecords(subjectNodeList)
-        await this.calculateRecords(null, this.subjectSelected, null, otherResourceType)
-      }
-      //When User lands on Resource page as an entry point
-      if (this.getResource === "" && this.getSubject === "" && this.getDomain === "") {
+      //When No Subject and Domain is selected
+      if (subjectNodeList.length === 0 && domainNodeList.length === 0) {
         // eslint-disable-next-line no-console
         console.log("ALL Policies")
         //Fetching all resources/records
@@ -140,6 +116,12 @@ export default {
         const totalRecords = totalResourceRecords(this.getOtherResourceSelected)
         this.allResourceData["children"][0].records_count
             = totalRecords
+      }
+      //When Subject/Domain is/are selected
+      else{
+        this.subjectSelected =  subjectNodeList.length ? getRecords(subjectNodeList) : null
+        this.domainSelected =  domainNodeList.length ? getRecords(domainNodeList) : null
+        await this.calculateRecords(null, this.subjectSelected, this.domainSelected, otherResourceType)
       }
     },
 

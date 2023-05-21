@@ -97,45 +97,23 @@ export default {
 
 
     async displayDomains() {
+  
       const { resourceNodeList, subjectNodeList } = this.getNodeList
-      //When user lands on domain type after selecting the TopResource & SubjectType type
-      if(this.getTopResource !== '' && this.getResource === '' && this.getSubject !== ""){
-        // eslint-disable-next-line no-console
-        console.log("TOP RESOURCE & SUBJECT")
-        await this.allOtherRecordTypes(this.resourceSelected)
-        this.subjectSelected = getRecords(subjectNodeList)
-        this.allDomainData = await this.calculateRecords(this.resourceSelected, this.subjectSelected, null, "domain", this.getFilters)
+      let resourceDataList = []
+      const topResourceData = await this.allOtherRecordTypes(this.resourceSelected)
+      const otherResourceData = resourceNodeList.filter(({type}) => type !== "resourceParent")
+      const isTopResource = resourceNodeList.some(({type}) => type === "resourceParent")
+      if (isTopResource) {
+        resourceDataList = topResourceData.concat(getRecords(otherResourceData))
       }
-      //When user lands on domain type after selecting the OtherResource & SubjectType type
-      if(this.getTopResource !== '' && this.getResource !== '' && this.getSubject !==""){
-        // eslint-disable-next-line no-console
-        console.log("OTHER RESOURCE & SUBJECT")
-        this.resourceSelected = getRecords(resourceNodeList)
-        this.subjectSelected = getRecords(subjectNodeList)
-        this.allDomainData = await this.calculateRecords(this.resourceSelected, this.subjectSelected, null, "domain", this.getFilters)
+      else {
+        resourceDataList = getRecords(resourceNodeList)
       }
-      //When user lands on domain type after selecting the TOPResource type
-      if(this.getTopResource !== '' && this.getResource === '' && this.getSubject === ""){
-        // eslint-disable-next-line no-console
-        console.log("ONLY TOP RESOURCE")
-        // await this.recordTypes()
-        await this.allOtherRecordTypes(this.resourceSelected)
-        this.allDomainData = await this.calculateRecords(this.resourceSelected, null, null, "domain", this.getFilters)
-      }
-      //When user lands on domain type after selecting the OtherResource type
-      if(this.getTopResource !== '' && this.getResource !== '' && this.getSubject === ""){
-        // eslint-disable-next-line no-console
-        console.log("ONLY OTHER RESOURCE")
-        this.resourceSelected = getRecords(resourceNodeList)
-        this.allDomainData = await this.calculateRecords(this.resourceSelected, null, null, "domain", this.getFilters)
-      }
-      //When user lands on domain type after selecting SubjectType type
-      if(this.getTopResource === '' && this.getResource === '' && this.getSubject !==""){
-        // eslint-disable-next-line no-console
-        console.log("ONLY SUBJECT")
-        this.subjectSelected = getRecords(subjectNodeList)
-        this.allDomainData = await this.calculateRecords(null, this.subjectSelected, null, "domain", this.getFilters)
-      }
+      this.resourceSelected = resourceNodeList.length ? resourceDataList : null
+      this.subjectSelected =  subjectNodeList.length ? getRecords(subjectNodeList) : null
+
+      this.allDomainData = await this.calculateRecords(this.resourceSelected, this.subjectSelected, null, "domain", this.getFilters)
+
     },
     async d3Chart() {
       const routeName = this.$route.name

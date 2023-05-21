@@ -4,7 +4,7 @@
     <div class="px-md-10 pa-5 mb-8">
       <div class="d-flex align-center mb-2">
         <AddNodeButton
-          v-if="getResource"
+          v-if="getTopResource"
         />
       </div>
       <NodesList
@@ -32,7 +32,7 @@ import StartOver from "@/components/Navigation/StartOver";
 import ContinueButton from "@/components/Navigation/ContinueButton"
 import Jumbotron from "@/components/Navigation/Jumbotron";
 import NodesList from "@/components/Others/NodesList.vue";
-import AddNodeButton from "@/components/Navigation/AddNodeButton.vue";
+import AddNodeButton from "@/components/Others/AddNodeButton.vue";
 
 export default {
   name: 'StandardsView',

@@ -26,6 +26,7 @@ const createResourceStructure = {
 
       //Converting array of topResource/registry to object
       const topResourceTypeObj = topResources.map((name) => ({name}))
+
       //Creating Array of object for topResource/registry with chidlren (array of objects)
       topResourceTypeObj.forEach((ele) => {
         ele["children"] = []

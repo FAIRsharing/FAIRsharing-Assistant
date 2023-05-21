@@ -22,12 +22,14 @@ const calculateResourceRecords = {
       //Using multiTagFilter Query
       await this.fetchMultiTagsTerms([resourceSelected, subjectSelected, domainSelected])
       for (let childResource of otherResourceType) {
-        if (childResource !== null) childResource["records_count"] = 0
-        this.fairSharingRecords.filter(ele => {
-          if (ele["type"] === this.formatString(childResource["name"])) {
-            childResource["records_count"]++
-          }
-        })
+        if (childResource !== null) {
+          childResource["records_count"] = 0
+          this.fairSharingRecords.filter(ele => {
+            if (ele["type"] === this.formatString(childResource["name"])) {
+              childResource["records_count"]++
+            }
+          })
+        }
       }
       otherResourcesSelectedStore.commit("otherResourcesSelectedStore/otherResourceSelected", otherResourceType)
     },

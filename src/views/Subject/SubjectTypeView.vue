@@ -31,7 +31,7 @@ import FairSharingLink from "@/components/Navigation/FairSharingLink";
 import StartOver from "@/components/Navigation/StartOver"
 import ContinueButton from "@/components/Navigation/ContinueButton"
 import Jumbotron from "@/components/Navigation/Jumbotron"
-import AddNodeButton from "@/components/Navigation/AddNodeButton.vue";
+import AddNodeButton from "@/components/Others/AddNodeButton.vue";
 import NodesList from "@/components/Others/NodesList.vue";
 
 export default {

@@ -83,7 +83,7 @@ const mutations = {
     const {type} = nodeItem
 
     // For Resource Node is selected
-    if (type === "resource") {
+    if ((type === "resource") || (type === "resourceParent")) {
       deleteNode(resourceNodeList, nodeItem)
     }
     else if (type === "subject") {

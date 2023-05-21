@@ -59,7 +59,7 @@ const calculateRecords = {
     },
     /**
      *
-     * @param {String} resourceSelected - The resource selected
+     * @param {*[]} resourceSelected - The resource selected
      * @param {String} subjectSelected - The subject selected
      * @param {String} domainSelected - The domain selected
      * @param {String} groupBy - group by Subject/Domain

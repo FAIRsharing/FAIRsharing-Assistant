@@ -20,10 +20,11 @@ const actions = {
     }
     //Delete the null/empty parameter
     for (const key in MULTI_TAGS.queryParam) {
-      if (MULTI_TAGS.queryParam[key] === null || MULTI_TAGS.queryParam[key] === '') {
+      if (MULTI_TAGS.queryParam[key] === null || MULTI_TAGS.queryParam[key] === '' || MULTI_TAGS.queryParam[key].length === 0) {
         delete MULTI_TAGS.queryParam[key];
       }
     }
+    console.log("MULTI_TAGS.queryParam::", MULTI_TAGS.queryParam)
     let response = await CLIENT.executeQuery(MULTI_TAGS);
     commit("setFairSharingRecords", response['multiTagFilter'])
     commit("setLoadingStatus", false)

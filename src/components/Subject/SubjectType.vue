@@ -100,47 +100,8 @@ export default {
     async displaySubjects() {
       const { resourceNodeList, domainNodeList } = this.getNodeList
 
-      //When user lands on subject type after selecting the TopResource & domainType type
-      if(this.getTopResource !== '' && this.getResource === '' && this.getDomain !== ''){
-        // eslint-disable-next-line no-console
-        console.log("TOP RESOURCE & DOMAIN")
-        await this.allOtherRecordTypes(this.resourceSelected)
-        this.domainSelected = getRecords(domainNodeList)
-        this.allSubjectsData = await this.calculateRecords(this.resourceSelected, null, this.domainSelected, "subject", this.getFilters)
-      }
-
-      //When user lands on subject type after selecting the resource & domain type
-      if (this.getResource !== '' && this.getDomain !== '') {
-        // eslint-disable-next-line no-console
-        console.log("OTHER RESOURCE & DOMAIN")
-        this.resourceSelected = getRecords(resourceNodeList)
-        this.domainSelected = getRecords(domainNodeList)
-        this.allSubjectsData = await this.calculateRecords(this.resourceSelected, null, this.domainSelected, "subject", this.getFilters)
-      }
-
-      //When user lands on subject type after selecting the TOP Resource type
-      if(this.getTopResource !== '' && this.getResource === '' && this.getDomain === '') {
-        // eslint-disable-next-line no-console
-        console.log("ONLY TOP RESOURCE")
-        await this.allOtherRecordTypes(this.resourceSelected)
-        this.allSubjectsData = await this.calculateRecords(this.resourceSelected, null, null, "subject", this.getFilters)
-      }
-      //When user lands on subject type after selecting the resource type
-      if(this.getResource !== '' && this.getDomain === '') {
-        // eslint-disable-next-line no-console
-        console.log("ONLY OTHER RESOURCE")
-        this.resourceSelected = getRecords(resourceNodeList)
-        this.allSubjectsData = await this.calculateRecords(this.resourceSelected, null, null, "subject", this.getFilters)
-      }
-      //When user lands on subject type after selecting the domain type
-      if (this.getTopResource === '' && this.getResource === '' && this.getDomain !== ''){
-        // eslint-disable-next-line no-console
-        console.log("ONLY DOMAIN")
-        this.domainSelected = getRecords(domainNodeList)
-        this.allSubjectsData = await this.calculateRecords(null, null, this.domainSelected, "subject", this.getFilters)
-      }
-      //When user lands on subject type as the entry point in the application
-      if(this.getTopResource ==="" && this.getResource === '' && this.getDomain === '') {
+      //When No Resource and Domain is selected
+      if(resourceNodeList.length === 0 && domainNodeList.length === 0) {
         // eslint-disable-next-line no-console
         console.log("ALL SUBJECTS")
         this.$store.commit("bubbleSelectedStore/allSubjectsSelected", true)
@@ -151,6 +112,22 @@ export default {
           children: '',
         }
         this.allSubjectsData["children"] = this.subjectBubbleTree
+      }
+      //When Resource/Domain is/are selected
+      else {
+        let resourceDataList = []
+        const topResourceData = await this.allOtherRecordTypes(this.resourceSelected)
+        const otherResourceData = resourceNodeList.filter(({type}) => type !== "resourceParent")
+        const isTopResource = resourceNodeList.some(({type}) => type === "resourceParent")
+        if (isTopResource) {
+          resourceDataList = topResourceData.concat(getRecords(otherResourceData))
+        }
+        else {
+          resourceDataList = getRecords(resourceNodeList)
+        }
+        this.resourceSelected = resourceNodeList.length ? resourceDataList : null
+        this.domainSelected =  domainNodeList.length ? getRecords(domainNodeList) : null
+        this.allSubjectsData = await this.calculateRecords(this.resourceSelected, null, this.domainSelected, "subject", this.getFilters)
       }
     },
 

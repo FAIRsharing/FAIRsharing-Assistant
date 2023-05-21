@@ -106,7 +106,7 @@ export default {
     },
     getNodeName() {
       if ((this.currentRouteName === "DatabaseView") || (this.currentRouteName === "StandardsView") || (this.currentRouteName === "PoliciesView")) {
-        return this.getResource
+        return !this.getResource ? this.getTopResource : this.getResource
       }
       else if (this.currentRouteName === "SubjectTypeView") {
         return this.getSubject

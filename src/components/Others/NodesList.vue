@@ -3,6 +3,7 @@
     fluid
     class="pa-0"
   >
+    <!-- Resource Node List -->
     <v-row
       v-if="getNodesData['resourceNodeList'] && getNodesData['resourceNodeList'].length"
       dense
@@ -45,6 +46,7 @@
         </v-chip>
       </v-col>
     </v-row>
+    <!-- Subject Node List -->
     <v-row
       v-if="getNodesData['subjectNodeList'] && getNodesData['subjectNodeList'].length"
       dense
@@ -87,6 +89,7 @@
         </v-chip>
       </v-col>
     </v-row>
+    <!-- Domain Node List -->
     <v-row
       v-if="getNodesData['domainNodeList'] && getNodesData['domainNodeList'].length"
       dense
@@ -135,6 +138,7 @@
 <script>
 import TotalRecords from "@/components/Others/TotalRecords.vue";
 
+
 export default {
   name: 'NodesList',
   components: {TotalRecords},
@@ -150,7 +154,7 @@ export default {
     },
     isRefineView() {
       return this.currentRouteName !== "RefineView" ? true : false
-    }
+    },
   },
   methods:{
     deleteItem (node) {

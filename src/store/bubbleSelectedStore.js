@@ -27,7 +27,7 @@ const mutations = {
       state.nodeSelected = {
         records: resource["topResourceSelected"],
         recordsNumber: resource["recordsNumber"],
-        type: "resource"
+        type: "resourceParent"
       }
     }
     else {
