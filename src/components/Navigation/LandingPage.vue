@@ -32,21 +32,42 @@
             :src="item.arrow"
             class="pabsolute questionText"
             contain
-            width="100"
-            height="100"
+            :width="$vuetify.breakpoint.smAndDown? 50 : 70"
+            :height="$vuetify.breakpoint.smAndDown? 50 : 70"
             style="bottom: 0; right: 40px"
           />
         </v-card>
       </v-col>
     </v-row>
-    <v-btn
-      elevated
-      default
-      :disabled="history.length === 0"
-      @click="goBack()"
+    <v-row
+      class="align-stretch justify-center"
     >
-      Previous step
-    </v-btn>
+      <v-col
+        cols="12"
+        lg="10"
+        md="10"
+        sm="12"
+      >
+        <v-btn
+          v-if="history.length"
+          class="white--text"
+          elevated
+          default
+          color="red darken-4"
+          :disabled="!history.length"
+          @click="goBack()"
+        >
+          <v-img
+            src="/assets/Home/Arrow/whiteArrow.png"
+            class="mr-1"
+            :width="20"
+            :height="20"
+            style="transform: rotate(180deg)"
+          />
+          Previous step
+        </v-btn>
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 
@@ -66,7 +87,7 @@ export default {
     }
   },
   mounted() {
-    this.getQuestions();
+    this.getQuestions()
   },
   methods: {
     getQuestions() {
