@@ -32,8 +32,7 @@
               class="white--text startOverBtn"
               color="ready_color"
               raised
-              to="/"
-              @click="overlay = false"
+              @click="onStartOver()"
             >
               OK
             </v-btn>
@@ -53,6 +52,8 @@
 </template>
 
 <script>
+import {mapActions} from "vuex";
+
 export default {
   name: "StartOver",
   data () {
@@ -69,6 +70,18 @@ export default {
       zIndex: 3,
     }
   },
+
+  methods:{
+    ...mapActions("bubbleSelectedStore", ["resetAllSelectedValues"]),
+    ...mapActions("nodeListStore", ["resetNodeLists"]),
+
+    onStartOver() {
+      this.overlay = false
+      this.$router.push("/")
+      this.resetAllSelectedValues()
+      this.resetNodeLists()
+    }
+  }
 
 }
 </script>

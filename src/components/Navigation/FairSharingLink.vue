@@ -3,7 +3,10 @@
     <p class="ma-0">
       <!-- Resource Page Button -->
       <v-btn
-        v-if="currentRouteName === 'ResourceTypeView' || 'DatabaseView' ||'StandardsView'|| 'PoliciesView'"
+        v-if="(currentRouteName === 'ResourceTypeView') ||
+          (currentRouteName ==='DatabaseView') ||
+          (currentRouteName === 'StandardsView') ||
+          (currentRouteName === 'PoliciesView')"
         v-bind="button['attributes']"
         :disabled="!fairSharingButton"
         :href="resourceRedirectionLink"
@@ -39,7 +42,7 @@
 
 <script>
 import { mapGetters } from "vuex"
-import StringMixin from "@/utils/stringMixin.js"
+import StringMixin from "@/utils/Others/stringMixin.js"
 
 export default {
   name: "FairSharingLink",
@@ -67,35 +70,58 @@ export default {
   },
   computed:{
     ...mapGetters("bubbleSelectedStore", ['getTopResource', 'getResource', 'getSubject', 'getDomain']),
+    ...mapGetters("nodeListStore", ['getNodeList']),
     currentRouteName() {
       return this.$route.name;
     },
     topResourceSelected() {
-      let topResource;
       switch(this.getTopResource) {
       case "Databases":
-        topResource = "Database"
-        break;
+        return "Database"
       case "Standards":
-        topResource = "Standard"
-        break;
+        return "Standard"
       case "Policies":
-        topResource = "Policy"
-        break;
+        return "Policy"
       default:
-        topResource = this.getTopResource;
-        break;
+        return this.getTopResource;
       }
-      return topResource
     },
     resourceSelected() {
-      return this.getResource ? this.formatString(this.getResource) : null
+      const { resourceNodeList } = this.getNodeList
+      let resourceSelected = ""
+      if (resourceNodeList && resourceNodeList.length) {
+        const resources = resourceNodeList.map(({records}) => records).join(",")
+        resourceSelected = this.formatString(resources)
+      }
+      else {
+        resourceSelected = null
+      }
+      return resourceSelected
+
     },
     subjectSelected() {
-      return this.getSubject ? this.getSubject.toLowerCase() : null
+      const { subjectNodeList } = this.getNodeList
+      let subjectSelected = ""
+      if (subjectNodeList && subjectNodeList.length) {
+        const subjects = subjectNodeList.map(({records}) => records).join(",")
+        subjectSelected = subjects.toLowerCase()
+      }
+      else {
+        subjectSelected = null
+      }
+      return subjectSelected
     },
     domainSelected() {
-      return this.getDomain ? this.getDomain.toLowerCase() : null
+      const { domainNodeList } = this.getNodeList
+      let domainSelected = ""
+      if (domainNodeList && domainNodeList.length) {
+        const domains = domainNodeList.map(({records}) => records).join(",")
+        domainSelected = domains.toLowerCase()
+      }
+      else {
+        domainSelected = null
+      }
+      return domainSelected
     },
     resourceRedirectionLink() {
       if (this.domainSelected && this.subjectSelected) {
@@ -135,7 +161,7 @@ export default {
       else if (this.resourceSelected) {
         return `${this.fairSharingURL}/search?fairsharingRegistry=${this.topResourceSelected}&recordType=${this.resourceSelected}&subjects=${this.subjectSelected}`
       }
-      else if (this.topResourceSelected) {
+      else if (this.topResourceSelected !== "") {
         return `${this.fairSharingURL}/search?fairsharingRegistry=${this.topResourceSelected}&subjects=${this.subjectSelected}`
       }
       else if(this.domainSelected) {

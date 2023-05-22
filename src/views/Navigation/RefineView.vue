@@ -2,7 +2,6 @@
   <div>
     <Jumbotron />
     <div class="px-md-10 pa-5 mb-8">
-      <Selection />
       <div
         class="d-flex full-width mb-8"
         style="max-width: 300px; margin: 0 auto"
@@ -10,13 +9,13 @@
         <SubjectButton />
         <DomainButton />
       </div>
+      <NodesList
+        v-if="isNodeList"
+        :get-nodes-data="getNodeList"
+      />
       <AddOnFilters />
       <FairSharingLink
         :fair-sharing-button="fairSharingButton"
-      />
-      <RecordsTable
-        v-if="getResource"
-        :get-all-resources="getAllResources"
       />
       <StartOver />
     </div>
@@ -30,9 +29,8 @@ import StartOver from "@/components/Navigation/StartOver";
 import Jumbotron from "@/components/Navigation/Jumbotron";
 import SubjectButton from "@/components/Navigation/SubjectButton";
 import DomainButton from "@/components/Navigation/DomainButton";
-import RecordsTable from "@/components/Others/RecordsTable"
 import AddOnFilters from "@/components/Others/AddOnFilters.vue";
-import Selection from "@/components/Others/Selection";
+import NodesList from "@/components/Others/NodesList.vue";
 
 export default {
   name: 'RefineView',
@@ -42,9 +40,8 @@ export default {
     StartOver,
     SubjectButton,
     DomainButton,
-    RecordsTable,
     AddOnFilters,
-    Selection,
+    NodesList
   },
   data:() => {
     return {
@@ -53,6 +50,12 @@ export default {
   },
   computed:{
     ...mapGetters("bubbleSelectedStore", ['getAllResources', 'getTopResource', 'getResource', 'getSubject', 'getDomain']),
+    ...mapGetters("nodeListStore", ['getNodeList']),
+    isNodeList() {
+      const {resourceNodeList, subjectNodeList, domainNodeList} = this.getNodeList
+      if ((resourceNodeList.length) || (subjectNodeList.length) || (domainNodeList.length)) return true
+      return false
+    },
   },
 };
 </script>

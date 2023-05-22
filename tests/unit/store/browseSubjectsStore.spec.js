@@ -1,10 +1,10 @@
-import {actions, mutations} from "@/store/browseSubjectsStore"
+import browseSubjectsStore from "@/store/browseSubjectsStore"
 import sinon from "sinon"
 import GraphClient from "@/lib/GraphClient/GraphClient.js";
 import BrowseSubjectData from '../../../tests/fixtures/browseSubject.json'
 
 describe('BrowseSubjectsStore store methods', () => {
-
+  const {actions, mutations} = browseSubjectsStore
   const returnedVal = BrowseSubjectData.data;
   let state = {
     subjectBubbleTree: [],

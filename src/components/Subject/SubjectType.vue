@@ -9,24 +9,36 @@
       </v-overlay>
     </v-fade-transition>
     <div
-      id="subjectBubbleChart"
-      ref="circlesDiv"
-      class="charts"
+      ref="breadcrumbdiv"
+      class="breadcrumbs my-8"
+    >
+      <span
+        v-for="(name, i) in getBreadCrumbs"
+        :key="name"
+        class="breadCrumbName"
+      >{{ name }}
+        <span
+          v-if="i+1 < getBreadCrumbs.length"
+          class="connector"
+        > >
+        </span>
+      </span>
+    </div>
+    <div
+      ref="chartdiv"
+      class="bubbleChart"
     />
   </div>
 </template>
 
 <script>
 import { mapState, mapActions, mapGetters } from "vuex"
-import * as am5 from '@amcharts/amcharts5';
-import * as am5hierarchy from "@amcharts/amcharts5/hierarchy";
-import am5themes_Animated from '@amcharts/amcharts5/themes/Animated';
-import { canvasGetImageData } from "@/utils/canvasRenderingContext"
-import { breadCrumbBar } from "@/utils/breadCrumbBar";
-import StringMixin from "@/utils/stringMixin.js"
-import RecordTypes from "@/utils/recordTypes.js";
+import StringMixin from "@/utils/Others/stringMixin.js"
+import RecordTypes from "@/utils/Others/recordTypes.js";
 import Loaders from "@/components/Loaders/Loaders"
-import calculateRecords from "@/utils/calculateRecords";
+import calculateRecords from "@/utils/Others/calculateRecords";
+import { svgGraph, forceGraph, parseLevel, update, toggle } from "@/lib/D3GraphClient";
+import getRecords from "@/utils/Others/getRecords";
 export default {
   name: 'SubjectType',
   components: { Loaders },
@@ -39,22 +51,28 @@ export default {
       resourceSelected: "" || [],
       domainSelected: "",
       allSubjectsData: {},
-      itemClicked: ""
+      itemClicked: "",
     }
   },
   computed:{
     ...mapGetters("bubbleSelectedStore", ['getTopResource','getResource','getSubject', 'getDomain']),
     ...mapGetters("addOnFilterSelectedStore", ["getFilters"]),
+    ...mapGetters("breadCrumbStore", ["getBreadCrumbs"]),
     ...mapState("recordTypeStore", ["allRecordTypes", "loadingData"]),
     ...mapState("variableTagStore", ["variableResponse", "loadingStatus"]),
     ...mapState("browseSubjectsStore", ["subjectBubbleTree", "loadingData"]),
-    ...mapState("topSubjectStore", ["topSubjectBubbleTree", "loadingData"]),
+    ...mapGetters("nodeListStore", ["getNodeList"]),
+  },
+  watch:{
+    getSubject(){
+      this.onBubbleSelection()
+    }
   },
   async mounted() {
     this.$nextTick(async () =>{
       this.loading = true
       await this.displaySubjects()
-      await this.getCircles()
+      await this.d3Chart()
       this.loading = false
     })
   },
@@ -62,12 +80,15 @@ export default {
     this.leavePage()
     this.resetVariableTags()
     this.resetRecords()
+    this.resetbreadCrumbs()
+    this.resetAllSubjects()
   },
   methods: {
     ...mapActions("browseSubjectsStore", ["fetchTerms", "leavePage"]),
-    ...mapActions("topSubjectStore", ["fetchTopSubjectTerms"]),
     ...mapActions("variableTagStore", ["fetchVariableTags", "resetVariableTags"]),
     ...mapActions("recordTypeStore", ["fetchAllRecordTypes", "resetRecords"]),
+    ...mapActions("breadCrumbStore", ["resetbreadCrumbs"]),
+    ...mapActions("bubbleSelectedStore", ["resetAllSubjects"]),
 
     onBubbleSelection() {
       this.fairSharingButton = true
@@ -77,49 +98,13 @@ export default {
     },
 
     async displaySubjects() {
-      //When user lands on subject type after selecting the TopResource & domainType type
-      if(this.getTopResource !== '' && this.getResource === '' && this.getDomain !== ''){
-        // eslint-disable-next-line no-console
-        console.log("TOP RESOURCE & DOMAIN")
-        await this.allOtherRecordTypes(this.resourceSelected)
-        this.domainSelected = this.getDomain.toLowerCase()
-        this.allSubjectsData = await this.calculateRecords(this.resourceSelected, null, this.domainSelected, "subject", this.getFilters)
-      }
+      const { resourceNodeList, domainNodeList } = this.getNodeList
 
-      //When user lands on subject type after selecting the resource & domain type
-      if (this.getResource !== '' && this.getDomain !== '') {
-        // eslint-disable-next-line no-console
-        console.log("OTHER RESOURCE & DOMAIN")
-        this.resourceSelected = this.formatString(this.getResource)
-        this.domainSelected = this.getDomain.toLowerCase()
-        this.allSubjectsData = await this.calculateRecords(this.resourceSelected, null, this.domainSelected, "subject", this.getFilters)
-      }
-
-      //When user lands on subject type after selecting the TOP Resource type
-      if(this.getTopResource !== '' && this.getResource === '' && this.getDomain === '') {
-        // eslint-disable-next-line no-console
-        console.log("ONLY TOP RESOURCE")
-        await this.allOtherRecordTypes(this.resourceSelected)
-        this.allSubjectsData = await this.calculateRecords(this.resourceSelected, null, null, "subject", this.getFilters)
-      }
-      //When user lands on subject type after selecting the resource type
-      if(this.getResource !== '' && this.getDomain === '') {
-        // eslint-disable-next-line no-console
-        console.log("ONLY OTHER RESOURCE")
-        this.resourceSelected = this.formatString(this.getResource)
-        this.allSubjectsData = await this.calculateRecords(this.resourceSelected, null, null, "subject", this.getFilters)
-      }
-      //When user lands on subject type after selecting the domain type
-      if (this.getTopResource === '' && this.getResource === '' && this.getDomain !== ''){
-        // eslint-disable-next-line no-console
-        console.log("ONLY DOMAIN")
-        this.domainSelected = this.getDomain.toLowerCase()
-        this.allSubjectsData = await this.calculateRecords(null, null, this.domainSelected, "subject", this.getFilters)
-      }
-      //When user lands on subject type as the entry point in the application
-      if(this.getTopResource ==="" && this.getResource === '' && this.getDomain === '') {
+      //When No Resource and Domain is selected
+      if(resourceNodeList.length === 0 && domainNodeList.length === 0) {
         // eslint-disable-next-line no-console
         console.log("ALL SUBJECTS")
+        this.$store.commit("bubbleSelectedStore/allSubjectsSelected", true)
         await this.fetchTerms()
         this.allSubjectsData = {
           name: "Subject",
@@ -128,84 +113,40 @@ export default {
         }
         this.allSubjectsData["children"] = this.subjectBubbleTree
       }
+      //When Resource/Domain is/are selected
+      else {
+        let resourceDataList = []
+        const topResourceData = await this.allOtherRecordTypes(this.resourceSelected)
+        const otherResourceData = resourceNodeList.filter(({type}) => type !== "resourceParent")
+        const isTopResource = resourceNodeList.some(({type}) => type === "resourceParent")
+        if (isTopResource) {
+          resourceDataList = topResourceData.concat(getRecords(otherResourceData))
+        }
+        else {
+          resourceDataList = getRecords(resourceNodeList)
+        }
+        this.resourceSelected = resourceNodeList.length ? resourceDataList : null
+        this.domainSelected =  domainNodeList.length ? getRecords(domainNodeList) : null
+        this.allSubjectsData = await this.calculateRecords(this.resourceSelected, null, this.domainSelected, "subject", this.getFilters)
+      }
     },
 
-    getCircles() {
-      let data = this.allSubjectsData // Set data
-      let root = am5.Root.new(this.$refs.circlesDiv); // Create root element
-      const canvas = this.$el.querySelector("canvas")
-      canvasGetImageData(canvas)
-      root._logo.dispose() //To remove amcharts logo
-      root.setThemes([am5themes_Animated.new(root)]); // Set themes
-      // Create wrapper container
-      let container = root.container.children.push(am5.Container.new(root, {
-        width: am5.percent(100),
-        height: am5.percent(100),
-        layout: root.verticalLayout
-      }));
+    async d3Chart() {
+      const routeName = this.$route.name
+      const force = forceGraph()
+      const divSelected = this.$refs.chartdiv;
+      const svg = svgGraph(divSelected)
+      const root = this.allSubjectsData
+      parseLevel(root, 0);
 
-      // Create series
-      let series = container.children.push(am5hierarchy.ForceDirected.new(root, {
-        ariaLabel: "Subject Type",
-        singleBranchOnly: false,
-        downDepth: 1,
-        upDepth: 1,
-        topDepth: 1,
-        initialDepth: 0,
-        valueField: "records_count",
-        categoryField: "name",//Label displayed
-        childDataField: "children",
-        idField: "name",
-        linkWithField: "linkWith",
-        manyBodyStrength: -20,
-        centerStrength: 0.8,
-        minRadius: 20,
-        maxRadius: am5.percent(80),
-      }));
-      series.get("colors").setAll({
-        step: 2
-      });
-      series.labels.template.set("fontSize", 20)
-      series.outerCircles.template.states.create("disabled", {
-        fillOpacity: 0.1,
-        strokeOpacity: 1,
-        strokeDasharray: 3
-      });
-
-      //When all four subjects have no records_count/records_count is zero bubble size is same
-      const noRecords = this.allSubjectsData["children"].every(({records_count}) => records_count === 0)
-      if (noRecords) {
-        series.setAll({
-          minRadius: 100,
-          maxRadius: 100
-        });
-      }
-      // When a bubble is clicked
-      series.nodes.template.events.on("click", (e) => {
-        this.onBubbleSelection()
-        const node = e.target.dataItem.dataContext
-        if(this.itemClicked !== node["name"]) {
-          this.itemClicked = node["name"]
-          this.$store.commit("bubbleSelectedStore/subjectSelected", this.itemClicked)
-        }
-      });
-      series.links.template.set("strength", 0.5)
-      series.data.setAll([data]);
-      series.set("selectedDataItem", series.dataItems[0]);
-      series.appear(1000, 100); // Make stuff animate on load
-
-      // Add Breadcrumbs
-      setTimeout(() => {
-        breadCrumbBar(container, root, series)
-      }, 300);
-    }
+      // Initialize the display to show level 1
+      root.children.forEach(toggle);
+      update(root, force, svg, divSelected, routeName);
+    },
   }
 }
 </script>
 
 <style lang="scss" scoped>
-.charts {
-  width: 100%;
-  height: 700px;
-}
+  @import "@/lib/D3GraphClient/Styles/d3graph.scss";
 </style>

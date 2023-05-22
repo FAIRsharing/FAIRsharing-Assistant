@@ -5,49 +5,30 @@ Vue.use(VueRouter);
 
 import {
   HomeView,
-  ResourceTypeView,
   SubjectTypeView,
-  // SubjectTypeView_1,
   DomainTypeView,
-  DomainTypeViewD3JS,
   DatabaseView,
   StandardsView,
   PoliciesView,
   RefineView
 } from './routes'
 
-
 let routes = [
+  // See below for further questions...
   {
     name: "HomeView",
-    path: "/",
+    path: "/:id(\\d+)?",
     component: HomeView,
-  },
-  {
-    name: "ResourceTypeView",
-    path: "/resource",
-    component: ResourceTypeView,
-
   },
   {
     name: "SubjectTypeView",
     path: "/subject",
     component: SubjectTypeView,
   },
-  // {
-  //   name: "SubjectTypeView_1",
-  //   path: "/subject_1",
-  //   component: SubjectTypeView_1,
-  // },
   {
     name: "DomainTypeView",
     path: "/domain",
     component: DomainTypeView,
-  },
-  {
-    name: "DomainTypeViewD3JS",
-    path: "/domaind3js",
-    component: DomainTypeViewD3JS,
   },
   {
     name: "DatabaseView",

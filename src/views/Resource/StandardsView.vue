@@ -2,18 +2,22 @@
   <div>
     <Jumbotron />
     <div class="px-md-10 pa-5 mb-8">
-      <Selection />
-      <RefineButton :refine-button="refineButton" />
+      <div class="d-flex align-center mb-2">
+        <AddNodeButton
+          v-if="getTopResource"
+        />
+      </div>
+      <NodesList
+        v-if="isNodeList"
+        :get-nodes-data="getNodeList"
+      />
+      <ContinueButton :continue-button="continueButton" />
       <Standards
         @enableFairSharingButton="enableFairSharingButton"
         @showResourceSelected="showResourceSelected"
       />
       <FairSharingLink
         :fair-sharing-button="fairSharingButton"
-      />
-      <RecordsTable
-        v-if="getResource"
-        :get-all-resources="getAllResources"
       />
       <StartOver />
     </div>
@@ -25,30 +29,43 @@ import {mapGetters} from "vuex"
 import Standards from "@/components/Resource/Standards";
 import FairSharingLink from "@/components/Navigation/FairSharingLink";
 import StartOver from "@/components/Navigation/StartOver";
-import RefineButton from "@/components/Navigation/RefineButton"
-import RecordsTable from "@/components/Others/RecordsTable"
+import ContinueButton from "@/components/Navigation/ContinueButton"
 import Jumbotron from "@/components/Navigation/Jumbotron";
-import Selection from "@/components/Others/Selection"
+import NodesList from "@/components/Others/NodesList.vue";
+import AddNodeButton from "@/components/Others/AddNodeButton.vue";
+
 export default {
   name: 'StandardsView',
   components: {
     Standards,
     FairSharingLink,
     StartOver,
-    RefineButton,
-    RecordsTable,
+    ContinueButton,
     Jumbotron,
-    Selection
+    AddNodeButton,
+    NodesList
   },
   data:() => {
     return {
       fairSharingButton: false,
       showResource: false,
-      refineButton: false,
+      continueButton: false,
     }
   },
   computed:{
-    ...mapGetters("bubbleSelectedStore", ['getAllResources', 'getTopResource', 'getResource', 'getSubject', 'getDomain']),
+    ...mapGetters("bubbleSelectedStore", ['getAllResources', 'getTopResource', 'getResource']),
+    ...mapGetters("nodeListStore", ['getNodeList']),
+    isNodeList() {
+      const {resourceNodeList, subjectNodeList, domainNodeList} = this.getNodeList
+      if ((resourceNodeList.length) || (subjectNodeList.length) || (domainNodeList.length)) return true
+      return false
+    },
+  },
+  mounted() {
+    let _module = this;
+    if (_module.getTopResource || _module.getResource) {
+      _module.enableFairSharingButton(true);
+    }
   },
   destroyed() {
     this.showResource = false
@@ -56,7 +73,7 @@ export default {
   methods: {
     enableFairSharingButton(value) {
       this.fairSharingButton = value
-      this.refineButton = value
+      this.continueButton = value
     },
     showResourceSelected(value){
       this.showResource = value

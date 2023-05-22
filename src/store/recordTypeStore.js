@@ -3,14 +3,14 @@ import allRecordsTypes from "@/lib/GraphClient/queries/resource/allRecordsTypes.
 
 const CLIENT = new GraphClient()
 
-export const state = {
+const state = {
   recordTypes: [],
   allRecordTypes: [],
   error: false,
   loadingData: false,
 }
 
-export const actions = {
+const actions = {
   async fetchAllRecordTypes({commit}) {
     commit("setLoadingData", true)
     let response = await CLIENT.executeQuery(allRecordsTypes);
@@ -22,7 +22,7 @@ export const actions = {
   }
 }
 
-export const mutations = {
+const mutations = {
   setAllRecordTypes(state, allRecordTypes) { state.allRecordTypes = allRecordTypes },
   setLoadingData(state, loadingData) { state.loadingData = loadingData},
   resetAllRecordTypes(state) {state.allRecordTypes = []},

@@ -28,7 +28,6 @@ export default {
   name: 'Selection',
   computed:{
     ...mapGetters("bubbleSelectedStore", ['getAllResources', 'getTopResource', 'getResource', 'getSubject', 'getDomain']),
-  },
-
+  }
 };
 </script>

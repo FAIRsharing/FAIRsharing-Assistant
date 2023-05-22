@@ -2,8 +2,16 @@
   <div>
     <Jumbotron />
     <div class="px-md-10 pa-5 mb-8">
-      <Selection />
-      <RefineButton :refine-button="refineButton" />
+      <div class="d-flex align-center mb-2">
+        <AddNodeButton
+          v-if="getSubject"
+        />
+      </div>
+      <NodesList
+        v-if="isNodeList"
+        :get-nodes-data="getNodeList"
+      />
+      <ContinueButton :continue-button="continueButton" />
       <SubjectType
         @enableFairSharingButton="enableFairSharingButton"
         @showSubjectSelected="showSubjectSelected"
@@ -21,9 +29,10 @@ import { mapGetters} from "vuex";
 import SubjectType from "@/components/Subject/SubjectType";
 import FairSharingLink from "@/components/Navigation/FairSharingLink";
 import StartOver from "@/components/Navigation/StartOver"
-import RefineButton from "@/components/Navigation/RefineButton"
+import ContinueButton from "@/components/Navigation/ContinueButton"
 import Jumbotron from "@/components/Navigation/Jumbotron"
-import Selection from "@/components/Others/Selection"
+import AddNodeButton from "@/components/Others/AddNodeButton.vue";
+import NodesList from "@/components/Others/NodesList.vue";
 
 export default {
   name:'SubjectTypeView',
@@ -31,19 +40,33 @@ export default {
     SubjectType,
     FairSharingLink,
     StartOver,
-    RefineButton,
+    ContinueButton,
     Jumbotron,
-    Selection
+    AddNodeButton,
+    NodesList
   },
   data:() => {
     return {
       fairSharingButton: false,
       showSubject: false,
-      refineButton: false,
+      continueButton: false,
     }
   },
   computed:{
-    ...mapGetters("bubbleSelectedStore", ['getTopResource', 'getResource', 'getSubject', 'getDomain']),
+    ...mapGetters("bubbleSelectedStore", ['getSubject', 'getSubjectList']),
+    ...mapGetters("nodeListStore", ['getNodeList']),
+
+    isNodeList() {
+      const {resourceNodeList, subjectNodeList, domainNodeList} = this.getNodeList
+      if ((resourceNodeList.length) || (subjectNodeList.length) || (domainNodeList.length)) return true
+      return false
+    },
+  },
+  mounted() {
+    let _module = this;
+    if (_module.getSubject) {
+      _module.enableFairSharingButton(true);
+    }
   },
   destroyed() {
     this.showSubject = false
@@ -51,7 +74,7 @@ export default {
   methods: {
     enableFairSharingButton(value) {
       this.fairSharingButton = value
-      this.refineButton = value
+      this.continueButton = value
     },
     showSubjectSelected(value){
       this.showSubject = value

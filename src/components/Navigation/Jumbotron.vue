@@ -50,12 +50,18 @@ import { loadFull } from "tsparticles";
 const particlesInit = async engine => {
   await loadFull(engine);
 };
+/* istanbul ignore next */
+// eslint-disable-next-line no-unused-vars
+const particlesLoaded = async container => {
+  //console.log("Particles container loaded", container);
+};
 
 export default {
   name: "Jumbotron",
   data:() => {
     return {
       particlesInit,
+      particlesLoaded,
       options: {
         background: {
           color: {

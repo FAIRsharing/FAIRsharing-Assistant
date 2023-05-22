@@ -9,24 +9,37 @@
       </v-overlay>
     </v-fade-transition>
     <div
-      id="resourceBubbleChart"
+      ref="breadcrumbdiv"
+      class="breadcrumbs my-8"
+    >
+      <span
+        v-for="(name, i) in getBreadCrumbs"
+        :key="name"
+        class="breadCrumbName"
+      >{{ name }}
+        <span
+          v-if="i+1 < getBreadCrumbs.length"
+          class="connector"
+        > >
+        </span>
+      </span>
+    </div>
+    <div
       ref="chartdiv"
-      class="charts"
+      class="bubbleChart"
     />
   </div>
 </template>
 
 <script>
 import {mapActions, mapGetters, mapState} from "vuex"
-import * as am5 from '@amcharts/amcharts5';
-import * as am5hierarchy from "@amcharts/amcharts5/hierarchy";
-import am5themes_Animated from '@amcharts/amcharts5/themes/Animated';
-import { canvasGetImageData } from "@/utils/canvasRenderingContext"
-import { breadCrumbBar } from "@/utils/breadCrumbBar"
 import calculateResourceRecords from "@/utils/ResourceUtils/calculateResourceRecords"
 import createResourceStructure from "@/utils/ResourceUtils/createResourceStructure";
-import StringMixin from "@/utils/stringMixin.js"
+import StringMixin from "@/utils/Others/stringMixin.js"
 import Loaders from "@/components/Loaders/Loaders"
+import { svgGraph, forceGraph, parseLevel, update, toggle } from "@/lib/D3GraphClient";
+import totalResourceRecords from "@/utils/ResourceUtils/totalResourceRecords";
+import getRecords from "@/utils/Others/getRecords";
 
 export default {
   name: 'Standards',
@@ -42,33 +55,40 @@ export default {
       itemClicked: "",
       recordTypesList: [],
       subjectSelected: "",
-      domainSelected: ""
+      domainSelected: "",
     }
   },
   computed:{
-    ...mapGetters("bubbleSelectedStore", ['getResource', 'getSubject', 'getDomain']),
+    ...mapGetters("bubbleSelectedStore", ['getTopResource','getResource','getSubject', 'getDomain']),
+    ...mapGetters("otherResourcesSelectedStore", ["getOtherResourceSelected"]),
+    ...mapGetters("breadCrumbStore", ["getBreadCrumbs"]),
     ...mapState("recordTypeStore", ["allRecordTypes", "loadingData"]),
-    // ...mapState("variableTagStore", ["variableResponse", "loadingStatus"]),
-    // ...mapState("multiTagsStore", ["fairSharingRecords", "loadingStatus"]),
+    ...mapGetters("nodeListStore", ["getNodeList"]),
   },
-
+  watch:{
+    getTopResource(){
+      this.onBubbleSelection()
+    }
+  },
   async mounted() {
     this.$nextTick(async () =>{
       this.loading = true
       await this.displayResources()
-      await this.getCircles()
+      await this.d3Chart()
       this.loading = false
     })
   },
   destroyed() {
+    this.leavePage()
+    this.resetVariableTags()
     this.resetRecords()
-    // this.resetMultiTags()
-    // this.resetVariableTags()
+    this.resetbreadCrumbs()
   },
   methods: {
+    ...mapActions("browseSubjectsStore", ["leavePage"]),
+    ...mapActions("variableTagStore", [ "resetVariableTags"]),
     ...mapActions("recordTypeStore", ["fetchAllRecordTypes", "resetRecords"]),
-    // ...mapActions("variableTagStore", ["fetchVariableTags", "resetVariableTags"]),
-    // ...mapActions("multiTagsStore", ["fetchMultiTagsTerms", "resetMultiTags"]),
+    ...mapActions("breadCrumbStore", ["resetbreadCrumbs"]),
 
     onBubbleSelection() {
       this.fairSharingButton = true
@@ -77,133 +97,50 @@ export default {
       this.$emit('showResourceSelected', this.showResourceSelected)
     },
 
-
     async displayResources() {
+      const { subjectNodeList, domainNodeList } = this.getNodeList
       this.allResourceData = await this.createResourceStructure("Standard")
       const otherResources = this.allResourceData["children"].map(({children}) => children)
       const otherResourceType = otherResources.flatMap(child => child)
 
-      //When User lands on Resource page after selecting the Subject & Domain
-      if(this.getSubject !=="" && this.getDomain !== ""){
-        // eslint-disable-next-line no-console
-        console.log("SUBJECT & DOMAIN")
-        this.subjectSelected = this.getSubject.toLowerCase()
-        this.domainSelected = this.getDomain.toLowerCase()
-        await this.calculateRecords(null, this.subjectSelected, this.domainSelected, otherResourceType)
-      }
-
-      //When User lands on Resource page after selecting the Domain
-      if(this.getSubject ==="" && this.getDomain !== ""){
-        // eslint-disable-next-line no-console
-        console.log("ONLY DOMAIN")
-        this.domainSelected = this.getDomain.toLowerCase()
-        await this.calculateRecords(null,null, this.domainSelected, otherResourceType)
-      }
-
-      //When User lands on Resource page after selecting the Subject
-      if (this.getSubject !=="" && this.getDomain === "") {
-        // eslint-disable-next-line no-console
-        console.log("ONLY SUBJECT")
-        this.subjectSelected = this.getSubject.toLowerCase()
-        await this.calculateRecords(null, this.subjectSelected,null, otherResourceType)
-      }
-      //When User lands on Resource page as an entry point
-      if(this.getResource === "" && this.getSubject ==="" && this.getDomain === "") {
+      //When No Subject and Domain is selected
+      if (subjectNodeList.length === 0 && domainNodeList.length === 0) {
         // eslint-disable-next-line no-console
         console.log("ALL Standards")
         //Fetching all resources/records
         await this.fetchAllRecordTypes()
         this.allRecords = this.allRecordTypes["records"].map(({name}) => name)
-        await this.calculateRecords(this.allRecords,null,null, otherResourceType)
+        await this.calculateRecords(this.allRecords, null, null, otherResourceType)
+        const totalRecords = totalResourceRecords(this.getOtherResourceSelected)
+        this.allResourceData["children"][0].records_count
+                = totalRecords
+      }
+      //When Subject/Domain is/are selected
+      else{
+        this.subjectSelected =  subjectNodeList.length ? getRecords(subjectNodeList) : null
+        this.domainSelected =  domainNodeList.length ? getRecords(domainNodeList) : null
+        await this.calculateRecords(null, this.subjectSelected, this.domainSelected, otherResourceType)
       }
     },
 
     /**
-     * Plotting the hierarchy bubble chart using AmCharts5 library
+     * Plotting the hierarchy bubble chart using d3Js library
      */
-    getCircles() {
-      let data = this.allResourceData; // Set data
-      let root = am5.Root.new(this.$refs.chartdiv); // Create root element
-      const canvas = this.$el.querySelector("canvas")
-      canvasGetImageData(canvas)
-      root._logo.dispose() //To remove amcharts logo
-      root.setThemes([am5themes_Animated.new(root)]); // Set themes
-      // Create wrapper container
-      let container = root.container.children.push(am5.Container.new(root, {
-        width: am5.percent(100),
-        height: am5.percent(100),
-        layout: root.verticalLayout
-      }));
-      // Create series
-      let series = container.children.push(am5hierarchy.ForceDirected.new(root, {
-        ariaLabel: "Resource Type",
-        singleBranchOnly: false,
-        downDepth: 1,
-        upDepth: 1,
-        topDepth: 1,
-        initialDepth: 0,
-        valueField: "value",
-        categoryField: "name",//Label displayed
-        childDataField: "children",
-        idField: "name",
-        linkWithField: "linkWith",
-        manyBodyStrength: -20,
-        centerStrength: 0.8,
-        minRadius: 60,
-        maxRadius: am5.percent(10),
-      }));
-
-      series.get("colors").setAll({
-        step: 2
-      });
-      series.labels.template.set("fontSize", 20)
-      series.outerCircles.template.states.create("disabled", {
-        fillOpacity: 0.1,
-        strokeOpacity: 1,
-        strokeDasharray: 3
-      });
-
-      // When a bubble is clicked
-      series.nodes.template.events.on("click", (e) => {
-        this.onBubbleSelection()
-        const nodeParent = e.target.dataItem._settings.parent.dataContext.name
-        const node = e.target.dataItem.dataContext
-
-        if(this.itemClicked !== node["name"]) {
-          if (node["children"] && node["children"].length) {
-            this.itemClicked = node["name"]
-            this.$store.commit("bubbleSelectedStore/resourceSelected", {
-              topResourceSelected: this.itemClicked,
-              childResourceSelected: ''
-            })
-          }
-          else {
-            this.itemClicked = node["name"]
-            this.$store.commit("bubbleSelectedStore/resourceSelected", {
-              topResourceSelected: nodeParent,
-              childResourceSelected: this.itemClicked,
-              recordsNumber: node["value"]
-            })
-          }
-        }
-      });
-
-      series.links.template.set("strength", 0.5);
-      series.data.setAll([data]);
-      series.set("selectedDataItem", series.dataItems[0]);
-      series.appear(1000, 100); // Make stuff animate on load
-
-      // Add Breadcrumbs
-      setTimeout(() => {
-        breadCrumbBar(container, root, series)
-      }, 300);
-    }}
+    async d3Chart() {
+      const routeName = this.$route.name
+      const force = forceGraph()
+      const divSelected = this.$refs.chartdiv;
+      const svg = svgGraph(divSelected)
+      const root = this.allResourceData
+      parseLevel(root, 0);
+      // Initialize the display to show level 1
+      root.children.forEach(toggle);
+      update(root, force, svg, divSelected, routeName);
+    },
+  }
 }
 </script>
 
 <style lang="scss" scoped>
-.charts {
-  width: 100%;
-  height: 600px;
-}
+@import "@/lib/D3GraphClient/Styles/d3graph.scss";
 </style>
