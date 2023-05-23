@@ -11,7 +11,7 @@
         v-if="isNodeList"
         :get-nodes-data="getNodeList"
       />
-      <ContinueButton :continue-button="continueButton" />
+      <RefineButton :refine-button="refineButton" />
       <Database
         @enableFairSharingButton="enableFairSharingButton"
         @showResourceSelected="showResourceSelected"
@@ -29,7 +29,7 @@ import {mapGetters} from "vuex"
 import Database from "@/components/Resource/Database";
 import FairSharingLink from "@/components/Navigation/FairSharingLink"
 import StartOver from "@/components/Navigation/StartOver";
-import ContinueButton from "@/components/Navigation/ContinueButton"
+import RefineButton from "@/components/Navigation/RefineButton"
 import Jumbotron from "@/components/Navigation/Jumbotron"
 import AddNodeButton from "@/components/Others/AddNodeButton.vue";
 import NodesList from "@/components/Others/NodesList.vue";
@@ -40,7 +40,7 @@ export default {
     Database,
     FairSharingLink,
     StartOver,
-    ContinueButton,
+    RefineButton,
     Jumbotron,
     NodesList,
     AddNodeButton
@@ -49,7 +49,7 @@ export default {
     return {
       fairSharingButton: false,
       showResource: false,
-      continueButton: false,
+      refineButton: false,
     }
   },
   computed:{
@@ -73,7 +73,7 @@ export default {
   methods: {
     enableFairSharingButton(value) {
       this.fairSharingButton = value
-      this.continueButton = value
+      this.refineButton = value
     },
     showResourceSelected(value){
       this.showResource = value

@@ -11,7 +11,7 @@
         v-if="isNodeList"
         :get-nodes-data="getNodeList"
       />
-      <ContinueButton :continue-button="continueButton" />
+      <RefineButton :refine-button="RefineButton" />
       <DomainType
         @enableFairSharingButton="enableFairSharingButton"
         @showDomainSelected="showDomainSelected"
@@ -29,7 +29,7 @@ import { mapGetters } from "vuex"
 import DomainType from "@/components/Domain/DomainType";
 import FairSharingLink from "@/components/Navigation/FairSharingLink";
 import StartOver from "@/components/Navigation/StartOver"
-import ContinueButton from "@/components/Navigation/ContinueButton"
+import RefineButton from "@/components/Navigation/RefineButton"
 import Jumbotron from "@/components/Navigation/Jumbotron"
 import NodesList from "@/components/Others/NodesList.vue";
 import AddNodeButton from "@/components/Others/AddNodeButton.vue";
@@ -41,7 +41,7 @@ export default {
     DomainType,
     FairSharingLink,
     StartOver,
-    ContinueButton,
+    RefineButton,
     Jumbotron,
     AddNodeButton,
     NodesList
@@ -50,7 +50,7 @@ export default {
     return {
       fairSharingButton: false,
       showDomain: false,
-      continueButton: false,
+      refineButton: false,
     }
   },
   computed:{
@@ -74,7 +74,7 @@ export default {
   methods: {
     enableFairSharingButton(value) {
       this.fairSharingButton = value
-      this.continueButton = value
+      this.refineButton = value
     },
     showDomainSelected(value) {
       this.showDomain = value
