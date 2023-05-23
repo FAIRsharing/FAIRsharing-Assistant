@@ -11,7 +11,7 @@
         v-if="isNodeList"
         :get-nodes-data="getNodeList"
       />
-      <RefineButton :refine-button="RefineButton" />
+      <RefineButton :refine-button="refineButton" />
       <DomainType
         @enableFairSharingButton="enableFairSharingButton"
         @showDomainSelected="showDomainSelected"
