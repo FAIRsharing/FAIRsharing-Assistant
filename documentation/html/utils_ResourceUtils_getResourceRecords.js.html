@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-	<title>FAIRsharing.org Source: utils/ResourceUtils/totalResourceRecords.js</title>
+	<title>FAIRsharing.org Source: utils/ResourceUtils/getResourceRecords.js</title>
 
 	<!--[if lt IE 9]>
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -72,21 +72,31 @@
 		<div id="main">
 			
 
-		<h1 class="page-title">Source: utils/ResourceUtils/totalResourceRecords.js</h1>
+		<h1 class="page-title">Source: utils/ResourceUtils/getResourceRecords.js</h1>
     
 <section>
     <article>
         <pre
-            class="sunlight-highlight-javascript linenums">/**
- * @param {Array} - otherResourceType
- * @returns {Number} - Total number of records for resource type
- */
-const totalResourceRecords = (otherResourceType) => {
-  const noNullotherResource = otherResourceType.filter(n => n)
-  return noNullotherResource.reduce((accum,item) => accum + item.records_count, 0)
+            class="sunlight-highlight-javascript linenums">
+const formatString = (name) => {
+  return name.replace(/\s/g, '_').toLowerCase()
 }
 
-export default totalResourceRecords;</pre>
+/**
+ * @param {Array} - ResourceType
+ * @returns {Array} - records of the resource
+ */
+const getResourceRecords = (resourceType) => {
+
+  if (resourceType[0].children &amp;&amp; resourceType[0].children.length) {
+    return resourceType[0].children.map(({name}) => formatString(name))
+  }
+  else {
+    return resourceType[0]._children.map(({name}) => formatString(name))
+  }
+}
+
+export default getResourceRecords;</pre>
     </article>
 </section>
 
