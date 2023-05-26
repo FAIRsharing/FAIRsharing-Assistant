@@ -3,7 +3,7 @@ const databaseNodeSize = (d) => {
   const count = d.records_count
   switch(true) {
   case(count > 2000):
-    return Math.sqrt(count) / 0.2
+    return Math.sqrt(count) / 0.3
   case(1000 <= count && count < 2000):
     return Math.sqrt(count) / 0.4
   case(800 <= count && count < 1000):

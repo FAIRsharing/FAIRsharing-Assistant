@@ -4,7 +4,7 @@
     <div class="px-md-10 pa-5 mb-8">
       <div class="d-flex align-center mb-2">
         <AddNodeButton
-          v-if="getTopResource"
+          v-if="getTopResource === 'Standards'"
         />
       </div>
       <NodesList
@@ -69,11 +69,14 @@ export default {
   },
   destroyed() {
     this.showResource = false
+    this.fairSharingButton = false
   },
   methods: {
     enableFairSharingButton(value) {
-      this.fairSharingButton = value
-      this.refineButton = value
+      if (this.getTopResource === "Standards") {
+        this.fairSharingButton = value
+        this.refineButton = value
+      }
     },
     showResourceSelected(value){
       this.showResource = value

@@ -2,10 +2,21 @@ const state = {
   otherResourceType: [],
 };
 
+const actions ={
+  resetOtherResourceSelected({commit}) {
+    commit('resetOtherResourceSelected');
+  }
+}
+
 const mutations = {
   otherResourceSelected (state, otherResources) {
+    // state.otherResourceType.findIndex(x => x.name == otherResources.name) == -1 ? state.otherResourceType.push(...otherResources) : console.log("object already exists")
     state.otherResourceType = otherResources
   },
+
+  resetOtherResourceSelected () {
+    state.otherResourceType = []
+  }
 
 };
 
@@ -19,6 +30,7 @@ const otherResourcesSelectedStore = {
   state,
   getters,
   mutations,
+  actions
 }
 
 export default otherResourcesSelectedStore

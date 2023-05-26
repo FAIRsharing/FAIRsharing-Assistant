@@ -40,6 +40,7 @@ import Loaders from "@/components/Loaders/Loaders"
 import { svgGraph, forceGraph, parseLevel, update, toggle } from "@/lib/D3GraphClient";
 import totalResourceRecords from "@/utils/ResourceUtils/totalResourceRecords";
 import getRecords from "@/utils/Others/getRecords";
+import getResourceRecords from "@/utils/ResourceUtils/getResourceRecords"
 
 export default {
   name: 'Standards',
@@ -56,6 +57,7 @@ export default {
       recordTypesList: [],
       subjectSelected: "",
       domainSelected: "",
+      standardData: []
     }
   },
   computed:{
@@ -83,12 +85,14 @@ export default {
     this.resetVariableTags()
     this.resetRecords()
     this.resetbreadCrumbs()
+    this.resetOtherResourceSelected()
   },
   methods: {
     ...mapActions("browseSubjectsStore", ["leavePage"]),
     ...mapActions("variableTagStore", [ "resetVariableTags"]),
     ...mapActions("recordTypeStore", ["fetchAllRecordTypes", "resetRecords"]),
     ...mapActions("breadCrumbStore", ["resetbreadCrumbs"]),
+    ...mapActions("otherResourcesSelectedStore", ["resetOtherResourceSelected"]),
 
     onBubbleSelection() {
       this.fairSharingButton = true
@@ -100,7 +104,9 @@ export default {
     async displayResources() {
       const { subjectNodeList, domainNodeList } = this.getNodeList
       this.allResourceData = await this.createResourceStructure("Standard")
-      const otherResources = this.allResourceData["children"].map(({children}) => children)
+      this.standardData = this.allResourceData["children"].filter(({name}) => name === "Standards")
+
+      const otherResources = this.standardData.map(({children}) => children)
       const otherResourceType = otherResources.flatMap(child => child)
 
       //When No Subject and Domain is selected
@@ -110,7 +116,7 @@ export default {
         //Fetching all resources/records
         await this.fetchAllRecordTypes()
         this.allRecords = this.allRecordTypes["records"].map(({name}) => name)
-        await this.calculateRecords(this.allRecords, null, null, otherResourceType)
+        await this.calculateRecords(getResourceRecords(this.standardData), null, null, otherResourceType)
         const totalRecords = totalResourceRecords(this.getOtherResourceSelected)
         this.allResourceData["children"][0].records_count
                 = totalRecords
