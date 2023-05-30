@@ -12,7 +12,8 @@ import {
   PoliciesView,
   RefineView,
   NotFound,
-  ServerError
+  ServerError,
+  Licence
 } from './routes'
 
 let routes = [
@@ -51,6 +52,11 @@ let routes = [
     name: "RefineView",
     path: "/refine-my-choice",
     component: RefineView,
+  },
+  {
+    name: "Licence",
+    path: "/licence",
+    component: Licence,
   },
   /* ERROR HANDLING */
   {

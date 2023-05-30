@@ -2,13 +2,16 @@
   <v-app id="app">
     <v-main>
       <router-view />
+      <Footer />
     </v-main>
   </v-app>
 </template>
 
 <script>
+import Footer from "@/components/Others/Footer.vue";
 export default {
   name: 'App',
+  components:{Footer},
   data() {
     return {
       loading:true,

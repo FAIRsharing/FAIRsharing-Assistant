@@ -124,6 +124,7 @@ export default {
 .wrapperClass{
   position: relative;
   z-index: 1;
+  height: 80%;
 }
 
 .smallScreen {
