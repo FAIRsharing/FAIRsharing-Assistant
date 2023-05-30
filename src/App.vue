@@ -1,9 +1,9 @@
 <template>
   <v-app id="app">
-    <v-main>
+    <div class="d-flex appWrapper fill-height flex-column justify-space-between">
       <router-view />
       <Footer />
-    </v-main>
+    </div>
   </v-app>
 </template>
 
@@ -34,6 +34,11 @@ export default {
 }
 
 html, body {
+  height: 100%;
+}
+
+.appWrapper {
+  position: relative;
   height: 100%;
 }
 </style>

@@ -1,13 +1,13 @@
 <template>
   <v-container
     fluid
-    class="wrapperClass fill-height d-flex align-stretch align-content-stretch"
+    class="wrapperClass d-flex flex-column align-content-stretch"
   >
     <v-row
       v-for="(question, index) in questions"
       :key="'question_' + index"
       dense
-      class="align-stretch justify-center"
+      class="align-stretch justify-center fill-height"
     >
       <v-col
         v-for="item in question"
@@ -18,9 +18,18 @@
         sm="12"
       >
         <v-card
-          class="full-width d-flex align-stretch flex-column pa-6 questionCard fill-height"
+          class="full-width d-flex align-stretch flex-column questionCard"
           elevation="4"
-          :class="item.color"
+          :class="[
+            item.color,
+            {
+              'cardXtraSmall pa-2': $vuetify.breakpoint.xsOnly,
+              'cardSmall pa-4': $vuetify.breakpoint.smOnly,
+              'cardMedium pa-4': $vuetify.breakpoint.mdAndUp,
+              'cardLarge pa-6': $vuetify.breakpoint.lgAndUp,
+              'cardXtraLarge pa-6': $vuetify.breakpoint.xlOnly,
+            }
+          ]"
           @click="processLink(item.link)"
         >
           <v-card-text
@@ -40,6 +49,7 @@
       </v-col>
     </v-row>
     <v-row
+      v-if="history.length"
       class="align-stretch justify-center"
     >
       <v-col
@@ -49,7 +59,6 @@
         sm="12"
       >
         <v-btn
-          v-if="history.length"
           class="white--text"
           elevated
           default
@@ -123,8 +132,6 @@ export default {
 <style scoped lang="scss">
 .wrapperClass{
   position: relative;
-  z-index: 1;
-  height: 80%;
 }
 
 .smallScreen {
@@ -177,6 +184,19 @@ export default {
       opacity: 1;
     }
   }
+}
+
+.cardXtraSmall {
+  height: 100px;
+}
+.cardSmall {
+  height: 150px;
+}
+.cardMedium {
+  height: 250px;
+}
+.cardLarge, .cardXtraLarge {
+  height: 250px;
 }
 
 </style>
