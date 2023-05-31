@@ -131,7 +131,6 @@ export default {
       loading: false,
       fairSharingButton: false,
       showResourceSelected: false,
-      allRecords: [],
       allResourceData: {},
       itemClicked: "",
       recordTypesList: [],
@@ -184,22 +183,20 @@ export default {
     async displayResources() {
       const { subjectNodeList, domainNodeList } = this.getNodeList
       this.allResourceData = await this.createResourceStructure("Database")
-      this.databaseData = this.allResourceData["children"].filter(({name}) => name === "Database")
-      const otherResources = this.databaseData.map(({children}) => children)
-      const otherResourceType = otherResources.flatMap(child => child)
+      // this.databaseData = this.allResourceData["children"].filter(({name}) => name === "Database")
+      // const otherResources = this.databaseData.map(({children}) => children)
+      // const otherResourceType = otherResources.flatMap(child => child)
+
+      this.databaseData = this.allResourceData["children"][0]
+      const otherResourceType = this.databaseData["children"]
 
       //When No Subject and Domain is selected
       if (subjectNodeList.length === 0 &amp;&amp; domainNodeList.length === 0) {
         // eslint-disable-next-line no-console
         console.log("ALL Database")
-        //Fetching all resources/records
-        await this.fetchAllRecordTypes()
-        this.allRecords = this.allRecordTypes["records"].map(({name}) => name)
         await this.calculateRecords(getResourceRecords(this.databaseData), null, null, otherResourceType)
         const totalRecords = totalResourceRecords(this.getOtherResourceSelected)
-
-        this.allResourceData["children"][0].records_count
-                = totalRecords
+        this.allResourceData["children"][0].records_count = totalRecords
       }
       //When Subject/Domain is/are selected
       else{
