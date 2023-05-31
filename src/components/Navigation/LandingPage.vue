@@ -1,13 +1,13 @@
 <template>
   <v-container
     fluid
-    class="wrapperClass fill-height d-flex align-stretch align-content-stretch"
+    class="wrapperClass d-flex flex-column align-content-stretch"
   >
     <v-row
       v-for="(question, index) in questions"
       :key="'question_' + index"
       dense
-      class="align-stretch justify-center"
+      class="align-stretch justify-center fill-height"
     >
       <v-col
         v-for="item in question"
@@ -18,9 +18,18 @@
         sm="12"
       >
         <v-card
-          class="full-width d-flex align-stretch flex-column pa-6 questionCard fill-height"
+          class="full-width d-flex align-stretch flex-column questionCard"
           elevation="4"
-          :class="item.color"
+          :class="[
+            item.color,
+            {
+              'cardXtraSmall pa-2': $vuetify.breakpoint.xsOnly,
+              'cardSmall pa-4': $vuetify.breakpoint.smOnly,
+              'cardMedium pa-4': $vuetify.breakpoint.mdAndUp,
+              'cardLarge pa-6': $vuetify.breakpoint.lgAndUp,
+              'cardXtraLarge pa-6': $vuetify.breakpoint.xlOnly,
+            }
+          ]"
           @click="processLink(item.link)"
         >
           <v-card-text
@@ -39,8 +48,10 @@
         </v-card>
       </v-col>
     </v-row>
+    <!-- Back Button -->
     <v-row
-      class="align-stretch justify-center"
+      v-if="previousLink"
+      class="align-stretch justify-center previousButton"
     >
       <v-col
         cols="12"
@@ -49,7 +60,6 @@
         sm="12"
       >
         <v-btn
-          v-if="history.length"
           class="white--text"
           elevated
           default
@@ -78,7 +88,8 @@ export default {
   data: () => {
     return {
       questions: {},
-      history: []
+      history: [],
+      previousLink: ""
     }
   },
   watch: {
@@ -93,6 +104,8 @@ export default {
     getQuestions() {
       try {
         this.questions = questionSets.questionSets[parseInt(this.$route.params.id)].rows;
+        this.previousLink = questionSets.questionSets[parseInt(this.$route.params.id)].previousLink
+        this.history.push(this.previousLink);
       }
       catch {
         this.questions = questionSets.questionSets[0].rows;
@@ -114,6 +127,7 @@ export default {
     },
     goBack() {
       let previous = this.history.pop();
+      console.log("previous::", previous)
       this.$router.push({path: "/" + previous});
     }
   }
@@ -123,7 +137,6 @@ export default {
 <style scoped lang="scss">
 .wrapperClass{
   position: relative;
-  z-index: 1;
 }
 
 .smallScreen {
@@ -132,6 +145,7 @@ export default {
 
 .questionCard {
   transform: translateY(20px);
+  z-index: 1;
   animation: smooth-appear 1250ms ease forwards;
   @keyframes smooth-appear {
     from{
@@ -176,6 +190,27 @@ export default {
       opacity: 1;
     }
   }
+}
+
+.previousButton {
+  animation: fadeIn 3s;
+  @keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+}
+
+.cardXtraSmall {
+  height: 100px;
+}
+.cardSmall {
+  height: 150px;
+}
+.cardMedium {
+  height: 250px;
+}
+.cardLarge, .cardXtraLarge {
+  height: 250px;
 }
 
 </style>

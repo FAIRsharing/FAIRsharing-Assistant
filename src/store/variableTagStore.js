@@ -48,7 +48,7 @@ const actions = {
     }
     //Delete the null/empty parameter
     for (const key in VARIABLE_TAGS.queryParam) {
-      if (VARIABLE_TAGS.queryParam[key] === null || VARIABLE_TAGS.queryParam[key] === '' || VARIABLE_TAGS.queryParam[key] === undefined || VARIABLE_TAGS.queryParam[key] === false || VARIABLE_TAGS.queryParam[key].length === 0) {
+      if (VARIABLE_TAGS.queryParam[key] === null || VARIABLE_TAGS.queryParam[key] === "null" || VARIABLE_TAGS.queryParam[key] === '' || VARIABLE_TAGS.queryParam[key] === undefined || VARIABLE_TAGS.queryParam[key] === false || VARIABLE_TAGS.queryParam[key].length === 0) {
         delete VARIABLE_TAGS.queryParam[key];
       }
     }

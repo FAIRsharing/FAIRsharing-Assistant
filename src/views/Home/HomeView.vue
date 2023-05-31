@@ -1,5 +1,7 @@
 <template>
-  <div class="fill-height d-flex flex-column justify-start align-stretch">
+  <div
+    class="d-flex flex-column justify-start align-stretch"
+  >
     <Jumbotron />
     <LandingPage />
   </div>

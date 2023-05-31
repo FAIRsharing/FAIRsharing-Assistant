@@ -1,14 +1,17 @@
 <template>
   <v-app id="app">
-    <v-main>
+    <div class="d-flex appWrapper fill-height flex-column justify-space-between">
       <router-view />
-    </v-main>
+      <Footer />
+    </div>
   </v-app>
 </template>
 
 <script>
+import Footer from "@/components/Others/Footer.vue";
 export default {
   name: 'App',
+  components:{Footer},
   data() {
     return {
       loading:true,
@@ -31,6 +34,11 @@ export default {
 }
 
 html, body {
+  height: 100%;
+}
+
+.appWrapper {
+  position: relative;
   height: 100%;
 }
 </style>

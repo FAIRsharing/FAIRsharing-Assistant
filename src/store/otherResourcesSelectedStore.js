@@ -2,10 +2,20 @@ const state = {
   otherResourceType: [],
 };
 
+const actions ={
+  resetOtherResourceSelected({commit}) {
+    commit('resetOtherResourceSelected');
+  }
+}
+
 const mutations = {
   otherResourceSelected (state, otherResources) {
     state.otherResourceType = otherResources
   },
+
+  resetOtherResourceSelected () {
+    state.otherResourceType = []
+  }
 
 };
 
@@ -19,6 +29,7 @@ const otherResourcesSelectedStore = {
   state,
   getters,
   mutations,
+  actions
 }
 
 export default otherResourcesSelectedStore

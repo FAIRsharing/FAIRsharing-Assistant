@@ -8,26 +8,33 @@
         <Loaders />
       </v-overlay>
     </v-fade-transition>
-    <div
-      ref="breadcrumbdiv"
-      class="breadcrumbs my-8"
-    >
-      <span
-        v-for="(name, i) in getBreadCrumbs"
-        :key="name"
-        class="breadCrumbName"
-      >{{ name }}
-        <span
-          v-if="i+1 < getBreadCrumbs.length"
-          class="connector"
-        > >
-        </span>
-      </span>
-    </div>
-    <div
-      ref="chartdiv"
-      class="bubbleChart"
+    <NoDomain
+      v-if="noDomain"
     />
+    <div
+      v-else
+    >
+      <div
+        ref="breadcrumbdiv"
+        class="breadcrumbs my-8"
+      >
+        <span
+          v-for="(name, i) in getBreadCrumbs"
+          :key="name"
+          class="breadCrumbName"
+        >{{ name }}
+          <span
+            v-if="i+1 < getBreadCrumbs.length"
+            class="connector"
+          > >
+          </span>
+        </span>
+      </div>
+      <div
+        ref="chartdiv"
+        class="bubbleChart"
+      />
+    </div>
   </div>
 </template>
 
@@ -39,10 +46,11 @@ import Loaders from "@/components/Loaders/Loaders"
 import calculateRecords from "@/utils/Others/calculateRecords";
 import { svgGraph, forceGraph, parseLevel, update, toggle } from "@/lib/D3GraphClient";
 import getRecords from "@/utils/Others/getRecords";
+import NoDomain from "@/components/Domain/NoDomain.vue";
 
 export default {
   name: 'DomainType',
-  components: { Loaders },
+  components: { Loaders, NoDomain },
   mixins: [StringMixin, RecordTypes, calculateRecords],
   data:() => {
     return {
@@ -53,6 +61,7 @@ export default {
       subjectSelected: "",
       allDomainData: {},
       itemClicked: "",
+      noDomain: false
     }
   },
   computed:{
@@ -121,6 +130,8 @@ export default {
       const divSelected = this.$refs.chartdiv;
       const svg = svgGraph(divSelected)
       const root = this.allDomainData
+
+      if (root.children && root.children.length === 0) this.noDomain = true
       parseLevel(root, 0);
 
       // Initialize the display to show level 1

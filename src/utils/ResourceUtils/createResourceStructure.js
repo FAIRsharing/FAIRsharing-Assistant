@@ -21,9 +21,9 @@ const createResourceStructure = {
     async createResourceStructure(record) {
       await this.fetchAllRecordTypes()
       let topResources = [...new Set(this.allRecordTypes["records"].map(({fairsharingRegistry}) => fairsharingRegistry["name"]))]
-      //Filtering "Database" topResource/registry
-      topResources = topResources.filter(item => item === record)
 
+      //Filtering  topResource/registry
+      topResources = topResources.filter(item => item === record)
       //Converting array of topResource/registry to object
       const topResourceTypeObj = topResources.map((name) => ({name}))
 
@@ -40,6 +40,7 @@ const createResourceStructure = {
         })
 
         if (ele["name"] === "Database") {
+          ele["name"] = "Database"
           ele["tree_id"] = 1
           ele["children"].forEach(child => child["tree_id"] = 1)
         }
@@ -53,6 +54,7 @@ const createResourceStructure = {
           ele["tree_id"] = 3
           ele["children"].forEach(child => child["tree_id"] = 3)
         }
+        allResourceData["children"].length = 0
         allResourceData["children"].push(ele)
       })
       return allResourceData

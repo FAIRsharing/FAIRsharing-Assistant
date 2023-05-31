@@ -10,7 +10,10 @@ import {
   DatabaseView,
   StandardsView,
   PoliciesView,
-  RefineView
+  RefineView,
+  NotFound,
+  ServerError,
+  Licence
 } from './routes'
 
 let routes = [
@@ -49,6 +52,29 @@ let routes = [
     name: "RefineView",
     path: "/refine-my-choice",
     component: RefineView,
+  },
+  {
+    name: "Licence",
+    path: "/licence",
+    component: Licence,
+  },
+  /* ERROR HANDLING */
+  {
+    name: "Error 404",
+    path: "/error/404",
+    component: NotFound
+  },
+  /* SERVER ERROR HANDLING */
+  {
+    name: "Error 500",
+    path: "/error/500",
+    component: ServerError
+  },
+  /* REDIRECTION */
+  {
+    name: "*",
+    path: "*/*",
+    component: NotFound
   }
 ]
 

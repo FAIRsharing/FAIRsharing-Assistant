@@ -20,7 +20,7 @@ const actions = {
     }
     //Delete the null/empty parameter
     for (const key in MULTI_TAGS.queryParam) {
-      if (MULTI_TAGS.queryParam[key] === null || MULTI_TAGS.queryParam[key] === '' || MULTI_TAGS.queryParam[key].length === 0) {
+      if (MULTI_TAGS.queryParam[key] === null || MULTI_TAGS.queryParam[key] === "null" || MULTI_TAGS.queryParam[key] === '' || MULTI_TAGS.queryParam[key].length === 0) {
         delete MULTI_TAGS.queryParam[key];
       }
     }
