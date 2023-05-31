@@ -86,7 +86,7 @@ export default {
     currentPath: function () {
       const client = this;
       let queryParams = {};
-      Object.keys(this.$route.query).forEach(function (prop) {
+      Object.keys(this.$route.query).forEach(prop => {
         let queryVal = client.$route.query[prop];
         if (queryVal) {
           queryParams[prop] = decodeURI(queryVal);
@@ -111,7 +111,7 @@ export default {
         group.forEach(filter => {
           Object.keys(params).forEach(key =>{
             //Reset the filters before assigning any value
-            if (typeof filter["refineToggle"] == "boolean") filter["refineToggle"] = false
+            if (typeof filter["refineToggle"] === "boolean") filter["refineToggle"] = false
             filter["refineToggle"] = null
 
             if (filter["filterQuery"] === key) {
