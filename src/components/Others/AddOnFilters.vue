@@ -24,6 +24,7 @@
       >
         <v-select
           v-for="(filter) in selectTypeFilters"
+          ref="filterSelect"
           :key="filter['filterQuery']"
           v-model="filter['refineToggle']"
           :items="filter['options']"
@@ -38,7 +39,7 @@
 </template>
 
 <script>
-import {mapGetters, mapMutations} from "vuex";
+import { mapGetters, mapMutations} from "vuex";
 import addOnFilters from "@/data/addOnFilters.json"
 
 export default {
@@ -104,29 +105,29 @@ export default {
   methods: {
     readGeneralFilterParams() {
       let _module = this;
+      let map = new Map();
       let params = _module.currentPath;
-      [_module.switchTypeFilters, _module.selectTypeFilters].forEach(function(group) {
-        group.forEach(function(filter) {
-          Object.keys(params).forEach(function(key) {
-            if (filter.filterQuery === key) {
-              //console.log("Setting " + filter.filterQuery + " to " + params[key]);
-              filter.refineToggle = params[key];
-              //console.log(filter.refineToggle);
-              let map = new Map();
-              map.set(`${filter.filterQuery}`, `${filter.refineToggle}`)
+      [_module.switchTypeFilters, _module.selectTypeFilters].forEach(group => {
+        group.forEach(filter => {
+          Object.keys(params).forEach(key =>{
+            //Reset the filters before assigning any value
+            if (typeof filter["refineToggle"] == "boolean") filter["refineToggle"] = false
+            filter["refineToggle"] = null
+
+            if (filter["filterQuery"] === key) {
+              filter["refineToggle"] = params[key];
+              map.set(`${filter["filterQuery"]}`, `${filter["refineToggle"]}`)
               _module.$store.commit("addOnFilterSelectedStore/filtersSelected", map);
             }
           })
         })
       });
-      //console.log("Switch: " + JSON.stringify(_module.switchTypeFilters));
-      //console.log("Select: " + JSON.stringify(_module.selectTypeFilters));
     },
     readRegAndTypeFilterParams() {
       let _module = this;
       let modified = false;
       let params = _module.currentPath;
-      Object.keys(params).forEach(function(key) {
+      Object.keys(params).forEach(key => {
         if (key === 'registry') {
           if (_module.allowedRegistries.indexOf(params[key]) > -1) {
             _module.topResult = params[key];
@@ -180,14 +181,14 @@ export default {
       if ('record_type' in params) {
         newParams.record_type = params.record_type;
       }
-      [_module.switchTypeFilters, _module.selectTypeFilters].forEach(function(group) {
-        group.forEach(function (filter) {
+      [_module.switchTypeFilters, _module.selectTypeFilters].forEach(group =>{
+        group.forEach(filter => {
           //console.log(JSON.stringify(filter));
-          if (typeof(filter.refineToggle) != 'undefined' &&
-            filter.refineToggle != null &&
-            filter.refineToggle !== ''
+          if (typeof(filter["refineToggle"]) != 'undefined' &&
+              filter["refineToggle"] != null &&
+              filter["refineToggle"] !== ''
           ) {
-            newParams[filter.filterQuery] = filter.refineToggle;
+            newParams[filter.filterQuery] = filter["refineToggle"];
           }
         })
       })

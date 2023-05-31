@@ -118,6 +118,7 @@ export default {
         this.allRecords = this.allRecordTypes["records"].map(({name}) => name)
         await this.calculateRecords(getResourceRecords(this.databaseData), null, null, otherResourceType)
         const totalRecords = totalResourceRecords(this.getOtherResourceSelected)
+
         this.allResourceData["children"][0].records_count
                 = totalRecords
       }

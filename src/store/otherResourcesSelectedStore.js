@@ -10,7 +10,6 @@ const actions ={
 
 const mutations = {
   otherResourceSelected (state, otherResources) {
-    // state.otherResourceType.findIndex(x => x.name == otherResources.name) == -1 ? state.otherResourceType.push(...otherResources) : console.log("object already exists")
     state.otherResourceType = otherResources
   },
 

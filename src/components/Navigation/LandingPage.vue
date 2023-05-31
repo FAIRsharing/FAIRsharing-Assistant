@@ -48,9 +48,10 @@
         </v-card>
       </v-col>
     </v-row>
+    <!-- Back Button -->
     <v-row
-      v-if="history.length"
-      class="align-stretch justify-center"
+      v-if="previousLink"
+      class="align-stretch justify-center previousButton"
     >
       <v-col
         cols="12"
@@ -87,7 +88,8 @@ export default {
   data: () => {
     return {
       questions: {},
-      history: []
+      history: [],
+      previousLink: ""
     }
   },
   watch: {
@@ -102,6 +104,8 @@ export default {
     getQuestions() {
       try {
         this.questions = questionSets.questionSets[parseInt(this.$route.params.id)].rows;
+        this.previousLink = questionSets.questionSets[parseInt(this.$route.params.id)].previousLink
+        this.history.push(this.previousLink);
       }
       catch {
         this.questions = questionSets.questionSets[0].rows;
@@ -123,6 +127,7 @@ export default {
     },
     goBack() {
       let previous = this.history.pop();
+      console.log("previous::", previous)
       this.$router.push({path: "/" + previous});
     }
   }
@@ -140,6 +145,7 @@ export default {
 
 .questionCard {
   transform: translateY(20px);
+  z-index: 1;
   animation: smooth-appear 1250ms ease forwards;
   @keyframes smooth-appear {
     from{
@@ -183,6 +189,14 @@ export default {
     100% {
       opacity: 1;
     }
+  }
+}
+
+.previousButton {
+  animation: fadeIn 3s;
+  @keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
   }
 }
 

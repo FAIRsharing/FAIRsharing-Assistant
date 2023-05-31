@@ -2,10 +2,20 @@ const state = {
   filtersType: [],
 };
 
+const actions = {
+  resetFiltersSelected({commit}) {
+    commit('resetFiltersSelected');
+  }
+}
+
 const mutations = {
   filtersSelected (state, filters) {
     state.filtersType = filters
   },
+  resetFiltersSelected (state) {
+    state.filtersType = []
+  }
+
 };
 
 const getters = {
@@ -18,6 +28,7 @@ const addOnFilterSelectedStore = {
   state,
   getters,
   mutations,
+  actions
 }
 
 export default addOnFilterSelectedStore
