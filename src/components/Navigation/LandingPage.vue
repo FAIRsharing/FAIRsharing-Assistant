@@ -130,6 +130,7 @@ export default {
   },
   mounted() {
     this.getQuestions()
+    localStorage.clear();
   },
   methods: {
     getQuestions() {

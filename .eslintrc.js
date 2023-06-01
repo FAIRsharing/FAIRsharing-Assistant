@@ -38,6 +38,7 @@ module.exports = {
         "setup",
         "asyncData",
         "data",
+        "beforeRouteEnter",
         "fetch",
         "head",
         "computed",

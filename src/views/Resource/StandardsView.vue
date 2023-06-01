@@ -60,12 +60,16 @@ export default {
       if ((resourceNodeList.length) || (subjectNodeList.length) || (domainNodeList.length)) return true
       return false
     },
+    currentRouteName() {
+      return this.$route.name;
+    },
   },
   mounted() {
     let _module = this;
     if (_module.getTopResource || _module.getResource) {
       _module.enableFairSharingButton(true);
     }
+    localStorage.setItem("pageName", this.currentRouteName)
   },
   destroyed() {
     this.showResource = false

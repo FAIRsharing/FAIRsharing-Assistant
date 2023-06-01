@@ -67,6 +67,7 @@ export default {
     if (_module.getSubject) {
       _module.enableFairSharingButton(true);
     }
+    localStorage.clear();
   },
   destroyed() {
     this.showSubject = false

@@ -67,6 +67,7 @@ export default {
     if (_module.getDomain) {
       _module.enableFairSharingButton(true);
     }
+    localStorage.clear();
   },
   destroyed() {
     this.showDomain = false
