@@ -42,6 +42,17 @@
             />
             <!-- eslint-enable vue/no-v-html -->
           </v-card-text>
+          <v-img
+            v-if="item.image_icon"
+            size="80"
+            color="white"
+            class="pabsolute"
+            contain
+            :width="$vuetify.breakpoint.smAndDown? 50 : 70"
+            :height="$vuetify.breakpoint.smAndDown? 50 : 70"
+            style="bottom: 5px; left: 10px; background: #FFFFFF;"
+            :src="$vuetify.icons.values[item.image_icon].icon"
+          />
           <v-icon
             v-if="item.extra_icon"
             size="40"

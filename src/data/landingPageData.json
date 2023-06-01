@@ -19,6 +19,7 @@
             "color": "internal",
             "icon": "educational",
             "extra_icon": "search",
+            "image_icon": "home_db",
             "link": "/1"
           }
         ],
@@ -30,6 +31,7 @@
             "color": "internal",
             "icon": "educational",
             "extra_icon": "search",
+            "image_icon": "home_standard",
             "link": "/3"
           },
           {
@@ -39,6 +41,7 @@
             "color": "internal",
             "icon": "educational",
             "extra_icon": "search",
+            "image_icon": "home_policies",
             "link": "/6"
           }
         ],
