@@ -37,14 +37,29 @@
           >
             {{ item.question }}
           </v-card-text>
-          <v-img
-            :src="item.arrow"
-            class="pabsolute questionText"
+          <v-icon
+            v-if="item.extra_icon"
+            size="40"
+            color="white"
+            class="pabsolute opacity-medium"
             contain
             :width="$vuetify.breakpoint.smAndDown? 50 : 70"
             :height="$vuetify.breakpoint.smAndDown? 50 : 70"
-            style="bottom: 0; right: 40px"
-          />
+            style="bottom: 5px; right: 70px"
+          >
+            {{ $vuetify.icons.values[item.extra_icon].icon }}
+          </v-icon>
+          <v-icon
+            size="40"
+            color="white"
+            class="pabsolute opacity-medium"
+            contain
+            :width="$vuetify.breakpoint.smAndDown? 50 : 70"
+            :height="$vuetify.breakpoint.smAndDown? 50 : 70"
+            style="bottom: 5px; right: 10px"
+          >
+            {{ $vuetify.icons.values[item.icon].icon }}
+          </v-icon>
         </v-card>
       </v-col>
     </v-row>
