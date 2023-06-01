@@ -6,24 +6,28 @@ let parentResource = ""
 const storeNode = (d, routeName) => {
   // When user is on Database, Standards, Policy Page
   if((routeName === "DatabaseView") || (routeName === "StandardsView") || (routeName === "PoliciesView")) {
-    if(parentResource !== d["name"]) {
-      if (d["level"] === 1) {
-        parentResource = d["name"]
-        bubbleSelectedStore.commit("bubbleSelectedStore/resourceSelected", {
-          topResourceSelected: parentResource,
-          childResourceSelected: '',
-          recordsNumber: d["records_count"]
-        })
-      }
-      else if (d["level"] === 2) {
-        itemClicked = d["name"]
-        bubbleSelectedStore.commit("bubbleSelectedStore/resourceSelected", {
-          topResourceSelected: parentResource,
-          childResourceSelected: itemClicked,
-          recordsNumber: d["records_count"]
-        })
-      }
+    // if(parentResource !== d["name"]) {
+    if (d["level"] === 1) {
+      parentResource = d["name"]
+      bubbleSelectedStore.commit("bubbleSelectedStore/resourceSelected", {
+        topResourceSelected: parentResource,
+        childResourceSelected: '',
+        recordsNumber: d["records_count"],
+        parent: true,
+        child: false
+      })
     }
+    else if (d["level"] === 2) {
+      itemClicked = d["name"]
+      bubbleSelectedStore.commit("bubbleSelectedStore/resourceSelected", {
+        topResourceSelected: parentResource,
+        childResourceSelected: itemClicked,
+        recordsNumber: d["records_count"],
+        parent: false,
+        child: true
+      })
+    }
+    // }
   }
 
   // When user is on Subject Page

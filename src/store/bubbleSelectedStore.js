@@ -23,14 +23,14 @@ const mutations = {
   resourceSelected (state, resource) {
     state.topResourceType = resource["topResourceSelected"]
     state.resourceType = resource["childResourceSelected"]
-    if (resource["childResourceSelected"] === "") {
+    if (resource["parent"]) {
       state.nodeSelected = {
         records: resource["topResourceSelected"],
         recordsNumber: resource["recordsNumber"],
         type: "resourceParent"
       }
     }
-    else {
+    else if (resource["child"]){
       state.nodeSelected = {
         records: resource["childResourceSelected"],
         recordsNumber: resource["recordsNumber"],

@@ -8,12 +8,11 @@ const formatString = (name) => {
  * @returns {Array} - records of the resource
  */
 const getResourceRecords = (resourceType) => {
-
-  if (resourceType[0].children && resourceType[0].children.length) {
-    return resourceType[0].children.map(({name}) => formatString(name))
+  if (resourceType.children && resourceType.children.length) {
+    return resourceType.children.map(({name}) => formatString(name))
   }
   else {
-    return resourceType[0]._children.map(({name}) => formatString(name))
+    return resourceType._children.map(({name}) => formatString(name))
   }
 }
 

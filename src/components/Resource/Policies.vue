@@ -52,7 +52,6 @@ export default {
       loading: false,
       fairSharingButton: false,
       showResourceSelected: false,
-      allRecords: [],
       allResourceData: {},
       itemClicked: "",
       recordTypesList: [],
@@ -106,18 +105,16 @@ export default {
     async displayResources() {
       const { subjectNodeList, domainNodeList } = this.getNodeList
       this.allResourceData = await this.createResourceStructure("Policy")
-      this.policyData = this.allResourceData["children"].filter(({name}) => name === "Policies")
-      const otherResources = this.policyData.map(({children}) => children)
-      const otherResourceType = otherResources.flatMap(child => child)
+      // this.policyData = this.allResourceData["children"].filter(({name}) => name)
+      // const otherResources = this.policyData.map(({children}) => children)
+      // const otherResourceType = otherResources.flatMap(child => child)
+      this.policyData = this.allResourceData["children"][0]
+      const otherResourceType = this.policyData["children"]
 
       //When No Subject and Domain is selected
       if (subjectNodeList.length === 0 && domainNodeList.length === 0) {
         // eslint-disable-next-line no-console
         console.log("ALL Policies")
-        //Fetching all resources/records
-        await this.fetchAllRecordTypes()
-        this.allRecords = this.allRecordTypes["records"].map(({name}) => name)
-
         await this.calculateRecords(getResourceRecords(this.policyData), null, null, otherResourceType)
 
         const totalRecords = totalResourceRecords(this.getOtherResourceSelected)
