@@ -35,16 +35,47 @@
           <v-card-text
             class="full-width white--text font-weight-medium text-xl-h4 text-lg-h5 text-md-h5 text-sm-h5 text-xs-h5 questionText"
           >
-            {{ item.question }}
+            <!-- This html is from a safe source -->
+            <!-- eslint-disable vue/no-v-html -->
+            <span
+              v-html="item.question"
+            />
+            <!-- eslint-enable vue/no-v-html -->
           </v-card-text>
           <v-img
-            :src="item.arrow"
-            class="pabsolute questionText"
+            v-if="item.image_icon"
+            size="80"
+            color="white"
+            class="pabsolute"
             contain
             :width="$vuetify.breakpoint.smAndDown? 50 : 70"
             :height="$vuetify.breakpoint.smAndDown? 50 : 70"
-            style="bottom: 0; right: 40px"
+            style="bottom: 5px; left: 10px; background: #FFFFFF;"
+            :src="$vuetify.icons.values[item.image_icon].icon"
           />
+          <v-icon
+            v-if="item.extra_icon"
+            size="40"
+            color="white"
+            class="pabsolute opacity-medium"
+            contain
+            :width="$vuetify.breakpoint.smAndDown? 50 : 70"
+            :height="$vuetify.breakpoint.smAndDown? 50 : 70"
+            style="bottom: 5px; right: 70px"
+          >
+            {{ $vuetify.icons.values[item.extra_icon].icon }}
+          </v-icon>
+          <v-icon
+            size="40"
+            color="white"
+            class="pabsolute opacity-medium"
+            contain
+            :width="$vuetify.breakpoint.smAndDown? 50 : 70"
+            :height="$vuetify.breakpoint.smAndDown? 50 : 70"
+            style="bottom: 5px; right: 10px"
+          >
+            {{ $vuetify.icons.values[item.icon].icon }}
+          </v-icon>
         </v-card>
       </v-col>
     </v-row>

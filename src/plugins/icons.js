@@ -237,15 +237,15 @@ const customIcons  = {
     },
     home_standard: {
       type: "img",
-      icon: "/assets/Home/BlockInfo/home-standards.svg"
+      icon: "/assets/Home/LandingPage/home-standards.svg"
     },
     home_db: {
       type: "img",
-      icon: "/assets/Home/BlockInfo/home-db.svg"
+      icon: "/assets/Home/LandingPage/home-db.svg"
     },
     home_policies: {
       type: "img",
-      icon: "/assets/Home/BlockInfo/home-policies.svg"
+      icon: "/assets/Home/LandingPage/home-policies.svg"
     },
     other: {
       type: "icon",
