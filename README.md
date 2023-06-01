@@ -3,8 +3,7 @@
 [![njsscan](https://github.com/FAIRsharing/FAIRsharing-Assistant/actions/workflows/njsscan-analysis.yml/badge.svg)](https://github.com/FAIRsharing/FAIRsharing-Assistant/actions/workflows/njsscan-analysis.yml)
 [![Documentation](https://github.com/FAIRsharing/FAIRsharing-Assistant/actions/workflows/documentation.yml/badge.svg)](https://github.com/FAIRsharing/FAIRsharing-Assistant/actions/workflows/documentation.yml)
 [![Coverage](https://github.com/FAIRsharing/FAIRsharing-Assistant/actions/workflows/unit_tests.yml/badge.svg)](https://github.com/FAIRsharing/FAIRsharing-Assistant/actions/workflows/unit_tests.yml)
-[![Netlify Status](https://api.netlify.com/api/v1/badges/f5d8cddf-f680-4d9c-8552-f644f75a960f/deploy-status)](https://app.netlify.com/sites/golden-frangipane-3168eb/deploys)
-
+[![Netlify Status](https://api.netlify.com/api/v1/badges/192adc25-360d-45d7-adb1-c96a1af0bcb1/deploy-status)](https://app.netlify.com/sites/subtle-sprite-5bbc64/deploys)
 
 # FAIRsharing-Assistant
 
