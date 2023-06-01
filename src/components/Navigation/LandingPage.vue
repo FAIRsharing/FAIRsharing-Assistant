@@ -127,7 +127,6 @@ export default {
     },
     goBack() {
       let previous = this.history.pop();
-      console.log("previous::", previous)
       this.$router.push({path: "/" + previous});
     }
   }
