@@ -7,7 +7,7 @@
           {
             "id": 1,
             "title": "question_a1",
-            "question": "Explore all databases, standards and policies from a particular subject area.",
+            "question": "Explore all databases, standards and policies from a particular <b>subject area</b>.",
             "color": "internal",
             "icon": "search",
             "link": "/subject"
@@ -15,7 +15,7 @@
           {
             "id": 2,
             "title": "question_a2",
-            "question": "Explore and learn about databases for sharing and discovering data.",
+            "question": "Explore and learn about <b>databases</b> for sharing and discovering data.",
             "color": "internal",
             "icon": "educational",
             "extra_icon": "search",
@@ -26,7 +26,7 @@
           {
             "id": 3,
             "title": "question_a3",
-            "question": "Explore and learn about standards to identify, annotate and share data.",
+            "question": "Explore and learn about <b>standards</b> to identify, annotate and share data.",
             "color": "internal",
             "icon": "educational",
             "extra_icon": "search",
@@ -35,7 +35,7 @@
           {
             "id": 4,
             "title": "question_a4",
-            "question": "Explore and learn about policies for managing and sharing data.",
+            "question": "Explore and learn about <b>policies</b> for managing and sharing data.",
             "color": "internal",
             "icon": "educational",
             "extra_icon": "search",
@@ -97,7 +97,7 @@
           {
             "id": 1,
             "title": "question_c1",
-            "question": "Filter on access: See those databases with open access to data.",
+            "question": "Filter on access: See those databases with <b>open</b> access to data.",
             "color": "internal",
             "icon": "search",
             "link": "/refine-my-choice?registry=Database&dataAccessCondition=Open"
@@ -105,7 +105,7 @@
           {
             "id": 2,
             "title": "question_c2",
-            "question": "Filter on access: See those databases with partially open access to data.",
+            "question": "Filter on access: See those databases with <b>partially open</b> access to data.",
             "color": "internal",
             "icon": "search",
             "link": "/refine-my-choice?registry=Database&dataAccessCondition=Partially open"
@@ -115,7 +115,7 @@
           {
             "id": 3,
             "title": "question_c3",
-            "question": "Filter on access: See those databases with controlled access to data.",
+            "question": "Filter on access: See those databases with <b>controlled</b> access to data.",
             "color": "internal",
             "icon": "search",
             "link": "/refine-my-choice?registry=Database&dataAccessCondition=Controlled"
@@ -123,7 +123,7 @@
           {
             "id": 4,
             "title": "question_c4",
-            "question": "Filter on deposit: See those databases that are open to the deposition of data.",
+            "question": "Filter on deposit: See those databases that are <b>open</b> to the deposition of data.",
             "color": "internal",
             "icon": "search",
             "link": "/refine-my-choice?registry=Database&dataDepositionCondition=Open"
@@ -133,7 +133,7 @@
           {
             "id": 5,
             "title": "question_c5",
-            "question": "Filter on deposit: See those databases that are closed to the deposition of data.",
+            "question": "Filter on deposit: See those databases that are <b>closed</b> to the deposition of data.",
             "color": "internal",
             "icon": "search",
             "link": "/refine-my-choice?registry=Database&dataDepositionCondition=Controlled"

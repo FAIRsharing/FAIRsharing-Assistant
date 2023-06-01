@@ -35,7 +35,12 @@
           <v-card-text
             class="full-width white--text font-weight-medium text-xl-h4 text-lg-h5 text-md-h5 text-sm-h5 text-xs-h5 questionText"
           >
-            {{ item.question }}
+            <!-- This html is from a safe source -->
+            <!-- eslint-disable vue/no-v-html -->
+            <span
+              v-html="item.question"
+            />
+            <!-- eslint-enable vue/no-v-html -->
           </v-card-text>
           <v-icon
             v-if="item.extra_icon"
