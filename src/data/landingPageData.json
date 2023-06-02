@@ -10,6 +10,8 @@
             "question": "Explore all databases, standards and policies from a particular <b>subject area</b>.",
             "color": "internal",
             "icon": "search",
+            "image_icon": "browser_subject",
+            "background": "transparent",
             "link": "/subject"
           },
           {
@@ -20,6 +22,7 @@
             "icon": "educational",
             "extra_icon": "search",
             "image_icon": "home_db",
+            "background": "#fff",
             "link": "/1"
           }
         ],
@@ -32,6 +35,7 @@
             "icon": "educational",
             "extra_icon": "search",
             "image_icon": "home_standard",
+            "background": "#fff",
             "link": "/3"
           },
           {
@@ -42,6 +46,7 @@
             "icon": "educational",
             "extra_icon": "search",
             "image_icon": "home_policies",
+            "background": "#fff",
             "link": "/6"
           }
         ],

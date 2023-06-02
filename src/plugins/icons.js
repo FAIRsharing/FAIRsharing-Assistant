@@ -247,6 +247,10 @@ const customIcons  = {
       type: "img",
       icon: "/assets/Home/LandingPage/home-policies.svg"
     },
+    browser_subject: {
+      type: "img",
+      icon: "/assets/Home/LandingPage/browser-subject.svg"
+    },
     other: {
       type: "icon",
       icon: "fa-ellipsis-h"
