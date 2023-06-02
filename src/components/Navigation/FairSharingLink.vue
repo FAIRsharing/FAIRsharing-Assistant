@@ -90,7 +90,9 @@ export default {
       const { resourceNodeList } = this.getNodeList
       let resourceSelected = ""
       if (resourceNodeList && resourceNodeList.length) {
-        const resources = resourceNodeList.map(({records}) => records).join(",")
+        // Filtering Record types only
+        const recordType = resourceNodeList.filter(({type}) => type === "resource")
+        const resources = recordType.map(({records}) => records).join(",")
         resourceSelected = this.formatString(resources)
       }
       else {

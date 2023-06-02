@@ -5,6 +5,9 @@ export default {
   accent: '#006055',
   accent2: '#E67E22',
   accent3: '#6B1E1E',
+  // Box colours for landing page
+  internal: '#27aae1',
+  external: '#6B1E1E',
 
   //-- record status color definition:
   dev_color: '#CB9221',

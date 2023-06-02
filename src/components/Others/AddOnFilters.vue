@@ -44,8 +44,10 @@ import addOnFilters from "@/data/addOnFilters.json"
 
 export default {
   name: 'AddOnFilters',
+
   data:() => {
     return {
+      prevRoute: null,
       topResult: '',
       childResult: '',
       switchTypeFilters: addOnFilters["switch"],
@@ -74,6 +76,7 @@ export default {
       ]
     }
   },
+
   computed:{
     ...mapGetters("bubbleSelectedStore", ['getAllResources', 'getTopResource', 'getResource', 'getSubject', 'getDomain']),
     ...mapMutations("bubbleSelectedStore", ['resourceSelected']),
@@ -83,7 +86,7 @@ export default {
     selectDisplay() {
       return this.onlySwitch ? 'd-none' : 'd-flex'
     },
-    currentPath: function () {
+    currentPath () {
       const client = this;
       let queryParams = {};
       Object.keys(this.$route.query).forEach(prop => {
@@ -97,7 +100,6 @@ export default {
   },
   mounted() {
     let _module = this;
-    //_module.selectToggle();
     _module.readRegAndTypeFilterParams();
     _module.selectFilters();
     _module.readGeneralFilterParams();
@@ -146,28 +148,19 @@ export default {
       }
     },
     selectFilters(){
-      const prevRoute = this.$router.history._startLocation;
+      const prevRoute = localStorage.getItem("pageName");
       const selectedRegistry = this.topResult;
-      if(prevRoute === "/database" || selectedRegistry === 'Database') {
-        const databaseSwitchFilters = this.switchTypeFilters.filter(({filterTypes}) => filterTypes.includes("database"))
-        this.switchTypeFilters = databaseSwitchFilters
-        const databaseSelectFilters = this.selectTypeFilters.filter(({filterTypes}) => filterTypes.includes("database"))
-        this.selectTypeFilters = databaseSelectFilters
-        this.conditionalDisplay()
+      //When previous page or selection link is related to 'Database'
+      if(prevRoute === "DatabaseView" || selectedRegistry === 'Database') {
+        this.conditionalFilters("database")
       }
-      else if(prevRoute === "/standards" || selectedRegistry === 'Standard') {
-        const standardsSwitchFilters = this.switchTypeFilters.filter(({filterTypes}) => filterTypes.includes("standards"))
-        this.switchTypeFilters = standardsSwitchFilters
-        const standardsSelectFilters = this.selectTypeFilters.filter(({filterTypes}) => filterTypes.includes("standards"))
-        this.selectTypeFilters = standardsSelectFilters
-        this.conditionalDisplay()
+      //When previous page or selection link is related to 'Standard'
+      else if(prevRoute === "StandardsView" || selectedRegistry === 'Standard') {
+        this.conditionalFilters("standards")
       }
-      else if(prevRoute === "/policies" || selectedRegistry === 'Policy') {
-        const policiesSwitchFilters = this.switchTypeFilters.filter(({filterTypes}) => filterTypes.includes("policies"))
-        this.switchTypeFilters = policiesSwitchFilters
-        const policiesSelectFilters = this.selectTypeFilters.filter(({filterTypes}) => filterTypes.includes("policies"))
-        this.selectTypeFilters = policiesSelectFilters
-        this.conditionalDisplay()
+      //When previous page or selection link is related to 'Policy'
+      else if(prevRoute === "PoliciesView" || selectedRegistry === 'Policy') {
+        this.conditionalFilters("policies")
       }
     },
     applyFilters() {
@@ -181,11 +174,11 @@ export default {
       if ('record_type' in params) {
         newParams.record_type = params.record_type;
       }
-      [_module.switchTypeFilters, _module.selectTypeFilters].forEach(group =>{
+      [_module.switchTypeFilters, _module.selectTypeFilters].forEach(group => {
         group.forEach(filter => {
           //console.log(JSON.stringify(filter));
-          if (typeof(filter["refineToggle"]) != 'undefined' &&
-              filter["refineToggle"] != null &&
+          if (typeof(filter["refineToggle"]) !== 'undefined' &&
+              filter["refineToggle"] !== null &&
               filter["refineToggle"] !== ''
           ) {
             newParams[filter.filterQuery] = filter["refineToggle"];
@@ -221,6 +214,13 @@ export default {
       else if (this.switchTypeFilters?.length && !this.selectTypeFilters?.length) {
         this.onlySwitch = true
       }
+    },
+    conditionalFilters(registry) {
+      const registrySwitchFilters = this.switchTypeFilters.filter(({filterTypes}) => filterTypes.includes(registry))
+      this.switchTypeFilters = registrySwitchFilters
+      const registrySelectFilters = this.selectTypeFilters.filter(({filterTypes}) => filterTypes.includes(registry))
+      this.selectTypeFilters = registrySelectFilters
+      this.conditionalDisplay()
     }
   }
 };

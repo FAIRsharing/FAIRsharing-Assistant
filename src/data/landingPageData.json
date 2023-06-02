@@ -7,17 +7,22 @@
           {
             "id": 1,
             "title": "question_a1",
-            "question": "Explore all databases, standards and policies from a particular subject area.",
-            "color": "primary",
-            "arrow": "assets/Home/Arrow/whiteArrow.png",
+            "question": "Explore all databases, standards and policies from a particular <b>subject area</b>.",
+            "color": "internal",
+            "icon": "search",
+            "image_icon": "browser_subject",
+            "background": "transparent",
             "link": "/subject"
           },
           {
             "id": 2,
             "title": "question_a2",
-            "question": "Explore and learn about databases for sharing and discovering data.",
-            "color": "primary",
-            "arrow": "assets/Home/Arrow/whiteArrow.png",
+            "question": "Explore and learn about <b>databases</b> for sharing and discovering data.",
+            "color": "internal",
+            "icon": "educational",
+            "extra_icon": "search",
+            "image_icon": "home_db",
+            "background": "#fff",
             "link": "/1"
           }
         ],
@@ -25,19 +30,23 @@
           {
             "id": 3,
             "title": "question_a3",
-            "question": "Explore and learn about standards to identify, annotate and share data.",
-            "color": "primary",
-            "mobilecolour": "accent3",
-            "arrow": "assets/Home/Arrow/whiteArrow.png",
+            "question": "Explore and learn about <b>standards</b> to identify, annotate and share data.",
+            "color": "internal",
+            "icon": "educational",
+            "extra_icon": "search",
+            "image_icon": "home_standard",
+            "background": "#fff",
             "link": "/3"
           },
           {
             "id": 4,
             "title": "question_a4",
-            "question": "Explore and learn about policies for managing and sharing data.",
-            "color": "primary",
-            "mobilecolour": "accent3",
-            "arrow": "assets/Home/Arrow/whiteArrow.png",
+            "question": "Explore and learn about <b>policies</b> for managing and sharing data.",
+            "color": "internal",
+            "icon": "educational",
+            "extra_icon": "search",
+            "image_icon": "home_policies",
+            "background": "#fff",
             "link": "/6"
           }
         ],
@@ -46,9 +55,9 @@
             "id": 5,
             "title": "question_a5",
             "question": "Are you interested in guidance and educational material?",
-            "color": "primary",
-            "mobilecolour": "accent3",
-            "arrow": "assets/Home/Arrow/whiteArrow.png",
+            "color": "internal",
+            "icon": "educational",
+            "extra_icon": "search",
             "link": "/7"
           }
         ]
@@ -63,16 +72,16 @@
             "id": 1,
             "title": "question_b1",
             "question": "Learn about types of database and their relationships to other resources.",
-            "color": "accent3",
-            "arrow": "assets/Home/Arrow/whiteArrow.png",
+            "color": "external",
+            "icon": "educational",
             "link": "https://fairsharing.org/educational#databases"
           },
           {
             "id": 2,
             "title": "question_b2",
             "question": "See all databases; filter based on the attributes most relevant to you.",
-            "color": "primary",
-            "arrow": "assets/Home/Arrow/whiteArrow.png",
+            "color": "internal",
+            "icon": "search",
             "link": "/database"
           }
         ],
@@ -81,9 +90,8 @@
             "id": 3,
             "title": "question_b3",
             "question": "Filter databases according to access and deposition conditions.",
-            "color": "primary",
-            "mobilecolour": "primary",
-            "arrow": "assets/Home/Arrow/whiteArrow.png",
+            "color": "internal",
+            "icon": "search",
             "link": "/2"
           }
         ]
@@ -97,17 +105,17 @@
           {
             "id": 1,
             "title": "question_c1",
-            "question": "Filter on access: See those databases with open access to data.",
-            "color": "primary",
-            "arrow": "assets/Home/Arrow/whiteArrow.png",
+            "question": "Filter on access: See those databases with <b>open</b> access to data.",
+            "color": "internal",
+            "icon": "search",
             "link": "/refine-my-choice?registry=Database&dataAccessCondition=Open"
           },
           {
             "id": 2,
             "title": "question_c2",
-            "question": "Filter on access: See those databases with partially open access to data.",
-            "color": "primary",
-            "arrow": "assets/Home/Arrow/whiteArrow.png",
+            "question": "Filter on access: See those databases with <b>partially open</b> access to data.",
+            "color": "internal",
+            "icon": "search",
             "link": "/refine-my-choice?registry=Database&dataAccessCondition=Partially open"
           }
         ],
@@ -115,19 +123,17 @@
           {
             "id": 3,
             "title": "question_c3",
-            "question": "Filter on access: See those databases with controlled access to data.",
-            "color": "primary",
-            "mobilecolour": "primary",
-            "arrow": "assets/Home/Arrow/whiteArrow.png",
+            "question": "Filter on access: See those databases with <b>controlled</b> access to data.",
+            "color": "internal",
+            "icon": "search",
             "link": "/refine-my-choice?registry=Database&dataAccessCondition=Controlled"
           },
           {
             "id": 4,
             "title": "question_c4",
-            "question": "Filter on deposit: See those databases that are open to the deposition of data.",
-            "color": "primary",
-            "mobilecolour": "primary",
-            "arrow": "assets/Home/Arrow/whiteArrow.png",
+            "question": "Filter on deposit: See those databases that are <b>open</b> to the deposition of data.",
+            "color": "internal",
+            "icon": "search",
             "link": "/refine-my-choice?registry=Database&dataDepositionCondition=Open"
           }
         ],
@@ -135,10 +141,9 @@
           {
             "id": 5,
             "title": "question_c5",
-            "question": "Filter on deposit: See those databases that are closed to the deposition of data.",
-            "color": "primary",
-            "mobilecolour": "primary",
-            "arrow": "assets/Home/Arrow/whiteArrow.png",
+            "question": "Filter on deposit: See those databases that are <b>closed</b> to the deposition of data.",
+            "color": "internal",
+            "icon": "search",
             "link": "/refine-my-choice?registry=Database&dataDepositionCondition=Controlled"
           }
         ]
@@ -153,16 +158,16 @@
             "id": 1,
             "title": "question_d1",
             "question": "Learn about types of standards and their relationship to other resources.",
-            "color": "accent3",
-            "arrow": "assets/Home/Arrow/whiteArrow.png",
+            "color": "external",
+            "icon": "educational",
             "link": "https://fairsharing.org/educational#standards"
           },
           {
             "id": 2,
             "title": "question_d2",
             "question": "See all standards: Filter on the attributes most relevant to you.",
-            "color": "primary",
-            "arrow": "assets/Home/Arrow/whiteArrow.png",
+            "color": "internal",
+            "icon": "search",
             "link": "/standards"
           }
         ],
@@ -171,9 +176,8 @@
             "id": 3,
             "title": "question_d3",
             "question": "Filter standards according to their use for (meta)data annotation or citation.",
-            "color": "primary",
-            "mobilecolour": "primary",
-            "arrow": "assets/Home/Arrow/whiteArrow.png",
+            "color": "internal",
+            "icon": "search",
             "link": "/4"
           }
         ]
@@ -188,16 +192,17 @@
             "id": 1,
             "title": "question_e1",
             "question": "Explore unambiguous, persistent and context-independent schemas.",
-            "color": "primary",
-            "arrow": "assets/Home/Arrow/whiteArrow.png",
+            "color": "internal",
+            "icon": "search",
             "link": "/refine-my-choice?record_type=identifier_schema&registry=Standard"
           },
           {
             "id": 2,
             "title": "question_e2",
             "question": "Explore data and metadata standards (terminologies, models/formats and guidelines).",
-            "color": "primary",
-            "arrow": "assets/Home/Arrow/whiteArrow.png",
+            "color": "internal",
+            "icon": "search",
+            "extra_icon": "educational",
             "link": "/5"
           }
         ]
@@ -212,16 +217,16 @@
             "id": 1,
             "title": "question_f1",
             "question": "Explore conceptual models, schemas, and exchange formats.",
-            "color": "primary",
-            "arrow": "assets/Home/Arrow/whiteArrow.png",
+            "color": "internal",
+            "icon": "search",
             "link": "/refine-my-choice?record_type=model_and_format&registry=Standard"
           },
           {
             "id": 2,
             "title": "question_f2",
             "question": "Explore minimum information requirements, checklists and other reporting guidelines.",
-            "color": "primary",
-            "arrow": "assets/Home/Arrow/whiteArrow.png",
+            "color": "internal",
+            "icon": "search",
             "link": "/refine-my-choice?record_type=reporting_guideline&registry=Standard"
           }
         ],
@@ -230,16 +235,16 @@
             "id": 3,
             "title": "question_f3",
             "question": "Explore individual controlled vocabularies, taxonomies, ontologies and other terminology artefacts.",
-            "color": "primary",
-            "arrow": "assets/Home/Arrow/whiteArrow.png",
+            "color": "internal",
+            "icon": "search",
             "link": "/refine-my-choice?record_type=terminology_artefact&registry=Standard"
           },
           {
             "id": 4,
             "title": "question_f4",
             "question": "Explore terminology repositories.",
-            "color": "accent3",
-            "arrow": "assets/Home/Arrow/whiteArrow.png",
+            "color": "external",
+            "icon": "educational",
             "link": "https://fairsharing.org/search?fairsharingRegistry=Database&subjects=ontology%2520and%2520terminology&page=1"
           }
         ]
@@ -254,16 +259,16 @@
             "id": 1,
             "title": "question_g1",
             "question": "Learn about how we help journal publishers.",
-            "color": "accent3",
-            "arrow": "assets/Home/Arrow/whiteArrow.png",
+            "color": "external",
+            "icon": "educational",
             "link": "https://fairsharing.org/educational#publishers"
           },
           {
             "id": 2,
             "title": "question_g2",
             "question": "Learn about how we help funders.",
-            "color": "accent3",
-            "arrow": "assets/Home/Arrow/whiteArrow.png",
+            "color": "external",
+            "icon": "educational",
             "link": "https://fairsharing.org/educational#publishers"
           }
         ],
@@ -272,9 +277,8 @@
             "id": 3,
             "title": "question_g3",
             "question": "See all policies: Filter based on stakeholder including institutions, publishers and funders.",
-            "color": "primary",
-            "mobilecolour": "primary",
-            "arrow": "assets/Home/Arrow/whiteArrow.png",
+            "color": "internal",
+            "icon": "search",
             "link": "/policies"
           }
         ]
@@ -289,16 +293,16 @@
             "id": 1,
             "title": "question_h1",
             "question": "Increase the findability of your resource (for humans and machines) by adding content to FAIRsharing",
-            "color": "accent3",
-            "arrow": "assets/Home/Arrow/whiteArrow.png",
-            "link": "https://fairsharing.gitbook.io/fairsharing"
+            "color": "external",
+            "icon": "educational",
+            "link": "https://fairsharing.org/new"
           },
           {
             "id": 2,
             "title": "question_h2",
             "question": "Learn more about FAIRsharing by exploring all of our educational factsheets",
-            "color": "accent3",
-            "arrow": "assets/Home/Arrow/whiteArrow.png",
+            "color": "external",
+            "icon": "educational",
             "link": "https://fairsharing.org/educational"
           }
         ]
