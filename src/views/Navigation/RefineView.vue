@@ -16,6 +16,7 @@
       <AddOnFilters />
       <FairSharingLink
         :fair-sharing-button="fairSharingButton"
+        :prev-route="prevRoute"
       />
       <StartOver />
     </div>
@@ -46,6 +47,7 @@ export default {
   data:() => {
     return {
       fairSharingButton: true,
+      prevRoute: ""
     }
   },
   computed:{
@@ -57,6 +59,10 @@ export default {
       return false
     },
   },
+
+  mounted() {
+    this.prevRoute = localStorage.getItem("pageName");
+  }
 };
 </script>
 

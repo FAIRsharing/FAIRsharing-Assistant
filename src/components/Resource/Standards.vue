@@ -67,8 +67,16 @@ export default {
     ...mapGetters("nodeListStore", ["getNodeList"]),
   },
   watch:{
-    getTopResource(){
-      this.onBubbleSelection()
+    getNodeList:{
+      handler(val, oldVal) {
+        if (val.resourceNodeList && val.resourceNodeList.length) {
+          this.isNodeList()
+        }
+        else if(oldVal.resourceNodeList && !oldVal.resourceNodeList.length){
+          this.emptyNodeList()
+        }
+      },
+      deep: true
     }
   },
   async mounted() {
@@ -93,20 +101,19 @@ export default {
     ...mapActions("breadCrumbStore", ["resetbreadCrumbs"]),
     ...mapActions("otherResourcesSelectedStore", ["resetOtherResourceSelected"]),
 
-    onBubbleSelection() {
+    isNodeList() {
       this.fairSharingButton = true
-      this.showResourceSelected = true
       this.$emit('enableFairSharingButton', this.fairSharingButton)
-      this.$emit('showResourceSelected', this.showResourceSelected)
+    },
+
+    emptyNodeList() {
+      this.fairSharingButton = false
+      this.$emit('enableFairSharingButton', this.fairSharingButton)
     },
 
     async displayResources() {
       const { subjectNodeList, domainNodeList } = this.getNodeList
       this.allResourceData = await this.createResourceStructure("Standard")
-      // this.standardData = this.allResourceData["children"].filter(({name}) => name)
-      // const otherResources = this.standardData.map(({children}) => children)
-      // const otherResourceType = otherResources.flatMap(child => child)
-
       this.standardData = this.allResourceData["children"][0]
       const otherResourceType = this.standardData["children"]
 

@@ -92,9 +92,7 @@ export default {
 
     onBubbleSelection() {
       this.fairSharingButton = true
-      this.showSubjectSelected = true
       this.$emit('enableFairSharingButton', this.fairSharingButton)
-      this.$emit('showSubjectSelected', this.showSubjectSelected)
     },
 
     async displaySubjects() {
