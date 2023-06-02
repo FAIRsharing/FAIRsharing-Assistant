@@ -14,7 +14,6 @@
       <RefineButton :refine-button="refineButton" />
       <Database
         @enableFairSharingButton="enableFairSharingButton"
-        @showResourceSelected="showResourceSelected"
       />
       <FairSharingLink
         :fair-sharing-button="fairSharingButton"
@@ -48,7 +47,6 @@ export default {
   data:() => {
     return {
       fairSharingButton: false,
-      showResource: false,
       refineButton: false,
     }
   },
@@ -72,7 +70,6 @@ export default {
     localStorage.setItem("pageName", this.currentRouteName)
   },
   destroyed() {
-    this.showResource = false
     this.fairSharingButton = false
   },
   methods: {
@@ -82,9 +79,6 @@ export default {
         this.refineButton = value
       }
     },
-    showResourceSelected(value){
-      this.showResource = value
-    }
   }
 };
 </script>

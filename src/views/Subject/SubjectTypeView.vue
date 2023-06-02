@@ -14,7 +14,6 @@
       <RefineButton :refine-button="refineButton" />
       <SubjectType
         @enableFairSharingButton="enableFairSharingButton"
-        @showSubjectSelected="showSubjectSelected"
       />
       <FairSharingLink
         :fair-sharing-button="fairSharingButton"
@@ -48,7 +47,6 @@ export default {
   data:() => {
     return {
       fairSharingButton: false,
-      showSubject: false,
       refineButton: false,
     }
   },
@@ -61,24 +59,24 @@ export default {
       if ((resourceNodeList.length) || (subjectNodeList.length) || (domainNodeList.length)) return true
       return false
     },
+    currentRouteName() {
+      return this.$route.name;
+    },
   },
   mounted() {
     let _module = this;
     if (_module.getSubject) {
       _module.enableFairSharingButton(true);
     }
-    localStorage.clear();
+    localStorage.setItem("pageName", this.currentRouteName)
   },
   destroyed() {
-    this.showSubject = false
+    this.fairSharingButton = false
   },
   methods: {
     enableFairSharingButton(value) {
       this.fairSharingButton = value
       this.refineButton = value
-    },
-    showSubjectSelected(value){
-      this.showSubject = value
     },
   }
 };

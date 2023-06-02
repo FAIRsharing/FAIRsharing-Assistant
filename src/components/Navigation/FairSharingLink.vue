@@ -3,10 +3,10 @@
     <p class="ma-0">
       <!-- Resource Page Button -->
       <v-btn
-        v-if="(currentRouteName === 'ResourceTypeView') ||
-          (currentRouteName ==='DatabaseView') ||
-          (currentRouteName === 'StandardsView') ||
-          (currentRouteName === 'PoliciesView')"
+        v-if="
+          ((currentRouteName ==='DatabaseView') || (prevRoute ==='DatabaseView')) ||
+            ((currentRouteName === 'StandardsView') || (prevRoute ==='StandardsView')) ||
+            ((currentRouteName === 'PoliciesView') || (prevRoute ==='PoliciesView'))"
         v-bind="button['attributes']"
         :disabled="!fairSharingButton"
         :href="resourceRedirectionLink"
@@ -17,7 +17,7 @@
 
       <!-- Subject Page Button -->
       <v-btn
-        v-else-if="currentRouteName === 'SubjectTypeView'"
+        v-else-if="((currentRouteName === 'SubjectTypeView') || (prevRoute === 'SubjectTypeView'))"
         v-bind="button['attributes']"
         :disabled="!fairSharingButton"
         :href="subjectRedirectionLink"
@@ -28,7 +28,7 @@
 
       <!-- Domain Page Button -->
       <v-btn
-        v-else-if="currentRouteName === 'DomainTypeView'"
+        v-else-if="((currentRouteName === 'DomainTypeView') || (prevRoute === 'DomainTypeView'))"
         v-bind="button['attributes']"
         :disabled="!fairSharingButton"
         :href="domainRedirectionLink"
@@ -51,6 +51,10 @@ export default {
     fairSharingButton: {
       type: Boolean,
       default: false
+    },
+    prevRoute: {
+      type: String,
+      default: ''
     },
   },
   data:() => {
@@ -95,9 +99,6 @@ export default {
         const resources = recordType.map(({records}) => records).join(",")
         resourceSelected = this.formatString(resources)
       }
-      else {
-        resourceSelected = null
-      }
       return resourceSelected
 
     },
@@ -108,9 +109,6 @@ export default {
         const subjects = subjectNodeList.map(({records}) => records).join(",")
         subjectSelected = subjects.toLowerCase()
       }
-      else {
-        subjectSelected = null
-      }
       return subjectSelected
     },
     domainSelected() {
@@ -119,9 +117,6 @@ export default {
       if (domainNodeList && domainNodeList.length) {
         const domains = domainNodeList.map(({records}) => records).join(",")
         domainSelected = domains.toLowerCase()
-      }
-      else {
-        domainSelected = null
       }
       return domainSelected
     },
@@ -194,6 +189,7 @@ export default {
       }
     }
   },
+
 };
 </script>
 
