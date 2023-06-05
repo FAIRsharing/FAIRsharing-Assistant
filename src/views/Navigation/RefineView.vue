@@ -51,7 +51,7 @@ export default {
     }
   },
   computed:{
-    ...mapGetters("bubbleSelectedStore", ['getAllResources', 'getTopResource', 'getResource', 'getSubject', 'getDomain']),
+    ...mapGetters("bubbleSelectedStore", ['getAllResources', 'getSubjectList', 'getDomainList']),
     ...mapGetters("nodeListStore", ['getNodeList']),
     isNodeList() {
       const {resourceNodeList, subjectNodeList, domainNodeList} = this.getNodeList
@@ -62,6 +62,9 @@ export default {
 
   mounted() {
     this.prevRoute = localStorage.getItem("pageName");
+
+    //When user is Refine-my-choice page directly, without any pre-selection
+    if((!this.getAllResources.length) && (!this.getSubjectList.length) && (!this.getDomainList.length)) this.$router.push("/")
   }
 };
 </script>
