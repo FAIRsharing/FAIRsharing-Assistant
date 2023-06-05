@@ -11,7 +11,6 @@
             "color": "internal",
             "icon": "search",
             "image_icon": "browser_subject",
-            "background": "transparent",
             "link": "/subject"
           },
           {
@@ -22,7 +21,6 @@
             "icon": "educational",
             "extra_icon": "search",
             "image_icon": "home_db",
-            "background": "#fff",
             "link": "/1"
           }
         ],
@@ -35,7 +33,6 @@
             "icon": "educational",
             "extra_icon": "search",
             "image_icon": "home_standard",
-            "background": "#fff",
             "link": "/3"
           },
           {
@@ -46,7 +43,6 @@
             "icon": "educational",
             "extra_icon": "search",
             "image_icon": "home_policies",
-            "background": "#fff",
             "link": "/6"
           }
         ],
@@ -57,7 +53,6 @@
             "question": "Are you interested in guidance and educational material?",
             "color": "internal",
             "icon": "educational",
-            "extra_icon": "search",
             "link": "/7"
           }
         ]

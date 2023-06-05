@@ -237,11 +237,11 @@ const customIcons  = {
     },
     home_standard: {
       type: "img",
-      icon: "/assets/Home/LandingPage/home-standards.svg"
+      icon: "/assets/Home/LandingPage/home-standards.png"
     },
     home_db: {
       type: "img",
-      icon: "/assets/Home/LandingPage/home-db.svg"
+      icon: "/assets/Home/LandingPage/home-db.png"
     },
     home_policies: {
       type: "img",
@@ -249,7 +249,7 @@ const customIcons  = {
     },
     browser_subject: {
       type: "img",
-      icon: "/assets/Home/LandingPage/browser-subject.svg"
+      icon: "/assets/Home/LandingPage/browser-subject.png"
     },
     other: {
       type: "icon",
