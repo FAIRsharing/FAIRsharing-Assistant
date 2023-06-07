@@ -51,7 +51,7 @@
           {
             "id": 5,
             "title": "question_a5",
-            "question": "Are you interested in guidance and educational material?",
+            "question": "Are you mainly interested in guidance and educational material?",
             "color": "internal",
             "icon": "educational",
             "link": "/7"
@@ -319,7 +319,7 @@
           {
             "id": 1,
             "title": "question_h1",
-            "question": "Increase the findability of your resource (for humans and machines) by adding content to FAIRsharing",
+            "question": "Read how to submit your database, standard or policy to FAIRsharing.",
             "color": "external",
             "icon": "educational",
             "link": "https://fairsharing.org/new"
