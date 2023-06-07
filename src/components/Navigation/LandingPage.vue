@@ -44,7 +44,7 @@
             <!-- eslint-enable vue/no-v-html -->
             </v-card-text>
             <v-img
-              v-if="item.image_icon"
+              v-if="typeof item.image_icon !== 'undefined'"
               color="white"
               contain
               max-width="165"
@@ -54,7 +54,7 @@
             />
           </div>
           <v-icon
-            v-if="item.extra_icon"
+            v-if="typeof item.extra_icon !== 'undefined'"
             color="white"
             class="pabsolute opacity-medium"
             contain
