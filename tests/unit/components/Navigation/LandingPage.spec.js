@@ -2,12 +2,12 @@ import {createLocalVue, shallowMount} from "@vue/test-utils";
 import LandingPage from "@/components/Navigation/LandingPage"
 import Vuetify from "vuetify"
 import Vuex from "vuex";
-
+import icons from "@/plugins/icons";
 const localVue = createLocalVue();
 localVue.use(Vuex);
 let $route = { path: "/", name: "HomeView"};
 
-const vuetify = new Vuetify();
+const vuetify = new Vuetify({'icons':icons});
 
 
 describe("LandingPage.vue", function(){
