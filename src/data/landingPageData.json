@@ -2,6 +2,7 @@
   "questionSets": [
     {
       "id": "question_a",
+      "path": 0,
       "rows": [
         [
           {
@@ -60,17 +61,10 @@
     },
     {
       "id": "question_b",
+      "path": 1,
       "previousLink": "0",
       "rows": [
         [
-          {
-            "id": 1,
-            "title": "question_b1",
-            "question": "Learn about types of database and their relationships to other resources.",
-            "color": "external",
-            "icon": "educational",
-            "link": "https://fairsharing.org/educational#databases"
-          },
           {
             "id": 2,
             "title": "question_b2",
@@ -78,9 +72,7 @@
             "color": "internal",
             "icon": "search",
             "link": "/database"
-          }
-        ],
-        [
+          },
           {
             "id": 3,
             "title": "question_b3",
@@ -89,12 +81,31 @@
             "icon": "search",
             "link": "/2"
           }
+        ],
+        [
+          {
+            "id": 4,
+            "title": "question_b4",
+            "question": "Read how to submit your database to FAIRsharing.",
+            "color": "external",
+            "icon": "educational",
+            "link": "https://fairsharing.org/new"
+          },
+          {
+            "id": 1,
+            "title": "question_b1",
+            "question": "Learn about types of database and their relationships to other resources.",
+            "color": "external",
+            "icon": "educational",
+            "link": "https://fairsharing.org/educational#databases"
+          }
         ]
       ]
     },
     {
       "id": "question_c",
       "previousLink": "1",
+      "path": 2,
       "rows": [
         [
           {
@@ -146,17 +157,10 @@
     },
     {
       "id": "question_d",
+      "path": "3",
       "previousLink": "0",
       "rows": [
         [
-          {
-            "id": 1,
-            "title": "question_d1",
-            "question": "Learn about types of standards and their relationship to other resources.",
-            "color": "external",
-            "icon": "educational",
-            "link": "https://fairsharing.org/educational#standards"
-          },
           {
             "id": 2,
             "title": "question_d2",
@@ -164,9 +168,7 @@
             "color": "internal",
             "icon": "search",
             "link": "/standards"
-          }
-        ],
-        [
+          },
           {
             "id": 3,
             "title": "question_d3",
@@ -175,11 +177,30 @@
             "icon": "search",
             "link": "/4"
           }
+        ],
+        [
+          {
+            "id": 4,
+            "title": "question_d4",
+            "question": "Read how to submit your standard to FAIRsharing.",
+            "color": "external",
+            "icon": "educational",
+            "link": "https://fairsharing.org/new"
+          },
+          {
+            "id": 1,
+            "title": "question_d1",
+            "question": "Learn about types of standards and their relationship to other resources.",
+            "color": "external",
+            "icon": "educational",
+            "link": "https://fairsharing.org/educational#standards"
+          }
         ]
       ]
     },
     {
       "id": "question_e",
+      "path": 4,
       "previousLink": "3",
       "rows": [
         [
@@ -205,6 +226,7 @@
     },
     {
       "id": "question_f",
+      "path": 5,
       "previousLink": "4",
       "rows": [
         [
@@ -247,8 +269,27 @@
     },
     {
       "id": "question_g",
+      "path": 6,
       "previousLink": "0",
       "rows": [
+        [
+          {
+            "id": 3,
+            "title": "question_g3",
+            "question": "See all policies: Filter based on stakeholder including institutions, publishers and funders.",
+            "color": "internal",
+            "icon": "search",
+            "link": "/policies"
+          },
+          {
+            "id": 4,
+            "title": "question_g4",
+            "question": "Read how to submit your policy to FAIRsharing.",
+            "color": "external",
+            "icon": "educational",
+            "link": "https://fairsharing.org/new"
+          }
+        ],
         [
           {
             "id": 1,
@@ -266,21 +307,12 @@
             "icon": "educational",
             "link": "https://fairsharing.org/educational#publishers"
           }
-        ],
-        [
-          {
-            "id": 3,
-            "title": "question_g3",
-            "question": "See all policies: Filter based on stakeholder including institutions, publishers and funders.",
-            "color": "internal",
-            "icon": "search",
-            "link": "/policies"
-          }
         ]
       ]
     },
     {
       "id": "question_h",
+      "path": 7,
       "previousLink": "0",
       "rows": [
         [
