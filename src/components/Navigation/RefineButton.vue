@@ -1,6 +1,6 @@
 <template>
   <div
-    class="navSecond d-flex justify-space-around align-center full-width"
+    class="navSecond d-flex justify-center align-center full-width"
   >
     <v-btn
       v-bind="button['attributes']"
@@ -9,14 +9,39 @@
     >
       {{ button["text"] }}
     </v-btn>
+    <v-tooltip
+      v-if="!refineButton"
+      color="indigo"
+      right
+    >
+      <template #activator="{ on, attrs }">
+        <v-icon
+          color="primary"
+          dark
+          small
+          v-bind="attrs"
+          class="ml-2"
+          v-on="on"
+        >
+          fa fa-question-circle
+        </v-icon>
+      </template>
+      <span v-if="isObjEmpty">Click on the bubble and add record to the list to enable</span>
+      <span v-else>Add record to the list to enable</span>
+    </v-tooltip>
   </div>
 </template>
 
 <script>
+import {mapGetters} from "vuex";
+
 export default {
   name: "RefineButton",
   props:{
-    refineButton: Boolean,
+    refineButton: {
+      type: Boolean,
+      default: false
+    },
   },
   data () {
     return {
@@ -31,6 +56,13 @@ export default {
       },
     }
   },
+
+  computed:{
+    ...mapGetters("bubbleSelectedStore", ['getNodes']),
+    isObjEmpty () {
+      return Object.keys(this.getNodes).length === 0;
+    }
+  }
 
 }
 </script>

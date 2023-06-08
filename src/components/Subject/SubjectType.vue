@@ -64,8 +64,17 @@ export default {
     ...mapGetters("nodeListStore", ["getNodeList"]),
   },
   watch:{
-    getSubject(){
-      this.onBubbleSelection()
+    //Enable Refine and Fairsharing buttion when resource is added to nodeList
+    getNodeList:{
+      handler(val, oldVal) {
+        if (val.subjectNodeList && val.subjectNodeList.length) {
+          this.$emit('enableFairSharingButton', true)
+        }
+        else if(oldVal.subjectNodeList && !oldVal.subjectNodeList.length){
+          this.$emit('enableFairSharingButton', false)
+        }
+      },
+      deep: true
     }
   },
   async mounted() {
@@ -89,11 +98,6 @@ export default {
     ...mapActions("recordTypeStore", ["fetchAllRecordTypes", "resetRecords"]),
     ...mapActions("breadCrumbStore", ["resetbreadCrumbs"]),
     ...mapActions("bubbleSelectedStore", ["resetAllSubjects"]),
-
-    onBubbleSelection() {
-      this.fairSharingButton = true
-      this.$emit('enableFairSharingButton', this.fairSharingButton)
-    },
 
     async displaySubjects() {
       const { resourceNodeList, domainNodeList } = this.getNodeList

@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import {mapGetters} from "vuex"
+import {mapActions, mapGetters} from "vuex"
 import Database from "@/components/Resource/Database";
 import FairSharingLink from "@/components/Navigation/FairSharingLink"
 import StartOver from "@/components/Navigation/StartOver";
@@ -71,8 +71,10 @@ export default {
   },
   destroyed() {
     this.fairSharingButton = false
+    this.resetNodeSelected()
   },
   methods: {
+    ...mapActions("bubbleSelectedStore", ["resetNodeSelected"]),
     enableFairSharingButton(value) {
       if (this.getTopResource === "Database") {
         this.fairSharingButton = value
