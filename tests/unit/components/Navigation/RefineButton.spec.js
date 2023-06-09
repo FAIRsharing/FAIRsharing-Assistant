@@ -9,13 +9,35 @@ localVue.use(Vuex);
 const vuetify = new Vuetify();
 
 
-describe("RefineButton.vue", function(){
-  let wrapper;
+describe("RefineButton", function(){
+  let wrapper, getters, store;
 
   beforeEach(() => {
+    getters = {
+      getNodes: () => {
+        return[
+          {
+            records: "Policies",
+            recordsNumber: 164,
+            type: "resourceParent"
+          }
+        ]
+      }
+    }
+
+    store = new Vuex.Store({
+      getters
+    })
+
     wrapper = shallowMount(RefineButton, {
       localVue,
       vuetify,
+      store,
+      computed:{
+        isObjEmpty(){
+          return true
+        }
+      },
       stubs: ['router-link', 'router-view']
     })
   });
