@@ -73,8 +73,17 @@ export default {
     ...mapGetters("nodeListStore", ["getNodeList"]),
   },
   watch:{
-    getDomain(){
-      this.onBubbleSelection()
+    //Enable Refine and Fairsharing buttion when resource is added to nodeList
+    getNodeList:{
+      handler(val, oldVal) {
+        if (val.domainNodeList && val.domainNodeList.length) {
+          this.$emit('enableFairSharingButton', true)
+        }
+        else if(oldVal.domainNodeList && !oldVal.domainNodeList.length){
+          this.$emit('enableFairSharingButton', false)
+        }
+      },
+      deep: true
     }
   },
   async mounted() {
@@ -96,12 +105,6 @@ export default {
     ...mapActions("recordTypeStore", ["fetchAllRecordTypes", "resetRecords"]),
     ...mapActions("variableTagStore", ["fetchVariableTags", "resetVariableTags"]),
     ...mapActions("breadCrumbStore", ["resetbreadCrumbs"]),
-
-    onBubbleSelection() {
-      this.fairSharingButton = true
-      this.$emit('enableFairSharingButton', this.fairSharingButton)
-    },
-
 
     async displayDomains() {
   

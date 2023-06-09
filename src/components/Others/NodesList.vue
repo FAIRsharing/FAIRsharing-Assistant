@@ -33,7 +33,9 @@
           class="ma-2"
           color="orange"
           text-color="white"
-          :close="isRefineView"
+          :close="((currentRouteName ==='DatabaseView') ||
+            (currentRouteName === 'StandardsView') ||
+            (currentRouteName === 'PoliciesView'))"
           @click:close="deleteItem(item)"
         >
           <v-avatar
@@ -76,7 +78,7 @@
           class="ma-2"
           color="orange"
           text-color="white"
-          :close="isRefineView"
+          :close="(currentRouteName === 'SubjectTypeView')"
           @click:close="deleteItem(item)"
         >
           <v-avatar
@@ -119,7 +121,7 @@
           class="ma-2"
           color="orange"
           text-color="white"
-          :close="isRefineView"
+          :close="(currentRouteName === 'DomainTypeView')"
           @click:close="deleteItem(item)"
         >
           <v-avatar
@@ -153,7 +155,7 @@ export default {
       return this.$route.name;
     },
     isRefineView() {
-      return this.currentRouteName !== "RefineView" ? true : false
+      return this.currentRouteName !== "RefineView" ? false : true
     },
   },
   methods:{

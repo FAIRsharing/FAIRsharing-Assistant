@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex"
+import {mapActions, mapGetters} from "vuex"
 import DomainType from "@/components/Domain/DomainType";
 import FairSharingLink from "@/components/Navigation/FairSharingLink";
 import StartOver from "@/components/Navigation/StartOver"
@@ -72,8 +72,10 @@ export default {
   },
   destroyed() {
     this.fairSharingButton = false
+    this.resetNodeSelected()
   },
   methods: {
+    ...mapActions("bubbleSelectedStore", ["resetNodeSelected"]),
     enableFairSharingButton(value) {
       this.fairSharingButton = value
       this.refineButton = value

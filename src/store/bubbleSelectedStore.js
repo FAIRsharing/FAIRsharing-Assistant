@@ -16,6 +16,9 @@ const actions = {
   },
   resetAllSubjects({commit}) {
     commit('resetAllSubjects');
+  },
+  resetNodeSelected({commit}) {
+    commit('resetNodeSelected');
   }
 }
 
@@ -79,7 +82,7 @@ const mutations = {
       recordsNumber: domain["recordsNumber"],
       type: "domain"
     }
-    // /* istanbul ignore next */
+    /* istanbul ignore next */
     const found = state.domainList.find(({records}) => records === state.domainType)
 
     /* istanbul ignore else */
@@ -93,6 +96,9 @@ const mutations = {
   },
   resetAllSubjects(state) {
     state.allSubjects = false
+  },
+  resetNodeSelected(state) {
+    state.nodeSelected = {}
   },
   resetAllBubbles(state) {
     state.topResourceType = "",

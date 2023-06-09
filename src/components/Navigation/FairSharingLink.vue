@@ -1,42 +1,61 @@
 <template>
-  <div>
-    <p class="ma-0">
-      <!-- Resource Page Button -->
-      <v-btn
-        v-if="
-          ((currentRouteName ==='DatabaseView') || (prevRoute ==='DatabaseView')) ||
-            ((currentRouteName === 'StandardsView') || (prevRoute ==='StandardsView')) ||
-            ((currentRouteName === 'PoliciesView') || (prevRoute ==='PoliciesView'))"
-        v-bind="button['attributes']"
-        :disabled="!fairSharingButton"
-        :href="resourceRedirectionLink"
-        class="fairSharingBtn"
-      >
-        {{ button["text"] }}
-      </v-btn>
+  <div class="ma-0">
+    <!-- Resource Page Button -->
+    <v-btn
+      v-if="
+        ((currentRouteName ==='DatabaseView') || (prevRoute ==='DatabaseView')) ||
+          ((currentRouteName === 'StandardsView') || (prevRoute ==='StandardsView')) ||
+          ((currentRouteName === 'PoliciesView') || (prevRoute ==='PoliciesView'))"
+      v-bind="button['attributes']"
+      :disabled="!fairSharingButton"
+      :href="resourceRedirectionLink"
+      class="fairSharingBtn"
+    >
+      {{ button["text"] }}
+    </v-btn>
 
-      <!-- Subject Page Button -->
-      <v-btn
-        v-else-if="((currentRouteName === 'SubjectTypeView') || (prevRoute === 'SubjectTypeView'))"
-        v-bind="button['attributes']"
-        :disabled="!fairSharingButton"
-        :href="subjectRedirectionLink"
-        class="fairSharingBtn"
-      >
-        {{ button["text"] }}
-      </v-btn>
+    <!-- Subject Page Button -->
+    <v-btn
+      v-else-if="((currentRouteName === 'SubjectTypeView') || (prevRoute === 'SubjectTypeView'))"
+      v-bind="button['attributes']"
+      :disabled="!fairSharingButton"
+      :href="subjectRedirectionLink"
+      class="fairSharingBtn"
+    >
+      {{ button["text"] }}
+    </v-btn>
 
-      <!-- Domain Page Button -->
-      <v-btn
-        v-else-if="((currentRouteName === 'DomainTypeView') || (prevRoute === 'DomainTypeView'))"
-        v-bind="button['attributes']"
-        :disabled="!fairSharingButton"
-        :href="domainRedirectionLink"
-        class="fairSharingBtn"
-      >
-        {{ button["text"] }}
-      </v-btn>
-    </p>
+    <!-- Domain Page Button -->
+    <v-btn
+      v-else-if="((currentRouteName === 'DomainTypeView') || (prevRoute === 'DomainTypeView'))"
+      v-bind="button['attributes']"
+      :disabled="!fairSharingButton"
+      :href="domainRedirectionLink"
+      class="fairSharingBtn"
+    >
+      {{ button["text"] }}
+    </v-btn>
+
+    <v-tooltip
+      v-if="!fairSharingButton"
+      color="indigo"
+      right
+    >
+      <template #activator="{ on, attrs }">
+        <v-icon
+          color="primary"
+          dark
+          small
+          v-bind="attrs"
+          class="ml-2"
+          v-on="on"
+        >
+          fa fa-question-circle
+        </v-icon>
+      </template>
+      <span v-if="isObjEmpty">Click on the bubble and add record to the list to enable</span>
+      <span v-else>Add record to the list to enable</span>
+    </v-tooltip>
   </div>
 </template>
 
@@ -67,14 +86,16 @@ export default {
           raised: true,
           color: "primary",
           target:"_blank",
-          disabled: true
         }
       }
     }
   },
   computed:{
-    ...mapGetters("bubbleSelectedStore", ['getTopResource', 'getResource', 'getSubject', 'getDomain']),
+    ...mapGetters("bubbleSelectedStore", ['getTopResource', 'getResource', 'getSubject', 'getDomain', 'getNodes']),
     ...mapGetters("nodeListStore", ['getNodeList']),
+    isObjEmpty () {
+      return Object.keys(this.getNodes).length === 0;
+    },
     currentRouteName() {
       return this.$route.name;
     },
@@ -196,5 +217,8 @@ export default {
 <style lang="scss" scoped>
 .fairSharingBtn {
   text-transform: initial;
+}
+.v-tooltip__content[data-v-140955c7] {
+  background-color: #3f51b5 !important;
 }
 </style>

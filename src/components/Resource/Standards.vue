@@ -67,13 +67,14 @@ export default {
     ...mapGetters("nodeListStore", ["getNodeList"]),
   },
   watch:{
+    //Enable Refine and Fairsharing buttion when resource is added to nodeList
     getNodeList:{
       handler(val, oldVal) {
         if (val.resourceNodeList && val.resourceNodeList.length) {
-          this.isNodeList()
+          this.$emit('enableFairSharingButton', true)
         }
         else if(oldVal.resourceNodeList && !oldVal.resourceNodeList.length){
-          this.emptyNodeList()
+          this.$emit('enableFairSharingButton', false)
         }
       },
       deep: true
@@ -100,16 +101,6 @@ export default {
     ...mapActions("recordTypeStore", ["fetchAllRecordTypes", "resetRecords"]),
     ...mapActions("breadCrumbStore", ["resetbreadCrumbs"]),
     ...mapActions("otherResourcesSelectedStore", ["resetOtherResourceSelected"]),
-
-    isNodeList() {
-      this.fairSharingButton = true
-      this.$emit('enableFairSharingButton', this.fairSharingButton)
-    },
-
-    emptyNodeList() {
-      this.fairSharingButton = false
-      this.$emit('enableFairSharingButton', this.fairSharingButton)
-    },
 
     async displayResources() {
       const { subjectNodeList, domainNodeList } = this.getNodeList

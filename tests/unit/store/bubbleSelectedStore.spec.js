@@ -27,6 +27,12 @@ describe('bubbleSelectedStore store methods', () => {
     expect(commit).toHaveBeenCalledTimes(1);
   });
 
+  it("can check resetAllSubjects actions", () => {
+    const commit = jest.fn()
+    actions.resetAllSubjects({ commit })
+    expect(commit).toHaveBeenCalledTimes(1);
+  });
+
   it("can check resourceSelected mutations", () => {
     const returnedVal = {
       topResourceSelected: "Parent",
@@ -35,6 +41,35 @@ describe('bubbleSelectedStore store methods', () => {
     mutations.resourceSelected(state, returnedVal);
     expect(state.topResourceType).toBe(returnedVal.topResourceSelected);
     expect(state.resourceType).toBe(returnedVal.childResourceSelected);
+
+  });
+
+  it("can check resourceSelected mutations when resource parent is true ", () => {
+    const returnedVal = {
+      topResourceSelected: "Parent",
+      childResourceSelected: "Child",
+      recordsNumber: 123,
+      parent: true,
+      child: false
+    }
+    mutations.resourceSelected(state, returnedVal);
+    expect(state.nodeSelected.records).toBe(returnedVal.topResourceSelected);
+    expect(state.nodeSelected.recordsNumber).toBe(returnedVal.recordsNumber);
+    expect(state.nodeSelected.type).toBe("resourceParent");
+  });
+
+  it("can check resourceSelected mutations when resource child is true ", () => {
+    const returnedVal = {
+      topResourceSelected: "Parent",
+      childResourceSelected: "Child",
+      recordsNumber: 123,
+      parent: false,
+      child: true
+    }
+    mutations.resourceSelected(state, returnedVal);
+    expect(state.nodeSelected.records).toBe(returnedVal.childResourceSelected);
+    expect(state.nodeSelected.recordsNumber).toBe(returnedVal.recordsNumber);
+    expect(state.nodeSelected.type).toBe("resource");
   });
 
   it("can check subjectSelected mutations", () => {
@@ -47,6 +82,28 @@ describe('bubbleSelectedStore store methods', () => {
     expect(state.nodeSelected.records).toBe(returnedVal.subjectSelected);
     expect(state.nodeSelected.recordsNumber).toBe(returnedVal.recordsNumber);
   });
+
+  // it("can check ELSE for subjectSelected mutations", () => {
+  //   const returnedVal = {
+  //     subjectSelected : "Test",
+  //     recordsNumber: 1233
+  //   }
+  //
+  //   state = {
+  //     subjectType: "Test",
+  //     subjectList: {
+  //       records : "Test",
+  //       recordsNumber: 1233
+  //     }
+  //   }
+  //
+  //   const found = jest.fn();
+  //   jest.spyOn(found, 'call')
+  //   mutations.subjectSelected(state, returnedVal);
+  //
+  //   expect(state.subjectList.records).toBe(state.subjectType);
+  //   expect(state.subjectList.recordsNumber).toBe(returnedVal.recordsNumber);
+  // });
 
   it("can check allSubjectsSelected mutations", () => {
     const returnedVal = true
@@ -64,6 +121,14 @@ describe('bubbleSelectedStore store methods', () => {
     expect(state.domainType).toBe(returnedVal.domainSelected);
     expect(state.nodeSelected.records).toBe(returnedVal.domainSelected);
     expect(state.nodeSelected.recordsNumber).toBe(returnedVal.recordsNumber);
+  });
+
+  it("can check resetAllSubjects mutations", () => {
+    const returnedVal = {
+      allSubjects: false,
+    }
+    mutations.resetAllSubjects(state);
+    expect(state.allSubjects).toStrictEqual(returnedVal.allSubjects);
   });
 
 
