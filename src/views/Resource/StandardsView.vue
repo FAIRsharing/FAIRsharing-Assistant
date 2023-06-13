@@ -56,17 +56,22 @@ export default {
     isNodeList() {
       const {resourceNodeList, subjectNodeList, domainNodeList} = this.getNodeList
       if ((resourceNodeList.length) || (subjectNodeList.length) || (domainNodeList.length)) return true
-      return false
+      else return false
     },
     currentRouteName() {
       return this.$route.name;
     },
   },
+  beforeMount() {
+    const { resourceNodeList } = this.getNodeList
+    resourceNodeList.length = 0
+  },
   mounted() {
-    let _module = this;
+    let _module = this
     if (_module.getTopResource || _module.getResource) {
       _module.enableFairSharingButton(true);
     }
+
     localStorage.setItem("pageName", this.currentRouteName)
   },
   destroyed() {

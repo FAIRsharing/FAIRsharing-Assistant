@@ -40,10 +40,11 @@ const mutations = {
     let {resourceNodeList, subjectNodeList, domainNodeList} = state.nodeList
 
     // When Resource Node is selected
-    if ((routeName === "DatabaseView") || (routeName === "StandardsView") || (routeName === "PoliciesView")) {
+    if ((routeName === "DatabaseView") || (routeName === "StandardsView") || (routeName === "PoliciesView") || (routeName === "ResourceView")) {
       const isFound = isNodePresent(resourceNodeList, nodeItem)
 
       if(!isFound) {
+        resourceNodeList.length = 0
         resourceNodeList.push(nodeItem)
         state.nodeFound["isResourceNode"] = false
       }

@@ -1,5 +1,13 @@
 <template>
   <div>
+    <v-fade-transition v-if="loading">
+      <v-overlay
+        :absolute="false"
+        opacity="0.8"
+      >
+        <Loaders />
+      </v-overlay>
+    </v-fade-transition>
     <v-container
       class="filterWrapper ma-0 d-flex flex-row align-stretch"
     >
@@ -39,14 +47,17 @@
 </template>
 
 <script>
-import { mapGetters, mapMutations} from "vuex";
+import {mapActions, mapGetters, mapMutations, mapState} from "vuex";
 import addOnFilters from "@/data/addOnFilters.json"
+import Loaders from "@/components/Loaders/Loaders.vue";
 
 export default {
   name: 'AddOnFilters',
+  components: {Loaders},
 
   data:() => {
     return {
+      loading: false,
       prevRoute: null,
       topResult: '',
       childResult: '',
@@ -80,6 +91,8 @@ export default {
   computed:{
     ...mapGetters("bubbleSelectedStore", ['getAllResources', 'getTopResource', 'getResource', 'getSubject', 'getDomain']),
     ...mapMutations("bubbleSelectedStore", ['resourceSelected']),
+    ...mapMutations("nodeListStore", ['nodeLists']),
+    ...mapState("multiTagsStore", ["fairSharingRecords", "loadingStatus"]),
     switchDisplay() {
       return this.onlySelect ? 'd-none' : 'd-flex'
     },
@@ -98,13 +111,18 @@ export default {
       return queryParams;
     },
   },
-  mounted() {
-    let _module = this;
-    _module.readRegAndTypeFilterParams();
-    _module.selectFilters();
-    _module.readGeneralFilterParams();
+  async mounted() {
+    this.$nextTick(async () =>{
+      this.loading = true
+      let _module = this;
+      await _module.readRegAndTypeFilterParams();
+      await _module.selectFilters();
+      await _module.readGeneralFilterParams();
+      this.loading = false
+    })
   },
   methods: {
+    ...mapActions("multiTagsStore", ["fetchMultiTagsTerms", "resetMultiTags"]),
     readGeneralFilterParams() {
       let _module = this;
       let map = new Map();
@@ -125,7 +143,7 @@ export default {
         })
       });
     },
-    readRegAndTypeFilterParams() {
+    async readRegAndTypeFilterParams() {
       let _module = this;
       let modified = false;
       let params = _module.currentPath;
@@ -145,6 +163,10 @@ export default {
       })
       if (modified) {
         this.$store.commit('bubbleSelectedStore/resourceSelected', {topResourceSelected: _module.topResult, childResourceSelected: _module.childResult})
+
+        //When the user is directly landing on the refine page from the home page
+        await this.showResourceRecords(_module.topResult, _module.childResult)
+
       }
     },
     selectFilters(){
@@ -221,6 +243,19 @@ export default {
       const registrySelectFilters = this.selectTypeFilters.filter(({filterTypes}) => filterTypes.includes(registry))
       this.selectTypeFilters = registrySelectFilters
       this.conditionalDisplay()
+    },
+    async showResourceRecords(topResult, childResult) {
+      localStorage.setItem("pageName", "ResourceView")
+      let resourceSelected = ""
+      if(childResult) resourceSelected = childResult
+      else resourceSelected = topResult
+      await this.fetchMultiTagsTerms([resourceSelected, null, null])
+      const resourceDetail = {
+        records: resourceSelected,
+        recordsNumber: this.fairSharingRecords.length,
+        type: childResult ? "resource" : "resourceParent"
+      }
+      this.$store.commit("nodeListStore/nodeLists", [resourceDetail, "ResourceView"])
     }
   }
 };

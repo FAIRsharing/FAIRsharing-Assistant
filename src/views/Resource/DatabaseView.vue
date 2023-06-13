@@ -62,6 +62,10 @@ export default {
       return this.$route.name;
     },
   },
+  beforeMount() {
+    const { resourceNodeList } = this.getNodeList
+    resourceNodeList.length = 0
+  },
   mounted() {
     let _module = this;
     if (_module.getTopResource || _module.getResource) {

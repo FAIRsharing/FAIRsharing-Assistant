@@ -44,7 +44,7 @@
           >
             {{ formatRecordsNumber(item["recordsNumber"]) }}
           </v-avatar>
-          {{ item["records"] }}
+          {{ normalString(item["records"]) }}
         </v-chip>
       </v-col>
     </v-row>
@@ -87,7 +87,7 @@
           >
             {{ formatRecordsNumber(item["recordsNumber"]) }}
           </v-avatar>
-          {{ item["records"] }}
+          {{ normalString(item["records"]) }}
         </v-chip>
       </v-col>
     </v-row>
@@ -130,7 +130,7 @@
           >
             {{ formatRecordsNumber(item["recordsNumber"]) }}
           </v-avatar>
-          {{ item["records"] }}
+          {{ normalString(item["records"]) }}
         </v-chip>
       </v-col>
     </v-row>
@@ -139,15 +139,17 @@
 
 <script>
 import TotalRecords from "@/components/Others/TotalRecords.vue";
+import StringMixin from "@/utils/Others/stringMixin.js"
 
 
 export default {
   name: 'NodesList',
   components: {TotalRecords},
+  mixins: [StringMixin],
   props:{
     getNodesData: {
       type: Object,
-      required: true
+      required: false
     },
   },
   computed: {

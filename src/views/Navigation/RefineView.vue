@@ -56,15 +56,15 @@ export default {
     isNodeList() {
       const {resourceNodeList, subjectNodeList, domainNodeList} = this.getNodeList
       if ((resourceNodeList.length) || (subjectNodeList.length) || (domainNodeList.length)) return true
-      return false
+      else return false
     },
   },
-
+    
   mounted() {
     this.prevRoute = localStorage.getItem("pageName");
 
     //When user is Refine-my-choice page directly, without any pre-selection
-    if((!this.getAllResources.length) && (!this.getSubjectList.length) && (!this.getDomainList.length)) this.$router.push("/")
+    // if((!this.getAllResources.length) && (!this.getSubjectList.length) && (!this.getDomainList.length)) this.$router.push("/")
   }
 };
 </script>

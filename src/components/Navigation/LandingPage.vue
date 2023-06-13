@@ -50,6 +50,7 @@
               max-width="165"
               :width="$vuetify.breakpoint.smAndDown ? 50 : '100%' "
               :height="$vuetify.breakpoint.smAndDown ? 50 : '165' "
+              :style="{ 'background-color': item.background }"
               :src="$vuetify.icons.values[item.image_icon].icon"
             />
           </div>
