@@ -123,7 +123,7 @@ const mutations = {
       const isFound = isNodePresent(resourceNodeList, nodeItem)
 
       if(!isFound) {
-        resourceNodeList.length = 0
+        if (routeName === "ResourceView") resourceNodeList.length = 0
         resourceNodeList.push(nodeItem)
         state.nodeFound["isResourceNode"] = false
       }
