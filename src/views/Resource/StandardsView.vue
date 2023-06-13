@@ -71,7 +71,6 @@ export default {
     if (_module.getTopResource || _module.getResource) {
       _module.enableFairSharingButton(true);
     }
-
     localStorage.setItem("pageName", this.currentRouteName)
   },
   destroyed() {

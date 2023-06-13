@@ -13,7 +13,7 @@
         v-if="isNodeList"
         :get-nodes-data="getNodeList"
       />
-      <AddOnFilters />
+      <AddOnFilters @filterSource="onCardsSelection" />
       <FairSharingLink
         :fair-sharing-button="fairSharingButton"
         :prev-route="prevRoute"
@@ -47,7 +47,7 @@ export default {
   data:() => {
     return {
       fairSharingButton: true,
-      prevRoute: ""
+      prevRoute: "",
     }
   },
   computed:{
@@ -59,12 +59,19 @@ export default {
       else return false
     },
   },
-    
   mounted() {
     this.prevRoute = localStorage.getItem("pageName");
 
     //When user is Refine-my-choice page directly, without any pre-selection
-    // if((!this.getAllResources.length) && (!this.getSubjectList.length) && (!this.getDomainList.length)) this.$router.push("/")
+    if((!this.getAllResources.length) && (!this.getSubjectList.length) && (!this.getDomainList.length) && (this.$route.fullPath === "/refine-my-choice")) {
+      this.$router.push("/")
+    }
+
+  },
+  methods: {
+    onCardsSelection(value) {
+      this.prevRoute = value
+    }
   }
 };
 </script>

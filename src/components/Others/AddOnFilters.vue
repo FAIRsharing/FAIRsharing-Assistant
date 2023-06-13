@@ -245,7 +245,7 @@ export default {
       this.conditionalDisplay()
     },
     async showResourceRecords(topResult, childResult) {
-      localStorage.setItem("pageName", "ResourceView")
+      this.$emit("filterSource", "ResourceView")
       let resourceSelected = ""
       if(childResult) resourceSelected = childResult
       else resourceSelected = topResult

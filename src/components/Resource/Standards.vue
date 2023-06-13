@@ -80,6 +80,9 @@ export default {
       deep: true
     }
   },
+  beforeMount() {
+    this.resetAllResources()
+  },
   async mounted() {
     this.$nextTick(async () =>{
       this.loading = true
@@ -101,6 +104,7 @@ export default {
     ...mapActions("recordTypeStore", ["fetchAllRecordTypes", "resetRecords"]),
     ...mapActions("breadCrumbStore", ["resetbreadCrumbs"]),
     ...mapActions("otherResourcesSelectedStore", ["resetOtherResourceSelected"]),
+    ...mapActions("bubbleSelectedStore", ["resetAllResources"]),
 
     async displayResources() {
       const { subjectNodeList, domainNodeList } = this.getNodeList
