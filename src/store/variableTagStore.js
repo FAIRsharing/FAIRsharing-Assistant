@@ -16,7 +16,7 @@ const actions = {
     // eslint-disable-next-line no-console
     // console.log("addonfilters::", addonfilters.length)
     commit("setLoadingStatus", true)
-    if (addonfilters.length === 0) {
+    if (!addonfilters || addonfilters.length === 0) {
       VARIABLE_TAGS.queryParam = {
         recordType: resource,
         subjects: subject,

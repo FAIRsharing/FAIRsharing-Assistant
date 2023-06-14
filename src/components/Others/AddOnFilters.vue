@@ -68,6 +68,7 @@ export default {
       onlySwitch: false,
       onlySelect: false,
       allowedRegistries: ['Database', 'Standard', 'Policy', 'Collection'],
+      map: new Map(),
       allowedTypes: [
         "repository",
         "knowledgebase",
@@ -92,7 +93,7 @@ export default {
     ...mapGetters("bubbleSelectedStore", ['getAllResources', 'getTopResource', 'getResource', 'getSubject', 'getDomain']),
     ...mapMutations("bubbleSelectedStore", ['resourceSelected']),
     ...mapMutations("nodeListStore", ['nodeLists']),
-    ...mapState("multiTagsStore", ["fairSharingRecords", "loadingStatus"]),
+    ...mapState("variableTagStore", ["variableResponse", "loadingStatus"]),
     switchDisplay() {
       return this.onlySelect ? 'd-none' : 'd-flex'
     },
@@ -117,15 +118,14 @@ export default {
       let _module = this;
       await _module.readRegAndTypeFilterParams();
       await _module.selectFilters();
-      await _module.readGeneralFilterParams();
+      // await _module.readGeneralFilterParams();
       this.loading = false
     })
   },
   methods: {
-    ...mapActions("multiTagsStore", ["fetchMultiTagsTerms", "resetMultiTags"]),
+    ...mapActions("variableTagStore", ["fetchVariableTags"]),
     readGeneralFilterParams() {
       let _module = this;
-      let map = new Map();
       let params = _module.currentPath;
       [_module.switchTypeFilters, _module.selectTypeFilters].forEach(group => {
         group.forEach(filter => {
@@ -136,8 +136,8 @@ export default {
 
             if (filter["filterQuery"] === key) {
               filter["refineToggle"] = params[key];
-              map.set(`${filter["filterQuery"]}`, `${filter["refineToggle"]}`)
-              _module.$store.commit("addOnFilterSelectedStore/filtersSelected", map);
+              this.map.set(`${filter["filterQuery"]}`, `${filter["refineToggle"]}`)
+              _module.$store.commit("addOnFilterSelectedStore/filtersSelected", this.map);
             }
           })
         })
@@ -161,11 +161,12 @@ export default {
           }
         }
       })
+      await this.readGeneralFilterParams()
       if (modified) {
         this.$store.commit('bubbleSelectedStore/resourceSelected', {topResourceSelected: _module.topResult, childResourceSelected: _module.childResult})
 
-        //When the user is directly landing on the refine page from the home page
-        await this.showResourceRecords(_module.topResult, _module.childResult)
+        //When the user is directly landing on the refine page after selecting a card from the home page
+        await this.showResourceRecords(_module.topResult, _module.childResult, this.map)
 
       }
     },
@@ -222,12 +223,11 @@ export default {
       });
     },
     selectToggle() {
-      let map = new Map();
       for (let filter of this.addOnFilters) {
-        map.set(`${filter["filterQuery"]}`, `${filter["refineToggle"]}`)
+        this.map.set(`${filter["filterQuery"]}`, `${filter["refineToggle"]}`)
       }
       this.applyFilters();
-      this.$store.commit("addOnFilterSelectedStore/filtersSelected", map)
+      this.$store.commit("addOnFilterSelectedStore/filtersSelected",  this.map)
     },
     conditionalDisplay() {
       if (!this.switchTypeFilters?.length && this.selectTypeFilters?.length) {
@@ -244,18 +244,25 @@ export default {
       this.selectTypeFilters = registrySelectFilters
       this.conditionalDisplay()
     },
-    async showResourceRecords(topResult, childResult) {
-      this.$emit("filterSource", "ResourceView")
+    async showResourceRecords(topResult, childResult, filters) {
+      this.$emit("filterSource", "RefineResourceView")
+      let isDatabase = false
+      if (topResult === "Database") {
+        isDatabase = true
+        topResult = ["repository", "knowledgebase", "knowledgebase_and_repository"]
+      }
+
       let resourceSelected = ""
-      if(childResult) resourceSelected = childResult
+      if(childResult || childResult.length) resourceSelected = childResult
       else resourceSelected = topResult
-      await this.fetchMultiTagsTerms([resourceSelected, null, null])
+      await this.fetchVariableTags([resourceSelected, null, null, "resource", filters])
+
       const resourceDetail = {
-        records: resourceSelected,
-        recordsNumber: this.fairSharingRecords.length,
+        records: isDatabase ? "Database" : resourceSelected,
+        recordsNumber: this.variableResponse.length,
         type: childResult ? "resource" : "resourceParent"
       }
-      this.$store.commit("nodeListStore/nodeLists", [resourceDetail, "ResourceView"])
+      this.$store.commit("nodeListStore/nodeLists", [resourceDetail, "RefineResourceView"])
     }
   }
 };

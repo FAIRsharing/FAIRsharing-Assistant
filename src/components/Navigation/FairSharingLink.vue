@@ -5,7 +5,7 @@
       v-if="
         ((currentRouteName ==='DatabaseView') || (prevRoute ==='DatabaseView')) ||
           ((currentRouteName === 'StandardsView') || (prevRoute ==='StandardsView')) ||
-          ((currentRouteName === 'PoliciesView') || (prevRoute ==='PoliciesView') ||(prevRoute === 'ResourceView'))"
+          ((currentRouteName === 'PoliciesView') || (prevRoute ==='PoliciesView') ||(prevRoute === 'RefineResourceView'))"
       v-bind="button['attributes']"
       :disabled="!fairSharingButton"
       :href="resourceRedirectionLink"

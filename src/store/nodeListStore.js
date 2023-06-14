@@ -39,18 +39,22 @@ const mutations = {
   nodeLists (state, [nodeItem, routeName]) {
     let {resourceNodeList, subjectNodeList, domainNodeList} = state.nodeList
 
-    // When Resource Node is selected
-    if ((routeName === "DatabaseView") || (routeName === "StandardsView") || (routeName === "PoliciesView") || (routeName === "ResourceView")) {
+    // When any of the Resource Node is selected
+    if ((routeName === "DatabaseView") || (routeName === "StandardsView") || (routeName === "PoliciesView")) {
       const isFound = isNodePresent(resourceNodeList, nodeItem)
-
       if(!isFound) {
-        if (routeName === "ResourceView") resourceNodeList.length = 0
         resourceNodeList.push(nodeItem)
         state.nodeFound["isResourceNode"] = false
       }
       else {
         state.nodeFound["isResourceNode"] = true
       }
+    }
+
+    //When user lands on refine page after selecting a card from home page
+    if (routeName === "RefineResourceView") {
+      resourceNodeList.length = 0
+      resourceNodeList.push(nodeItem)
     }
 
     // When Subject Node is selected
