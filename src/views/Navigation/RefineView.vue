@@ -4,9 +4,12 @@
     <div class="px-md-10 pa-5 mb-8">
       <div
         class="d-flex full-width mb-8"
+        :class="{'flex-column':$vuetify.breakpoint.smAndDown}"
         style="max-width: 300px; margin: 0 auto"
       >
-        <SubjectButton />
+        <SubjectButton
+          :class="{'mb-4':$vuetify.breakpoint.smAndDown}"
+        />
         <DomainButton />
       </div>
       <NodesList
@@ -18,7 +21,9 @@
         :fair-sharing-button="fairSharingButton"
         :prev-route="prevRoute"
       />
-      <StartOver />
+      <StartOver
+        :class="{'mt-4':$vuetify.breakpoint.smAndDown}"
+      />
     </div>
   </div>
 </template>

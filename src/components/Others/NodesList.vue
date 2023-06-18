@@ -11,10 +11,10 @@
       class="text-left"
     >
       <v-col
-        cols="2"
+        cols="12"
         lg="2"
         md="2"
-        sm="2"
+        sm="12"
       >
         <TotalRecords
           :get-nodes-data="getNodesData['resourceNodeList']"
@@ -22,10 +22,10 @@
         />
       </v-col>
       <v-col
-        cols="10"
+        cols="12"
         lg="10"
         md="10"
-        sm="10"
+        sm="12"
       >
         <v-chip
           v-for="(item, index) in getNodesData['resourceNodeList']"
@@ -56,10 +56,10 @@
       class="text-left"
     >
       <v-col
-        cols="2"
+        cols="12"
         lg="2"
         md="2"
-        sm="2"
+        sm="12"
       >
         <TotalRecords
           :get-nodes-data="getNodesData['subjectNodeList']"
@@ -67,10 +67,10 @@
         />
       </v-col>
       <v-col
-        cols="10"
+        cols="12"
         lg="10"
         md="10"
-        sm="10"
+        sm="12"
       >
         <v-chip
           v-for="(item, index) in getNodesData['subjectNodeList']"
@@ -99,10 +99,10 @@
       class="text-left"
     >
       <v-col
-        cols="2"
+        cols="12"
         lg="2"
         md="2"
-        sm="2"
+        sm="12"
       >
         <TotalRecords
           :get-nodes-data="getNodesData['domainNodeList']"
@@ -110,10 +110,10 @@
         />
       </v-col>
       <v-col
-        cols="10"
+        cols="12"
         lg="10"
         md="10"
-        sm="10"
+        sm="12"
       >
         <v-chip
           v-for="(item, index) in getNodesData['domainNodeList']"

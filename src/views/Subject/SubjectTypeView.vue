@@ -18,7 +18,9 @@
       <FairSharingLink
         :fair-sharing-button="fairSharingButton"
       />
-      <StartOver />
+      <StartOver
+        :class="{'mt-4':$vuetify.breakpoint.smAndDown}"
+      />
     </div>
   </div>
 </template>

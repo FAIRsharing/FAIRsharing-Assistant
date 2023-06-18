@@ -10,6 +10,7 @@
     </v-fade-transition>
     <v-container
       class="filterWrapper ma-0 d-flex flex-row align-stretch"
+      :class="{'flex-column':$vuetify.breakpoint.smAndDown}"
     >
       <div
         class="switchWrapper flex-column full-width"
@@ -199,10 +200,9 @@ export default {
       }
       [_module.switchTypeFilters, _module.selectTypeFilters].forEach(group => {
         group.forEach(filter => {
-          //console.log(JSON.stringify(filter));
           if (typeof(filter["refineToggle"]) !== 'undefined' &&
-              filter["refineToggle"] !== null &&
-              filter["refineToggle"] !== ''
+                        filter["refineToggle"] !== null &&
+                        filter["refineToggle"] !== ''
           ) {
             newParams[filter.filterQuery] = filter["refineToggle"];
           }
@@ -215,7 +215,7 @@ export default {
         // Ignore the vuex err regarding  navigating to the page they are already on.
         if (
           err.name !== 'NavigationDuplicated' &&
-          !err.message.includes('Avoided redundant navigation to current location')
+                    !err.message.includes('Avoided redundant navigation to current location')
         ) {
           // But print any other errors to the console
           //console.log(err);
@@ -263,7 +263,7 @@ export default {
         type: childResult ? "resource" : "resourceParent"
       }
       this.$store.commit("nodeListStore/nodeLists", [resourceDetail, "RefineResourceView"])
-    }
+    },
   }
 };
 </script>
