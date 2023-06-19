@@ -11,15 +11,17 @@
         v-if="isNodeList"
         :get-nodes-data="getNodeList"
       />
-      <RefineButton :refine-button="refineButton" />
+      <div class="d-flex justify-space-around mt-6">
+        <FairSharingLink
+          :fair-sharing-button="fairSharingButton"
+        />
+        <RefineButton :refine-button="refineButton" />
+        <StartOver
+          :class="{'mt-4':$vuetify.breakpoint.smAndDown}"
+        />
+      </div>
       <Database
         @enableFairSharingButton="enableFairSharingButton"
-      />
-      <FairSharingLink
-        :fair-sharing-button="fairSharingButton"
-      />
-      <StartOver
-        :class="{'mt-4':$vuetify.breakpoint.smAndDown}"
       />
     </div>
   </div>
