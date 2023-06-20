@@ -11,6 +11,7 @@ import {
   StandardsView,
   PoliciesView,
   RefineView,
+  ResultView,
   NotFound,
   ServerError,
   Licence
@@ -52,6 +53,11 @@ let routes = [
     name: "RefineView",
     path: "/refine-my-choice",
     component: RefineView,
+  },
+  {
+    name: "ResultView",
+    path: "/results",
+    component: ResultView
   },
   {
     name: "Licence",

@@ -1,28 +1,27 @@
 import {createLocalVue, shallowMount} from "@vue/test-utils";
-import BackButton from "@/components/Navigation/BackButton"
+import ResultView from "@/views/Results/ResultView.vue"
 import Vuetify from "vuetify"
 import Vuex from "vuex";
 
 const localVue = createLocalVue();
 localVue.use(Vuex);
+
 const vuetify = new Vuetify();
 
-let records = [];
 
-describe("BackButton.vue", function(){
+describe("ResultView.vue", function(){
   let wrapper;
 
   beforeEach(() => {
-    wrapper = shallowMount(BackButton, {
+    wrapper = shallowMount(ResultView, {
       localVue,
       vuetify,
-      propsData: { records: records},
       stubs: ['router-link', 'router-view']
     })
   });
 
   it("can be instantiated", () => {
-    expect(wrapper.vm.$options.name).toMatch("BackButton");
+    expect(wrapper.vm.$options.name).toMatch("ResultView");
   });
 
 });

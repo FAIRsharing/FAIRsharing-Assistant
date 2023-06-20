@@ -20,6 +20,7 @@
       <FairSharingLink
         :fair-sharing-button="fairSharingButton"
         :prev-route="prevRoute"
+        class="pb-2"
       />
       <StartOver
         :class="{'mt-4':$vuetify.breakpoint.smAndDown}"
