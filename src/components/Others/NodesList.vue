@@ -149,7 +149,8 @@ export default {
   props:{
     getNodesData: {
       type: Object,
-      required: false
+      required: false,
+      default: function() { return {} }
     },
   },
   computed: {
