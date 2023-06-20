@@ -4,12 +4,33 @@
   >
     <Jumbotron />
     <v-container
+      v-if="error"
       fluid
       class="pa-0"
     >
+      <p class="pa-10">
+        Sorry, something went wrong!
+      </p>
+    </v-container>
+    <v-container
+      v-else
+      fluid
+      class="pa-0"
+    >
+      <v-text-field
+        v-model="search"
+        append-icon="mdi-magnify"
+        label="Search in results"
+        single-line
+        hide-details
+        class="pa-10"
+      />
       <v-data-table
         :headers="headers"
         :items="records"
+        :search="search"
+        :sort-by="[{ key: 'name', order: 'asc' }, { key: 'registry', order: 'desc' }, { key: 'type', order: 'desc' }]"
+        multi-sort
         :loading="loading"
         loading-text="Loading... Please wait"
         :footer-props="{'items-per-page-options': [10, 20, 30, 40, 50]}"
@@ -46,9 +67,13 @@ export default {
   data () {
     return {
       loading: true,
+      error: null,
+      search: '',
       records: [],
       headers: [
         { text: 'Name', value: 'name' },
+        { text: 'Registry', value: 'registry' },
+        { text: 'Type', value: 'type' },
         { text: 'Link', value: 'link' },
       ],
     }
@@ -72,7 +97,6 @@ export default {
   methods: {
     async getData() {
       let _module = this;
-      console.log(JSON.stringify(this.currentPath));
       // This converts the values from those in the URL to an appropriate form to send
       // as a graphql query (fixing arrays, capitalisation etc.)
       Object.keys(_module.currentPath).forEach(key => {
@@ -80,8 +104,12 @@ export default {
       })
       let response = await CLIENT.executeQuery(MULTI_TAGS);
       // TODO: Handle errors from the server.
-      console.log(JSON.stringify(response));
-      _module.records = response['multiTagFilter'];
+      if (!response.error) {
+        _module.records = response['multiTagFilter'];
+      }
+      else {
+        _module.error = true;
+      }
       _module.loading = false;
     }
   },

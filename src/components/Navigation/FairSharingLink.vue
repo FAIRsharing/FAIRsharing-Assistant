@@ -80,7 +80,7 @@ export default {
     return {
       fairSharingURL: '/results',
       button: {
-        text: "View in FAIRsharing",
+        text: "View results",
         attributes: {
           elevation:"2",
           raised: true,
