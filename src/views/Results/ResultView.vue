@@ -74,6 +74,7 @@ export default {
         { text: 'Name', value: 'name' },
         { text: 'Registry', value: 'registry' },
         { text: 'Type', value: 'type' },
+        { text: 'Status', value: 'status' },
         { text: 'Link', value: 'link' },
       ],
     }
