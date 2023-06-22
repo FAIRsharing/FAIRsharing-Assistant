@@ -5,7 +5,7 @@
       v-if="
         ((currentRouteName ==='DatabaseView') || (prevRoute ==='DatabaseView')) ||
           ((currentRouteName === 'StandardsView') || (prevRoute ==='StandardsView')) ||
-          ((currentRouteName === 'PoliciesView') || (prevRoute ==='PoliciesView'))"
+          ((currentRouteName === 'PoliciesView') || (prevRoute ==='PoliciesView') ||(prevRoute === 'RefineResourceView'))"
       v-bind="button['attributes']"
       :disabled="!fairSharingButton"
       :href="resourceRedirectionLink"
@@ -99,6 +99,7 @@ export default {
     currentRouteName() {
       return this.$route.name;
     },
+
     topResourceSelected() {
       switch(this.getTopResource) {
       case "Databases":
@@ -210,7 +211,6 @@ export default {
       }
     }
   },
-
 };
 </script>
 

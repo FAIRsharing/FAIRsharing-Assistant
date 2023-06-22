@@ -74,7 +74,8 @@
     "options": [
       "Open",
       "Partially open",
-      "Controlled"
+      "Controlled",
+      "Not found"
     ],
     "filterTypes": [
       "database"
@@ -88,7 +89,8 @@
       "Manual",
       "Automated",
       "Manual/Automated",
-      "None"
+      "None",
+      "Not found"
     ],
     "filterTypes": [
       "database"
@@ -100,7 +102,9 @@
     "refineToggle": "",
     "options": [
       "Open",
-      "Controlled"
+      "Controlled",
+      "Not found",
+      "Not applicable"
     ],
     "filterTypes": [
       "database"
@@ -112,19 +116,21 @@
     "refineToggle": "",
     "options": [
       "Yes",
-      "No"
+      "No",
+      "Not found"
     ],
     "filterTypes": [
       "database"
     ]
   },
   {
-    "filterName": "Data Access For PrePublication Review",
+    "filterName": "Data Access For Pre-Publication Review",
     "filterQuery": "dataAccessForPrePublicationReview",
     "refineToggle": "",
     "options": [
       "Yes",
-      "No"
+      "No",
+      "Not found"
     ],
     "filterTypes": [
       "database"
@@ -136,7 +142,8 @@
     "refineToggle": "",
     "options": [
       "Yes",
-      "No"
+      "No",
+      "Not found"
     ],
     "filterTypes": [
       "database"
@@ -148,7 +155,8 @@
     "refineToggle": "",
     "options": [
       "Yes",
-      "No"
+      "No",
+      "Not found"
     ],
     "filterTypes": [
       "database"

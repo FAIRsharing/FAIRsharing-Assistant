@@ -11,14 +11,18 @@
         v-if="isNodeList"
         :get-nodes-data="getNodeList"
       />
-      <RefineButton :refine-button="refineButton" />
+      <div class="d-flex justify-space-around mt-6">
+        <FairSharingLink
+          :fair-sharing-button="fairSharingButton"
+        />
+        <RefineButton :refine-button="refineButton" />
+        <StartOver
+          :class="{'mt-4':$vuetify.breakpoint.smAndDown}"
+        />
+      </div>
       <Database
         @enableFairSharingButton="enableFairSharingButton"
       />
-      <FairSharingLink
-        :fair-sharing-button="fairSharingButton"
-      />
-      <StartOver />
     </div>
   </div>
 </template>
@@ -61,6 +65,10 @@ export default {
     currentRouteName() {
       return this.$route.name;
     },
+  },
+  beforeMount() {
+    const { resourceNodeList } = this.getNodeList
+    resourceNodeList.length = 0
   },
   mounted() {
     let _module = this;

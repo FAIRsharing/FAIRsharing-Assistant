@@ -33,6 +33,18 @@ describe('bubbleSelectedStore store methods', () => {
     expect(commit).toHaveBeenCalledTimes(1);
   });
 
+  it("can check resetNodeSelected actions", () => {
+    const commit = jest.fn()
+    actions.resetNodeSelected({ commit })
+    expect(commit).toHaveBeenCalledTimes(1);
+  });
+
+  it("can check resetAllResources actions", () => {
+    const commit = jest.fn()
+    actions.resetAllResources({ commit })
+    expect(commit).toHaveBeenCalledTimes(1);
+  });
+
   it("can check resourceSelected mutations", () => {
     const returnedVal = {
       topResourceSelected: "Parent",
@@ -129,6 +141,26 @@ describe('bubbleSelectedStore store methods', () => {
     }
     mutations.resetAllSubjects(state);
     expect(state.allSubjects).toStrictEqual(returnedVal.allSubjects);
+  });
+
+  it("can check resetNodeSelected mutations", () => {
+    const returnedVal = {
+      nodeSelected: {},
+    }
+    mutations.resetNodeSelected(state);
+    expect(state.nodeSelected).toStrictEqual(returnedVal.nodeSelected);
+  });
+
+  it("can check resetAllResources mutations", () => {
+    const returnedVal = {
+      allResources : [],
+      topResourceType : "",
+      resourceType : ""
+    }
+    mutations.resetAllResources(state);
+    expect(state.allResources).toStrictEqual(returnedVal.allResources);
+    expect(state.topResourceType).toStrictEqual(returnedVal.topResourceType);
+    expect(state.resourceType).toStrictEqual(returnedVal.resourceType);
   });
 
 

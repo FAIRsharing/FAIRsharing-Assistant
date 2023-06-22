@@ -1,7 +1,16 @@
 <template>
   <div>
+    <v-fade-transition v-if="loading">
+      <v-overlay
+        :absolute="false"
+        opacity="0.8"
+      >
+        <Loaders />
+      </v-overlay>
+    </v-fade-transition>
     <v-container
       class="filterWrapper ma-0 d-flex flex-row align-stretch"
+      :class="{'flex-column':$vuetify.breakpoint.smAndDown}"
     >
       <div
         class="switchWrapper flex-column full-width"
@@ -39,14 +48,17 @@
 </template>
 
 <script>
-import { mapGetters, mapMutations} from "vuex";
+import {mapActions, mapGetters, mapMutations, mapState} from "vuex";
 import addOnFilters from "@/data/addOnFilters.json"
+import Loaders from "@/components/Loaders/Loaders.vue";
 
 export default {
   name: 'AddOnFilters',
+  components: {Loaders},
 
   data:() => {
     return {
+      loading: false,
       prevRoute: null,
       topResult: '',
       childResult: '',
@@ -57,6 +69,7 @@ export default {
       onlySwitch: false,
       onlySelect: false,
       allowedRegistries: ['Database', 'Standard', 'Policy', 'Collection'],
+      map: new Map(),
       allowedTypes: [
         "repository",
         "knowledgebase",
@@ -80,6 +93,8 @@ export default {
   computed:{
     ...mapGetters("bubbleSelectedStore", ['getAllResources', 'getTopResource', 'getResource', 'getSubject', 'getDomain']),
     ...mapMutations("bubbleSelectedStore", ['resourceSelected']),
+    ...mapMutations("nodeListStore", ['nodeLists']),
+    ...mapState("variableTagStore", ["variableResponse", "loadingStatus"]),
     switchDisplay() {
       return this.onlySelect ? 'd-none' : 'd-flex'
     },
@@ -98,16 +113,20 @@ export default {
       return queryParams;
     },
   },
-  mounted() {
-    let _module = this;
-    _module.readRegAndTypeFilterParams();
-    _module.selectFilters();
-    _module.readGeneralFilterParams();
+  async mounted() {
+    this.$nextTick(async () =>{
+      this.loading = true
+      let _module = this;
+      await _module.readRegAndTypeFilterParams();
+      await _module.selectFilters();
+      // await _module.readGeneralFilterParams();
+      this.loading = false
+    })
   },
   methods: {
+    ...mapActions("variableTagStore", ["fetchVariableTags"]),
     readGeneralFilterParams() {
       let _module = this;
-      let map = new Map();
       let params = _module.currentPath;
       [_module.switchTypeFilters, _module.selectTypeFilters].forEach(group => {
         group.forEach(filter => {
@@ -118,14 +137,14 @@ export default {
 
             if (filter["filterQuery"] === key) {
               filter["refineToggle"] = params[key];
-              map.set(`${filter["filterQuery"]}`, `${filter["refineToggle"]}`)
-              _module.$store.commit("addOnFilterSelectedStore/filtersSelected", map);
+              this.map.set(`${filter["filterQuery"]}`, `${filter["refineToggle"]}`)
+              _module.$store.commit("addOnFilterSelectedStore/filtersSelected", this.map);
             }
           })
         })
       });
     },
-    readRegAndTypeFilterParams() {
+    async readRegAndTypeFilterParams() {
       let _module = this;
       let modified = false;
       let params = _module.currentPath;
@@ -143,8 +162,13 @@ export default {
           }
         }
       })
+      await this.readGeneralFilterParams()
       if (modified) {
         this.$store.commit('bubbleSelectedStore/resourceSelected', {topResourceSelected: _module.topResult, childResourceSelected: _module.childResult})
+
+        //When the user is directly landing on the refine page after selecting a card from the home page
+        await this.showResourceRecords(_module.topResult, _module.childResult, this.map)
+
       }
     },
     selectFilters(){
@@ -176,10 +200,9 @@ export default {
       }
       [_module.switchTypeFilters, _module.selectTypeFilters].forEach(group => {
         group.forEach(filter => {
-          //console.log(JSON.stringify(filter));
           if (typeof(filter["refineToggle"]) !== 'undefined' &&
-              filter["refineToggle"] !== null &&
-              filter["refineToggle"] !== ''
+                        filter["refineToggle"] !== null &&
+                        filter["refineToggle"] !== ''
           ) {
             newParams[filter.filterQuery] = filter["refineToggle"];
           }
@@ -192,7 +215,7 @@ export default {
         // Ignore the vuex err regarding  navigating to the page they are already on.
         if (
           err.name !== 'NavigationDuplicated' &&
-          !err.message.includes('Avoided redundant navigation to current location')
+                    !err.message.includes('Avoided redundant navigation to current location')
         ) {
           // But print any other errors to the console
           //console.log(err);
@@ -200,12 +223,11 @@ export default {
       });
     },
     selectToggle() {
-      let map = new Map();
       for (let filter of this.addOnFilters) {
-        map.set(`${filter["filterQuery"]}`, `${filter["refineToggle"]}`)
+        this.map.set(`${filter["filterQuery"]}`, `${filter["refineToggle"]}`)
       }
       this.applyFilters();
-      this.$store.commit("addOnFilterSelectedStore/filtersSelected", map)
+      this.$store.commit("addOnFilterSelectedStore/filtersSelected",  this.map)
     },
     conditionalDisplay() {
       if (!this.switchTypeFilters?.length && this.selectTypeFilters?.length) {
@@ -221,7 +243,27 @@ export default {
       const registrySelectFilters = this.selectTypeFilters.filter(({filterTypes}) => filterTypes.includes(registry))
       this.selectTypeFilters = registrySelectFilters
       this.conditionalDisplay()
-    }
+    },
+    async showResourceRecords(topResult, childResult, filters) {
+      this.$emit("filterSource", "RefineResourceView")
+      let isDatabase = false
+      if (topResult === "Database") {
+        isDatabase = true
+        topResult = ["repository", "knowledgebase", "knowledgebase_and_repository"]
+      }
+
+      let resourceSelected = ""
+      if(childResult || childResult.length) resourceSelected = childResult
+      else resourceSelected = topResult
+      await this.fetchVariableTags([resourceSelected, null, null, "resource", filters])
+
+      const resourceDetail = {
+        records: isDatabase ? "Database" : resourceSelected,
+        recordsNumber: this.variableResponse.length,
+        type: childResult ? "resource" : "resourceParent"
+      }
+      this.$store.commit("nodeListStore/nodeLists", [resourceDetail, "RefineResourceView"])
+    },
   }
 };
 </script>

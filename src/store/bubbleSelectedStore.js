@@ -19,6 +19,9 @@ const actions = {
   },
   resetNodeSelected({commit}) {
     commit('resetNodeSelected');
+  },
+  resetAllResources({commit}) {
+    commit('resetAllResources');
   }
 }
 
@@ -99,6 +102,11 @@ const mutations = {
   },
   resetNodeSelected(state) {
     state.nodeSelected = {}
+  },
+  resetAllResources(state) {
+    state.allResources = [],
+    state.topResourceType = "",
+    state.resourceType = ""
   },
   resetAllBubbles(state) {
     state.topResourceType = "",

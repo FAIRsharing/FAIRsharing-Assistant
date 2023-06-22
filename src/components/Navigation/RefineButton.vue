@@ -1,6 +1,6 @@
 <template>
   <div
-    class="navSecond d-flex justify-center align-center full-width"
+    class="ma-0"
   >
     <v-btn
       v-bind="button['attributes']"

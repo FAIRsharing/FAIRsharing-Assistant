@@ -11,14 +11,18 @@
         v-if="isNodeList"
         :get-nodes-data="getNodeList"
       />
-      <RefineButton :refine-button="refineButton" />
+      <div class="d-flex justify-space-around mt-6">
+        <FairSharingLink
+          :fair-sharing-button="fairSharingButton"
+        />
+        <RefineButton :refine-button="refineButton" />
+        <StartOver
+          :class="{'mt-4':$vuetify.breakpoint.smAndDown}"
+        />
+      </div>
       <Standards
         @enableFairSharingButton="enableFairSharingButton"
       />
-      <FairSharingLink
-        :fair-sharing-button="fairSharingButton"
-      />
-      <StartOver />
     </div>
   </div>
 </template>
@@ -56,14 +60,18 @@ export default {
     isNodeList() {
       const {resourceNodeList, subjectNodeList, domainNodeList} = this.getNodeList
       if ((resourceNodeList.length) || (subjectNodeList.length) || (domainNodeList.length)) return true
-      return false
+      else return false
     },
     currentRouteName() {
       return this.$route.name;
     },
   },
+  beforeMount() {
+    const { resourceNodeList } = this.getNodeList
+    resourceNodeList.length = 0
+  },
   mounted() {
-    let _module = this;
+    let _module = this
     if (_module.getTopResource || _module.getResource) {
       _module.enableFairSharingButton(true);
     }
