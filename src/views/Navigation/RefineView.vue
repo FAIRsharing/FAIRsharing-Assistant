@@ -17,13 +17,19 @@
         :get-nodes-data="getNodeList"
       />
       <AddOnFilters @filterSource="onCardsSelection" />
-      <FairSharingLink
-        :fair-sharing-button="fairSharingButton"
-        :prev-route="prevRoute"
-      />
-      <StartOver
-        :class="{'mt-4':$vuetify.breakpoint.smAndDown}"
-      />
+      <div
+        class="d-flex justify-space-around"
+        :class="{'flex-column align-center':$vuetify.breakpoint.smAndDown}"
+        style="max-width: 350px; margin: 0 auto"
+      >
+        <FairSharingLink
+          :fair-sharing-button="fairSharingButton"
+          :prev-route="prevRoute"
+        />
+        <StartOver
+          :class="{'mt-4':$vuetify.breakpoint.smAndDown}"
+        />
+      </div>
     </div>
   </div>
 </template>
