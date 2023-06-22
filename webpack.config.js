@@ -25,27 +25,19 @@ module.exports = {
       // this will apply to both plain `.css` files
       // AND `<style>` blocks in `.vue` files
       {
-        test: /\.css$/,
-        use: [
-          "vue-style-loader",
-          "css-loader"
-        ]
-      },
-      {
-        test: /\.s(c|a)ss$/,
+        test: /\.scss$/,
         use: [
           'vue-style-loader',
           'css-loader',
-          {
-            loader: 'sass-loader',
-            options: {
-              implementation: require('sass'),
-              sassOptions: {
-                indentedSyntax: true // optional
-              },
-            },
-          },
+          'sass-loader',
         ],
+      },
+      {
+        test: /\.css$/,
+        use: [
+          "vue-style-loader",
+          "css-loader",
+        ]
       },
       {
         test: /\.js?$/,
