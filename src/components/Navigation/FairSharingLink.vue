@@ -117,7 +117,7 @@ export default {
       case "Policies":
         return "Policy"
       default:
-        return '';
+        return registrySelected;
       }
     },
     resourceSelected() {
