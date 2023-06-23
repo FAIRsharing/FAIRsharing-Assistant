@@ -101,7 +101,15 @@ export default {
     },
 
     topResourceSelected() {
-      switch(this.getTopResource) {
+      const { resourceNodeList } = this.getNodeList
+      let registrySelected = ""
+      if (resourceNodeList && resourceNodeList.length) {
+        // Filtering Registry Type only
+        const registryType = resourceNodeList.filter(({type}) => type === "resourceParent")
+        if(registryType && registryType.length) registrySelected = registryType[0]["records"]
+
+      }
+      switch(registrySelected) {
       case "Databases":
         return "Database"
       case "Standards":
@@ -109,7 +117,7 @@ export default {
       case "Policies":
         return "Policy"
       default:
-        return this.getTopResource;
+        return '';
       }
     },
     resourceSelected() {
@@ -145,42 +153,51 @@ export default {
     resourceRedirectionLink() {
       if (this.domainSelected && this.subjectSelected) {
         if (this.resourceSelected){
-          return `${this.fairSharingURL}?fairsharingRegistry=${this.topResourceSelected}&recordType=${this.resourceSelected}&subjects=${this.subjectSelected}&domains=${this.domainSelected}`
+          return `${this.fairSharingURL}?recordType=${this.resourceSelected}&subjects=${this.subjectSelected}&domains=${this.domainSelected}`
         }
         else {
           return `${this.fairSharingURL}?fairsharingRegistry=${this.topResourceSelected}&subjects=${this.subjectSelected}&domains=${this.domainSelected}`
         }
       }
       else if (this.subjectSelected && this.resourceSelected) {
-        return `${this.fairSharingURL}?fairsharingRegistry=${this.topResourceSelected}&recordType=${this.resourceSelected}&subjects=${this.subjectSelected}`
+        return `${this.fairSharingURL}?recordType=${this.resourceSelected}&subjects=${this.subjectSelected}`
       }
       else if (this.domainSelected && this.resourceSelected) {
-        return `${this.fairSharingURL}?fairsharingRegistry=${this.topResourceSelected}&recordType=${this.resourceSelected}&domains=${this.domainSelected}`
+        return `${this.fairSharingURL}?recordType=${this.resourceSelected}&domains=${this.domainSelected}`
       }
-      else if (this.subjectSelected) {
+      else if (this.subjectSelected && this.topResourceSelected) {
         return `${this.fairSharingURL}?fairsharingRegistry=${this.topResourceSelected}&subjects=${this.subjectSelected}`
       }
-      else if (this.domainSelected) {
+      else if (this.domainSelected && this.topResourceSelected) {
         return `${this.fairSharingURL}?fairsharingRegistry=${this.topResourceSelected}&domains=${this.domainSelected}`
       }
-      else if (this.resourceSelected) {
+      else if (this.topResourceSelected && this.resourceSelected) {
         return `${this.fairSharingURL}?fairsharingRegistry=${this.topResourceSelected}&recordType=${this.resourceSelected}`
+      }
+      else if (this.resourceSelected) {
+        return `${this.fairSharingURL}?recordType=${this.resourceSelected}`
       }
       else {
         return`${this.fairSharingURL}?fairsharingRegistry=${this.topResourceSelected}`
       }
     },
     subjectRedirectionLink() {
-      if (this.resourceSelected && this.domainSelected) {
+      if (this.topResourceSelected && this.resourceSelected && this.domainSelected) {
         return `${this.fairSharingURL}?fairsharingRegistry=${this.topResourceSelected}&recordType=${this.resourceSelected}&subjects=${this.subjectSelected}&domains=${this.domainSelected}`
+      }
+      else if (this.resourceSelected && this.domainSelected) {
+        return `${this.fairSharingURL}?recordType=${this.resourceSelected}&subjects=${this.subjectSelected}&domains=${this.domainSelected}`
       }
       else if (this.topResourceSelected && this.domainSelected) {
         return `${this.fairSharingURL}?fairsharingRegistry=${this.topResourceSelected}&subjects=${this.subjectSelected}&domains=${this.domainSelected}`
       }
-      else if (this.resourceSelected) {
+      else if (this.topResourceSelected && this.resourceSelected) {
         return `${this.fairSharingURL}?fairsharingRegistry=${this.topResourceSelected}&recordType=${this.resourceSelected}&subjects=${this.subjectSelected}`
       }
-      else if (this.topResourceSelected !== "") {
+      else if (this.resourceSelected) {
+        return `${this.fairSharingURL}?recordType=${this.resourceSelected}&subjects=${this.subjectSelected}`
+      }
+      else if (this.topResourceSelected) {
         return `${this.fairSharingURL}?fairsharingRegistry=${this.topResourceSelected}&subjects=${this.subjectSelected}`
       }
       else if(this.domainSelected) {
@@ -191,14 +208,20 @@ export default {
       }
     },
     domainRedirectionLink() {
-      if (this.resourceSelected && this.subjectSelected) {
+      if (this.topResourceSelected && this.resourceSelected && this.subjectSelected) {
         return `${this.fairSharingURL}?fairsharingRegistry=${this.topResourceSelected}&recordType=${this.resourceSelected}&subjects=${this.subjectSelected}&domains=${this.domainSelected}`
+      }
+      else if (this.resourceSelected && this.subjectSelected) {
+        return `${this.fairSharingURL}?recordType=${this.resourceSelected}&subjects=${this.subjectSelected}&domains=${this.domainSelected}`
       }
       else if (this.topResourceSelected && this.subjectSelected) {
         return `${this.fairSharingURL}?fairsharingRegistry=${this.topResourceSelected}&subjects=${this.subjectSelected}&domains=${this.domainSelected}`
       }
-      else if (this.resourceSelected) {
+      else if (this.topResourceSelected && this.resourceSelected) {
         return `${this.fairSharingURL}?fairsharingRegistry=${this.topResourceSelected}&recordType=${this.resourceSelected}&domains=${this.domainSelected}`
+      }
+      else if (this.resourceSelected) {
+        return `${this.fairSharingURL}?recordType=${this.resourceSelected}&domains=${this.domainSelected}`
       }
       else if (this.topResourceSelected) {
         return `${this.fairSharingURL}?fairsharingRegistry=${this.topResourceSelected}&domains=${this.domainSelected}`

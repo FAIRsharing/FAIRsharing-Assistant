@@ -3,9 +3,8 @@
     <Jumbotron />
     <div class="px-md-10 pa-5 mb-8">
       <div
-        class="d-flex full-width mb-8"
-        :class="{'flex-column':$vuetify.breakpoint.smAndDown}"
-        style="max-width: 300px; margin: 0 auto"
+        class="d-flex full-width mb-8 justify-center"
+        :class="{'flex-column align-center':$vuetify.breakpoint.smAndDown}"
       >
         <SubjectButton
           :class="{'mb-4':$vuetify.breakpoint.smAndDown}"
@@ -18,15 +17,16 @@
       />
       <AddOnFilters @filterSource="onCardsSelection" />
       <div
-        class="d-flex justify-space-around"
+        class="d-flex full-width justify-center"
         :class="{'flex-column align-center':$vuetify.breakpoint.smAndDown}"
-        style="max-width: 350px; margin: 0 auto"
       >
         <FairSharingLink
+          class="mx-3"
           :fair-sharing-button="fairSharingButton"
           :prev-route="prevRoute"
         />
         <StartOver
+          class="mx-3"
           :class="{'mt-4':$vuetify.breakpoint.smAndDown}"
         />
       </div>
