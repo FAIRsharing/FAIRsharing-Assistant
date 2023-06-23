@@ -1,6 +1,6 @@
 <template>
   <div
-    class="navSecond d-flex justify-space-around align-center full-width mx-3"
+    class="navSecond mx-3"
   >
     <v-btn
       v-bind="button['attributes']"

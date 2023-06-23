@@ -36,5 +36,10 @@
   {
     "pageName": "Licence",
     "title": "Licence"
+  },
+  {
+    "pageName": "ResultView",
+    "title": "Search Results",
+    "subTitle": "Clicking on a link below will open the relevant record on the FAIRsharing site."
   }
 ]

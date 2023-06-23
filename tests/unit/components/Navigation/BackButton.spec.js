@@ -5,9 +5,9 @@ import Vuex from "vuex";
 
 const localVue = createLocalVue();
 localVue.use(Vuex);
-
 const vuetify = new Vuetify();
 
+let records = [];
 
 describe("BackButton.vue", function(){
   let wrapper;
@@ -16,6 +16,7 @@ describe("BackButton.vue", function(){
     wrapper = shallowMount(BackButton, {
       localVue,
       vuetify,
+      propsData: { records: records},
       stubs: ['router-link', 'router-view']
     })
   });
