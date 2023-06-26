@@ -14,7 +14,7 @@ const state = {
  *
  * @param recordArray - array of records
  * @param nodeItem - Object of a record
- * @returns {boolean}
+ * @returns {Object}
  */
 const isNodePresent = (recordArray, nodeItem) => {
   return recordArray.find(({records}) => records === nodeItem["records"])
@@ -24,9 +24,10 @@ const isNodePresent = (recordArray, nodeItem) => {
  *
  * @param recordArray - array of records
  * @param nodeItem - Object of a record
+ * @returns {Array}
  */
 const deleteNode = (recordArray, nodeItem) => {
-  recordArray.splice(recordArray.indexOf(nodeItem), 1)
+  return recordArray.splice(recordArray.indexOf(nodeItem), 1)
 }
 
 const actions = {
@@ -87,13 +88,15 @@ const mutations = {
     let {resourceNodeList, subjectNodeList, domainNodeList} = state.nodeList
     const {type} = nodeItem
 
-    // For Resource Node is selected
+    // For resource node is selected
     if ((type === "resource") || (type === "resourceParent")) {
       deleteNode(resourceNodeList, nodeItem)
     }
+    // For subject node is selected
     else if (type === "subject") {
       deleteNode(subjectNodeList, nodeItem)
     }
+    // For domain node is selected
     else if (type === "domain") {
       deleteNode(domainNodeList, nodeItem)
     }
@@ -130,7 +133,9 @@ const nodeListStore = {
   state,
   getters,
   mutations,
-  actions
+  actions,
+  isNodePresent,
+  deleteNode
 }
 
 export default nodeListStore

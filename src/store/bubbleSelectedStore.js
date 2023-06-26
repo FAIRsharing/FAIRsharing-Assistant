@@ -44,9 +44,7 @@ const mutations = {
       }
     }
 
-    /* istanbul ignore next */
     const found = state.allResources.find(({records}) => records === resource["childResourceSelected"])
-    /* istanbul ignore else */
     if(!found) {
       state.allResources.push({
         registry : resource["topResourceSelected"],
