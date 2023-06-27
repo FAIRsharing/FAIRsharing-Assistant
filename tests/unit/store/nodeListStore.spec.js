@@ -380,6 +380,33 @@ describe('nodeListStore store methods', () => {
     expect(state.nodeList.resourceNodeList).toStrictEqual(resultArray);
   });
 
+  it("can check deleteNode mutations for type Any", () => {
+    state.nodeList.domainNodeList = [
+      {
+        records:"ABC",
+        recordsNumber: 1,
+        type: "any"
+      },
+    ]
+    const nodeItem = {
+      records:"ABC",
+      recordsNumber: 1,
+      type: "any"
+    }
+    const resultArray = [
+      {
+        records:"ABC",
+        recordsNumber: 1,
+        type: "any"
+      }
+    ]
+
+    const isDeleteNodeMethod = jest.fn().mockReturnValue(nodeItem)
+    mutations.deleteNode(state, nodeItem);
+    isDeleteNodeMethod()
+    expect(state.nodeList.domainNodeList).toStrictEqual(resultArray);
+  });
+
   it("can check resetNodeLists mutations", () => {
     const returnedVal = {
       nodeList : {
