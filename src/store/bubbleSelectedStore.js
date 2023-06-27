@@ -44,9 +44,7 @@ const mutations = {
       }
     }
 
-    /* istanbul ignore next */
     const found = state.allResources.find(({records}) => records === resource["childResourceSelected"])
-    /* istanbul ignore else */
     if(!found) {
       state.allResources.push({
         registry : resource["topResourceSelected"],
@@ -63,10 +61,9 @@ const mutations = {
       recordsNumber: subject["recordsNumber"],
       type: "subject"
     }
-    /* istanbul ignore next */
+
     const found = state.subjectList.find(({records}) => records === state.subjectType)
 
-    /* istanbul ignore else */
     if(!found) {
       state.subjectList.push({
         records: subject["subjectSelected"],
@@ -85,10 +82,9 @@ const mutations = {
       recordsNumber: domain["recordsNumber"],
       type: "domain"
     }
-    /* istanbul ignore next */
+
     const found = state.domainList.find(({records}) => records === state.domainType)
 
-    /* istanbul ignore else */
     if(!found) {
       state.domainList.push({
         records: domain["domainSelected"],

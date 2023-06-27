@@ -1,6 +1,4 @@
 import bubbleSelectedStore  from "@/store/bubbleSelectedStore.js"
-
-
 describe('bubbleSelectedStore store methods', () => {
   const {actions, mutations, getters} = bubbleSelectedStore
   let state = {};
@@ -53,10 +51,9 @@ describe('bubbleSelectedStore store methods', () => {
     mutations.resourceSelected(state, returnedVal);
     expect(state.topResourceType).toBe(returnedVal.topResourceSelected);
     expect(state.resourceType).toBe(returnedVal.childResourceSelected);
-
   });
 
-  it("can check resourceSelected mutations when resource parent is true ", () => {
+  it("can check resourceSelected mutations when resource parent is called in if condition ", () => {
     const returnedVal = {
       topResourceSelected: "Parent",
       childResourceSelected: "Child",
@@ -70,7 +67,7 @@ describe('bubbleSelectedStore store methods', () => {
     expect(state.nodeSelected.type).toBe("resourceParent");
   });
 
-  it("can check resourceSelected mutations when resource child is true ", () => {
+  it("can check resourceSelected mutations when resource child is called in else-if condition ", () => {
     const returnedVal = {
       topResourceSelected: "Parent",
       childResourceSelected: "Child",
@@ -84,6 +81,39 @@ describe('bubbleSelectedStore store methods', () => {
     expect(state.nodeSelected.type).toBe("resource");
   });
 
+  it("can check resourceSelected mutations when resource is pushed into allResources array", () => {
+    const inputVal = {
+      topResourceSelected: "Parent",
+      childResourceSelected: "Child",
+      recordsNumber: 123,
+      parent: false,
+      child: true
+    }
+
+    const resultVal = [
+      {
+        registry: "Parent",
+        records: "Child",
+        recordsNumber: 123,
+        type: "resource"
+      }
+    ]
+
+    //For if Statement
+    const isResourceIFPresent = jest.fn().mockReturnValue(true)
+    mutations.resourceSelected(state, inputVal);
+    isResourceIFPresent()
+    expect(state.allResources).toStrictEqual(resultVal);
+
+    //For else Statement
+    const isResourceElsePresent = jest.fn().mockReturnValue(false)
+    mutations.resourceSelected(state, inputVal);
+    isResourceElsePresent()
+    expect(state.allResources).toStrictEqual(resultVal);
+
+  });
+
+
   it("can check subjectSelected mutations", () => {
     const returnedVal = {
       subjectSelected : "Test",
@@ -95,27 +125,34 @@ describe('bubbleSelectedStore store methods', () => {
     expect(state.nodeSelected.recordsNumber).toBe(returnedVal.recordsNumber);
   });
 
-  // it("can check ELSE for subjectSelected mutations", () => {
-  //   const returnedVal = {
-  //     subjectSelected : "Test",
-  //     recordsNumber: 1233
-  //   }
-  //
-  //   state = {
-  //     subjectType: "Test",
-  //     subjectList: {
-  //       records : "Test",
-  //       recordsNumber: 1233
-  //     }
-  //   }
-  //
-  //   const found = jest.fn();
-  //   jest.spyOn(found, 'call')
-  //   mutations.subjectSelected(state, returnedVal);
-  //
-  //   expect(state.subjectList.records).toBe(state.subjectType);
-  //   expect(state.subjectList.recordsNumber).toBe(returnedVal.recordsNumber);
-  // });
+
+  it("can check subjectSelected mutations when resource is pushed into subjectList array", () => {
+    const inputVal = {
+      subjectSelected: "Subject",
+      recordsNumber: 123,
+    }
+
+    const resultVal = [
+      {
+        records: "Subject",
+        recordsNumber: 123,
+        type: "subject"
+      }
+    ]
+
+    //For if Statement
+    const isSubjectIFPresent = jest.fn().mockReturnValue(true)
+    mutations.subjectSelected(state, inputVal);
+    isSubjectIFPresent()
+    expect(state.subjectList).toStrictEqual(resultVal);
+
+    //For else Statement
+    const isSubjectElsePresent = jest.fn().mockReturnValue(false)
+    mutations.subjectSelected(state, inputVal);
+    isSubjectElsePresent()
+    expect(state.subjectList).toStrictEqual(resultVal);
+
+  });
 
   it("can check allSubjectsSelected mutations", () => {
     const returnedVal = true
@@ -133,6 +170,34 @@ describe('bubbleSelectedStore store methods', () => {
     expect(state.domainType).toBe(returnedVal.domainSelected);
     expect(state.nodeSelected.records).toBe(returnedVal.domainSelected);
     expect(state.nodeSelected.recordsNumber).toBe(returnedVal.recordsNumber);
+  });
+
+  it("can check domainSelected mutations when resource is pushed into domainList array", () => {
+    const inputVal = {
+      domainSelected: "Domain",
+      recordsNumber: 123,
+    }
+
+    const resultVal = [
+      {
+        records: "Domain",
+        recordsNumber: 123,
+        type: "domain"
+      }
+    ]
+
+    //For if Statement
+    const isDomainIFPresent = jest.fn().mockReturnValue(true)
+    mutations.domainSelected(state, inputVal);
+    isDomainIFPresent()
+    expect(state.domainList).toStrictEqual(resultVal);
+
+    //For else Statement
+    const isDomainElsePresent = jest.fn().mockReturnValue(false)
+    mutations.domainSelected(state, inputVal);
+    isDomainElsePresent()
+    expect(state.domainList).toStrictEqual(resultVal);
+
   });
 
   it("can check resetAllSubjects mutations", () => {
