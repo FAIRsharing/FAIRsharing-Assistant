@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>FAIRsharing.org Source: utils/ResourceUtils/getResourceRecords.js</title>
+	<title>FAIRsharing.org Source: utils/Others/currentPath.js</title>
 
 	<!--[if lt IE 9]>
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -53,30 +53,27 @@
 		<div id="main">
 			
 
-		<h1 class="page-title">Source: utils/ResourceUtils/getResourceRecords.js</h1>
+		<h1 class="page-title">Source: utils/Others/currentPath.js</h1>
     
 <section>
     <article>
         <pre
-            class="sunlight-highlight-javascript linenums">
-const formatString = (name) => {
-  return name.replace(/\s/g, '_').toLowerCase()
-}
-
-/**
- * @param {Array} - ResourceType
- * @returns {Array} - records of the resource
+            class="sunlight-highlight-javascript linenums">/**
+ * @param {Object} - route query parameters
+ * @returns {Object} - route query parameters
  */
-const getResourceRecords = (resourceType) => {
-  if (resourceType.children &amp;&amp; resourceType.children.length) {
-    return resourceType.children.map(({name}) => formatString(name))
-  }
-  else {
-    return resourceType._children.map(({name}) => formatString(name))
-  }
+const currentPath = (routeQuery) => {
+  let queryParams = {};
+  Object.keys(routeQuery).forEach(prop => {
+    let queryVal = routeQuery[prop];
+    if (queryVal) {
+      queryParams[prop] = decodeURI(queryVal);
+    }
+  });
+  return queryParams;
 }
 
-export default getResourceRecords;</pre>
+export default currentPath</pre>
     </article>
 </section>
 

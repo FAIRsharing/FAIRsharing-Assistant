@@ -25,7 +25,7 @@ const actions = {
       }
     }
     // eslint-disable-next-line no-console
-    console.log("MULTI_TAGS.queryParam::", MULTI_TAGS.queryParam)
+    // console.log("MULTI_TAGS.queryParam::", MULTI_TAGS.queryParam)
     let response = await CLIENT.executeQuery(MULTI_TAGS);
     commit("setFairSharingRecords", response['multiTagFilter'])
     commit("setLoadingStatus", false)

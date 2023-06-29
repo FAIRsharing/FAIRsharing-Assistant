@@ -54,6 +54,7 @@
 import Jumbotron from "@/components/Navigation/Jumbotron";
 import GraphClient from "@/lib/GraphClient/GraphClient";
 import multiTagsNonExactFilter from "@/lib/GraphClient/queries/multiTagsFilter/multiTagsFilter.json";
+import currentPath from "@/utils/Others/currentPath"
 
 const CLIENT = new GraphClient();
 const MULTI_TAGS = JSON.parse(JSON.stringify(multiTagsNonExactFilter));
@@ -80,16 +81,8 @@ export default {
     }
   },
   computed: {
-    currentPath () {
-      const client = this;
-      let queryParams = {};
-      Object.keys(this.$route.query).forEach(prop => {
-        let queryVal = client.$route.query[prop];
-        if (queryVal) {
-          queryParams[prop] = decodeURI(queryVal);
-        }
-      });
-      return queryParams;
+    currentRouteQuery() {
+      return this.$route.query;
     }
   },
   async mounted() {
@@ -100,8 +93,8 @@ export default {
       let _module = this;
       // This converts the values from those in the URL to an appropriate form to send
       // as a graphql query (fixing arrays, capitalisation etc.)
-      Object.keys(_module.currentPath).forEach(key => {
-        MULTI_TAGS.queryParam[key] = _module.currentPath[key].toLowerCase().split(',');
+      Object.keys(currentPath(this.currentRouteQuery)).forEach(key => {
+        MULTI_TAGS.queryParam[key] = currentPath(this.currentRouteQuery)[key].toLowerCase().split(',');
       })
       let response = await CLIENT.executeQuery(MULTI_TAGS);
       // TODO: Handle errors from the server.

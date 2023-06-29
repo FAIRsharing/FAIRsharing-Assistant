@@ -51,6 +51,7 @@
 import {mapActions, mapGetters, mapMutations, mapState} from "vuex";
 import addOnFilters from "@/data/addOnFilters.json"
 import Loaders from "@/components/Loaders/Loaders.vue";
+import currentPath from "@/utils/Others/currentPath"
 
 export default {
   name: 'AddOnFilters',
@@ -101,22 +102,15 @@ export default {
     selectDisplay() {
       return this.onlySwitch ? 'd-none' : 'd-flex'
     },
-    currentPath () {
-      const client = this;
-      let queryParams = {};
-      Object.keys(this.$route.query).forEach(prop => {
-        let queryVal = client.$route.query[prop];
-        if (queryVal) {
-          queryParams[prop] = decodeURI(queryVal);
-        }
-      });
-      return queryParams;
-    },
+    currentRouteQuery() {
+      return this.$route.query;
+    }
   },
   async mounted() {
     this.$nextTick(async () =>{
       this.loading = true
       let _module = this;
+      await _module.resetFiltersOnLoad()
       await _module.readRegAndTypeFilterParams();
       await _module.selectFilters();
       // await _module.readGeneralFilterParams();
@@ -125,16 +119,23 @@ export default {
   },
   methods: {
     ...mapActions("variableTagStore", ["fetchVariableTags"]),
+
+    resetFiltersOnLoad() {
+      let _module = this;
+      [_module.switchTypeFilters, _module.selectTypeFilters].forEach(group => {
+        group.forEach(filter => {
+          if (typeof filter["refineToggle"] === "boolean") filter["refineToggle"] = false
+          filter["refineToggle"] = null
+        })
+
+      })
+    } ,
     readGeneralFilterParams() {
       let _module = this;
-      let params = _module.currentPath;
+      let params = currentPath(this.currentRouteQuery);
       [_module.switchTypeFilters, _module.selectTypeFilters].forEach(group => {
         group.forEach(filter => {
           Object.keys(params).forEach(key =>{
-            //Reset the filters before assigning any value
-            if (typeof filter["refineToggle"] === "boolean") filter["refineToggle"] = false
-            filter["refineToggle"] = null
-
             if (filter["filterQuery"] === key) {
               filter["refineToggle"] = params[key];
               this.map.set(`${filter["filterQuery"]}`, `${filter["refineToggle"]}`)
@@ -147,7 +148,7 @@ export default {
     async readRegAndTypeFilterParams() {
       let _module = this;
       let modified = false;
-      let params = _module.currentPath;
+      let params = currentPath(this.currentRouteQuery);
       Object.keys(params).forEach(key => {
         if (key === 'registry') {
           if (_module.allowedRegistries.indexOf(params[key]) > -1) {
@@ -189,7 +190,7 @@ export default {
     },
     applyFilters() {
       let _module = this;
-      let params = _module.currentPath;
+      let params = currentPath(this.currentRouteQuery);
       let newParams = {};
       // Set the list of parameters of interest
       if ('registry' in params) {
