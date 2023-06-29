@@ -14,7 +14,6 @@ const actions = {
   /* istanbul ignore next */
   async fetchVariableTags({commit}, [resource, subject, domain, tag, addonfilters]) {
     // eslint-disable-next-line no-console
-    // console.log("addonfilters::", addonfilters.length)
     commit("setLoadingStatus", true)
     if (!addonfilters || addonfilters.length === 0) {
       VARIABLE_TAGS.queryParam = {
