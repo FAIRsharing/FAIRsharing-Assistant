@@ -65,7 +65,6 @@ export default {
     }
   },
   computed:{
-    ...mapGetters("bubbleSelectedStore", ['getTopResource', 'getResource', 'getSubject', 'getDomain']),
     ...mapGetters("addOnFilterSelectedStore", ["getFilters"]),
     ...mapGetters("breadCrumbStore", ["getBreadCrumbs"]),
     ...mapState("recordTypeStore", ["allRecordTypes", "loadingData"]),
