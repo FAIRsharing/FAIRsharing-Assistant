@@ -14,6 +14,7 @@
       <NodesList
         v-if="isNodeList"
         :get-nodes-data="getNodeList"
+        :get-filters-data="getFilterLists"
       />
       <AddOnFilters @filterSource="onCardsSelection" />
       <div
@@ -24,6 +25,9 @@
           class="mx-3"
           :fair-sharing-button="fairSharingButton"
           :prev-route="prevRoute"
+        />
+        <ApplyFilterButton
+          class="mx-3"
         />
         <StartOver
           class="mx-3"
@@ -43,6 +47,7 @@ import SubjectButton from "@/components/Navigation/SubjectButton";
 import DomainButton from "@/components/Navigation/DomainButton";
 import AddOnFilters from "@/components/Others/AddOnFilters.vue";
 import NodesList from "@/components/Others/NodesList.vue";
+import ApplyFilterButton from "@/components/Navigation/ApplyFilterButton.vue"
 
 export default {
   name: 'RefineView',
@@ -53,7 +58,8 @@ export default {
     SubjectButton,
     DomainButton,
     AddOnFilters,
-    NodesList
+    NodesList,
+    ApplyFilterButton
   },
   data:() => {
     return {
@@ -63,7 +69,7 @@ export default {
   },
   computed:{
     ...mapGetters("bubbleSelectedStore", ['getAllResources', 'getSubjectList', 'getDomainList']),
-    ...mapGetters("nodeListStore", ['getNodeList']),
+    ...mapGetters("nodeListStore", ['getNodeList', 'getFilterLists']),
     isNodeList() {
       const {resourceNodeList, subjectNodeList, domainNodeList} = this.getNodeList
       if ((resourceNodeList.length) || (subjectNodeList.length) || (domainNodeList.length)) return true

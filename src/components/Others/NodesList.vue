@@ -134,6 +134,45 @@
         </v-chip>
       </v-col>
     </v-row>
+    <!-- Filters  List -->
+    <v-row
+      v-if="getFiltersData['filtersList'] && getFiltersData['filtersList'].length"
+      dense
+      no-gutters
+      class="text-left"
+    >
+      <v-col
+        cols="12"
+        lg="2"
+        md="2"
+        sm="12"
+      >
+        <v-chip
+          class="ma-2"
+          label
+          text-color="white"
+          color="purple"
+        >
+          Filters Selected
+        </v-chip>
+      </v-col>
+      <v-col
+        cols="12"
+        lg="10"
+        md="10"
+        sm="12"
+      >
+        <v-chip
+          v-for="(item, index) in getFiltersData['filtersList']"
+          :key="index"
+          class="ma-2"
+          color="orange"
+          text-color="white"
+        >
+          <strong>{{ normalString(item["key"]) }}&nbsp;:&nbsp;</strong>{{ normalString(item["value"]) }}
+        </v-chip>
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 
@@ -154,6 +193,13 @@ export default {
         return {}
       }
     },
+    getFiltersData: {
+      type: Object,
+      required: false,
+      default() {
+        return {}
+      }
+    },
   },
   computed: {
     currentRouteName() {
@@ -168,7 +214,7 @@ export default {
       this.$store.commit('nodeListStore/deleteNode', node);
     },
     formatRecordsNumber(num) {
-      return  Math.abs(num) > 999 ? Math.sign(num)*((Math.abs(num)/1000).toFixed(1)) + 'k' : Math.sign(num)*Math.abs(num)
+      if (num !== undefined) return  Math.abs(num) > 999 ? Math.sign(num)*((Math.abs(num)/1000).toFixed(1)) + 'k' : Math.sign(num)*Math.abs(num)
     }
   }
 

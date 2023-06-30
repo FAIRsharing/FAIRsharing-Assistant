@@ -4,7 +4,7 @@ export default {
       return name.replace(/\s/g, '_').toLowerCase()
     },
     normalString(name){
-      return name.replace(/\b\w/, (c) => c.toUpperCase()).replace(/_/g, " ")
+      if (name !== undefined) return name.replace(/\b\w/, (c) => c.toUpperCase()).replace(/_/g, " ")
     }
   }
 }
