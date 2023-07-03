@@ -2,7 +2,7 @@ import nodeListStore  from "@/store/nodeListStore.js"
 describe('nodeListStore store methods', () => {
   const {actions, mutations, getters,
     isNodePresent,
-    deleteNode
+    deleteNode,
   } = nodeListStore
   let state = {};
 
@@ -17,6 +17,10 @@ describe('nodeListStore store methods', () => {
         isResourceNode: false,
         isSubjectNode: false,
         isDomainNode: false,
+      },
+      filters: {
+        filtersList: [],
+        isFilter: false
       }
     };
   });
@@ -90,20 +94,34 @@ describe('nodeListStore store methods', () => {
     expect(commit).toHaveBeenCalledTimes(1);
   });
 
+  it("can check resetFilterLists actions", () => {
+    const commit = jest.fn()
+    actions.resetFilterLists({ commit })
+    expect(commit).toHaveBeenCalledTimes(1);
+  });
+
   it("can check nodeLists mutations for route DatabaseView", () => {
     const nodeItem = {
       records:"CDE",
       recordsNumber:343,
       type: "resource"
     }
+
+    const noNodeItem = {}
     const routeName = "DatabaseView"
 
-    //For if Statement
+    //For If nodeItem is non-empty Statement
     const isNodePresentIfMethod = jest.fn().mockReturnValue(true)
     mutations.nodeLists(state, [nodeItem, routeName]);
     isNodePresentIfMethod()
     expect(state.nodeFound.isResourceNode).toBe(false);
-    //For else Statement
+
+    //For Else nodeItem is empty Statement
+    mutations.nodeLists(state, [noNodeItem, routeName]);
+    isNodePresentIfMethod()
+    expect(state.nodeFound.isResourceNode).toBe(true);
+
+    //For else node is not found in array Statement
     const isNodePresentElseMethod = jest.fn().mockReturnValue(false)
     mutations.nodeLists(state, [nodeItem, routeName]);
     isNodePresentElseMethod()
@@ -116,13 +134,20 @@ describe('nodeListStore store methods', () => {
       recordsNumber:343,
       type: "resource"
     }
+    const noNodeItem = {}
     const routeName = "StandardsView"
-    //For if Statement
+    //For If nodeItem is non-empty Statement
     const isNodePresentIfMethod = jest.fn().mockReturnValue(true)
     mutations.nodeLists(state, [nodeItem, routeName]);
     isNodePresentIfMethod()
     expect(state.nodeFound.isResourceNode).toBe(false);
-    //For else Statement
+
+    //For Else nodeItem is empty Statement
+    mutations.nodeLists(state, [noNodeItem, routeName]);
+    isNodePresentIfMethod()
+    expect(state.nodeFound.isResourceNode).toBe(true);
+
+    //For else node is not found in array Statement
     const isNodePresentElseMethod = jest.fn().mockReturnValue(false)
     mutations.nodeLists(state, [nodeItem, routeName]);
     isNodePresentElseMethod()
@@ -136,13 +161,20 @@ describe('nodeListStore store methods', () => {
       recordsNumber:343,
       type: "resource"
     }
+    const noNodeItem = {}
     const routeName = "PoliciesView"
-    //For if Statement
+    //For If nodeItem is non-empty Statement
     const isNodePresentIfMethod = jest.fn().mockReturnValue(true)
     mutations.nodeLists(state, [nodeItem, routeName]);
     isNodePresentIfMethod()
     expect(state.nodeFound.isResourceNode).toBe(false);
-    //For else Statement
+
+    //For Else nodeItem is empty Statement
+    mutations.nodeLists(state, [noNodeItem, routeName]);
+    isNodePresentIfMethod()
+    expect(state.nodeFound.isResourceNode).toBe(true);
+
+    //For else node is not found in array Statement
     const isNodePresentElseMethod = jest.fn().mockReturnValue(false)
     mutations.nodeLists(state, [nodeItem, routeName]);
     isNodePresentElseMethod()
@@ -167,13 +199,20 @@ describe('nodeListStore store methods', () => {
       recordsNumber:343,
       type: "resource"
     }
+    const noNodeItem = {}
     const routeName = "SubjectTypeView"
-    //For if Statement
+    //For If nodeItem is non-empty Statement
     const isNodePresentIfMethod = jest.fn().mockReturnValue(true)
     mutations.nodeLists(state, [nodeItem, routeName]);
     isNodePresentIfMethod()
     expect(state.nodeFound.isSubjectNode).toBe(false);
-    //For else Statement
+
+    //For Else nodeItem is empty Statement
+    mutations.nodeLists(state, [noNodeItem, routeName]);
+    isNodePresentIfMethod()
+    expect(state.nodeFound.isSubjectNode).toBe(true);
+
+    //For else node is not found in array Statement
     const isNodePresentElseMethod = jest.fn().mockReturnValue(false)
     mutations.nodeLists(state, [nodeItem, routeName]);
     isNodePresentElseMethod()
@@ -186,17 +225,48 @@ describe('nodeListStore store methods', () => {
       recordsNumber:343,
       type: "resource"
     }
+    const noNodeItem = {}
     const routeName = "DomainTypeView"
-    //For if Statement
+
+    //For If nodeItem is non-empty Statement
     const isNodePresentIfMethod = jest.fn().mockReturnValue(true)
     mutations.nodeLists(state, [nodeItem, routeName]);
     isNodePresentIfMethod()
     expect(state.nodeFound.isDomainNode).toBe(false);
-    //For else Statement
+
+    //For Else nodeItem is empty Statement
+    mutations.nodeLists(state, [noNodeItem, routeName]);
+    isNodePresentIfMethod()
+    expect(state.nodeFound.isDomainNode).toBe(true);
+
+    //For else node is not found in array Statement
     const isNodePresentElseMethod = jest.fn().mockReturnValue(false)
     mutations.nodeLists(state, [nodeItem, routeName]);
     isNodePresentElseMethod()
     expect(state.nodeFound.isDomainNode).toBe(true)
+  });
+
+  it("can check filterLists mutations when filters are selected", () => {
+    const noNullFilters = [
+      {
+        key:"status",
+        value:"open",
+      },
+      {
+        key:"dataAccessCondition",
+        value:"open",
+      }
+    ]
+    mutations.filterLists(state, noNullFilters);
+    expect(state.filters.filtersList).toStrictEqual(noNullFilters);
+    expect(state.filters.isFilter).toBe(true);
+  });
+
+  it("can check filterLists mutations when no-filters are selected", () => {
+    const noFilters = []
+    mutations.filterLists(state, noFilters);
+    expect(state.filters.filtersList).toStrictEqual(noFilters);
+    expect(state.filters.isFilter).toBe(false);
   });
 
   it("can check deleteNode mutations for type Resource", () => {
@@ -431,6 +501,17 @@ describe('nodeListStore store methods', () => {
     expect(state.nodeFound).toStrictEqual(returnedVal.nodeFound);
   });
 
+  it("can check resetFilters mutations", () => {
+    const returnedVal = {
+      filters : {
+        filtersList: [],
+        isFilter: false,
+      }
+    }
+    mutations.resetFilters(state);
+    expect(state.filters).toStrictEqual(returnedVal.filters);
+  });
+
   it("can check getNodeList getters", () => {
     const stateValue = {
       nodeList:{
@@ -480,6 +561,23 @@ describe('nodeListStore store methods', () => {
     }
 
     const builtData = getters.getNodeFound(stateValue);
+    expect(builtData).toStrictEqual(result);
+  });
+
+  it("can check getFilterLists getters", () => {
+    const stateValue = {
+      filters:{
+        filtersList: ["A", "B"],
+        isFilter: false,
+      }
+    }
+
+    const result = {
+      filtersList: ["A", "B"],
+      isFilter: false,
+    }
+
+    const builtData = getters.getFilterLists(stateValue);
     expect(builtData).toStrictEqual(result);
   });
 
