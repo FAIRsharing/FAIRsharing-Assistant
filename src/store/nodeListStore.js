@@ -2,12 +2,18 @@ const state = {
   nodeList: {
     resourceNodeList: [],
     subjectNodeList: [],
-    domainNodeList: []
+    domainNodeList: [],
+
   },
   nodeFound: {
     isResourceNode: false,
     isSubjectNode: false,
     isDomainNode: false,
+
+  },
+  filters: {
+    filtersList: [],
+    isFilter: false
   }
 };
 /**
@@ -33,6 +39,9 @@ const deleteNode = (recordArray, nodeItem) => {
 const actions = {
   resetNodeLists({commit}) {
     commit('resetNodeLists');
+  },
+  resetFilterLists({commit}) {
+    commit('resetFilters');
   }
 }
 
@@ -44,8 +53,13 @@ const mutations = {
     if ((routeName === "DatabaseView") || (routeName === "StandardsView") || (routeName === "PoliciesView")) {
       const isFound = isNodePresent(resourceNodeList, nodeItem)
       if(!isFound) {
-        resourceNodeList.push(nodeItem)
-        state.nodeFound["isResourceNode"] = false
+        if (Object.keys(nodeItem).length) {
+          resourceNodeList.push(nodeItem)
+          state.nodeFound["isResourceNode"] = false
+        }
+        else {
+          state.nodeFound["isResourceNode"] = true
+        }
       }
       else {
         state.nodeFound["isResourceNode"] = true
@@ -62,8 +76,13 @@ const mutations = {
     if (routeName === "SubjectTypeView") {
       const isFound = isNodePresent(subjectNodeList, nodeItem)
       if(!isFound) {
-        subjectNodeList.push(nodeItem)
-        state.nodeFound["isSubjectNode"] = false
+        if (Object.keys(nodeItem).length) {
+          subjectNodeList.push(nodeItem)
+          state.nodeFound["isSubjectNode"] = false
+        }
+        else {
+          state.nodeFound["isSubjectNode"] = true
+        }
       }
       else {
         state.nodeFound["isSubjectNode"] = true
@@ -74,16 +93,27 @@ const mutations = {
     if (routeName === "DomainTypeView") {
       const isFound = isNodePresent(domainNodeList, nodeItem)
       if(!isFound) {
-        domainNodeList.push(nodeItem)
-        state.nodeFound["isDomainNode"] = false
+        if (Object.keys(nodeItem).length) {
+          domainNodeList.push(nodeItem)
+          state.nodeFound["isDomainNode"] = false
+        }
+        else {
+          state.nodeFound["isDomainNode"] = true
+        }
       }
       else {
         state.nodeFound["isDomainNode"] = true
       }
     }
-
-
   },
+
+  filterLists (state, noNullFilters){
+    state.filters.filtersList = noNullFilters
+
+    if(state.filters.filtersList && state.filters.filtersList.length) state.filters.isFilter = true
+    else state.filters.isFilter = false
+  },
+
   deleteNode(state, nodeItem) {
     let {resourceNodeList, subjectNodeList, domainNodeList} = state.nodeList
     const {type} = nodeItem
@@ -118,6 +148,13 @@ const mutations = {
     }
   },
 
+  resetFilters(state) {
+    state.filters = {
+      filtersList: [],
+      isFilter: false,
+    }
+  },
+
 };
 
 const getters = {
@@ -126,7 +163,10 @@ const getters = {
   },
   getNodeFound(state)  {
     return state.nodeFound;
-  }
+  },
+  getFilterLists(state)  {
+    return state.filters;
+  },
 }
 const nodeListStore = {
   namespaced: true,

@@ -73,7 +73,7 @@ export default {
 
   methods:{
     ...mapActions("bubbleSelectedStore", ["resetAllSelectedValues"]),
-    ...mapActions("nodeListStore", ["resetNodeLists"]),
+    ...mapActions("nodeListStore", ["resetNodeLists", "resetFilterLists"]),
     ...mapActions("addOnFilterSelectedStore", ["resetFiltersSelected"]),
 
     onStartOver() {
@@ -82,6 +82,7 @@ export default {
       this.resetAllSelectedValues()
       this.resetNodeLists()
       this.resetFiltersSelected()
+      this.resetFilterLists()
     }
   }
 

@@ -10,6 +10,7 @@
       <NodesList
         v-if="isNodeList"
         :get-nodes-data="getNodeList"
+        :get-filters-data="getFilterLists"
       />
       <div class="d-flex justify-space-around mt-6">
         <FairSharingLink
@@ -56,7 +57,7 @@ export default {
   },
   computed:{
     ...mapGetters("bubbleSelectedStore", ['getSubject', 'getSubjectList']),
-    ...mapGetters("nodeListStore", ['getNodeList']),
+    ...mapGetters("nodeListStore", ['getNodeList', 'getFilterLists']),
 
     isNodeList() {
       const {resourceNodeList, subjectNodeList, domainNodeList} = this.getNodeList
