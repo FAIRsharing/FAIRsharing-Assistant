@@ -21,8 +21,8 @@
           <v-col
             cols="2"
             sm="12"
-            md="4"
-            lg="4"
+            md="3"
+            lg="3"
           >
             <v-card
               class="mx-auto block-category__card"
@@ -61,8 +61,8 @@
           <v-col
             cols="2"
             sm="12"
-            md="4"
-            lg="4"
+            md="3"
+            lg="3"
           >
             <v-card
               class="mx-auto block-category__card"
@@ -101,8 +101,8 @@
           <v-col
             cols="2"
             sm="12"
-            md="4"
-            lg="4"
+            md="3"
+            lg="3"
           >
             <v-card
               class="mx-auto block-category__card"
@@ -141,8 +141,8 @@
           <v-col
             cols="2"
             sm="12"
-            md="4"
-            lg="4"
+            md="3"
+            lg="3"
           >
             <v-card
               class="mx-auto block-category__card"
@@ -471,9 +471,15 @@ export default {
       let _module = this;
       // TODO: here's where to trigger the multiTagFilter.
       // first, generate MULTI_TAGS.query param, then run the query and generate recordsCount and recordsFound.
-      console.log(JSON.stringify(val));
+      //console.log(JSON.stringify(val));
       //v-for="(tag, tagIndex) in recordTags.filter(x => x.model === section.label)"
       _module.recordsLoading = true;
+      _module.recordsCount = {
+        Database: 0,
+        Standard: 0,
+        Policy: 0,
+        Collection: 0
+      }
       // TODO: refactor this for brevity
       MULTI_TAGS.queryParam = _module.generateQuery(val)[0];
       let run = _module.generateQuery(val)[1];
@@ -482,20 +488,14 @@ export default {
         // TODO: Handle errors from the server.
         if (!response.error) {
           _module.recordsFound = response['multiTagFilter'];
-          _module.recordsFound.forEach(function(record) {
-            _module.recordsCount[record.registry] += 1;
-          })
+          if (_module.recordsFound.length) {
+            _module.recordsFound.forEach(function(record) {
+              _module.recordsCount[record.registry] += 1;
+            })
+          }
         }
         else {
           _module.error = true;
-        }
-      }
-      else {
-        _module.recordsCount = {
-          Database: 0,
-          Standard: 0,
-          Policy: 0,
-          Collection: 0
         }
       }
       _module.recordsLoading = false;
