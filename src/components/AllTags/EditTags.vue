@@ -14,9 +14,171 @@
       v-model="formValid"
     >
       <v-container fluid>
-        <v-row>
-          <p>Placeholder for total count of records: {{ recordsCount }}</p>
+        <!-- Standard card -->
+        <v-row
+          class="block-category pb-5"
+        >
+          <v-col
+            cols="2"
+            sm="12"
+            md="4"
+            lg="4"
+          >
+            <v-card
+              class="mx-auto block-category__card"
+              max-width="250"
+              height="250"
+            >
+              <div class="white--text d-flex flex-column justify-center block-category__card__gradiant">
+                <div
+                  style="height: 136px"
+                  class="d-flex justify-center"
+                >
+                  <v-img
+                    class="mt-5"
+                    contain
+                    height="100px"
+                    :src="$vuetify.icons.values['home_standard'].icon"
+                  />
+                </div>
+                <v-card-title class="d-inline text-h4 text-md-h5 text-lg-h4 text-center">
+                  {{ recordsCount['Standard'] }} Standards
+                </v-card-title>
+              </div>
+              <v-card-actions class="text-center d-block">
+                <v-btn
+                  href="https://fairsharing.org/educational#faq1-1"
+                  target="_blank"
+                  color="primary"
+                  text
+                >
+                  Learn more
+                </v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-col>
+          <!-- Database card -->
+          <v-col
+            cols="2"
+            sm="12"
+            md="4"
+            lg="4"
+          >
+            <v-card
+              class="mx-auto block-category__card"
+              max-width="250"
+              height="250"
+            >
+              <div class="white--text d-flex flex-column justify-center block-category__card__gradiant">
+                <div
+                  style="height: 136px"
+                  class="d-flex justify-center"
+                >
+                  <v-img
+                    class="mt-5"
+                    contain
+                    height="100px"
+                    :src="$vuetify.icons.values['home_db'].icon"
+                  />
+                </div>
+                <v-card-title class="d-inline text-h4 text-md-h5 text-lg-h4 text-center">
+                  {{ recordsCount['Database'] }} Databases
+                </v-card-title>
+              </div>
+              <v-card-actions class="text-center d-block">
+                <v-btn
+                  href="https://fairsharing.org/educational#faq1-1"
+                  target="_blank"
+                  color="primary"
+                  text
+                >
+                  Learn more
+                </v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-col>
+          <!-- Policy card -->
+          <v-col
+            cols="2"
+            sm="12"
+            md="4"
+            lg="4"
+          >
+            <v-card
+              class="mx-auto block-category__card"
+              max-width="250"
+              height="250"
+            >
+              <div class="white--text d-flex flex-column justify-center block-category__card__gradiant">
+                <div
+                  style="height: 136px"
+                  class="d-flex justify-center"
+                >
+                  <v-img
+                    class="mt-5"
+                    contain
+                    height="100px"
+                    :src="$vuetify.icons.values['home_policies'].icon"
+                  />
+                </div>
+                <v-card-title class="d-inline text-h4 text-md-h5 text-lg-h4 text-center">
+                  {{ recordsCount['Policy'] }} Policies
+                </v-card-title>
+              </div>
+              <v-card-actions class="text-center d-block">
+                <v-btn
+                  href="https://fairsharing.org/educational#faq1-1"
+                  target="_blank"
+                  color="primary"
+                  text
+                >
+                  Learn more
+                </v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-col>
+          <!-- collection card -->
+          <v-col
+            cols="2"
+            sm="12"
+            md="4"
+            lg="4"
+          >
+            <v-card
+              class="mx-auto block-category__card"
+              max-width="250"
+              height="250"
+            >
+              <div class="white--text d-flex flex-column justify-center block-category__card__gradiant">
+                <div
+                  style="height: 136px"
+                  class="d-flex justify-center"
+                >
+                  <v-img
+                    class="mt-5"
+                    contain
+                    height="100px"
+                    :src="$vuetify.icons.values['home_collections'].icon"
+                  />
+                </div>
+                <v-card-title class="d-inline text-h4 text-md-h5 text-lg-h4 text-center">
+                  {{ recordsCount['Collection'] }} Collections
+                </v-card-title>
+              </div>
+              <v-card-actions class="text-center d-block">
+                <v-btn
+                  href="https://fairsharing.org/educational#faq1-1"
+                  target="_blank"
+                  color="primary"
+                  text
+                >
+                  Learn more
+                </v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-col>
         </v-row>
+        <!-- end of result cards -->
         <v-row>
           <p> 
             <v-btn
@@ -159,8 +321,6 @@
 </template>
 
 <script>
-//import { mapGetters, mapActions } from "vuex"
-//import { mapGetters, mapState, mapActions } from "vuex"
 //import KeywordTooltip from "@/components/Records/Shared/KeywordTooltip.vue";
 import tagsQuery from "@/lib/GraphClient/queries/geTags.json"
 import GraphClient from "@/lib/GraphClient/GraphClient.js"
@@ -341,24 +501,7 @@ export default {
       _module.recordsLoading = false;
     }
   },
-  /*
-  mounted(){
-    this.$nextTick(async function () {
-      this.loading = true;
-      this.initialized = false;
-      this.loading = false;
-      this.initialized = true;
-    })
-  },
-   */
   methods: {
-    //...mapActions('editor', ["getTags"]),
-    /*
-    showMenu(){
-      if (!this.menu.show) { this.$scrollTo("#editTags") }
-      this.menu.show = !this.menu.show;
-    },
-     */
     async getTags(queryString) {
       let tagQueryCopy = JSON.parse(JSON.stringify(tagsQuery));
       if (queryString) tagQueryCopy.queryParam = {q: queryString};
@@ -455,4 +598,34 @@ table#tagsTable tr {
   border: 1px solid white !important;
 }
 
+</style>
+
+<style scoped lang="scss">
+.block-category {
+  &__card {
+    transition: all .2ms ease;
+    -webkit-transition: all .2s ease;
+    -moz-transition: all .2s ease;
+    -o-transition: all .2s ease;
+    box-shadow: 0 1rem 2rem rgba(black, .15) !important;
+    -webkit-box-shadow: 0 1rem 2rem rgba(black, .15) !important;
+    -moz-box-shadow: 0 1rem 2rem rgba(black, .15) !important;
+    -o-box-shadow: 0 1rem 2rem rgba(black, .15) !important;
+
+    &:hover {
+      transform: scale(1.05);
+      -moz-transform: scale(1.05);
+      -webkit-transform: scale(1.05);
+      -o-transform: scale(1.05);
+    }
+
+    &__gradiant {
+      height: 200px;
+      background: rgb(171, 171, 171);
+    }
+  }
+}
+.v-divider {
+  margin: 8px;
+}
 </style>
