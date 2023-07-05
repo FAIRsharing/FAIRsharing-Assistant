@@ -14,7 +14,8 @@ import {
   ResultView,
   NotFound,
   ServerError,
-  Licence
+  Licence,
+  AllTags
 } from './routes'
 
 let routes = [
@@ -23,6 +24,11 @@ let routes = [
     name: "HomeView",
     path: "/:id(\\d+)?",
     component: HomeView,
+  },
+  {
+    name: "AllTags",
+    path: "/researchfields",
+    component: AllTags,
   },
   {
     name: "SubjectTypeView",
