@@ -94,20 +94,15 @@ export default {
   },
   async mounted() {
     this.records = this.recordsFound;
-    console.log("Mounted!");
-    console.log(JSON.stringify(this.recordsFound));
     await this.getData();
   },
   methods: {
     async getData() {
       let _module = this;
-      console.log("2: " + JSON.stringify(_module.records));
       if (_module.records.length > 0) {
-        console.log("Length > 0")
         _module.loading = false;
         return;
       }
-      console.log(JSON.stringify(currentPath(this.currentRouteQuery)));
       // This converts the values from those in the URL to an appropriate form to send
       // as a graphql query (fixing arrays, capitalisation etc.)
       Object.keys(currentPath(this.currentRouteQuery)).forEach(key => {
