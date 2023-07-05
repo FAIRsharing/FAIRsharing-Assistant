@@ -202,21 +202,20 @@
                   class="white--text py-2 px-4 titleCell"
                   :class="section.color"
                 >
-                  <!--
-                <v-tooltip right>
-                  <template #activator="{ on, attrs }">
-                    <v-icon
-                      v-bind="attrs"
-                      small
-                      class="white--text mr-1"
-                      v-on="on"
-                    >
-                      fa-question-circle
-                    </v-icon>
-                  </template>
-                  <span> {{ section.tooltip }} </span>
-                </v-tooltip>
-                -->
+                  <!-- TODO: Do we really need a tooltip here? -->
+                  <v-tooltip right>
+                    <template #activator="{ on, attrs }">
+                      <v-icon
+                        v-bind="attrs"
+                        small
+                        class="white--text mr-1"
+                        v-on="on"
+                      >
+                        fa-question-circle
+                      </v-icon>
+                    </template>
+                    <span> {{ section.tooltip }} </span>
+                  </v-tooltip>
                   {{ sectionName.toUpperCase() }}
                 </td>
                 <td :class="section.color + ' lighten-2'">
@@ -232,16 +231,20 @@
                       {{ capitaliseText(tag.label, tag.model) }}
                       <v-tooltip bottom>
                         <template #activator="{ on, attrs }">
-                          <v-icon
-                            v-bind="attrs"
-                            small
-                            class="ml-1"
-                            :class="[section.color + '--text white']"
-                            v-on="on"
+                          <!-- this is a dreadful cheat; without it the close icon becomes unreadable -->
+                          <div
                             @click="removeTag(tag.id)"
                           >
-                            fa-times-circle
-                          </v-icon>
+                            <v-icon
+                              v-bind="attrs"
+                              small
+                              class="ml-1"
+                              :class="[section.color + '--text white']"
+                              v-on="on"
+                            >
+                              fa-times-circle
+                            </v-icon>
+                          </div>
                         </template>
                         <span> Remove term </span>
                       </v-tooltip>
