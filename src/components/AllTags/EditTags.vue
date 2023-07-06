@@ -26,7 +26,7 @@
           >
             <v-card
               class="mx-auto block-category__card"
-              max-width="250"
+              max-width="350"
               height="250"
             >
               <div class="white--text d-flex flex-column justify-center block-category__card__gradiant">
@@ -66,7 +66,7 @@
           >
             <v-card
               class="mx-auto block-category__card"
-              max-width="250"
+              max-width="350"
               height="250"
             >
               <div class="white--text d-flex flex-column justify-center block-category__card__gradiant">
@@ -106,7 +106,7 @@
           >
             <v-card
               class="mx-auto block-category__card"
-              max-width="250"
+              max-width="350"
               height="250"
             >
               <div class="white--text d-flex flex-column justify-center block-category__card__gradiant">
@@ -146,7 +146,7 @@
           >
             <v-card
               class="mx-auto block-category__card"
-              max-width="250"
+              max-width="350"
               height="250"
             >
               <div class="white--text d-flex flex-column justify-center block-category__card__gradiant">
