@@ -47,7 +47,7 @@
               </div>
               <v-card-actions class="text-center d-block">
                 <v-btn
-                  href="https://fairsharing.org/educational#faq1-1"
+                  href="https://fairsharing.org/educational#standards"
                   target="_blank"
                   color="primary"
                   text
@@ -87,7 +87,7 @@
               </div>
               <v-card-actions class="text-center d-block">
                 <v-btn
-                  href="https://fairsharing.org/educational#faq1-1"
+                  href="https://fairsharing.org/educational#databases"
                   target="_blank"
                   color="primary"
                   text
@@ -127,7 +127,7 @@
               </div>
               <v-card-actions class="text-center d-block">
                 <v-btn
-                  href="https://fairsharing.org/educational#faq1-1"
+                  href="https://fairsharing.gitbook.io/fairsharing/record-sections-and-fields/general-information/registry-type#policies"
                   target="_blank"
                   color="primary"
                   text
@@ -167,7 +167,7 @@
               </div>
               <v-card-actions class="text-center d-block">
                 <v-btn
-                  href="https://fairsharing.org/educational#faq1-1"
+                  href="https://fairsharing.gitbook.io/fairsharing/record-sections-and-fields/general-information/registry-type#collections"
                   target="_blank"
                   color="primary"
                   text
@@ -456,13 +456,6 @@ export default {
     //...mapState("record", ["sections"]),
     sections() {
       return {
-        "taxonomic range": {
-          items: [],
-          color: this.colors["taxonomy"],
-          //tooltip: this.tooltips.species
-          tooltip: 'Taxonomy tags you have selected will be shown here.',
-          label: 'taxonomy'
-        },
         subjects: {
           items: [],
           color: this.colors["subject"],
@@ -476,6 +469,13 @@ export default {
           //tooltip: this.tooltips.domains
           tooltip: "Domains you have selected will be shown here.",
           label: 'domain'
+        },
+        "taxonomic range": {
+          items: [],
+          color: this.colors["taxonomy"],
+          //tooltip: this.tooltips.species
+          tooltip: 'Taxonomy tags you have selected will be shown here.',
+          label: 'taxonomy'
         },
         "user defined tags": {
           items: [],
@@ -536,7 +536,7 @@ export default {
         // TODO: Handle errors from the server.
         if (!response.error) {
           _module.recordsFound = response['multiTagFilter'];
-          if (_module.recordsFound.length) {
+          if (_module.recordsFound && _module.recordsFound.length) {
             _module.recordsFound.forEach(function(record) {
               _module.recordsCount[record.registry] += 1;
             })
