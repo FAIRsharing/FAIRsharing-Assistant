@@ -194,7 +194,7 @@
                   fa-question-circle
                 </v-icon>
               </template>
-              <span> See the count of FAIRsharing records matching your selections below. </span>
+              <span> See the list of FAIRsharing records matching your selections below. </span>
             </v-tooltip>
             <v-btn
               :disabled="!resultsButtonActive"
