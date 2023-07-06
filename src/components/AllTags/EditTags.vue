@@ -194,7 +194,7 @@
                   fa-question-circle
                 </v-icon>
               </template>
-              <span> Clicking this will check the FAIRsharing database for records matching the tags below, and will display the count above. </span>
+              <span> See the count of FAIRsharing records matching your selections below. </span>
             </v-tooltip>
             <v-btn
               :disabled="!resultsButtonActive"
@@ -215,7 +215,7 @@
                   fa-question-circle
                 </v-icon>
               </template>
-              <span> Choose further refinements to narrow-down your choice of record. </span>
+              <span> Choose further refinements to narrow down your choice of record. </span>
             </v-tooltip>
             <v-btn
               :disabled="true"
