@@ -180,17 +180,58 @@
         </v-row>
         <!-- end of result cards -->
         <v-row>
-          <p> 
+          <v-col
+            class="text-center"
+          >
+            <v-tooltip right>
+              <template #activator="{ on, attrs }">
+                <v-icon
+                  v-bind="attrs"
+                  small
+                  class="grey--text mr-1"
+                  v-on="on"
+                >
+                  fa-question-circle
+                </v-icon>
+              </template>
+              <span> Clicking this will check the FAIRsharing database for records matching the tags below, and will display the count above. </span>
+            </v-tooltip>
             <v-btn
               :disabled="!resultsButtonActive"
               color="blue white--text"
+              class="mr-10"
               @click="showResults()"
             >
-              View results
+              View records
             </v-btn>
-          </p>
+            <v-tooltip right>
+              <template #activator="{ on, attrs }">
+                <v-icon
+                  v-bind="attrs"
+                  small
+                  class="grey--text ml-10 mr-1"
+                  v-on="on"
+                >
+                  fa-question-circle
+                </v-icon>
+              </template>
+              <span> Choose further refinements to narrow-down your choice of record. </span>
+            </v-tooltip>
+            <v-btn
+              :disabled="true"
+              color="blue white--text"
+              @click="showResults()"
+            >
+              Refine my choice
+            </v-btn>
+          </v-col>
         </v-row>
         <v-row>
+          <p
+            class="pt-6"
+          >
+            Tags you've selected will display in the four rows below.
+          </p>
           <table id="tagsTable">
             <tbody>
               <tr
@@ -202,7 +243,6 @@
                   class="white--text py-2 px-4 titleCell"
                   :class="section.color"
                 >
-                  <!-- TODO: Do we really need a tooltip here? -->
                   <v-tooltip right>
                     <template #activator="{ on, attrs }">
                       <v-icon
@@ -267,6 +307,11 @@
             no-gutters
           >
             <v-col cols="12">
+              <p
+                class="pt-6"
+              >
+                Use this search box to find tags of interest.
+              </p>
               <v-text-field
                 id="searchString"
                 v-model="searchString"
@@ -274,7 +319,7 @@
                 label="Search names and synonyms"
                 outlined
                 hide-details
-                class="pt-10"
+                class="pt-1"
               />
               <v-data-table
                 v-model="recordTags"
@@ -415,28 +460,28 @@ export default {
           items: [],
           color: this.colors["taxonomy"],
           //tooltip: this.tooltips.species
-          tooltip: 'This should still be called Taxonomy',
+          tooltip: 'Taxonomy tags you have selected will be shown here.',
           label: 'taxonomy'
         },
         subjects: {
           items: [],
           color: this.colors["subject"],
           //tooltip: this.tooltips.subjects
-          tooltip: "Subjects",
+          tooltip: "Subjects you have selected will be shown here.",
           label: 'subject'
         },
         domains: {
           items: [],
           color: this.colors["domain"],
           //tooltip: this.tooltips.domains
-          tooltip: "Domains",
+          tooltip: "Domains you have selected will be shown here.",
           label: 'domain'
         },
         "user defined tags": {
           items: [],
           color: this.colors["user_defined_tag"],
           //tooltip: this.tooltips.userDefinedTags
-          tooltip: "User defined tags",
+          tooltip: "The tags shown here are those created by FAIRsharing users/curators to describe records when a suitable tag in the groups above couldn't be found.",
           label: 'user_defined_tag'
         },
       }
