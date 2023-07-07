@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>FAIRsharing.org Source: utils/Others/recordTypes.js</title>
+	<title>FAIRsharing.org Source: utils/Others/deleteNode.js</title>
 
 	<!--[if lt IE 9]>
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -53,54 +53,22 @@
 		<div id="main">
 			
 
-		<h1 class="page-title">Source: utils/Others/recordTypes.js</h1>
+		<h1 class="page-title">Source: utils/Others/deleteNode.js</h1>
     
 <section>
     <article>
         <pre
-            class="sunlight-highlight-javascript linenums">import {mapActions, mapGetters, mapState} from 'vuex'
-
-const recordTypes = {
-  computed:{
-    ...mapGetters("bubbleSelectedStore", ["getTopResource"]),
-    ...mapState("recordTypeStore", ["allRecordTypes"]),
-  },
-  methods: {
-    ...mapActions("recordTypeStore", ["fetchAllRecordTypes"]),
-
-    /**
-     * Rename the top resources
-     * @returns {string}
-     */
-    topResource() {
-      switch(this.getTopResource) {
-      case "Standards":
-        return "Standard"
-      case "Policies":
-        return "Policy"
-      default:
-        return this.getTopResource
-      }
-    },
-
-    /**
-     * Fetch the records according the registry selected
-     * @param arr - the array to store the records
-     * @returns {Promise} - records stored according to registry selected
-     */
-    async allOtherRecordTypes(arr) {
-      await this.fetchAllRecordTypes()
-      this.allRecordTypes["records"].filter(({name, fairsharingRegistry}) =>{
-        if (this.topResource() === fairsharingRegistry["name"]) {
-          arr.push(name)
-        }
-      })
-      return arr
-    },
-  }
+            class="sunlight-highlight-javascript linenums">/**
+ *
+ * @param recordArray - array of records
+ * @param nodeItem - Object of a record
+ * @returns {Array}
+ */
+const deleteNode = (recordArray, nodeItem) => {
+  return recordArray.splice(recordArray.indexOf(nodeItem), 1)
 }
 
-export default recordTypes;</pre>
+export default deleteNode</pre>
     </article>
 </section>
 
