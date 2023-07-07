@@ -318,6 +318,9 @@
                 append-icon="fa-search"
                 label="Search names and synonyms"
                 outlined
+                clearable
+                clear-icon="fa-times-circle"
+                :clear-cb="tagsLoading = false"
                 hide-details
                 class="pt-1"
               />
