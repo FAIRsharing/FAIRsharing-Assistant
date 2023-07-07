@@ -16,32 +16,25 @@
         class="switchWrapper flex-column full-width"
         :class="switchDisplay"
       >
-        <v-switch
+        <div
           v-for="(filter) in switchTypeFilters"
           :key="filter['filterQuery']"
-          v-model="filter['refineToggle']"
-          class="d-inline-block mr-2"
-          :label="filter['filterName']"
-          inset
-          :value="filter['refineToggle']"
-          @change="selectToggle()"
-        />
+        >
+          <SwitchFilter :filter="filter" />
+        </div>
       </div>
       <div
         class="selectWrapper flex-column full-width"
         :class="selectDisplay"
       >
-        <v-select
+        <div
           v-for="(filter) in selectTypeFilters"
-          ref="filterSelect"
           :key="filter['filterQuery']"
-          v-model="filter['refineToggle']"
-          :items="filter['options']"
-          :label="filter['filterName']"
-          clearable
-          variant="underlined"
-          @change="selectToggle()"
-        />
+        >
+          <SelectFilter
+            :filter="filter"
+          />
+        </div>
       </div>
     </v-container>
   </div>
@@ -52,13 +45,20 @@ import {mapActions, mapGetters, mapMutations, mapState} from "vuex";
 import addOnFilters from "@/data/addOnFilters.json"
 import Loaders from "@/components/Loaders/Loaders.vue";
 import currentPath from "@/utils/Others/currentPath"
+import SelectFilter from "@/components/Others/SelectFilter.vue"
+import SwitchFilter from "@/components/Others/SwitchFilter.vue"
 
 export default {
   name: 'AddOnFilters',
-  components: {Loaders},
+  components: {
+    Loaders,
+    SelectFilter,
+    SwitchFilter
+  },
 
   data:() => {
     return {
+      // filtersOpted:[],
       loading: false,
       prevRoute: null,
       topResult: '',
@@ -131,32 +131,62 @@ export default {
 
       })
     } ,
-    readGeneralFilterParams() {
-      let _module = this;
-      let params = currentPath(this.currentRouteQuery);
-      [_module.switchTypeFilters, _module.selectTypeFilters].forEach(group => {
-        group.forEach(filter => {
-          if(Object.keys(params).length){
-            Object.keys(params).forEach(key => {
-              if (filter["filterQuery"] === key) {
-                filter["refineToggle"] = params[key];
-                this.map.set(`${filter["filterQuery"]}`, `${filter["refineToggle"]}`)
-                _module.$store.commit("addOnFilterSelectedStore/filtersSelected", this.map);
-              }
-            })
-          }
-          else if(this.getFilterLists.isFilter) {
-            this.getFilterLists.filtersList.forEach(item => {
-              if(filter["filterQuery"] === item["key"]) {
-                filter["refineToggle"] = item["value"];
-                this.map.set(`${filter["filterQuery"]}`, `${item["value"]}`)
-                _module.$store.commit("addOnFilterSelectedStore/filtersSelected", this.map);
-              }
-            })
-          }
-        })
-      });
-    },
+    // readGeneralFilterParams() {
+    //   // let _module = this;
+    //   let params = currentPath(this.currentRouteQuery);
+    //   // console.log("params::", params)
+    //   const paramKeys = Object.keys(params)
+    //   const paramValues = Object.values(params)
+    //   const filterSelected = {
+    //     "key" : paramKeys[1],
+    //     "value" : [paramValues[1]]
+    //   }
+    //   this.$store.commit("addOnFilterSelectedStore/filtersSelected",  filterSelected)
+    //
+    //   this.$store.commit("nodeListStore/filterLists",  [filterSelected])
+    //
+    //
+    //
+    //
+    //   // _module.selectTypeFilters.filter(filter => {
+    //   //   if(Object.keys(params).length){
+    //   //     Object.keys(params).forEach(key => {
+    //   //       if (filter["filterQuery"] === key) {
+    //   //
+    //   //         filter["refineToggle"] = params[key];
+    //   //         // console.log("params::", params)
+    //   //         // console.log("params[key]::", params[key])
+    //   //
+    //   //         // const filterSelected = {
+    //   //         //   "key" : params[key],
+    //   //         //   "value" : params[value]
+    //   //         // }
+    //   //         // this.map.set(`${filter["filterQuery"]}`, `${filter["refineToggle"]}`)
+    //   //         // _module.$store.commit("addOnFilterSelectedStore/filtersSelected", this.map);
+    //   //       }
+    //   //     })
+    //   //   // console.log(Object.keys(params))
+    //   //   // let selectedFilter = _module.selectTypeFilters.filter(filter =>
+    //   //   //   filter["filterQuery"] === Object.keys(params)[1]
+    //   //   // )
+    //   //   //
+    //   //   // selectedFilter[0].refineToggle = Object.values(params)[1]
+    //   //   // _module.map.set(selectedFilter[0]["filterQuery"], selectedFilter[0]["refineToggle"])
+    //   //   // _module.$store.commit("addOnFilterSelectedStore/filtersSelected", this.map);
+    //   //   // console.log("selectedFilter::", selectedFilter)
+    //   //   }
+    //   //   else if(this.getFilterLists.isFilter) {
+    //   //     this.getFilterLists.filtersList.forEach(item => {
+    //   //       if(filter["filterQuery"] === item["key"]) {
+    //   //         filter["refineToggle"] = item["value"];
+    //   //         this.map.set(`${filter["filterQuery"]}`, `${item["value"]}`)
+    //   //         _module.$store.commit("addOnFilterSelectedStore/filtersSelected", this.map);
+    //   //       }
+    //   //     })
+    //   //   }
+    //
+    //   // });
+    // },
     async readRegAndTypeFilterParams() {
       let _module = this;
       let modified = false;
@@ -175,11 +205,13 @@ export default {
           }
         }
       })
-      await this.readGeneralFilterParams()
+      // await this.readGeneralFilterParams()
       if (modified) {
         this.$store.commit('bubbleSelectedStore/resourceSelected', {topResourceSelected: _module.topResult, childResourceSelected: _module.childResult})
 
         //When the user is directly landing on the refine page after selecting a card from the home page
+        const filtersSelected = this.getFilterLists.filtersList[0]
+        this.map.set(`${filtersSelected["key"]}`, `${filtersSelected["value"]}`)
         await this.showResourceRecords(_module.topResult, _module.childResult, this.map)
 
       }
@@ -200,49 +232,7 @@ export default {
         this.conditionalFilters("policies")
       }
     },
-    // applyFilters() {
-    //   let _module = this;
-    //   let params = currentPath(this.currentRouteQuery);
-    //   let newParams = {};
-    //   // Set the list of parameters of interest
-    //   if ('registry' in params) {
-    //     newParams.registry = params.registry;
-    //   }
-    //   if ('record_type' in params) {
-    //     newParams.record_type = params.record_type;
-    //   }
-    //   [_module.switchTypeFilters, _module.selectTypeFilters].forEach(group => {
-    //     group.forEach(filter => {
-    //       if (typeof(filter["refineToggle"]) !== 'undefined' &&
-    //                     filter["refineToggle"] !== null &&
-    //                     filter["refineToggle"] !== ''
-    //       ) {
-    //         newParams[filter.filterQuery] = filter["refineToggle"];
-    //       }
-    //     })
-    //   })
-    //   _module.$router.push({
-    //     name: _module.$route.name,
-    //     query: newParams
-    //   }).catch(err => {
-    //     // Ignore the vuex err regarding  navigating to the page they are already on.
-    //     if (
-    //       err.name !== 'NavigationDuplicated' &&
-    //                 !err.message.includes('Avoided redundant navigation to current location')
-    //     ) {
-    //       // But print any other errors to the console
-    //       //console.log(err);
-    //     }
-    //   });
-    // },
-    selectToggle() {
-      for (let filter of this.addOnFilters) {
-        this.map.set(`${filter["filterQuery"]}`, `${filter["refineToggle"]}`)
-      }
-      // this.applyFilters();
-      this.$store.commit("addOnFilterSelectedStore/filtersSelected",  this.map)
 
-    },
     conditionalDisplay() {
       if (!this.switchTypeFilters?.length && this.selectTypeFilters?.length) {
         this.onlySelect = true
@@ -259,11 +249,17 @@ export default {
       this.conditionalDisplay()
     },
     async showResourceRecords(topResult, childResult, filters) {
-      let filtersOpted = []
-      filters.forEach((value, key) => {
-        filtersOpted.push({key, value})
-      });
-      this.$store.commit("nodeListStore/filterLists",  filtersOpted)
+      // let filtersOpted = []
+
+      // filters.forEach((value, key) => {
+      //   this.filtersOpted.push({key, value})
+      // });
+
+
+      // this.$store.commit("nodeListStore/filterLists",  this.filtersOpted)
+
+
+
       this.$emit("filterSource", "RefineResourceView")
       let isDatabase = false
       if (topResult === "Database") {
@@ -283,6 +279,10 @@ export default {
       }
       this.$store.commit("nodeListStore/nodeLists", [resourceDetail, "RefineResourceView"])
     },
+    // remove (item) {
+    //   const index = this.filtersOpted.indexOf(item)
+    //   if (index >= 0) this.filtersOpted.splice(index, 1)
+    // },
   }
 };
 </script>

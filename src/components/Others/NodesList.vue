@@ -169,7 +169,7 @@
           color="orange"
           text-color="white"
         >
-          <strong>{{ normalString(item["key"]) }}&nbsp;:&nbsp;</strong>{{ normalString(item["value"]) }}
+          <strong>{{ normalString(item["key"]) }}&nbsp;:&nbsp;</strong>{{ normalString(item["value"].join(",")) }}
         </v-chip>
       </v-col>
     </v-row>

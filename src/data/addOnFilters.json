@@ -54,7 +54,7 @@
   {
     "filterName": "Life Cycle Status",
     "filterQuery": "status",
-    "refineToggle": "",
+    "refineToggle": [],
     "options": [
       "Ready",
       "In development",
@@ -70,7 +70,7 @@
   {
     "filterName": "Data Access Condition",
     "filterQuery": "dataAccessCondition",
-    "refineToggle": "",
+    "refineToggle": [],
     "options": [
       "Open",
       "Partially open",
@@ -84,7 +84,7 @@
   {
     "filterName": "Data curation",
     "filterQuery": "dataCuration",
-    "refineToggle": "",
+    "refineToggle": [],
     "options": [
       "Manual",
       "Automated",
@@ -99,7 +99,7 @@
   {
     "filterName": "Data Deposition Condition",
     "filterQuery": "dataDepositionCondition",
-    "refineToggle": "",
+    "refineToggle": [],
     "options": [
       "Open",
       "Controlled",
@@ -113,7 +113,7 @@
   {
     "filterName": "Citation To Related Publications",
     "filterQuery": "citationToRelatedPublications",
-    "refineToggle": "",
+    "refineToggle": [],
     "options": [
       "Yes",
       "No",
@@ -126,7 +126,7 @@
   {
     "filterName": "Data Access For Pre-Publication Review",
     "filterQuery": "dataAccessForPrePublicationReview",
-    "refineToggle": "",
+    "refineToggle": [],
     "options": [
       "Yes",
       "No",
@@ -139,7 +139,7 @@
   {
     "filterName": "Data Contact Information",
     "filterQuery": "dataContactInformation",
-    "refineToggle": "",
+    "refineToggle": [],
     "options": [
       "Yes",
       "No",
@@ -152,7 +152,7 @@
   {
     "filterName": "Data Versioning",
     "filterQuery": "dataVersioning",
-    "refineToggle": "",
+    "refineToggle": [],
     "options": [
       "Yes",
       "No",

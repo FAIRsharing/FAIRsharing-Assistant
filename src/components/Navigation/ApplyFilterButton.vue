@@ -5,7 +5,7 @@
     <v-btn
       v-bind="button['attributes']"
       class="white--text applyFilterBtn"
-      @click="addFilters"
+      @click="addFilters()"
     >
       {{ button["text"] }}
     </v-btn>
@@ -15,7 +15,6 @@
 <script>
 import { mapGetters} from "vuex";
 import currentPath from "@/utils/Others/currentPath";
-// import getRecords from "@/utils/Others/getRecords";
 
 export default {
   name: "ApplyFilterButton",
@@ -34,24 +33,23 @@ export default {
   },
   computed:{
     ...mapGetters("addOnFilterSelectedStore", ["getFilters"]),
-    // ...mapGetters("nodeListStore", ['getNodeList', 'getFilterLists']),
-    // ...mapState("variableTagStore", ["variableResponse", "loadingStatus"]),
     currentRouteQuery() {
       return this.$route.query;
     }
-
   },
   methods:{
-    // ...mapActions("variableTagStore", ["fetchVariableTags"]),
-    async addFilters() {
-      let filtersOpted = []
-      this.getFilters.forEach((value, key) => {
-        filtersOpted.push({key, value})
-        this.noNullFilters = filtersOpted.filter(item => item.value !== "null")
-      });
-      this.$store.commit("nodeListStore/filterLists",  this.noNullFilters)
+    addFilters() {
+      this.noNullFilters = this.getFilters
+
+      if(this.getFilters && this.getFilters.length) {
+        this.getFilters.forEach(item => {
+          this.$store.commit("nodeListStore/filterLists",  item)
+        })
+      }
+      else {
+        this.$store.commit("nodeListStore/filterLists",  {})
+      }
       this.applyFilters()
-      // await this.fetchFilteredResult()
     },
 
     applyFilters() {
@@ -67,7 +65,7 @@ export default {
       }
 
       this.noNullFilters.forEach(filter => {
-        newParams[filter.key] = filter["value"];
+        newParams[filter.key] = filter["value"].join(",");
          
       })
       _module.$router.push({
@@ -85,18 +83,6 @@ export default {
       });
     },
 
-    // async fetchFilteredResult() {
-    //   console.log("this.getNodeList::", this.getNodeList)
-    //   console.log("this.getFilters::", this.getFilters)
-    //   const {resourceNodeList, subjectNodeList, domainNodeList} = this.getNodeList
-    //
-    //   console.log("resourceNodeList::", resourceNodeList)
-    //   const subjectSelected =  subjectNodeList.length ? getRecords(subjectNodeList) : null
-    //
-    //   const domainSelected = domainNodeList.length ? getRecords(domainNodeList) : null
-    //
-    //   await this.fetchVariableTags([resourceNodeList, subjectSelected, domainSelected, "resource", this.getFilters])
-    // }
   }
 }
 </script>
