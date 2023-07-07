@@ -373,7 +373,6 @@
 import tagsQuery from "@/lib/GraphClient/queries/geTags.json"
 import GraphClient from "@/lib/GraphClient/GraphClient.js"
 import Loaders from "@/components/Loaders/Loaders.vue";
-import {ResultView} from "@/router/routes";
 import multiTagsFilter from "@/lib/GraphClient/queries/multiTagsFilter/multiTagsFilter.json";
 const graphClient = new GraphClient();
 const MULTI_TAGS = JSON.parse(JSON.stringify(multiTagsFilter));
@@ -574,15 +573,12 @@ export default {
     showResults() {
       // TODO: Re-direct to ResultView, passing records as a prop.
       let _module = this;
-      const routes = [
-        {
-          path: '/results',
-          component: ResultView,
-          props: { recordsFound: _module.recordsFound }, // TODO: Doesn't have any effect, needs fixing.
-          query: _module.generateQuery(_module.recordTags)[0]
-        }
-      ]
-      this.$router.push(routes[0]);
+      const routeData = this.$router.resolve({
+        path: '/results',
+        props: { recordsFound: _module.recordsFound },
+        query: _module.generateQuery(_module.recordTags)[0]
+      })
+      window.open(routeData.href, '_blank')
     },
     // This generates query parameters for the multi_tag_filter
     generateQuery(val) {
