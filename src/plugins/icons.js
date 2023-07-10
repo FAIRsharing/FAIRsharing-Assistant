@@ -247,6 +247,10 @@ const customIcons  = {
       type: "img",
       icon: "/assets/Home/LandingPage/home-policies.svg"
     },
+    home_collections: {
+      type: "img",
+      icon: "/assets/Home/LandingPage/collection-icon.svg"
+    },
     browser_subject: {
       type: "img",
       icon: "/assets/Home/LandingPage/browser-subject.png"

@@ -41,5 +41,10 @@
     "pageName": "ResultView",
     "title": "Search Results",
     "subTitle": "Clicking on a link below will open the relevant record on the FAIRsharing site."
+  },
+  {
+    "pageName": "AllTags",
+    "title": "Which area(s) of research would you like to explore?",
+    "subTitle": "Please choose any topics of interest using the search box below. The assistant will tell you how many records we have found that match your selection. When you're happy with the selction you can refine it in the next step."
   }
 ]

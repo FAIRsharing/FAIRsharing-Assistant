@@ -65,12 +65,19 @@ export default {
   components: {
     Jumbotron,
   },
+  // TODO: Passing in these props fails to do what's required.
+  props: {
+    recordsFound: {
+      type: Array,
+      default: () => []
+    }
+  },
   data () {
     return {
+      records: [],
       loading: true,
       error: null,
       search: '',
-      records: [],
       headers: [
         { text: 'Name', value: 'name' },
         { text: 'Registry', value: 'registry' },
@@ -86,11 +93,16 @@ export default {
     }
   },
   async mounted() {
+    this.records = this.recordsFound;
     await this.getData();
   },
   methods: {
     async getData() {
       let _module = this;
+      if (_module.records.length > 0) {
+        _module.loading = false;
+        return;
+      }
       // This converts the values from those in the URL to an appropriate form to send
       // as a graphql query (fixing arrays, capitalisation etc.)
       Object.keys(currentPath(this.currentRouteQuery)).forEach(key => {
