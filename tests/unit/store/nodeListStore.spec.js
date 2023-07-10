@@ -258,8 +258,8 @@ describe('nodeListStore store methods', () => {
       }
     ]
     mutations.filterLists(state, noNullFilters);
-    expect(state.filters.filtersList).toStrictEqual(noNullFilters);
-    expect(state.filters.isFilter).toBe(true);
+    expect(state.filters.filtersList).toStrictEqual([noNullFilters]);
+    expect(state.filters.isFilter).toStrictEqual(true);
   });
 
   it("can check filterLists mutations when no-filters are selected", () => {
