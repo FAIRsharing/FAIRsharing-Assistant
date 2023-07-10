@@ -46,13 +46,18 @@
                 </v-card-title>
               </div>
               <v-card-actions class="text-center d-block">
-                <RefineButton link="/standards" choice="standard" />
+                <RefineButton 
+                  link="/standards" 
+                  choice="standard"
+                  :count="recordsCount['Standard']"
+                />
               </v-card-actions>
             </v-card>
           </v-col>
           <!-- Database card -->
           <v-col
-            cols="2"
+            cols="
+                  2"
             sm="12"
             md="3"
             lg="3"
@@ -79,7 +84,11 @@
                 </v-card-title>
               </div>
               <v-card-actions class="text-center d-block">
-                <RefineButton link="/databases" choice="database" />
+                <RefineButton
+                  link="/database"
+                  choice="database"
+                  :count="recordsCount['Database']"
+                />
               </v-card-actions>
             </v-card>
           </v-col>
@@ -112,7 +121,11 @@
                 </v-card-title>
               </div>
               <v-card-actions class="text-center d-block">
-                <RefineButton link="/policies" choice="policy" />
+                <RefineButton
+                  link="/policies"
+                  choice="policy"
+                  :count="recordsCount['Policy']"
+                />
               </v-card-actions>
             </v-card>
           </v-col>
@@ -145,7 +158,11 @@
                 </v-card-title>
               </div>
               <v-card-actions class="text-center d-block">
-                <RefineButton link="/collections" choice="collection" />
+                <RefineButton
+                  link="/collections"
+                  choice="collection"
+                  :count="recordsCount['Collection']"
+                />
               </v-card-actions>
             </v-card>
           </v-col>

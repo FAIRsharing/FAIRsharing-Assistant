@@ -22,7 +22,6 @@ describe('breadCrumbStore store methods', () => {
   it("can check filtersSelected mutations", () => {
     const returnedVal = {"A": "B"}
     mutations.filtersSelected(state, returnedVal);
-    console.log(JSON.stringify(state.filtersType));
     expect(state.filtersType).toStrictEqual([returnedVal]);
   });
 

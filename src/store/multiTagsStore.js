@@ -42,9 +42,19 @@ const mutations = {
   resetFairSharingRecords(state) {state.fairSharingRecords = []},
   setQueryParams(state, params) { state.queryParams = params }
 }
+
+const getters = {
+  getFairSharingRecords(state)  {
+    return state.fairSharingRecords;
+  },
+  getQueryParams(state) {
+    return state.queryParams;
+  }
+}
 const multiTagsStore = {
   namespaced: true,
   state,
+  getters,
   actions,
   mutations,
 }

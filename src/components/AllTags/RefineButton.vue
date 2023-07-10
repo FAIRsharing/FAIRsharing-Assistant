@@ -15,10 +15,13 @@
       <span> Choose further refinements to narrow down your choice of {{ choice }}. </span>
     </v-tooltip>
     <router-link
+      :disabled="count <= 0"
+      tag="button"
       :to="link"
     >
       <v-btn
         color="primary"
+        :disabled="count <= 0"
         text
       >
         Refine my choice
@@ -39,6 +42,10 @@ export default {
     choice: {
       default: 'registry',
       type: String
+    },
+    count: {
+      default: 0,
+      type: Number
     }
   }
 }
