@@ -46,14 +46,7 @@
                 </v-card-title>
               </div>
               <v-card-actions class="text-center d-block">
-                <v-btn
-                  href="https://fairsharing.org/educational#standards"
-                  target="_blank"
-                  color="primary"
-                  text
-                >
-                  Learn more
-                </v-btn>
+                <RefineButton link="/standards" choice="standard" />
               </v-card-actions>
             </v-card>
           </v-col>
@@ -86,14 +79,7 @@
                 </v-card-title>
               </div>
               <v-card-actions class="text-center d-block">
-                <v-btn
-                  href="https://fairsharing.org/educational#databases"
-                  target="_blank"
-                  color="primary"
-                  text
-                >
-                  Learn more
-                </v-btn>
+                <RefineButton link="/databases" choice="database" />
               </v-card-actions>
             </v-card>
           </v-col>
@@ -126,14 +112,7 @@
                 </v-card-title>
               </div>
               <v-card-actions class="text-center d-block">
-                <v-btn
-                  href="https://fairsharing.gitbook.io/fairsharing/record-sections-and-fields/general-information/registry-type#policies"
-                  target="_blank"
-                  color="primary"
-                  text
-                >
-                  Learn more
-                </v-btn>
+                <RefineButton link="/policies" choice="policy" />
               </v-card-actions>
             </v-card>
           </v-col>
@@ -166,14 +145,7 @@
                 </v-card-title>
               </div>
               <v-card-actions class="text-center d-block">
-                <v-btn
-                  href="https://fairsharing.gitbook.io/fairsharing/record-sections-and-fields/general-information/registry-type#collections"
-                  target="_blank"
-                  color="primary"
-                  text
-                >
-                  Learn more
-                </v-btn>
+                <RefineButton link="/collections" choice="collection" />
               </v-card-actions>
             </v-card>
           </v-col>
@@ -203,26 +175,6 @@
               @click="showResults()"
             >
               View records
-            </v-btn>
-            <v-tooltip right>
-              <template #activator="{ on, attrs }">
-                <v-icon
-                  v-bind="attrs"
-                  small
-                  class="grey--text ml-10 mr-1"
-                  v-on="on"
-                >
-                  fa-question-circle
-                </v-icon>
-              </template>
-              <span> Choose further refinements to narrow down your choice of record. </span>
-            </v-tooltip>
-            <v-btn
-              :disabled="true"
-              color="blue white--text"
-              @click="showResults()"
-            >
-              Refine my choice
             </v-btn>
           </v-col>
         </v-row>
@@ -377,6 +329,7 @@ import tagsQuery from "@/lib/GraphClient/queries/geTags.json"
 import GraphClient from "@/lib/GraphClient/GraphClient.js"
 import Loaders from "@/components/Loaders/Loaders.vue";
 import multiTagsFilter from "@/lib/GraphClient/queries/multiTagsFilter/multiTagsFilter.json";
+import RefineButton from '@/components/AllTags/RefineButton.vue';
 const graphClient = new GraphClient();
 const MULTI_TAGS = JSON.parse(JSON.stringify(multiTagsFilter));
 MULTI_TAGS.queryParam = {};
@@ -384,7 +337,7 @@ MULTI_TAGS.queryParam = {};
 export default {
   name: "EditTags",
   //components: {KeywordTooltip},
-  components: { Loaders },
+  components: { Loaders, RefineButton },
   mixins: [],
   data(){
     return {
@@ -537,7 +490,9 @@ export default {
         let response = await graphClient.executeQuery(MULTI_TAGS);
         // TODO: Handle errors from the server.
         if (!response.error) {
+          _module.$store.commit('multiTagsStore/setQueryParams', MULTI_TAGS.queryParam);
           _module.recordsFound = response['multiTagFilter'];
+          _module.$store.commit("multiTagsStore/setFairSharingRecords", _module.recordsFound);
           if (_module.recordsFound && _module.recordsFound.length) {
             _module.recordsFound.forEach(function(record) {
               _module.recordsCount[record.registry] += 1;
@@ -574,7 +529,7 @@ export default {
       }
     },
     showResults() {
-      // TODO: Re-direct to ResultView, passing records as a prop.
+      // TODO: Remove these non-working props and use the store instead.
       let _module = this;
       const routeData = this.$router.resolve({
         path: '/results',
