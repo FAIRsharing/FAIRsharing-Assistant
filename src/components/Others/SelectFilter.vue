@@ -71,7 +71,7 @@ export default {
         "value" : filter["refineToggle"]
       }
 
-      console.log("this.filterSelected::", this.filterSelected)
+      //console.log("this.filterSelected::", this.filterSelected)
       this.$store.commit("addOnFilterSelectedStore/filtersSelected",  this.filterSelected)
     },
 

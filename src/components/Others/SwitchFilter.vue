@@ -51,7 +51,7 @@ export default {
 
   methods: {
     selectToggle(filter) {
-      console.log("this.filtersOpted::", this.filtersOpted)
+      //console.log("this.filtersOpted::", this.filtersOpted)
       filter["refineToggle"] = this.filtersOpted
       this.filterSelected = {
         "key" : filter["filterQuery"],
