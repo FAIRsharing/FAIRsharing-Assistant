@@ -546,14 +546,14 @@ export default {
       }
     },
     showResults() {
-      // TODO: Remove these non-working props and use the store instead.
       let _module = this;
+      // TODO: Query could perhaps be deleted.
       const routeData = this.$router.resolve({
         path: '/results',
-        props: { recordsFound: _module.recordsFound },
         query: _module.generateQuery(_module.recordTags)[0]
       })
       window.open(routeData.href, '_blank')
+      //_module.$router.push('/results')    ...mapGetters('multiTagsStore', ["getFairSharingRecords"]),;
     },
     // This generates query parameters for the multi_tag_filter
     generateQuery(val) {

@@ -55,6 +55,7 @@ import Jumbotron from "@/components/Navigation/Jumbotron";
 import GraphClient from "@/lib/GraphClient/GraphClient";
 import multiTagsNonExactFilter from "@/lib/GraphClient/queries/multiTagsFilter/multiTagsFilter.json";
 import currentPath from "@/utils/Others/currentPath"
+import { mapGetters } from "vuex";
 
 const CLIENT = new GraphClient();
 const MULTI_TAGS = JSON.parse(JSON.stringify(multiTagsNonExactFilter));
@@ -66,12 +67,6 @@ export default {
     Jumbotron,
   },
   // TODO: Passing in these props fails to do what's required.
-  props: {
-    recordsFound: {
-      type: Array,
-      default: () => []
-    }
-  },
   data () {
     return {
       records: [],
@@ -88,17 +83,19 @@ export default {
     }
   },
   computed: {
+    ...mapGetters('multiTagsStore', ["getFairSharingRecords"]),
     currentRouteQuery() {
       return this.$route.query;
     }
   },
   async mounted() {
-    this.records = this.recordsFound;
     await this.getData();
   },
   methods: {
+    // TODO: Stuck here. Should be able to check the store and use that for records instead of loading them.
     async getData() {
       let _module = this;
+      _module.records = _module.getFairSharingRecords || [];
       if (_module.records.length > 0) {
         _module.loading = false;
         return;
