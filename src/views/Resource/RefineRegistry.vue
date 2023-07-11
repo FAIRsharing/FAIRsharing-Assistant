@@ -219,12 +219,14 @@ export default {
     },
     showResults() {
       // TODO: Query could perhaps be deleted.
+      /*
       const routeData = this.$router.resolve({
         path: '/results',
         //query: _module.generateQuery(_module.recordTags)[0] // TODO: Make a (better) generateQuery component
       })
-      window.open(routeData.href, '_blank')
-      //_module.$router.push('/results')
+       */
+      //window.open(routeData.href, '_blank')
+      this.$router.push('/results');
     },
   }
 };

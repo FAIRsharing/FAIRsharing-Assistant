@@ -96,6 +96,7 @@ export default {
     async getData() {
       let _module = this;
       _module.records = _module.getFairSharingRecords || [];
+      console.log("REC: " + _module.records);
       if (_module.records.length > 0) {
         _module.loading = false;
         return;
