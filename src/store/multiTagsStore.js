@@ -41,10 +41,7 @@ const actions = {
     commit("setLoadingStatus", true);
     MULTI_TAGS.queryParam = queryParams;
     let response = await CLIENT.executeQuery(MULTI_TAGS);
-    console.log("RESP: " + JSON.stringify(response));
-    console.log("Got records: " + response['multiTagFilter'].length);
     commit("setFairSharingRecords", response['multiTagFilter']);
-    console.log("Setting params: " + JSON.stringify(queryParams));
     commit("setQueryParams", queryParams);
     commit("setLoadingStatus", false);
   }

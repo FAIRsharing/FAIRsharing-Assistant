@@ -76,9 +76,9 @@ export default {
       //console.log("this.filterSelected::", this.filterSelected)
       this.$store.commit("addOnFilterSelectedStore/filtersSelected",  this.filterSelected);
 
-      console.log("FFS: " + JSON.stringify(this.filterSelected));
+      //console.log("FFS: " + JSON.stringify(this.filterSelected));
       let currentQueryParams = _module.getQueryParams;
-      console.log("OTHER ONE: " + JSON.stringify(currentQueryParams));
+      //console.log("OTHER ONE: " + JSON.stringify(currentQueryParams));
       if (_module.filterSelected.value.length === 0) {
         delete currentQueryParams[this.filterSelected.key];
       }

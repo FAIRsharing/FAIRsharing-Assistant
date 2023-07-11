@@ -220,10 +220,8 @@ export default {
     selectFilters(){
       const prevRoute = localStorage.getItem("pageName");
       let selectedRegistry = this.topResult;
-      console.log("SR0: " + selectedRegistry);
       if (this.getQueryParams['fairsharingRegistry']) {
         selectedRegistry = this.getQueryParams['fairsharingRegistry'][0] || 'none';
-        console.log("SR1: " + selectedRegistry);
       }
 
       //When previous page or selection link is related to 'Database'

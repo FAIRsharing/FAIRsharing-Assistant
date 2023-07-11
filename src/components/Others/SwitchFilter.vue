@@ -72,11 +72,11 @@ export default {
   methods: {
     ...mapActions("multiTagsStore", ["fetchMultiTagData"]),
     async selectToggle(filter) {
-      console.log("this.filtersOpted::", this.filtersOpted)
+      //console.log("this.filtersOpted::", this.filtersOpted)
       let _module = this;
       _module.hasBeenUsed = true;
       let currentQueryParams = _module.getQueryParams;
-      console.log("ONE: " + JSON.stringify(currentQueryParams));
+      //console.log("ONE: " + JSON.stringify(currentQueryParams));
       if (_module.filtersOpted === 'true') {
         currentQueryParams[filter['filterQuery']] = true;
       }
@@ -86,7 +86,7 @@ export default {
       else {
         delete currentQueryParams[filter['filterQuery']];
       }
-      console.log("TWO: " + JSON.stringify(currentQueryParams));
+      //console.log("TWO: " + JSON.stringify(currentQueryParams));
       // TODO: Try to update query params with currentQueryParams
       await _module.fetchMultiTagData(currentQueryParams);
 
