@@ -15,7 +15,8 @@ import {
   NotFound,
   ServerError,
   Licence,
-  AllTags
+  AllTags,
+  RefineRegistry
 } from './routes'
 
 let routes = [
@@ -29,6 +30,11 @@ let routes = [
     name: "AllTags",
     path: "/researchfields",
     component: AllTags,
+  },
+  {
+    name: "RefineRegistry",
+    path: "/refineregistry",
+    component: RefineRegistry,
   },
   {
     name: "SubjectTypeView",

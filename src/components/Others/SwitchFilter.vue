@@ -1,18 +1,36 @@
 <template>
-  <div>
-    <v-switch
-      ref="filterSelect"
-      v-model="filtersOpted"
-      class="d-inline-block mr-2"
-      :label="filter['filterName']"
-      inset
-      @change="selectToggle(filter)"
+  <v-radio-group
+    :label="filter['filterName']"
+    v-model="filtersOpted"
+    @change="selectToggle(filter)"
+  >
+    <v-radio
+      label="Yes"
+      value="true"
     />
-  </div>
+    <v-radio
+      label="No"
+      value="false"
+    />
+    <v-radio
+      label="Either"
+      value="null"
+    />
+  </v-radio-group>
+  <!--
+  <v-switch
+    ref="filterSelect"
+    v-model="filtersOpted"
+    class="d-inline-block mr-2"
+    :label="filter['filterName']"
+    inset
+    @change="selectToggle(filter)"
+  />
+  -->
 </template>
 <script>
-import {mapGetters} from "vuex";
-import currentPath from "@/utils/Others/currentPath";
+import { mapGetters, mapActions } from "vuex";
+//import currentPath from "@/utils/Others/currentPath";
 
 export default {
   name: "SwitchFilter",
@@ -29,7 +47,8 @@ export default {
   data () {
     return {
       // filtersOpted:[],
-      filtersOpted: false,
+      hasBeenUsed: false,
+      filtersOpted: 'null',
       filterSelectedArray: [],
       // map: new Map(),
       filterSelected:{
@@ -40,6 +59,7 @@ export default {
   },
   computed:{
     ...mapGetters("nodeListStore", ["getFilterLists"]),
+    ...mapGetters("multiTagsStore", ["getQueryParams"]),
     currentRouteQuery() {
       return this.$route.query;
     },
@@ -50,17 +70,40 @@ export default {
   },
 
   methods: {
-    selectToggle(filter) {
-      //console.log("this.filtersOpted::", this.filtersOpted)
+    ...mapActions("multiTagsStore", ["fetchMultiTagData"]),
+    async selectToggle(filter) {
+      console.log("this.filtersOpted::", this.filtersOpted)
+      let _module = this;
+      _module.hasBeenUsed = true;
+      let currentQueryParams = _module.getQueryParams;
+      console.log("ONE: " + JSON.stringify(currentQueryParams));
+      if (_module.filtersOpted === 'true') {
+        currentQueryParams[filter['filterQuery']] = true;
+      }
+      else if (_module.filtersOpted === 'false') {
+        currentQueryParams[filter['filterQuery']] = false;
+      }
+      else {
+        delete currentQueryParams[filter['filterQuery']];
+      }
+      console.log("TWO: " + JSON.stringify(currentQueryParams));
+      // TODO: Try to update query params with currentQueryParams
+      await _module.fetchMultiTagData(currentQueryParams);
+
+      // Older stuff below
+      /*
       filter["refineToggle"] = this.filtersOpted
       this.filterSelected = {
         "key" : filter["filterQuery"],
         "value" : filter["refineToggle"] ? [filter["refineToggle"]] : []
       }
       this.$store.commit("addOnFilterSelectedStore/filtersSelected",  this.filterSelected)
+       */
     },
 
     preSelectedFilter () {
+      // TODO: Change this to look in the store.
+      /*
       let params = currentPath(this.currentRouteQuery);
       const objEntries = Object.entries (params)
       for (let i = 0; i < objEntries.length; i++) {
@@ -83,7 +126,13 @@ export default {
           }
         })
       }
-    }
+       */
+      let _module = this;
+      let existing  = _module.getQueryParams[_module.filter.filterName];
+      if (existing) {
+        _module.filtersOpted = existing;
+      }
+    },
   }
 }
 </script>

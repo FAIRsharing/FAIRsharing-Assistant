@@ -47,8 +47,8 @@
               </div>
               <v-card-actions class="text-center d-block">
                 <RefineButton 
-                  link="/standards" 
-                  choice="standard"
+                  link="/refineregistry"
+                  choice="Standard"
                   :count="recordsCount['Standard']"
                 />
               </v-card-actions>
@@ -85,8 +85,8 @@
               </div>
               <v-card-actions class="text-center d-block">
                 <RefineButton
-                  link="/database"
-                  choice="database"
+                  link="/refineregistry"
+                  choice="Database"
                   :count="recordsCount['Database']"
                 />
               </v-card-actions>
@@ -122,8 +122,8 @@
               </div>
               <v-card-actions class="text-center d-block">
                 <RefineButton
-                  link="/policies"
-                  choice="policy"
+                  link="/refineregistry"
+                  choice="Policy"
                   :count="recordsCount['Policy']"
                 />
               </v-card-actions>
@@ -159,8 +159,8 @@
               </div>
               <v-card-actions class="text-center d-block">
                 <RefineButton
-                  link="/collections"
-                  choice="collection"
+                  link="/refineregistry"
+                  choice="Collection"
                   :count="recordsCount['Collection']"
                 />
               </v-card-actions>
@@ -341,7 +341,7 @@
 </template>
 
 <script>
-//import KeywordTooltip from "@/components/Records/Shared/KeywordTooltip.vue";
+import { mapActions, mapGetters } from "vuex";
 import tagsQuery from "@/lib/GraphClient/queries/geTags.json"
 import GraphClient from "@/lib/GraphClient/GraphClient.js"
 import Loaders from "@/components/Loaders/Loaders.vue";
@@ -422,10 +422,7 @@ export default {
     }
   },
   computed: {
-    //...mapGetters("record", ["getSection"]),
-    //...mapState("editor", ["tooltips", "colors"]),
-    //...mapGetters("editor", ["getPartialTags"]),
-    //...mapState("record", ["sections"]),
+    ...mapGetters('multiTagsStore', ["getFairSharingRecords"]),
     sections() {
       return {
         subjects: {
@@ -501,29 +498,25 @@ export default {
         Collection: 0
       }
       // TODO: refactor this for brevity
-      MULTI_TAGS.queryParam = _module.generateQuery(val)[0];
+      //MULTI_TAGS.queryParam = _module.generateQuery(val)[0];
+      let queryParam =   _module.generateQuery(val)[0];
       let run = _module.generateQuery(val)[1];
       if (run) {
-        let response = await graphClient.executeQuery(MULTI_TAGS);
+        //let response = await graphClient.executeQuery(MULTI_TAGS);
+        await _module.fetchMultiTagData(queryParam);
         // TODO: Handle errors from the server.
-        if (!response.error) {
-          _module.$store.commit('multiTagsStore/setQueryParams', MULTI_TAGS.queryParam);
-          _module.recordsFound = response['multiTagFilter'];
-          _module.$store.commit("multiTagsStore/setFairSharingRecords", _module.recordsFound);
-          if (_module.recordsFound && _module.recordsFound.length) {
-            _module.recordsFound.forEach(function(record) {
-              _module.recordsCount[record.registry] += 1;
-            })
-          }
-        }
-        else {
-          _module.error = true;
+        _module.recordsFound = _module.getFairSharingRecords;
+        if (_module.recordsFound && _module.recordsFound.length) {
+          _module.recordsFound.forEach(function(record) {
+            _module.recordsCount[record.registry] += 1;
+          })
         }
       }
       _module.recordsLoading = false;
     }
   },
   methods: {
+    ...mapActions('multiTagsStore', ['fetchMultiTagData']),
     async getTags(queryString) {
       let tagQueryCopy = JSON.parse(JSON.stringify(tagsQuery));
       if (queryString) tagQueryCopy.queryParam = {q: queryString};
@@ -553,7 +546,7 @@ export default {
         query: _module.generateQuery(_module.recordTags)[0]
       })
       window.open(routeData.href, '_blank')
-      //_module.$router.push('/results')    ...mapGetters('multiTagsStore', ["getFairSharingRecords"]),;
+      //_module.$router.push('/results')
     },
     // This generates query parameters for the multi_tag_filter
     generateQuery(val) {

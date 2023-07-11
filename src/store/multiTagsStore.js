@@ -33,8 +33,24 @@ const actions = {
   },
   resetMultiTags({commit}) {
     commit('resetFairSharingRecords');
+  },
+
+  // TODO: This query is a duplicate of the above fetch method. The one above can be deleted if the components
+  // TODO: that use it are also discarded in favour of the parts added rapidly at the beginning of July 2023.
+  async fetchMultiTagData({commit}, queryParams) {
+    commit("setLoadingStatus", true);
+    MULTI_TAGS.queryParam = queryParams;
+    let response = await CLIENT.executeQuery(MULTI_TAGS);
+    console.log("RESP: " + JSON.stringify(response));
+    console.log("Got records: " + response['multiTagFilter'].length);
+    commit("setFairSharingRecords", response['multiTagFilter']);
+    console.log("Setting params: " + JSON.stringify(queryParams));
+    commit("setQueryParams", queryParams);
+    commit("setLoadingStatus", false);
   }
 }
+
+
 
 const mutations = {
   setFairSharingRecords(state, fairSharingRecords) { state.fairSharingRecords = fairSharingRecords },
@@ -49,6 +65,9 @@ const getters = {
   },
   getQueryParams(state) {
     return state.queryParams;
+  },
+  getLoadingStatus(state) {
+    return state.getLoadingStatus;
   }
 }
 const multiTagsStore = {

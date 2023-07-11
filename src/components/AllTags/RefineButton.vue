@@ -14,23 +14,20 @@
       </template>
       <span> Choose further refinements to narrow down your choice of {{ choice }}. </span>
     </v-tooltip>
-    <router-link
+    <v-btn
+      color="primary"
       :disabled="count <= 0"
-      tag="button"
-      :to="link"
+      text
+      @click="makeChoice()"
     >
-      <v-btn
-        color="primary"
-        :disabled="count <= 0"
-        text
-      >
-        Refine my choice
-      </v-btn>
-    </router-link>
+      Refine my choice
+    </v-btn>
   </div>
 </template>
 
 <script>
+import {mapGetters} from "vuex";
+
 export default {
   name: 'RefineButton',
   // TODO: Passing in these props fails to do what's required.
@@ -40,12 +37,25 @@ export default {
       type: String
     },
     choice: {
-      default: 'registry',
+      default: 'Database',
       type: String
     },
     count: {
       default: 0,
       type: Number
+    }
+  },
+  computed: {
+    ...mapGetters('multiTagsStore', ["getQueryParams"]),
+  },
+  methods: {
+    // This passes the fairsharingRegistry parameter to the multiTagFilter when moving to the refine screen
+    makeChoice() {
+      let _module = this;
+      let queryParams = _module.getQueryParams;
+      queryParams['fairsharingRegistry'] = [ _module.choice.toLowerCase() ];
+      _module.$store.commit('multiTagsStore/setQueryParams', queryParams);
+      _module.$router.push(_module.link);
     }
   }
 }

@@ -56,10 +56,10 @@
     "filterQuery": "status",
     "refineToggle": [],
     "options": [
-      "Ready",
-      "In development",
-      "Deprecated",
-      "Uncertain"
+      "ready",
+      "in_development",
+      "deprecated",
+      "uncertain"
     ],
     "filterTypes": [
       "database",

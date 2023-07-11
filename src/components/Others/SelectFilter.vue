@@ -4,7 +4,7 @@
       ref="filterSelect"
       v-model="filtersOpted"
       :items="filter['options']"
-      :label="filter['filterName']"
+      :label="cleanText(filter['filterName'])"
       clearable
       multiple
       chips
@@ -24,7 +24,7 @@
   </div>
 </template>
 <script>
-import {mapGetters} from "vuex";
+import {mapActions, mapGetters} from "vuex";
 import currentPath from "@/utils/Others/currentPath";
 
 export default {
@@ -53,6 +53,7 @@ export default {
   },
   computed:{
     ...mapGetters("nodeListStore", ["getFilterLists"]),
+    ...mapGetters("multiTagsStore", ["getQueryParams"]),
     currentRouteQuery() {
       return this.$route.query;
     },
@@ -63,16 +64,35 @@ export default {
   },
 
   methods: {
-    selectToggle(filter) {
-
+    ...mapActions("multiTagsStore", ["fetchMultiTagData"]),
+    async selectToggle(filter) {
+      let _module = this;
       filter["refineToggle"] = this.filtersOpted
-      this.filterSelected = {
+      _module.filterSelected = {
         "key" : filter["filterQuery"],
         "value" : filter["refineToggle"]
       }
 
       //console.log("this.filterSelected::", this.filterSelected)
-      this.$store.commit("addOnFilterSelectedStore/filtersSelected",  this.filterSelected)
+      this.$store.commit("addOnFilterSelectedStore/filtersSelected",  this.filterSelected);
+
+      console.log("FFS: " + JSON.stringify(this.filterSelected));
+      let currentQueryParams = _module.getQueryParams;
+      console.log("OTHER ONE: " + JSON.stringify(currentQueryParams));
+      if (_module.filterSelected.value.length === 0) {
+        delete currentQueryParams[this.filterSelected.key];
+      }
+      else {
+        currentQueryParams[this.filterSelected.key] = this.filterSelected.value;
+      }
+      await _module.fetchMultiTagData(currentQueryParams);
+
+
+    },
+    cleanText(text) {
+      text.replace(/(^\w{1})|(\s{1}\w{1})/g, match => match.toUpperCase());
+      text.replace("_", " ");
+      return text;
     },
 
     // remove (filter, queryName) {

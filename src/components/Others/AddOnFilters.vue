@@ -97,6 +97,7 @@ export default {
     ...mapMutations("bubbleSelectedStore", ['resourceSelected']),
     ...mapMutations("nodeListStore", ['nodeLists']),
     ...mapState("variableTagStore", ["variableResponse", "loadingStatus"]),
+    ...mapGetters('multiTagsStore', ["getQueryParams"]),
     switchDisplay() {
       return this.onlySelect ? 'd-none' : 'd-flex'
     },
@@ -218,17 +219,23 @@ export default {
     },
     selectFilters(){
       const prevRoute = localStorage.getItem("pageName");
-      const selectedRegistry = this.topResult;
+      let selectedRegistry = this.topResult;
+      console.log("SR0: " + selectedRegistry);
+      if (this.getQueryParams['fairsharingRegistry']) {
+        selectedRegistry = this.getQueryParams['fairsharingRegistry'][0] || 'none';
+        console.log("SR1: " + selectedRegistry);
+      }
+
       //When previous page or selection link is related to 'Database'
-      if(prevRoute === "DatabaseView" || selectedRegistry === 'Database') {
+      if(prevRoute === "DatabaseView" || selectedRegistry === 'database') {
         this.conditionalFilters("database")
       }
       //When previous page or selection link is related to 'Standard'
-      else if(prevRoute === "StandardsView" || selectedRegistry === 'Standard') {
+      else if(prevRoute === "StandardsView" || selectedRegistry === 'standard') {
         this.conditionalFilters("standards")
       }
       //When previous page or selection link is related to 'Policy'
-      else if(prevRoute === "PoliciesView" || selectedRegistry === 'Policy') {
+      else if(prevRoute === "PoliciesView" || selectedRegistry === 'policy') {
         this.conditionalFilters("policies")
       }
     },
@@ -260,7 +267,8 @@ export default {
 
 
 
-      this.$emit("filterSource", "RefineResourceView")
+      //this.$emit("filterSource", "RefineResourceView")
+      this.$emit("filterSource", "RefineRegistry")
       let isDatabase = false
       if (topResult === "Database") {
         isDatabase = true
