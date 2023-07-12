@@ -43,6 +43,7 @@
           >
             <v-card
               class="mx-auto block-category__card"
+              :style="registrySelected('Standard') ? 'border: 2px solid red;' : 'border: 1px solid white;'"
               max-width="350"
               height="250"
             >
@@ -81,6 +82,7 @@
           >
             <v-card
               class="mx-auto block-category__card"
+              :style="registrySelected('Database') ? 'border: 2px solid red;' : 'border: 1px solid white;'"
               max-width="350"
               height="250"
             >
@@ -118,6 +120,7 @@
           >
             <v-card
               class="mx-auto block-category__card"
+              :style="registrySelected('Policy') ? 'border: 2px solid red;' : 'border: 1px solid white;'"
               max-width="350"
               height="250"
             >
@@ -155,6 +158,7 @@
           >
             <v-card
               class="mx-auto block-category__card"
+              :style="registrySelected('Collection') ? 'border: 2px solid red;' : 'border: 1px solid white;'"
               max-width="350"
               height="250"
             >
@@ -257,7 +261,7 @@
           <p
             class="pt-6"
           >
-            Tags you've selected will display in the four rows below. {{ getLoadingStatus }}
+            Tags you've selected will display in the four rows below. {{ getCurrentRegistry }}
           </p>
           <table id="tagsTable">
             <tbody>
@@ -473,7 +477,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('multiTagsStore', ["getFairSharingRecords", "getRefinedStatus", "getQueryParams", "getLoadingStatus"]),
+    ...mapGetters('multiTagsStore', ["getFairSharingRecords", "getRefinedStatus", "getQueryParams", "getLoadingStatus", "getCurrentRegistry"]),
     sections() {
       return {
         subjects: {
@@ -592,6 +596,12 @@ export default {
       if (!tags.error) {
         this.tags = tags.searchTags;
       }
+    },
+    registrySelected(registry) {
+      if (registry === this.getCurrentRegistry) {
+        return true;
+      }
+      return false;
     },
     removeTag(id){
       this.recordTags = this.recordTags.filter(el => el.id !== id);
