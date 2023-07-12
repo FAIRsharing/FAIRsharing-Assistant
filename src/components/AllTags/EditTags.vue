@@ -571,14 +571,14 @@ export default {
 
       _module.recordsLoading = true;
       // TODO: refactor this for brevity
-      //MULTI_TAGS.queryParam = _module.generateQuery(val)[0];
-      let queryParam =   _module.generateQuery(val)[0];
+      let queryParam =  _module.generateQuery(val)[0];
       let run = _module.generateQuery(val)[1];
       if (run) {
         //let response = await graphClient.executeQuery(MULTI_TAGS);
         await _module.fetchMultiTagData(queryParam);
         // TODO: Handle errors from the server.
         _module.recordsFound = _module.getFairSharingRecords;
+        _module.$store.commit('multiTagsStore/setQueryParams', queryParam);
       }
       _module.recordsLoading = false;
     }

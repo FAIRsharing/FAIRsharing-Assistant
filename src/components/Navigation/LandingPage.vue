@@ -134,7 +134,7 @@ export default {
       history: [],
       previousLink: "",
       loading: false,
-      // This is silly but I was in a rush and had enough with fighting javascript;
+      // This is silly, but I was in a rush and had enough with fighting javascript;
       registrySwitch: {
         database: 'Database',
         policy: 'Policy',
