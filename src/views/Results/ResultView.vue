@@ -176,21 +176,16 @@ export default {
     },
     clearButtonActive() {
       let _module = this;
-      console.log("ZERO");
       if (_module.getFairSharingRecords && _module.getFairSharingRecords.length > 0) {
-        console.log('ONE');
         return true;
       }
       else if (_module.getQueryParams && Object.keys(_module.getQueryParams).length > 0) {
-        console.log('TWO');
         return true;
       }
       else if (_module.getRefinedStatus) {
-        console.log('THREE');
         return true;
       }
       else if (_module.getCurrentRegistry) {
-        console.log('FOUR');
         return true;
       }
       return false;
