@@ -126,6 +126,27 @@
                 fa-question-circle
               </v-icon>
             </template>
+            <span> Refine your choice of scientific field. </span>
+          </v-tooltip>
+          <v-btn
+            :disabled="!tagButtonActive"
+            color="blue white--text"
+            class="mr-10"
+            @click="returnToTags()"
+          >
+            Return to tags
+          </v-btn>
+          <v-tooltip right>
+            <template #activator="{ on, attrs }">
+              <v-icon
+                v-bind="attrs"
+                small
+                class="grey--text mr-1"
+                v-on="on"
+              >
+                fa-question-circle
+              </v-icon>
+            </template>
             <span> Clear all selections and return to the tag filter page. </span>
           </v-tooltip>
           <v-btn
@@ -231,7 +252,10 @@ export default {
     },
     resultsButtonActive() {
       return this.getFairSharingRecords.length > 0;
-    }
+    },
+    tagButtonActive() {
+      return true;
+    },
   },
   async mounted() {
     /*
@@ -239,6 +263,9 @@ export default {
     console.log(JSON.stringify(this.getFairSharingRecords));
      */
     // If a user has come here then they've set the refinement status by choosing a registry
+    if (!this.getCurrentRegistry) {
+      this.$router.push('/researchfields');
+    }
     this.$store.commit('multiTagsStore/setRefinedStatus', true);
   },
   methods: {
@@ -273,6 +300,9 @@ export default {
       this.$store.commit('multiTagsStore/setQueryParams', {});
       this.$store.commit('multiTagsStore/setFairSharingRecords', []);
       this.$store.commit('multiTagsStore/setCurrentRegistry', null);
+      this.$router.push('/researchfields');
+    },
+    returnToTags() {
       this.$router.push('/researchfields');
     },
   }

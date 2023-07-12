@@ -52,7 +52,7 @@ export default {
     // This passes the fairsharingRegistry parameter to the multiTagFilter when moving to the refine screen
     makeChoice() {
       let _module = this;
-      let queryParams = _module.getQueryParams;
+      let queryParams = JSON.parse(JSON.stringify(_module.getQueryParams));
       queryParams['fairsharingRegistry'] = [ _module.choice.toLowerCase() ];
       _module.$store.commit('multiTagsStore/setQueryParams', queryParams);
       _module.$store.commit('multiTagsStore/setCurrentRegistry', _module.choice);

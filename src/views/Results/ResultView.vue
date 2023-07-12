@@ -67,7 +67,7 @@
                 fa-question-circle
               </v-icon>
             </template>
-            <span> Further refine your choice of scientific field. </span>
+            <span> Refine your choice of scientific field. </span>
           </v-tooltip>
           <v-btn
             :disabled="!tagButtonActive"

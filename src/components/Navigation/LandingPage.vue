@@ -3,6 +3,14 @@
     fluid
     class="wrapperClass d-flex flex-column align-content-stretch"
   >
+    <v-fade-transition v-if="loading">
+      <v-overlay
+        :absolute="false"
+        opacity="0.8"
+      >
+        <Loaders />
+      </v-overlay>
+    </v-fade-transition>
     <v-row
       v-for="(question, index) in questions"
       :key="'question_' + index"
@@ -30,7 +38,7 @@
               'cardXtraLarge pa-6': $vuetify.breakpoint.xlOnly,
             }
           ]"
-          @click="processLink(item.link)"
+          @click="processLink(item.link, item.query)"
         >
           <div class="d-flex align-center">
             <v-card-text
@@ -115,13 +123,24 @@
 
 <script>
 import questionSets from "@/data/landingPageData.json";
+import {mapActions} from "vuex";
+import Loaders from "@/components/Loaders/Loaders.vue";
 export default {
   name: 'LandingPage',
+  components: {Loaders},
   data: () => {
     return {
       questions: {},
       history: [],
-      previousLink: ""
+      previousLink: "",
+      loading: false,
+      // This is silly but I was in a rush and had enough with fighting javascript;
+      registrySwitch: {
+        database: 'Database',
+        policy: 'Policy',
+        standard: 'Standard',
+        collection: 'Collection'
+      }
     }
   },
   watch: {
@@ -131,9 +150,9 @@ export default {
   },
   mounted() {
     this.getQuestions()
-    localStorage.clear();
   },
   methods: {
+    ...mapActions('multiTagsStore', ['fetchMultiTagData']),
     getQuestions() {
       try {
         this.questions = questionSets.questionSets[parseInt(this.$route.params.id)].rows;
@@ -144,7 +163,16 @@ export default {
         this.questions = questionSets.questionSets[0].rows;
       }
     },
-    processLink(link) {
+    async processLink(link, query) {
+      if (!(Object.keys(query).length === 0)) {
+        this.loading = true;
+        await this.fetchMultiTagData(query);
+        this.$store.commit('multiTagsStore/setQueryParams', query);
+        if (query['fairsharingRegistry']) {
+          this.$store.commit('multiTagsStore/setCurrentRegistry', this.registrySwitch[query['fairsharingRegistry'][0]]);
+        }
+        this.loading = false;
+      }
       if (link.match(/^http/)) {
         window.open(link);
       }
@@ -161,7 +189,7 @@ export default {
     goBack() {
       let previous = this.history.pop();
       this.$router.push({path: "/" + previous});
-    }
+    },
   }
 };
 </script>

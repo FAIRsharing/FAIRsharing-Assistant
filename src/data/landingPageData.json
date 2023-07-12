@@ -12,7 +12,8 @@
             "color": "internal",
             "icon": "search",
             "image_icon": "browser_subject",
-            "link": "/researchfields"
+            "link": "/researchfields",
+            "query": {}
           },
           {
             "id": 2,
@@ -22,7 +23,8 @@
             "icon": "educational",
             "extra_icon": "search",
             "image_icon": "home_db",
-            "link": "/1"
+            "link": "/1",
+            "query": {}
           }
         ],
         [
@@ -34,7 +36,8 @@
             "icon": "educational",
             "extra_icon": "search",
             "image_icon": "home_standard",
-            "link": "/3"
+            "link": "/3",
+            "query": {}
           },
           {
             "id": 4,
@@ -44,7 +47,8 @@
             "icon": "educational",
             "extra_icon": "search",
             "image_icon": "home_policies",
-            "link": "/6"
+            "link": "/6",
+            "query": {}
           }
         ],
         [
@@ -54,7 +58,8 @@
             "question": "Are you mainly interested in guidance and educational material?",
             "color": "internal",
             "icon": "educational",
-            "link": "/7"
+            "link": "/7",
+            "query": {}
           }
         ]
       ]
@@ -71,7 +76,10 @@
             "question": "See all databases; filter based on the attributes most relevant to you.",
             "color": "internal",
             "icon": "search",
-            "link": "/database"
+            "link": "/refineregistry",
+            "query": {
+              "fairsharingRegistry": ["database"]
+            }
           },
           {
             "id": 3,
@@ -79,7 +87,8 @@
             "question": "Filter databases according to access and deposition conditions.",
             "color": "internal",
             "icon": "search",
-            "link": "/2"
+            "link": "/2",
+            "query": {}
           }
         ],
         [
@@ -89,7 +98,8 @@
             "question": "Read how to submit your database to FAIRsharing.",
             "color": "external",
             "icon": "educational",
-            "link": "https://fairsharing.org/new"
+            "link": "https://fairsharing.org/new",
+            "query": {}
           },
           {
             "id": 1,
@@ -97,7 +107,8 @@
             "question": "Learn about types of database and their relationships to other resources.",
             "color": "external",
             "icon": "educational",
-            "link": "https://fairsharing.org/educational#databases"
+            "link": "https://fairsharing.org/educational#databases",
+            "query": {}
           }
         ]
       ]
@@ -114,7 +125,11 @@
             "question": "Filter on access: See those databases with <b>open</b> access to data.",
             "color": "internal",
             "icon": "search",
-            "link": "/refine-my-choice?registry=Database&dataAccessCondition=Open"
+            "link": "/refineregistry",
+            "query": {
+              "fairsharingRegistry": ["database"],
+              "dataAccessCondition": ["open"]
+            }
           },
           {
             "id": 2,
@@ -122,7 +137,11 @@
             "question": "Filter on access: See those databases with <b>partially open</b> access to data.",
             "color": "internal",
             "icon": "search",
-            "link": "/refine-my-choice?registry=Database&dataAccessCondition=Partially open"
+            "link": "/refineregistry",
+            "query": {
+              "fairsharingRegistry": ["database"],
+              "dataAccessCondition": ["partially open"]
+            }
           }
         ],
         [
@@ -132,7 +151,11 @@
             "question": "Filter on access: See those databases with <b>controlled</b> access to data.",
             "color": "internal",
             "icon": "search",
-            "link": "/refine-my-choice?registry=Database&dataAccessCondition=Controlled"
+            "link": "/refineregistry",
+            "query": {
+              "fairsharingRegistry": ["database"],
+              "dataAccessCondition": ["controlled"]
+            }
           },
           {
             "id": 4,
@@ -140,7 +163,11 @@
             "question": "Filter on deposit: See those databases that are <b>open</b> to the deposition of data.",
             "color": "internal",
             "icon": "search",
-            "link": "/refine-my-choice?registry=Database&dataDepositionCondition=Open"
+            "link": "/refineregistry",
+            "query": {
+              "fairsharingRegistry": ["database"],
+              "dataDepositionCondition": ["open"]
+            }
           }
         ],
         [
@@ -150,7 +177,11 @@
             "question": "Filter on deposit: See those databases that are <b>closed</b> to the deposition of data.",
             "color": "internal",
             "icon": "search",
-            "link": "/refine-my-choice?registry=Database&dataDepositionCondition=Controlled"
+            "link": "/refineregistry",
+            "query": {
+              "fairsharingRegistry": ["database"],
+              "dataDepositionCondition": ["controlled"]
+            }
           }
         ]
       ]
@@ -167,7 +198,10 @@
             "question": "See all standards: Filter on the attributes most relevant to you.",
             "color": "internal",
             "icon": "search",
-            "link": "/standards"
+            "link": "/refineregistry",
+            "query": {
+              "fairsharingRegistry": ["standard"]
+            }
           },
           {
             "id": 3,
@@ -175,7 +209,8 @@
             "question": "Filter standards according to their use for (meta)data annotation or citation.",
             "color": "internal",
             "icon": "search",
-            "link": "/4"
+            "link": "/4",
+            "query": {}
           }
         ],
         [
@@ -185,7 +220,8 @@
             "question": "Read how to submit your standard to FAIRsharing.",
             "color": "external",
             "icon": "educational",
-            "link": "https://fairsharing.org/new"
+            "link": "https://fairsharing.org/new",
+            "query": {}
           },
           {
             "id": 1,
@@ -193,7 +229,8 @@
             "question": "Learn about types of standards and their relationship to other resources.",
             "color": "external",
             "icon": "educational",
-            "link": "https://fairsharing.org/educational#standards"
+            "link": "https://fairsharing.org/educational#standards",
+            "query": {}
           }
         ]
       ]
@@ -210,7 +247,8 @@
             "question": "Explore unambiguous, persistent and context-independent schemas.",
             "color": "internal",
             "icon": "search",
-            "link": "/refine-my-choice?record_type=identifier_schema&registry=Standard"
+            "link": "/refineregistry?record_type=identifier_schema&registry=Standard",
+            "query": {}
           },
           {
             "id": 2,
@@ -219,7 +257,8 @@
             "color": "internal",
             "icon": "search",
             "extra_icon": "educational",
-            "link": "/5"
+            "link": "/5",
+            "query": {}
           }
         ]
       ]
@@ -236,7 +275,11 @@
             "question": "Explore conceptual models, schemas, and exchange formats.",
             "color": "internal",
             "icon": "search",
-            "link": "/refine-my-choice?record_type=model_and_format&registry=Standard"
+            "link": "/refineregistry",
+            "query": {
+              "fairsharingRegistry": ["standard"],
+              "recordType": ["model_and_format"]
+            }
           },
           {
             "id": 2,
@@ -244,7 +287,11 @@
             "question": "Explore minimum information requirements, checklists and other reporting guidelines.",
             "color": "internal",
             "icon": "search",
-            "link": "/refine-my-choice?record_type=reporting_guideline&registry=Standard"
+            "link": "/refineregistry",
+            "query": {
+              "fairsharingRegistry": ["standard"],
+              "recordType": ["reporting_guideline"]
+            }
           }
         ],
         [
@@ -254,7 +301,11 @@
             "question": "Explore individual controlled vocabularies, taxonomies, ontologies and other terminology artefacts.",
             "color": "internal",
             "icon": "search",
-            "link": "/refine-my-choice?record_type=terminology_artefact&registry=Standard"
+            "link": "/refineregistry",
+            "query": {
+              "fairsharingRegistry": ["standard"],
+              "recordType": ["terminology_artefact"]
+            }
           },
           {
             "id": 4,
@@ -262,7 +313,8 @@
             "question": "Explore terminology repositories.",
             "color": "external",
             "icon": "educational",
-            "link": "https://fairsharing.org/search?fairsharingRegistry=Database&subjects=ontology%2520and%2520terminology&page=1"
+            "link": "https://fairsharing.org/search?fairsharingRegistry=Database&subjects=ontology%2520and%2520terminology&page=1",
+            "query": {}
           }
         ]
       ]
@@ -279,7 +331,10 @@
             "question": "See all policies: Filter based on stakeholder including institutions, publishers and funders.",
             "color": "internal",
             "icon": "search",
-            "link": "/policies"
+            "link": "/refineregistry",
+            "query": {
+              "fairsharingRegistry": ["policy"]
+            }
           },
           {
             "id": 4,
@@ -287,7 +342,8 @@
             "question": "Read how to submit your policy to FAIRsharing.",
             "color": "external",
             "icon": "educational",
-            "link": "https://fairsharing.org/new"
+            "link": "https://fairsharing.org/new",
+            "query": {}
           }
         ],
         [
@@ -297,7 +353,8 @@
             "question": "Learn about how we help journal publishers.",
             "color": "external",
             "icon": "educational",
-            "link": "https://fairsharing.org/educational#publishers"
+            "link": "https://fairsharing.org/educational#publishers",
+            "query": {}
           },
           {
             "id": 2,
@@ -305,7 +362,8 @@
             "question": "Learn about how we help funders.",
             "color": "external",
             "icon": "educational",
-            "link": "https://fairsharing.org/educational#publishers"
+            "link": "https://fairsharing.org/educational#publishers",
+            "query": {}
           }
         ]
       ]
@@ -322,7 +380,8 @@
             "question": "Read how to submit your database, standard or policy to FAIRsharing.",
             "color": "external",
             "icon": "educational",
-            "link": "https://fairsharing.org/new"
+            "link": "https://fairsharing.org/new",
+            "query": {}
           },
           {
             "id": 2,
@@ -330,7 +389,8 @@
             "question": "Learn more about FAIRsharing by exploring all of our educational factsheets",
             "color": "external",
             "icon": "educational",
-            "link": "https://fairsharing.org/educational"
+            "link": "https://fairsharing.org/educational",
+            "query": {}
           }
         ]
       ]

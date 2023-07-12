@@ -144,9 +144,9 @@ export default {
       }
        */
       let _module = this;
-      let existing  = _module.getQueryParams[_module.filter.filterName];
+      let existing  = _module.getQueryParams[_module.filter.filterQuery];
       if (existing) {
-        _module.filtersOpted = existing;
+        _module.filtersOpted = String(existing);
       }
     },
   }

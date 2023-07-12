@@ -33,7 +33,7 @@
 </template>
 <script>
 import {mapActions, mapGetters} from "vuex";
-import currentPath from "@/utils/Others/currentPath";
+//import currentPath from "@/utils/Others/currentPath";
 import Loaders from "@/components/Loaders/Loaders.vue";
 
 export default {
@@ -127,6 +127,7 @@ export default {
     // },
 
     preSelectedFilter () {
+      /*
       let params = currentPath(this.currentRouteQuery);
       const objEntries = Object.entries (params)
       for (let i = 0; i < objEntries.length; i++) {
@@ -149,7 +150,22 @@ export default {
 
         })
       }
+       */
+
+      // ...and now the same thing from the store. The code above may be obsolete.
+      // TODO: Check and deal with this.
+      let _module = this;
+      //console.log("FQ: " + _module.filter.filterQuery);
+      Object.keys(_module.getQueryParams).forEach(function(key) {
+        //console.log(key);
+        if (key === _module.filter.filterQuery) {
+          //console.log('match');
+          _module.filter.refineToggle = _module.getQueryParams[key];
+          _module.filterSelected[key] = _module.getQueryParams[key];
+        }
+      })
     }
+
   }
 }
 </script>
