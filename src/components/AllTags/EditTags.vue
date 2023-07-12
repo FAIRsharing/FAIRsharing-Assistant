@@ -8,6 +8,23 @@
         <Loaders />
       </v-overlay>
     </v-fade-transition>
+    <!-- alert goes here -->
+    <v-row
+      class="block-category pb-5"
+    >
+      <v-col
+        cols="12"
+      >
+        <v-alert
+          v-if="getRefinedStatus"
+          density="compact"
+          type="info"
+          variant="tonal"
+        >
+          You've already made selections on the refinement page which will affect record counts here.
+        </v-alert>
+      </v-col>
+    </v-row>
     <v-form
       id="editTags"
       ref="editTags"
@@ -193,13 +210,54 @@
             >
               View records
             </v-btn>
+            <v-tooltip right>
+              <template #activator="{ on, attrs }">
+                <v-icon
+                  v-bind="attrs"
+                  small
+                  class="grey--text mr-1"
+                  v-on="on"
+                >
+                  fa-question-circle
+                </v-icon>
+              </template>
+              <span> Clear all selections. </span>
+            </v-tooltip>
+            <v-btn
+              :disabled="!clearButtonActive"
+              color="orange  white--text"
+              class="mr-10"
+              @click="clearResults()"
+            >
+              Clear selection
+            </v-btn>
+            <v-tooltip right>
+              <template #activator="{ on, attrs }">
+                <v-icon
+                  v-bind="attrs"
+                  small
+                  class="grey--text mr-1"
+                  v-on="on"
+                >
+                  fa-question-circle
+                </v-icon>
+              </template>
+              <span> Return to the home page. </span>
+            </v-tooltip>
+            <v-btn
+              color="orange  white--text"
+              class="mr-10"
+              @click="goHome()"
+            >
+              Home
+            </v-btn>
           </v-col>
         </v-row>
         <v-row>
           <p
             class="pt-6"
           >
-            Tags you've selected will display in the four rows below.
+            Tags you've selected will display in the four rows below. {{ getLoadingStatus }}
           </p>
           <table id="tagsTable">
             <tbody>
@@ -359,13 +417,6 @@ export default {
   data(){
     return {
       formValid: true,
-      resultsButtonActive: false,
-      recordsCount: {
-        Database: 0,
-        Standard: 0,
-        Policy: 0,
-        Collection: 0
-      },
       recordsFound: [],
       menu: {
         content: null,
@@ -422,7 +473,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('multiTagsStore', ["getFairSharingRecords"]),
+    ...mapGetters('multiTagsStore', ["getFairSharingRecords", "getRefinedStatus", "getQueryParams", "getLoadingStatus"]),
     sections() {
       return {
         subjects: {
@@ -455,20 +506,49 @@ export default {
         },
       }
     },
+    recordsCount() {
+      let _module = this;
+      if (!_module.getFairSharingRecords) {
+        return {
+          Database: 0,
+          Standard: 0,
+          Policy: 0,
+          Collection: 0
+        }
+      }
+      else {
+        return {
+          Database: _module.getFairSharingRecords.filter(x => x.registry === 'Database').length,
+          Standard: _module.getFairSharingRecords.filter(x => x.registry === 'Standard').length,
+          Policy: _module.getFairSharingRecords.filter(x => x.registry === 'Policy').length,
+          Collection: _module.getFairSharingRecords.filter(x => x.registry === 'Collection').length
+        }
+      }
+    },
+    clearButtonActive() {
+      let _module = this;
+      if (_module.getFairSharingRecords && _module.getFairSharingRecords.length > 0) {
+        return true;
+      }
+      else if (_module.getQueryParams && Object.keys(_module.getQueryParams).length > 0) {
+        return true;
+      }
+      else if (_module.getRefinedStatus) {
+        return true;
+      }
+      else if (_module.getCurrentRegistry) {
+        return true;
+      }
+      return false;
+    },
+    resultsButtonActive() {
+      if (!this.getFairSharingRecords) {
+        return false;
+      }
+      return this.getFairSharingRecords.length > 0;
+    }
   },
   watch: {
-    recordsCount: {
-      handler(val) {
-        let _module = this;
-        let count = Object.values(val).reduce((partialSum, a) => partialSum + a, 0);
-        if (count > 0) {
-          _module.resultsButtonActive = true;
-          return;
-        }
-        _module.resultsButtonActive = false;
-      },
-      deep: true
-    },
     buttonLabel(){
       if (this.menu.show) return "Hide table";
       return "Add new term(s)";
@@ -488,15 +568,8 @@ export default {
       let _module = this;
       // TODO: here's where to trigger the multiTagFilter.
       // first, generate MULTI_TAGS.query param, then run the query and generate recordsCount and recordsFound.
-      //console.log(JSON.stringify(val));
-      //v-for="(tag, tagIndex) in recordTags.filter(x => x.model === section.label)"
+
       _module.recordsLoading = true;
-      _module.recordsCount = {
-        Database: 0,
-        Standard: 0,
-        Policy: 0,
-        Collection: 0
-      }
       // TODO: refactor this for brevity
       //MULTI_TAGS.queryParam = _module.generateQuery(val)[0];
       let queryParam =   _module.generateQuery(val)[0];
@@ -506,11 +579,6 @@ export default {
         await _module.fetchMultiTagData(queryParam);
         // TODO: Handle errors from the server.
         _module.recordsFound = _module.getFairSharingRecords;
-        if (_module.recordsFound && _module.recordsFound.length) {
-          _module.recordsFound.forEach(function(record) {
-            _module.recordsCount[record.registry] += 1;
-          })
-        }
       }
       _module.recordsLoading = false;
     }
@@ -549,6 +617,16 @@ export default {
        */
       //window.open(routeData.href, '_blank')
       _module.$router.push('/results')
+    },
+    clearResults() {
+      this.$store.commit('multiTagsStore/setRefinedStatus', false);
+      this.$store.commit('multiTagsStore/setQueryParams', {});
+      this.$store.commit('multiTagsStore/setFairSharingRecords', []);
+      this.$store.commit('multiTagsStore/setCurrentRegistry', null);
+    },
+    goHome() {
+      this.clearResults();
+      this.$router.push('/')
     },
     // This generates query parameters for the multi_tag_filter
     generateQuery(val) {

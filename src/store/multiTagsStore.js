@@ -9,6 +9,8 @@ const state = {
   fairSharingRecords:[],
   error: false,
   loadingStatus: false,
+  refinedStatus: false,
+  currentRegistry: ''
 }
 
 const actions = {
@@ -51,9 +53,11 @@ const actions = {
 
 const mutations = {
   setFairSharingRecords(state, fairSharingRecords) { state.fairSharingRecords = fairSharingRecords },
-  setLoadingStatus(state, loadingStatus) { state.loadingStatus = loadingStatus},
+  setLoadingStatus(state, loadingStatus) { state.loadingStatus = loadingStatus },
   resetFairSharingRecords(state) {state.fairSharingRecords = []},
-  setQueryParams(state, params) { state.queryParams = params }
+  setQueryParams(state, params) { state.queryParams = params },
+  setRefinedStatus(state, refinedStatus) { state.refinedStatus = refinedStatus },
+  setCurrentRegistry(state, currentRegistry) { state.currentRegistry = currentRegistry }
 }
 
 const getters = {
@@ -65,6 +69,12 @@ const getters = {
   },
   getLoadingStatus(state) {
     return state.getLoadingStatus;
+  },
+  getRefinedStatus(state) {
+    return state.refinedStatus
+  },
+  getCurrentRegistry(state) {
+    return state.currentRegistry
   }
 }
 const multiTagsStore = {

@@ -17,14 +17,20 @@
       fluid
       class="pa-0"
     >
-      <v-text-field
-        v-model="search"
-        append-icon="mdi-magnify"
-        label="Search in results"
-        single-line
-        hide-details
-        class="pa-10"
-      />
+      <v-row
+        class="block-category"
+      >
+        <v-col>
+          <v-text-field
+            v-model="search"
+            append-icon="mdi-magnify"
+            label="Search in results"
+            single-line
+            hide-details
+            class="pa-10"
+          />
+        </v-col>
+      </v-row>
       <v-data-table
         :headers="headers"
         :items="records"
@@ -46,6 +52,75 @@
           </a>
         </template>
       </v-data-table>
+      <v-row>
+        <v-col
+          class="text-center"
+        >
+          <v-tooltip right>
+            <template #activator="{ on, attrs }">
+              <v-icon
+                v-bind="attrs"
+                small
+                class="grey--text mr-1"
+                v-on="on"
+              >
+                fa-question-circle
+              </v-icon>
+            </template>
+            <span> Further refine your choice of scientific field. </span>
+          </v-tooltip>
+          <v-btn
+            :disabled="!tagButtonActive"
+            color="blue white--text"
+            class="mr-10"
+            @click="returnToTags()"
+          >
+            Return to tags
+          </v-btn>
+          <v-tooltip right>
+            <template #activator="{ on, attrs }">
+              <v-icon
+                v-bind="attrs"
+                small
+                class="grey--text mr-1"
+                v-on="on"
+              >
+                fa-question-circle
+              </v-icon>
+            </template>
+            <span> Change your registry-specific filters. </span>
+          </v-tooltip>
+          <v-btn
+            :disabled="!registryButtonActive"
+            color="blue white--text"
+            class="mr-10"
+            @click="returnToRegistries()"
+          >
+            Return to registry
+          </v-btn>
+          <v-tooltip right>
+            <template #activator="{ on, attrs }">
+              <v-icon
+                v-bind="attrs"
+                small
+                class="grey--text mr-1"
+                v-on="on"
+              >
+                fa-question-circle
+              </v-icon>
+            </template>
+            <span> Clear all selections and return to the search page. </span>
+          </v-tooltip>
+          <v-btn
+            :disabled="!clearButtonActive"
+            color="orange  white--text"
+            class="mr-10"
+            @click="clearResults()"
+          >
+            Clear selection
+          </v-btn>
+        </v-col>
+      </v-row>
     </v-container>
   </div>
 </template>
@@ -83,10 +158,43 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('multiTagsStore', ["getFairSharingRecords"]),
+    ...mapGetters('multiTagsStore', ["getFairSharingRecords", "getQueryParams", "getRefinedStatus", "getCurrentRegistry"]),
     currentRouteQuery() {
       return this.$route.query;
-    }
+    },
+    registryButtonActive() {
+      if (this.getRefinedStatus) {
+        return true;
+      }
+      return false;
+    },
+    tagButtonActive() {
+      if (this.getFairSharingRecords && this.getFairSharingRecords.length > 0) {
+        return true;
+      }
+      return false;
+    },
+    clearButtonActive() {
+      let _module = this;
+      console.log("ZERO");
+      if (_module.getFairSharingRecords && _module.getFairSharingRecords.length > 0) {
+        console.log('ONE');
+        return true;
+      }
+      else if (_module.getQueryParams && Object.keys(_module.getQueryParams).length > 0) {
+        console.log('TWO');
+        return true;
+      }
+      else if (_module.getRefinedStatus) {
+        console.log('THREE');
+        return true;
+      }
+      else if (_module.getCurrentRegistry) {
+        console.log('FOUR');
+        return true;
+      }
+      return false;
+    },
   },
   async mounted() {
     await this.getData();
@@ -115,6 +223,19 @@ export default {
         _module.error = true;
       }
       _module.loading = false;
+    },
+    clearResults() {
+      this.$store.commit('multiTagsStore/setRefinedStatus', false);
+      this.$store.commit('multiTagsStore/setQueryParams', {});
+      this.$store.commit('multiTagsStore/setFairSharingRecords', []);
+      this.$store.commit('multiTagsStore/setCurrentRegistry', null);
+      this.$router.push('/researchfields');
+    },
+    returnToTags() {
+      this.$router.push('/researchfields');
+    },
+    returnToRegistries() {
+      this.$router.push('/refineregistry');
     }
   },
 };

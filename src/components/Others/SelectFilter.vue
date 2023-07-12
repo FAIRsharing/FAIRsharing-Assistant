@@ -1,5 +1,13 @@
 <template>
   <div>
+    <v-fade-transition v-if="recordsLoading">
+      <v-overlay
+        :absolute="false"
+        opacity="0.8"
+      >
+        <Loaders />
+      </v-overlay>
+    </v-fade-transition>
     <v-select
       ref="filterSelect"
       v-model="filtersOpted"
@@ -26,9 +34,11 @@
 <script>
 import {mapActions, mapGetters} from "vuex";
 import currentPath from "@/utils/Others/currentPath";
+import Loaders from "@/components/Loaders/Loaders.vue";
 
 export default {
   name: "SelectFilter",
+  components: {Loaders},
   props:{
     filter:{
       type: Object,
@@ -42,6 +52,7 @@ export default {
   data () {
     return {
       // filtersOpted:[],
+      recordsLoading: false,
       filtersOpted:"",
       filterSelectedArray: [],
       // map: new Map(),
@@ -85,7 +96,9 @@ export default {
       else {
         currentQueryParams[this.filterSelected.key] = this.filterSelected.value;
       }
+      _module.recordsLoading = true;
       await _module.fetchMultiTagData(currentQueryParams);
+      _module.recordsLoading = false;
 
 
     },

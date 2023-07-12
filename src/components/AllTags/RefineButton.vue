@@ -55,6 +55,7 @@ export default {
       let queryParams = _module.getQueryParams;
       queryParams['fairsharingRegistry'] = [ _module.choice.toLowerCase() ];
       _module.$store.commit('multiTagsStore/setQueryParams', queryParams);
+      _module.$store.commit('multiTagsStore/setCurrentRegistry', _module.choice);
       _module.$router.push(_module.link);
     }
   }

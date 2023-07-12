@@ -1,22 +1,32 @@
 <template>
-  <v-radio-group
-    :label="filter['filterName']"
-    v-model="filtersOpted"
-    @change="selectToggle(filter)"
-  >
-    <v-radio
-      label="Yes"
-      value="true"
-    />
-    <v-radio
-      label="No"
-      value="false"
-    />
-    <v-radio
-      label="Either"
-      value="null"
-    />
-  </v-radio-group>
+  <div>
+    <v-fade-transition v-if="recordsLoading">
+      <v-overlay
+        :absolute="false"
+        opacity="0.8"
+      >
+        <Loaders />
+      </v-overlay>
+    </v-fade-transition>
+    <v-radio-group
+      v-model="filtersOpted"
+      :label="filter['filterName']"
+      @change="selectToggle(filter)"
+    >
+      <v-radio
+        label="Yes"
+        value="true"
+      />
+      <v-radio
+        label="No"
+        value="false"
+      />
+      <v-radio
+        label="Either"
+        value="null"
+      />
+    </v-radio-group>
+  </div>
   <!--
   <v-switch
     ref="filterSelect"
@@ -30,10 +40,12 @@
 </template>
 <script>
 import { mapGetters, mapActions } from "vuex";
+import Loaders from "@/components/Loaders/Loaders.vue";
 //import currentPath from "@/utils/Others/currentPath";
 
 export default {
   name: "SwitchFilter",
+  components: {Loaders},
   props:{
     filter:{
       type: Object,
@@ -47,6 +59,7 @@ export default {
   data () {
     return {
       // filtersOpted:[],
+      recordsLoading: false,
       hasBeenUsed: false,
       filtersOpted: 'null',
       filterSelectedArray: [],
@@ -88,8 +101,11 @@ export default {
       }
       //console.log("TWO: " + JSON.stringify(currentQueryParams));
       // TODO: Try to update query params with currentQueryParams
+      
+      this.recordsLoading = true;
       await _module.fetchMultiTagData(currentQueryParams);
-
+      this.recordsLoading = false;
+      
       // Older stuff below
       /*
       filter["refineToggle"] = this.filtersOpted

@@ -1,13 +1,5 @@
 <template>
   <div>
-    <v-fade-transition v-if="getLoadingStatus">
-      <v-overlay
-        :absolute="false"
-        opacity="0.8"
-      >
-        <Loaders />
-      </v-overlay>
-    </v-fade-transition>
     <Jumbotron />
     <div class="px-md-10 pa-5 mb-8">
       <v-row
@@ -36,11 +28,11 @@
                   class="mt-5"
                   contain
                   height="100px"
-                  :src="$vuetify.icons.values[countIcon[currentRegistry]].icon"
+                  :src="$vuetify.icons.values[countIcon[getCurrentRegistry]].icon"
                 />
               </div>
               <v-card-title class="d-inline text-h4 text-md-h5 text-lg-h4 text-center">
-                {{ currentRegistry }}: {{ recordsAvailable }}
+                {{ getCurrentRegistry }}: {{ recordsAvailable }}
               </v-card-title>
             </div>
           </v-card>
@@ -102,22 +94,56 @@
         <v-col
           class="text-center"
         >
+          <v-tooltip right>
+            <template #activator="{ on, attrs }">
+              <v-icon
+                v-bind="attrs"
+                small
+                class="grey--text mr-1"
+                v-on="on"
+              >
+                fa-question-circle
+              </v-icon>
+            </template>
+            <span> See the list of FAIRsharing records matching your selections below. </span>
+          </v-tooltip>
           <v-btn
-            :disabled="!recordsAvailable > 0"
+            :disabled="!resultsButtonActive"
             color="blue white--text"
             class="mr-10"
             @click="showResults()"
           >
             View records
           </v-btn>
+          <v-tooltip right>
+            <template #activator="{ on, attrs }">
+              <v-icon
+                v-bind="attrs"
+                small
+                class="grey--text mr-1"
+                v-on="on"
+              >
+                fa-question-circle
+              </v-icon>
+            </template>
+            <span> Clear all selections and return to the tag filter page. </span>
+          </v-tooltip>
+          <v-btn
+            :disabled="!clearButtonActive"
+            color="orange  white--text"
+            class="mr-10"
+            @click="clearResults()"
+          >
+            Clear selection
+          </v-btn>
         </v-col>
       </v-row>
       <v-row
         class="block-category pb-5"
       > 
-        <p>Below, you can select what sort of <b>{{ currentRegistry }}</b> record you need.</p>
+        <p>Below, you can select what sort of <b>{{ getCurrentRegistry }}</b> record you need.</p>
       </v-row>
-      <AddOnFilters @filterSource="this.capitaliseText(this.getQueryParams['fairsharingRegistry'][0], null)" />
+      <AddOnFilters @filterSource="capitaliseText(getQueryParams['fairsharingRegistry'][0], null)" />
     </div>
   </div>
 </template>
@@ -126,17 +152,16 @@
 import { mapGetters, mapActions } from "vuex";
 import Jumbotron from "@/components/Navigation/Jumbotron";
 import AddOnFilters from "@/components/Others/AddOnFilters.vue";
-import Loaders from "@/components/Loaders/Loaders.vue";
 
 export default {
   name: 'RefineRegistry',
   components: {
-    Loaders,
     AddOnFilters,
     Jumbotron,
   },
   data:() => {
     return {
+      recordsLoading: false,
       countIcon: {
         Database: 'home_db',
         Standard: 'home_standard',
@@ -152,15 +177,12 @@ export default {
     }
   },
   computed:{
-    ...mapGetters("multiTagsStore", ['getQueryParams', 'getFairSharingRecords', 'getLoadingStatus']),
+    ...mapGetters("multiTagsStore", ['getQueryParams', 'getFairSharingRecords', 'getLoadingStatus', 'getCurrentRegistry']),
     recordsAvailable() {
-      return this.getFairSharingRecords.filter(x => x.registry === this.currentRegistry).length
-    },
-    currentRegistry() {
-      if (this.getQueryParams['fairsharingRegistry']) {
-        return this.capitaliseText(this.getQueryParams['fairsharingRegistry'][0], null);
+      if (!this.getFairSharingRecords) {
+        return 0;
       }
-      return 'none';
+      return this.getFairSharingRecords.filter(x => x.registry === this.getCurrentRegistry).length
     },
     sections() {
       return {
@@ -194,12 +216,30 @@ export default {
         },
       }
     },
+    clearButtonActive() {
+      let _module = this;
+      if (_module.getFairSharingRecords.length > 0) {
+        return true;
+      }
+      else if (Object.keys(_module.getQueryParams).length > 0) {
+        return true;
+      }
+      else if (_module.getRefinedStatus) {
+        return true;
+      }
+      return false;
+    },
+    resultsButtonActive() {
+      return this.getFairSharingRecords.length > 0;
+    }
   },
   async mounted() {
     /*
     console.log(JSON.stringify(this.getQueryParams));
     console.log(JSON.stringify(this.getFairSharingRecords));
      */
+    // If a user has come here then they've set the refinement status by choosing a registry
+    this.$store.commit('multiTagsStore/setRefinedStatus', true);
   },
   methods: {
     ...mapActions('multiTagsStore', ['fetchMultiTagData']),
@@ -227,6 +267,13 @@ export default {
        */
       //window.open(routeData.href, '_blank')
       this.$router.push('/results');
+    },
+    clearResults() {
+      this.$store.commit('multiTagsStore/setRefinedStatus', false);
+      this.$store.commit('multiTagsStore/setQueryParams', {});
+      this.$store.commit('multiTagsStore/setFairSharingRecords', []);
+      this.$store.commit('multiTagsStore/setCurrentRegistry', null);
+      this.$router.push('/researchfields');
     },
   }
 };
