@@ -155,7 +155,7 @@
             class="mr-10"
             @click="clearResults()"
           >
-            Clear all selection
+            Clear all selections
           </v-btn>
           <v-tooltip right>
             <template #activator="{ on, attrs }">
@@ -285,6 +285,7 @@ export default {
      */
     // If a user has come here then they've set the refinement status by choosing a registry
     if (!this.getCurrentRegistry) {
+      this.$store.commit('multiTagsStore/setRefinedStatus', false);
       this.$router.push('/researchfields');
     }
     this.$store.commit('multiTagsStore/setRefinedStatus', true);
