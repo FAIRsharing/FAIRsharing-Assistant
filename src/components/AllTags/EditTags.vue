@@ -261,7 +261,7 @@
           <p
             class="pt-6"
           >
-            Tags you've selected will display in the four rows below. {{ getCurrentRegistry }}
+            Tags you've selected will display in the four rows below.
           </p>
           <table id="tagsTable">
             <tbody>
@@ -633,6 +633,12 @@ export default {
       this.$store.commit('multiTagsStore/setQueryParams', {});
       this.$store.commit('multiTagsStore/setFairSharingRecords', []);
       this.$store.commit('multiTagsStore/setCurrentRegistry', null);
+      this.selectedTags = {
+        domains: [],
+        taxonomies: [],
+        subjects: [],
+        user_defined_tags: []
+      }
     },
     goHome() {
       this.clearResults();

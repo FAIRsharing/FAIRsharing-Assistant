@@ -183,6 +183,7 @@ export default {
   data:() => {
     return {
       recordsLoading: false,
+      recordTypes: {},
       countIcon: {
         Database: 'home_db',
         Standard: 'home_standard',

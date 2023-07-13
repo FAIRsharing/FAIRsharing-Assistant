@@ -16,6 +16,20 @@
         class="switchWrapper flex-column full-width"
         :class="switchDisplay"
       >
+        <v-checkbox
+          v-for="(field, index) in recordTypes[getCurrentRegistry]"
+          :key="field.value + '-' + index"
+          :ref="field.value"
+          v-model="typeSelected"
+          :label="field.label"
+          :value="field.value"
+          @change="checkCheckbox()"
+        />
+      </div>
+      <div
+        class="switchWrapper flex-column full-width"
+        :class="switchDisplay"
+      >
         <div
           v-for="(filter) in switchTypeFilters"
           :key="filter['filterQuery']"
@@ -43,6 +57,7 @@
 <script>
 import {mapActions, mapGetters, mapMutations, mapState} from "vuex";
 import addOnFilters from "@/data/addOnFilters.json"
+import recordTypeData from "@/data/recordTypeData.json";
 import Loaders from "@/components/Loaders/Loaders.vue";
 import currentPath from "@/utils/Others/currentPath"
 import SelectFilter from "@/components/Others/SelectFilter.vue"
@@ -71,6 +86,8 @@ export default {
       onlySelect: false,
       allowedRegistries: ['Database', 'Standard', 'Policy', 'Collection'],
       map: new Map(),
+      recordTypes: recordTypeData,
+      typeSelected: [],
       allowedTypes: [
         "repository",
         "knowledgebase",
@@ -97,7 +114,7 @@ export default {
     ...mapMutations("bubbleSelectedStore", ['resourceSelected']),
     ...mapMutations("nodeListStore", ['nodeLists']),
     ...mapState("variableTagStore", ["variableResponse", "loadingStatus"]),
-    ...mapGetters('multiTagsStore', ["getQueryParams"]),
+    ...mapGetters('multiTagsStore', ["getQueryParams", "getCurrentRegistry"]),
     switchDisplay() {
       return this.onlySelect ? 'd-none' : 'd-flex'
     },
@@ -115,13 +132,29 @@ export default {
       await _module.resetFiltersOnLoad()
       await _module.readRegAndTypeFilterParams();
       await _module.selectFilters();
+      if (_module.getQueryParams['recordType']) {
+        _module.getQueryParams['recordType'].forEach(function(type) {
+          _module.typeSelected.push(type)
+        })
+      }
       // await _module.readGeneralFilterParams();
       this.loading = false
     })
   },
   methods: {
     ...mapActions("variableTagStore", ["fetchVariableTags"]),
-
+    ...mapActions('multiTagsStore', ['fetchMultiTagData']),
+    async checkCheckbox() {
+      // TODO: Modify queryParams and trigger query.
+      // TODO: Ensure at least one box is selected.
+      let _module = this
+      let params = JSON.parse(JSON.stringify(_module.getQueryParams));
+      params['recordType'] = _module.typeSelected;
+      _module.$store.commit('multiTagsStore/setQueryParams', params);
+      _module.loading = true;
+      await _module.fetchMultiTagData(params);
+      _module.loading = false;
+    },
     resetFiltersOnLoad() {
       let _module = this;
       [_module.switchTypeFilters, _module.selectTypeFilters].forEach(group => {

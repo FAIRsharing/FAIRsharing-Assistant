@@ -27,9 +27,15 @@
 
 <script>
 import {mapGetters} from "vuex";
+import recordTypeData from "@/data/recordTypeData.json";
 
 export default {
   name: 'RefineButton',
+  data() {
+    return {
+      recordTypes: recordTypeData,
+    }
+  },
   // TODO: Passing in these props fails to do what's required.
   props: {
     link: {
@@ -54,9 +60,13 @@ export default {
       let _module = this;
       let queryParams = JSON.parse(JSON.stringify(_module.getQueryParams));
       queryParams['fairsharingRegistry'] = [ _module.choice.toLowerCase() ];
+      queryParams['recordType'] = _module.getTypeArray(_module.choice);
       _module.$store.commit('multiTagsStore/setQueryParams', queryParams);
       _module.$store.commit('multiTagsStore/setCurrentRegistry', _module.choice);
       _module.$router.push(_module.link);
+    },
+    getTypeArray(registry) {
+      return this.recordTypes[registry].map(item => item.value);
     }
   }
 }

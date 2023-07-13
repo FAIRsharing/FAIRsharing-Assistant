@@ -161,34 +161,6 @@
     "filterTypes": [
       "database"
     ]
-  },
-  {
-    "filterName": "Database types",
-    "filterQuery": "recordType",
-    "refineToggle": [],
-    "options": [
-      "knowledgebase",
-      "repository",
-      "knowledgebase_and_repository"
-    ],
-    "filterTypes": [
-      "database"
-    ]
-  },
-  {
-    "filterName": "Standard types",
-    "filterQuery": "recordTypeTODOfixThis",
-    "refineToggle": [],
-    "options": [
-      "model_and_format",
-      "metric",
-      "terminology_artefact",
-      "reporting_guideline",
-      "identifier_schema"
-    ],
-    "filterTypes": [
-      "standard"
-    ]
-   }
+  }
 ]
 }
