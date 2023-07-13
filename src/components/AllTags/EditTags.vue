@@ -21,7 +21,7 @@
           type="info"
           variant="tonal"
         >
-          You've already made selections on the refinement page which will affect record counts here.
+          You've already made selections on the <b>{{ getCurrentRegistry }}</b> refinement page which will affect record counts here.
         </v-alert>
       </v-col>
     </v-row>
@@ -225,7 +225,7 @@
                   fa-question-circle
                 </v-icon>
               </template>
-              <span> Clear all selections. </span>
+              <span> This will clear all filters and tags. </span>
             </v-tooltip>
             <v-btn
               :disabled="!clearButtonActive"
@@ -233,7 +233,7 @@
               class="mr-10"
               @click="clearResults()"
             >
-              Clear selection
+              Clear all selections
             </v-btn>
             <v-tooltip right>
               <template #activator="{ on, attrs }">
@@ -246,7 +246,7 @@
                   fa-question-circle
                 </v-icon>
               </template>
-              <span> Return to the home page. </span>
+              <span> Return to the home page, clearing all tags and filters. </span>
             </v-tooltip>
             <v-btn
               color="orange  white--text"

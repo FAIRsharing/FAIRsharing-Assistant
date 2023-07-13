@@ -20,7 +20,7 @@
       text
       @click="makeChoice()"
     >
-      Refine my choice
+      Refine {{ whatToRefine[choice] }}
     </v-btn>
   </div>
 </template>
@@ -49,6 +49,12 @@ export default {
   data() {
     return {
       recordTypes: recordTypeData,
+      whatToRefine: {
+        'Database': 'databases',
+        'Standard': 'standards',
+        'Policy': 'policies',
+        'Collection': 'collections'
+      }
     }
   },
   computed: {

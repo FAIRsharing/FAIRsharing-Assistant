@@ -26,14 +26,6 @@
     ]
   },
   {
-    "filterName": "Uses Persistent Identifier",
-    "filterQuery": "usesPersistentIdentifier",
-    "refineToggle": false,
-    "filterTypes": [
-      "database"
-    ]
-  },
-  {
     "filterName": "Data Preservation Policy",
     "filterQuery": "dataPreservationPolicy",
     "refineToggle": false,

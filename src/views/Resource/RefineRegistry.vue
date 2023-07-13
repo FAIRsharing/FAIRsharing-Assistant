@@ -134,7 +134,7 @@
             class="mr-10"
             @click="returnToTags()"
           >
-            Return to tags
+            Refine tags
           </v-btn>
           <v-tooltip right>
             <template #activator="{ on, attrs }">
@@ -147,7 +147,7 @@
                 fa-question-circle
               </v-icon>
             </template>
-            <span> Clear all selections and return to the tag filter page. </span>
+            <span> Clear all selections and tags and return to the tag filter page. </span>
           </v-tooltip>
           <v-btn
             :disabled="!clearButtonActive"
@@ -155,7 +155,27 @@
             class="mr-10"
             @click="clearResults()"
           >
-            Clear selection
+            Clear all selection
+          </v-btn>
+          <v-tooltip right>
+            <template #activator="{ on, attrs }">
+              <v-icon
+                v-bind="attrs"
+                small
+                class="grey--text mr-1"
+                v-on="on"
+              >
+                fa-question-circle
+              </v-icon>
+            </template>
+            <span> Return to the home page, clearing all tags and filters. </span>
+          </v-tooltip>
+          <v-btn
+            color="orange  white--text"
+            class="mr-10"
+            @click="goHome()"
+          >
+            Home
           </v-btn>
         </v-col>
       </v-row>
@@ -302,6 +322,13 @@ export default {
       this.$store.commit('multiTagsStore/setFairSharingRecords', []);
       this.$store.commit('multiTagsStore/setCurrentRegistry', null);
       this.$router.push('/researchfields');
+    },
+    goHome() {
+      this.$store.commit('multiTagsStore/setRefinedStatus', false);
+      this.$store.commit('multiTagsStore/setQueryParams', {});
+      this.$store.commit('multiTagsStore/setFairSharingRecords', []);
+      this.$store.commit('multiTagsStore/setCurrentRegistry', null);
+      this.$router.push('/')
     },
     returnToTags() {
       this.$router.push('/researchfields');
