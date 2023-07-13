@@ -72,10 +72,10 @@
     "filterQuery": "dataAccessCondition",
     "refineToggle": [],
     "options": [
-      "Open",
-      "Partially open",
-      "Controlled",
-      "Not found"
+      "open",
+      "partially open",
+      "controlled",
+      "not found"
     ],
     "filterTypes": [
       "database"
@@ -86,11 +86,11 @@
     "filterQuery": "dataCuration",
     "refineToggle": [],
     "options": [
-      "Manual",
-      "Automated",
-      "Manual/Automated",
-      "None",
-      "Not found"
+      "manual",
+      "automated",
+      "manual/automated",
+      "none",
+      "not found"
     ],
     "filterTypes": [
       "database"
@@ -101,10 +101,10 @@
     "filterQuery": "dataDepositionCondition",
     "refineToggle": [],
     "options": [
-      "Open",
-      "Controlled",
-      "Not found",
-      "Not applicable"
+      "open",
+      "controlled",
+      "not found",
+      "not applicable"
     ],
     "filterTypes": [
       "database"
@@ -115,9 +115,9 @@
     "filterQuery": "citationToRelatedPublications",
     "refineToggle": [],
     "options": [
-      "Yes",
-      "No",
-      "Not found"
+      "yes",
+      "no",
+      "not found"
     ],
     "filterTypes": [
       "database"
@@ -128,9 +128,9 @@
     "filterQuery": "dataAccessForPrePublicationReview",
     "refineToggle": [],
     "options": [
-      "Yes",
-      "No",
-      "Not found"
+      "yes",
+      "no",
+      "not found"
     ],
     "filterTypes": [
       "database"
@@ -141,9 +141,9 @@
     "filterQuery": "dataContactInformation",
     "refineToggle": [],
     "options": [
-      "Yes",
-      "No",
-      "Not found"
+      "yes",
+      "no",
+      "not found"
     ],
     "filterTypes": [
       "database"
@@ -154,9 +154,9 @@
     "filterQuery": "dataVersioning",
     "refineToggle": [],
     "options": [
-      "Yes",
-      "No",
-      "Not found"
+      "yes",
+      "no",
+      "not found"
     ],
     "filterTypes": [
       "database"
