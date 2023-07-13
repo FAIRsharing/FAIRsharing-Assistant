@@ -160,8 +160,8 @@ export default {
         //console.log(key);
         if (key === _module.filter.filterQuery) {
           //console.log('match');
-          _module.filter.refineToggle = _module.getQueryParams[key];
-          _module.filterSelected[key] = _module.getQueryParams[key];
+          //_module.filter.refineToggle = _module.getQueryParams[key];
+          //_module.filterSelected[key] = _module.getQueryParams[key];
         }
       })
     }

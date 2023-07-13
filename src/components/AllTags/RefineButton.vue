@@ -31,11 +31,6 @@ import recordTypeData from "@/data/recordTypeData.json";
 
 export default {
   name: 'RefineButton',
-  data() {
-    return {
-      recordTypes: recordTypeData,
-    }
-  },
   // TODO: Passing in these props fails to do what's required.
   props: {
     link: {
@@ -49,6 +44,11 @@ export default {
     count: {
       default: 0,
       type: Number
+    }
+  },
+  data() {
+    return {
+      recordTypes: recordTypeData,
     }
   },
   computed: {
