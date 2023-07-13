@@ -78,7 +78,8 @@
             "icon": "search",
             "link": "/refineregistry",
             "query": {
-              "fairsharingRegistry": ["database"]
+              "fairsharingRegistry": ["database"],
+              "recordType": ["repository", "knowledgebase", "knowledgebase_and_repository"]
             }
           },
           {
@@ -128,6 +129,7 @@
             "link": "/refineregistry",
             "query": {
               "fairsharingRegistry": ["database"],
+              "recordType": ["repository", "knowledgebase", "knowledgebase_and_repository"],
               "dataAccessCondition": ["open"]
             }
           },
@@ -140,6 +142,7 @@
             "link": "/refineregistry",
             "query": {
               "fairsharingRegistry": ["database"],
+              "recordType": ["repository", "knowledgebase", "knowledgebase_and_repository"],
               "dataAccessCondition": ["partially open"]
             }
           }
@@ -154,6 +157,7 @@
             "link": "/refineregistry",
             "query": {
               "fairsharingRegistry": ["database"],
+              "recordType": ["repository", "knowledgebase", "knowledgebase_and_repository"],
               "dataAccessCondition": ["controlled"]
             }
           },
@@ -166,6 +170,7 @@
             "link": "/refineregistry",
             "query": {
               "fairsharingRegistry": ["database"],
+              "recordType": ["repository", "knowledgebase", "knowledgebase_and_repository"],
               "dataDepositionCondition": ["open"]
             }
           }
@@ -180,6 +185,7 @@
             "link": "/refineregistry",
             "query": {
               "fairsharingRegistry": ["database"],
+              "recordType": ["repository", "knowledgebase", "knowledgebase_and_repository"],
               "dataDepositionCondition": ["controlled"]
             }
           }
@@ -200,7 +206,8 @@
             "icon": "search",
             "link": "/refineregistry",
             "query": {
-              "fairsharingRegistry": ["standard"]
+              "fairsharingRegistry": ["standard"],
+              "recordType": ["model_and_format", "metric", "terminology_artefact", "reporting_guideline", "identifier_schema"]
             }
           },
           {
@@ -333,7 +340,8 @@
             "icon": "search",
             "link": "/refineregistry",
             "query": {
-              "fairsharingRegistry": ["policy"]
+              "fairsharingRegistry": ["policy"],
+              "recordType": ["journal", "society", "project", "institution", "journal_publisher", "funder"]
             }
           },
           {

@@ -162,6 +162,9 @@ export default {
           //console.log('match');
           //_module.filter.refineToggle = _module.getQueryParams[key];
           //_module.filterSelected[key] = _module.getQueryParams[key];
+          let selected = {}
+          selected[key] = _module.getQueryParams[key];
+          _module.filterSelectedArray.push(selected);
         }
       })
     }
