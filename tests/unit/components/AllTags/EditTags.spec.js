@@ -8,27 +8,10 @@ import icons from "@/plugins/icons";
 const localVue = createLocalVue();
 localVue.use(Vuex);
 
-/*
-multiTagsStore.state.fairSharingRecords = [
-  {
-    name: 'one',
-    registry: 'Standard'
-  },
-  {
-    name: 'two',
-    registry: 'Standard'
-  }
-];
-
-let $store = new Vuex.Store(
-  {
-    modules: {
-      multiTagsStore: multiTagsStore,
-    }
-  })
- */
 
 let getters, store;
+
+// TODO: This appears to not provide the required stores in the components.
 
 getters = {
   multiTagsStore: () => {
@@ -45,7 +28,8 @@ getters = {
         registry: ['standard']
       },
       getRefinedStatus: true,
-      getCurrentRegistry: 'standard'
+      getCurrentRegistry: 'standard',
+      getSelectedTags: []
     }
   }
 }

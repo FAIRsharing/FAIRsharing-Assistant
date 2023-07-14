@@ -6,11 +6,12 @@ const CLIENT = new GraphClient(),
 
 const state = {
   queryParams: {},
-  fairSharingRecords:[],
+  fairSharingRecords: [],
   error: false,
   loadingStatus: false,
   refinedStatus: false,
-  currentRegistry: ''
+  currentRegistry: '',
+  seletedTags: []
 }
 
 const actions = {
@@ -57,7 +58,8 @@ const mutations = {
   resetFairSharingRecords(state) {state.fairSharingRecords = []},
   setQueryParams(state, params) { state.queryParams = params },
   setRefinedStatus(state, refinedStatus) { state.refinedStatus = refinedStatus },
-  setCurrentRegistry(state, currentRegistry) { state.currentRegistry = currentRegistry }
+  setCurrentRegistry(state, currentRegistry) { state.currentRegistry = currentRegistry },
+  setSelectedTags(state, selectedTags) { state.seletedTags = selectedTags }
 }
 
 const getters = {
@@ -75,6 +77,9 @@ const getters = {
   },
   getCurrentRegistry(state) {
     return state.currentRegistry
+  },
+  getSelectedTags(state) {
+    return state.seletedTags
   }
 }
 const multiTagsStore = {

@@ -420,6 +420,7 @@ export default {
   mixins: [],
   data(){
     return {
+      justMounted: true,
       formValid: true,
       recordsFound: [],
       menu: {
@@ -477,7 +478,13 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('multiTagsStore', ["getFairSharingRecords", "getRefinedStatus", "getQueryParams", "getLoadingStatus", "getCurrentRegistry"]),
+    ...mapGetters('multiTagsStore', ["getFairSharingRecords",
+      "getRefinedStatus",
+      "getQueryParams",
+      "getLoadingStatus",
+      "getCurrentRegistry",
+      "getSelectedTags"
+    ]),
     sections() {
       return {
         subjects: {
@@ -570,6 +577,11 @@ export default {
     },
     recordTags: async function (val) {
       let _module = this;
+      // It's necessary to modify tags to reflect the store.
+      // We can't have tags modifying the store whilst this happens.
+      if (_module.justMounted) {
+        return;
+      }
       // TODO: here's where to trigger the multiTagFilter.
       // first, generate MULTI_TAGS.query param, then run the query and generate recordsCount and recordsFound.
 
@@ -583,8 +595,19 @@ export default {
         // TODO: Handle errors from the server.
         _module.recordsFound = _module.getFairSharingRecords;
         _module.$store.commit('multiTagsStore/setQueryParams', queryParam);
+        _module.$store.commit('multiTagsStore/setSelectedTags', _module.recordTags);
       }
       _module.recordsLoading = false;
+    }
+  },
+  mounted() {
+    let _module = this;
+    // TODO: Make sure that _module.tags matches the store
+    if (_module.getSelectedTags) { // TODO: Because the store is broken in EditTags.spec.js
+      _module.getSelectedTags.forEach(function(tag) {
+        _module.recordTags.push(tag);
+      })
+      _module.justMounted = false;
     }
   },
   methods: {
@@ -605,6 +628,10 @@ export default {
     },
     removeTag(id){
       this.recordTags = this.recordTags.filter(el => el.id !== id);
+      this.$store.commit('multiTagsStore/setSelectedTags', this.recordTags);
+      if (this.recordTags.length === 0) {
+        this.$store.commit('multiTagsStore/setFairSharingRecords', []);
+      }
     },
     capitaliseText(text, type) {
       if (type === 'taxonomy') {
