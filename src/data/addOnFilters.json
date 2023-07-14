@@ -1,5 +1,85 @@
 {
   "switch": [
+    {
+      "filterName": "Recommends at least one standard",
+      "filterQuery": "recommendsStandard",
+      "refineToggle": false,
+      "filterTypes": [
+        "policies"
+      ]
+    },
+    {
+      "filterName": "Recommends at least one database",
+      "filterQuery": "recommendsDatabase",
+      "refineToggle": false,
+      "filterTypes": [
+        "policies"
+      ]
+    },
+    {
+      "filterName": "Exceptions to data sharing",
+      "filterQuery": "exceptionsToDataSharing",
+      "refineToggle": false,
+      "filterTypes": [
+        "policies"
+      ]
+    },
+    {
+      "filterName": "Data Protection",
+      "filterQuery": "dataProtection",
+      "refineToggle": false,
+      "filterTypes": [
+        "policies"
+      ]
+    },
+    {
+      "filterName": "Updating of DMP",
+      "filterQuery": "updatingOfDmp",
+      "refineToggle": false,
+      "filterTypes": [
+        "policies"
+      ]
+    },
+    {
+      "filterName": "Licences for Outputs",
+      "filterQuery": "licencesForOutputs",
+      "refineToggle": false,
+      "filterTypes": [
+        "policies"
+      ]
+    },
+    {
+      "filterName": "Data Citation",
+      "filterQuery": "dataCitation",
+      "refineToggle": false,
+      "filterTypes": [
+        "policies"
+      ]
+    },
+    {
+      "filterName": "Data Preservation",
+      "filterQuery": "dataPreservation",
+      "refineToggle": false,
+      "filterTypes": [
+        "policies"
+      ]
+    },
+    {
+      "filterName": "Monitoring of Compliance",
+      "filterQuery": "monitoringOfCompliance",
+      "refineToggle": false,
+      "filterTypes": [
+        "policies"
+      ]
+    },
+    {
+      "filterName": "Data Availability Statement",
+      "filterQuery": "dataAvailabilityStatement",
+      "refineToggle": false,
+      "filterTypes": [
+        "policies"
+      ]
+    },
   {
     "filterName": "Has Publication",
     "filterQuery": "hasPublication",
@@ -153,6 +233,76 @@
     "filterTypes": [
       "database"
     ]
-  }
-]
+  },
+  {
+    "filterName": "Mandated data sharing",
+    "filterQuery": "mandatedDataSharing",
+    "refineToggle": [],
+    "options": [
+      "required",
+      "suggested",
+      "not covered",
+      "other"
+    ],
+    "filterTypes": [
+      "policies"
+    ]
+  },
+  {
+    "filterName": "Mandated metadata sharing",
+    "filterQuery": "mandatedMetadataSharing",
+    "refineToggle": [],
+    "options": [
+      "required",
+      "suggested",
+      "not covered",
+      "other"
+    ],
+    "filterTypes": [
+      "policies"
+    ]
+  },
+  {
+    "filterName": "Sharing research software",
+    "filterQuery": "sharingResearchSoftware",
+    "refineToggle": [],
+    "options": [
+      "required",
+      "suggested",
+      "not covered",
+      "other"
+    ],
+    "filterTypes": [
+      "policies"
+    ]
+  },
+    {
+      "filterName": "DMP Development",
+      "filterQuery": "dmpDevelopment",
+      "refineToggle": [],
+      "options": [
+        "required",
+        "suggested",
+        "not covered",
+        "other"
+      ],
+      "filterTypes": [
+        "policies"
+      ]
+    },
+    {
+      "filterName": "Timing of DMP",
+      "filterQuery": "timingOfDmp",
+      "refineToggle": [],
+      "options": [
+        "pre-award",
+        "post-award",
+        "other",
+        "n/a"
+      ],
+      "filterTypes": [
+        "policies"
+      ]
+    }
+  ]
 }

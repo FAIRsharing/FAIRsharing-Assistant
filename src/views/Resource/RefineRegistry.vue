@@ -183,6 +183,11 @@
         class="block-category pb-5"
       > 
         <p>Below, you can select what sort of <b>{{ getCurrentRegistry }}</b> record you need.</p>
+        <p
+          v-if="getCurrentRegistry === 'Policy'"
+        >
+          Please note that curation is still in progress for our policies, and some search filters below might not give the expected result.
+        </p>
       </v-row>
       <AddOnFilters @filterSource="capitaliseText(getQueryParams['fairsharingRegistry'][0], null)" />
     </div>
