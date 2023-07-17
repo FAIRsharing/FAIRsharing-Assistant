@@ -300,7 +300,6 @@ export default {
     async getData() {
 
     },
-
     capitaliseText(text, type) {
       if (type === null || type === 'taxonomies') {
         // Upper case for first character only.

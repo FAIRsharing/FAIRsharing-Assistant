@@ -587,6 +587,8 @@ export default {
 
       _module.recordsLoading = true;
       // TODO: refactor this for brevity
+
+      // TODO: Bug is here; it doesn't check the store before modifying the query.
       let queryParam =  _module.generateQuery(val)[0];
       let run = _module.generateQuery(val)[1];
       if (run) {
@@ -674,7 +676,7 @@ export default {
     // This generates query parameters for the multi_tag_filter
     generateQuery(val) {
       let run = false;
-      let query = {};
+      let query = this.getQueryParams;
       let domains = val.filter(x => x.model === 'domain').map(x => x.label);
       if (domains.length) {
         query['domains'] = domains;
