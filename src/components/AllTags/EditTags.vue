@@ -667,7 +667,8 @@ export default {
         taxonomies: [],
         subjects: [],
         user_defined_tags: []
-      }
+      };
+      this.recordTags = [];
     },
     goHome() {
       this.clearResults();
