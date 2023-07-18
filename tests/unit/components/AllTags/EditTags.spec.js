@@ -10,10 +10,7 @@ import multiTagsFilter from "@/lib/GraphClient/queries/multiTagsFilter/multiTags
 
 const localVue = createLocalVue();
 localVue.use(Vuex);
-let getters, store;
-
-// TODO: This appears to not provide the required stores in the components.
-// TODO: i.e. `[vuex] module namespace not found in mapGetters(): multiTagsStore/`
+let store;
 
 multiTagsStore.getters = {
   getFairSharingRecords: () => {
@@ -37,7 +34,9 @@ multiTagsStore.getters = {
 }
 
 store = new Vuex.Store({
-  getters
+  modules: {
+    multiTagsStore: multiTagsStore,
+  }
 })
 
 const vuetify = new Vuetify({'icons':icons});
@@ -77,7 +76,5 @@ describe("EditTags.vue", function(){
     expect(wrapper.vm.tags).toStrictEqual([{id: 1, label: 'label', model: 'subject'}]);
   });
    */
-
-
 
 });

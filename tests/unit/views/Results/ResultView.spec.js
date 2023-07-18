@@ -2,6 +2,7 @@ import {createLocalVue, shallowMount} from "@vue/test-utils";
 import ResultView from "@/views/Results/ResultView.vue"
 import Vuetify from "vuetify"
 import Vuex from "vuex";
+import multiTagsStore from "@/store/multiTagsStore";
 
 const $router = { push: jest.fn() };
 let $route = {
@@ -12,35 +13,36 @@ let $route = {
 const localVue = createLocalVue();
 localVue.use(Vuex);
 
-let getters, store;
+let store;
 
-getters = {
-  multiTagsStore: () => {
+multiTagsStore.getters = {
+  getFairSharingRecords: () => {
+    return [
+      {
+        record: "Wibble",
+        registry: "Standard",
+        id: 123,
+      }
+    ]
+  },
+  getQueryParams:  () => {
     return {
-      getFairSharingRecords: [
-        {
-          record: "Wibble",
-          registry: "Standard",
-          id: 123,
-        }
-      ],
-      getQueryParams:  {
-        subjects: ['genetics'],
-        registry: ['standard']
-      },
-      getRefinedStatus: true,
-      getCurrentRegistry: 'standard'
+      subjects: ['genetics'],
+      registry: ['standard']
     }
-  }
+  },
+  getRefinedStatus: () => { return true },
+  getCurrentRegistry: () => { return 'standard' },
+  getSelectedTags: () => { return [] }
 }
 
 store = new Vuex.Store({
-  getters
+  modules: {
+    multiTagsStore: multiTagsStore,
+  }
 })
 
-
 const vuetify = new Vuetify();
-
 
 describe("ResultView.vue", function(){
   let wrapper;
