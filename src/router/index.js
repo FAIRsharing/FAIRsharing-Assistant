@@ -5,12 +5,6 @@ Vue.use(VueRouter);
 
 import {
   HomeView,
-  SubjectTypeView,
-  DomainTypeView,
-  DatabaseView,
-  StandardsView,
-  PoliciesView,
-  RefineView,
   ResultView,
   NotFound,
   ServerError,
@@ -35,36 +29,6 @@ let routes = [
     name: "RefineRegistry",
     path: "/refineregistry",
     component: RefineRegistry,
-  },
-  {
-    name: "SubjectTypeView",
-    path: "/subject",
-    component: SubjectTypeView,
-  },
-  {
-    name: "DomainTypeView",
-    path: "/domain",
-    component: DomainTypeView,
-  },
-  {
-    name: "DatabaseView",
-    path: "/database",
-    component: DatabaseView,
-  },
-  {
-    name: "StandardsView",
-    path: "/standards",
-    component: StandardsView,
-  },
-  {
-    name: "PoliciesView",
-    path: "/policies",
-    component: PoliciesView,
-  },
-  {
-    name: "RefineView",
-    path: "/refine-my-choice",
-    component: RefineView,
   },
   {
     name: "ResultView",

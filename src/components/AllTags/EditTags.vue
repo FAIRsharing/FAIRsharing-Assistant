@@ -74,8 +74,7 @@
           </v-col>
           <!-- Database card -->
           <v-col
-            cols="
-                  2"
+            cols="12"
             sm="12"
             md="3"
             lg="3"

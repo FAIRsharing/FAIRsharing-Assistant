@@ -181,7 +181,7 @@
       </v-row>
       <v-row
         class="block-category pb-5"
-      > 
+      >
         <p>Below, you can select what sort of <b>{{ getCurrentRegistry }}</b> record you need.</p>
         <p
           v-if="getCurrentRegistry === 'Policy'"
@@ -285,9 +285,9 @@ export default {
   },
   async mounted() {
     /*
-    console.log(JSON.stringify(this.getQueryParams));
-    console.log(JSON.stringify(this.getFairSharingRecords));
-     */
+        console.log(JSON.stringify(this.getQueryParams));
+        console.log(JSON.stringify(this.getFairSharingRecords));
+         */
     // If a user has come here then they've set the refinement status by choosing a registry
     if (!this.getCurrentRegistry) {
       this.$store.commit('multiTagsStore/setRefinedStatus', false);
@@ -313,11 +313,11 @@ export default {
     showResults() {
       // TODO: Query could perhaps be deleted.
       /*
-      const routeData = this.$router.resolve({
-        path: '/results',
-        //query: _module.generateQuery(_module.recordTags)[0] // TODO: Make a (better) generateQuery component
-      })
-       */
+            const routeData = this.$router.resolve({
+              path: '/results',
+              //query: _module.generateQuery(_module.recordTags)[0] // TODO: Make a (better) generateQuery component
+            })
+             */
       //window.open(routeData.href, '_blank')
       this.$router.push('/results');
     },
@@ -344,34 +344,34 @@ export default {
 
 <style scoped>
 table#tagsTable {
-  border-collapse: collapse;
-  width: 100%
+    border-collapse: collapse;
+    width: 100%
 }
 
 table#tagsTable td.titleCell {
-  width: 100px;
-  white-space: nowrap;
-  text-align: center;
-  font-size: 16px;
-  font-weight: bolder;
-  height: 55px;
+    width: 100px;
+    white-space: nowrap;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bolder;
+    height: 55px;
 }
 
 table#tagsTable tr {
-  border-collapse: collapse;
-  border-bottom: 10px solid white;
+    border-collapse: collapse;
+    border-bottom: 10px solid white;
 }
 
 .noBreak {
-  white-space: nowrap;
+    white-space: nowrap;
 }
 
 .limitWidth {
-  max-width: 800px;
+    max-width: 800px;
 }
 
 .whiteBorder {
-  border: 1px solid white !important;
+    border: 1px solid white !important;
 }
 
 </style>
