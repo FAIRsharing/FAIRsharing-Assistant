@@ -4,12 +4,16 @@ import GraphClient from "@/lib/GraphClient/GraphClient.js";
 import MultitagData from '../../../tests/fixtures/multiTag.json'
 
 describe('MultiTags store methods', () => {
-  const {actions, mutations} = multiTagsStore
+  const {actions, mutations, getters} = multiTagsStore
   const returnedVal = MultitagData;
   let state = {
+    queryParams: {},
     fairSharingRecords: [],
     error: false,
     loadingStatus: false,
+    refinedStatus: false,
+    currentRegistry: '',
+    selectedTags: []
   };
   let stub;
 
@@ -22,17 +26,17 @@ describe('MultiTags store methods', () => {
     stub.restore();
   });
 
-  it("can check fetchMultiTagsTerms actions with null parameters", async() => {
+  it("can check fetchMultiTagData actions with null parameters", async() => {
     const commit = jest.fn()
     const additionalParams = [null, null, null]
-    await actions.fetchMultiTagsTerms({ commit }, additionalParams)
+    await actions.fetchMultiTagData({ commit }, additionalParams)
     expect(commit).toHaveBeenCalledWith('setLoadingStatus', true);
   });
 
-  it("can check fetchMultiTagsTerms actions empty parameters", async() => {
+  it("can check fetchMultiTagData actions empty parameters", async() => {
     const commit = jest.fn()
     const additionalParams = [" ", " ", " "]
-    await actions.fetchMultiTagsTerms({ commit }, additionalParams)
+    await actions.fetchMultiTagData({ commit }, additionalParams)
     expect(commit).toHaveBeenCalledWith('setLoadingStatus', true);
   });
 
@@ -58,5 +62,126 @@ describe('MultiTags store methods', () => {
     mutations.resetFairSharingRecords(state);
     expect(state.fairSharingRecords).toStrictEqual([]);
   });
+
+  it("can check setQueryParams mutations", () => {
+    const params = {
+      dataAccessCondition: ["open"],
+      fairsharingRegistry: ["database"]
+    }
+    mutations.setQueryParams(state, params);
+    expect(state.queryParams).toStrictEqual(params);
+  });
+
+  it("can check setRefinedStatus mutations", () => {
+    const refinedStatus = false
+    mutations.setRefinedStatus(state, refinedStatus);
+    expect(state.refinedStatus).toStrictEqual(false);
+  });
+
+  it("can check setCurrentRegistry mutations", () => {
+    const currentRegistry = "Database"
+    mutations.setCurrentRegistry(state, currentRegistry);
+    expect(state.currentRegistry).toStrictEqual("Database");
+  });
+
+  it("can check setSelectedTags mutations", () => {
+    const selectedTags = [
+      {
+        "name": "ABC"
+      }
+    ]
+    mutations.setSelectedTags(state, selectedTags);
+    expect(state.selectedTags).toStrictEqual(selectedTags);
+  });
+
+  it("can check getFairSharingRecords getters", () => {
+    const stateValue = {
+      fairSharingRecords: [
+        {
+          id: 1,
+          name: "ABC",
+          registry:"Database",
+          status:"ready",
+          type:"repository"
+        }
+      ]
+    }
+
+    const result = [
+      {
+        id: 1,
+        name: "ABC",
+        registry:"Database",
+        status:"ready",
+        type:"repository"
+      }
+    ]
+
+    const builtData = getters.getFairSharingRecords(stateValue);
+    expect(builtData).toStrictEqual(result);
+
+  })
+
+  it("can check getQueryParams getters", () => {
+    const stateValue = {
+      queryParams: {
+        dataAccessCondition: ["open"],
+        fairsharingRegistry: ["database"]
+      }
+    }
+
+    const result = {
+      dataAccessCondition: ["open"],
+      fairsharingRegistry: ["database"]
+    }
+
+    const builtData = getters.getQueryParams(stateValue);
+    expect(builtData).toStrictEqual(result);
+
+  })
+
+  it("can check getLoadingStatus getters", () => {
+    const stateValue = {
+      loadingStatus: false
+    }
+
+    const result = false
+    const builtData = getters.getLoadingStatus(stateValue);
+    expect(builtData).toBe(result);
+
+  })
+
+  it("can check getRefinedStatus getters", () => {
+    const stateValue = {
+      refinedStatus: true
+    }
+
+    const result = true
+    const builtData = getters.getRefinedStatus(stateValue);
+    expect(builtData).toBe(result);
+
+  })
+
+  it("can check getCurrentRegistry getters", () => {
+    const stateValue = {
+      currentRegistry: "Database"
+    }
+
+    const result = "Database"
+    const builtData = getters.getCurrentRegistry(stateValue);
+    expect(builtData).toBe(result);
+
+  })
+
+  it("can check getSelectedTags getters", () => {
+    const stateValue = {
+      selectedTags: ["open"]
+    }
+
+    const result = ["open"]
+    const builtData = getters.getSelectedTags(stateValue);
+    expect(builtData).toStrictEqual(result);
+
+  })
 
 })
