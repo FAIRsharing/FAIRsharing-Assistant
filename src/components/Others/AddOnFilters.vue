@@ -55,7 +55,7 @@
 </template>
 
 <script>
-import {mapActions, mapGetters, mapMutations, mapState} from "vuex";
+import {mapActions, mapGetters} from "vuex";
 import addOnFilters from "@/data/addOnFilters.json"
 import recordTypeData from "@/data/recordTypeData.json";
 import Loaders from "@/components/Loaders/Loaders.vue";
@@ -73,7 +73,6 @@ export default {
 
   data:() => {
     return {
-      // filtersOpted:[],
       loading: false,
       prevRoute: null,
       topResult: '',
@@ -109,11 +108,6 @@ export default {
   },
 
   computed:{
-    ...mapGetters("bubbleSelectedStore", ['getAllResources', 'getTopResource', 'getResource', 'getSubject', 'getDomain']),
-    ...mapGetters("nodeListStore", ['getNodeList', 'getFilterLists']),
-    ...mapMutations("bubbleSelectedStore", ['resourceSelected']),
-    ...mapMutations("nodeListStore", ['nodeLists']),
-    ...mapState("variableTagStore", ["variableResponse", "loadingStatus"]),
     ...mapGetters('multiTagsStore', ["getQueryParams", "getCurrentRegistry"]),
     switchDisplay() {
       return this.onlySelect ? 'd-none' : 'd-flex'
@@ -137,12 +131,10 @@ export default {
           _module.typeSelected.push(type)
         })
       }
-      // await _module.readGeneralFilterParams();
       this.loading = false
     })
   },
   methods: {
-    ...mapActions("variableTagStore", ["fetchVariableTags"]),
     ...mapActions('multiTagsStore', ['fetchMultiTagData']),
     async checkCheckbox() {
       // TODO: Modify queryParams and trigger query.
@@ -165,90 +157,31 @@ export default {
 
       })
     } ,
-    // readGeneralFilterParams() {
-    //   // let _module = this;
-    //   let params = currentPath(this.currentRouteQuery);
-    //   // console.log("params::", params)
-    //   const paramKeys = Object.keys(params)
-    //   const paramValues = Object.values(params)
-    //   const filterSelected = {
-    //     "key" : paramKeys[1],
-    //     "value" : [paramValues[1]]
-    //   }
-    //   this.$store.commit("addOnFilterSelectedStore/filtersSelected",  filterSelected)
-    //
-    //   this.$store.commit("nodeListStore/filterLists",  [filterSelected])
-    //
-    //
-    //
-    //
-    //   // _module.selectTypeFilters.filter(filter => {
-    //   //   if(Object.keys(params).length){
-    //   //     Object.keys(params).forEach(key => {
-    //   //       if (filter["filterQuery"] === key) {
-    //   //
-    //   //         filter["refineToggle"] = params[key];
-    //   //         // console.log("params::", params)
-    //   //         // console.log("params[key]::", params[key])
-    //   //
-    //   //         // const filterSelected = {
-    //   //         //   "key" : params[key],
-    //   //         //   "value" : params[value]
-    //   //         // }
-    //   //         // this.map.set(`${filter["filterQuery"]}`, `${filter["refineToggle"]}`)
-    //   //         // _module.$store.commit("addOnFilterSelectedStore/filtersSelected", this.map);
-    //   //       }
-    //   //     })
-    //   //   // console.log(Object.keys(params))
-    //   //   // let selectedFilter = _module.selectTypeFilters.filter(filter =>
-    //   //   //   filter["filterQuery"] === Object.keys(params)[1]
-    //   //   // )
-    //   //   //
-    //   //   // selectedFilter[0].refineToggle = Object.values(params)[1]
-    //   //   // _module.map.set(selectedFilter[0]["filterQuery"], selectedFilter[0]["refineToggle"])
-    //   //   // _module.$store.commit("addOnFilterSelectedStore/filtersSelected", this.map);
-    //   //   // console.log("selectedFilter::", selectedFilter)
-    //   //   }
-    //   //   else if(this.getFilterLists.isFilter) {
-    //   //     this.getFilterLists.filtersList.forEach(item => {
-    //   //       if(filter["filterQuery"] === item["key"]) {
-    //   //         filter["refineToggle"] = item["value"];
-    //   //         this.map.set(`${filter["filterQuery"]}`, `${item["value"]}`)
-    //   //         _module.$store.commit("addOnFilterSelectedStore/filtersSelected", this.map);
-    //   //       }
-    //   //     })
-    //   //   }
-    //
-    //   // });
-    // },
+
     async readRegAndTypeFilterParams() {
       let _module = this;
-      let modified = false;
+      // let modified = false;
       let params = currentPath(this.currentRouteQuery);
       Object.keys(params).forEach(key => {
         if (key === 'registry') {
           if (_module.allowedRegistries.indexOf(params[key]) > -1) {
             _module.topResult = params[key];
-            modified = true;
+            // modified = true;
           }
         }
         if (key === 'record_type') {
           if (_module.allowedTypes.indexOf(params[key]) > -1) {
             _module.childResult = params[key];
-            modified = true;
+            // modified = true;
           }
         }
       })
-      // await this.readGeneralFilterParams()
-      if (modified) {
-        this.$store.commit('bubbleSelectedStore/resourceSelected', {topResourceSelected: _module.topResult, childResourceSelected: _module.childResult})
-
-        //When the user is directly landing on the refine page after selecting a card from the home page
-        const filtersSelected = this.getFilterLists.filtersList[0]
-        this.map.set(`${filtersSelected["key"]}`, `${filtersSelected["value"]}`)
-        await this.showResourceRecords(_module.topResult, _module.childResult, this.map)
-
-      }
+      // if (modified) {
+      //
+      //   //When the user is directly landing on the refine page after selecting a card from the home page
+      //   const filtersSelected = this.getFilterLists.filtersList[0]
+      //   this.map.set(`${filtersSelected["key"]}`, `${filtersSelected["value"]}`)
+      // }
     },
     selectFilters(){
       const prevRoute = localStorage.getItem("pageName");
@@ -286,42 +219,6 @@ export default {
       this.selectTypeFilters = registrySelectFilters
       this.conditionalDisplay()
     },
-    async showResourceRecords(topResult, childResult, filters) {
-      // let filtersOpted = []
-
-      // filters.forEach((value, key) => {
-      //   this.filtersOpted.push({key, value})
-      // });
-
-
-      // this.$store.commit("nodeListStore/filterLists",  this.filtersOpted)
-
-
-
-      //this.$emit("filterSource", "RefineResourceView")
-      this.$emit("filterSource", "RefineRegistry")
-      let isDatabase = false
-      if (topResult === "Database") {
-        isDatabase = true
-        topResult = ["repository", "knowledgebase", "knowledgebase_and_repository"]
-      }
-
-      let resourceSelected = ""
-      if(childResult || childResult.length) resourceSelected = childResult
-      else resourceSelected = topResult
-      await this.fetchVariableTags([resourceSelected, null, null, "resource", filters])
-
-      const resourceDetail = {
-        records: isDatabase ? "Database" : resourceSelected,
-        recordsNumber: this.variableResponse.length,
-        type: childResult ? "resource" : "resourceParent"
-      }
-      this.$store.commit("nodeListStore/nodeLists", [resourceDetail, "RefineResourceView"])
-    },
-    // remove (item) {
-    //   const index = this.filtersOpted.indexOf(item)
-    //   if (index >= 0) this.filtersOpted.splice(index, 1)
-    // },
   }
 };
 </script>
