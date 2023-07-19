@@ -40,6 +40,16 @@
   {
     "pageName": "ResultView",
     "title": "Search Results",
-    "subTitle": "Clicking on a link below will open the relevant record on the FAIRsharing site."
+    "subTitle": "Clicking on a link below will open the relevant record on the FAIRsharing site. You can filter your search results by typing in the box below."
+  },
+  {
+    "pageName": "AllTags",
+    "title": "Which area(s) of research would you like to explore?",
+    "subTitle": "Please search with the box below. The assistant will tell you how many records we have found that match your selection. When you're happy with your selection you can refine it in the next step or view the records."
+  },
+  {
+    "pageName": "RefineRegistry",
+    "title": "Refine your Choice",
+    "subTitle": "Here, you can choose what sort of record would be of use to you, selecting by type of record and its characteristics."
   }
 ]

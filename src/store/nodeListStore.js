@@ -1,3 +1,6 @@
+import isFilterPresent from "@/utils/Others/isFilterPresent"
+import deleteNode from "@/utils/Others/deleteNode"
+
 const state = {
   nodeList: {
     resourceNodeList: [],
@@ -24,16 +27,6 @@ const state = {
  */
 const isNodePresent = (recordArray, nodeItem) => {
   return recordArray.find(({records}) => records === nodeItem["records"])
-}
-
-/**
- *
- * @param recordArray - array of records
- * @param nodeItem - Object of a record
- * @returns {Array}
- */
-const deleteNode = (recordArray, nodeItem) => {
-  return recordArray.splice(recordArray.indexOf(nodeItem), 1)
 }
 
 const actions = {
@@ -108,7 +101,33 @@ const mutations = {
   },
 
   filterLists (state, noNullFilters){
-    state.filters.filtersList = noNullFilters
+    // console.log("noNullFilters::", noNullFilters)
+    // state.filters.filtersList = noNullFilters
+
+    const isFound = isFilterPresent(state.filters.filtersList, noNullFilters)
+
+    //If the no filter is selected
+    if (!Object.keys(noNullFilters).length) {
+      state.filters.filtersList.length = 0
+    }
+    //If the filter is not present in the array
+    else if(!isFound)  {
+      state.filters.filtersList.push(noNullFilters)
+    }
+
+    else {
+      state.filters.filtersList.forEach(item => {
+        if (item["key"] === noNullFilters["key"]) {
+          //When filters have a values
+          if(noNullFilters["value"] && noNullFilters["value"].length) {
+            item["value"] = noNullFilters["value"]
+          }
+        }
+        else {
+          deleteNode(state.filters.filtersList, item)
+        }
+      })
+    }
 
     if(state.filters.filtersList && state.filters.filtersList.length) state.filters.isFilter = true
     else state.filters.isFilter = false

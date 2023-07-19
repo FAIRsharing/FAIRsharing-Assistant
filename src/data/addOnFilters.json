@@ -1,5 +1,85 @@
 {
   "switch": [
+    {
+      "filterName": "Recommends at least one standard",
+      "filterQuery": "recommendsStandard",
+      "refineToggle": false,
+      "filterTypes": [
+        "policies"
+      ]
+    },
+    {
+      "filterName": "Recommends at least one database",
+      "filterQuery": "recommendsDatabase",
+      "refineToggle": false,
+      "filterTypes": [
+        "policies"
+      ]
+    },
+    {
+      "filterName": "Exceptions to data sharing",
+      "filterQuery": "exceptionsToDataSharing",
+      "refineToggle": false,
+      "filterTypes": [
+        "policies"
+      ]
+    },
+    {
+      "filterName": "Data Protection",
+      "filterQuery": "dataProtection",
+      "refineToggle": false,
+      "filterTypes": [
+        "policies"
+      ]
+    },
+    {
+      "filterName": "Updating of DMP",
+      "filterQuery": "updatingOfDmp",
+      "refineToggle": false,
+      "filterTypes": [
+        "policies"
+      ]
+    },
+    {
+      "filterName": "Licences for Outputs",
+      "filterQuery": "licencesForOutputs",
+      "refineToggle": false,
+      "filterTypes": [
+        "policies"
+      ]
+    },
+    {
+      "filterName": "Data Citation",
+      "filterQuery": "dataCitation",
+      "refineToggle": false,
+      "filterTypes": [
+        "policies"
+      ]
+    },
+    {
+      "filterName": "Data Preservation",
+      "filterQuery": "dataPreservation",
+      "refineToggle": false,
+      "filterTypes": [
+        "policies"
+      ]
+    },
+    {
+      "filterName": "Monitoring of Compliance",
+      "filterQuery": "monitoringOfCompliance",
+      "refineToggle": false,
+      "filterTypes": [
+        "policies"
+      ]
+    },
+    {
+      "filterName": "Data Availability Statement",
+      "filterQuery": "dataAvailabilityStatement",
+      "refineToggle": false,
+      "filterTypes": [
+        "policies"
+      ]
+    },
   {
     "filterName": "Has Publication",
     "filterQuery": "hasPublication",
@@ -26,14 +106,6 @@
     ]
   },
   {
-    "filterName": "Uses Persistent Identifier",
-    "filterQuery": "usesPersistentIdentifier",
-    "refineToggle": false,
-    "filterTypes": [
-      "database"
-    ]
-  },
-  {
     "filterName": "Data Preservation Policy",
     "filterQuery": "dataPreservationPolicy",
     "refineToggle": false,
@@ -54,12 +126,12 @@
   {
     "filterName": "Life Cycle Status",
     "filterQuery": "status",
-    "refineToggle": "",
+    "refineToggle": [],
     "options": [
-      "Ready",
-      "In development",
-      "Deprecated",
-      "Uncertain"
+      "ready",
+      "in_development",
+      "deprecated",
+      "uncertain"
     ],
     "filterTypes": [
       "database",
@@ -70,12 +142,12 @@
   {
     "filterName": "Data Access Condition",
     "filterQuery": "dataAccessCondition",
-    "refineToggle": "",
+    "refineToggle": [],
     "options": [
-      "Open",
-      "Partially open",
-      "Controlled",
-      "Not found"
+      "open",
+      "partially open",
+      "controlled",
+      "not found"
     ],
     "filterTypes": [
       "database"
@@ -84,13 +156,13 @@
   {
     "filterName": "Data curation",
     "filterQuery": "dataCuration",
-    "refineToggle": "",
+    "refineToggle": [],
     "options": [
-      "Manual",
-      "Automated",
-      "Manual/Automated",
-      "None",
-      "Not found"
+      "manual",
+      "automated",
+      "manual/automated",
+      "none",
+      "not found"
     ],
     "filterTypes": [
       "database"
@@ -99,12 +171,12 @@
   {
     "filterName": "Data Deposition Condition",
     "filterQuery": "dataDepositionCondition",
-    "refineToggle": "",
+    "refineToggle": [],
     "options": [
-      "Open",
-      "Controlled",
-      "Not found",
-      "Not applicable"
+      "open",
+      "controlled",
+      "not found",
+      "not applicable"
     ],
     "filterTypes": [
       "database"
@@ -113,11 +185,11 @@
   {
     "filterName": "Citation To Related Publications",
     "filterQuery": "citationToRelatedPublications",
-    "refineToggle": "",
+    "refineToggle": [],
     "options": [
-      "Yes",
-      "No",
-      "Not found"
+      "yes",
+      "no",
+      "not found"
     ],
     "filterTypes": [
       "database"
@@ -126,11 +198,11 @@
   {
     "filterName": "Data Access For Pre-Publication Review",
     "filterQuery": "dataAccessForPrePublicationReview",
-    "refineToggle": "",
+    "refineToggle": [],
     "options": [
-      "Yes",
-      "No",
-      "Not found"
+      "yes",
+      "no",
+      "not found"
     ],
     "filterTypes": [
       "database"
@@ -139,11 +211,11 @@
   {
     "filterName": "Data Contact Information",
     "filterQuery": "dataContactInformation",
-    "refineToggle": "",
+    "refineToggle": [],
     "options": [
-      "Yes",
-      "No",
-      "Not found"
+      "yes",
+      "no",
+      "not found"
     ],
     "filterTypes": [
       "database"
@@ -152,15 +224,85 @@
   {
     "filterName": "Data Versioning",
     "filterQuery": "dataVersioning",
-    "refineToggle": "",
+    "refineToggle": [],
     "options": [
-      "Yes",
-      "No",
-      "Not found"
+      "yes",
+      "no",
+      "not found"
     ],
     "filterTypes": [
       "database"
     ]
-  }
-]
+  },
+  {
+    "filterName": "Mandated data sharing",
+    "filterQuery": "mandatedDataSharing",
+    "refineToggle": [],
+    "options": [
+      "required",
+      "suggested",
+      "not covered",
+      "other"
+    ],
+    "filterTypes": [
+      "policies"
+    ]
+  },
+  {
+    "filterName": "Mandated metadata sharing",
+    "filterQuery": "mandatedMetadataSharing",
+    "refineToggle": [],
+    "options": [
+      "required",
+      "suggested",
+      "not covered",
+      "other"
+    ],
+    "filterTypes": [
+      "policies"
+    ]
+  },
+  {
+    "filterName": "Sharing research software",
+    "filterQuery": "sharingResearchSoftware",
+    "refineToggle": [],
+    "options": [
+      "required",
+      "suggested",
+      "not covered",
+      "other"
+    ],
+    "filterTypes": [
+      "policies"
+    ]
+  },
+    {
+      "filterName": "DMP Development",
+      "filterQuery": "dmpDevelopment",
+      "refineToggle": [],
+      "options": [
+        "required",
+        "suggested",
+        "not covered",
+        "other"
+      ],
+      "filterTypes": [
+        "policies"
+      ]
+    },
+    {
+      "filterName": "Timing of DMP",
+      "filterQuery": "timingOfDmp",
+      "refineToggle": [],
+      "options": [
+        "pre-award",
+        "post-award",
+        "other",
+        "n/a"
+      ],
+      "filterTypes": [
+        "policies"
+      ]
+    }
+  ]
 }

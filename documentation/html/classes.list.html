@@ -34,7 +34,7 @@
 			<li class="dropdown">
 				<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Global<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="global.html#currentPath">currentPath</a></li><li><a href="global.html#deleteNode">deleteNode</a></li><li><a href="global.html#getResourceRecords">getResourceRecords</a></li><li><a href="global.html#isNodePresent">isNodePresent</a></li><li><a href="global.html#pathTo">pathTo</a></li><li><a href="global.html#totalResourceRecords">totalResourceRecords</a></li>
+					<li><a href="global.html#currentPath">currentPath</a></li><li><a href="global.html#deleteNode">deleteNode</a></li><li><a href="global.html#isFilterPresent">isFilterPresent</a></li><li><a href="global.html#isNodePresent">isNodePresent</a></li><li><a href="global.html#pathTo">pathTo</a></li>
 				</ul>
 			</li>
 			
@@ -409,8 +409,8 @@
 	<dd class="tag-source">
 		<ul class="dummy">
 			<li>
-				<a href="store_nodeListStore.js.html">store/nodeListStore.js</a>,
-				 <a href="store_nodeListStore.js.html#sunlight-1-line-29">line 29</a>
+				<a href="utils_Others_deleteNode.js.html">utils/Others/deleteNode.js</a>,
+				 <a href="utils_Others_deleteNode.js.html#sunlight-1-line-7">line 7</a>
 			</li>
 		</ul>
 	</dd>
@@ -463,7 +463,7 @@
             
 <hr>
 <dt>
-    <h4 class="name" id="getResourceRecords"><span class="type-signature"></span>getResourceRecords()</h4>
+    <h4 class="name" id="isFilterPresent"><span class="type-signature"></span>isFilterPresent(filterArray, filterItem)</h4>
     
     
 </dt>
@@ -484,6 +484,8 @@
     <thead>
     <tr>
         
+        <th>Name</th>
+        
 
         <th>Type</th>
 
@@ -500,14 +502,10 @@
 
         <tr>
             
+                <td class="name"><code>filterArray</code></td>
+            
 
             <td class="type">
-            
-                
-<span class="param-type">Array</span>
-
-
-
             
             </td>
 
@@ -515,7 +513,25 @@
 
             
 
-            <td class="description last"><p>ResourceType</p></td>
+            <td class="description last"><p>array of filtersSelected</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>filterItem</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Object of a filter</p></td>
         </tr>
 
     
@@ -559,8 +575,8 @@
 	<dd class="tag-source">
 		<ul class="dummy">
 			<li>
-				<a href="utils_ResourceUtils_getResourceRecords.js.html">utils/ResourceUtils/getResourceRecords.js</a>,
-				 <a href="utils_ResourceUtils_getResourceRecords.js.html#sunlight-1-line-10">line 10</a>
+				<a href="utils_Others_isFilterPresent.js.html">utils/Others/isFilterPresent.js</a>,
+				 <a href="utils_Others_isFilterPresent.js.html#sunlight-1-line-7">line 7</a>
 			</li>
 		</ul>
 	</dd>
@@ -588,12 +604,6 @@
     <h5>Returns:</h5>
     
             
-<div class="param-desc">
-    <ul>
-<li>records of the resource</li>
-</ul>
-</div>
-
 
 
 <dl>
@@ -602,7 +612,7 @@
     </dt>
     <dd>
         
-<span class="param-type">Array</span>
+<span class="param-type">Object</span>
 
 
 
@@ -732,7 +742,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="store_nodeListStore.js.html">store/nodeListStore.js</a>,
-				 <a href="store_nodeListStore.js.html#sunlight-1-line-19">line 19</a>
+				 <a href="store_nodeListStore.js.html#sunlight-1-line-28">line 28</a>
 			</li>
 		</ul>
 	</dd>
@@ -953,162 +963,6 @@
     
 </dd>
 
-        
-            
-<hr>
-<dt>
-    <h4 class="name" id="totalResourceRecords"><span class="type-signature"></span>totalResourceRecords()</h4>
-    
-    
-</dt>
-<dd>
-
-    
-
-    
-
-    
-
-    
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params table table-striped">
-    <thead>
-    <tr>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Array</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>otherResourceType</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="utils_ResourceUtils_totalResourceRecords.js.html">utils/ResourceUtils/totalResourceRecords.js</a>,
-				 <a href="utils_ResourceUtils_totalResourceRecords.js.html#sunlight-1-line-5">line 5</a>
-			</li>
-		</ul>
-	</dd>
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <h5>Returns:</h5>
-    
-            
-<div class="param-desc">
-    <ul>
-<li>Total number of records for resource type</li>
-</ul>
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Number</span>
-
-
-
-    </dd>
-</dl>
-
-
-        
-
-    
-</dd>
-
         </dl>
     
 
@@ -1146,7 +1000,7 @@
 
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.2</a>
-	on Thu Jun 29th 2023 using the <a
+	on Tue Jul 18th 2023 using the <a
 	href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>
 </footer>

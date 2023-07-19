@@ -1,0 +1,65 @@
+{
+  "Database": [
+    {
+      "label": "Knowledgebase",
+      "value": "knowledgebase"
+    },
+    {
+      "label": "Repository",
+      "value": "repository"
+    },
+    {
+      "label": "Hybrid Knowledgebase/Repository",
+      "value": "knowledgebase_and_repository"
+    }
+  ],
+  "Standard": [
+    {
+      "label": "Model and format",
+      "value": "model_and_format"
+    },
+    {
+      "label": "Metric",
+      "value": "metric"
+    },
+    {
+      "label": "Terminology artefact",
+      "value": "terminology_artefact"
+    },
+    {
+      "label": "Reporting guideline",
+      "value": "reporting_guideline"
+    },
+    {
+      "label": "Identifier schema",
+      "value": "identifier_schema"
+    }
+  ],
+  "Policy": [
+    {
+      "label": "Journal",
+      "value": "journal"
+    },
+    {
+      "label": "Journal publisher",
+      "value": "journal_publisher"
+    },
+    {
+      "label": "Society",
+      "value": "society"
+    },
+    {
+      "label": "Project",
+      "value": "project"
+    },
+    {
+      "label": "Institution",
+      "value": "institution"
+    },
+    {
+      "label": "Funder",
+      "value": "funder"
+    }
+  ],
+  "Collection": [ ]
+}

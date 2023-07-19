@@ -5,16 +5,12 @@ Vue.use(VueRouter);
 
 import {
   HomeView,
-  SubjectTypeView,
-  DomainTypeView,
-  DatabaseView,
-  StandardsView,
-  PoliciesView,
-  RefineView,
   ResultView,
   NotFound,
   ServerError,
-  Licence
+  Licence,
+  AllTags,
+  RefineRegistry
 } from './routes'
 
 let routes = [
@@ -25,34 +21,14 @@ let routes = [
     component: HomeView,
   },
   {
-    name: "SubjectTypeView",
-    path: "/subject",
-    component: SubjectTypeView,
+    name: "AllTags",
+    path: "/researchfields",
+    component: AllTags,
   },
   {
-    name: "DomainTypeView",
-    path: "/domain",
-    component: DomainTypeView,
-  },
-  {
-    name: "DatabaseView",
-    path: "/database",
-    component: DatabaseView,
-  },
-  {
-    name: "StandardsView",
-    path: "/standards",
-    component: StandardsView,
-  },
-  {
-    name: "PoliciesView",
-    path: "/policies",
-    component: PoliciesView,
-  },
-  {
-    name: "RefineView",
-    path: "/refine-my-choice",
-    component: RefineView,
+    name: "RefineRegistry",
+    path: "/refineregistry",
+    component: RefineRegistry,
   },
   {
     name: "ResultView",

@@ -20,9 +20,9 @@ describe('breadCrumbStore store methods', () => {
   });
 
   it("can check filtersSelected mutations", () => {
-    const returnedVal = ["A", "B"]
+    const returnedVal = {"A": "B"}
     mutations.filtersSelected(state, returnedVal);
-    expect(state.filtersType).toBe(returnedVal);
+    expect(state.filtersType).toStrictEqual([returnedVal]);
   });
 
   it("can check resetFiltersSelected mutations", () => {
