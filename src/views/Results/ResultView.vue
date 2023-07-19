@@ -73,7 +73,7 @@
           </v-tooltip>
           <v-btn
             :disabled="!tagButtonActive"
-            color="accent white--text"
+            color="internal white--text"
             class="mr-10"
             @click="returnToTags()"
           >
@@ -94,7 +94,7 @@
           </v-tooltip>
           <v-btn
             :disabled="!registryButtonActive"
-            color="accent white--text"
+            color="internal white--text"
             class="mr-10"
             @click="returnToRegistries()"
           >
@@ -115,7 +115,7 @@
           </v-tooltip>
           <v-btn
             :disabled="!clearButtonActive"
-            color="accent2 white--text"
+            color="dev_color white--text"
             class="mr-10"
             @click="clearResults()"
           >
