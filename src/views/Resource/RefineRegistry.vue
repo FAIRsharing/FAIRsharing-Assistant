@@ -109,7 +109,7 @@
           </v-tooltip>
           <v-btn
             :disabled="!resultsButtonActive"
-            color="blue white--text"
+            color="internal white--text"
             class="mr-10"
             @click="showResults()"
           >
@@ -130,7 +130,7 @@
           </v-tooltip>
           <v-btn
             :disabled="!tagButtonActive"
-            color="blue white--text"
+            color="internal white--text"
             class="mr-10"
             @click="returnToTags()"
           >
@@ -151,7 +151,7 @@
           </v-tooltip>
           <v-btn
             :disabled="!clearButtonActive"
-            color="orange  white--text"
+            color="dev_color white--text"
             class="mr-10"
             @click="clearResults()"
           >
@@ -171,7 +171,7 @@
             <span> Return to the home page, clearing all tags and filters. </span>
           </v-tooltip>
           <v-btn
-            color="orange  white--text"
+            color="dev_color white--text"
             class="mr-10"
             @click="goHome()"
           >
@@ -216,10 +216,10 @@ export default {
         Collection: 'home_collection'
       },
       colors: {
-        domain: 'brown',
-        taxonomy: 'blue',
-        subject: 'orange',
-        user_defined_tag: 'grey'
+        domain: 'domain_color',
+        taxonomy: 'taxonomic_color',
+        subject: 'subject_color',
+        user_defined_tag: 'tags_color'
       },
     }
   },

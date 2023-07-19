@@ -44,12 +44,12 @@
   },
   {
     "pageName": "AllTags",
-    "title": "Which area(s) of research would you like to explore?",
-    "subTitle": "Please search with the box below. The assistant will tell you how many records we have found that match your selection. When you're happy with your selection you can refine it in the next step or view the records."
+    "title": "Define your area of research",
+    "subTitle": "By selecting the relevant subjects, domains and (if applicable) taxonomy, the Assistant will narrow your search to the records that most closely match your needs."
   },
   {
     "pageName": "RefineRegistry",
-    "title": "Refine your Choice",
-    "subTitle": "Here, you can choose what sort of record would be of use to you, selecting by type of record and its characteristics."
+    "title": "Define type and characteristics of the records",
+    "subTitle": "By selecting relevant values, the Assistant will narrow your search to the records that most closely match your needs."
   }
 ]
