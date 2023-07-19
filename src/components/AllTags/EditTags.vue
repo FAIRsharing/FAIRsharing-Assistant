@@ -207,7 +207,7 @@
             </v-tooltip>
             <v-btn
               :disabled="!resultsButtonActive"
-              color="blue white--text"
+              color="accent white--text"
               class="mr-10"
               @click="showResults()"
             >
@@ -228,7 +228,7 @@
             </v-tooltip>
             <v-btn
               :disabled="!clearButtonActive"
-              color="orange  white--text"
+              color="accent2 white--text"
               class="mr-10"
               @click="clearResults()"
             >
@@ -248,7 +248,7 @@
               <span> Return to the home page, clearing all tags and filters. </span>
             </v-tooltip>
             <v-btn
-              color="orange  white--text"
+              color="accent2 white--text"
               class="mr-10"
               @click="goHome()"
             >

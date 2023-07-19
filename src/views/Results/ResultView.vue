@@ -52,7 +52,9 @@
           </a>
         </template>
       </v-data-table>
-      <v-row>
+      <v-row
+        class="pb-10"
+      >
         <v-col
           class="text-center"
         >
@@ -71,7 +73,7 @@
           </v-tooltip>
           <v-btn
             :disabled="!tagButtonActive"
-            color="blue white--text"
+            color="accent white--text"
             class="mr-10"
             @click="returnToTags()"
           >
@@ -92,7 +94,7 @@
           </v-tooltip>
           <v-btn
             :disabled="!registryButtonActive"
-            color="blue white--text"
+            color="accent white--text"
             class="mr-10"
             @click="returnToRegistries()"
           >
@@ -113,7 +115,7 @@
           </v-tooltip>
           <v-btn
             :disabled="!clearButtonActive"
-            color="orange  white--text"
+            color="accent2 white--text"
             class="mr-10"
             @click="clearResults()"
           >
