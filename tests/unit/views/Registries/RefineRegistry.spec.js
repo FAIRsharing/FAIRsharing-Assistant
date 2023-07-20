@@ -1,10 +1,12 @@
 // TODO: Placeholder => need to overcome tedious issue:
 // TODO: Cannot read properties of undefined (reading 'subjects')
+import multiTagsStore from "@/store/multiTagsStore";
+
 it("does nothing of consequence", () => {
   expect("RefineRegistry").toMatch("RefineRegistry");
 });
 
-/*
+
 import {createLocalVue, shallowMount} from "@vue/test-utils";
 import RefineRegistry from "@/views/Resource/RefineRegistry.vue"
 import icons from '@/plugins/icons';
@@ -16,30 +18,33 @@ const $router = { push: jest.fn() };
 const localVue = createLocalVue();
 localVue.use(Vuex);
 
-let getters, store;
+let store;
 
-getters = {
-  multiTagsStore: () => {
+multiTagsStore.getters = {
+  getFairSharingRecords: () => {
+    return [
+      {
+        record: "Wibble",
+        registry: "Standard",
+        id: 123,
+      }
+    ]
+  },
+  getQueryParams:  () => {
     return {
-      getFairSharingRecords: [
-        {
-          record: "Wibble",
-          registry: "Standard",
-          id: 123,
-        }
-      ],
-      getQueryParams:  {
-        subjects: ['genetics'],
-        registry: ['standard']
-      },
-      getRefinedStatus: true,
-      getCurrentRegistry: 'standard'
+      subjects: ['genetics'],
+      registry: ['standard']
     }
-  }
+  },
+  getRefinedStatus: () => { return true },
+  getCurrentRegistry: () => { return 'standard' },
+  getSelectedTags: () => { return [] }
 }
 
 store = new Vuex.Store({
-  getters
+  modules: {
+    multiTagsStore: multiTagsStore,
+  }
 })
 
 const vuetify = new Vuetify({'icons': icons });
@@ -62,4 +67,3 @@ describe("RefineRegistry.vue", function(){
   });
 
 });
- */
