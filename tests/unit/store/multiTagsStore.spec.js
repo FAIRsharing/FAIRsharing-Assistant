@@ -58,9 +58,18 @@ describe('MultiTags store methods', () => {
     expect(state.loadingStatus).toBe(true);
   });
 
-  it("can check resetFairSharingRecords mutations", () => {
-    mutations.resetFairSharingRecords(state);
-    expect(state.fairSharingRecords).toStrictEqual([]);
+  it("can check resetMultiTagsRecords mutations", () => {
+    const returnedVal = {
+      queryParams : {},
+      fairSharingRecords : [],
+      error : false,
+      loadingStatus : false,
+      refinedStatus : false,
+      currentRegistry : '',
+      selectedTags : []
+    }
+    mutations.resetMultiTagsRecords(state);
+    expect(state).toStrictEqual(returnedVal);
   });
 
   it("can check setQueryParams mutations", () => {

@@ -296,7 +296,7 @@ export default {
     this.$store.commit('multiTagsStore/setRefinedStatus', true);
   },
   methods: {
-    ...mapActions('multiTagsStore', ['fetchMultiTagData']),
+    ...mapActions('multiTagsStore', ['fetchMultiTagData', 'resetMultiTags']),
     async getData() {
 
     },
@@ -322,11 +322,12 @@ export default {
       this.$router.push('/results');
     },
     clearResults() {
-      this.$store.commit('multiTagsStore/setRefinedStatus', false);
-      this.$store.commit('multiTagsStore/setQueryParams', {});
-      this.$store.commit('multiTagsStore/setFairSharingRecords', []);
-      this.$store.commit('multiTagsStore/setCurrentRegistry', null);
+      // this.$store.commit('multiTagsStore/setRefinedStatus', false);
+      // this.$store.commit('multiTagsStore/setQueryParams', {});
+      // this.$store.commit('multiTagsStore/setFairSharingRecords', []);
+      // this.$store.commit('multiTagsStore/setCurrentRegistry', null);
       this.$router.push('/researchfields');
+      this.resetMultiTags()
     },
     goHome() {
       this.$store.commit('multiTagsStore/setRefinedStatus', false);
