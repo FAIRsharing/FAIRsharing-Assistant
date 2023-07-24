@@ -66,7 +66,9 @@ export default {
       let _module = this;
       let queryParams = JSON.parse(JSON.stringify(_module.getQueryParams));
       queryParams['fairsharingRegistry'] = [ _module.choice.toLowerCase() ];
-      queryParams['recordType'] = _module.getTypeArray(_module.choice);
+      if (!queryParams['recordType']) {
+        queryParams['recordType'] = _module.getTypeArray(_module.choice);
+      }
       _module.$store.commit('multiTagsStore/setQueryParams', queryParams);
       _module.$store.commit('multiTagsStore/setCurrentRegistry', _module.choice);
       _module.$router.push(_module.link);
