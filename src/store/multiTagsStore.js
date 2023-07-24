@@ -17,7 +17,7 @@ const state = {
 const actions = {
 
   resetMultiTags({commit}) {
-    commit('resetFairSharingRecords');
+    commit('resetMultiTagsRecords');
   },
 
   // TODO: This query is a duplicate of the above fetch method. The one above can be deleted if the components
@@ -37,7 +37,15 @@ const actions = {
 const mutations = {
   setFairSharingRecords(state, fairSharingRecords) { state.fairSharingRecords = fairSharingRecords },
   setLoadingStatus(state, loadingStatus) { state.loadingStatus = loadingStatus },
-  resetFairSharingRecords(state) {state.fairSharingRecords = []},
+  resetMultiTagsRecords(state) {
+    state.queryParams = {},
+    state.fairSharingRecords = [],
+    state.error = false,
+    state.loadingStatus = false,
+    state.refinedStatus = false,
+    state.currentRegistry = '',
+    state.selectedTags = []
+  },
   setQueryParams(state, params) { state.queryParams = params },
   setRefinedStatus(state, refinedStatus) { state.refinedStatus = refinedStatus },
   setCurrentRegistry(state, currentRegistry) { state.currentRegistry = currentRegistry },
