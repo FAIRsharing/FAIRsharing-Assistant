@@ -59,7 +59,7 @@ import {mapActions, mapGetters} from "vuex";
 import addOnFilters from "@/data/addOnFilters.json"
 import recordTypeData from "@/data/recordTypeData.json";
 import Loaders from "@/components/Loaders/Loaders.vue";
-import currentPath from "@/utils/Others/currentPath"
+import currentPath from "@/utils/currentPath"
 import SelectFilter from "@/components/Others/SelectFilter.vue"
 import SwitchFilter from "@/components/Others/SwitchFilter.vue"
 
