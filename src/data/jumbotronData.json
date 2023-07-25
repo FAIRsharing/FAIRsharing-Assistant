@@ -1,7 +1,8 @@
 [
   {
     "pageName": "HomeView",
-    "title": "FAIRsharing Assistant"
+    "title": "FAIRsharing Assistant",
+    "tempSubTitle": "Beta"
   },
   {
     "pageName": "StandardsView",

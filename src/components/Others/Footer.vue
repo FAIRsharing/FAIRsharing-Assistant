@@ -2,7 +2,7 @@
   <div class="footer-container white--text pt-5 py-2 px-6">
     <!--  Licence and copy right  -->
     <p class="mb-0">
-      β The FAIRsharing Assistant is currently in beta. Please <a href="mailto:contact@fairsharing.org">contact us</a> if you wish to share feedback.
+      <sup>β</sup> The FAIRsharing Assistant is currently in beta. Please <a href="mailto:contact@fairsharing.org">contact us</a> if you wish to share feedback.
     </p>
     <p class="mb-0">
       <sup style="font-size: 12px">*</sup> FAIRsharing uses ‘data’ to refer to datasets, software, materials or any other digital object.

@@ -131,7 +131,7 @@
 import Jumbotron from "@/components/Navigation/Jumbotron";
 import GraphClient from "@/lib/GraphClient/GraphClient";
 import multiTagsNonExactFilter from "@/lib/GraphClient/queries/multiTagsFilter/multiTagsFilter.json";
-import currentPath from "@/utils/Others/currentPath"
+import currentPath from "@/utils/currentPath"
 import { mapGetters } from "vuex";
 
 const CLIENT = new GraphClient();
