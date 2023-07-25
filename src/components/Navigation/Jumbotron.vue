@@ -20,7 +20,10 @@
       style="z-index: 2"
       :class="getJumbotronData['pageName'] === 'HomeView' ? 'text-center' : getJumbotronData['pageName'] === 'Licence'? 'text-center' : 'text-left'"
     >
-      {{ getJumbotronData["title"] }} <em v-if="getJumbotronData['tempSubTitle']">{{ getJumbotronData["tempSubTitle"] }}</em>
+      {{ getJumbotronData["title"] }} <em
+        v-if="getJumbotronData['tempSubTitle']"
+        class="green--text"
+      >{{ getJumbotronData["tempSubTitle"] }}</em>
     </h1>
 
     <h2
