@@ -65,6 +65,4 @@ li {
   border-top: 3px dashed #253442;
 }
 
-
-
 </style>
