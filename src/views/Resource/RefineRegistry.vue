@@ -265,7 +265,7 @@ export default {
     },
     clearButtonActive() {
       let _module = this;
-      if (_module.getFairSharingRecords.length > 0) {
+      if (_module.getFairSharingRecords && _module.getFairSharingRecords.length > 0) {
         return true;
       }
       else if (Object.keys(_module.getQueryParams).length > 0) {
