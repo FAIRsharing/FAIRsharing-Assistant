@@ -277,7 +277,10 @@ export default {
       return false;
     },
     resultsButtonActive() {
-      return this.getFairSharingRecords.length > 0;
+      if (this.getFairSharingRecords) {
+        return this.getFairSharingRecords.length > 0;
+      }
+      return false;
     },
     tagButtonActive() {
       return true;
