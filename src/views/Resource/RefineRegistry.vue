@@ -277,8 +277,9 @@ export default {
       return false;
     },
     resultsButtonActive() {
-      if (this.getFairSharingRecords) {
-        return this.getFairSharingRecords.length > 0;
+      let _module = this;
+      if (_module.getFairSharingRecords && _module.getFairSharingRecords.length > 0) {
+        return true;
       }
       return false;
     },
