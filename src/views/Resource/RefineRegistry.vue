@@ -265,7 +265,7 @@ export default {
     },
     clearButtonActive() {
       let _module = this;
-      if (_module.getFairSharingRecords.length > 0) {
+      if (_module.getFairSharingRecords && _module.getFairSharingRecords.length > 0) {
         return true;
       }
       else if (Object.keys(_module.getQueryParams).length > 0) {
@@ -277,7 +277,11 @@ export default {
       return false;
     },
     resultsButtonActive() {
-      return this.getFairSharingRecords.length > 0;
+      let _module = this;
+      if (_module.getFairSharingRecords && _module.getFairSharingRecords.length > 0) {
+        return true;
+      }
+      return false;
     },
     tagButtonActive() {
       return true;
@@ -313,7 +317,7 @@ export default {
     showResults() {
       // TODO: Query could perhaps be deleted.
       /*
-            const routeData = this.$router.resolve({
+           const routeData = this.$router.resolve({
               path: '/results',
               //query: _module.generateQuery(_module.recordTags)[0] // TODO: Make a (better) generateQuery component
             })
