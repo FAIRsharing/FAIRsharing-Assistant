@@ -660,6 +660,7 @@ export default {
       this.$store.commit('multiTagsStore/setRefinedStatus', false);
       this.$store.commit('multiTagsStore/setQueryParams', {});
       this.$store.commit('multiTagsStore/setFairSharingRecords', []);
+      this.$store.commit('multiTagsStore/setSelectedTags', []);
       this.$store.commit('multiTagsStore/setCurrentRegistry', null);
       this.selectedTags = {
         domains: [],
