@@ -67,14 +67,4 @@ describe("EditTags.vue", function(){
   it("can be instantiated", () => {
     expect(wrapper.vm.$options.name).toMatch("EditTags");
   });
-
-  /*
-  it("can get tags", async () => {
-    expect(wrapper.vm.recordTags).toStrictEqual([]);
-    let tags = await wrapper.vm.getTags('label');
-    console.log("TAGS: " + JSON.stringify(tags));
-    expect(wrapper.vm.tags).toStrictEqual([{id: 1, label: 'label', model: 'subject'}]);
-  });
-   */
-
 });

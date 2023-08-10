@@ -48,10 +48,6 @@ export default {
       type: Number
     }
   },
-  data() {
-    return {
-    }
-  },
   computed: {
     ...mapGetters('multiTagsStore', ["getCurrentRegistry"]),
   },

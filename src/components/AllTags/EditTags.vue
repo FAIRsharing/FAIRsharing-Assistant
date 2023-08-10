@@ -88,68 +88,9 @@
           <v-col
             class="text-center"
           >
-            <v-tooltip right>
-              <template #activator="{ on, attrs }">
-                <v-icon
-                  v-bind="attrs"
-                  small
-                  class="grey--text mr-1"
-                  v-on="on"
-                >
-                  fa-question-circle
-                </v-icon>
-              </template>
-              <span> See the list of FAIRsharing records matching your selections below. </span>
-            </v-tooltip>
-            <v-btn
-              :disabled="!resultsButtonActive"
-              color="internal white--text"
-              class="mr-10"
-              @click="showResults()"
-            >
-              View records
-            </v-btn>
-            <v-tooltip right>
-              <template #activator="{ on, attrs }">
-                <v-icon
-                  v-bind="attrs"
-                  small
-                  class="grey--text mr-1"
-                  v-on="on"
-                >
-                  fa-question-circle
-                </v-icon>
-              </template>
-              <span> This will clear all filters and tags. </span>
-            </v-tooltip>
-            <v-btn
-              :disabled="!clearButtonActive"
-              color="dev_color white--text"
-              class="mr-10"
-              @click="clearResults()"
-            >
-              Clear all selections
-            </v-btn>
-            <v-tooltip right>
-              <template #activator="{ on, attrs }">
-                <v-icon
-                  v-bind="attrs"
-                  small
-                  class="grey--text mr-1"
-                  v-on="on"
-                >
-                  fa-question-circle
-                </v-icon>
-              </template>
-              <span> Return to the home page, clearing all tags and filters. </span>
-            </v-tooltip>
-            <v-btn
-              color="dev_color white--text"
-              class="mr-10"
-              @click="goHome()"
-            >
-              Home
-            </v-btn>
+            <ViewRecords />
+            <ClearAllSelections @clearAll="clearAllResults" />
+            <GoHome @startOver="goHome" />
           </v-col>
         </v-row>
         <v-row>
@@ -304,15 +245,18 @@ import GraphClient from "@/lib/GraphClient/GraphClient.js"
 import Loaders from "@/components/Loaders/Loaders.vue";
 import multiTagsFilter from "@/lib/GraphClient/queries/multiTagsFilter/multiTagsFilter.json";
 import TagsCard from "@/components/AllTags/TagsCard.vue";
-const graphClient = new GraphClient();
+import ViewRecords from "@/components/AllTags/ViewRecords.vue";
+import ClearAllSelections from "@/components/AllTags/ClearAllSelections.vue"
+import GoHome from "@/components/AllTags/GoHome.vue";
 
+
+const graphClient = new GraphClient();
 const MULTI_TAGS = JSON.parse(JSON.stringify(multiTagsFilter));
 MULTI_TAGS.queryParam = {};
 
 export default {
   name: "EditTags",
-  //components: {KeywordTooltip},
-  components: { Loaders, TagsCard },
+  components: {GoHome, ViewRecords, Loaders, TagsCard, ClearAllSelections},
   mixins: [],
   data(){
     return {
@@ -432,28 +376,6 @@ export default {
         }
       }
     },
-    clearButtonActive() {
-      let _module = this;
-      if (_module.getFairSharingRecords && _module.getFairSharingRecords.length > 0) {
-        return true;
-      }
-      else if (_module.getQueryParams && Object.keys(_module.getQueryParams).length > 0) {
-        return true;
-      }
-      else if (_module.getRefinedStatus) {
-        return true;
-      }
-      else if (_module.getCurrentRegistry) {
-        return true;
-      }
-      return false;
-    },
-    resultsButtonActive() {
-      if (!this.getFairSharingRecords) {
-        return false;
-      }
-      return this.getFairSharingRecords.length > 0;
-    }
   },
   watch: {
     buttonLabel(){
@@ -509,7 +431,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions('multiTagsStore', ['fetchMultiTagData']),
+    ...mapActions('multiTagsStore', ['fetchMultiTagData', 'resetMultiTags']),
     async getTags(queryString) {
       let tagQueryCopy = JSON.parse(JSON.stringify(tagsQuery));
       if (queryString) tagQueryCopy.queryParam = {q: queryString};
@@ -536,35 +458,14 @@ export default {
         return text.replace(/(^\w{1})|(\s{1}\w{1})/g, match => match.toUpperCase());
       }
     },
-    showResults() {
-      let _module = this;
-      // TODO: Query could perhaps be deleted.
-      /*
-      const routeData = this.$router.resolve({
-        path: '/results',
-        query: _module.generateQuery(_module.recordTags)[0]
-      })
-       */
-      //window.open(routeData.href, '_blank')
-      _module.$router.push('/results')
+
+    clearAllResults(allBlankData) {
+      this.selectedTags = allBlankData[0]
+      this.recordTags = allBlankData[1];
     },
-    clearResults() {
-      this.$store.commit('multiTagsStore/setRefinedStatus', false);
-      this.$store.commit('multiTagsStore/setQueryParams', {});
-      this.$store.commit('multiTagsStore/setFairSharingRecords', []);
-      this.$store.commit('multiTagsStore/setSelectedTags', []);
-      this.$store.commit('multiTagsStore/setCurrentRegistry', null);
-      this.selectedTags = {
-        domains: [],
-        taxonomies: [],
-        subjects: [],
-        user_defined_tags: []
-      };
-      this.recordTags = [];
-    },
-    goHome() {
-      this.clearResults();
-      this.$router.push('/')
+    goHome(allBlankData) {
+      this.selectedTags = allBlankData[0]
+      this.recordTags = allBlankData[1];
     },
     // This generates query parameters for the multi_tag_filter
     generateQuery(val) {
