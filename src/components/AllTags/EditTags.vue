@@ -31,46 +31,20 @@
       v-model="formValid"
     >
       <v-container fluid>
-        <!-- Standard card -->
         <v-row
           class="block-category pb-5"
         >
+          <!-- Standard card -->
           <v-col
             cols="2"
             sm="12"
             md="3"
             lg="3"
           >
-            <v-card
-              class="mx-auto block-category__card"
-              :style="registrySelected('Standard') ? 'border: 2px solid red;' : 'border: 1px solid white;'"
-              max-width="350"
-              height="250"
-            >
-              <div class="white--text d-flex flex-column justify-center block-category__card__gradiant">
-                <div
-                  style="height: 136px"
-                  class="d-flex justify-center"
-                >
-                  <v-img
-                    class="mt-5"
-                    contain
-                    height="100px"
-                    :src="$vuetify.icons.values['home_standard'].icon"
-                  />
-                </div>
-                <v-card-title class="d-inline text-h4 text-md-h5 text-lg-h4 text-center">
-                  {{ recordsCount['Standard'] }} Standards
-                </v-card-title>
-              </div>
-              <v-card-actions class="text-center d-block">
-                <RefineButton 
-                  link="/refineregistry"
-                  choice="Standard"
-                  :count="recordsCount['Standard']"
-                />
-              </v-card-actions>
-            </v-card>
+            <TagsCard
+              registry="Standard"
+              :records-count="recordsCount['Standard']"
+            />
           </v-col>
           <!-- Database card -->
           <v-col
@@ -79,36 +53,10 @@
             md="3"
             lg="3"
           >
-            <v-card
-              class="mx-auto block-category__card"
-              :style="registrySelected('Database') ? 'border: 2px solid red;' : 'border: 1px solid white;'"
-              max-width="350"
-              height="250"
-            >
-              <div class="white--text d-flex flex-column justify-center block-category__card__gradiant">
-                <div
-                  style="height: 136px"
-                  class="d-flex justify-center"
-                >
-                  <v-img
-                    class="mt-5"
-                    contain
-                    height="100px"
-                    :src="$vuetify.icons.values['home_db'].icon"
-                  />
-                </div>
-                <v-card-title class="d-inline text-h4 text-md-h5 text-lg-h4 text-center">
-                  {{ recordsCount['Database'] }} Databases
-                </v-card-title>
-              </div>
-              <v-card-actions class="text-center d-block">
-                <RefineButton
-                  link="/refineregistry"
-                  choice="Database"
-                  :count="recordsCount['Database']"
-                />
-              </v-card-actions>
-            </v-card>
+            <TagsCard
+              registry="Database"
+              :records-count="recordsCount['Database']"
+            />
           </v-col>
           <!-- Policy card -->
           <v-col
@@ -117,36 +65,10 @@
             md="3"
             lg="3"
           >
-            <v-card
-              class="mx-auto block-category__card"
-              :style="registrySelected('Policy') ? 'border: 2px solid red;' : 'border: 1px solid white;'"
-              max-width="350"
-              height="250"
-            >
-              <div class="white--text d-flex flex-column justify-center block-category__card__gradiant">
-                <div
-                  style="height: 136px"
-                  class="d-flex justify-center"
-                >
-                  <v-img
-                    class="mt-5"
-                    contain
-                    height="100px"
-                    :src="$vuetify.icons.values['home_policies'].icon"
-                  />
-                </div>
-                <v-card-title class="d-inline text-h4 text-md-h5 text-lg-h4 text-center">
-                  {{ recordsCount['Policy'] }} Policies
-                </v-card-title>
-              </div>
-              <v-card-actions class="text-center d-block">
-                <RefineButton
-                  link="/refineregistry"
-                  choice="Policy"
-                  :count="recordsCount['Policy']"
-                />
-              </v-card-actions>
-            </v-card>
+            <TagsCard
+              registry="Policy"
+              :records-count="recordsCount['Policy']"
+            />
           </v-col>
           <!-- collection card -->
           <v-col
@@ -155,36 +77,10 @@
             md="3"
             lg="3"
           >
-            <v-card
-              class="mx-auto block-category__card"
-              :style="registrySelected('Collection') ? 'border: 2px solid red;' : 'border: 1px solid white;'"
-              max-width="350"
-              height="250"
-            >
-              <div class="white--text d-flex flex-column justify-center block-category__card__gradiant">
-                <div
-                  style="height: 136px"
-                  class="d-flex justify-center"
-                >
-                  <v-img
-                    class="mt-5"
-                    contain
-                    height="100px"
-                    :src="$vuetify.icons.values['home_collections'].icon"
-                  />
-                </div>
-                <v-card-title class="d-inline text-h4 text-md-h5 text-lg-h4 text-center">
-                  {{ recordsCount['Collection'] }} Collections
-                </v-card-title>
-              </div>
-              <v-card-actions class="text-center d-block">
-                <RefineButton
-                  link="/refineregistry"
-                  choice="Collection"
-                  :count="recordsCount['Collection']"
-                />
-              </v-card-actions>
-            </v-card>
+            <TagsCard
+              registry="Collection"
+              :records-count="recordsCount['Collection']"
+            />
           </v-col>
         </v-row>
         <!-- end of result cards -->
@@ -407,15 +303,16 @@ import tagsQuery from "@/lib/GraphClient/queries/geTags.json"
 import GraphClient from "@/lib/GraphClient/GraphClient.js"
 import Loaders from "@/components/Loaders/Loaders.vue";
 import multiTagsFilter from "@/lib/GraphClient/queries/multiTagsFilter/multiTagsFilter.json";
-import RefineButton from '@/components/AllTags/RefineButton.vue';
+import TagsCard from "@/components/AllTags/TagsCard.vue";
 const graphClient = new GraphClient();
+
 const MULTI_TAGS = JSON.parse(JSON.stringify(multiTagsFilter));
 MULTI_TAGS.queryParam = {};
 
 export default {
   name: "EditTags",
   //components: {KeywordTooltip},
-  components: { Loaders, RefineButton },
+  components: { Loaders, TagsCard },
   mixins: [],
   data(){
     return {
@@ -621,12 +518,7 @@ export default {
         this.tags = tags.searchTags;
       }
     },
-    registrySelected(registry) {
-      if (registry === this.getCurrentRegistry) {
-        return true;
-      }
-      return false;
-    },
+
     removeTag(id){
       this.recordTags = this.recordTags.filter(el => el.id !== id);
       this.$store.commit('multiTagsStore/setSelectedTags', this.recordTags);
@@ -738,32 +630,3 @@ table#tagsTable tr {
 
 </style>
 
-<style scoped lang="scss">
-.block-category {
-  &__card {
-    transition: all .2ms ease;
-    -webkit-transition: all .2s ease;
-    -moz-transition: all .2s ease;
-    -o-transition: all .2s ease;
-    box-shadow: 0 1rem 2rem rgba(black, .15) !important;
-    -webkit-box-shadow: 0 1rem 2rem rgba(black, .15) !important;
-    -moz-box-shadow: 0 1rem 2rem rgba(black, .15) !important;
-    -o-box-shadow: 0 1rem 2rem rgba(black, .15) !important;
-
-    &:hover {
-      transform: scale(1.05);
-      -moz-transform: scale(1.05);
-      -webkit-transform: scale(1.05);
-      -o-transform: scale(1.05);
-    }
-
-    &__gradiant {
-      height: 200px;
-      background: rgb(171, 171, 171);
-    }
-  }
-}
-.v-divider {
-  margin: 8px;
-}
-</style>
