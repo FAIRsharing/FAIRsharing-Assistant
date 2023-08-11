@@ -10,13 +10,14 @@
     </v-fade-transition>
     <!-- alert goes here -->
     <v-row
+      v-if="getRefinedStatus"
       class="block-category pb-5"
     >
       <v-col
         cols="12"
       >
         <v-alert
-          v-if="getRefinedStatus"
+
           density="compact"
           type="info"
           variant="tonal"
@@ -31,58 +32,31 @@
       v-model="formValid"
     >
       <v-container fluid>
-        <v-row
-          class="block-category pb-5"
+        <div
+          class="block-category pb-5 d-flex align-center"
+          :class="{'flex-column': $vuetify.breakpoint.smAndDown}"
         >
           <!-- Standard card -->
-          <v-col
-            cols="2"
-            sm="12"
-            md="3"
-            lg="3"
-          >
-            <TagsCard
-              registry="Standard"
-              :records-count="recordsCount['Standard']"
-            />
-          </v-col>
+          <TagsCard
+            registry="Standard"
+            :records-count="recordsCount['Standard']"
+          />
           <!-- Database card -->
-          <v-col
-            cols="12"
-            sm="12"
-            md="3"
-            lg="3"
-          >
-            <TagsCard
-              registry="Database"
-              :records-count="recordsCount['Database']"
-            />
-          </v-col>
+          <TagsCard
+            registry="Database"
+            :records-count="recordsCount['Database']"
+          />
           <!-- Policy card -->
-          <v-col
-            cols="2"
-            sm="12"
-            md="3"
-            lg="3"
-          >
-            <TagsCard
-              registry="Policy"
-              :records-count="recordsCount['Policy']"
-            />
-          </v-col>
+          <TagsCard
+            registry="Policy"
+            :records-count="recordsCount['Policy']"
+          />
           <!-- collection card -->
-          <v-col
-            cols="2"
-            sm="12"
-            md="3"
-            lg="3"
-          >
-            <TagsCard
-              registry="Collection"
-              :records-count="recordsCount['Collection']"
-            />
-          </v-col>
-        </v-row>
+          <TagsCard
+            registry="Collection"
+            :records-count="recordsCount['Collection']"
+          />
+        </div>
         <!-- end of result cards -->
         <div
           class="utilityButtons d-flex flex-row justify-space-around my-6 full-width margin-auto"

@@ -30,10 +30,8 @@ export default {
   computed: {
     ...mapGetters('multiTagsStore', ["getFairSharingRecords"]),
     resultsButtonActive() {
-      if (!this.getFairSharingRecords) {
-        return false;
-      }
-      return this.getFairSharingRecords.length > 0;
+      if (this.getFairSharingRecords && this.getFairSharingRecords.length) return true;
+      else return false;
     }
   },
   methods: {

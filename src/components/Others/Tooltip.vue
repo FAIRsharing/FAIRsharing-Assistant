@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-tooltip right>
+    <v-tooltip top>
       <template #activator="{ on, attrs }">
         <v-icon
           v-bind="attrs"

@@ -1,6 +1,7 @@
 <template xmlns:v-slot="http://www.w3.org/1999/XSL/Transform">
   <v-card
-    class="mx-auto block-category__card"
+    class="mx-3 block-category__card full-width"
+    :class="{'my-3': $vuetify.breakpoint.smAndDown}"
     :style="registrySelected(registry) ? 'border: 2px solid red;' : 'border: 1px solid white;'"
     max-width="350"
     height="250"
@@ -11,8 +12,9 @@
         class="d-flex justify-center"
       >
         <v-img
-          class="mt-5"
+          class="mt-5 full-width"
           contain
+          max-width="200px"
           height="100px"
           :src="$vuetify.icons.values[registryIcons(registry)].icon"
         />
