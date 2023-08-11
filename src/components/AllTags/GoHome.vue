@@ -1,21 +1,12 @@
 <template>
-  <div>
-    <v-tooltip right>
-      <template #activator="{ on, attrs }">
-        <v-icon
-          v-bind="attrs"
-          small
-          class="grey--text mr-1"
-          v-on="on"
-        >
-          fa-question-circle
-        </v-icon>
-      </template>
-      <span> Return to the home page, clearing all tags and filters. </span>
-    </v-tooltip>
+  <div
+    class="d-flex align-center"
+    :class="{'mb-6 mr-2 full-width utilityButton': $vuetify.breakpoint.smAndDown}"
+  >
+    <Tooltip :tooltip-text="tooltipText" />
     <v-btn
+      :block="$vuetify.breakpoint.smAndDown"
       color="dev_color white--text"
-      class="mr-10"
       @click="goHome()"
     >
       Home
@@ -25,9 +16,16 @@
 
 <script>
 import {mapActions} from "vuex";
+import Tooltip from "@/components/Others/Tooltip.vue";
 
 export default {
   name: 'GoHome',
+  components: {Tooltip},
+  data(){
+    return {
+      tooltipText: "Return to the home page, clearing all tags and filters."
+    }
+  },
   methods: {
     ...mapActions('multiTagsStore', ['resetMultiTags']),
     goHome() {
@@ -47,3 +45,9 @@ export default {
 }
 
 </script>
+
+<style scoped>
+.utilityButton {
+    max-width: 320px
+}
+</style>

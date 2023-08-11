@@ -1,23 +1,16 @@
 <template>
-  <div>
-    <v-tooltip right>
-      <template #activator="{ on, attrs }">
-        <v-icon
-          v-bind="attrs"
-          small
-          class="grey--text mr-1"
-          v-on="on"
-        >
-          fa-question-circle
-        </v-icon>
-      </template>
-      <span> This will clear all filters and tags. </span>
-    </v-tooltip>
+  <div
+    class="d-flex align-center"
+    :class="{'mb-6 mr-2 full-width utilityButton': $vuetify.breakpoint.smAndDown}"
+  >
+    <Tooltip :tooltip-text="tooltipText" />
     <v-btn
+      :block="$vuetify.breakpoint.smAndDown"
       :disabled="!clearButtonActive"
       color="dev_color white--text"
-      class="mr-10"
-      @click="clearResults()"
+
+      @click="
+        clearResults()"
     >
       Clear all selections
     </v-btn>
@@ -26,9 +19,16 @@
 
 <script>
 import {mapActions, mapGetters} from "vuex";
+import Tooltip from "@/components/Others/Tooltip.vue";
 
 export default {
   name: 'ClearAllSelections',
+  components: {Tooltip},
+  data(){
+    return {
+      tooltipText: "This will clear all filters and tags."
+    }
+  },
   computed: {
     ...mapGetters('multiTagsStore', ["getFairSharingRecords", "getQueryParams", "getRefinedStatus", "getCurrentRegistry"]),
     clearButtonActive() {
@@ -66,3 +66,9 @@ export default {
 }
 
 </script>
+
+<style scoped>
+.utilityButton {
+    max-width: 320px
+}
+</style>

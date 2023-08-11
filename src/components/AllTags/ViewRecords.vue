@@ -1,22 +1,13 @@
 <template>
-  <div>
-    <v-tooltip right>
-      <template #activator="{ on, attrs }">
-        <v-icon
-          v-bind="attrs"
-          small
-          class="grey--text mr-1"
-          v-on="on"
-        >
-          fa-question-circle
-        </v-icon>
-      </template>
-      <span> See the list of FAIRsharing records matching your selections below. </span>
-    </v-tooltip>
+  <div
+    class="d-flex align-center"
+    :class="{'mb-6 mr-2 full-width utilityButton': $vuetify.breakpoint.smAndDown}"
+  >
+    <Tooltip :tooltip-text="tooltipText" />
     <v-btn
+      :block="$vuetify.breakpoint.smAndDown"
       :disabled="!resultsButtonActive"
       color="internal white--text"
-      class="mr-10"
       @click="showResults()"
     >
       View records
@@ -26,9 +17,16 @@
 
 <script>
 import {mapGetters} from "vuex";
+import Tooltip from "@/components/Others/Tooltip.vue"
 
 export default {
   name: 'ViewRecords',
+  components:{Tooltip},
+  data(){
+    return {
+      tooltipText: "See the list of FAIRsharing records matching your selections below."
+    }
+  },
   computed: {
     ...mapGetters('multiTagsStore', ["getFairSharingRecords"]),
     resultsButtonActive() {
@@ -47,3 +45,9 @@ export default {
 }
 
 </script>
+
+<style scoped>
+.utilityButton {
+    max-width: 320px
+}
+</style>

@@ -84,15 +84,14 @@
           </v-col>
         </v-row>
         <!-- end of result cards -->
-        <v-row>
-          <v-col
-            class="text-center"
-          >
-            <ViewRecords />
-            <ClearAllSelections @clearAll="clearAllResults" />
-            <GoHome @startOver="goHome" />
-          </v-col>
-        </v-row>
+        <div
+          class="utilityButtons d-flex flex-row justify-space-around my-6 full-width margin-auto"
+          :class="{'flex-column align-center': $vuetify.breakpoint.smAndDown}"
+        >
+          <ViewRecords />
+          <ClearAllSelections @clearAll="clearAllResults" />
+          <GoHome @startOver="goHome" />
+        </div>
         <v-row>
           <p
             class="pt-6"
@@ -527,6 +526,10 @@ table#tagsTable tr {
 
 .whiteBorder {
   border: 1px solid white !important;
+}
+
+.utilityButtons {
+    max-width: 650px
 }
 
 </style>
