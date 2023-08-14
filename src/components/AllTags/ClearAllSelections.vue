@@ -8,7 +8,6 @@
       :block="$vuetify.breakpoint.smAndDown"
       :disabled="!clearButtonActive"
       color="dev_color white--text"
-
       @click="
         clearResults()"
     >

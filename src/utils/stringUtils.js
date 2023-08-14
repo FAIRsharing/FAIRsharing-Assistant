@@ -5,7 +5,17 @@ const stringUtils  = {
     },
     normalString(name){
       return name.replace(/\b\w/, (c) => c.toUpperCase()).replace(/_/g, " ")
-    }
+    },
+    capitaliseText(text, type) {
+      if (type === 'taxonomy') {
+        // Upper case for first character only.
+        return text.charAt(0).toUpperCase() + text.slice(1).toLowerCase();
+      }
+      else {
+        // Upper case for first letter of each word.
+        return text.replace(/(^\w{1})|(\s{1}\w{1})/g, match => match.toUpperCase());
+      }
+    },
   }
 }
 

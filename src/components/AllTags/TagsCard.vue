@@ -23,7 +23,9 @@
         {{ recordsCount }} {{ registryName(registry) }}
       </v-card-title>
     </div>
-    <v-card-actions class="text-center d-block">
+    <v-card-actions
+      class="text-center d-block"
+    >
       <RefineButton
         link="/refineregistry"
         :choice="registry"
@@ -44,22 +46,22 @@ export default {
     registry: {
       default: "",
       type: String
-    },
-    recordsCount: {
-      default: 0,
-      type: Number
     }
   },
   computed: {
-    ...mapGetters('multiTagsStore', ["getCurrentRegistry"]),
+    ...mapGetters('multiTagsStore', ["getCurrentRegistry", "getFairSharingRecords"]),
+    recordsCount() {
+      let _module = this;
+      if (!_module.getFairSharingRecords) return 0
+      else return _module.getFairSharingRecords.filter(x => x.registry === this.registry).length
+    },
   },
   methods: {
     registrySelected(registry) {
-      if (registry === this.getCurrentRegistry) {
-        return true;
-      }
-      return false;
+      if (registry === this.getCurrentRegistry) return true;
+      else return false;
     },
+
     registryName(registry) {
       switch (registry) {
       case "Standard":

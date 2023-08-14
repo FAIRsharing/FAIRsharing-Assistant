@@ -1,41 +1,30 @@
 import {createLocalVue, shallowMount} from "@vue/test-utils";
-import TagsCard from "@/components/AllTags/TagsCard"
+import RefineAlert from "@/components/AllTags/RefineAlert"
 import Vuetify from "vuetify"
 import Vuex from "vuex";
-import icons from "@/plugins/icons";
 import multiTagsStore from "@/store/multiTagsStore";
 
 const localVue = createLocalVue();
 localVue.use(Vuex);
 
-const vuetify = new Vuetify({'icons':icons});
+const vuetify = new Vuetify();
 
 multiTagsStore.getters = {
-  getFairSharingRecords: () => {
-    return [
-      {
-        record: "Wibble",
-        registry: "Standard",
-        id: 123,
-      }
-    ]
-  },
-  getCurrentRegistry: () => {
-    return "Database"
-  }
+  getRefinedStatus: () => { return true },
+  getCurrentRegistry: () => { return 'standard' },
 }
 
 let store = new Vuex.Store({
   modules: {
     multiTagsStore: multiTagsStore,
-  }
+  },
 })
 
-describe("TagsCard.vue", function(){
+describe("ClearAllSelections.vue", function(){
   let wrapper;
 
   beforeEach(() => {
-    wrapper = shallowMount(TagsCard, {
+    wrapper = shallowMount(RefineAlert, {
       localVue,
       vuetify,
       store,
@@ -44,7 +33,7 @@ describe("TagsCard.vue", function(){
   });
 
   it("can be instantiated", () => {
-    expect(wrapper.vm.$options.name).toMatch("TagsCard");
+    expect(wrapper.vm.$options.name).toMatch("RefineAlert");
   });
 
 });
