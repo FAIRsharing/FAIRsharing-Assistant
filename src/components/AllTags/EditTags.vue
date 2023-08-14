@@ -81,12 +81,6 @@ export default {
       },
     }
   },
-  computed: {
-    ...mapGetters('multiTagsStore', ["getFairSharingRecords",
-      "getQueryParams",
-      "getSelectedTags"
-    ]),
-  },
   methods: {
     ...mapActions('multiTagsStore', ['fetchMultiTagData', 'resetMultiTags']),
 

@@ -89,7 +89,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('multiTagsStore', ["getFairSharingRecords", "getSelectedTags"]),
+    ...mapGetters('multiTagsStore', ["getSelectedTags"]),
     sections() {
       return {
         subjects: {
