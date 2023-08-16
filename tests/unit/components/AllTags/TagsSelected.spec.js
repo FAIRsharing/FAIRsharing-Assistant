@@ -10,7 +10,13 @@ localVue.use(Vuex);
 const vuetify = new Vuetify();
 
 multiTagsStore.getters = {
-  getSelectedTags: () => { return [] }
+  getSelectedTags: () => { return [] },
+  getQueryParams:  () => {
+    return {
+      subjects: ['genetics'],
+      registry: ['standard']
+    }
+  },
 }
 
 let store = new Vuex.Store({

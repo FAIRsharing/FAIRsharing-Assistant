@@ -54,7 +54,6 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from "vuex";
 import Loaders from "@/components/Loaders/Loaders.vue";
 import TagsCard from "@/components/AllTags/TagsCard.vue";
 import ViewRecords from "@/components/AllTags/ViewRecords.vue";
@@ -79,11 +78,10 @@ export default {
         subjects: [],
         user_defined_tags: []
       },
+      recordTags: []
     }
   },
   methods: {
-    ...mapActions('multiTagsStore', ['fetchMultiTagData', 'resetMultiTags']),
-
     clearAllResults(allBlankData) {
       this.selectedTags = allBlankData[0]
       this.recordTags = allBlankData[1];

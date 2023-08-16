@@ -129,7 +129,7 @@ export default {
         this.recordTags = newValue;
       },
     },
-    recordTags: async function (val) {
+    async recordTags (val) {
       let _module = this;
       // It's necessary to modify tags to reflect the store.
       // We can't have tags modifying the store whilst this happens.
@@ -151,7 +151,10 @@ export default {
         // TODO: Handle errors from the server.
         _module.recordsFound = _module.getFairSharingRecords;
         _module.$store.commit('multiTagsStore/setQueryParams', queryParam);
-        _module.$store.commit('multiTagsStore/setSelectedTags', _module.recordTags);
+        _module.$store.commit('multiTagsStore/setSelectedTags', val);
+      }
+      else {
+        _module.$store.commit('multiTagsStore/setSelectedTags', val);
       }
       _module.recordsLoading = false;
     },
@@ -233,5 +236,11 @@ table#tagsTable tr {
     border-collapse: collapse;
     border-bottom: 10px solid white;
 }
+
+.elevation-1 >>> .v-data-table-header-mobile__select {
+    justify-content: flex-end;
+    width: 100%;
+}
+
 
 </style>
