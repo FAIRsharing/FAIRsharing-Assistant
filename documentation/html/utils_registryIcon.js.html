@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>FAIRsharing.org Source: utils/registryName.js</title>
+	<title>FAIRsharing.org Source: utils/registryIcon.js</title>
 
 	<!--[if lt IE 9]>
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -53,7 +53,7 @@
 		<div id="main">
 			
 
-		<h1 class="page-title">Source: utils/registryName.js</h1>
+		<h1 class="page-title">Source: utils/registryIcon.js</h1>
     
 <section>
     <article>
@@ -61,24 +61,24 @@
             class="sunlight-highlight-javascript linenums">/**
  *
  * @param {String} - registryName
- * @returns {String} - display name for registry
+ * @returns {String} - icon name for registry
  */
-const registryName = (registry) => {
+const registryIcons = (registry) => {
   switch (registry) {
   case "Standard":
-    return "Standards"
+    return "home_standard"
   case "Database":
-    return "Databases"
+    return "home_db"
   case "Policy":
-    return "Policies"
+    return "home_policies"
   case "Collection":
-    return "Collections"
+    return "home_collections"
   default:
-    return registry
+    return "home_standard"
   }
 }
 
-export default registryName</pre>
+export default registryIcons</pre>
     </article>
 </section>
 
