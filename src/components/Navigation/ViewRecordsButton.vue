@@ -8,7 +8,7 @@
       v-bind="button['attributes']"
       :block="$vuetify.breakpoint.smAndDown"
       :disabled="!resultsButtonActive"
-      color="internal white--text"
+      color="internal white--text primary"
       @click="showResults()"
     >
       {{ button['text'] }}

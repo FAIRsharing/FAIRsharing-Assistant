@@ -58,7 +58,7 @@ import Loaders from "@/components/Loaders/Loaders.vue";
 import TagsCard from "@/components/AllTags/TagsCard.vue";
 import ViewRecords from "@/components/Navigation/ViewRecordsButton.vue";
 import ClearAllSelections from "@/components/Navigation/ClearAllSelections.vue"
-import GoHome from "@/components/Navigation/GoHome.vue";
+import GoHome from "@/components/Navigation/HomeButton.vue";
 import RefineAlert from "@/components/AllTags/RefineAlert.vue";
 import TagsSelected from "@/components/AllTags/TagsSelected.vue";
 import stringUtils from '@/utils/stringUtils';

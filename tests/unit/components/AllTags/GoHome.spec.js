@@ -1,5 +1,5 @@
 import {createLocalVue, shallowMount} from "@vue/test-utils";
-import GoHome from "@/components/Navigation/GoHome.vue"
+import GoHome from "@/components/Navigation/HomeButton.vue"
 import Vuetify from "vuetify"
 import Vuex from "vuex";
 
@@ -19,7 +19,7 @@ let store = new Vuex.Store({
 
 })
 
-describe("GoHome.vue", function(){
+describe("HomeButton.vue", function(){
   let wrapper;
 
   beforeEach(() => {
