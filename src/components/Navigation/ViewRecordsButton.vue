@@ -5,12 +5,13 @@
   >
     <Tooltip :tooltip-text="tooltipText" />
     <v-btn
+      v-bind="button['attributes']"
       :block="$vuetify.breakpoint.smAndDown"
       :disabled="!resultsButtonActive"
       color="internal white--text"
       @click="showResults()"
     >
-      View records
+      {{ button['text'] }}
     </v-btn>
   </div>
 </template>
@@ -20,11 +21,19 @@ import {mapGetters} from "vuex";
 import Tooltip from "@/components/Others/Tooltip.vue"
 
 export default {
-  name: 'ViewRecords',
+  name: 'ViewRecordsButton',
   components:{Tooltip},
   data(){
     return {
-      tooltipText: "See the list of FAIRsharing records matching your selections below."
+      button: {
+        text: "View Records",
+        attributes: {
+          elevation:"2",
+          raised: true,
+          color: "accent2",
+        }
+      },
+      tooltipText: "See the list of FAIRsharing records matching your selections below"
     }
   },
   computed: {

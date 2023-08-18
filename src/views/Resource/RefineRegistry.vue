@@ -2,57 +2,25 @@
   <div>
     <Jumbotron />
     <div class="px-md-10 pa-5 mb-8">
-      <v-row
-        class="block-category pb-5"
+      <div
+        class="mb-5 d-flex flex-row"
+        :class="{'flex-column align-center': $vuetify.breakpoint.smAndDown}"
       >
-        <v-col
-          cols="2"
-          sm="12"
-          md="3"
-          lg="3"
-        >
-          <ResourceCard
-            :registry-icon="countIcon[getCurrentRegistry]"
-            :registry-name="registryName(getCurrentRegistry)"
-            :records-count="recordsAvailable"
-          />
-        </v-col>
-        <v-col
-          cols="10"
-          sm="12"
-          md="9"
-          lg="9"
-        >
-          <SelectedTags :refine-page="true" />
-        </v-col>
-      </v-row>
+        <ResourceCard
+          class="mb-5"
+          :registry-icon="registryIcons(getCurrentRegistry)"
+          :registry-name="registryName(getCurrentRegistry)"
+          :records-count="recordsAvailable"
+        />
+        <SelectedTags :refine-page="true" />
+      </div>
       <v-row
         class="block-category pb-5"
       >
         <v-col
           class="text-center"
         >
-          <v-tooltip right>
-            <template #activator="{ on, attrs }">
-              <v-icon
-                v-bind="attrs"
-                small
-                class="grey--text mr-1"
-                v-on="on"
-              >
-                fa-question-circle
-              </v-icon>
-            </template>
-            <span> See the list of FAIRsharing records matching your selections below. </span>
-          </v-tooltip>
-          <v-btn
-            :disabled="!resultsButtonActive"
-            color="internal white--text"
-            class="mr-10"
-            @click="showResults()"
-          >
-            View records
-          </v-btn>
+          <ViewRecordsButton />
           <v-tooltip right>
             <template #activator="{ on, attrs }">
               <v-icon
@@ -74,47 +42,8 @@
           >
             Refine tags
           </v-btn>
-          <v-tooltip right>
-            <template #activator="{ on, attrs }">
-              <v-icon
-                v-bind="attrs"
-                small
-                class="grey--text mr-1"
-                v-on="on"
-              >
-                fa-question-circle
-              </v-icon>
-            </template>
-            <span> Clear all selections and tags and return to the tag filter page. </span>
-          </v-tooltip>
-          <v-btn
-            :disabled="!clearButtonActive"
-            color="dev_color white--text"
-            class="mr-10"
-            @click="clearResults()"
-          >
-            Clear all selections
-          </v-btn>
-          <v-tooltip right>
-            <template #activator="{ on, attrs }">
-              <v-icon
-                v-bind="attrs"
-                small
-                class="grey--text mr-1"
-                v-on="on"
-              >
-                fa-question-circle
-              </v-icon>
-            </template>
-            <span> Return to the home page, clearing all tags and filters. </span>
-          </v-tooltip>
-          <v-btn
-            color="dev_color white--text"
-            class="mr-10"
-            @click="goHome()"
-          >
-            Home
-          </v-btn>
+          <ClearAllSelections :refine-page="true" />
+          <GoHome />
         </v-col>
       </v-row>
       <v-row
@@ -139,60 +68,35 @@ import AddOnFilters from "@/components/Others/AddOnFilters.vue";
 import ResourceCard from "@/components/Others/ResourceCard.vue";
 import registryName from "@/utils/registryName";
 import SelectedTags from "@/components/Others/SelectedTags.vue";
+import registryIcons from "@/utils/registryIcon";
+import ViewRecordsButton from "@/components/Navigation/ViewRecordsButton.vue"
+import ClearAllSelections from "@/components/Navigation/ClearAllSelections.vue";
+import GoHome from "@/components/Navigation/GoHome.vue";
 
 export default {
   name: 'RefineRegistry',
   components: {
+    GoHome,
+    ClearAllSelections,
     SelectedTags,
     ResourceCard,
     AddOnFilters,
     Jumbotron,
+    ViewRecordsButton
   },
   data:() => {
     return {
       recordsLoading: false,
       recordTypes: {},
-      countIcon: {
-        Database: 'home_db',
-        Standard: 'home_standard',
-        Policy: 'home_policies',
-        Collection: 'home_collection'
-      },
-      colors: {
-        domain: 'domain_color',
-        taxonomy: 'taxonomic_color',
-        subject: 'subject_color',
-        user_defined_tag: 'tags_color'
-      },
     }
   },
   computed:{
-    ...mapGetters("multiTagsStore", ['getQueryParams', 'getFairSharingRecords', 'getLoadingStatus', 'getCurrentRegistry']),
+    ...mapGetters("multiTagsStore", ['getQueryParams', 'getFairSharingRecords', 'getCurrentRegistry']),
     recordsAvailable() {
       if (!this.getFairSharingRecords) {
         return 0;
       }
       return this.getFairSharingRecords.filter(x => x.registry === this.getCurrentRegistry).length
-    },
-    clearButtonActive() {
-      let _module = this;
-      if (_module.getFairSharingRecords && _module.getFairSharingRecords.length > 0) {
-        return true;
-      }
-      else if (Object.keys(_module.getQueryParams).length > 0) {
-        return true;
-      }
-      else if (_module.getRefinedStatus) {
-        return true;
-      }
-      return false;
-    },
-    resultsButtonActive() {
-      let _module = this;
-      if (_module.getFairSharingRecords && _module.getFairSharingRecords.length > 0) {
-        return true;
-      }
-      return false;
     },
     tagButtonActive() {
       return true;
@@ -212,6 +116,7 @@ export default {
   },
   methods: {
     registryName,
+    registryIcons,
     ...mapActions('multiTagsStore', ['fetchMultiTagData', 'resetMultiTags']),
     async getData() {
 
@@ -225,33 +130,6 @@ export default {
         // Upper case for first letter of each word.
         return text.replace(/(^\w{1})|(\s{1}\w{1})/g, match => match.toUpperCase());
       }
-    },
-    showResults() {
-      // TODO: Query could perhaps be deleted.
-      /*
-           const routeData = this.$router.resolve({
-              path: '/results',
-              //query: _module.generateQuery(_module.recordTags)[0] // TODO: Make a (better) generateQuery component
-            })
-             */
-      //window.open(routeData.href, '_blank')
-      this.$router.push('/results');
-    },
-    clearResults() {
-      // this.$store.commit('multiTagsStore/setRefinedStatus', false);
-      // this.$store.commit('multiTagsStore/setQueryParams', {});
-      // this.$store.commit('multiTagsStore/setFairSharingRecords', []);
-      // this.$store.commit('multiTagsStore/setCurrentRegistry', null);
-      this.$router.push('/researchfields');
-      this.resetMultiTags()
-    },
-    goHome() {
-      this.$store.commit('multiTagsStore/setRefinedStatus', false);
-      this.$store.commit('multiTagsStore/setQueryParams', {});
-      this.$store.commit('multiTagsStore/setFairSharingRecords', []);
-      this.$store.commit('multiTagsStore/setSelectedTags', []);
-      this.$store.commit('multiTagsStore/setCurrentRegistry', null);
-      this.$router.push('/')
     },
     returnToTags() {
       this.$router.push('/researchfields');

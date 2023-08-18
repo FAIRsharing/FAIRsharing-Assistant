@@ -1,4 +1,4 @@
-<template xmlns:v-slot="http://www.w3.org/1999/XSL/Transform">
+<template>
   <div>
     <v-fade-transition v-if="recordsLoading">
       <v-overlay
@@ -17,7 +17,7 @@
     >
       <v-container fluid>
         <div
-          class="block-category pb-5 d-flex align-center justify-space-around"
+          class="block-category mb-5 d-flex align-center justify-space-around"
           :class="{'flex-column': $vuetify.breakpoint.smAndDown}"
         >
           <!-- Standard card -->
@@ -43,8 +43,8 @@
           :class="{'flex-column align-center': $vuetify.breakpoint.smAndDown}"
         >
           <ViewRecords />
-          <ClearAllSelections @clearAll="clearAllResults" />
-          <GoHome @startOver="goHome" />
+          <ClearAllSelections />
+          <GoHome />
         </div>
         <TagsSelected />
       </v-container>
@@ -56,9 +56,9 @@
 <script>
 import Loaders from "@/components/Loaders/Loaders.vue";
 import TagsCard from "@/components/AllTags/TagsCard.vue";
-import ViewRecords from "@/components/AllTags/ViewRecords.vue";
-import ClearAllSelections from "@/components/AllTags/ClearAllSelections.vue"
-import GoHome from "@/components/AllTags/GoHome.vue";
+import ViewRecords from "@/components/Navigation/ViewRecordsButton.vue";
+import ClearAllSelections from "@/components/Navigation/ClearAllSelections.vue"
+import GoHome from "@/components/Navigation/GoHome.vue";
 import RefineAlert from "@/components/AllTags/RefineAlert.vue";
 import TagsSelected from "@/components/AllTags/TagsSelected.vue";
 import stringUtils from '@/utils/stringUtils';
@@ -72,25 +72,7 @@ export default {
     return {
       formValid: true,
       recordsLoading: false,
-      selectedTags: {
-        domains: [],
-        taxonomies: [],
-        subjects: [],
-        user_defined_tags: []
-      },
-      recordTags: []
     }
-  },
-  methods: {
-    clearAllResults(allBlankData) {
-      this.selectedTags = allBlankData[0]
-      this.recordTags = allBlankData[1];
-    },
-    goHome(allBlankData) {
-      this.selectedTags = allBlankData[0]
-      this.recordTags = allBlankData[1];
-    },
-
   },
 }
 </script>

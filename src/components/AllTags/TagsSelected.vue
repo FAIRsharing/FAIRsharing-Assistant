@@ -1,5 +1,5 @@
 <template>
-  <v-row>
+  <div>
     <p
       class="pt-6"
     >
@@ -9,7 +9,7 @@
       :research-page="true"
       @deleteTag="removeTag"
     />
-  </v-row>
+  </div>
 </template>
 
 <script>

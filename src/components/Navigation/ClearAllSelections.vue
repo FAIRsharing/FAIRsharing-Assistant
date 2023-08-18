@@ -5,13 +5,13 @@
   >
     <Tooltip :tooltip-text="tooltipText" />
     <v-btn
+      v-bind="button['attributes']"
       :block="$vuetify.breakpoint.smAndDown"
       :disabled="!clearButtonActive"
       color="dev_color white--text"
-      @click="
-        clearResults()"
+      @click="clearResults()"
     >
-      Clear all selections
+      {{ button["text"] }}
     </v-btn>
   </div>
 </template>
@@ -23,9 +23,23 @@ import Tooltip from "@/components/Others/Tooltip.vue";
 export default {
   name: 'ClearAllSelections',
   components: {Tooltip},
+  props: {
+    refinePage: {
+      type: Boolean,
+      default: false
+    }
+  },
   data(){
     return {
-      tooltipText: "This will clear all filters and tags."
+      button: {
+        text: "Clear all selections",
+        attributes: {
+          elevation:"2",
+          raised: true,
+          color: "accent2",
+        }
+      },
+      tooltipText: "This will clear all filters and tags"
     }
   },
   computed: {
@@ -51,15 +65,7 @@ export default {
     ...mapActions('multiTagsStore', ['resetMultiTags']),
     clearResults() {
       this.resetMultiTags()
-      const allSelectedTags = {
-        domains: [],
-        taxonomies: [],
-        subjects: [],
-        user_defined_tags: []
-      }
-
-      const allRecordTags = []
-      this.$emit('clearAll', [allSelectedTags, allRecordTags])
+      if(this.refinePage) this.$router.push('/researchfields')
     }
   }
 }

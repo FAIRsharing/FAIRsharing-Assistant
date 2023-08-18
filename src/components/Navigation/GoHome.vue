@@ -5,11 +5,12 @@
   >
     <Tooltip :tooltip-text="tooltipText" />
     <v-btn
+      v-bind="button['attributes']"
       :block="$vuetify.breakpoint.smAndDown"
       color="dev_color white--text"
       @click="goHome()"
     >
-      Home
+      {{ button["text"] }}
     </v-btn>
   </div>
 </template>
@@ -23,22 +24,21 @@ export default {
   components: {Tooltip},
   data(){
     return {
-      tooltipText: "Return to the home page, clearing all tags and filters."
+      button: {
+        text: "Home",
+        attributes: {
+          elevation:"2",
+          raised: true,
+          color: "accent2",
+        }
+      },
+      tooltipText: "Return to the home page, clearing all tags and filters"
     }
   },
   methods: {
     ...mapActions('multiTagsStore', ['resetMultiTags']),
     goHome() {
       this.resetMultiTags()
-      const allSelectedTags = {
-        domains: [],
-        taxonomies: [],
-        subjects: [],
-        user_defined_tags: []
-      }
-
-      const allRecordTags = []
-      this.$emit('startOver', [allSelectedTags, allRecordTags])
       this.$router.push('/')
     }
   }

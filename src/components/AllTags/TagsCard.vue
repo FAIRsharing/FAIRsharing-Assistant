@@ -13,6 +13,7 @@
 import {mapGetters} from "vuex";
 import ResourceCard from '@/components/Others/ResourceCard.vue'
 import registryName from "@/utils/registryName";
+import registryIcons from "@/utils/registryIcon";
 
 export default {
   name: 'TagsCard',
@@ -33,25 +34,11 @@ export default {
   },
   methods: {
     registryName,
+    registryIcons,
     registrySelected(registry) {
       if (registry === this.getCurrentRegistry) return true;
       else return false;
     },
-
-    registryIcons(registry) {
-      switch (registry) {
-      case "Standard":
-        return "home_standard"
-      case "Database":
-        return "home_db"
-      case "Policy":
-        return "home_policies"
-      case "Collection":
-        return "home_collections"
-      default:
-        return "home_standard"
-      }
-    }
   }
 }
 

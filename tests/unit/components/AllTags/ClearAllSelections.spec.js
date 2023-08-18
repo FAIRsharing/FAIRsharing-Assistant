@@ -1,5 +1,5 @@
 import {createLocalVue, shallowMount} from "@vue/test-utils";
-import ClearAllSelections from "@/components/AllTags/ClearAllSelections"
+import ClearAllSelections from "@/components/Navigation/ClearAllSelections.vue"
 import Vuetify from "vuetify"
 import Vuex from "vuex";
 import multiTagsStore from "@/store/multiTagsStore";

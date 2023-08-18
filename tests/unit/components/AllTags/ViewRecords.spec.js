@@ -1,5 +1,5 @@
 import {createLocalVue, shallowMount} from "@vue/test-utils";
-import ViewRecords from "@/components/AllTags/ViewRecords"
+import ViewRecords from "@/components/Navigation/ViewRecordsButton.vue"
 import Vuetify from "vuetify"
 import Vuex from "vuex";
 import multiTagsStore from "@/store/multiTagsStore";
@@ -29,7 +29,7 @@ let store = new Vuex.Store({
   }
 })
 
-describe("ViewRecords.vue", function(){
+describe("ViewRecordsButton.vue", function(){
   let wrapper;
 
   beforeEach(() => {

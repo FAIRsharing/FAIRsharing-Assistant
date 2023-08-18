@@ -1,5 +1,5 @@
 import {createLocalVue, shallowMount} from "@vue/test-utils";
-import GoHome from "@/components/AllTags/GoHome"
+import GoHome from "@/components/Navigation/GoHome.vue"
 import Vuetify from "vuetify"
 import Vuex from "vuex";
 

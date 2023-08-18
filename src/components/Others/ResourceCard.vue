@@ -1,11 +1,18 @@
 <template>
   <v-card
-    class="mx-3 block-category__card full-width"
-    :class="{'my-3': $vuetify.breakpoint.smAndDown}"
-    :style="registrySelected ? 'border: 2px solid red;' : 'border: 1px solid white;'"
+    class="full-width"
+    :class="[
+      {'my-3 mx-0': $vuetify.breakpoint.smAndDown},
+      {'mx-3': $vuetify.breakpoint.mdAndUp}
+    ]"
+    :style="registrySelected ? 'border: 2px solid red;' : null"
     max-width="350"
+    :max-height="showRefineButton? 'none' : 230"
+    height="auto"
+    color="#ababab"
+    elevation="6"
   >
-    <div class="white--text d-flex flex-column justify-center pt-4 block-category__card__gradiant">
+    <div class="white--text d-flex flex-column justify-center pt-4">
       <div
         class="d-flex justify-center"
       >
@@ -23,7 +30,7 @@
     </div>
     <v-card-actions
       v-if="showRefineButton"
-      class="text-center d-block"
+      class="text-center d-block actionBlock"
     >
       <RefineButton
         link="/refineregistry"
@@ -76,27 +83,15 @@ export default {
 .block-category {
   &__card {
     transition: all .2ms ease;
-    -webkit-transition: all .2s ease;
-    -moz-transition: all .2s ease;
-    -o-transition: all .2s ease;
-    box-shadow: 0 1rem 2rem rgba(black, .15) !important;
-    -webkit-box-shadow: 0 1rem 2rem rgba(black, .15) !important;
-    -moz-box-shadow: 0 1rem 2rem rgba(black, .15) !important;
-    -o-box-shadow: 0 1rem 2rem rgba(black, .15) !important;
-
     &:hover {
       transform: scale(1.05);
-      -moz-transform: scale(1.05);
-      -webkit-transform: scale(1.05);
-      -o-transform: scale(1.05);
-    }
-
-    &__gradiant {
-      background: rgb(171, 171, 171);
     }
   }
 }
 .v-divider {
   margin: 8px;
+}
+.actionBlock {
+  background: #fff
 }
 </style>
