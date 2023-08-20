@@ -38,6 +38,7 @@ export default {
   },
   computed: {
     ...mapGetters('multiTagsStore', ["getRefinedStatus"]),
+
     registryButtonActive() {
       if (this.getRefinedStatus) return true;
       else return false;

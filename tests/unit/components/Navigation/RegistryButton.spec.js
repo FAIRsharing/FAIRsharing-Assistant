@@ -1,17 +1,15 @@
 import {createLocalVue, shallowMount} from "@vue/test-utils";
-import RefineAlert from "@/components/AllTags/RefineAlert"
+import RegistryButton from "@/components/Navigation/RegistryButton.vue"
 import Vuetify from "vuetify"
-import Vuex from "vuex";
 import multiTagsStore from "@/store/multiTagsStore";
+import Vuex from "vuex";
 
 const localVue = createLocalVue();
 localVue.use(Vuex);
-
 const vuetify = new Vuetify();
 
 multiTagsStore.getters = {
   getRefinedStatus: () => { return true },
-  getCurrentRegistry: () => { return 'standard' },
 }
 
 let store = new Vuex.Store({
@@ -20,20 +18,20 @@ let store = new Vuex.Store({
   },
 })
 
-describe("RefineAlert.vue", function(){
+describe("RegistryButton.vue", function(){
   let wrapper;
 
   beforeEach(() => {
-    wrapper = shallowMount(RefineAlert, {
+    wrapper = shallowMount(RegistryButton, {
       localVue,
       vuetify,
       store,
-      stubs: ['router-link', 'router-view']
+      stubs: ['router-link']
     })
   });
 
   it("can be instantiated", () => {
-    expect(wrapper.vm.$options.name).toMatch("RefineAlert");
+    expect(wrapper.vm.$options.name).toMatch("RegistryButton");
   });
 
 });

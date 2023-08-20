@@ -1,12 +1,11 @@
 import {createLocalVue, shallowMount} from "@vue/test-utils";
-import ClearAllSelections from "@/components/Navigation/ClearAllSelections.vue"
+import ResearchFieldsButton from "@/components/Navigation/ResearchFieldsButton.vue"
 import Vuetify from "vuetify"
-import Vuex from "vuex";
 import multiTagsStore from "@/store/multiTagsStore";
+import Vuex from "vuex";
 
 const localVue = createLocalVue();
 localVue.use(Vuex);
-
 const vuetify = new Vuetify();
 
 multiTagsStore.getters = {
@@ -21,43 +20,28 @@ multiTagsStore.getters = {
       }
     ]
   },
-  getQueryParams:  () => {
-    return {
-      subjects: ['genetics'],
-      registry: ['standard']
-    }
-  },
-  getRefinedStatus: () => { return true },
-  getCurrentRegistry: () => { return 'standard' },
 }
-
-let actions = {
-  resetMultiTags: jest.fn()
-}
-
 
 let store = new Vuex.Store({
   modules: {
     multiTagsStore: multiTagsStore,
-    actions
   },
-
 })
 
-describe("ClearAllSelections.vue", function(){
+describe("ResearchFieldsButton.vue", function(){
   let wrapper;
 
   beforeEach(() => {
-    wrapper = shallowMount(ClearAllSelections, {
+    wrapper = shallowMount(ResearchFieldsButton, {
       localVue,
       vuetify,
       store,
-      stubs: ['router-link', 'router-view']
+      stubs: ['router-link']
     })
   });
 
   it("can be instantiated", () => {
-    expect(wrapper.vm.$options.name).toMatch("ClearAllSelections");
+    expect(wrapper.vm.$options.name).toMatch("ResearchFieldsButton");
   });
 
 });

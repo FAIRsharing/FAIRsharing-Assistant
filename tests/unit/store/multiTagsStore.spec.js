@@ -103,6 +103,12 @@ describe('MultiTags store methods', () => {
     expect(state.selectedTags).toStrictEqual(selectedTags);
   });
 
+  it("can check setError mutations", () => {
+    const errorStatus = true;
+    mutations.setError(state, errorStatus);
+    expect(state.error).toStrictEqual(true);
+  });
+
   it("can check getFairSharingRecords getters", () => {
     const stateValue = {
       fairSharingRecords: [
@@ -190,6 +196,17 @@ describe('MultiTags store methods', () => {
     const result = ["open"]
     const builtData = getters.getSelectedTags(stateValue);
     expect(builtData).toStrictEqual(result);
+
+  })
+
+  it("can check getError getters", () => {
+    const stateValue = {
+      error: false
+    }
+
+    const result = false
+    const builtData = getters.getError(stateValue);
+    expect(builtData).toBe(result);
 
   })
 

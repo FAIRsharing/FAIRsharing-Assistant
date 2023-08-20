@@ -1,5 +1,5 @@
 import {createLocalVue, shallowMount} from "@vue/test-utils";
-import StartOver from "@/components/Navigation/StartOver"
+import Footer from "@/components/Others/Footer.vue"
 import Vuetify from "vuetify"
 import Vuex from "vuex";
 
@@ -9,11 +9,11 @@ localVue.use(Vuex);
 const vuetify = new Vuetify();
 
 
-describe("StartOver.vue", function(){
+describe("Footer.vue", function(){
   let wrapper;
 
   beforeEach(() => {
-    wrapper = shallowMount(StartOver, {
+    wrapper = shallowMount(Footer, {
       localVue,
       vuetify,
       stubs: ['router-link', 'router-view']
@@ -21,7 +21,7 @@ describe("StartOver.vue", function(){
   });
 
   it("can be instantiated", () => {
-    expect(wrapper.vm.$options.name).toMatch("StartOver");
+    expect(wrapper.vm.$options.name).toMatch("Footer");
   });
 
 });

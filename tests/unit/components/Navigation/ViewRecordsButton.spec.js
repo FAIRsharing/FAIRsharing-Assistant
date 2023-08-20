@@ -1,5 +1,5 @@
 import {createLocalVue, shallowMount} from "@vue/test-utils";
-import ViewRecords from "@/components/Navigation/ViewRecordsButton.vue"
+import ViewRecordsButton from "@/components/Navigation/ViewRecordsButton.vue"
 import Vuetify from "vuetify"
 import Vuex from "vuex";
 import multiTagsStore from "@/store/multiTagsStore";
@@ -33,7 +33,7 @@ describe("ViewRecordsButton.vue", function(){
   let wrapper;
 
   beforeEach(() => {
-    wrapper = shallowMount(ViewRecords, {
+    wrapper = shallowMount(ViewRecordsButton, {
       localVue,
       vuetify,
       store,
@@ -42,7 +42,7 @@ describe("ViewRecordsButton.vue", function(){
   });
 
   it("can be instantiated", () => {
-    expect(wrapper.vm.$options.name).toMatch("ViewRecords");
+    expect(wrapper.vm.$options.name).toMatch("ViewRecordsButton");
   });
 
 });

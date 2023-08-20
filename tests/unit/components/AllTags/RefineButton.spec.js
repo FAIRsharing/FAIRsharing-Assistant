@@ -1,13 +1,12 @@
 import {createLocalVue, shallowMount} from "@vue/test-utils";
 import RefineButton from "@/components/AllTags/RefineButton.vue"
 import Vuetify from "vuetify"
-import icons from "@/plugins/icons";
 
 const localVue = createLocalVue();
 
-const vuetify = new Vuetify({'icons':icons});
+const vuetify = new Vuetify();
 
-describe("EditTags.vue", function(){
+describe("RefineButton.vue", function(){
   let wrapper;
 
   beforeEach(() => {
