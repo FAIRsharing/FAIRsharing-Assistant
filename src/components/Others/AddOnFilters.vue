@@ -160,28 +160,19 @@ export default {
 
     async readRegAndTypeFilterParams() {
       let _module = this;
-      // let modified = false;
       let params = currentPath(this.currentRouteQuery);
       Object.keys(params).forEach(key => {
         if (key === 'registry') {
           if (_module.allowedRegistries.indexOf(params[key]) > -1) {
             _module.topResult = params[key];
-            // modified = true;
           }
         }
         if (key === 'record_type') {
           if (_module.allowedTypes.indexOf(params[key]) > -1) {
             _module.childResult = params[key];
-            // modified = true;
           }
         }
       })
-      // if (modified) {
-      //
-      //   //When the user is directly landing on the refine page after selecting a card from the home page
-      //   const filtersSelected = this.getFilterLists.filtersList[0]
-      //   this.map.set(`${filtersSelected["key"]}`, `${filtersSelected["value"]}`)
-      // }
     },
     selectFilters(){
       const prevRoute = localStorage.getItem("pageName");

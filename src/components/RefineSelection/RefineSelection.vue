@@ -46,6 +46,7 @@ import ViewRecordsButton from "@/components/Navigation/ViewRecordsButton.vue"
 import ClearAllSelections from "@/components/Navigation/ClearAllSelections.vue";
 import GoHome from "@/components/Navigation/HomeButton.vue";
 import ResearchFieldsButton from "@/components/Navigation/ResearchFieldsButton.vue"
+import stringUtils from "@/utils/stringUtils";
 
 export default {
   name: 'RefineSelection',
@@ -58,6 +59,7 @@ export default {
     ViewRecordsButton,
     ResearchFieldsButton
   },
+  mixins: [stringUtils],
   data:() => {
     return {
       recordsLoading: false,
@@ -85,16 +87,6 @@ export default {
     registryName,
     registryIcons,
     ...mapActions('multiTagsStore', ['fetchMultiTagData', 'resetMultiTags']),
-    capitaliseText(text, type) {
-      if (type === null || type === 'taxonomies') {
-        // Upper case for first character only.
-        return text.charAt(0).toUpperCase() + text.slice(1).toLowerCase();
-      }
-      else {
-        // Upper case for first letter of each word.
-        return text.replace(/(^\w{1})|(\s{1}\w{1})/g, match => match.toUpperCase());
-      }
-    },
   }
 };
 </script>

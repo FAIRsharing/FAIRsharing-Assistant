@@ -6,47 +6,47 @@
     <Tooltip :tooltip-text="tooltipText" />
     <v-btn
       v-bind="button['attributes']"
-      :disabled="!tagButtonActive"
       :block="$vuetify.breakpoint.smAndDown"
-      color="primary white--text"
-      @click="returnToTags()"
+      :disabled="!registryButtonActive"
+      color="internal white--text primary"
+      @click="returnToRegistries()"
     >
-      {{ button["text"] }}
+      {{ button['text'] }}
     </v-btn>
   </div>
 </template>
 
 <script>
-import Tooltip from "@/components/Others/Tooltip.vue";
 import {mapGetters} from "vuex";
+import Tooltip from "@/components/Others/Tooltip.vue"
 
 export default {
-  name: 'ResearchFieldsButton',
-  components: {Tooltip},
+  name: 'RegistryButton',
+  components:{Tooltip},
   data(){
     return {
       button: {
-        text: "Return to tags",
+        text: "Return to registry",
         attributes: {
           elevation:"2",
           raised: true,
-          color: "primary",
+          color: "accent2",
         }
       },
-      tooltipText: "Refine your choice of scientific field"
+      tooltipText: "Change your registry-specific filters"
     }
   },
-  computed:{
-    ...mapGetters('multiTagsStore', ["getFairSharingRecords"]),
-    tagButtonActive() {
-      if (this.getFairSharingRecords && this.getFairSharingRecords.length > 0) return true;
+  computed: {
+    ...mapGetters('multiTagsStore', ["getRefinedStatus"]),
+    registryButtonActive() {
+      if (this.getRefinedStatus) return true;
       else return false;
     },
   },
-
   methods: {
-    returnToTags() {
-      this.$router.push('/researchfields');
+    returnToRegistries() {
+      let _module = this;
+      _module.$router.push('/refineregistry')
     },
   }
 }

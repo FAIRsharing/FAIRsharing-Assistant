@@ -3,7 +3,7 @@
     class="full-width"
     :class="[
       {'my-3 mx-0': $vuetify.breakpoint.smAndDown},
-      {'mx-3': $vuetify.breakpoint.mdAndUp}
+      {'mx-3 mb-0': $vuetify.breakpoint.mdAndUp}
     ]"
     :style="registrySelected ? 'border: 2px solid red;' : null"
     max-width="350"
