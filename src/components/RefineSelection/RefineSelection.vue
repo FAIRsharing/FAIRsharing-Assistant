@@ -36,7 +36,7 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from "vuex";
+import { mapGetters } from "vuex";
 import AddOnFilters from "@/components/Others/AddOnFilters.vue";
 import ResourceCard from "@/components/Others/ResourceCard.vue";
 import registryName from "@/utils/registryName";
