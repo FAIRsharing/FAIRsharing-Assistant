@@ -10,7 +10,6 @@ import multiTagsFilter from "@/lib/GraphClient/queries/multiTagsFilter/multiTags
 
 const localVue = createLocalVue();
 localVue.use(Vuex);
-let store;
 
 multiTagsStore.getters = {
   getFairSharingRecords: () => {
@@ -31,7 +30,7 @@ multiTagsStore.getters = {
   getSelectedTags: () => { return [] }
 }
 
-store = new Vuex.Store({
+let store = new Vuex.Store({
   modules: {
     multiTagsStore: multiTagsStore,
   }

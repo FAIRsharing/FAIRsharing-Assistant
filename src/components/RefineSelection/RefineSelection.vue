@@ -75,7 +75,7 @@ export default {
       return this.getFairSharingRecords.filter(x => x.registry === this.getCurrentRegistry).length
     },
   },
-  async mounted() {
+  mounted() {
     // If a user has come here then they've set the refinement status by choosing a registry
     if (!this.getCurrentRegistry) {
       this.$store.commit('multiTagsStore/setRefinedStatus', false);
@@ -86,7 +86,6 @@ export default {
   methods: {
     registryName,
     registryIcons,
-    ...mapActions('multiTagsStore', ['fetchMultiTagData', 'resetMultiTags']),
   }
 };
 </script>

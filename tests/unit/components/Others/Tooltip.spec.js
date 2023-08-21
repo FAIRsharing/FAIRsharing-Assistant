@@ -8,7 +8,6 @@ localVue.use(Vuex);
 
 const vuetify = new Vuetify();
 
-
 describe("Tooltip.vue", function(){
   let wrapper;
 
