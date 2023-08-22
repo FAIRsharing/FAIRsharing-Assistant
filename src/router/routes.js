@@ -4,5 +4,5 @@ export const ServerError = () => import(/* webpackChunkName: "serverError-chunk"
 export const Licence =  () => import(/* webpackChunkName: "licence-chunk" */ '@/views/Licence/Licence');
 export const ResultView = () => import('@/views/Results/ResultView.vue');
 export const AllTags = () => import('@/views/AllTags/AllTags.vue');
-export const RefineRegistry = () => import('@/views/Resource/RefineRegistry.vue');
+export const RefineRegistry = () => import('@/views/RefineRegistry/RefineRegistry.vue');
 

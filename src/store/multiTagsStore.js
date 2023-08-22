@@ -49,7 +49,8 @@ const mutations = {
   setQueryParams(state, params) { state.queryParams = params },
   setRefinedStatus(state, refinedStatus) { state.refinedStatus = refinedStatus },
   setCurrentRegistry(state, currentRegistry) { state.currentRegistry = currentRegistry },
-  setSelectedTags(state, selectedTags) { state.selectedTags = selectedTags }
+  setSelectedTags(state, selectedTags) { state.selectedTags = selectedTags },
+  setError(state, error) { state.error = error }
 }
 
 const getters = {
@@ -70,6 +71,9 @@ const getters = {
   },
   getSelectedTags(state) {
     return state.selectedTags
+  },
+  getError(state) {
+    return state.error
   }
 }
 const multiTagsStore = {
