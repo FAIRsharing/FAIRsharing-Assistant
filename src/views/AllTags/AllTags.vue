@@ -8,7 +8,7 @@
 </template>
 
 <script>
-//import {mapActions, mapGetters} from "vuex";
+
 import Jumbotron from "@/components/Navigation/Jumbotron"
 import EditTags from "@/components/AllTags/EditTags.vue";
 
@@ -18,12 +18,5 @@ export default {
     Jumbotron,
     EditTags
   },
-  data:() => {
-    return {
-    }
-  },
-  computed:{
-
-  }
 };
 </script>

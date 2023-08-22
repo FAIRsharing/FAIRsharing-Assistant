@@ -8,7 +8,7 @@ it("does nothing of consequence", () => {
 
 
 import {createLocalVue, shallowMount} from "@vue/test-utils";
-import RefineRegistry from "@/views/Resource/RefineRegistry.vue"
+import RefineRegistry from "@/views/RefineRegistry/RefineRegistry.vue"
 import icons from '@/plugins/icons';
 import Vuetify from "vuetify"
 import Vuex from "vuex";
@@ -49,7 +49,7 @@ store = new Vuex.Store({
 
 const vuetify = new Vuetify({'icons': icons });
 
-describe("RefineRegistry.vue", function(){
+describe("RefineSelection.vue", function(){
   let wrapper;
 
   beforeEach(() => {
