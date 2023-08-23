@@ -282,6 +282,14 @@ const customIcons  = {
     user: {
       type: "icon",
       icon: "fa-user"
+    },
+    educational_material: {
+      type: "img",
+      icon: "/assets/Home/LandingPage/educational_material.png"
+    },
+    dataset: {
+      type: "img",
+      icon: "/assets/Home/LandingPage/dataset.png"
     }
   },
   iconfont: 'fa'

@@ -58,7 +58,18 @@
             "question": "Are you mainly interested in guidance and educational material?",
             "color": "internal",
             "icon": "educational",
+            "image_icon": "educational_material",
             "link": "/7",
+            "query": {}
+          },
+          {
+            "id": 6,
+            "title": "question_a6",
+            "question": "I have a dataset to store. What do I do now?",
+            "color": "internal",
+            "icon": "search",
+            "image_icon": "dataset",
+            "link": "/8",
             "query": {}
           }
         ]
@@ -399,6 +410,50 @@
             "icon": "educational",
             "link": "https://fairsharing.org/educational",
             "query": {}
+          }
+        ]
+      ]
+    },
+    {
+      "id": "question_i",
+      "path": 8,
+      "previousLink": "0",
+      "rows": [
+        [
+          {
+            "id": 1,
+            "title": "question_i1",
+            "question": "How can I store data for the long term?",
+            "color": "internal",
+            "icon": "search",
+            "link": "/researchfields",
+            "query": {
+              "fairsharingRegistry": ["database"],
+              "dataPreservationPolicy": "yes"
+            }
+          },
+          {
+            "id": 2,
+            "title": "question_i2",
+            "question": "Which database is relevant to my data set?",
+            "color": "internal",
+            "icon": "search",
+            "link": "/researchfields",
+            "query": {
+              "fairsharingRegistry": ["database"]
+            }
+          },
+          {
+            "id": 2,
+            "title": "question_i3",
+            "question": "How can I get a persistent identifier for my data?",
+            "color": "internal",
+            "icon": "search",
+            "link": "/researchfields",
+            "query": {
+              "fairsharingRegistry": ["database"],
+              "usesPersistentIdentifier": true
+            }
           }
         ]
       ]
