@@ -58,16 +58,17 @@
             "question": "Are you mainly interested in guidance and educational material?",
             "color": "internal",
             "icon": "educational",
+            "image_icon": "educational_material",
             "link": "/7",
             "query": {}
           },
           {
             "id": 6,
             "title": "question_a6",
-            "question": "I have a dataset. What do I do now?",
+            "question": "I have a dataset to store. What do I do now?",
             "color": "internal",
             "icon": "search",
-            "image_icon": "home_db",
+            "image_icon": "dataset",
             "link": "/8",
             "query": {}
           }

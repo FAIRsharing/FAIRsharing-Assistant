@@ -56,6 +56,7 @@
               color="white"
               contain
               max-width="165"
+              max-height="120"
               :width="$vuetify.breakpoint.smAndDown ? 50 : '100%' "
               :height="$vuetify.breakpoint.smAndDown ? 50 : '165' "
               :style="{ 'background-color': item.background }"
