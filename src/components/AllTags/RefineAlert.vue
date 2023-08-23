@@ -16,8 +16,7 @@
         <span
           v-if="getSelectionMessage"
           v-html="getSelectionMessage"
-        >
-        </span>
+        />
         <span
           v-else
         >
