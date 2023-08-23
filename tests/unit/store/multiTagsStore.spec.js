@@ -13,7 +13,8 @@ describe('MultiTags store methods', () => {
     loadingStatus: false,
     refinedStatus: false,
     currentRegistry: '',
-    selectedTags: []
+    selectedTags: [],
+    selectionMessage: null
   };
   let stub;
 
@@ -66,7 +67,8 @@ describe('MultiTags store methods', () => {
       loadingStatus : false,
       refinedStatus : false,
       currentRegistry : '',
-      selectedTags : []
+      selectedTags : [],
+      selectionMessage: null
     }
     mutations.resetMultiTagsRecords(state);
     expect(state).toStrictEqual(returnedVal);
@@ -208,6 +210,12 @@ describe('MultiTags store methods', () => {
     const builtData = getters.getError(stateValue);
     expect(builtData).toBe(result);
 
+  })
+
+  it("can get and set the selection message", () => {
+    mutations.setSelectionMessage(state, 'banana');
+    expect(state.selectionMessage).toEqual('banana');
+    expect(getters.getSelectionMessage({ selectionMessage: 'two oranges' })).toEqual('two oranges');
   })
 
 })

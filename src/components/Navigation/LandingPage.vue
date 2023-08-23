@@ -38,7 +38,7 @@
               'cardXtraLarge pa-6': $vuetify.breakpoint.xlOnly,
             }
           ]"
-          @click="processLink(item.link, item.query)"
+          @click="processLink(item.link, item.query, item.message, item.refined)"
         >
           <div class="d-flex align-center">
             <v-card-text
@@ -164,11 +164,17 @@ export default {
         this.questions = questionSets.questionSets[0].rows;
       }
     },
-    async processLink(link, query) {
+    async processLink(link, query, message, refined) {
       if (!(Object.keys(query).length === 0)) {
         this.loading = true;
         await this.fetchMultiTagData(query);
         this.$store.commit('multiTagsStore/setQueryParams', query);
+        if (refined) {
+          this.$store.commit('multiTagsStore/setRefinedStatus', refined);
+        }
+        if (message) {
+          this.$store.commit('multiTagsStore/setSelectionMessage', message);
+        }
         if (query['fairsharingRegistry']) {
           this.$store.commit('multiTagsStore/setCurrentRegistry', this.registrySwitch[query['fairsharingRegistry'][0]]);
         }
