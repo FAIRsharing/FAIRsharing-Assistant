@@ -11,6 +11,8 @@
         type="info"
         variant="tonal"
       >
+        <!-- This html is from a safe source -->
+        <!-- eslint-disable vue/no-v-html -->
         <span
           v-if="getSelectionMessage"
           v-html="getSelectionMessage"
@@ -22,6 +24,7 @@
 
           You've already made selections on the <b>{{ getCurrentRegistry }}</b> refinement page which will affect record counts here.
         </span>
+        <!-- eslint-enable vue/no-v-html -->
       </v-alert>
     </v-col>
   </v-row>
