@@ -1,6 +1,14 @@
 {
   "switch": [
     {
+      "filterName": "Uses persistent identifier",
+      "filterQuery": "usesPersistentIdentifier",
+      "refineToggle": false,
+      "filterTypes": [
+        "database"
+      ]
+    },
+    {
       "filterName": "Recommends at least one standard",
       "filterQuery": "recommendsStandard",
       "refineToggle": false,
