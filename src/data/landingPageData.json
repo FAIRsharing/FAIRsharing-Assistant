@@ -91,7 +91,9 @@
             "query": {
               "fairsharingRegistry": ["database"],
               "recordType": ["repository", "knowledgebase", "knowledgebase_and_repository"]
-            }
+            },
+            "message": "All databases have been selected. You may select the relevant research area(s) below.",
+            "refined": true
           },
           {
             "id": 3,
@@ -137,12 +139,14 @@
             "question": "Filter on access: See those databases with <b>open</b> access to data.",
             "color": "internal",
             "icon": "search",
-            "link": "/refineregistry",
+            "link": "/researchfields",
             "query": {
               "fairsharingRegistry": ["database"],
               "recordType": ["repository", "knowledgebase", "knowledgebase_and_repository"],
               "dataAccessCondition": ["open"]
-            }
+            },
+            "message": "Databases with <b>open</b> data access have been selected. You may select the relevant area(s) of research below.",
+            "refined": true
           },
           {
             "id": 2,
@@ -150,12 +154,14 @@
             "question": "Filter on access: See those databases with <b>partially open</b> access to data.",
             "color": "internal",
             "icon": "search",
-            "link": "/refineregistry",
+            "link": "/researchfields",
             "query": {
               "fairsharingRegistry": ["database"],
               "recordType": ["repository", "knowledgebase", "knowledgebase_and_repository"],
               "dataAccessCondition": ["partially open"]
-            }
+            },
+            "message": "Databases with <b>partially open</b> data access have been selected. You may select the relevant area(s) of research below.",
+            "refined": true
           }
         ],
         [
@@ -165,12 +171,14 @@
             "question": "Filter on access: See those databases with <b>controlled</b> access to data.",
             "color": "internal",
             "icon": "search",
-            "link": "/refineregistry",
+            "link": "/researchfields",
             "query": {
               "fairsharingRegistry": ["database"],
               "recordType": ["repository", "knowledgebase", "knowledgebase_and_repository"],
               "dataAccessCondition": ["controlled"]
-            }
+            },
+            "message": "Databases with <b>controlled</b> data access have been selected. You may select the relevant area(s) of research below.",
+            "refined": true
           },
           {
             "id": 4,
@@ -178,12 +186,14 @@
             "question": "Filter on deposit: See those databases that are <b>open</b> to the deposition of data.",
             "color": "internal",
             "icon": "search",
-            "link": "/refineregistry",
+            "link": "/researchfields",
             "query": {
               "fairsharingRegistry": ["database"],
               "recordType": ["repository", "knowledgebase", "knowledgebase_and_repository"],
               "dataDepositionCondition": ["open"]
-            }
+            },
+            "message": "Databases which are <b>open</b> to the deposition of data have been selected. You may select the relevant area(s) of research below.",
+            "refined": true
           }
         ],
         [
@@ -193,12 +203,14 @@
             "question": "Filter on deposit: See those databases that are <b>closed</b> to the deposition of data.",
             "color": "internal",
             "icon": "search",
-            "link": "/refineregistry",
+            "link": "/researchfields",
             "query": {
               "fairsharingRegistry": ["database"],
               "recordType": ["repository", "knowledgebase", "knowledgebase_and_repository"],
-              "dataDepositionCondition": ["controlled"]
-            }
+              "dataDepositionCondition": ["closed"]
+            },
+            "message": "Databases which are <b>closed</b> to the deposition of data have been selected. You may select the relevant area(s) of research below.",
+            "refined": true
           }
         ]
       ]
@@ -215,11 +227,13 @@
             "question": "See all standards: Filter on the attributes most relevant to you.",
             "color": "internal",
             "icon": "search",
-            "link": "/refineregistry",
+            "link": "/researchfields",
             "query": {
               "fairsharingRegistry": ["standard"],
               "recordType": ["model_and_format", "metric", "terminology_artefact", "reporting_guideline", "identifier_schema"]
-            }
+            },
+            "message": "All standards have been selected. You may select the relevant area(s) of research below.",
+            "refined": true
           },
           {
             "id": 3,
@@ -265,8 +279,13 @@
             "question": "Explore unambiguous, persistent and context-independent schemas.",
             "color": "internal",
             "icon": "search",
-            "link": "/refineregistry?record_type=identifier_schema&registry=Standard",
-            "query": {}
+            "link": "/researchfields",
+            "query": {
+              "recordType": ["identifier_schema"],
+              "fairsharingRegistry": ["standard"]
+            },
+            "message": "<b>Identifier schema</b> (standard) records have been selected. You may select your area(s) of research below.",
+            "refined": true
           },
           {
             "id": 2,
@@ -293,11 +312,13 @@
             "question": "Explore conceptual models, schemas, and exchange formats.",
             "color": "internal",
             "icon": "search",
-            "link": "/refineregistry",
+            "link": "/researchfields",
             "query": {
               "fairsharingRegistry": ["standard"],
               "recordType": ["model_and_format"]
-            }
+            },
+            "message": "<b>Model and Format</b> (standard) records have been selected. You may select your area(s) of research below.",
+            "refined": true
           },
           {
             "id": 2,
@@ -305,11 +326,13 @@
             "question": "Explore minimum information requirements, checklists and other reporting guidelines.",
             "color": "internal",
             "icon": "search",
-            "link": "/refineregistry",
+            "link": "/researchfields",
             "query": {
               "fairsharingRegistry": ["standard"],
               "recordType": ["reporting_guideline"]
-            }
+            },
+            "message": "<b>Reporting Guideline</b> (standard) records have been selected. You may select your area(s) of research below.",
+            "refined": true
           }
         ],
         [
@@ -319,11 +342,13 @@
             "question": "Explore individual controlled vocabularies, taxonomies, ontologies and other terminology artefacts.",
             "color": "internal",
             "icon": "search",
-            "link": "/refineregistry",
+            "link": "/researchfields",
             "query": {
               "fairsharingRegistry": ["standard"],
               "recordType": ["terminology_artefact"]
-            }
+            },
+            "message": "<b>Terminology Artefact</b> (standard) records have been selected. You may select your area(s) of research below.",
+            "refined": true
           },
           {
             "id": 4,
@@ -349,11 +374,13 @@
             "question": "See all policies: Filter based on stakeholder including institutions, publishers and funders.",
             "color": "internal",
             "icon": "search",
-            "link": "/refineregistry",
+            "link": "/researchfields",
             "query": {
               "fairsharingRegistry": ["policy"],
               "recordType": ["journal", "society", "project", "institution", "journal_publisher", "funder"]
-            }
+            },
+            "message": "All <b>Policy</b> records have been selected. You may select your area(s) of research below.",
+            "refined": true
           },
           {
             "id": 4,
@@ -429,22 +456,26 @@
             "link": "/researchfields",
             "query": {
               "fairsharingRegistry": ["database"],
-              "dataPreservationPolicy": "yes"
-            }
+              "dataPreservationPolicy": true
+            },
+            "message": "Databases with a data preservation policy have been selected, based on your interest in long-term data storage. You may choose area(s) of research below.",
+            "refined": true
           },
           {
             "id": 2,
             "title": "question_i2",
-            "question": "Which database is relevant to my data set?",
+            "question": "Which database is relevant to my dataset?",
             "color": "internal",
             "icon": "search",
             "link": "/researchfields",
             "query": {
               "fairsharingRegistry": ["database"]
-            }
+            },
+            "message": "Databases have been selected. You may search below for your terms relevant to your dataset.",
+            "refined": true
           },
           {
-            "id": 2,
+            "id": 3,
             "title": "question_i3",
             "question": "How can I get a persistent identifier for my data?",
             "color": "internal",
@@ -453,7 +484,9 @@
             "query": {
               "fairsharingRegistry": ["database"],
               "usesPersistentIdentifier": true
-            }
+            },
+            "message": "Databases which use persistent identifiers have been selected; you may choose the relevant area(s) of research below.",
+            "refined": true
           }
         ]
       ]

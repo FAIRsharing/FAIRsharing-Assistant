@@ -11,7 +11,19 @@
         type="info"
         variant="tonal"
       >
-        You've already made selections on the <b>{{ getCurrentRegistry }}</b> refinement page which will affect record counts here.
+        <!-- This html is from a safe source -->
+        <!-- eslint-disable vue/no-v-html -->
+        <span
+          v-if="getSelectionMessage"
+          v-html="getSelectionMessage"
+        />
+        <span
+          v-else
+        >
+
+          You've already made selections on the <b>{{ getCurrentRegistry }}</b> refinement page which will affect record counts here.
+        </span>
+        <!-- eslint-enable vue/no-v-html -->
       </v-alert>
     </v-col>
   </v-row>
@@ -22,7 +34,7 @@ import {mapGetters} from "vuex";
 export default {
   name: 'RefineAlert',
   computed: {
-    ...mapGetters('multiTagsStore', ["getRefinedStatus", "getCurrentRegistry"]),
+    ...mapGetters('multiTagsStore', ["getRefinedStatus", "getCurrentRegistry", "getSelectionMessage"]),
   }
 }
 
