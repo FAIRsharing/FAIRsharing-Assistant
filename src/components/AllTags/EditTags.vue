@@ -74,7 +74,7 @@
           </v-card>
         </v-col>
       </v-container>
-      <SearchTags ref="searchTagsRef"/>
+      <SearchTags ref="searchTagsRef" />
     </v-form>
   </div>
 </template>
