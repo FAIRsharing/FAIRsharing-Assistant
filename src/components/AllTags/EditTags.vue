@@ -47,6 +47,36 @@
           <GoHome />
         </div>
         <TagsSelected />
+        <!-- modal to ask users if they want to add subject agnostic records --->
+        <v-col cols="12">
+          <v-card
+            v-if="showAgnosticModal"
+            color="#385F73"
+            theme="dark"
+          >
+            <v-card-title
+              class="text-h5"
+              style="color: white"
+            >
+              There aren't any results for some registries...
+            </v-card-title>
+
+            <v-card-subtitle
+              style="color: white"
+            >
+              Would you like to search for subject-agnostic resources as well?
+            </v-card-subtitle>
+
+            <v-card-actions>
+              <v-btn>
+                Yes please
+              </v-btn>
+              <v-btn>
+                No thanks
+              </v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-col>
       </v-container>
       <SearchTags />
     </v-form>
@@ -63,6 +93,7 @@ import RefineAlert from "@/components/AllTags/RefineAlert.vue";
 import TagsSelected from "@/components/AllTags/TagsSelected.vue";
 import stringUtils from '@/utils/stringUtils';
 import SearchTags from "@/components/AllTags/SearchTags.vue";
+import {mapGetters} from "vuex";
 
 export default {
   name: "EditTags",
@@ -72,8 +103,37 @@ export default {
     return {
       formValid: true,
       recordsLoading: false,
+      noThanks: false
     }
   },
+  computed: {
+    ...mapGetters('multiTagsStore', ['getFairSharingRecords', 'getQueryParams']),
+    showAgnosticModal() {
+      let _module = this;
+      // User has dismissed the modal already.
+      if (_module.noThanks) {
+        return false;
+      }
+      // User hasn't selected any query parameters yet
+      console.log(JSON.stringify(_module.getQueryParams));
+      if (Object.keys(_module.getQueryParams).length === 0) {
+        return false
+      }
+      let counts = [
+        _module.getFairSharingRecords.filter(x => x.registry === 'Standard').length == 0,
+        _module.getFairSharingRecords.filter(x => x.registry === 'Database').length == 0,
+        _module.getFairSharingRecords.filter(x => x.registry === 'Policy').length == 0,
+        _module.getFairSharingRecords.filter(x => x.registry === 'Collection').length == 0,
+      ]
+      console.log(JSON.stringify(counts));
+      const callback = (element) => element === true;
+      if (counts.some(callback)) {
+        console.log('showing modal');
+        return true;
+      }
+      return false;
+    }
+  }
 }
 </script>
 
