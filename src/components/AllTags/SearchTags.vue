@@ -1,74 +1,84 @@
 <template>
-  <v-expand-transition class="ma-5">
-    <v-container
-      fluid
-      class="py-0"
-    >
-      <v-row
-        justify="center"
-        no-gutters
+  <div>
+    <v-fade-transition v-if="recordsLoading">
+      <v-overlay
+        :absolute="false"
+        opacity="0.8"
       >
-        <v-col cols="12">
-          <p
-            class="pt-6"
-          >
-            Use this search box to find tags of interest.
-          </p>
-          <v-text-field
-            id="searchString"
-            v-model="searchString"
-            append-icon="fa-search"
-            label="Search names and synonyms"
-            outlined
-            clearable
-            clear-icon="fa-times-circle"
-            :clear-cb="tagsLoading = false"
-            hide-details
-            class="pt-1"
-          />
-          <v-data-table
-            v-model="recordTags"
-            :headers="headers"
-            :items="tags"
-            :items-per-page="10"
-            :footer-props="{'items-per-page-options': [10, 20, 30, 40, 50]}"
-            item-key="label"
-            class="elevation-1"
-            show-select
-            calculate-widths
-            mobile-breakpoint="900"
-            :loading="tagsLoading"
-            loading-text="Please wait, tags are loading"
-            :search-input.sync="searchString"
-          >
-            <template #[`item.model`]="{ item }">
-              <div
-                :class="colors[item.model] + '--text'"
-                class="noBreak"
-              >
-                {{ item.model.toUpperCase().replace(/_/g, " ") }}
-              </div>
-            </template>
-            <template #[`item.label`]="{ item }">
-              <v-chip
-                :class="colors[item.model] + ' white--text noBreak'"
-              >
-                {{ capitaliseText(item.label, item.model) }}
-              </v-chip>
-            </template>
-            <template #[`item.synonyms`]="{ item }">
-              <div
-                v-if="item.synonyms"
-                class="font-italic limitWidth"
-              >
-                {{ item.synonyms.join(", ") }}
-              </div>
-            </template>
-          </v-data-table>
-        </v-col>
-      </v-row>
-    </v-container>
-  </v-expand-transition>
+        <Loaders />
+      </v-overlay>
+    </v-fade-transition>
+    <v-expand-transition class="ma-5">
+      <v-container
+        fluid
+        class="py-0"
+      >
+        <v-row
+          justify="center"
+          no-gutters
+        >
+          <v-col cols="12">
+            <p
+              class="pt-6"
+            >
+              Use this search box to find tags of interest.
+            </p>
+            <v-text-field
+              id="searchString"
+              v-model="searchString"
+              append-icon="fa-search"
+              label="Search names and synonyms"
+              outlined
+              clearable
+              clear-icon="fa-times-circle"
+              :clear-cb="tagsLoading = false"
+              hide-details
+              class="pt-1"
+            />
+            <v-data-table
+              v-model="recordTags"
+              :headers="headers"
+              :items="tags"
+              :items-per-page="10"
+              :footer-props="{'items-per-page-options': [10, 20, 30, 40, 50]}"
+              item-key="label"
+              class="elevation-1"
+              show-select
+              calculate-widths
+              mobile-breakpoint="900"
+              :loading="tagsLoading"
+              loading-text="Please wait, tags are loading"
+              :search-input.sync="searchString"
+            >
+              <template #[`item.model`]="{ item }">
+                <div
+                  :class="colors[item.model] + '--text'"
+                  class="noBreak"
+                >
+                  {{ item.model.toUpperCase().replace(/_/g, " ") }}
+                </div>
+              </template>
+              <template #[`item.label`]="{ item }">
+                <v-chip
+                  :class="colors[item.model] + ' white--text noBreak'"
+                >
+                  {{ capitaliseText(item.label, item.model) }}
+                </v-chip>
+              </template>
+              <template #[`item.synonyms`]="{ item }">
+                <div
+                  v-if="item.synonyms"
+                  class="font-italic limitWidth"
+                >
+                  {{ item.synonyms.join(", ") }}
+                </div>
+              </template>
+            </v-data-table>
+          </v-col>
+        </v-row>
+      </v-container>
+    </v-expand-transition>
+  </div>
 </template>
 
 <script>
@@ -76,13 +86,16 @@ import stringUtils from "@/utils/stringUtils";
 import tagsQuery from "@/lib/GraphClient/queries/geTags.json";
 import GraphClient from "@/lib/GraphClient/GraphClient";
 import {mapActions, mapGetters} from "vuex";
+import Loaders from "@/components/Loaders/Loaders.vue";
 
 const graphClient = new GraphClient();
 export default {
   name: 'SearchTags',
+  components: { Loaders },
   mixins: [stringUtils],
   data() {
     return {
+      recordsLoading: false,
       justMounted: true,
       searchString: null,
       tagsLoading: false,
@@ -152,11 +165,12 @@ export default {
         _module.recordsFound = _module.getFairSharingRecords;
         _module.$store.commit('multiTagsStore/setQueryParams', queryParam);
         _module.$store.commit('multiTagsStore/setSelectedTags', val);
+        _module.recordsLoading = false;
       }
       else {
         _module.$store.commit('multiTagsStore/setSelectedTags', val);
+        _module.recordsLoading = false;
       }
-      _module.recordsLoading = false;
     },
     async searchString(val){
       this.tagsLoading = true;

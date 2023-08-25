@@ -62,7 +62,6 @@ export default {
   mixins: [stringUtils],
   data:() => {
     return {
-      recordsLoading: false,
       recordTypes: {},
     }
   },

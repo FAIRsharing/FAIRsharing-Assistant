@@ -1,13 +1,5 @@
 <template>
   <div>
-    <v-fade-transition v-if="recordsLoading">
-      <v-overlay
-        :absolute="false"
-        opacity="0.8"
-      >
-        <Loaders />
-      </v-overlay>
-    </v-fade-transition>
     <!-- Alert -->
     <RefineAlert />
     <v-form
@@ -54,7 +46,6 @@
 </template>
 
 <script>
-import Loaders from "@/components/Loaders/Loaders.vue";
 import TagsCard from "@/components/AllTags/TagsCard.vue";
 import ViewRecords from "@/components/Navigation/ViewRecordsButton.vue";
 import ClearAllSelections from "@/components/Navigation/ClearAllSelections.vue"
@@ -66,12 +57,11 @@ import SearchTags from "@/components/AllTags/SearchTags.vue";
 
 export default {
   name: "EditTags",
-  components: {SearchTags, TagsSelected, RefineAlert, GoHome, ViewRecords, Loaders, TagsCard, ClearAllSelections},
+  components: {SearchTags, TagsSelected, RefineAlert, GoHome, ViewRecords, TagsCard, ClearAllSelections},
   mixins: [stringUtils],
   data(){
     return {
       formValid: true,
-      recordsLoading: false,
     }
   },
 }
