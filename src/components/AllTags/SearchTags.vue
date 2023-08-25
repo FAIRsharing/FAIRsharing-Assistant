@@ -87,7 +87,6 @@ import tagsQuery from "@/lib/GraphClient/queries/geTags.json";
 import GraphClient from "@/lib/GraphClient/GraphClient";
 import {mapActions, mapGetters} from "vuex";
 import Loaders from "@/components/Loaders/Loaders.vue";
-//import Vue from 'vue';
 
 const graphClient = new GraphClient();
 export default {
@@ -228,7 +227,6 @@ export default {
       return [query, run]
     },
     selectSubjectAgnostic() {
-      console.log("Selecting!");
       let _module = this;
       //find the relevant entry in tags and insert it into recordTags
       const agnostic = _module.tags.find((element) => element.label === 'subject agnostic');
