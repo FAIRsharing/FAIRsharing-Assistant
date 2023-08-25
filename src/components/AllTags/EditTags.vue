@@ -1,13 +1,5 @@
 <template>
   <div>
-    <v-fade-transition v-if="recordsLoading">
-      <v-overlay
-        :absolute="false"
-        opacity="0.8"
-      >
-        <Loaders />
-      </v-overlay>
-    </v-fade-transition>
     <!-- Alert -->
     <RefineAlert />
     <v-form
@@ -84,7 +76,6 @@
 </template>
 
 <script>
-import Loaders from "@/components/Loaders/Loaders.vue";
 import TagsCard from "@/components/AllTags/TagsCard.vue";
 import ViewRecords from "@/components/Navigation/ViewRecordsButton.vue";
 import ClearAllSelections from "@/components/Navigation/ClearAllSelections.vue"
@@ -97,7 +88,7 @@ import {mapGetters} from "vuex";
 
 export default {
   name: "EditTags",
-  components: {SearchTags, TagsSelected, RefineAlert, GoHome, ViewRecords, Loaders, TagsCard, ClearAllSelections},
+  components: {SearchTags, TagsSelected, RefineAlert, GoHome, ViewRecords, TagsCard, ClearAllSelections},
   mixins: [stringUtils],
   data(){
     return {
@@ -109,6 +100,7 @@ export default {
   computed: {
     ...mapGetters('multiTagsStore', ['getFairSharingRecords', 'getQueryParams']),
     showAgnosticModal() {
+      console.log('wibble');
       let _module = this;
       // User has dismissed the modal already.
       if (_module.noThanks) {
@@ -116,6 +108,7 @@ export default {
       }
       // User hasn't selected any query parameters yet
       console.log(JSON.stringify(_module.getQueryParams));
+      console.log("Length: " + Object.keys(_module.getQueryParams).length);
       if (Object.keys(_module.getQueryParams).length === 0) {
         return false
       }
