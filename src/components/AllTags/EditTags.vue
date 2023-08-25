@@ -60,17 +60,21 @@
             </v-card-subtitle>
 
             <v-card-actions>
-              <v-btn>
+              <v-btn
+                @click="yesPlease()"
+              >
                 Yes please
               </v-btn>
-              <v-btn>
+              <v-btn
+                @click="noThanks()"
+              >
                 No thanks
               </v-btn>
             </v-card-actions>
           </v-card>
         </v-col>
       </v-container>
-      <SearchTags />
+      <SearchTags ref="searchTagsRef"/>
     </v-form>
   </div>
 </template>
@@ -84,7 +88,7 @@ import RefineAlert from "@/components/AllTags/RefineAlert.vue";
 import TagsSelected from "@/components/AllTags/TagsSelected.vue";
 import stringUtils from '@/utils/stringUtils';
 import SearchTags from "@/components/AllTags/SearchTags.vue";
-import {mapGetters} from "vuex";
+import { mapGetters } from "vuex";
 
 export default {
   name: "EditTags",
@@ -94,37 +98,38 @@ export default {
     return {
       formValid: true,
       recordsLoading: false,
-      noThanks: false
+      noThanksSelected: false,
+      paramsPresent: false
     }
   },
   computed: {
     ...mapGetters('multiTagsStore', ['getFairSharingRecords', 'getQueryParams']),
     showAgnosticModal() {
-      console.log('wibble');
       let _module = this;
       // User has dismissed the modal already.
-      if (_module.noThanks) {
+      if (_module.noThanksSelected) {
         return false;
       }
-      // User hasn't selected any query parameters yet
-      console.log(JSON.stringify(_module.getQueryParams));
-      console.log("Length: " + Object.keys(_module.getQueryParams).length);
-      if (Object.keys(_module.getQueryParams).length === 0) {
-        return false
-      }
       let counts = [
-        _module.getFairSharingRecords.filter(x => x.registry === 'Standard').length == 0,
-        _module.getFairSharingRecords.filter(x => x.registry === 'Database').length == 0,
-        _module.getFairSharingRecords.filter(x => x.registry === 'Policy').length == 0,
-        _module.getFairSharingRecords.filter(x => x.registry === 'Collection').length == 0,
+        _module.getFairSharingRecords.filter(x => x.registry === 'Standard').length === 0,
+        _module.getFairSharingRecords.filter(x => x.registry === 'Database').length === 0,
+        _module.getFairSharingRecords.filter(x => x.registry === 'Policy').length === 0,
+        _module.getFairSharingRecords.filter(x => x.registry === 'Collection').length === 0,
       ]
-      console.log(JSON.stringify(counts));
       const callback = (element) => element === true;
-      if (counts.some(callback)) {
-        console.log('showing modal');
+      if (counts.some(callback) && Object.keys(_module.getQueryParams).length > 0) {
         return true;
       }
       return false;
+    }
+  },
+  methods: {
+    yesPlease() {
+      this.$refs.searchTagsRef.selectSubjectAgnostic();
+      this.noThanksSelected = true;
+    },
+    noThanks() {
+      this.noThanksSelected = true;
     }
   }
 }
@@ -134,6 +139,7 @@ export default {
 .utilityButtons {
     max-width: 650px
 }
+
 
 </style>
 
