@@ -14,7 +14,7 @@ describe('MultiTags store methods', () => {
     refinedStatus: false,
     currentRegistry: '',
     selectedTags: [],
-    selectionMessage: null
+    selectionMessage: ''
   };
   let stub;
 
@@ -68,7 +68,7 @@ describe('MultiTags store methods', () => {
       refinedStatus : false,
       currentRegistry : '',
       selectedTags : [],
-      selectionMessage: null
+      selectionMessage: ''
     }
     mutations.resetMultiTagsRecords(state);
     expect(state).toStrictEqual(returnedVal);

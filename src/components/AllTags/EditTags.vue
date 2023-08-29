@@ -40,39 +40,7 @@
         </div>
         <TagsSelected />
         <!-- modal to ask users if they want to add subject agnostic records --->
-        <v-col cols="12">
-          <v-card
-            v-if="showAgnosticModal"
-            color="#385F73"
-            theme="dark"
-          >
-            <v-card-title
-              class="text-h5"
-              style="color: white"
-            >
-              There aren't any results for some registries...
-            </v-card-title>
-
-            <v-card-subtitle
-              style="color: white"
-            >
-              Would you like to search for subject-agnostic resources as well?
-            </v-card-subtitle>
-
-            <v-card-actions>
-              <v-btn
-                @click="yesPlease()"
-              >
-                Yes please
-              </v-btn>
-              <v-btn
-                @click="noThanks()"
-              >
-                No thanks
-              </v-btn>
-            </v-card-actions>
-          </v-card>
-        </v-col>
+        <SubjectAgnostic :search-tags-ref="searchRef" />
       </v-container>
       <SearchTags ref="searchTagsRef" />
     </v-form>
@@ -88,50 +56,21 @@ import RefineAlert from "@/components/AllTags/RefineAlert.vue";
 import TagsSelected from "@/components/AllTags/TagsSelected.vue";
 import stringUtils from '@/utils/stringUtils';
 import SearchTags from "@/components/AllTags/SearchTags.vue";
-import { mapGetters } from "vuex";
+import SubjectAgnostic from "@/components/AllTags/SubjectAgnostic.vue"
 
 export default {
   name: "EditTags",
-  components: {SearchTags, TagsSelected, RefineAlert, GoHome, ViewRecords, TagsCard, ClearAllSelections},
+  components: {SearchTags, TagsSelected, RefineAlert, GoHome, ViewRecords, TagsCard, ClearAllSelections, SubjectAgnostic},
   mixins: [stringUtils],
   data(){
     return {
       formValid: true,
-      recordsLoading: false,
-      noThanksSelected: false,
-      paramsPresent: false
+      searchRef: {}
     }
   },
-  computed: {
-    ...mapGetters('multiTagsStore', ['getFairSharingRecords', 'getQueryParams']),
-    showAgnosticModal() {
-      let _module = this;
-      // User has dismissed the modal already.
-      if (_module.noThanksSelected) {
-        return false;
-      }
-      let counts = [
-        _module.getFairSharingRecords.filter(x => x.registry === 'Standard').length === 0,
-        _module.getFairSharingRecords.filter(x => x.registry === 'Database').length === 0,
-        _module.getFairSharingRecords.filter(x => x.registry === 'Policy').length === 0,
-        _module.getFairSharingRecords.filter(x => x.registry === 'Collection').length === 0,
-      ]
-      const callback = (element) => element === true;
-      if (counts.some(callback) && Object.keys(_module.getQueryParams).length > 0) {
-        return true;
-      }
-      return false;
-    }
+  mounted() {
+    this.searchRef = this.$refs.searchTagsRef
   },
-  methods: {
-    yesPlease() {
-      this.$refs.searchTagsRef.selectSubjectAgnostic();
-      this.noThanksSelected = true;
-    },
-    noThanks() {
-      this.noThanksSelected = true;
-    }
-  }
 }
 </script>
 
