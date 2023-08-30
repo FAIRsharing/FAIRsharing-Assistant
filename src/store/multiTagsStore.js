@@ -12,7 +12,7 @@ const state = {
   refinedStatus: false,
   currentRegistry: '',
   selectedTags: [],
-  selectionMessage: null
+  selectionMessage: ''
 }
 
 const actions = {
@@ -46,7 +46,7 @@ const mutations = {
     state.refinedStatus = false,
     state.currentRegistry = '',
     state.selectedTags = [],
-    state.selectionMessage = null
+    state.selectionMessage = ''
   },
   setQueryParams(state, params) { state.queryParams = params },
   setRefinedStatus(state, refinedStatus) { state.refinedStatus = refinedStatus },
