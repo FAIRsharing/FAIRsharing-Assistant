@@ -39,8 +39,10 @@
           <GoHome />
         </div>
         <TagsSelected />
+        <!-- modal to ask users if they want to add subject agnostic records --->
+        <SubjectAgnostic :search-tags-ref="searchRef" />
       </v-container>
-      <SearchTags />
+      <SearchTags ref="searchTagsRef" />
     </v-form>
   </div>
 </template>
@@ -54,15 +56,20 @@ import RefineAlert from "@/components/AllTags/RefineAlert.vue";
 import TagsSelected from "@/components/AllTags/TagsSelected.vue";
 import stringUtils from '@/utils/stringUtils';
 import SearchTags from "@/components/AllTags/SearchTags.vue";
+import SubjectAgnostic from "@/components/AllTags/SubjectAgnostic.vue"
 
 export default {
   name: "EditTags",
-  components: {SearchTags, TagsSelected, RefineAlert, GoHome, ViewRecords, TagsCard, ClearAllSelections},
+  components: {SearchTags, TagsSelected, RefineAlert, GoHome, ViewRecords, TagsCard, ClearAllSelections, SubjectAgnostic},
   mixins: [stringUtils],
   data(){
     return {
       formValid: true,
+      searchRef: {}
     }
+  },
+  mounted() {
+    this.searchRef = this.$refs.searchTagsRef
   },
 }
 </script>
@@ -71,6 +78,7 @@ export default {
 .utilityButtons {
     max-width: 650px
 }
+
 
 </style>
 

@@ -225,6 +225,15 @@ export default {
         run = true;
       }
       return [query, run]
+    },
+    selectSubjectAgnostic() {
+      let _module = this;
+      //find the relevant entry in tags and insert it into recordTags
+      const agnostic = _module.tags.find((element) => element.label === 'subject agnostic');
+      _module.recordTags.push(agnostic);
+      // searchString
+      //Vue.set(this.searchString, 'subject agnostic');
+      _module.searchString = 'subject agnostic';
     }
   }
 }

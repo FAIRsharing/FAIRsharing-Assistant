@@ -1,5 +1,5 @@
 import {createLocalVue, shallowMount} from "@vue/test-utils";
-import RefineAlert from "@/components/AllTags/RefineAlert"
+import SubjectAgnostic from "@/components/AllTags/SubjectAgnostic"
 import Vuetify from "vuetify"
 import Vuex from "vuex";
 import multiTagsStore from "@/store/multiTagsStore";
@@ -10,9 +10,21 @@ localVue.use(Vuex);
 const vuetify = new Vuetify();
 
 multiTagsStore.getters = {
-  getRefinedStatus: () => { return true },
-  getCurrentRegistry: () => { return 'standard' },
-  getSelectionMessage: () => { return 'Test string' },
+  getFairSharingRecords: () => {
+    return [
+      {
+        record: "Wibble",
+        registry: "Standard",
+        id: 123,
+      }
+    ]
+  },
+  getQueryParams:  () => {
+    return {
+      subjects: ['genetics'],
+      registry: ['standard']
+    }
+  },
 }
 
 let store = new Vuex.Store({
@@ -21,11 +33,11 @@ let store = new Vuex.Store({
   },
 })
 
-describe("RefineAlert.vue", function(){
+describe("SubjectAgnostic.vue", function(){
   let wrapper;
 
   beforeEach(() => {
-    wrapper = shallowMount(RefineAlert, {
+    wrapper = shallowMount(SubjectAgnostic, {
       localVue,
       vuetify,
       store,
@@ -34,7 +46,7 @@ describe("RefineAlert.vue", function(){
   });
 
   it("can be instantiated", () => {
-    expect(wrapper.vm.$options.name).toMatch("RefineAlert");
+    expect(wrapper.vm.$options.name).toMatch("SubjectAgnostic");
   });
 
 });
