@@ -26,7 +26,7 @@ export default {
   data(){
     return {
       button: {
-        text: "Return to registry",
+        text: "Edit registry",
         attributes: {
           elevation:"2",
           raised: true,

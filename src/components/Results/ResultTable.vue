@@ -14,43 +14,192 @@
     <v-container
       v-else
       fluid
-      class="pa-0"
+      class="pa-5"
     >
-      <v-row
-        class="block-category"
-      >
-        <v-col>
-          <v-text-field
-            v-model="search"
-            append-icon="mdi-magnify"
-            label="Search in results"
-            single-line
-            hide-details
-            class="pa-10"
-          />
-        </v-col>
-      </v-row>
-      <v-data-table
-        :headers="headers"
+      <v-data-iterator
         :items="records"
+        :items-per-page.sync="itemsPerPage"
+        :page.sync="page"
         :search="search"
-        :sort-by="[{ key: 'name', order: 'asc' }, { key: 'registry', order: 'desc' }, { key: 'type', order: 'desc' }]"
-        multi-sort
-        :loading="loading"
-        loading-text="Loading... Please wait"
-        :footer-props="{'items-per-page-options': [10, 20, 30, 40, 50]}"
-        class="pa-10"
+        :sort-by="sortBy.toLowerCase()"
+        :sort-desc="sortDesc"
+        hide-default-footer
       >
-        <template #[`item.link`]="{ item }">
-          <a
-            target="_blank"
-            class="underline-effect"
-            :href="'https://fairsharing.org/' + item.id"
+        <!-- headers start -->
+        <template #header>
+          <v-toolbar
+            dark
+            color="blue lighten-1"
+            class="mb-5"
           >
-            https://fairsharing.org/{{ item.id }}
-          </a>
+            <v-text-field
+              v-model="search"
+              clearable
+              flat
+              solo-inverted
+              hide-details
+              prepend-inner-icon="mdi-magnify"
+              label="Search"
+            />
+            <template v-if="$vuetify.breakpoint.mdAndUp">
+              <v-spacer />
+              <v-select
+                v-model="sortBy"
+                flat
+                solo-inverted
+                hide-details
+                :items="keys"
+                prepend-inner-icon="mdi-magnify"
+                label="Sort by"
+              />
+              <v-spacer />
+              <v-btn-toggle
+                v-model="sortDesc"
+                mandatory
+              >
+                <v-btn
+                  large
+                  depressed
+                  color="blue"
+                  :value="false"
+                >
+                  <v-icon>mdi-arrow-up</v-icon>
+                </v-btn>
+                <v-btn
+                  large
+                  depressed
+                  color="blue"
+                  :value="true"
+                >
+                  <v-icon>mdi-arrow-down</v-icon>
+                </v-btn>
+              </v-btn-toggle>
+            </template>
+          </v-toolbar>
         </template>
-      </v-data-table>
+        <!-- headers stop -->
+        <!-- data section begins -->
+        <template #default="props">
+          <v-row>
+            <v-col
+              v-for="item in props.items"
+              :key="item.name"
+              cols="12"
+            >
+              <v-card>
+                <v-card-title class="subheading font-weight-bold">
+                  <RecordStatus
+                    :record="item"
+                  />
+                  <a
+                    :href="'https://fairsharing.org/' + item.id"
+                    target="_blank"
+                    class="ml-10"
+                  >
+                    {{ item.name }}
+                  </a>
+                </v-card-title>
+                <span
+                  class="pa-3"
+                >
+                  The record's description should go here but that information isn't available unless a change
+                  on the server is made.
+                </span>
+
+                <v-divider />
+
+                <!-- TODO: change below here -->
+                <span>
+                  Some information about number of standards etc. can go here. 
+                </span>
+
+                <!--
+                <v-list dense>
+                  <v-list-item
+                    v-for="(key, index) in filteredKeys"
+                    :key="index"
+                  >
+                    <v-list-item-content :class="{ 'blue--text': sortBy === key }">
+                      {{ key }}:
+                    </v-list-item-content>
+                    <v-list-item-content
+                      class="align-end"
+                      :class="{ 'blue--text': sortBy === key }"
+                    >
+                      {{ item[key.toLowerCase()] }}
+                    </v-list-item-content>
+                  </v-list-item>
+                </v-list>
+                -->
+                <!-- TODO: change above here -->
+              </v-card>
+            </v-col>
+          </v-row>
+        </template>
+        <!-- data section ends -->
+        <!-- footer begins -->
+        <template #footer>
+          <v-row
+            class="mt-2"
+            align="center"
+            justify="center"
+          >
+            <span class="grey--text">Items per page</span>
+            <v-menu offset-y>
+              <template #activator="{ on, attrs }">
+                <v-btn
+                  dark
+                  text
+                  color="primary"
+                  class="ml-2"
+                  v-bind="attrs"
+                  v-on="on"
+                >
+                  {{ itemsPerPage }}
+                  <v-icon>mdi-chevron-down</v-icon>
+                </v-btn>
+              </template>
+              <v-list>
+                <v-list-item
+                  v-for="(number, index) in itemsPerPageArray"
+                  :key="index"
+                  @click="updateItemsPerPage(number)"
+                >
+                  <v-list-item-title>{{ number }}</v-list-item-title>
+                </v-list-item>
+              </v-list>
+            </v-menu>
+
+            <v-spacer />
+
+            <span
+              class="mr-4
+            grey--text"
+            >
+              Page {{ page }} of {{ numberOfPages }}
+            </span>
+            <v-btn
+              fab
+              dark
+              color="blue darken-3"
+              class="mr-1"
+              @click="formerPage"
+            >
+              <v-icon>mdi-chevron-left</v-icon>
+            </v-btn>
+            <v-btn
+              fab
+              dark
+              color="blue lighten-1"
+              class="ml-1"
+              @click="nextPage"
+            >
+              <v-icon>mdi-chevron-right</v-icon>
+            </v-btn>
+          </v-row>
+        </template>
+        <!-- footer ends -->
+      </v-data-iterator>
     </v-container>
   </div>
 </template>
@@ -59,6 +208,7 @@
 import { mapGetters } from "vuex";
 import GraphClient from "@/lib/GraphClient/GraphClient";
 import multiTagsNonExactFilter from "@/lib/GraphClient/queries/multiTagsFilter/multiTagsFilter.json";
+import RecordStatus from "@/components/Results/RecordStatus.vue";
 import currentPath from "@/utils/currentPath"
 
 
@@ -68,20 +218,27 @@ MULTI_TAGS.queryParam = {};
 
 export default {
   name: 'ResultTable',
+  components: { RecordStatus },
   // TODO: Passing in these props fails to do what's required.
   data () {
     return {
+      itemsPerPageArray: [10, 20, 50, 100, 200],
+      search: '',
+      filter: {},
+      sortDesc: false,
+      page: 1,
+      itemsPerPage: 5,
+      sortBy: 'name',
       records: [],
       loading: true,
       error: false,
-      search: '',
-      headers: [
-        { text: 'Name', value: 'name' },
-        { text: 'Registry', value: 'registry' },
-        { text: 'Type', value: 'type' },
-        { text: 'Status', value: 'status' },
-        { text: 'Link', value: 'link' },
-      ],
+      keys: [
+        'Name',
+        'Registry',
+        'Type',
+        'Status',
+        'Description'
+      ]
     }
   },
   computed: {
@@ -89,12 +246,26 @@ export default {
     currentRouteQuery() {
       return this.$route.query;
     },
+    numberOfPages () {
+      return Math.ceil(this.records.length / this.itemsPerPage)
+    },
+    filteredKeys () {
+      return this.keys.filter(key => key !== 'Name' && key !== 'Description')
+    },
   },
   async mounted() {
     await this.getData();
   },
   methods: {
-    // TODO: Stuck here. Should be able to check the store and use that for records instead of loading them.
+    nextPage () {
+      if (this.page + 1 <= this.numberOfPages) this.page += 1
+    },
+    formerPage () {
+      if (this.page - 1 >= 1) this.page -= 1
+    },
+    updateItemsPerPage (number) {
+      this.itemsPerPage = number
+    },
     async getData() {
       let _module = this;
       _module.records = _module.getFairSharingRecords || [];
