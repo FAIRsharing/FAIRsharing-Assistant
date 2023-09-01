@@ -23,7 +23,7 @@
         :search="search"
         :sort-by="sortBy.toLowerCase()"
         :sort-desc="sortDesc"
-        hide-default-footer
+        :footer-props="{'items-per-page-options': [10, 25, 50, 100]}"
       >
         <!-- headers start -->
         <template #header>
@@ -123,67 +123,6 @@
           </v-row>
         </template>
         <!-- data section ends -->
-        <!-- footer begins -->
-        <template #footer>
-          <v-row
-            class="mt-2"
-            align="center"
-            justify="center"
-          >
-            <span class="grey--text">Items per page</span>
-            <v-menu offset-y>
-              <template #activator="{ on, attrs }">
-                <v-btn
-                  dark
-                  text
-                  color="primary"
-                  class="ml-2"
-                  v-bind="attrs"
-                  v-on="on"
-                >
-                  {{ itemsPerPage }}
-                  <v-icon>mdi-chevron-down</v-icon>
-                </v-btn>
-              </template>
-              <v-list>
-                <v-list-item
-                  v-for="(number, index) in itemsPerPageArray"
-                  :key="index"
-                  @click="updateItemsPerPage(number)"
-                >
-                  <v-list-item-title>{{ number }}</v-list-item-title>
-                </v-list-item>
-              </v-list>
-            </v-menu>
-
-            <v-spacer />
-
-            <span
-              class="mr-4
-            grey--text"
-            >
-              Page {{ page }} of {{ numberOfPages }}
-            </span>
-            <v-btn
-              fab
-              dark
-              color="blue darken-3"
-              class="mr-1"
-              @click="formerPage"
-            >
-              <v-icon>mdi-chevron-left</v-icon>
-            </v-btn>
-            <v-btn
-              fab
-              dark
-              color="blue lighten-1"
-              class="ml-1"
-              @click="nextPage"
-            >
-              <v-icon>mdi-chevron-right</v-icon>
-            </v-btn>
-          </v-row>
-        </template>
         <!-- footer ends -->
       </v-data-iterator>
     </v-container>
@@ -233,9 +172,6 @@ export default {
     currentRouteQuery() {
       return this.$route.query;
     },
-    numberOfPages () {
-      return Math.ceil(this.records.length / this.itemsPerPage)
-    },
     filteredKeys () {
       return this.keys.filter(key => key !== 'Name' && key !== 'Description')
     },
@@ -244,15 +180,6 @@ export default {
     await this.getData();
   },
   methods: {
-    nextPage () {
-      if (this.page + 1 <= this.numberOfPages) this.page += 1
-    },
-    formerPage () {
-      if (this.page - 1 >= 1) this.page -= 1
-    },
-    updateItemsPerPage (number) {
-      this.itemsPerPage = number
-    },
     async getData() {
       let _module = this;
       _module.records = _module.getFairSharingRecords || [];
