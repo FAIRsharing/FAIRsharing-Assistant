@@ -37,8 +37,37 @@ describe("SearchLinkChips.vue", function () {
           ],
           taxonomies: [
             {
-              label: 'second chip',
+              label: 'third chip',
               active: false
+            },
+            {
+              label: 'fourth chip',
+              active: false
+            },
+            {
+              label: 'fifth chip',
+              active: false
+            },
+            {
+              label: 'sixth chip',
+              active: false
+            },
+            {
+              label: 'seventh chip',
+              active: false
+            },
+            {
+              label: 'eighth chip',
+              active: false
+            },
+            {
+              label: 'ninth chip',
+              active: false
+            }
+          ],
+          user_defined_tags: [
+            {
+              label: 'a tag'
             }
           ]
         }

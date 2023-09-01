@@ -61,7 +61,7 @@ export default {
       chips: [],
       remainTagCount: 0,
       isColumn: false,
-      getMaxItemShown: 3
+      getMaxItemShown: 5
     }
   },
   mounted() {

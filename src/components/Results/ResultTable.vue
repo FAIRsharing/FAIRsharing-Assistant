@@ -92,7 +92,7 @@
                     :record="item"
                   />
                   <a
-                    :href="'https://fairsharing.org/' + item.id"
+                    :href="'https://fairsharing.org/' + getRecordLink(item)"
                     target="_blank"
                     class="ml-10"
                   >
@@ -145,6 +145,7 @@ import multiTagsNonExactFilter from "@/lib/GraphClient/queries/multiTagsFilter/m
 import RecordStatus from "@/components/Results/RecordStatus.vue";
 import SearchLinkChips from "@/components/Results/SearchLinkChips.vue";
 import currentPath from "@/utils/currentPath"
+import recordsCardUtils from "@/utils/recordsCardUtils";
 
 
 const CLIENT = new GraphClient();
@@ -154,6 +155,7 @@ MULTI_TAGS.queryParam = {};
 export default {
   name: 'ResultTable',
   components: { RecordStatus, SearchLinkChips },
+  mixins: [recordsCardUtils],
   // TODO: Passing in these props fails to do what's required.
   data () {
     return {

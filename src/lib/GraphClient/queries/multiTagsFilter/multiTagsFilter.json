@@ -4,6 +4,7 @@
   "fields": [
     "id",
     "name",
+    "doi",
     "type",
     "registry",
     "status",

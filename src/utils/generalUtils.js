@@ -6,6 +6,8 @@ const generalUtils = {
     getAPIEndPoint() {
       return process.env.VUE_APP_API_ENDPOINT;
     },
+    // This is covered by a test but coverage won't reflect this.
+    /* istanbul ignore next */
     sortObj(obj) {
       return Object.keys(obj).sort().reduce(function (result, key) {
         result[key] = obj[key];

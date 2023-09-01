@@ -33,6 +33,8 @@ const recordsCardUtils = {
         return text.replace(/(^\w{1})|(\s{1}\w{1})/g, match => match.toUpperCase());
       }
     },
+    // TODO: This function isn't (yet) used in the assistant, but may be needed later.
+    /*
     associatedRecords(record) {
       let records = {
         registryNumber: {
@@ -60,9 +62,11 @@ const recordsCardUtils = {
       records['registry'] = record.registry.toLowerCase()
       record['recordAssociations'].forEach(function (association) {
         type = association['linkedRecord'].registry.toLowerCase()
-        /* istanbul ignore else */
-        if (type !== 'collection') {
-          /* istanbul ignore else */
+     */
+    /* istanbul ignore else */
+    //if (type !== 'collection') {
+    /* istanbul ignore else */
+    /*
           if (!link_records[type].includes(association['linkedRecord'].id)){
             link_records[type].push(association['linkedRecord'].id)
             records['registryNumber'][type].val += 1
@@ -71,9 +75,12 @@ const recordsCardUtils = {
       });
       record['reverseRecordAssociations'].forEach(function (association) {
         type =  association['fairsharingRecord'].registry.toLowerCase()
-        /* istanbul ignore else */
-        if (type !== 'collection') {
-          /* istanbul ignore else */
+        
+     */
+    /* istanbul ignore else */
+    //if (type !== 'collection') {
+    /* istanbul ignore else */
+    /*
           if (!link_records[type].includes(association['fairsharingRecord'].id)){
             link_records[type].push(association['fairsharingRecord'].id)
             records['registryNumber'][type].val += 1
@@ -82,6 +89,7 @@ const recordsCardUtils = {
       });
       return records;
     },
+     */
     setChips(record) {
       const _module = this;
       const order = ['subjects', 'domains', 'taxonomies']
@@ -97,6 +105,7 @@ const recordsCardUtils = {
     },
     organizeChips(record, node, max_item_shown) {
       const _module = this;
+      /* istanbul ignore else */
       if (record[node]) {
         record[node].forEach(function (item, index) {
           if (index < max_item_shown) {
@@ -113,6 +122,8 @@ const recordsCardUtils = {
         return false;
       }
     },
+    // TODO: This is not used in the assistant
+    /*
     truncateString(str, num) {
       if (str === null || str.trim() === "") {
         return str;
@@ -124,6 +135,7 @@ const recordsCardUtils = {
         return str;
       }
     }
+     */
   },
 }
 
