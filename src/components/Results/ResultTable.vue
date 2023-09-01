@@ -110,13 +110,22 @@
                   class="ml-10"
                 />
 
-                <v-divider />
+                <!-- TODO: this is a hacky placeholder -->
+                <p
+                  class="pb-5"
+                >
+
+                </p>
 
                 <!-- TODO: change below here -->
+                <!--
+                <v-divider />
+
                 <span>
                   Some information about number of standards etc. can go here. 
                 </span>
 
+                -->
                 <!-- TODO: change above here -->
               </v-card>
             </v-col>

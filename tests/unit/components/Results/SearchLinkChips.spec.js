@@ -34,6 +34,12 @@ describe("SearchLinkChips.vue", function () {
               label: 'second chip',
               active: false
             }
+          ],
+          taxonomies: [
+            {
+              label: 'second chip',
+              active: false
+            }
           ]
         }
         /*
