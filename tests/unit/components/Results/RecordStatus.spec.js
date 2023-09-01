@@ -19,7 +19,7 @@ describe("RecordStatus.vue", function () {
   });
 
   it("can be instantiated", () => {
-    expect(wrapper.name()).toMatch("RecordStatus");
+    expect(wrapper.vm.$options.name).toMatch("RecordStatus");
   });
 
   /*
