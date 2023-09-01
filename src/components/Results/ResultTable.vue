@@ -99,12 +99,16 @@
                     {{ item.name }}
                   </a>
                 </v-card-title>
-                <span
-                  class="pa-3"
+                <p
+                  class="mt-2 ml-10 pr-2 text-sm-body-2 text-md-body-1 text-justify text-ellipses-height-2lines"
                 >
-                  The record's description should go here but that information isn't available unless a change
-                  on the server is made.
-                </span>
+                  {{ item. description }}
+                </p>
+
+                <SearchLinkChips
+                  :record="item"
+                  class="ml-10"
+                />
 
                 <v-divider />
 
@@ -113,24 +117,6 @@
                   Some information about number of standards etc. can go here. 
                 </span>
 
-                <!--
-                <v-list dense>
-                  <v-list-item
-                    v-for="(key, index) in filteredKeys"
-                    :key="index"
-                  >
-                    <v-list-item-content :class="{ 'blue--text': sortBy === key }">
-                      {{ key }}:
-                    </v-list-item-content>
-                    <v-list-item-content
-                      class="align-end"
-                      :class="{ 'blue--text': sortBy === key }"
-                    >
-                      {{ item[key.toLowerCase()] }}
-                    </v-list-item-content>
-                  </v-list-item>
-                </v-list>
-                -->
                 <!-- TODO: change above here -->
               </v-card>
             </v-col>
@@ -209,6 +195,7 @@ import { mapGetters } from "vuex";
 import GraphClient from "@/lib/GraphClient/GraphClient";
 import multiTagsNonExactFilter from "@/lib/GraphClient/queries/multiTagsFilter/multiTagsFilter.json";
 import RecordStatus from "@/components/Results/RecordStatus.vue";
+import SearchLinkChips from "@/components/Results/SearchLinkChips.vue";
 import currentPath from "@/utils/currentPath"
 
 
@@ -218,7 +205,7 @@ MULTI_TAGS.queryParam = {};
 
 export default {
   name: 'ResultTable',
-  components: { RecordStatus },
+  components: { RecordStatus, SearchLinkChips },
   // TODO: Passing in these props fails to do what's required.
   data () {
     return {
