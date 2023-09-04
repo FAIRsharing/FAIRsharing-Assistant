@@ -143,6 +143,7 @@ export default {
       },
     },
     async recordTags (val) {
+      console.log("VAL : " + JSON.stringify(val));
       let _module = this;
       // It's necessary to modify tags to reflect the store.
       // We can't have tags modifying the store whilst this happens.
@@ -230,7 +231,10 @@ export default {
       let _module = this;
       //find the relevant entry in tags and insert it into recordTags
       const agnostic = _module.tags.find((element) => element.label === 'subject agnostic');
-      _module.recordTags.push(agnostic);
+      // TODO: Why is this now null?
+      if (agnostic) {
+        _module.recordTags.push(agnostic);
+      }
       // searchString
       //Vue.set(this.searchString, 'subject agnostic');
       _module.searchString = 'subject agnostic';
