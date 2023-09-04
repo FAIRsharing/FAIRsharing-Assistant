@@ -143,7 +143,6 @@ export default {
       },
     },
     async recordTags (val) {
-      console.log("VAL : " + JSON.stringify(val));
       let _module = this;
       // It's necessary to modify tags to reflect the store.
       // We can't have tags modifying the store whilst this happens.
