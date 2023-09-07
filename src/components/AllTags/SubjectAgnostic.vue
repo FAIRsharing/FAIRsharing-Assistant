@@ -54,24 +54,33 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('multiTagsStore', ['getFairSharingRecords', 'getQueryParams']),
+    ...mapGetters('multiTagsStore', ['getFairSharingRecords', 'getQueryParams', 'getCurrentRegistry']),
     showAgnosticModal() {
       let _module = this;
       // User has dismissed the modal already.
       if (_module.noThanksSelected) {
         return false;
       }
-      let counts = [
-        _module.getFairSharingRecords.filter(x => x.registry === 'Standard').length === 0,
-        _module.getFairSharingRecords.filter(x => x.registry === 'Database').length === 0,
-        _module.getFairSharingRecords.filter(x => x.registry === 'Policy').length === 0,
-        _module.getFairSharingRecords.filter(x => x.registry === 'Collection').length === 0,
-      ]
-      const callback = (element) => element === true;
-      if (counts.some(callback) && Object.keys(_module.getQueryParams).length > 0) {
-        return true;
+      if (_module.getCurrentRegistry) {
+        const currentCount = _module.getFairSharingRecords.filter(x => x.registry === _module.getCurrentRegistry).length;
+        if (currentCount === 0) {
+          return true
+        }
+        return false;
       }
-      return false;
+      else {
+        let counts = [
+          _module.getFairSharingRecords.filter(x => x.registry === 'Standard').length === 0,
+          _module.getFairSharingRecords.filter(x => x.registry === 'Database').length === 0,
+          _module.getFairSharingRecords.filter(x => x.registry === 'Policy').length === 0,
+          _module.getFairSharingRecords.filter(x => x.registry === 'Collection').length === 0,
+        ]
+        const callback = (element) => element === true;
+        if (counts.some(callback) && Object.keys(_module.getQueryParams).length > 0) {
+          return true;
+        }
+        return false;
+      }
     }
   },
   methods: {
