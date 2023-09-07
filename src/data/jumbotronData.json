@@ -41,7 +41,7 @@
   {
     "pageName": "ResultView",
     "title": "Search Results",
-    "subTitle": "Clicking on a link below will open the relevant record on the FAIRsharing site. You can filter your search results by typing in the box below."
+    "subTitle": "A summary of records matching your criteria are below. For more information you can view them on the FAIRsharing site."
   },
   {
     "pageName": "AllTags",
