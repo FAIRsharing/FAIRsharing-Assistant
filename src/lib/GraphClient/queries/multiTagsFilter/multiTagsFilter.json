@@ -4,43 +4,8 @@
   "fields": [
     "id",
     "name",
-    "doi",
     "type",
     "registry",
-    "status",
-    "description",
-    {
-      "name": "domains",
-      "fields": [
-        "label",
-        "id",
-        "definitions",
-        "iri",
-        "synonyms",
-        "inFairsharing"
-      ]
-    },
-    {
-      "name": "subjects",
-      "fields": [
-        "label",
-        "id",
-        "definitions",
-        "iri",
-        "synonyms"
-      ]
-    },
-    {
-      "name": "taxonomies",
-      "fields": [
-        "label"
-      ]
-    },
-    {
-      "name": "userDefinedTags",
-      "fields": [
-        "label"
-      ]
-    }
+    "status"
   ]
 }

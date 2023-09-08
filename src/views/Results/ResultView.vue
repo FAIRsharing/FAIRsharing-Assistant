@@ -3,6 +3,7 @@
     class="d-flex flex-column justify-start align-stretch"
   >
     <Jumbotron />
+    <ResultTable @isError="noRecords" />
     <div
       class="mb-10 utilityButtons d-flex flex-row justify-space-around full-width margin-auto"
       :class="{'flex-column align-center': $vuetify.breakpoint.smAndDown}"
@@ -11,7 +12,6 @@
       <RegistryButton />
       <ClearAllSelections :refine-page="true" />
     </div>
-    <ResultTable @isError="noRecords" />
   </div>
 </template>
 
