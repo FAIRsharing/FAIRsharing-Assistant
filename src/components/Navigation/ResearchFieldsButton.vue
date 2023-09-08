@@ -26,7 +26,7 @@ export default {
   data(){
     return {
       button: {
-        text: "Return to tags",
+        text: "Edit tags",
         attributes: {
           elevation:"2",
           raised: true,
