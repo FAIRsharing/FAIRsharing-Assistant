@@ -1,14 +1,21 @@
 <template>
   <div>
-    <p
-      class="pt-6"
+    <v-btn
+      size="small"
+      tonal
+      class="mb-2"
+      @click="toggleSelected()"
     >
-      Tags you've selected will display in the four rows below.
-    </p>
-    <SelectedTags
-      :research-page="true"
-      @deleteTag="removeTag"
-    />
+      {{ buttonMessage }}
+    </v-btn>
+    <transition name="fade">
+      <SelectedTags
+        v-if="showSelected"
+        class="selected_tags"
+        :research-page="true"
+        @deleteTag="removeTag"
+      />
+    </transition>
   </div>
 </template>
 
@@ -22,7 +29,9 @@ export default {
   data() {
     return {
       selectedTags: [],
-      selectedQueryParam: []
+      selectedQueryParam: [],
+      showSelected: false,
+      buttonMessage: 'Show selected tags'
     }
   },
   computed: {
@@ -46,7 +55,6 @@ export default {
         return sectionName
       }
     },
-
     removeTag(tagParams){
       let id = tagParams[0]
       let label = tagParams[1]
@@ -64,7 +72,25 @@ export default {
         this.$store.commit('multiTagsStore/setFairSharingRecords', []);
       }
     },
+    toggleSelected() {
+      this.showSelected = !this.showSelected;
+      if (this.showSelected) {
+        this.buttonMessage = "Hide selected tags"
+      }
+      else {
+        this.buttonMessage = "Show selected tags"
+      }
+    }
   }
 }
 
 </script>
+
+<style>
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}
+</style>
