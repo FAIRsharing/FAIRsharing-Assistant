@@ -3,6 +3,7 @@
     class="d-flex flex-column justify-start align-stretch"
   >
     <Jumbotron />
+    <QuerySummary />
     <div
       class="mb-10 utilityButtons d-flex flex-row justify-space-around full-width margin-auto"
       :class="{'flex-column align-center': $vuetify.breakpoint.smAndDown}"
@@ -21,8 +22,7 @@ import ResultTable from "@/components/Results/ResultTable.vue"
 import ResearchFieldsButton from "@/components/Navigation/ResearchFieldsButton.vue";
 import ClearAllSelections from "@/components/Navigation/ClearAllSelections.vue";
 import RegistryButton from "@/components/Navigation/RegistryButton.vue"
-
-
+import QuerySummary from "@/components/Results/QuerySummary.vue";
 
 export default {
   name: 'ResultView',
@@ -31,7 +31,8 @@ export default {
     ClearAllSelections,
     ResearchFieldsButton,
     Jumbotron,
-    RegistryButton
+    RegistryButton,
+    QuerySummary
   },
   data() {
     return{
