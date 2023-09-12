@@ -1,0 +1,26 @@
+{
+  "tags": [
+    "<p>Here's where you can select tags to identify the area of research you're interested in. There are four types of tag, all found via the same search box:</p>",
+    "<ul class=\"mb-6\" style=\"list-style-type: circle;\">",
+    "<li>Subjects, based on our <a href=\"https://github.com/FAIRsharing/subject-ontology\" _target=\"blank\">subject ontology</a>.These are most likely the tags you need.</li>",
+    "<li>Domains, from our <a href=\"https://github.com/FAIRsharing/domain-ontology\" _target=\"blank\">domain ontology</a>.</li>",
+    "<li>Taxonomy (genus and/or species) terms, if you're looking for particular organisms.</li>",
+    "<li>User defined tags, which are terms added by FAIRsharing users and not (yet) integrated into one of our ontologies.</li>",
+    "</ul>",
+    "<p>Search for terms using the text box below, and tick any of interest. The terms you've selected will be shown above. You can hide the selected terms to save space (they're hidden to start with). Searching for tags assumes that you want records tagged with <b>any of</b> the same type of tag, <b>and</b> any of other types. So, for example, if you select subjects A and B and domains C and D the search will be for all records with <i>(A or B) and (C or D)</i>.</p>",
+    "<p>At the top of the screen are four boxes showing the records we have, and how many match your search. If you've restricted your search to a particular type of record (see refinements, below) then its box will be outlined in red (and results for others will be zero).</p>",
+    "<p>From this screen, you can jump directly to the results, or you can further refine your choice of record. So, if you choose to refine database records you could, for example, selected only knowledgebases which have open data access. Some initial questions which will send you here will pre-select such refinements for you.</p>",
+    "<p>If you have any questions or problems, please <a href=\"mailto:contact@fairsharing.org\">contact us!</a></p>"
+  ],
+  "refinement": [
+    "<p>Having selected what sort of records you need, the search can be narrowed down here based on characteristics of the resources we've catalogued.</p>",
+    "<p>There are three columns:</p>",
+    "<ul class=\"mb-6\" style=\"list-style-type: circle;\">",
+    "<li>On the left, the type of records. All types will be selected by default.</li>",
+    "<li>In the middle, all fields where there's a simple yes/no answer.</li>",
+    "<li>On the right, fields where you can select from a variety of options.</li>",
+    "</ul>",
+    "<p>You can view the results directly or, by clicking \"edit tags\" make further adjustments to your research fields of interest.</p>",
+    "<p>If you have any questions or problems, please <a href=\"mailto:contact@fairsharing.org\">contact us!</a></p>"
+  ]
+}

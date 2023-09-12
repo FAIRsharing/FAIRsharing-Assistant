@@ -32,7 +32,7 @@ export default {
           color: "accent2",
         }
       },
-      tooltipText: "Return to the home page, clearing all tags and filters"
+      tooltipText: "Return to the home page, clearing all filters and tags"
     }
   },
   methods: {
