@@ -7,7 +7,9 @@
       fluid
       class="pa-0"
     >
-      <p class="pa-10">
+      <p
+        class="pa-10"
+      >
         Sorry, something went wrong!
       </p>
     </v-container>
@@ -113,9 +115,7 @@
                 <!-- TODO: this is a hacky placeholder -->
                 <p
                   class="pb-5"
-                >
-
-                </p>
+                />
 
                 <!-- TODO: change below here -->
                 <!--
