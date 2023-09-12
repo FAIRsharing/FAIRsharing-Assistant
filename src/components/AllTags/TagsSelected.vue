@@ -27,6 +27,7 @@
         <!-- This html is from a safe source -->
         <!-- eslint-disable vue/no-v-html -->
         <v-card-text>
+          <!-- because javascript doesn't allow line breaks in text -->
           <span
             v-html="helpText.tags.join('\n')"
           />

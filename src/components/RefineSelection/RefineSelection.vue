@@ -24,6 +24,44 @@
     <div
       class="mb-5"
     >
+      <!-- help text -->
+      <v-btn
+        color="info"
+        class="mb-2 ml-2"
+        :disabled="help"
+        @click="showHelp()"
+      >
+        Show help
+      </v-btn>
+      <!-- help -->
+      <v-dialog
+        v-model="help"
+        width="auto"
+      >
+        <v-card>
+          <v-card-title>
+            About this page
+          </v-card-title>
+          <!-- This html is from a safe source -->
+          <!-- eslint-disable vue/no-v-html -->
+          <v-card-text>
+            <!-- because javascript doesn't allow line breaks in text -->
+            <span
+              v-html="helpText.refinement.join('\n')"
+            />
+          </v-card-text>
+          <!-- eslint-enable vue/no-v-html -->
+          <v-card-actions>
+            <v-btn
+              color="primary"
+              @click="hideHelp()"
+            >
+              Close
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
+      <!-- end of help text -->
       <p>Below, you can select what sort of <strong>{{ getCurrentRegistry }}</strong> record you need.</p>
       <p
         v-if="getCurrentRegistry === 'Policy'"
@@ -47,6 +85,7 @@ import ClearAllSelections from "@/components/Navigation/ClearAllSelections.vue";
 import GoHome from "@/components/Navigation/HomeButton.vue";
 import ResearchFieldsButton from "@/components/Navigation/ResearchFieldsButton.vue"
 import stringUtils from "@/utils/stringUtils";
+import helpDialogs from "@/data/helpDialogs.json"
 
 export default {
   name: 'RefineSelection',
@@ -63,6 +102,8 @@ export default {
   data:() => {
     return {
       recordTypes: {},
+      help: false,
+      helpText: helpDialogs
     }
   },
   computed:{
@@ -85,6 +126,12 @@ export default {
   methods: {
     registryName,
     registryIcons,
+    showHelp() {
+      this.help = true;
+    },
+    hideHelp() {
+      this.help = false;
+    }
   }
 };
 </script>
