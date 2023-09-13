@@ -21,10 +21,28 @@
           :key="field.value + '-' + index"
           :ref="field.value"
           v-model="typeSelected"
-          :label="field.label"
           :value="field.value"
           @change="checkCheckbox()"
-        />
+        >
+          <template #label>
+            <div class="tooltip">
+              {{ field.label }}
+              <v-tooltip top>
+                <template #activator="{ on, attrs }">
+                  <v-icon
+                    v-bind="attrs"
+                    x-small
+                    class=" mr-1 grey--text"
+                    v-on="on"
+                  >
+                    fa-question-circle
+                  </v-icon>
+                </template>
+                <span> {{ field.tooltip }} </span>
+              </v-tooltip>
+            </div>
+          </template>
+        </v-checkbox>
       </div>
       <div
         class="switchWrapper flex-column full-width"
@@ -156,8 +174,7 @@ export default {
         })
 
       })
-    } ,
-
+    },
     async readRegAndTypeFilterParams() {
       let _module = this;
       let params = currentPath(this.currentRouteQuery);
@@ -194,7 +211,6 @@ export default {
         this.conditionalFilters("policies")
       }
     },
-
     conditionalDisplay() {
       if (!this.switchTypeFilters?.length && this.selectTypeFilters?.length) {
         this.onlySelect = true
