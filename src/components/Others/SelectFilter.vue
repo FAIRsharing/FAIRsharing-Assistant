@@ -8,36 +8,43 @@
         <Loaders />
       </v-overlay>
     </v-fade-transition>
-    <v-select
-      ref="filterSelect"
-      v-model="filtersOpted"
-      :items="filter['options']"
-      :label="cleanText(filter['filterName'])"
-      clearable
-      multiple
-      chips
-      return-object
-      @change="selectToggle(filter)"
-    >
-      <template #selection="data">
-        <v-chip
-          v-bind="data.attrs"
-          :input-value="data.selected"
-          class="blue white--text"
-        >
-          {{ data.item }}
-        </v-chip>
-      </template>
-    </v-select>
+    <v-row>
+      <Tooltip
+        :tooltip-text="filter['tooltip']"
+        class="mt-5 mr-1"
+      />
+      <v-select
+        ref="filterSelect"
+        v-model="filtersOpted"
+        :items="filter['options']"
+        :label="cleanText(filter['filterName'])"
+        clearable
+        multiple
+        chips
+        return-object
+        @change="selectToggle(filter)"
+      >
+        <template #selection="data">
+          <v-chip
+            v-bind="data.attrs"
+            :input-value="data.selected"
+            class="blue white--text"
+          >
+            {{ data.item }}
+          </v-chip>
+        </template>
+      </v-select>
+    </v-row>
   </div>
 </template>
 <script>
 import {mapActions, mapGetters} from "vuex";
 import Loaders from "@/components/Loaders/Loaders.vue";
+import Tooltip from "@/components/Others/Tooltip.vue"
 
 export default {
   name: "SelectFilter",
-  components: {Loaders},
+  components: { Loaders, Tooltip },
   props:{
     filter:{
       type: Object,
