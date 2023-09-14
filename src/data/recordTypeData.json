@@ -2,63 +2,77 @@
   "Database": [
     {
       "label": "Knowledgebase",
-      "value": "knowledgebase"
+      "value": "knowledgebase",
+      "tooltip": "Knowledgebases synthesise data from a number of sources including published literature, databases and other types of data sources. They often have a manual curation component. They can be considered secondary databases as they store data derived from primary sources."
     },
     {
       "label": "Repository",
-      "value": "repository"
+      "value": "repository",
+      "tooltip": "Repositories allow the submission, storage of and access to data (datasets, software, materials and other digital objects) and include (multi)disciplinary, generalist, project, data type and institutional repositories."
     },
     {
       "label": "Hybrid Knowledgebase/Repository",
-      "value": "knowledgebase_and_repository"
+      "value": "knowledgebase_and_repository",
+      "tooltip": "Knowledgebases and Repositories are databases that have features of both knowledgebases and repositories."
     }
   ],
   "Standard": [
     {
       "label": "Model and format",
-      "value": "model_and_format"
+      "value": "model_and_format",
+      "tooltip": "Describes resources that provide a common structure for all data of a given experimental type. They are structured representations of information from a conceptual model or schema, which enables (syntactic) interoperability among systems. These formats are often created using base formats such as XML, CSV or RDF."
     },
     {
       "label": "Metric",
-      "value": "metric"
+      "value": "metric",
+      "tooltip": "Criteria to assess some aspect of a digital resource, for example - but not limited to - its discoverability."
     },
     {
       "label": "Terminology artefact",
-      "value": "terminology_artefact"
+      "value": "terminology_artefact",
+      "tooltip": "Controlled vocabularies or ontologies that describe the meaning, or semantics, of data and metadata. They provide a method of annotating data in a way that is useful for humans and comprehensible by computers, and allow for better collation and searching of the data."
     },
     {
       "label": "Reporting guideline",
-      "value": "reporting_guideline"
+      "value": "reporting_guideline",
+      "tooltip": "Provides a checklist for the minimal descriptive content required to evaluate, interpret and disseminate an experiment. Defining a common set of metadata to guide researchers in reporting scientific context is important for data repositories, journals and funders. Often reporting guidelines do not have a literal checklist, but are rather presented as a document stating required and optional attributes."
     },
     {
       "label": "Identifier schema",
-      "value": "identifier_schema"
+      "value": "identifier_schema",
+      "tooltip": "Identifier schemas (e.g. URLs, pURLs, DOIs) describe publicly-available identifiers from a central registry."
     }
   ],
   "Policy": [
     {
       "label": "Journal",
-      "value": "journal"
+      "value": "journal",
+      "tooltip": "A journal data policy describes those formats and/or databases that are recommended for use for authors submitting a manuscript to that journal. Such resources may be described either explicitly or in a more general way."
     },
     {
       "label": "Journal publisher",
-      "value": "journal_publisher"
+      "value": "journal_publisher",
+      "tooltip": "Sometimes the publisher of a stable of journals has overarching data policies that apply to all journals."
     },
     {
       "label": "Society",
-      "value": "society"
+      "value": "society",
+      "tooltip": "Particular societies (e.g. standards development organisations) often provide data policies so that researchers wishing to align with society best practices have a concrete data policy they can implement."
     },
     {
       "label": "Project",
-      "value": "project"
+      "value": "project",
+      "tooltip": "Particular projects may have a data policy that describes those resources that must be used by project members. Please note that this policy type should only be used for large-scale projects."
     },
     {
       "label": "Institution",
-      "value": "institution"
+      "value": "institution",
+      "tooltip": "This is a relatively new policy type for FAIRsharing. Please use this to describe your institution's (e.g. a university's) data policy for its employees and, sometimes, collaborators."
     },
     {
       "label": "Funder",
-      "value": "funder"
+      "value": "funder",
+      "tooltip": "Funders often have strict requirements about the type of databases or standards that they wish their grantees to use."
     }
   ],
   "Collection": [ ]
