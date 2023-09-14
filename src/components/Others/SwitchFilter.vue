@@ -8,33 +8,40 @@
         <Loaders />
       </v-overlay>
     </v-fade-transition>
-    <v-radio-group
-      v-model="filtersOpted"
-      :label="filter['filterName']"
-      @change="selectToggle(filter)"
-    >
-      <v-radio
-        label="Yes"
-        value="true"
+    <v-row>
+      <Tooltip
+        :tooltip-text="filter['tooltip']"
+        class="mt-4 mr-1"
       />
-      <v-radio
-        label="No"
-        value="false"
-      />
-      <v-radio
-        label="Either"
-        value="null"
-      />
-    </v-radio-group>
+      <v-radio-group
+        v-model="filtersOpted"
+        :label="filter['filterName']"
+        @change="selectToggle(filter)"
+      >
+        <v-radio
+          label="Yes"
+          value="true"
+        />
+        <v-radio
+          label="No"
+          value="false"
+        />
+        <v-radio
+          label="Either"
+          value="null"
+        />
+      </v-radio-group>
+    </v-row>
   </div>
 </template>
 <script>
 import { mapGetters, mapActions } from "vuex";
 import Loaders from "@/components/Loaders/Loaders.vue";
+import Tooltip from "@/components/Others/Tooltip.vue";
 
 export default {
   name: "SwitchFilter",
-  components: {Loaders},
+  components: {Tooltip, Loaders},
   props:{
     filter:{
       type: Object,

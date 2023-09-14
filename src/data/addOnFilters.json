@@ -16,7 +16,7 @@
       "filterTypes": [
         "policies"
       ],
-      "tooltip": ""
+      "tooltip": "Does this resource recommend at least one standard (of any type)?"
     },
     {
       "filterName": "Recommends at least one database",
@@ -25,7 +25,7 @@
       "filterTypes": [
         "policies"
       ],
-      "tooltip": ""
+      "tooltip": "Does this resource recommend at least one database (of any type)?"
     },
     {
       "filterName": "Exceptions to data sharing",
@@ -34,7 +34,7 @@
       "filterTypes": [
         "policies"
       ],
-      "tooltip": ""
+      "tooltip": "'Yes' is applicable when this policy allow exceptions to the stated data sharing methods, otherwise 'no' is used."
     },
     {
       "filterName": "Data Protection",
@@ -43,7 +43,7 @@
       "filterTypes": [
         "policies"
       ],
-      "tooltip": ""
+      "tooltip": "'Yes' is applicable when the policy makes clear that data protection is part of RDM and provides links to appropriate documentation. When the policy addresses this topic poorly or not at all, 'no' is used."
     },
     {
       "filterName": "Updating of DMP",
@@ -52,7 +52,7 @@
       "filterTypes": [
         "policies"
       ],
-      "tooltip": ""
+      "tooltip": "'Yes' is applicable when the policy makes clear that the DMP must be updated and versioned over the life of the project. When the policy addresses this topic poorly or not at all, 'no' is used."
     },
     {
       "filterName": "Licences for Outputs",
@@ -61,7 +61,7 @@
       "filterTypes": [
         "policies"
       ],
-      "tooltip": ""
+      "tooltip": "'Yes' is applicable when the policy requires the use of appropriate licences for research outputs. When the policy only encourages their use, or does not address this topic, 'no' is used."
     },
     {
       "filterName": "Data Citation",
@@ -70,7 +70,7 @@
       "filterTypes": [
         "policies"
       ],
-      "tooltip": ""
+      "tooltip": "Does this policy have a clear statement about the expectations surrounding the citation of a broad range of research objects (data, software, researchers and other roles)?"
     },
     {
       "filterName": "Data Preservation",
@@ -79,7 +79,7 @@
       "filterTypes": [
         "policies"
       ],
-      "tooltip": ""
+      "tooltip": "Yes' is applicable when the policy requires that selected data must be preserved for a set period of time. When the policy lacks clarity, or does not address this topic, 'no' is used."
     },
     {
       "filterName": "Monitoring of Compliance",
@@ -88,7 +88,7 @@
       "filterTypes": [
         "policies"
       ],
-      "tooltip": ""
+      "tooltip": "'Yes' is applicable when the policy makes clear whether compliance will be monitored and provides clarity on related rewards or penalties. When the policy lacks clarity, or does not address this topic, 'no' is used."
     },
     {
       "filterName": "Data Availability Statement",
@@ -97,7 +97,7 @@
       "filterTypes": [
         "policies"
       ],
-      "tooltip": ""
+      "tooltip": "Does this policy require a data availability statement?"
     },
   {
     "filterName": "Has Publication",
@@ -107,7 +107,7 @@
       "database",
       "standards"
     ],
-    "tooltip": ""
+    "tooltip": "Does this resource have any publications which describe it?"
   },
   {
     "filterName": "Recommended by at least one policy",
@@ -116,7 +116,7 @@
     "filterTypes": [
       "standards"
     ],
-    "tooltip": ""
+    "tooltip": "Is this resource recommended by at least one policy (of any type)?"
   },
   {
     "filterName": "Implemented by at least one database",
@@ -125,7 +125,7 @@
     "filterTypes": [
       "standards"
     ],
-    "tooltip": ""
+    "tooltip": "Is this resource recommended by at least one database (of any type)?"
   },
   {
     "filterName": "Data Preservation Policy",
@@ -134,7 +134,7 @@
     "filterTypes": [
       "database"
     ],
-    "tooltip": ""
+    "tooltip": "Policy that details how the preservation of the data is ensured. Does the repository provide information on its data preservation policies?"
   },
   {
     "filterName": "Resource Sustainability",
@@ -143,7 +143,7 @@
     "filterTypes": [
       "database"
     ],
-    "tooltip": ""
+    "tooltip": "Plan that gives information about sustainability plans for the repository: does the repository have a webpage or document that describes these?"
   }
   ],
   "select": [
