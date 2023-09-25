@@ -94,7 +94,7 @@
                     :record="item"
                   />
                   <a
-                    :href="'https://fairsharing.org/' + getRecordLink(item)"
+                    :href="fairSharingURL + getRecordLink(item)"
                     target="_blank"
                     class="ml-10"
                   >
@@ -175,7 +175,8 @@ export default {
         'Type',
         'Status',
         'Description'
-      ]
+      ],
+      fairSharingURL: process.env.VUE_APP_FAIRSHARING_URL
     }
   },
   computed: {
