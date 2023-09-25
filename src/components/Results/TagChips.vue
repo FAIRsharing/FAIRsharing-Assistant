@@ -8,7 +8,6 @@
         :key="chip.label+'_'+index"
         text-color="white"
         :color="getChipColor(chip)"
-        @click.prevent="updateSearchQuery(chip)"
       >
         <KeywordTooltip
           v-if="chip.type === 'subjects' || chip.type === 'domains' "
@@ -42,12 +41,15 @@
 </template>
 
 <script>
-import {isEqual} from "lodash";
+/*
+ * Very similar code (but with additional functionality) appears in the FAIRsharing
+ * code as SearchLinkChips.vue.
+ */
 import KeywordTooltip from "./KeywordTooltip";
 import recordsCardUtils from "@/utils/recordsCardUtils";
 
 export default {
-  name: "SearchLinkChips",
+  name: "TagChips",
   components: { KeywordTooltip },
   mixins: [recordsCardUtils],
   props: {
@@ -66,41 +68,6 @@ export default {
   },
   mounted() {
     this.setChips(this.record);
-  },
-  methods: {
-    /*
-     * TODO: Contains some code similar to that in FilterButton.vue
-     * Could this be refactored somehow?
-     */
-    updateSearchQuery(chip) {
-      const _module = this;
-      let currentQuery = {};
-      let oldQuery = {};
-      Object.keys(_module.$route.query).forEach(function (param) {
-        currentQuery[param] = _module.$route.query[param];
-        oldQuery[param] = _module.$route.query[param];
-      });
-      if (!currentQuery[chip.type]) {
-        currentQuery[chip.type] = encodeURIComponent(chip.label);
-      }
-      else {
-        let terms = currentQuery[chip.type].split(',');
-        terms.push(encodeURIComponent(chip.label));
-        currentQuery[chip.type] = terms.filter((v, i, a) => a.indexOf(v) === i).join();
-      }
-      if (!isEqual(currentQuery, oldQuery)) {
-        _module.$router.push({
-          name: _module.$route.name,
-          query: currentQuery
-        });
-      }
-      let selectedItem = this.chips.find(item => isEqual(item, chip));
-      this.chips.map(item => {
-        if (isEqual(item, selectedItem)) {
-          item.active = !item.active;
-        }
-      });
-    }
   }
 }
 </script>
