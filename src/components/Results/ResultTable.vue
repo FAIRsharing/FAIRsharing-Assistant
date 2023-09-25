@@ -107,7 +107,7 @@
                   {{ item. description }}
                 </p>
 
-                <SearchLinkChips
+                <TagChips
                   :record="item"
                   class="ml-10"
                 />
@@ -143,7 +143,7 @@ import { mapGetters } from "vuex";
 import GraphClient from "@/lib/GraphClient/GraphClient";
 import multiTagsNonExactFilter from "@/lib/GraphClient/queries/multiTagsFilter/multiTagsFilter.json";
 import RecordStatus from "@/components/Results/RecordStatus.vue";
-import SearchLinkChips from "@/components/Results/SearchLinkChips.vue";
+import TagChips from "@/components/Results/TagChips.vue";
 import currentPath from "@/utils/currentPath"
 import recordsCardUtils from "@/utils/recordsCardUtils";
 
@@ -154,7 +154,7 @@ MULTI_TAGS.queryParam = {};
 
 export default {
   name: 'ResultTable',
-  components: { RecordStatus, SearchLinkChips },
+  components: { RecordStatus, TagChips },
   mixins: [recordsCardUtils],
   // TODO: Passing in these props fails to do what's required.
   data () {
