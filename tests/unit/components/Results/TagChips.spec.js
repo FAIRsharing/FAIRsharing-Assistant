@@ -1,6 +1,6 @@
 import {createLocalVue, shallowMount} from "@vue/test-utils";
 import Vuetify from "vuetify"
-import SearchLinkChips from "@/components/Results/SearchLinkChips.vue"
+import TagChips from "@/components/Results/TagChips.vue"
 
 let $route = {
   name: "search",
@@ -11,13 +11,13 @@ const $router = {
   push: jest.fn(),
 };
 
-describe("SearchLinkChips.vue", function () {
+describe("TagChips.vue", function () {
   let wrapper;
   const vuetify = new Vuetify();
   const localVue = createLocalVue();
 
   beforeEach(() => {
-    wrapper = shallowMount(SearchLinkChips, {
+    wrapper = shallowMount(TagChips, {
       localVue,
       vuetify,
       propsData: {
@@ -86,53 +86,7 @@ describe("SearchLinkChips.vue", function () {
   });
 
   it("can be instantiated", () => {
-    expect(wrapper.vm.$options.name).toMatch("SearchLinkChips");
-  });
-
-  it("can check updateSearchQuery function", () => {
-    expect(wrapper.vm.chips[0].active).toBe(false);
-    wrapper.vm.updateSearchQuery(wrapper.vm.chips[0]);
-    expect(wrapper.vm.chips[0].active).toBe(true);
-    let fakeChip = {label: 'fake', active: 'false'}
-    wrapper.vm.updateSearchQuery(fakeChip);
-    expect(wrapper.vm.chips[0].active).toBe(true);
-  });
-
-  it("updates the route properly", () => {
-    expect($router.push).toHaveBeenCalledTimes(2);
-    wrapper.vm.$route.query = {subjects: 'banana'};
-    let chip = {label: 'orange', active: 'false', type: 'domains'};
-    wrapper.vm.updateSearchQuery(chip);
-    expect($router.push).toHaveBeenCalledTimes(3);
-    expect($router.push).toHaveBeenCalledWith({
-      "name": "search",
-      "query": {
-        "domains": "orange",
-        "subjects": "banana"
-      },
-
-    });
-
-  });
-
-  it("allows multiple fields of same tag type", () => {
-    wrapper.vm.$route.query = {domains: 'banana'};
-    let chip = {label: 'orange', active: 'false', type: 'domains'};
-    wrapper.vm.updateSearchQuery(chip);
-    expect($router.push).toHaveBeenCalledTimes(4);
-    expect($router.push).toHaveBeenCalledWith({
-      "name": "search",
-      "query": {
-        "domains": "banana,orange",
-      },
-    });
-  });
-
-  it("doesn't change the query if the same field is sent", () => {
-    wrapper.vm.$route.query = {domains: 'banana'};
-    let chip = {label: 'banana', active: 'false', type: 'domains'};
-    wrapper.vm.updateSearchQuery(chip);
-    expect($router.push).toHaveBeenCalledTimes(4);
+    expect(wrapper.vm.$options.name).toMatch("TagChips");
   });
 
   it("getChipColor", () => {
