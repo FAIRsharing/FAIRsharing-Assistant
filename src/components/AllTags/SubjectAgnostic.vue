@@ -99,7 +99,7 @@ export default {
     },
     subjectBrowserLink() {
       const subjects = this.getQueryParams.subjects;
-      const defaultUrl = process.env.VUE_APP_FAIRSHARING_URL + "/browse/subject";
+      const defaultUrl = process.env.VUE_APP_FAIRSHARING_URL + "browse/subject";
       if (subjects && subjects.length === 1) {
         return defaultUrl + "?term=" + subjects[0]
       }
