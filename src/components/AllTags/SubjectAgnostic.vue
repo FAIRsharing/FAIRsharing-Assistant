@@ -63,7 +63,7 @@ export default {
     ...mapGetters('multiTagsStore', ['getFairSharingRecords', 'getQueryParams', 'getCurrentRegistry']),
     showAgnosticModal() {
       let _module = this;
-      // User has dismissed the modal already.
+      // User has dismissed the modal already
       if (_module.noThanksSelected) {
         return false;
       }
