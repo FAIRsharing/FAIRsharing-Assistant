@@ -16,7 +16,10 @@
         style="color: white"
       >
         Would you like to search for subject-agnostic resources as well? Alternatively, you might like to look at our
-        <a :href="subjectBrowserLink()" target="_blank">FAIRsharing Subject Browser</a> for alternative subject tags.
+        <a
+          :href="subjectBrowserLink()"
+          target="_blank"
+        >FAIRsharing Subject Browser</a> for alternative subject tags.
       </v-card-subtitle>
 
       <v-card-actions>
@@ -24,7 +27,7 @@
           small
           @click="yesPlease()"
         >
-           Add subject agnostic
+          Add subject agnostic
         </v-btn>
         <v-btn
           small
@@ -96,12 +99,9 @@ export default {
     },
     subjectBrowserLink() {
       const subjects = this.getQueryParams.subjects;
-      const defaultUrl = "https://fairsharing.org/browse/subject";
-      if (!subjects) {
-        return defaultUrl;
-      }
-      if (subjects.length === 1) {
-        return "https://fairsharing.org/browse/subject?term=" + subjects[0]
+      const defaultUrl = process.env.VUE_APP_FAIRSHARING_URL + "/browse/subject";
+      if (subjects && subjects.length === 1) {
+        return defaultUrl + "?term=" + subjects[0]
       }
       return defaultUrl;
     }
