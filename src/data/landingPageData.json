@@ -8,7 +8,7 @@
           {
             "id": 1,
             "title": "question_a1",
-            "question": "Explore all databases, standards and policies from a particular <b>subject area</b>.",
+            "question": "Explore all databases, standards and policies from a particular <u>subject area</u>.",
             "color": "internal",
             "icon": "search",
             "image_icon": "browser_subject",
@@ -18,7 +18,7 @@
           {
             "id": 2,
             "title": "question_a2",
-            "question": "Explore and learn about <b>databases</b> for sharing and discovering data.",
+            "question": "Explore and learn about <u>databases</u> for sharing and discovering data.",
             "color": "internal",
             "icon": "educational",
             "extra_icon": "search",
@@ -31,7 +31,7 @@
           {
             "id": 3,
             "title": "question_a3",
-            "question": "Explore and learn about <b>standards</b> to identify, annotate and share data.",
+            "question": "Explore and learn about <u>standards</u> to identify, annotate and share data.",
             "color": "internal",
             "icon": "educational",
             "extra_icon": "search",
@@ -42,7 +42,7 @@
           {
             "id": 4,
             "title": "question_a4",
-            "question": "Explore and learn about <b>policies</b> for managing and sharing data.",
+            "question": "Explore and learn about <u>policies</u> for managing and sharing data.",
             "color": "internal",
             "icon": "educational",
             "extra_icon": "search",
@@ -136,7 +136,7 @@
           {
             "id": 1,
             "title": "question_c1",
-            "question": "Filter on access: See those databases with <b>open</b> access to data.",
+            "question": "Filter on access: See those databases with <u>open</u> access to data.",
             "color": "internal",
             "icon": "search",
             "link": "/researchfields",
@@ -145,13 +145,13 @@
               "recordType": ["repository", "knowledgebase", "knowledgebase_and_repository"],
               "dataAccessCondition": ["open"]
             },
-            "message": "Databases with <b>open</b> data access have been selected. You may select the relevant area(s) of research below.",
+            "message": "Databases with <u>open</u> data access have been selected. You may select the relevant area(s) of research below.",
             "refined": true
           },
           {
             "id": 2,
             "title": "question_c2",
-            "question": "Filter on access: See those databases with <b>partially open</b> access to data.",
+            "question": "Filter on access: See those databases with <u>partially open</u> access to data.",
             "color": "internal",
             "icon": "search",
             "link": "/researchfields",
@@ -160,7 +160,7 @@
               "recordType": ["repository", "knowledgebase", "knowledgebase_and_repository"],
               "dataAccessCondition": ["partially open"]
             },
-            "message": "Databases with <b>partially open</b> data access have been selected. You may select the relevant area(s) of research below.",
+            "message": "Databases with <u>partially open</u> data access have been selected. You may select the relevant area(s) of research below.",
             "refined": true
           }
         ],
@@ -168,7 +168,7 @@
           {
             "id": 3,
             "title": "question_c3",
-            "question": "Filter on access: See those databases with <b>controlled</b> access to data.",
+            "question": "Filter on access: See those databases with <u>controlled</u> access to data.",
             "color": "internal",
             "icon": "search",
             "link": "/researchfields",
@@ -177,13 +177,13 @@
               "recordType": ["repository", "knowledgebase", "knowledgebase_and_repository"],
               "dataAccessCondition": ["controlled"]
             },
-            "message": "Databases with <b>controlled</b> data access have been selected. You may select the relevant area(s) of research below.",
+            "message": "Databases with <u>controlled</u> data access have been selected. You may select the relevant area(s) of research below.",
             "refined": true
           },
           {
             "id": 4,
             "title": "question_c4",
-            "question": "Filter on deposit: See those databases that are <b>open</b> to the deposition of data.",
+            "question": "Filter on deposit: See those databases that are <u>open</u> to the deposition of data.",
             "color": "internal",
             "icon": "search",
             "link": "/researchfields",
@@ -192,7 +192,7 @@
               "recordType": ["repository", "knowledgebase", "knowledgebase_and_repository"],
               "dataDepositionCondition": ["open"]
             },
-            "message": "Databases which are <b>open</b> to the deposition of data have been selected. You may select the relevant area(s) of research below.",
+            "message": "Databases which are <u>open</u> to the deposition of data have been selected. You may select the relevant area(s) of research below.",
             "refined": true
           }
         ],
@@ -200,7 +200,7 @@
           {
             "id": 5,
             "title": "question_c5",
-            "question": "Filter on deposit: See those databases that are <b>closed</b> to the deposition of data.",
+            "question": "Filter on deposit: See those databases that are <u>closed</u> to the deposition of data.",
             "color": "internal",
             "icon": "search",
             "link": "/researchfields",
@@ -209,7 +209,7 @@
               "recordType": ["repository", "knowledgebase", "knowledgebase_and_repository"],
               "dataDepositionCondition": ["closed"]
             },
-            "message": "Databases which are <b>closed</b> to the deposition of data have been selected. You may select the relevant area(s) of research below.",
+            "message": "Databases which are <u>closed</u> to the deposition of data have been selected. You may select the relevant area(s) of research below.",
             "refined": true
           }
         ]
@@ -284,7 +284,7 @@
               "recordType": ["identifier_schema"],
               "fairsharingRegistry": ["standard"]
             },
-            "message": "<b>Identifier schema</b> (standard) records have been selected. You may select your area(s) of research below.",
+            "message": "<u>Identifier schema</u> (standard) records have been selected. You may select your area(s) of research below.",
             "refined": true
           },
           {
@@ -317,7 +317,7 @@
               "fairsharingRegistry": ["standard"],
               "recordType": ["model_and_format"]
             },
-            "message": "<b>Model and Format</b> (standard) records have been selected. You may select your area(s) of research below.",
+            "message": "<u>Model and Format</u> (standard) records have been selected. You may select your area(s) of research below.",
             "refined": true
           },
           {
@@ -331,7 +331,7 @@
               "fairsharingRegistry": ["standard"],
               "recordType": ["reporting_guideline"]
             },
-            "message": "<b>Reporting Guideline</b> (standard) records have been selected. You may select your area(s) of research below.",
+            "message": "<u>Reporting Guideline</u> (standard) records have been selected. You may select your area(s) of research below.",
             "refined": true
           }
         ],
@@ -347,7 +347,7 @@
               "fairsharingRegistry": ["standard"],
               "recordType": ["terminology_artefact"]
             },
-            "message": "<b>Terminology Artefact</b> (standard) records have been selected. You may select your area(s) of research below.",
+            "message": "<u>Terminology Artefact</u> (standard) records have been selected. You may select your area(s) of research below.",
             "refined": true
           },
           {
@@ -379,7 +379,7 @@
               "fairsharingRegistry": ["policy"],
               "recordType": ["journal", "society", "project", "institution", "journal_publisher", "funder"]
             },
-            "message": "All <b>Policy</b> records have been selected. You may select your area(s) of research below.",
+            "message": "All <u>Policy</u> records have been selected. You may select your area(s) of research below.",
             "refined": true
           },
           {
