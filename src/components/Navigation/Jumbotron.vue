@@ -18,8 +18,11 @@
     <h1
       class="text-body-1 pt-2 text-sm-h4 text-md-h4 text-lg-h4 text-xl-h4 font-weight-medium white--text"
       style="z-index: 2"
-      :class="getJumbotronData['pageName'] === 'HomeView' ? 'text-center' : getJumbotronData['pageName'] === 'Licence'? 'text-center' : 'text-left'"
     >
+      <!--
+      :class="getJumbotronData['pageName'] === 'HomeView' ? 'text-center' : getJumbotronData['pageName'] === 'Licence'? 'text-center' : 'text-left'"
+      // This goes in the h1 above, should it be needed again.
+      -->
       {{ getJumbotronData["title"] }} <em
         v-if="getJumbotronData['tempSubTitle']"
         class="green--text"

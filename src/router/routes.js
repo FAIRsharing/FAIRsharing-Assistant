@@ -1,4 +1,5 @@
 export const HomeView = () => import('@/views/Home/HomeView.vue');
+export const SplashScreen = () => import('@/views/Home/SplashScreen.vue');
 export const NotFound = () => import(/* webpackChunkName: "notFound-chunk" */  "@/views/Errors/404");
 export const ServerError = () => import(/* webpackChunkName: "serverError-chunk" */  "@/views/Errors/500");
 export const Licence =  () => import(/* webpackChunkName: "licence-chunk" */ '@/views/Licence/Licence');
