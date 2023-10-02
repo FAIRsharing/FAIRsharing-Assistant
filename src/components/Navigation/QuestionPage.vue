@@ -127,8 +127,8 @@ import questionSets from "@/data/landingPageData.json";
 import {mapActions} from "vuex";
 import Loaders from "@/components/Loaders/Loaders.vue";
 export default {
-  name: 'LandingPage',
-  components: {Loaders},
+  name: 'QuestionPage',
+  components: { Loaders },
   data: () => {
     return {
       questions: {},
