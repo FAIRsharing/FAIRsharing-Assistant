@@ -10,8 +10,8 @@
       <v-col
         cols="12"
         align-self="center"
-        class="mt-16"
       >
+        <!-- TODO centre vertically -->
         <v-row>
           <v-img
             src="assets/Logo/fairsharing-logo.svg"
