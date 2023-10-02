@@ -39,7 +39,7 @@ export default {
     ...mapActions('multiTagsStore', ['resetMultiTags']),
     goHome() {
       this.resetMultiTags()
-      this.$router.push('/')
+      this.$router.push('/1')
     }
   }
 }
