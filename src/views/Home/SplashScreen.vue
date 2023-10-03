@@ -47,7 +47,7 @@
         >
           <v-btn
             x-large
-            href="/1"
+            href="/0"
             color="primary"
           >
             Get Started
