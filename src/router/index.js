@@ -5,6 +5,7 @@ Vue.use(VueRouter);
 
 import {
   HomeView,
+  SplashScreen,
   ResultView,
   NotFound,
   ServerError,
@@ -16,8 +17,13 @@ import {
 let routes = [
   // See below for further questions...
   {
+    name: "SplashScreen",
+    path: "/",
+    component: SplashScreen,
+  },
+  {
     name: "HomeView",
-    path: "/:id(\\d+)?",
+    path: "/:id(\\d+)",
     component: HomeView,
   },
   {
