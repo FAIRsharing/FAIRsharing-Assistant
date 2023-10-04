@@ -3,18 +3,18 @@
     class="d-flex flex-column justify-start align-stretch"
   >
     <Jumbotron />
-    <LandingPage />
+    <QuestionPage />
   </div>
 </template>
 
 <script>
 import Jumbotron from "@/components/Navigation/Jumbotron";
-import LandingPage from "@/components/Navigation/LandingPage"
+import QuestionPage from "@/components/Navigation/QuestionPage.vue"
 export default {
   name: 'HomeView',
   components: {
     Jumbotron,
-    LandingPage
+    QuestionPage
   },
 };
 </script>
