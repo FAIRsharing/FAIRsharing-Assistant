@@ -29,6 +29,11 @@
       >{{ getJumbotronData["tempSubTitle"] }}</em>
     </h1>
 
+    <!--
+    ,
+        getJumbotronData['pageName'] === 'HomeView' ? 'text-center' : 'text-left'
+        // removed from class in block below
+    -->
     <h2
       v-if="getJumbotronData['subTitle']"
       :class="[
@@ -37,8 +42,7 @@
           'lato-text-md': $vuetify.breakpoint.mdOnly,
           'lato-text-lg': $vuetify.breakpoint.lgAndUp,
           'lato-text-sm': $vuetify.breakpoint.smAndDown
-        },
-        getJumbotronData['pageName'] === 'HomeView' ? 'text-center' : 'text-left'
+        }
       ]"
       style="z-index: 2"
     >
