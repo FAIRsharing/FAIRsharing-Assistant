@@ -63,6 +63,7 @@
               :src="$vuetify.icons.values[item.image_icon].icon"
             />
           </div>
+          <!--
           <v-icon
             v-if="item.extra_icon"
             color="white"
@@ -86,6 +87,7 @@
           >
             {{ $vuetify.icons.values[item.icon].icon }}
           </v-icon>
+          -->
         </v-card>
       </v-col>
     </v-row>
