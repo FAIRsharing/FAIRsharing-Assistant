@@ -237,23 +237,23 @@ const customIcons  = {
     },
     home_standard: {
       type: "img",
-      icon: "/assets/Home/LandingPage/home-standards.png"
+      icon: "/assets/Home/QuestionPage/home-standards.png"
     },
     home_db: {
       type: "img",
-      icon: "/assets/Home/LandingPage/home-db.png"
+      icon: "/assets/Home/QuestionPage/home-db.png"
     },
     home_policies: {
       type: "img",
-      icon: "/assets/Home/LandingPage/home-policies.svg"
+      icon: "/assets/Home/QuestionPage/home-policies.svg"
     },
     home_collections: {
       type: "img",
-      icon: "/assets/Home/LandingPage/collection-icon.svg"
+      icon: "/assets/Home/QuestionPage/collection-icon.svg"
     },
     browser_subject: {
       type: "img",
-      icon: "/assets/Home/LandingPage/browser-subject.png"
+      icon: "/assets/Home/QuestionPage/browser-subject.png"
     },
     other: {
       type: "icon",
@@ -285,11 +285,11 @@ const customIcons  = {
     },
     educational_material: {
       type: "img",
-      icon: "/assets/Home/LandingPage/educational_material.png"
+      icon: "/assets/Home/QuestionPage/educational_material.png"
     },
     dataset: {
       type: "img",
-      icon: "/assets/Home/LandingPage/dataset.png"
+      icon: "/assets/Home/QuestionPage/dataset.png"
     }
   },
   iconfont: 'fa'
