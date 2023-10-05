@@ -1,0 +1,160 @@
+{
+  "questionSets": [
+    {
+      "id": "question_0",
+      "path": 0,
+      "breadcrumbs": "",
+      "title": "Are you a...?",
+      "footer": "By selecting a role we can tailor the next few questions to best suit your needs. Our <a href='https://fairsharing.org/educational' _target='blank'>educational pages</a> have more information on this. We use 'resource' to mean either standards, databases or polices.",
+      "clear": true,
+      "questions": [
+        {
+          "id": 1,
+          "title": "question_0_1",
+          "question": "Researcher",
+          "color": "internal",
+          "image_icon": "",
+          "link": "/1",
+          "query": {}
+        },
+        {
+          "id": 2,
+          "title": "question_0_2",
+          "question": "Resource developer / data curator",
+          "color": "internal",
+          "link": "/2",
+          "query": {}
+        },
+        {
+          "id": 3,
+          "title": "question_0_3",
+          "question": "Journal publisher",
+          "color": "internal",
+          "link": "/3",
+          "query": {}
+        },
+        {
+          "id": 4,
+          "title": "question_0_4",
+          "question": "Librarian, trainer or data steward",
+          "color": "internal",
+          "link": "/4",
+          "query": {}
+        },
+        {
+          "id": 5,
+          "title": "question_0_5",
+          "question": "Society or alliance",
+          "color": "internal",
+          "link": "/5",
+          "query": {}
+        },
+        {
+          "id": 6,
+          "title": "question_0_6",
+          "question": "Funder",
+          "color": "internal",
+          "link": "/6",
+          "query": {}
+        }
+      ]
+    },
+    {
+      "id": "question_1",
+      "path": 1,
+      "breadcrumbs": "Researcher",
+      "title": "Do you want to...?",
+      "footer": "Knowing what you want to do with your data helps us start narrowing down your search.",
+      "clear": "true",
+      "questions": [
+        {
+          "id": 1,
+          "title": "question_1_1",
+          "question": "Deposit data",
+          "color": "internal",
+          "link": "/2",
+          "query": {
+            "fairsharingRegistry": ["database"],
+            "recordType": ["repository", "knowledgebase_and_repository"],
+            "status": ["ready", "in_development"]
+          },
+          "refined": true
+        },
+        {
+          "id": 2,
+          "title": "question_1_2",
+          "question": "Find data",
+          "color": "internal",
+          "link": "/",
+          "query": {}
+        },
+        {
+          "id": 3,
+          "title": "question_1_3",
+          "question": "Find a standard for your data",
+          "color": "internal",
+          "link": "/",
+          "query": {}
+        },
+        {
+          "id": 4,
+          "title": "question_1_4",
+          "question": "Align with journal author guidelines",
+          "color": "internal",
+          "link": "/",
+          "query": {}
+        }
+      ]
+    },
+    {
+      "id": "question_2",
+      "path": 2,
+      "breadcrumbs": "<a href='/1'>Researcher</a> > Deposit data",
+      "title": "Do you want to...?",
+      "footer": "If we already have information from your funder or journal we can use that to refine your search.",
+      "questions": [
+        {
+          "id": 1,
+          "title": "question_2_1",
+          "question": "Choose a repository according to my own needs",
+          "color": "internal",
+          "link": "/",
+          "query": {}
+        },
+        {
+          "id": 2,
+          "title": "question_2_2",
+          "question": "Align with funder data requirements",
+          "color": "internal",
+          "link": "/",
+          "query": {}
+        },
+        {
+          "id": 3,
+          "title": "question_2_3",
+          "question": "Align with journal author guidelines",
+          "color": "internal",
+          "link": "/",
+          "query": {}
+        }
+      ]
+    },
+    {
+      "id": "question_",
+      "path": 1,
+      "breadcrumbs": "",
+      "title": "",
+      "footer": "",
+      "questions": [
+        {
+          "id": 1,
+          "title": "question_",
+          "question": "",
+          "color": "internal",
+          "link": "/",
+          "query": {}
+        }
+      ]
+    }
+  ]
+}

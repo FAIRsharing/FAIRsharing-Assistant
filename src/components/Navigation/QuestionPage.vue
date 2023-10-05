@@ -11,19 +11,60 @@
         <Loaders />
       </v-overlay>
     </v-fade-transition>
+    <!-- how many results so far? -->
+    <!-- TODO: Some means to reset these query params will be necessary -->
     <v-row
-      v-for="(question, index) in questions"
-      :key="'question_' + index"
-      dense
+      v-if="Object.keys(getQueryParams).length > 0"
+    >
+      <v-col
+        cols="12"
+      >
+        <v-alert
+          density="compact"
+          :type="resultCountColour()"
+          variant="tonal"
+        >
+          There are {{ getFairSharingRecords.length }} {{ getCurrentRegistry }} records matching your selection.
+        </v-alert>
+      </v-col>
+    </v-row>
+    <!-- breadcrumb trail -->
+    <v-row>
+      <v-col
+        cols="12"
+        class="ml-4"
+      >
+        <!-- This html is from a safe source -->
+        <!-- eslint-disable vue/no-v-html -->
+        <span
+          class="ma-4"
+          v-html="breadcrumbs"
+        />
+        <!-- eslint-enable vue/no-v-html -->
+      </v-col>
+    </v-row>
+    <!-- question title -->
+    <v-row>
+      <v-col
+        cols="12"
+      >
+        <!-- This html is from a safe source -->
+        <!-- eslint-disable vue/no-v-html -->
+        <h1
+          style="text-align: center"
+          v-html="title"
+        />
+        <!-- eslint-enable vue/no-v-html -->
+      </v-col>
+    </v-row>
+    <!-- question options -->
+    <v-row
       class="align-stretch justify-center fill-height"
     >
       <v-col
-        v-for="item in question"
+        v-for="item in questions"
         :key="item.id"
-        cols="12"
-        lg="5"
-        md="5"
-        sm="12"
+        cols="3"
       >
         <v-card
           class="full-width d-flex align-stretch flex-column questionCard"
@@ -31,11 +72,11 @@
           :class="[
             item.color,
             {
-              'cardXtraSmall pa-2': $vuetify.breakpoint.xsOnly,
-              'cardSmall pa-4': $vuetify.breakpoint.smOnly,
-              'cardMedium pa-4': $vuetify.breakpoint.mdAndUp,
-              'cardLarge pa-6': $vuetify.breakpoint.lgAndUp,
-              'cardXtraLarge pa-6': $vuetify.breakpoint.xlOnly,
+              'cardXtraSmall pa-0': $vuetify.breakpoint.xsOnly,
+              'cardSmall pa-2': $vuetify.breakpoint.smOnly,
+              'cardMedium pa-2': $vuetify.breakpoint.mdAndUp,
+              'cardLarge pa-4': $vuetify.breakpoint.lgAndUp,
+              'cardXtraLarge pa-4': $vuetify.breakpoint.xlOnly,
             }
           ]"
           @click="processLink(item.link, item.query, item.message, item.refined)"
@@ -51,91 +92,42 @@
               />
             <!-- eslint-enable vue/no-v-html -->
             </v-card-text>
-            <v-img
-              v-if="item.image_icon"
-              color="white"
-              contain
-              max-width="165"
-              max-height="120"
-              :width="$vuetify.breakpoint.smAndDown ? 50 : '100%' "
-              :height="$vuetify.breakpoint.smAndDown ? 50 : '165' "
-              :style="{ 'background-color': item.background }"
-              :src="$vuetify.icons.values[item.image_icon].icon"
-            />
           </div>
-          <!--
-          <v-icon
-            v-if="item.extra_icon"
-            color="white"
-            class="pabsolute opacity-medium"
-            contain
-            :size="30"
-            :large="$vuetify.breakpoint.smAndUp"
-            :x-large="$vuetify.breakpoint.lgAndUp"
-            style="bottom: 5px; right: 70px"
-          >
-            {{ $vuetify.icons.values[item.extra_icon].icon }}
-          </v-icon>
-          <v-icon
-            color="white"
-            class="pabsolute opacity-medium"
-            contain
-            size="30"
-            :large="$vuetify.breakpoint.smAndUp"
-            :x-large="$vuetify.breakpoint.lgAndUp"
-            style="bottom: 5px; right: 10px"
-          >
-            {{ $vuetify.icons.values[item.icon].icon }}
-          </v-icon>
-          -->
         </v-card>
       </v-col>
     </v-row>
-    <!-- Back Button -->
-    <v-row
-      v-if="previousLink"
-      class="align-stretch justify-center previousButton"
-    >
+    <!-- question footer -->
+    <v-row>
       <v-col
         cols="12"
-        lg="10"
-        md="10"
-        sm="12"
       >
-        <v-btn
-          class="white--text"
-          elevated
-          default
-          color="red darken-4"
-          :disabled="!history.length"
-          @click="goBack()"
-        >
-          <v-img
-            src="/assets/Home/Arrow/whiteArrow.png"
-            class="mr-1"
-            :width="20"
-            :height="20"
-            style="transform: rotate(180deg)"
-          />
-          Previous step
-        </v-btn>
+        <!-- This html is from a safe source -->
+        <!-- eslint-disable vue/no-v-html -->
+        <h3
+          style="text-align: center"
+          v-html="footer"
+        />
+        <!-- eslint-enable vue/no-v-html -->
       </v-col>
     </v-row>
   </v-container>
 </template>
 
 <script>
-import questionSets from "@/data/landingPageData.json";
-import {mapActions} from "vuex";
+import questionSets from "@/data/questionPageData.json";
+import {mapActions, mapGetters} from "vuex";
 import Loaders from "@/components/Loaders/Loaders.vue";
+
 export default {
   name: 'QuestionPage',
   components: { Loaders },
   data: () => {
     return {
       questions: {},
+      breadcrumbs: '',
+      title: '',
+      footer: '',
       history: [],
-      previousLink: "",
       loading: false,
       // This is silly, but I was in a rush and had enough with fighting javascript;
       registrySwitch: {
@@ -146,6 +138,9 @@ export default {
       }
     }
   },
+  computed: {
+    ...mapGetters('multiTagsStore', ["getFairSharingRecords", "getCurrentRegistry","getQueryParams"]),
+  },
   watch: {
     '$route' () {
       this.getQuestions();
@@ -155,15 +150,26 @@ export default {
     this.getQuestions()
   },
   methods: {
-    ...mapActions('multiTagsStore', ['fetchMultiTagData']),
+    ...mapActions('multiTagsStore', ['fetchMultiTagData', 'resetMultiTags']),
     getQuestions() {
       try {
-        this.questions = questionSets.questionSets[parseInt(this.$route.params.id)].rows;
-        this.previousLink = questionSets.questionSets[parseInt(this.$route.params.id)].previousLink
-        this.history.push(this.previousLink);
+        // TODO: At some point these breadcrumbs might have to incorporate a variable from the user's search query...
+        const crumbRoot = "<a href='/'>Home</a> > <a href='/0'>Start</a>";
+        this.questions = questionSets.questionSets[parseInt(this.$route.params.id)].questions;
+        if (questionSets.questionSets[parseInt(this.$route.params.id)].breadcrumbs) {
+          this.breadcrumbs = crumbRoot + " > " + questionSets.questionSets[parseInt(this.$route.params.id)].breadcrumbs;
+        }
+        else {
+          this.breadcrumbs = crumbRoot;
+        }
+        this.title = questionSets.questionSets[parseInt(this.$route.params.id)].title;
+        this.footer = questionSets.questionSets[parseInt(this.$route.params.id)].footer;
+        if (questionSets.questionSets[parseInt(this.$route.params.id)].clear) {
+          this.resetMultiTags();
+        }
       }
       catch {
-        this.questions = questionSets.questionSets[0].rows;
+        this.questions = questionSets.questionSets[0].questions;
       }
     },
     async processLink(link, query, message, refined) {
@@ -195,10 +201,15 @@ export default {
         this.$router.push({path: link});
       }
     },
-    goBack() {
-      let previous = this.history.pop();
-      this.$router.push({path: "/" + previous});
-    },
+    resultCountColour() {
+      if (this.getFairSharingRecords.length > 10) {
+        return "success";
+      }
+      else if (this.getFairSharingRecords.length > 0 && this.getFairSharingRecords.length < 10) {
+        return "warning";
+      }
+      return "error";
+    }
   }
 };
 </script>
@@ -258,14 +269,6 @@ export default {
     100% {
       opacity: 1;
     }
-  }
-}
-
-.previousButton {
-  animation: fadeIn 3s;
-  @keyframes fadeIn {
-    0% { opacity: 0; }
-    100% { opacity: 1; }
   }
 }
 

@@ -60,6 +60,7 @@
 
 <script>
 import Jumbotron from "@/components/Navigation/Jumbotron";
+import {mapActions} from "vuex";
 
 export default {
   name: 'SplashScreen',
@@ -70,6 +71,12 @@ export default {
     return {
       url: process.env.VUE_APP_FAIRSHARING_URL
     }
+  },
+  mounted() {
+    this.resetMultiTags();
+  },
+  methods: {
+    ...mapActions('multiTagsStore', ['resetMultiTags']),
   }
 };
 </script>
