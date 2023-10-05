@@ -110,6 +110,7 @@
         <!-- eslint-enable vue/no-v-html -->
       </v-col>
     </v-row>
+    <!-- TODO: Buttons here to jump to results (if available) and directly to the search interface -->
   </v-container>
 </template>
 
