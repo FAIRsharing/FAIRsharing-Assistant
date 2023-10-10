@@ -21,7 +21,7 @@
           v-else
         >
 
-          You've already made selections on the <b>{{ getCurrentRegistry }}</b> refinement page which will affect record counts here.
+          You've already selected <b>{{ getCurrentRegistry }}</b> records which will affect record counts here.
         </span>
         <!-- eslint-enable vue/no-v-html -->
       </v-alert>

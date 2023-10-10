@@ -110,7 +110,30 @@
         <!-- eslint-enable vue/no-v-html -->
       </v-col>
     </v-row>
-    <!-- TODO: Buttons here to jump to results (if available) and directly to the search interface -->
+    <v-row>
+      <v-col
+        cols="12"
+        style="text-align: center"
+      >
+        <v-btn
+          class="mr-2"
+          :block="$vuetify.breakpoint.smAndDown"
+          color="dev_color white--text"
+          @click="$router.push({path: '/researchfields'});"
+        >
+          Search directly
+        </v-btn>
+        <v-btn
+          v-if="Object.keys(getQueryParams).length > 0"
+          class="ml-2"
+          :block="$vuetify.breakpoint.smAndDown"
+          color="dev_color white--text"
+          @click="$router.push({path: '/results'});"
+        >
+          View results
+        </v-btn>
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 
