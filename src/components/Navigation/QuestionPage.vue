@@ -206,7 +206,7 @@ export default {
       if (this.getFairSharingRecords.length > 10) {
         return "success";
       }
-      else if (this.getFairSharingRecords.length > 0 && this.getFairSharingRecords.length < 10) {
+      else if (this.getFairSharingRecords.length > 0 && this.getFairSharingRecords.length <= 10) {
         return "warning";
       }
       return "error";
