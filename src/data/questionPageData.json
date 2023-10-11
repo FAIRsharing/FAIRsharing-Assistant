@@ -118,7 +118,7 @@
           "title": "question_2_1",
           "question": "Choose a repository according to my own needs",
           "color": "internal",
-          "link": "/",
+          "link": "/3",
           "query": {}
         },
         {
@@ -138,6 +138,36 @@
           "query": {}
         }
       ]
+    },
+    {
+      "id": "question_3",
+      "path": 3,
+      "breadcrumbs": "<a href='/1'>Researcher</a> > <a href=='/2'>Deposit data</a> > According to own needs",
+      "title": "Is your data in any particular format or tagged with an particular terminology?",
+      "footer": "Start typing the name of your format. If we don't have it, or the question isn't relevant to you, choose 'skip'",
+      "questions": [
+        {
+          "id": 1,
+          "title": "question_3_1",
+          "question": "Select",
+          "color": "internal",
+          "link": "/",
+          "query": {}
+        },
+        {
+          "id": 2,
+          "title": "question_3_1",
+          "question": "Skip",
+          "color": "internal",
+          "link": "/",
+          "query": {}
+        }
+      ],
+      "searchQuery": {
+        "fairsharingRegistry": ["standard"],
+        "recordType": ["model_and_format"]
+      },
+      "refined": true
     },
     {
       "id": "question_",

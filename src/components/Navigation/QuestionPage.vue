@@ -57,6 +57,29 @@
         <!-- eslint-enable vue/no-v-html -->
       </v-col>
     </v-row>
+    <!-- any special query box the page might have -->
+    <v-row
+      v-if="searchQuery"
+    >
+      <v-col
+        cols="12"
+        class="ml-4"
+      >
+        <v-text-field
+          id="searchString"
+          v-model="searchString"
+          append-icon="fa-search"
+          label="Search model/formats"
+          outlined
+          clearable
+          clear-icon="fa-times-circle"
+          :clear-cb="resultsLoading = false"
+          hide-details
+          class="pt-1 mr-10"
+        />
+        <!-- drop-down table for searchResults to go here -->
+      </v-col>
+    </v-row>
     <!-- question options -->
     <v-row
       class="align-stretch justify-center fill-height"
@@ -141,6 +164,18 @@
 import questionSets from "@/data/questionPageData.json";
 import {mapActions, mapGetters} from "vuex";
 import Loaders from "@/components/Loaders/Loaders.vue";
+import multiTagsNonExactFilter from "@/lib/GraphClient/queries/multiTagsFilter/multiTagsFilter.json";
+import GraphClient from "@/lib/GraphClient/GraphClient";
+
+const graphClient = new GraphClient();
+
+/*
+ * searchQuery is a query that will be used for getting additional info., e.g. models/formats, which will constrain
+ * the user's search to some special case. It will be used to create a text search box on the page when the questions
+ * are loaded.
+ * searchString is whatever search term is to be passed to the searchQuery.
+ * query is simply some params which must be passed to the multiTagFilter when the question is clicked upon.
+ */
 
 export default {
   name: 'QuestionPage',
@@ -148,6 +183,10 @@ export default {
   data: () => {
     return {
       questions: {},
+      searchQuery: {},
+      searchString: null,
+      searchResults: [],
+      resultsLoading: false,
       breadcrumbs: '',
       title: '',
       footer: '',
@@ -168,7 +207,14 @@ export default {
   watch: {
     '$route' () {
       this.getQuestions();
-    }
+    },
+    async searchString(val){
+      this.resultsLoading = true;
+      this.tags = [];
+      val = val.trim();
+      await this.getResults(val);
+      this.resultsLoading = false;
+    },
   },
   mounted() {
     this.getQuestions()
@@ -180,6 +226,7 @@ export default {
         // TODO: At some point these breadcrumbs might have to incorporate a variable from the user's search query...
         const crumbRoot = "<a href='/'>Home</a> > <a href='/0'>Start</a>";
         this.questions = questionSets.questionSets[parseInt(this.$route.params.id)].questions;
+        this.searchQuery = questionSets.questionSets[parseInt(this.$route.params.id)].searchQuery;
         if (questionSets.questionSets[parseInt(this.$route.params.id)].breadcrumbs) {
           this.breadcrumbs = crumbRoot + " > " + questionSets.questionSets[parseInt(this.$route.params.id)].breadcrumbs;
         }
@@ -233,6 +280,22 @@ export default {
         return "warning";
       }
       return "error";
+    },
+    async getResults(queryString) {
+      let queryCopy = JSON.parse(JSON.stringify(this.searchQuery));
+      let filterCopy = JSON.parse(JSON.stringify(multiTagsNonExactFilter));
+      if (queryString) {
+        queryCopy['q'] = queryString;
+      }
+      filterCopy.queryParam = queryCopy;
+      console.log("QP: " + JSON.stringify(queryCopy));
+      // TODO: Insert queryCopy into multiTagsFilter
+      // TODO: This mtf execution isn't to do the normal search, just to return databases implementing standards.
+      let searchResults = await graphClient.executeQuery(filterCopy);
+      if (!searchResults.error) {
+        this.searchResults = searchResults;
+        console.log(JSON.stringify(searchResults));
+      }
     }
   }
 };
@@ -297,16 +360,16 @@ export default {
 }
 
 .cardXtraSmall {
-  height: 100px;
+  height: 30px;
 }
 .cardSmall {
-  height: 150px;
+  height: 70px;
 }
 .cardMedium {
-  height: 250px;
+  height: 100px;
 }
 .cardLarge, .cardXtraLarge {
-  height: 250px;
+  height: 150px;
 }
 
 </style>
