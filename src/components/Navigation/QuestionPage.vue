@@ -78,6 +78,37 @@
           class="pt-1 mr-10"
         />
         <!-- drop-down table for searchResults to go here -->
+        <v-data-table
+          v-model="foundModelFormats"
+          :headers="headers"
+          :items="searchResults"
+          :items-per-page="10"
+          :footer-props="{'items-per-page-options': [10, 20, 30, 40, 50]}"
+          item-key="id"
+          class="elevation-1 mr-10"
+          show-select
+          calculate-widths
+          mobile-breakpoint="900"
+          :loading="resultsLoading"
+          loading-text="Please wait, results are loading"
+          :search-input.sync="searchString"
+        >
+          <template #[`item.name`]="{ item }">
+            <div
+              v-if="item.name"
+            >
+              {{ item.name }}
+            </div>
+          </template>
+          <template #[`item.abbreviation`]="{ item }">
+            <div
+              v-if="item.abbreviation"
+            >
+              {{ item.abbreviation }}
+            </div>
+          </template>
+        </v-data-table>
+        <!-- end of temp results data table -->
       </v-col>
     </v-row>
     <!-- question options -->
@@ -164,7 +195,7 @@
 import questionSets from "@/data/questionPageData.json";
 import {mapActions, mapGetters} from "vuex";
 import Loaders from "@/components/Loaders/Loaders.vue";
-import multiTagsNonExactFilter from "@/lib/GraphClient/queries/multiTagsFilter/multiTagsFilter.json";
+import multiTagFilter from "@/lib/GraphClient/queries/multiTagsFilter/multiTagsFilterBrief.json";
 import GraphClient from "@/lib/GraphClient/GraphClient";
 
 const graphClient = new GraphClient();
@@ -188,6 +219,7 @@ export default {
       searchResults: [],
       resultsLoading: false,
       breadcrumbs: '',
+      foundModelFormats: [],
       title: '',
       footer: '',
       history: [],
@@ -198,7 +230,19 @@ export default {
         policy: 'Policy',
         standard: 'Standard',
         collection: 'Collection'
-      }
+      },
+      headers: [
+        {
+          text: "Name",
+          sortable: false,
+          value: "name"
+        },
+        {
+          text: "Abbreviation",
+          sortable: false,
+          value: "abbreviation"
+        }
+      ],
     }
   },
   computed: {
@@ -210,7 +254,7 @@ export default {
     },
     async searchString(val){
       this.resultsLoading = true;
-      this.tags = [];
+      this.searchResults = [];
       val = val.trim();
       await this.getResults(val);
       this.resultsLoading = false;
@@ -246,6 +290,15 @@ export default {
     async processLink(link, query, message, refined) {
       if (!(Object.keys(query).length === 0)) {
         this.loading = true;
+        // There may be some additional parameters set as a result of the user having made a special selection
+        // on this page, e.g. when searching for models/formats.
+        if (this.foundModelFormats.length > 0) {
+          let ids = [];
+          this.foundModelFormats.forEach(function(format) {
+            ids.push(format.id);
+          })
+          query['dataFormatsAndTerminologies'] = ids;
+        }
         await this.fetchMultiTagData(query);
         this.$store.commit('multiTagsStore/setQueryParams', query);
         if (refined) {
@@ -283,9 +336,13 @@ export default {
     },
     async getResults(queryString) {
       let queryCopy = JSON.parse(JSON.stringify(this.searchQuery));
-      let filterCopy = JSON.parse(JSON.stringify(multiTagsNonExactFilter));
+      let filterCopy = JSON.parse(JSON.stringify(multiTagFilter));
       if (queryString) {
         queryCopy['q'] = queryString;
+      }
+      else {
+        this.searchResults = [];
+        return;
       }
       filterCopy.queryParam = queryCopy;
       console.log("QP: " + JSON.stringify(queryCopy));
@@ -293,8 +350,7 @@ export default {
       // TODO: This mtf execution isn't to do the normal search, just to return databases implementing standards.
       let searchResults = await graphClient.executeQuery(filterCopy);
       if (!searchResults.error) {
-        this.searchResults = searchResults;
-        console.log(JSON.stringify(searchResults));
+        this.searchResults = searchResults.multiTagFilter;
       }
     }
   }

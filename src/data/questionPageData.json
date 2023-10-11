@@ -151,8 +151,12 @@
           "title": "question_3_1",
           "question": "Select",
           "color": "internal",
-          "link": "/",
-          "query": {}
+          "link": "/4",
+          "query": {
+            "fairsharingRegistry": ["database"],
+            "recordType": ["repository", "knowledgebase_and_repository"],
+            "status": ["ready", "in_development"]
+          }
         },
         {
           "id": 2,
@@ -165,9 +169,26 @@
       ],
       "searchQuery": {
         "fairsharingRegistry": ["standard"],
-        "recordType": ["model_and_format"]
+        "recordType": ["model_and_format", "terminology_artefact"]
       },
       "refined": true
+    },
+    {
+      "id": "question_4",
+      "path": 4,
+      "breadcrumbs": "",
+      "title": "",
+      "footer": "",
+      "questions": [
+        {
+          "id": 1,
+          "title": "question_4_1",
+          "question": "Nothing to see here!",
+          "color": "internal",
+          "link": "/",
+          "query": {}
+        }
+      ]
     },
     {
       "id": "question_",
