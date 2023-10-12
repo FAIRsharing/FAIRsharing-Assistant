@@ -347,7 +347,6 @@ export default {
         return;
       }
       filterCopy.queryParam = queryCopy;
-      console.log("QP: " + JSON.stringify(queryCopy));
       // TODO: Insert queryCopy into multiTagsFilter
       // TODO: This mtf execution isn't to do the normal search, just to return databases implementing standards.
       let searchResults = await graphClient.executeQuery(filterCopy);
