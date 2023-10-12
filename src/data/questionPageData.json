@@ -142,7 +142,7 @@
     {
       "id": "question_3",
       "path": 3,
-      "breadcrumbs": "<a href='/1'>Researcher</a> > <a href=='/2'>Deposit data</a> > According to own needs",
+      "breadcrumbs": "<a href='/1'>Researcher</a> > <a href='/2'>Deposit data</a> > According to own needs",
       "title": "Is your data in any particular format or tagged with an particular terminology?",
       "footer": "Start typing the name of your format. If we don't have it, or the question isn't relevant to you, choose 'skip'",
       "questions": [
@@ -176,16 +176,80 @@
     {
       "id": "question_4",
       "path": 4,
+      "breadcrumbs": "<a href='/1'>Researcher</a> > <a href='/2'>Deposit data</a> > <a href='/3'>According to own needs</a> > Repository compliant with ...",
+      "title": "How would you like to proceed next?",
+      "footer": "You can view the results you have, return to the previous question or continue by choose the area of research most relevant to your data.",
+      "questions": [
+        {
+          "id": 1,
+          "title": "question_4_1",
+          "question": "Go back",
+          "color": "internal",
+          "link": "/3",
+          "query": {}
+        },
+        {
+          "id": 2,
+          "title": "question_4_2",
+          "question": "Choose research area",
+          "color": "internal",
+          "link": "/5",
+          "query": {}
+        },
+        {
+          "id": 3,
+          "title": "question_4_2",
+          "question": "Go to results",
+          "color": "internal",
+          "link": "/results",
+          "query": {}
+        }
+      ]
+    },
+    {
+      "id": "question_5",
+      "path": 5,
+      "breadcrumbs": "<a href='/1'>Researcher</a> > <a href='/2'>Deposit data</a> > <a href='/3'>According to own needs<a> > Broad research area",
+      "title": "",
+      "footer": "",
+      "questions": [
+        {
+          "id": 1,
+          "title": "question_5_1",
+          "question": "Select",
+          "color": "internal",
+          "link": "/6",
+          "query": {
+            "query": {
+              "fairsharingRegistry": ["database"],
+              "recordType": ["repository", "knowledgebase_and_repository"],
+              "status": ["ready", "in_development"]
+            }
+          }
+        },
+        {
+          "id": 2,
+          "title": "question_5_2",
+          "question": "Skip",
+          "color": "internal",
+          "link": "/6",
+          "query": {}
+        }
+      ]
+    },
+    {
+      "id": "question_",
+      "path": 6,
       "breadcrumbs": "",
       "title": "",
       "footer": "",
       "questions": [
         {
           "id": 1,
-          "title": "question_4_1",
-          "question": "Nothing to see here!",
+          "title": "question_6_1",
+          "question": "View results",
           "color": "internal",
-          "link": "/",
+          "link": "/results",
           "query": {}
         }
       ]

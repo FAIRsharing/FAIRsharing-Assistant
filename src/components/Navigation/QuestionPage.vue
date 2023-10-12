@@ -271,6 +271,8 @@ export default {
         const crumbRoot = "<a href='/'>Home</a> > <a href='/0'>Start</a>";
         this.questions = questionSets.questionSets[parseInt(this.$route.params.id)].questions;
         this.searchQuery = questionSets.questionSets[parseInt(this.$route.params.id)].searchQuery;
+        let path = '/' + questionSets.questionSets[parseInt(this.$route.params.id)].path;
+        this.$store.commit('navigationStore/setNavigationState', path);
         if (questionSets.questionSets[parseInt(this.$route.params.id)].breadcrumbs) {
           this.breadcrumbs = crumbRoot + " > " + questionSets.questionSets[parseInt(this.$route.params.id)].breadcrumbs;
         }

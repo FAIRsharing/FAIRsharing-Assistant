@@ -7,6 +7,7 @@
       class="mb-10 utilityButtons d-flex flex-row justify-space-around full-width margin-auto"
       :class="{'flex-column align-center': $vuetify.breakpoint.smAndDown}"
     >
+      <NavigateBackButton />
       <ResearchFieldsButton />
       <RegistryButton />
       <ClearAllSelections :refine-page="true" />
@@ -21,6 +22,7 @@ import ResultTable from "@/components/Results/ResultTable.vue"
 import ResearchFieldsButton from "@/components/Navigation/ResearchFieldsButton.vue";
 import ClearAllSelections from "@/components/Navigation/ClearAllSelections.vue";
 import RegistryButton from "@/components/Navigation/RegistryButton.vue"
+import NavigateBackButton from "@/components/Navigation/NavigateBackButton.vue";
 
 
 
@@ -31,7 +33,8 @@ export default {
     ClearAllSelections,
     ResearchFieldsButton,
     Jumbotron,
-    RegistryButton
+    RegistryButton,
+    NavigateBackButton
   },
   data() {
     return{
