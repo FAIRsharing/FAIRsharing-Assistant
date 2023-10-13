@@ -57,9 +57,9 @@
         <!-- eslint-enable vue/no-v-html -->
       </v-col>
     </v-row>
-    <!-- any special query box the page might have -->
+    <!-- A special query box if the question asks for model/format searching  -->
     <v-row
-      v-if="searchQuery"
+      v-if="hasModelFormatQuery"
     >
       <v-col
         cols="12"
@@ -73,12 +73,13 @@
           outlined
           clearable
           clear-icon="fa-times-circle"
-          :clear-cb="resultsLoading = false"
           hide-details
           class="pt-1 mr-10"
+          @click:clear="clearResults"
         />
         <!-- drop-down table for searchResults to go here -->
         <v-data-table
+          v-if="searchResults.length > 0"
           v-model="foundModelFormats"
           :headers="headers"
           :items="searchResults"
@@ -110,6 +111,12 @@
         </v-data-table>
         <!-- end of temp results data table -->
       </v-col>
+    </v-row>
+    <!-- A special query box if the question asks for model/format searching  -->
+    <v-row
+      v-if="hasTagsQuery"
+    >
+      <p>A query box for search for tags will go here.</p>
     </v-row>
     <!-- question options -->
     <v-row
@@ -215,6 +222,8 @@ export default {
     return {
       questions: {},
       searchQuery: {},
+      hasModelFormatQuery: false,
+      hasTagsQuery: false,
       searchString: null,
       searchResults: [],
       resultsLoading: false,
@@ -253,6 +262,9 @@ export default {
       this.getQuestions();
     },
     async searchString(val){
+      if (!val || val.length < 3) {
+        return;
+      }
       this.resultsLoading = true;
       this.searchResults = [];
       val = val.trim();
@@ -271,6 +283,8 @@ export default {
         const crumbRoot = "<a href='/'>Home</a> > <a href='/0'>Start</a>";
         this.questions = questionSets.questionSets[parseInt(this.$route.params.id)].questions;
         this.searchQuery = questionSets.questionSets[parseInt(this.$route.params.id)].searchQuery;
+        this.hasModelFormatQuery = questionSets.questionSets[parseInt(this.$route.params.id)].hasModelFormatQuery;
+        this.hasTagsQuery = questionSets.questionSets[parseInt(this.$route.params.id)].hasTagsQuery;
         let path = '/' + questionSets.questionSets[parseInt(this.$route.params.id)].path;
         this.$store.commit('navigationStore/setNavigationState', path);
         if (questionSets.questionSets[parseInt(this.$route.params.id)].breadcrumbs) {
@@ -353,6 +367,10 @@ export default {
       if (!searchResults.error) {
         this.searchResults = searchResults.multiTagFilter;
       }
+    },
+    clearResults() {
+      this.resultsLoading = false;
+      this.searchResults = [];
     }
   }
 };

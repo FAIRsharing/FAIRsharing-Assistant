@@ -145,6 +145,7 @@
       "breadcrumbs": "<a href='/1'>Researcher</a> > <a href='/2'>Deposit data</a> > According to own needs",
       "title": "Is your data in any particular format or tagged with an particular terminology?",
       "footer": "Start typing the name of your format. If we don't have it, or the question isn't relevant to you, choose 'skip'",
+      "hasModelFormatQuery": true,
       "questions": [
         {
           "id": 1,
@@ -163,7 +164,7 @@
           "title": "question_3_1",
           "question": "Skip",
           "color": "internal",
-          "link": "/",
+          "link": "/5",
           "query": {}
         }
       ],
@@ -210,8 +211,8 @@
       "id": "question_5",
       "path": 5,
       "breadcrumbs": "<a href='/1'>Researcher</a> > <a href='/2'>Deposit data</a> > <a href='/3'>According to own needs<a> > Broad research area",
-      "title": "",
-      "footer": "",
+      "title": "What broad research area is relevant to your data?",
+      "footer": "The broader the area you choose the more results you'll get. We suggest you start with a high-level subject area and refine as necessary. if you're not sure what to put here either just start typing or look at our <a href='https://fairsharing.org/browse/subject' _target='blank'>subject hierarchy</a> for inspiration. If you're not interested in a particular area then skip this step. If you want repostitories that take data from any research area then type 'Subject Agnostic'.",
       "questions": [
         {
           "id": 1,
@@ -219,6 +220,7 @@
           "question": "Select",
           "color": "internal",
           "link": "/6",
+          "hasTagsQuery": true,
           "query": {
             "query": {
               "fairsharingRegistry": ["database"],
