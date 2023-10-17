@@ -133,8 +133,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('multiTagsStore', ["getFairSharingRecords", "getQueryParams", "getSelectedTags"
-    ])
+    ...mapGetters('multiTagsStore', ["getFairSharingRecords", "getQueryParams", "getSelectedTags"])
   },
   watch: {
     getSelectedTags: {

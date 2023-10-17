@@ -177,7 +177,7 @@
     {
       "id": "question_4",
       "path": 4,
-      "breadcrumbs": "<a href='/1'>Researcher</a> > <a href='/2'>Deposit data</a> > <a href='/3'>According to own needs</a> > Repository compliant with ...",
+      "breadcrumbs": "<a href='/1'>Researcher</a> > <a href='/2'>Deposit data</a> > <a href='/3'>According to own needs</a> > Repository compliant with <b>FORMAT</b>",
       "title": "How would you like to proceed next?",
       "footer": "You can view the results you have, return to the previous question or continue by choose the area of research most relevant to your data.",
       "questions": [
@@ -210,24 +210,17 @@
     {
       "id": "question_5",
       "path": 5,
-      "breadcrumbs": "<a href='/1'>Researcher</a> > <a href='/2'>Deposit data</a> > <a href='/3'>According to own needs<a> > Broad research area",
+      "breadcrumbs": "<a href='/1'>Researcher</a> > <a href='/2'>Deposit data</a> > <a href='/3'>According to own needs</a> > <a href='/4'>Repository compliant with <b>FORMAT</b></a> > Broad research area",
       "title": "What broad research area is relevant to your data?",
       "footer": "The broader the area you choose the more results you'll get. We suggest you start with a high-level subject area and refine as necessary. if you're not sure what to put here either just start typing or look at our <a href='https://fairsharing.org/browse/subject' _target='blank'>subject hierarchy</a> for inspiration. If you're not interested in a particular area then skip this step. If you want repostitories that take data from any research area then type 'Subject Agnostic'.",
+      "hasTagsQuery": true,
       "questions": [
         {
           "id": 1,
           "title": "question_5_1",
           "question": "Select",
           "color": "internal",
-          "link": "/6",
-          "hasTagsQuery": true,
-          "query": {
-            "query": {
-              "fairsharingRegistry": ["database"],
-              "recordType": ["repository", "knowledgebase_and_repository"],
-              "status": ["ready", "in_development"]
-            }
-          }
+          "link": "/6"
         },
         {
           "id": 2,

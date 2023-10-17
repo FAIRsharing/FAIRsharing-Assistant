@@ -90,8 +90,6 @@
           show-select
           calculate-widths
           mobile-breakpoint="900"
-          :loading="resultsLoading"
-          loading-text="Please wait, results are loading"
           :search-input.sync="searchString"
         >
           <template #[`item.name`]="{ item }">
@@ -116,7 +114,61 @@
     <v-row
       v-if="hasTagsQuery"
     >
-      <p>A query box for search for tags will go here.</p>
+      <v-col
+        cols="12"
+        class="ml-4"
+      >
+        <v-text-field
+          id="searchString"
+          v-model="searchString"
+          append-icon="fa-search"
+          label="Search names and synonyms"
+          outlined
+          clearable
+          clear-icon="fa-times-circle"
+          hide-details
+          class="pt-1 mr-10"
+          @click:clear="clearResults"
+        />
+        <v-data-table
+          v-if="tags.length > 0"
+          v-model="recordTags"
+          :headers="tagHeaders"
+          :items="tags"
+          :items-per-page="10"
+          :footer-props="{'items-per-page-options': [10, 20, 30, 40, 50]}"
+          item-key="label"
+          class="elevation-1 mr-10"
+          show-select
+          calculate-widths
+          mobile-breakpoint="900"
+          :search-input.sync="searchString"
+        >
+          <template #[`item.model`]="{ item }">
+            <div
+              :class="colors[item.model] + '--text'"
+              class="noBreak"
+            >
+              {{ item.model.toUpperCase().replace(/_/g, " ") }}
+            </div>
+          </template>
+          <template #[`item.label`]="{ item }">
+            <v-chip
+              :class="colors[item.model] + ' white--text noBreak'"
+            >
+              {{ capitaliseText(item.label, item.model) }}
+            </v-chip>
+          </template>
+          <template #[`item.synonyms`]="{ item }">
+            <div
+              v-if="item.synonyms"
+              class="font-italic limitWidth"
+            >
+              {{ item.synonyms.join(", ") }}
+            </div>
+          </template>
+        </v-data-table>
+      </v-col>
     </v-row>
     <!-- question options -->
     <v-row
@@ -199,11 +251,13 @@
 </template>
 
 <script>
+import stringUtils from "@/utils/stringUtils";
 import questionSets from "@/data/questionPageData.json";
 import {mapActions, mapGetters} from "vuex";
 import Loaders from "@/components/Loaders/Loaders.vue";
 import multiTagFilter from "@/lib/GraphClient/queries/multiTagsFilter/multiTagsFilterBrief.json";
 import GraphClient from "@/lib/GraphClient/GraphClient";
+import tagsQuery from "@/lib/GraphClient/queries/geTags.json";
 
 const graphClient = new GraphClient();
 
@@ -218,6 +272,7 @@ const graphClient = new GraphClient();
 export default {
   name: 'QuestionPage',
   components: { Loaders },
+  mixins: [ stringUtils ],
   data: () => {
     return {
       questions: {},
@@ -226,13 +281,14 @@ export default {
       hasTagsQuery: false,
       searchString: null,
       searchResults: [],
-      resultsLoading: false,
+      recordTags: [],
+      tags: [],
+      loading: false,
       breadcrumbs: '',
       foundModelFormats: [],
       title: '',
       footer: '',
       history: [],
-      loading: false,
       // This is silly, but I was in a rush and had enough with fighting javascript;
       registrySwitch: {
         database: 'Database',
@@ -252,10 +308,40 @@ export default {
           value: "abbreviation"
         }
       ],
+      tagHeaders: [
+        {
+          text: "Type of keyword",
+          sortable: false,
+          value: "model"
+        },
+        {
+          text: "Name",
+          sortable: false,
+          value: "label"
+        },
+        {
+          text: "Definition",
+          sortable: false,
+          value: "definitions",
+          filterable: false
+        },
+        {
+          text: "Alternative names",
+          sortable: false,
+          value: "synonyms"
+        }
+      ],
+      colors: {
+        domain: 'domain_color',
+        taxonomy: 'taxonomic_color',
+        subject: 'subject_color',
+        user_defined_tag: 'tags_color'
+      },
     }
   },
   computed: {
     ...mapGetters('multiTagsStore', ["getFairSharingRecords", "getCurrentRegistry","getQueryParams"]),
+    ...mapGetters('navigationStore', ["getCompliantWith"]),
   },
   watch: {
     '$route' () {
@@ -265,11 +351,31 @@ export default {
       if (!val || val.length < 3) {
         return;
       }
-      this.resultsLoading = true;
       this.searchResults = [];
       val = val.trim();
       await this.getResults(val);
-      this.resultsLoading = false;
+    },
+    async recordTags (val) {
+      let _module = this;
+
+      _module.loading = true;
+      // TODO: refactor this for brevity
+
+      let queryParam =  _module.generateQuery(val)[0];
+      let run = _module.generateQuery(val)[1];
+      if (run) {
+        //let response = await graphClient.executeQuery(MULTI_TAGS);
+        await _module.fetchMultiTagData(queryParam);
+        // TODO: Handle errors from the server.
+        _module.recordsFound = _module.getFairSharingRecords;
+        _module.$store.commit('multiTagsStore/setQueryParams', queryParam);
+        _module.$store.commit('multiTagsStore/setSelectedTags', val);
+        _module.loading = false;
+      }
+      else {
+        _module.$store.commit('multiTagsStore/setSelectedTags', val);
+        _module.loading = false;
+      }
     },
   },
   mounted() {
@@ -293,6 +399,17 @@ export default {
         else {
           this.breadcrumbs = crumbRoot;
         }
+        // This faff is to modify the breadcrumb string depending whether or not the user chose a format.
+        // TODO: Would popping and pushing a stack be less hassle here?
+        if (this.getCompliantWith) {
+          console.log("BANANA!");
+          console.log(this.getCompliantWith);
+          console.log(this.breadcrumbs);
+          this.breadcrumbs = this.breadcrumbs.replace(/FORMAT/, this.getCompliantWith);
+        }
+        else {
+          this.breadcrumbs = this.breadcrumbs.replace("> <a href='/3'>According to own needs</a> > <a href='/4'>Repository compliant with <b>FORMAT</b></a>A", '');
+        }
         this.title = questionSets.questionSets[parseInt(this.$route.params.id)].title;
         this.footer = questionSets.questionSets[parseInt(this.$route.params.id)].footer;
         if (questionSets.questionSets[parseInt(this.$route.params.id)].clear) {
@@ -310,10 +427,13 @@ export default {
         // on this page, e.g. when searching for models/formats.
         if (this.foundModelFormats.length > 0) {
           let ids = [];
+          let names = [];
           this.foundModelFormats.forEach(function(format) {
             ids.push(format.id);
+            names.push(format.name);
           })
           query['dataFormatsAndTerminologies'] = ids;
+          this.$store.commit('navigationStore/setComplianceState', names.join(', '));
         }
         await this.fetchMultiTagData(query);
         this.$store.commit('multiTagsStore/setQueryParams', query);
@@ -351,27 +471,65 @@ export default {
       return "error";
     },
     async getResults(queryString) {
-      let queryCopy = JSON.parse(JSON.stringify(this.searchQuery));
-      let filterCopy = JSON.parse(JSON.stringify(multiTagFilter));
-      if (queryString) {
-        queryCopy['q'] = queryString;
+      // A different query is run depending on whether hasTagsQuery or hasModelFormatQuery is true.
+      let _module = this;
+      if (_module.hasModelFormatQuery) {
+        let queryCopy = JSON.parse(JSON.stringify(this.searchQuery));
+        let filterCopy = JSON.parse(JSON.stringify(multiTagFilter));
+        if (queryString) {
+          queryCopy['q'] = queryString;
+        }
+        else {
+          this.searchResults = [];
+          return;
+        }
+        filterCopy.queryParam = queryCopy;
+        // TODO: Insert queryCopy into multiTagsFilter
+        // TODO: This mtf execution isn't to do the normal search, just to return databases implementing standards.
+        let searchResults = await graphClient.executeQuery(filterCopy);
+        if (!searchResults.error) {
+          _module.searchResults = searchResults.multiTagFilter;
+        }
       }
-      else {
-        this.searchResults = [];
-        return;
-      }
-      filterCopy.queryParam = queryCopy;
-      // TODO: Insert queryCopy into multiTagsFilter
-      // TODO: This mtf execution isn't to do the normal search, just to return databases implementing standards.
-      let searchResults = await graphClient.executeQuery(filterCopy);
-      if (!searchResults.error) {
-        this.searchResults = searchResults.multiTagFilter;
+      else if (_module.hasTagsQuery) {
+        let tagQueryCopy = JSON.parse(JSON.stringify(tagsQuery));
+        if (queryString) tagQueryCopy.queryParam = {q: queryString};
+        let tags = await graphClient.executeQuery(tagQueryCopy);
+        if (!tags.error) {
+          _module.tags = tags.searchTags;
+        }
       }
     },
     clearResults() {
-      this.resultsLoading = false;
+      this.loading = false;
+      this.tags = [];
       this.searchResults = [];
-    }
+    },
+    generateQuery(val) {
+      let run = false;
+      let query = this.getQueryParams;
+      let domains = val.filter(x => x.model === 'domain').map(x => x.label);
+      if (domains.length) {
+        query['domains'] = domains;
+        run = true;
+      }
+      let subjects = val.filter(x => x.model === 'subject').map(x => x.label);
+      if (subjects.length) {
+        query['subjects'] = subjects;
+        run = true;
+      }
+      let taxonomies = val.filter(x => x.model === 'taxonomy').map(x => x.label);
+      if (taxonomies.length) {
+        query['taxonomies'] = taxonomies;
+        run = true;
+      }
+      let user_defined_tags = val.filter(x => x.model === 'user_defined_tag').map(x => x.label);
+      if (user_defined_tags.length) {
+        query['userDefinedTags'] = user_defined_tags;
+        run = true;
+      }
+      return [query, run]
+    },
   }
 };
 </script>
