@@ -11,7 +11,7 @@ const mutations = {
     state.compliantWith = compliantWith;
   },
   clearNavigation(state) {
-    state.previouslocation = null;
+    state.previousLocation = null;
     state.compliantWith = null;
   }
 }
