@@ -1,6 +1,7 @@
 const state = {
   previousLocation: null,
-  compliantWith: null
+  compliantWith: null,
+  breadcrumbs: []
 }
 
 const mutations = {
@@ -10,9 +11,19 @@ const mutations = {
   setComplianceState(state, compliantWith) {
     state.compliantWith = compliantWith;
   },
+  pushBreadcrumb(state, breadcrumb) {
+    state.breadcrumbs.push(breadcrumb)
+  },
+  popBreadcrumb(state) {
+    state.breadcrumbs.pop();
+  },
+  sliceBreadcrumb(state, position) {
+    state.breadcrumbs = state.breadcrumbs.slice(0, position);
+  },
   clearNavigation(state) {
     state.previousLocation = null;
     state.compliantWith = null;
+    state.breadcrumbs = []
   }
 }
 
@@ -22,6 +33,9 @@ const getters = {
   },
   getCompliantWith(state) {
     return state.compliantWith
+  },
+  getBreadcrumbs(state) {
+    return state.breadcrumbs
   }
 }
 
