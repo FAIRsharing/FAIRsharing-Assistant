@@ -3,7 +3,10 @@
     {
       "id": "question_0",
       "path": 0,
-      "breadcrumbs": "",
+      "breadcrumb": {
+        "link": "/0",
+        "text": "Start"
+      },
       "title": "Are you a...?",
       "footer": "By selecting a role we can tailor the next few questions to best suit your needs. Our <a href='https://fairsharing.org/educational' _target='blank'>educational pages</a> have more information on this. We use 'resource' to mean either standards, databases or polices.",
       "clear": true,
@@ -62,7 +65,10 @@
     {
       "id": "question_1",
       "path": 1,
-      "breadcrumbs": "Researcher",
+      "breadcrumb": {
+        "link": "/1",
+        "text": "Researcher"
+      },
       "title": "Do you want to...?",
       "footer": "Knowing what you want to do with your data helps us start narrowing down your search.",
       "clear": "true",
@@ -109,7 +115,10 @@
     {
       "id": "question_2",
       "path": 2,
-      "breadcrumbs": "<a href='/1'>Researcher</a> > Deposit data",
+      "breadcrumb": {
+        "link": "/2",
+        "text": "Deposit data"
+      },
       "title": "Do you want to...?",
       "footer": "If we already have information from your funder or journal we can use that to refine your search.",
       "questions": [
@@ -142,7 +151,10 @@
     {
       "id": "question_3",
       "path": 3,
-      "breadcrumbs": "<a href='/1'>Researcher</a> > <a href='/2'>Deposit data</a> > According to own needs",
+      "breadcrumb": {
+        "link": "/3",
+        "text": "According to own needs"
+      },
       "title": "Is your data in any particular format or tagged with an particular terminology?",
       "footer": "Start typing the name of your format. If we don't have it, or the question isn't relevant to you, choose 'skip'",
       "hasModelFormatQuery": true,
@@ -177,7 +189,10 @@
     {
       "id": "question_4",
       "path": 4,
-      "breadcrumbs": "<a href='/1'>Researcher</a> > <a href='/2'>Deposit data</a> > <a href='/3'>According to own needs</a> > Repository compliant with <b>FORMAT</b>",
+      "breadcrumb": {
+        "link": "/4",
+        "text": "Repository compliant with <b>FORMAT</b>"
+      },
       "title": "How would you like to proceed next?",
       "footer": "You can view the results you have, return to the previous question or continue by choose the area of research most relevant to your data.",
       "questions": [
@@ -210,7 +225,10 @@
     {
       "id": "question_5",
       "path": 5,
-      "breadcrumbs": "<a href='/1'>Researcher</a> > <a href='/2'>Deposit data</a> > <a href='/3'>According to own needs</a> > <a href='/4'>Repository compliant with <b>FORMAT</b></a> > Broad research area",
+      "breadcrumb": {
+        "link": "/5",
+        "text": "Broad research area"
+      },
       "title": "What broad research area is relevant to your data?",
       "footer": "The broader the area you choose the more results you'll get. We suggest you start with a high-level subject area and refine as necessary. if you're not sure what to put here either just start typing or look at our <a href='https://fairsharing.org/browse/subject' _target='blank'>subject hierarchy</a> for inspiration. If you're not interested in a particular area then skip this step. If you want repostitories that take data from any research area then type 'Subject Agnostic'.",
       "hasTagsQuery": true,
@@ -235,7 +253,10 @@
     {
       "id": "question_",
       "path": 6,
-      "breadcrumbs": "",
+      "breadcrumb": {
+        "link": "/6",
+        "text": "TBA"
+      },
       "title": "",
       "footer": "",
       "questions": [
@@ -252,7 +273,7 @@
     {
       "id": "question_",
       "path": 1,
-      "breadcrumbs": "",
+      "breadcrumb": {},
       "title": "",
       "footer": "",
       "questions": [

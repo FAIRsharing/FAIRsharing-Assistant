@@ -289,6 +289,7 @@ export default {
       title: '',
       footer: '',
       history: [],
+      currentBreadcrumb: null,
       // This is silly, but I was in a rush and had enough with fighting javascript;
       registrySwitch: {
         database: 'Database',
@@ -341,7 +342,7 @@ export default {
   },
   computed: {
     ...mapGetters('multiTagsStore', ["getFairSharingRecords", "getCurrentRegistry","getQueryParams"]),
-    ...mapGetters('navigationStore', ["getCompliantWith"]),
+    ...mapGetters('navigationStore', ["getCompliantWith", "getBreadcrumbs"]),
   },
   watch: {
     '$route' () {
@@ -383,33 +384,48 @@ export default {
   },
   methods: {
     ...mapActions('multiTagsStore', ['fetchMultiTagData', 'resetMultiTags']),
+    ...mapActions('navigationStore', ['pushBreadcrumb', 'popBreadcrumb', 'sliceBreadcrumb']),
     getQuestions() {
       try {
         // TODO: At some point these breadcrumbs might have to incorporate a variable from the user's search query...
-        const crumbRoot = "<a href='/'>Home</a> > <a href='/0'>Start</a>";
+        const crumbRoot = "<a href='/'>Home</a>";
         this.questions = questionSets.questionSets[parseInt(this.$route.params.id)].questions;
         this.searchQuery = questionSets.questionSets[parseInt(this.$route.params.id)].searchQuery;
         this.hasModelFormatQuery = questionSets.questionSets[parseInt(this.$route.params.id)].hasModelFormatQuery;
         this.hasTagsQuery = questionSets.questionSets[parseInt(this.$route.params.id)].hasTagsQuery;
         let path = '/' + questionSets.questionSets[parseInt(this.$route.params.id)].path;
         this.$store.commit('navigationStore/setNavigationState', path);
+        // TODO: push this to the crumb store when handling link .
+        this.currentBreadcrumb = questionSets.questionSets[parseInt(this.$route.params.id)].breadcrumb;
+        let crumbList = this.getBreadcrumbs.map((x) => this.formatBreadcrumb(x)).join(' > ')
+        if (crumbList.length) {
+          this.breadcrumbs = crumbRoot + ' > ' + crumbList;
+        }
+        else {
+          this.breadcrumbs = crumbRoot;
+        }
+        // The current page isn't a link, only previous pages.
+        this.breadcrumbs = this.breadcrumbs + ' > ' + this.currentBreadcrumb.text;
+        //console.log(this.breadcrumbs);
+        /*
         if (questionSets.questionSets[parseInt(this.$route.params.id)].breadcrumbs) {
           this.breadcrumbs = crumbRoot + " > " + questionSets.questionSets[parseInt(this.$route.params.id)].breadcrumbs;
         }
         else {
           this.breadcrumbs = crumbRoot;
         }
+         */
         // This faff is to modify the breadcrumb string depending whether or not the user chose a format.
         // TODO: Would popping and pushing a stack be less hassle here?
+        // TODO: This needs to be changed to reflect the JSON format of stored breadcrumbs.
+        /*
         if (this.getCompliantWith) {
-          console.log("BANANA!");
-          console.log(this.getCompliantWith);
-          console.log(this.breadcrumbs);
           this.breadcrumbs = this.breadcrumbs.replace(/FORMAT/, this.getCompliantWith);
         }
         else {
           this.breadcrumbs = this.breadcrumbs.replace("> <a href='/3'>According to own needs</a> > <a href='/4'>Repository compliant with <b>FORMAT</b></a>A", '');
         }
+         */
         this.title = questionSets.questionSets[parseInt(this.$route.params.id)].title;
         this.footer = questionSets.questionSets[parseInt(this.$route.params.id)].footer;
         if (questionSets.questionSets[parseInt(this.$route.params.id)].clear) {
@@ -423,6 +439,8 @@ export default {
     async processLink(link, query, message, refined) {
       if (!(Object.keys(query).length === 0)) {
         this.loading = true;
+        this.$store.commit('navigationStore/pushBreadcrumb', this.currentBreadcrumb);
+        //console.log("Breadcrumbs: " + JSON.stringify(this.getBreadcrumbs));
         // There may be some additional parameters set as a result of the user having made a special selection
         // on this page, e.g. when searching for models/formats.
         if (this.foundModelFormats.length > 0) {
@@ -446,6 +464,7 @@ export default {
         if (query['fairsharingRegistry']) {
           this.$store.commit('multiTagsStore/setCurrentRegistry', this.registrySwitch[query['fairsharingRegistry'][0]]);
         }
+
         this.loading = false;
       }
       if (link.match(/^http/)) {
@@ -499,6 +518,9 @@ export default {
           _module.tags = tags.searchTags;
         }
       }
+    },
+    formatBreadcrumb(crumb) {
+      return `<a href="${crumb.link}">${crumb.text}</a>`
     },
     clearResults() {
       this.loading = false;
