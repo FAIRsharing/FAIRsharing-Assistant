@@ -25,6 +25,13 @@
           variant="tonal"
         >
           There are {{ getFairSharingRecords.length }} {{ getCurrentRegistry }} records matching your selection.
+          <v-btn
+            v-if="resultCountColour() === 'warning'"
+            class="preview-results"
+            @click="showResultPreview = true"
+          >
+            Preview
+          </v-btn>
         </v-alert>
       </v-col>
     </v-row>
@@ -247,6 +254,32 @@
         </v-btn>
       </v-col>
     </v-row>
+    <v-dialog
+      v-model="showResultPreview"
+      persistent
+    >
+      <v-card>
+        <v-card-title
+          class="headline"
+        >
+          Current search results
+        </v-card-title>
+        <v-card-text>
+          <ResultTable />
+        </v-card-text>
+        <v-card-actions>
+          <v-spacer />
+          <v-btn
+            color="blue darken-1"
+            text
+            persistent
+            @click="showResultPreview = false"
+          >
+            Close
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </v-container>
 </template>
 
@@ -258,6 +291,7 @@ import Loaders from "@/components/Loaders/Loaders.vue";
 import multiTagFilter from "@/lib/GraphClient/queries/multiTagsFilter/multiTagsFilterBrief.json";
 import GraphClient from "@/lib/GraphClient/GraphClient";
 import tagsQuery from "@/lib/GraphClient/queries/geTags.json";
+import ResultTable from "@/components/Results/ResultTable.vue";
 
 const graphClient = new GraphClient();
 
@@ -271,7 +305,7 @@ const graphClient = new GraphClient();
 
 export default {
   name: 'QuestionPage',
-  components: { Loaders },
+  components: {ResultTable, Loaders },
   mixins: [ stringUtils ],
   data: () => {
     return {
@@ -289,6 +323,7 @@ export default {
       title: '',
       footer: '',
       history: [],
+      showResultPreview: false,
       currentBreadcrumb: null,
       // This is silly, but I was in a rush and had enough with fighting javascript;
       registrySwitch: {
@@ -532,7 +567,7 @@ export default {
         run = true;
       }
       return [query, run]
-    },
+    }
   }
 };
 </script>
@@ -606,6 +641,13 @@ export default {
 }
 .cardLarge, .cardXtraLarge {
   height: 150px;
+}
+
+// TODO: This isn't entirely effective on small screens...
+.preview-results {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
 }
 
 </style>
