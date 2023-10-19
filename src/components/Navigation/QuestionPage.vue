@@ -439,8 +439,12 @@ export default {
         else {
           this.breadcrumbs = crumbRoot;
         }
-        // The current page isn't a link, only previous pages.
         this.breadcrumbs = this.breadcrumbs + ' > ' + this.currentBreadcrumb.text;
+        // Remove the "FORMAT" and replace with the user's selected format.
+        if (this.getCompliantWith) {
+          this.breadcrumbs = this.breadcrumbs.replace("FORMAT", this.getCompliantWith);
+        }
+        // The current page isn't a link, only previous pages.
         this.title = questionSets.questionSets[parseInt(this.$route.params.id)].title;
         this.footer = questionSets.questionSets[parseInt(this.$route.params.id)].footer;
         if (questionSets.questionSets[parseInt(this.$route.params.id)].clear) {
