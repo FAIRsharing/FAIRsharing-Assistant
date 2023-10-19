@@ -25,7 +25,7 @@
         :search="search"
         :sort-by="sortBy.toLowerCase()"
         :sort-desc="sortDesc"
-        :footer-props="{'items-per-page-options': [10, 25, 50, 100]}"
+        :footer-props="{'items-per-page-options': [5, 10, 25, 50, 100]}"
       >
         <!-- headers start -->
         <template #header>

@@ -194,26 +194,18 @@
         "text": "Repository compliant with <b>FORMAT</b>"
       },
       "title": "How would you like to proceed next?",
-      "footer": "You can view the results you have, return to the previous question or continue by choose the area of research most relevant to your data.",
+      "footer": "You can view the results you have, return to the previous question or continue by choosing the area of research most relevant to your data.",
       "questions": [
         {
           "id": 1,
           "title": "question_4_1",
-          "question": "Go back",
-          "color": "internal",
-          "link": "/3",
-          "query": {}
-        },
-        {
-          "id": 2,
-          "title": "question_4_2",
           "question": "Choose research area",
           "color": "internal",
           "link": "/5",
           "query": {}
         },
         {
-          "id": 3,
+          "id": 2,
           "title": "question_4_2",
           "question": "Go to results",
           "color": "internal",
@@ -238,7 +230,8 @@
           "title": "question_5_1",
           "question": "Select",
           "color": "internal",
-          "link": "/6"
+          "link": "/6",
+          "query": {}
         },
         {
           "id": 2,

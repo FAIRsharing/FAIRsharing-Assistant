@@ -36,6 +36,7 @@
       </v-col>
     </v-row>
     <!-- breadcrumb trail -->
+    <!-- TODO: replace with a breadcrumb component. Handle going back (inc. slicing etc.) -->
     <v-row>
       <v-col
         cols="12"
@@ -423,6 +424,7 @@ export default {
     getQuestions() {
       try {
         // TODO: At some point these breadcrumbs might have to incorporate a variable from the user's search query...
+        this.searchString = null;
         const crumbRoot = "<a href='/'>Home</a>";
         this.questions = questionSets.questionSets[parseInt(this.$route.params.id)].questions;
         this.searchQuery = questionSets.questionSets[parseInt(this.$route.params.id)].searchQuery;
@@ -635,16 +637,20 @@ export default {
 }
 
 .cardXtraSmall {
-  height: 30px;
+  //height: 30px;
+  padding: 30px;
 }
 .cardSmall {
-  height: 70px;
+  //height: 60px;
+  padding: 60px;
 }
 .cardMedium {
-  height: 100px;
+  //height: 80px;
+  padding: 80px;
 }
 .cardLarge, .cardXtraLarge {
-  height: 150px;
+  min-height: 100px;
+  padding: 50px;
 }
 
 // TODO: This isn't entirely effective on small screens...
