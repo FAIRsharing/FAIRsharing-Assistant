@@ -406,26 +406,6 @@ export default {
         }
         // The current page isn't a link, only previous pages.
         this.breadcrumbs = this.breadcrumbs + ' > ' + this.currentBreadcrumb.text;
-        //console.log(this.breadcrumbs);
-        /*
-        if (questionSets.questionSets[parseInt(this.$route.params.id)].breadcrumbs) {
-          this.breadcrumbs = crumbRoot + " > " + questionSets.questionSets[parseInt(this.$route.params.id)].breadcrumbs;
-        }
-        else {
-          this.breadcrumbs = crumbRoot;
-        }
-         */
-        // This faff is to modify the breadcrumb string depending whether or not the user chose a format.
-        // TODO: Would popping and pushing a stack be less hassle here?
-        // TODO: This needs to be changed to reflect the JSON format of stored breadcrumbs.
-        /*
-        if (this.getCompliantWith) {
-          this.breadcrumbs = this.breadcrumbs.replace(/FORMAT/, this.getCompliantWith);
-        }
-        else {
-          this.breadcrumbs = this.breadcrumbs.replace("> <a href='/3'>According to own needs</a> > <a href='/4'>Repository compliant with <b>FORMAT</b></a>A", '');
-        }
-         */
         this.title = questionSets.questionSets[parseInt(this.$route.params.id)].title;
         this.footer = questionSets.questionSets[parseInt(this.$route.params.id)].footer;
         if (questionSets.questionSets[parseInt(this.$route.params.id)].clear) {
@@ -437,10 +417,11 @@ export default {
       }
     },
     async processLink(link, query, message, refined) {
+      // Always stash the breadcrumb.
+      this.$store.commit('navigationStore/pushBreadcrumb', this.currentBreadcrumb);
+      // Some questions have a query that must be run when the question is clicked.
       if (!(Object.keys(query).length === 0)) {
         this.loading = true;
-        this.$store.commit('navigationStore/pushBreadcrumb', this.currentBreadcrumb);
-        //console.log("Breadcrumbs: " + JSON.stringify(this.getBreadcrumbs));
         // There may be some additional parameters set as a result of the user having made a special selection
         // on this page, e.g. when searching for models/formats.
         if (this.foundModelFormats.length > 0) {
@@ -464,12 +445,13 @@ export default {
         if (query['fairsharingRegistry']) {
           this.$store.commit('multiTagsStore/setCurrentRegistry', this.registrySwitch[query['fairsharingRegistry'][0]]);
         }
-
         this.loading = false;
       }
+      // In this case, the link is to an external site.
       if (link.match(/^http/)) {
         window.open(link);
       }
+      // Whereas here, it's linking to somewhere else within the assistant.
       else {
         if (this.$route.params.id) {
           this.history.push(this.$route.params.id);
@@ -503,8 +485,7 @@ export default {
           return;
         }
         filterCopy.queryParam = queryCopy;
-        // TODO: Insert queryCopy into multiTagsFilter
-        // TODO: This mtf execution isn't to do the normal search, just to return databases implementing standards.
+        // This m_t_f execution isn't to do the normal search, just to return databases implementing standards.
         let searchResults = await graphClient.executeQuery(filterCopy);
         if (!searchResults.error) {
           _module.searchResults = searchResults.multiTagFilter;
