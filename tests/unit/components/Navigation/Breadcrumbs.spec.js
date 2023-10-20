@@ -7,7 +7,13 @@ import navigationStore from "@/store/navigationStore";
 
 const localVue = createLocalVue();
 localVue.use(Vuex);
-let $route = { path: "/", name: "HomeView", id: 0 };
+let $route = {
+  path: "/",
+  name: "HomeView",
+  params:{
+    id: 0
+  }
+};
 
 const vuetify = new Vuetify({'icons':icons});
 
