@@ -430,7 +430,6 @@ export default {
     },
     async processLink(link, query, message, refined) {
       // Always stash the breadcrumb.
-      this.$store.commit('navigationStore/pushBreadcrumb', this.currentBreadcrumb);
       // Some questions have a query that must be run when the question is clicked.
       if (!(Object.keys(query).length === 0)) {
         this.loading = true;
@@ -473,6 +472,7 @@ export default {
         }
         this.$router.push({path: link});
       }
+      this.$store.commit('navigationStore/pushBreadcrumb', this.currentBreadcrumb);
     },
     resultCountColour() {
       if (this.getFairSharingRecords.length > 10) {

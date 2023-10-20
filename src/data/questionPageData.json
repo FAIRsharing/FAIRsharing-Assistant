@@ -4,6 +4,7 @@
       "id": "question_0",
       "path": 0,
       "breadcrumb": {
+        "id": "question_0_crumb",
         "link": "/0",
         "text": "Start"
       },
@@ -66,6 +67,7 @@
       "id": "question_1",
       "path": 1,
       "breadcrumb": {
+        "id": "question_1_crumb",
         "link": "/1",
         "text": "Researcher"
       },
@@ -116,6 +118,7 @@
       "id": "question_2",
       "path": 2,
       "breadcrumb": {
+        "id": "question_2_crumb",
         "link": "/2",
         "text": "Deposit data"
       },
@@ -152,6 +155,7 @@
       "id": "question_3",
       "path": 3,
       "breadcrumb": {
+        "id": "question_3_crumb",
         "link": "/3",
         "text": "According to own needs"
       },
@@ -190,6 +194,7 @@
       "id": "question_4",
       "path": 4,
       "breadcrumb": {
+        "id": "question_4_crumb",
         "link": "/4",
         "text": "Repository compliant with <b>FORMAT</b>"
       },
@@ -218,6 +223,7 @@
       "id": "question_5",
       "path": 5,
       "breadcrumb": {
+        "id": "question_5_crumb",
         "link": "/5",
         "text": "Broad research area"
       },
@@ -244,14 +250,15 @@
       ]
     },
     {
-      "id": "question_",
+      "id": "question_6",
       "path": 6,
       "breadcrumb": {
+        "id": "question_6_crumb",
         "link": "/6",
-        "text": "TBA"
+        "text": "FIN"
       },
-      "title": "",
-      "footer": "",
+      "title": "The end...",
+      "footer": "...or is it?",
       "questions": [
         {
           "id": 1,

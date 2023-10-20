@@ -4,13 +4,43 @@
       cols="12"
       class="ml-4"
     >
-      <!-- This html is from a safe source -->
-      <!-- eslint-disable vue/no-v-html -->
-      <span
-        class="ma-4"
-        v-html="breadcrumbs"
-      />
-      <!-- eslint-enable vue/no-v-html -->
+      <v-chip
+        :key="crumbRoot.id"
+        class="ma-2"
+        color="pink"
+        text-color="white"
+        label
+        @click="handleNavigation(crumbRoot.link)"
+      >
+        {{ formatBreadcrumb(crumbRoot) }}
+      </v-chip>
+      <v-chip
+        v-for="crumb in (getBreadcrumbs)"
+        :key="crumb.id"
+        class="ma-2"
+        color="pink"
+        text-color="white"
+        label
+        @click="handleNavigation(crumb.link)"
+      >
+        <!-- This html is from a safe source -->
+        <!-- eslint-disable vue/no-v-html -->
+        <span v-html="formatBreadcrumb(crumb)" />
+        <!-- eslint-enable vue/no-v-html -->
+      </v-chip>
+      <v-chip
+        :key="currentBreadcrumb.id"
+        class="ma-2"
+        color="pink"
+        text-color="pink"
+        label
+        outlined
+      >
+        <!-- This html is from a safe source -->
+        <!-- eslint-disable vue/no-v-html -->
+        <span v-html="formatBreadcrumb(currentBreadcrumb)" />
+        <!-- eslint-enable vue/no-v-html -->
+      </v-chip>
     </v-col>
   </v-row>
 </template>
@@ -25,10 +55,15 @@ export default {
   data(){
     return {
       crumbRoot: {
+        id: "crumbroot",
         link: '/',
         text: 'Home'
       },
-      currentBreadcrumb: null,
+      currentBreadcrumb: {
+        link: '/',
+        text: '',
+        id: 'nullcrumb'
+      },
       breadcrumbs: null
     }
   },
@@ -37,33 +72,26 @@ export default {
   },
   watch: {
     '$route'() {
-      this.setBreadcrumbs();
+      this.setBreadcrumb();
     },
   },
   mounted() {
-    this.setBreadcrumbs();
+    this.setBreadcrumb();
   },
   methods: {
-    setBreadcrumbs() {
+    setBreadcrumb() {
       this.currentBreadcrumb = questionSets.questionSets[parseInt(this.$route.params.id)].breadcrumb;
-      let crumbList = this.getBreadcrumbs.map((x) => this.formatBreadcrumb(x)).join(' > ');
-      if (crumbList.length) {
-        this.breadcrumbs = this.formatBreadcrumb(this.crumbRoot) + ' > ' + crumbList;
-      }
-      else {
-        this.breadcrumbs = this.formatBreadcrumb(this.crumbRoot);
-      }
-      this.breadcrumbs = this.breadcrumbs + ' > ' + this.currentBreadcrumb.text;
-      // Remove the "FORMAT" and replace with the user's selected format.
-      if (this.getCompliantWith) {
-        this.breadcrumbs = this.breadcrumbs.replace("FORMAT", this.getCompliantWith);
-      }
     },
     handleNavigation() {
       // TODO: replace crumbs with pills, and click them to jump to the right spot/slice crumb array.
     },
     formatBreadcrumb(crumb) {
-      return `<a href="${crumb.link}" > ${crumb.text}</a>`
+      if (this.getCompliantWith) {
+        return crumb.text.replace("FORMAT", this.getCompliantWith);
+      }
+      else {
+        return crumb.text;
+      }
     },
   }
 }
