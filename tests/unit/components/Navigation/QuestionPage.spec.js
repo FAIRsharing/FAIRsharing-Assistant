@@ -7,7 +7,7 @@ import multiTagsStore from "@/store/multiTagsStore";
 
 const localVue = createLocalVue();
 localVue.use(Vuex);
-let $route = { path: "/", name: "HomeView"};
+let $route = { path: "/", name: "HomeView" };
 
 const vuetify = new Vuetify({'icons':icons});
 

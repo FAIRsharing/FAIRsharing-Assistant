@@ -36,21 +36,7 @@
       </v-col>
     </v-row>
     <!-- breadcrumb trail -->
-    <!-- TODO: replace with a breadcrumb component. Handle going back (inc. slicing etc.) -->
-    <v-row>
-      <v-col
-        cols="12"
-        class="ml-4"
-      >
-        <!-- This html is from a safe source -->
-        <!-- eslint-disable vue/no-v-html -->
-        <span
-          class="ma-4"
-          v-html="breadcrumbs"
-        />
-        <!-- eslint-enable vue/no-v-html -->
-      </v-col>
-    </v-row>
+    <Breadcrumbs />
     <!-- question title -->
     <v-row>
       <v-col
@@ -293,6 +279,7 @@ import multiTagFilter from "@/lib/GraphClient/queries/multiTagsFilter/multiTagsF
 import GraphClient from "@/lib/GraphClient/GraphClient";
 import tagsQuery from "@/lib/GraphClient/queries/geTags.json";
 import ResultTable from "@/components/Results/ResultTable.vue";
+import Breadcrumbs from "@/components/Navigation/Breadcrumbs.vue";
 
 const graphClient = new GraphClient();
 
@@ -306,7 +293,7 @@ const graphClient = new GraphClient();
 
 export default {
   name: 'QuestionPage',
-  components: {ResultTable, Loaders },
+  components: { ResultTable, Loaders, Breadcrumbs },
   mixins: [ stringUtils ],
   data: () => {
     return {
@@ -319,7 +306,6 @@ export default {
       recordTags: [],
       tags: [],
       loading: false,
-      breadcrumbs: '',
       foundModelFormats: [],
       title: '',
       footer: '',
@@ -378,7 +364,6 @@ export default {
   },
   computed: {
     ...mapGetters('multiTagsStore', ["getFairSharingRecords", "getCurrentRegistry","getQueryParams"]),
-    ...mapGetters('navigationStore', ["getCompliantWith", "getBreadcrumbs"]),
   },
   watch: {
     '$route' () {
@@ -423,29 +408,15 @@ export default {
     ...mapActions('navigationStore', ['pushBreadcrumb', 'popBreadcrumb', 'sliceBreadcrumb']),
     getQuestions() {
       try {
-        // TODO: At some point these breadcrumbs might have to incorporate a variable from the user's search query...
         this.searchString = null;
-        const crumbRoot = "<a href='/'>Home</a>";
+        this.currentBreadcrumb = questionSets.questionSets[parseInt(this.$route.params.id)].breadcrumb;
         this.questions = questionSets.questionSets[parseInt(this.$route.params.id)].questions;
         this.searchQuery = questionSets.questionSets[parseInt(this.$route.params.id)].searchQuery;
         this.hasModelFormatQuery = questionSets.questionSets[parseInt(this.$route.params.id)].hasModelFormatQuery;
         this.hasTagsQuery = questionSets.questionSets[parseInt(this.$route.params.id)].hasTagsQuery;
         let path = '/' + questionSets.questionSets[parseInt(this.$route.params.id)].path;
         this.$store.commit('navigationStore/setNavigationState', path);
-        // TODO: push this to the crumb store when handling link .
-        this.currentBreadcrumb = questionSets.questionSets[parseInt(this.$route.params.id)].breadcrumb;
-        let crumbList = this.getBreadcrumbs.map((x) => this.formatBreadcrumb(x)).join(' > ')
-        if (crumbList.length) {
-          this.breadcrumbs = crumbRoot + ' > ' + crumbList;
-        }
-        else {
-          this.breadcrumbs = crumbRoot;
-        }
-        this.breadcrumbs = this.breadcrumbs + ' > ' + this.currentBreadcrumb.text;
-        // Remove the "FORMAT" and replace with the user's selected format.
-        if (this.getCompliantWith) {
-          this.breadcrumbs = this.breadcrumbs.replace("FORMAT", this.getCompliantWith);
-        }
+
         // The current page isn't a link, only previous pages.
         this.title = questionSets.questionSets[parseInt(this.$route.params.id)].title;
         this.footer = questionSets.questionSets[parseInt(this.$route.params.id)].footer;
@@ -540,9 +511,6 @@ export default {
           _module.tags = tags.searchTags;
         }
       }
-    },
-    formatBreadcrumb(crumb) {
-      return `<a href="${crumb.link}">${crumb.text}</a>`
     },
     clearResults() {
       this.loading = false;
