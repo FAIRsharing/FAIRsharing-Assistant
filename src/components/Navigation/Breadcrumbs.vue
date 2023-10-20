@@ -82,8 +82,13 @@ export default {
     setBreadcrumb() {
       this.currentBreadcrumb = questionSets.questionSets[parseInt(this.$route.params.id)].breadcrumb;
     },
-    handleNavigation() {
+    handleNavigation(link) {
       // TODO: replace crumbs with pills, and click them to jump to the right spot/slice crumb array.
+      let position = Number.parseInt(link.replace('/',''));
+      console.log("POS: " + position);
+      this.$store.commit('navigationStore/sliceBreadcrumb', position);
+      this.$router.push({path: link});
+
     },
     formatBreadcrumb(crumb) {
       if (this.getCompliantWith) {

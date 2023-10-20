@@ -405,7 +405,6 @@ export default {
   },
   methods: {
     ...mapActions('multiTagsStore', ['fetchMultiTagData', 'resetMultiTags']),
-    ...mapActions('navigationStore', ['pushBreadcrumb', 'popBreadcrumb', 'sliceBreadcrumb']),
     getQuestions() {
       try {
         this.searchString = null;
