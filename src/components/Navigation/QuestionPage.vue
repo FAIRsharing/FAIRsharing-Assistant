@@ -63,7 +63,7 @@
           id="searchString"
           v-model="searchString"
           append-icon="fa-search"
-          label="Search model/formats"
+          label="Search model/formats and terminologies"
           outlined
           clearable
           clear-icon="fa-times-circle"
