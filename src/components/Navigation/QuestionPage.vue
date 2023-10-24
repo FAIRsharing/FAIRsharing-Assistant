@@ -228,6 +228,17 @@
         >
           Current search results
         </v-card-title>
+        <v-card-actions>
+          <v-spacer />
+          <v-btn
+            color="blue darken-1"
+            text
+            persistent
+            @click="showResultPreview = false"
+          >
+            Close
+          </v-btn>
+        </v-card-actions>
         <v-card-text>
           <ResultTable />
         </v-card-text>
