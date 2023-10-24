@@ -120,6 +120,18 @@ describe('Navigation store methods', () => {
     )
   })
 
+  it("doesn't push duplicate breadcrumbs", () => {
+    mutations.pushBreadcrumb(state, {link: '/0', text: "home"});
+    expect(getters.getBreadcrumbs(state)).toStrictEqual(
+      [
+        {
+          link: '/0',
+          text: 'home'
+        },
+      ]
+    )
+  });
+
 
   it("can clear navigation state", () => {
     let returnVal = {

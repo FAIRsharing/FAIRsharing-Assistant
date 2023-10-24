@@ -12,6 +12,9 @@ const mutations = {
     state.compliantWith = compliantWith;
   },
   pushBreadcrumb(state, breadcrumb) {
+    if (state.breadcrumbs.some(e => e.link === breadcrumb.link)) {
+      return; // Don't push if it's already there.
+    }
     state.breadcrumbs.push(breadcrumb)
   },
   popBreadcrumb(state) {

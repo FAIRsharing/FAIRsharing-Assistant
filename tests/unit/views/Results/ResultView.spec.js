@@ -3,6 +3,7 @@ import ResultView from "@/views/Results/ResultView.vue"
 import Vuetify from "vuetify"
 import Vuex from "vuex";
 import multiTagsStore from "@/store/multiTagsStore";
+import navigationStore from "@/store/navigationStore";
 
 const $router = { push: jest.fn() };
 let $route = {
@@ -36,9 +37,16 @@ multiTagsStore.getters = {
   getSelectedTags: () => { return [] }
 }
 
+navigationStore.getters = {
+  getBreadcrumbs() {
+    return []
+  }
+}
+
 store = new Vuex.Store({
   modules: {
     multiTagsStore: multiTagsStore,
+    navigationStore: navigationStore
   }
 })
 

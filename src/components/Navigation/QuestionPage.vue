@@ -174,7 +174,8 @@
         cols="3"
       >
         <v-card
-          class="full-width d-flex align-stretch flex-column questionCard"
+          class="full-width d-flex align-center text-center flex-column questionCard"
+          height="130"
           elevation="4"
           :class="[
             item.color,
@@ -215,30 +216,6 @@
           v-html="footer"
         />
         <!-- eslint-enable vue/no-v-html -->
-      </v-col>
-    </v-row>
-    <v-row>
-      <v-col
-        cols="12"
-        style="text-align: center"
-      >
-        <v-btn
-          class="mr-2"
-          :block="$vuetify.breakpoint.smAndDown"
-          color="dev_color white--text"
-          @click="$router.push({path: '/researchfields'});"
-        >
-          Search directly
-        </v-btn>
-        <v-btn
-          v-if="Object.keys(getQueryParams).length > 0"
-          class="ml-2"
-          :block="$vuetify.breakpoint.smAndDown"
-          color="dev_color white--text"
-          @click="$router.push({path: '/results'});"
-        >
-          View results
-        </v-btn>
       </v-col>
     </v-row>
     <v-dialog

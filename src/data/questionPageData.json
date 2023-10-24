@@ -60,6 +60,14 @@
           "color": "internal",
           "link": "/6",
           "query": {}
+        },
+        {
+          "id": 7,
+          "title": "question_0_7",
+          "question": "Skip all questions",
+          "color": "special_internal",
+          "link": "/researchfields",
+          "query": {}
         }
       ]
     },

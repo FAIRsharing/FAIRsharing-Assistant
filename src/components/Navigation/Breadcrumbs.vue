@@ -80,14 +80,25 @@ export default {
   },
   methods: {
     setBreadcrumb() {
-      this.currentBreadcrumb = questionSets.questionSets[parseInt(this.$route.params.id)].breadcrumb;
+      // Breadcrumbs may be visible on a non-question page, specifically results if users have got there via the
+      // questions. So, there won't be a currentBreadcrumb defined.
+      try {
+        this.currentBreadcrumb = questionSets.questionSets[parseInt(this.$route.params.id)].breadcrumb;
+      }
+      catch {
+        if (this.$route.path === '/results') {
+          this.currentBreadcrumb = {
+            text: 'Results',
+            link: '/results'
+          }
+        }
+      }
     },
     handleNavigation(link) {
       // TODO: replace crumbs with pills, and click them to jump to the right spot/slice crumb array.
       let position = Number.parseInt(link.replace('/',''));
       this.$store.commit('navigationStore/sliceBreadcrumb', position);
       this.$router.push({path: link});
-
     },
     formatBreadcrumb(crumb) {
       if (this.getCompliantWith) {

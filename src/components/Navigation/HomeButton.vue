@@ -39,6 +39,7 @@ export default {
     ...mapActions('multiTagsStore', ['resetMultiTags']),
     goHome() {
       this.resetMultiTags();
+      this.$store.commit('navigationStore/clearNavigation');
       this.$router.push('/0')
     }
   }

@@ -8,6 +8,7 @@ export default {
   // Box colours for landing page
   internal: '#27aae1',
   external: '#6B1E1E',
+  special_internal: '#E05E26',
 
   //-- record status color definition:
   dev_color: '#CB9221',

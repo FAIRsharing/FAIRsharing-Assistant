@@ -4,6 +4,14 @@
   >
     <Jumbotron />
     <div
+      v-if="getBreadcrumbs.length > 1"
+      class="mb-10 utilityButtons d-flex flex-row justify-space-around full-width margin-auto"
+      :class="{'flex-column align-center': $vuetify.breakpoint.smAndDown}"
+    >
+      <Breadcrumbs />
+    </div>
+    <div
+      v-else
       class="mb-10 utilityButtons d-flex flex-row justify-space-around full-width margin-auto"
       :class="{'flex-column align-center': $vuetify.breakpoint.smAndDown}"
     >
@@ -17,18 +25,21 @@
 </template>
 
 <script>
+import {mapGetters} from "vuex";
 import Jumbotron from "@/components/Navigation/Jumbotron";
 import ResultTable from "@/components/Results/ResultTable.vue"
 import ResearchFieldsButton from "@/components/Navigation/ResearchFieldsButton.vue";
 import ClearAllSelections from "@/components/Navigation/ClearAllSelections.vue";
 import RegistryButton from "@/components/Navigation/RegistryButton.vue"
 import NavigateBackButton from "@/components/Navigation/NavigateBackButton.vue";
+import Breadcrumbs from "@/components/Navigation/Breadcrumbs.vue";
 
 
 
 export default {
   name: 'ResultView',
   components: {
+    Breadcrumbs,
     ResultTable,
     ClearAllSelections,
     ResearchFieldsButton,
@@ -40,6 +51,9 @@ export default {
     return{
       isError: false
     }
+  },
+  computed: {
+    ...mapGetters('navigationStore', ["getBreadcrumbs"]),
   },
   methods:{
     /**
