@@ -26,7 +26,7 @@
         >
           There are {{ getFairSharingRecords.length }} {{ getCurrentRegistry }} records matching your selection.
           <v-btn
-            v-if="resultCountColour() === 'warning'"
+            v-if="resultCountColour() !== 'error'"
             class="preview-results"
             @click="showResultPreview = true"
           >
