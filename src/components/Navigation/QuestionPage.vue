@@ -59,6 +59,7 @@
         cols="12"
         class="ml-4"
       >
+        <!-- TODO add selected formats here, in a list of chips -->
         <v-text-field
           id="searchString"
           v-model="searchString"
@@ -112,6 +113,40 @@
         cols="12"
         class="ml-4"
       >
+        <!-- A list here of selected tags is shown just above the text box -->
+        <v-chip-group
+          class="pl-2"
+          column
+        >
+          <v-chip
+            v-for="tag in (recordTags)"
+            :key="tag.label"
+            class="ma-2"
+            :color="colors[tag.model]"
+            text-color="white"
+          >
+            {{ tag.label }}
+            <v-tooltip bottom>
+              <template #activator="{ on, attrs }">
+                <!-- this is a dreadful cheat; without it the close icon becomes unreadable -->
+                <div
+                  @click="deleteTag(tag.id, tag.model)"
+                >
+                  <v-icon
+                    v-bind="attrs"
+                    small
+                    class="ml-1"
+                    v-on="on"
+                  >
+                    fa-times-circle
+                  </v-icon>
+                </div>
+              </template>
+              <span> Delete tag </span>
+            </v-tooltip>
+          </v-chip>
+        </v-chip-group>
+        <!-- end of tags list -->
         <v-text-field
           id="searchString"
           v-model="searchString"
@@ -369,23 +404,14 @@ export default {
       let _module = this;
 
       _module.loading = true;
-      // TODO: refactor this for brevity
 
-      let queryParam =  _module.generateQuery(val)[0];
-      let run = _module.generateQuery(val)[1];
-      if (run) {
-        //let response = await graphClient.executeQuery(MULTI_TAGS);
-        await _module.fetchMultiTagData(queryParam);
-        // TODO: Handle errors from the server.
-        _module.recordsFound = _module.getFairSharingRecords;
-        _module.$store.commit('multiTagsStore/setQueryParams', queryParam);
-        _module.$store.commit('multiTagsStore/setSelectedTags', val);
-        _module.loading = false;
-      }
-      else {
-        _module.$store.commit('multiTagsStore/setSelectedTags', val);
-        _module.loading = false;
-      }
+      let queryParam =  _module.generateQuery(val);
+      await _module.fetchMultiTagData(queryParam);
+      // TODO: Handle errors from the server.
+      _module.recordsFound = _module.getFairSharingRecords;
+      _module.$store.commit('multiTagsStore/setQueryParams', queryParam);
+      _module.$store.commit('multiTagsStore/setSelectedTags', val);
+      _module.loading = false;
     },
   },
   mounted() {
@@ -505,29 +531,31 @@ export default {
       this.searchResults = [];
     },
     generateQuery(val) {
-      let run = false;
       let query = this.getQueryParams;
+      delete query.domains;
+      delete query.subjects;
+      delete query.taxonomies;
+      delete query.userDefinedTags;
       let domains = val.filter(x => x.model === 'domain').map(x => x.label);
       if (domains.length) {
         query['domains'] = domains;
-        run = true;
       }
       let subjects = val.filter(x => x.model === 'subject').map(x => x.label);
       if (subjects.length) {
         query['subjects'] = subjects;
-        run = true;
       }
       let taxonomies = val.filter(x => x.model === 'taxonomy').map(x => x.label);
       if (taxonomies.length) {
         query['taxonomies'] = taxonomies;
-        run = true;
       }
       let user_defined_tags = val.filter(x => x.model === 'user_defined_tag').map(x => x.label);
       if (user_defined_tags.length) {
         query['userDefinedTags'] = user_defined_tags;
-        run = true;
       }
-      return [query, run]
+      return query;
+    },
+    deleteTag(tagId, tagModel) {
+      this.recordTags = this.recordTags.filter(el => el.id !== tagId && el.model !== tagModel);
     }
   }
 };
