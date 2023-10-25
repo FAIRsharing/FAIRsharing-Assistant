@@ -105,7 +105,7 @@
         />
         <!-- drop-down table for searchResults to go here -->
         <v-data-table
-          v-if="searchResults.length > 0"
+          v-if="searchResults.length > 0 && searchString.length > 0"
           v-model="foundModelFormats"
           :headers="headers"
           :items="searchResults"
@@ -191,7 +191,7 @@
           @click:clear="clearResults"
         />
         <v-data-table
-          v-if="tags.length > 0"
+          v-if="tags.length > 0 && searchString.length > 0"
           v-model="recordTags"
           :headers="tagHeaders"
           :items="tags"
@@ -448,7 +448,6 @@ export default {
     async foundModelFormats(val) {
       let _module = this;
       _module.loading = true;
-      // TODO: prepare search query
       let ids = [];
       let names = [];
       val.forEach(function(format) {
@@ -572,9 +571,28 @@ export default {
       else if (_module.hasTagsQuery) {
         let tagQueryCopy = JSON.parse(JSON.stringify(tagsQuery));
         if (queryString) tagQueryCopy.queryParam = {q: queryString};
+        let taggedRecords = this.getFairSharingRecords.map(x => x.id);
+        if (taggedRecords.length) {
+          tagQueryCopy.queryParam.taggedRecords = taggedRecords;
+        }
+        else {
+          delete tagQueryCopy.taggedRecords;
+        }
         let tags = await graphClient.executeQuery(tagQueryCopy);
         if (!tags.error) {
-          _module.tags = tags.searchTags;
+          // This is to take the parents of each tag up a level, so they are included
+          // in the list of available tags from which users may select.
+          let parents = [];
+          tags = tags.searchTags;
+          tags.forEach((tag) => {
+            tag.parents.forEach((parent) => {
+              parent.model = tag.model
+              parents.push(parent)
+            })
+            delete tag.parents;
+          })
+          // TODO: process here to handle nested parents.
+          _module.tags = tags.concat(parents);
         }
       }
     },
@@ -613,7 +631,6 @@ export default {
     deleteStandard(standardId) {
       this.foundModelFormats = this.foundModelFormats.filter(el => el.id !== standardId);
     }
-
   }
 };
 </script>
