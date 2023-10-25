@@ -168,7 +168,7 @@
         "text": "According to own needs"
       },
       "title": "Is your data in any particular format or tagged with an particular terminology?",
-      "footer": "Start typing the name of your format. If we don't have it, or the question isn't relevant to you, choose 'skip'",
+      "footer": "Start typing the name of your format. If we don't have it, or the question isn't relevant to you, choose 'skip' without selecting any formats.",
       "hasModelFormatQuery": true,
       "questions": [
         {
@@ -177,11 +177,7 @@
           "question": "Select",
           "color": "internal",
           "link": "/4",
-          "query": {
-            "fairsharingRegistry": ["database"],
-            "recordType": ["repository", "knowledgebase_and_repository"],
-            "status": ["ready", "in_development"]
-          }
+          "query": {}
         },
         {
           "id": 2,
@@ -242,15 +238,7 @@
         {
           "id": 1,
           "title": "question_5_1",
-          "question": "Select",
-          "color": "internal",
-          "link": "/6",
-          "query": {}
-        },
-        {
-          "id": 2,
-          "title": "question_5_2",
-          "question": "Skip",
+          "question": "Continue",
           "color": "internal",
           "link": "/6",
           "query": {}

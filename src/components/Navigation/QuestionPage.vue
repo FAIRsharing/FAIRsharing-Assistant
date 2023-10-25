@@ -59,7 +59,38 @@
         cols="12"
         class="ml-4"
       >
-        <!-- TODO add selected formats here, in a list of chips -->
+        <!-- A list here of selected standards is shown just above the text box -->
+        <v-chip-group
+          class="pl-2"
+          column
+        >
+          <v-chip
+            v-for="std in (foundModelFormats)"
+            :key="std.name"
+            class="ma-2"
+          >
+            {{ std.abbreviation || std.name }}
+            <v-tooltip bottom>
+              <template #activator="{ on, attrs }">
+                <!-- this is a dreadful cheat; without it the close icon becomes unreadable -->
+                <div
+                  @click="deleteStandard(std.id)"
+                >
+                  <v-icon
+                    v-bind="attrs"
+                    small
+                    class="ml-1"
+                    v-on="on"
+                  >
+                    fa-times-circle
+                  </v-icon>
+                </div>
+              </template>
+              <span> Delete standard </span>
+            </v-tooltip>
+          </v-chip>
+        </v-chip-group>
+        <!-- end of standard list -->
         <v-text-field
           id="searchString"
           v-model="searchString"
@@ -400,9 +431,9 @@ export default {
       val = val.trim();
       await this.getResults(val);
     },
+    // Running the query every time user selects a new subject, domain etc.
     async recordTags (val) {
       let _module = this;
-
       _module.loading = true;
 
       let queryParam =  _module.generateQuery(val);
@@ -413,6 +444,29 @@ export default {
       _module.$store.commit('multiTagsStore/setSelectedTags', val);
       _module.loading = false;
     },
+    // Running the query every time user selects a new model/format
+    async foundModelFormats(val) {
+      let _module = this;
+      _module.loading = true;
+      console.log("VAL: " + JSON.stringify(val));
+      // TODO: prepare search query
+      let ids = [];
+      let names = [];
+      val.forEach(function(format) {
+        ids.push(format.id);
+        names.push(format.name);
+      })
+      let query = _module.getQueryParams;
+      if (ids.length > 0) {
+        query.dataFormatsAndTerminologies = ids;
+      }
+      else {
+        delete query.dataFormatsAndTerminologies;
+      }
+      this.$store.commit('navigationStore/setComplianceState', names.join(', '));
+      await this.fetchMultiTagData(query);
+      _module.loading = false;
+    }
   },
   mounted() {
     this.getQuestions()
@@ -556,7 +610,11 @@ export default {
     },
     deleteTag(tagId, tagModel) {
       this.recordTags = this.recordTags.filter(el => el.id !== tagId && el.model !== tagModel);
+    },
+    deleteStandard(standardId) {
+      this.foundModelFormats = this.foundModelFormats.filter(el => el.id !== standardId);
     }
+
   }
 };
 </script>
