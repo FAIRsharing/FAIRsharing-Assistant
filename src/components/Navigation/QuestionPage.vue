@@ -448,7 +448,6 @@ export default {
     async foundModelFormats(val) {
       let _module = this;
       _module.loading = true;
-      console.log("VAL: " + JSON.stringify(val));
       // TODO: prepare search query
       let ids = [];
       let names = [];
