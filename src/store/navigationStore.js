@@ -1,7 +1,8 @@
 const state = {
   previousLocation: null,
   compliantWith: null,
-  breadcrumbs: []
+  breadcrumbs: [],
+  routeQueries: {}
 }
 
 const mutations = {
@@ -23,10 +24,17 @@ const mutations = {
   sliceBreadcrumb(state, position) {
     state.breadcrumbs = state.breadcrumbs.slice(0, position);
   },
+  setRouteQuery(state, link, query) {
+    console.log("RQ: " + JSON.stringify(state.routeQueries)); // Why is this undefined?
+    console.log("LINK: " + JSON.stringify(link)); // Why is this set to query not link?
+    console.log("QUERY: " + JSON.stringify(query)); // Why is this undefined?
+    state.routeQueries[link] = query;
+  },
   clearNavigation(state) {
     state.previousLocation = null;
     state.compliantWith = null;
-    state.breadcrumbs = []
+    state.breadcrumbs = [];
+    state.routeQueries = {}
   }
 }
 
@@ -39,6 +47,9 @@ const getters = {
   },
   getBreadcrumbs(state) {
     return state.breadcrumbs
+  },
+  getRouteQuery(state) {
+    return state.routeQueries;
   }
 }
 

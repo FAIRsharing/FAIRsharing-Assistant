@@ -21,7 +21,9 @@ describe('Navigation store methods', () => {
         link: '/3',
         text: 'upload data'
       }
-    ]
+    ],
+    routeQueries: {},
+    compliantWith: null
   };
 
   it("can run setNavigationState mutation", () => {
@@ -132,12 +134,18 @@ describe('Navigation store methods', () => {
     )
   });
 
+  it("can get and set queries for a previously-visited route", () => {
+    let query = {"this": "that"};
+    mutations.setRouteQuery('/1', query);
+    expect(getters.getRouteQuery(state)).toStrictEqual({ '/1': query });
+  });
 
   it("can clear navigation state", () => {
     let returnVal = {
       previousLocation: null,
       compliantWith: null,
-      breadcrumbs: []
+      breadcrumbs: [],
+      routeQueries: {}
     }
     mutations.clearNavigation(state);
     expect(state).toStrictEqual(returnVal);

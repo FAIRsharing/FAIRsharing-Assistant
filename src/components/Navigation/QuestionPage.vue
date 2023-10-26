@@ -417,7 +417,8 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('multiTagsStore', ["getFairSharingRecords", "getCurrentRegistry","getQueryParams"]),
+    ...mapGetters('multiTagsStore', ["getFairSharingRecords", "getCurrentRegistry", "getQueryParams"]),
+    ...mapGetters('navigationStore', ["getRouteQuery"]),
   },
   watch: {
     '$route' () {
@@ -471,7 +472,7 @@ export default {
   },
   methods: {
     ...mapActions('multiTagsStore', ['fetchMultiTagData', 'resetMultiTags']),
-    getQuestions() {
+    async getQuestions() {
       try {
         this.searchString = null;
         this.currentBreadcrumb = questionSets.questionSets[parseInt(this.$route.params.id)].breadcrumb;
@@ -487,6 +488,19 @@ export default {
         this.footer = questionSets.questionSets[parseInt(this.$route.params.id)].footer;
         if (questionSets.questionSets[parseInt(this.$route.params.id)].clear) {
           this.resetMultiTags();
+        }
+
+        // TODO: Get the query for this particular page, if defined by a user having been here before.
+        let previousQuery;
+        try {
+          previousQuery = this.getRouteQuery[this.$route.params.id];
+        }
+        catch {
+          // This value might well be empty if the user hasn't been here yet.
+        }
+        if (previousQuery) {
+          this.searchQuery = previousQuery;
+          await this.fetchMultiTagData(this.searchQuery);
         }
       }
       catch {
@@ -523,6 +537,8 @@ export default {
         }
         this.loading = false;
       }
+      // Before leaving the page, stash the query for this particular page.
+      this.$store.commit('navigationStore/setRouteQuery', this.$route.params.id, this.getQueryParams);
       // In this case, the link is to an external site.
       if (link.match(/^http/)) {
         window.open(link);
