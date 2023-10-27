@@ -6,4 +6,5 @@ export const Licence =  () => import(/* webpackChunkName: "licence-chunk" */ '@/
 export const ResultView = () => import('@/views/Results/ResultView.vue');
 export const AllTags = () => import('@/views/AllTags/AllTags.vue');
 export const RefineRegistry = () => import('@/views/RefineRegistry/RefineRegistry.vue');
+export const Educational = () => import('@/views/Educational/Educational.vue');
 

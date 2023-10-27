@@ -1,0 +1,15 @@
+{
+  "claim": [
+    "<h1>Claim your record(s)</h2>",
+    "<p>Learn about creating a user account, logging in, and claiming your record(s) with us by visiting our documentation at: </p>",
+    "<p><a href='https://fairsharing.gitbook.io/fairsharing' _target='blank'>https://fairsharing.gitbook.io/fairsharing</a></p>",
+    "<p>If you are logged in and are ready to claim your record(s), please visit each one and claim them via the top right menu, where it says <b>Actions -> Request Ownership</b>.</p>"
+  ],
+  "register": [
+    "<h1>Registering your resource(s)</h2>",
+    "<p>Learn about creating a user account, logging in, and claiming your record(s) with us by visiting our documentation at: </p>",
+    "<p><a href='https://fairsharing.gitbook.io/fairsharing' _target='blank'>https://fairsharing.gitbook.io/fairsharing</a></p>",
+    "<p>If you are ready to create a record, please visit:</p>",
+    "<p><a href='https://fairsharing.org/new' _target='blank'>https://fairsharing.org/new</a></p>"
+  ]
+}

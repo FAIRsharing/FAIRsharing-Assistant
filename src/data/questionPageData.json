@@ -26,7 +26,7 @@
           "title": "question_0_2",
           "question": "Resource developer / data curator",
           "color": "internal",
-          "link": "/2",
+          "link": "/7",
           "query": {}
         },
         {
@@ -34,7 +34,7 @@
           "title": "question_0_3",
           "question": "Journal publisher",
           "color": "internal",
-          "link": "/3",
+          "link": "/",
           "query": {}
         },
         {
@@ -42,7 +42,7 @@
           "title": "question_0_4",
           "question": "Librarian, trainer or data steward",
           "color": "internal",
-          "link": "/4",
+          "link": "/",
           "query": {}
         },
         {
@@ -50,7 +50,7 @@
           "title": "question_0_5",
           "question": "Society or alliance",
           "color": "internal",
-          "link": "/5",
+          "link": "/",
           "query": {}
         },
         {
@@ -58,7 +58,7 @@
           "title": "question_0_6",
           "question": "Funder",
           "color": "internal",
-          "link": "/6",
+          "link": "/",
           "query": {}
         },
         {
@@ -232,7 +232,7 @@
         "text": "Broad research area"
       },
       "title": "What broad research area is relevant to your data?",
-      "footer": "The broader the area you choose the more results you'll get. We suggest you start with a high-level subject area and refine as necessary. if you're not sure what to put here either just start typing or look at our <a href='https://fairsharing.org/browse/subject' _target='blank'>subject hierarchy</a> for inspiration. If you're not interested in a particular area then skip this step. If you want repostitories that take data from any research area then type 'Subject Agnostic'.",
+      "footer": "The broader the area you choose the more results you'll get. We suggest you start with a high-level subject area and refine as necessary. If you're not sure what to put here either just start typing or look at our <a href='https://fairsharing.org/browse/subject' _target='blank'>subject hierarchy</a> for inspiration. If you're not interested in a particular area then skip this step. If you want repostitories that take data from any research area then type 'Subject Agnostic'.",
       "hasTagsQuery": true,
       "questions": [
         {
@@ -262,6 +262,114 @@
           "question": "View results",
           "color": "internal",
           "link": "/results",
+          "query": {}
+        }
+      ]
+    },
+    {
+      "id": "question_7",
+      "path": 7,
+      "breadcrumb": {
+        "id": "question_7_crumb",
+        "link": "/7",
+        "text": "Resource developer/data curator"
+      },
+      "title": "Do you want to...?",
+      "footer": "<p>FAIRsharing offers rich and discoverable descriptions of standards, databases and policies, as well as relationship graphics to identify data resources similar (or related) to yours.</p><p><b>Finding resources</b> helps you comply with policies, avoid duplication, and discover the organisations behind resources, e.g. for collaboration.</p><p><b>Registering your resource(s) with FAIRsharing</b> allows you to describe the content, scope and relationships they have with the wider research landscape.</p><p><b>Incorporating FAIRsharing into your documentation</b>, presentations, policies and DMPs.</p>",
+      "questions": [
+        {
+          "id": 1,
+          "title": "question_7_1",
+          "question": "Find a resource",
+          "color": "internal",
+          "link": "/8",
+          "query": {}
+        },
+        {
+          "id": 2,
+          "title": "question_7_2",
+          "question": "Register your resources with FAIRsharing",
+          "color": "internal",
+          "link": "/educational/register",
+          "query": {}
+        },
+        {
+          "id": 3,
+          "title": "question_7_3",
+          "question": "Incorporate FAIRsharing into your documentation",
+          "color": "internal",
+          "link": "/educational/",
+          "query": {}
+        }
+      ]
+    },
+    {
+      "id": "question_8",
+      "path": 8,
+      "breadcrumb": {
+        "id": "question_8_crumb",
+        "link": "/8",
+        "text": "Wanting to find a resource"
+      },
+      "title": "What type of resource are you interested in?",
+      "footer": "<p><b>Finding resources</b> helps you comply with policies, avoid duplication, and discover the organisations behind resources, e.g. for collaboration.</p><p>Navigate the wealth of standards, databases and policies by selecting the attributes of those records most important to you.</p>",
+      "questions": [
+        {
+          "id": 1,
+          "title": "question_8_1",
+          "question": "Standards",
+          "color": "internal",
+          "link": "/9",
+          "query": {
+            "fairsharingRegistry": ["standard"],
+            "status": ["ready", "in_development"]
+          },
+          "refined": true
+        },
+        {
+          "id": 2,
+          "title": "question_8_2",
+          "question": "Databases",
+          "color": "internal",
+          "link": "/9",
+          "query": {
+            "fairsharingRegistry": ["database"],
+            "status": ["ready", "in_development"]
+          },
+          "refined": true
+        },
+        {
+          "id": 3,
+          "title": "question_8_3",
+          "question": "Policies",
+          "color": "internal",
+          "link": "/9",
+          "query": {
+            "fairsharingRegistry": ["policy"],
+            "status": ["ready", "in_development"]
+          },
+          "refined": true
+        }
+      ]
+    },
+    {
+      "id": "question_9",
+      "path": 9,
+      "breadcrumb": {
+        "id": "question_9_crumb",
+        "link": "/9",
+        "text": "Wanting to discover <b>REGISTRY</b>"
+      },
+      "title": "What broad research area is relevant to your data?",
+      "footer": "The broader the area you choose the more results you'll get. We suggest you start with a high-level subject area and refine as necessary. If you're not sure what to put here either just start typing or look at our <a href='https://fairsharing.org/browse/subject' _target='blank'>subject hierarchy</a> for inspiration. If you're not interested in a particular area then skip this step. If you want repostitories that take data from any research area then type 'Subject Agnostic'.",
+      "hasTagsQuery": true,
+      "questions": [
+        {
+          "id": 1,
+          "title": "question_5_1",
+          "question": "Continue",
+          "color": "internal",
+          "link": "/6",
           "query": {}
         }
       ]

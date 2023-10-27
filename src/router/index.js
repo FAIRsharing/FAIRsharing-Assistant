@@ -11,7 +11,8 @@ import {
   ServerError,
   Licence,
   AllTags,
-  RefineRegistry
+  RefineRegistry,
+  Educational
 } from './routes'
 
 let routes = [
@@ -45,6 +46,11 @@ let routes = [
     name: "Licence",
     path: "/licence",
     component: Licence,
+  },
+  {
+    name: "Educational",
+    path: "/educational/:text",
+    component: Educational
   },
   /* ERROR HANDLING */
   {

@@ -85,11 +85,24 @@ export default {
       try {
         this.currentBreadcrumb = questionSets.questionSets[parseInt(this.$route.params.id)].breadcrumb;
       }
+      // TODO: Perhaps currentBreadcrumb definitions could be put in a JSON file...
       catch {
         if (this.$route.path === '/results') {
           this.currentBreadcrumb = {
             text: 'Results',
             link: '/results'
+          }
+        }
+        else if (this.$route.path === '/educational/claim') {
+          this.currentBreadcrumb = {
+            text: "Claim your record(s) in FAIRsharing",
+            link: '/educational/claim'
+          }
+        }
+        else if (this.$route.path === '/educational/register') {
+          this.currentBreadcrumb = {
+            text: "Register your resources(s) with FAIRsharing",
+            link: '/educational/register'
           }
         }
       }
