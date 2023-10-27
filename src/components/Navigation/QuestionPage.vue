@@ -491,17 +491,35 @@ export default {
         }
 
         // TODO: Get the query for this particular page, if defined by a user having been here before.
+        /*
         let previousQuery;
         try {
-          previousQuery = this.getRouteQuery[this.$route.params.id];
+          console.log("Getting: " + JSON.stringify(this.getRouteQuery))
+          previousQuery = this.getRouteQuery[this.$route.params.id.toString()];
+          console.log("PQ: " + JSON.stringify(previousQuery))
         }
         catch {
           // This value might well be empty if the user hasn't been here yet.
         }
-        if (previousQuery) {
-          this.searchQuery = previousQuery;
-          await this.fetchMultiTagData(this.searchQuery);
+        // There's no need to run the previous query again if it's the same as the current one.
+        if (Object.keys(previousQuery).length > 0 &&
+            JSON.stringify(previousQuery) !== JSON.stringify(this.getQueryParams) &&
+            this.getPreviousLocation !== path
+        ) {
+          console.log("Loading!");
+          this.loading = true;
+          console.log("Before: " + this.getFairSharingRecords.length);
+          await this.fetchMultiTagData(previousQuery);
+          console.log("After: " + this.getFairSharingRecords.length);
+          this.loading = false;
         }
+         */
+        // Before leaving the page, stash the query for this particular page.
+        // It must be stashed now, before it is changed, and that change will happen as the user leaves for the
+        // next question.
+        let queryCopy = JSON.parse(JSON.stringify(this.getQueryParams));
+        console.log("Committing: " + (this.$route.params.id) + " -- " + JSON.stringify(queryCopy));
+        this.$store.commit('navigationStore/setRouteQuery', [this.$route.params.id, queryCopy]);
       }
       catch {
         this.questions = questionSets.questionSets[0].questions;
@@ -537,8 +555,7 @@ export default {
         }
         this.loading = false;
       }
-      // Before leaving the page, stash the query for this particular page.
-      this.$store.commit('navigationStore/setRouteQuery', this.$route.params.id, this.getQueryParams);
+
       // In this case, the link is to an external site.
       if (link.match(/^http/)) {
         window.open(link);

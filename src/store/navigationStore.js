@@ -24,8 +24,10 @@ const mutations = {
   sliceBreadcrumb(state, position) {
     state.breadcrumbs = state.breadcrumbs.slice(0, position);
   },
-  setRouteQuery(state, link, query) {
-    state.routeQueries[link] = query;
+  setRouteQuery(state, params) {
+    let link = params[0];
+    let query = params[1]
+    state.routeQueries[link.toString()] = query;
   },
   clearNavigation(state) {
     state.previousLocation = null;
