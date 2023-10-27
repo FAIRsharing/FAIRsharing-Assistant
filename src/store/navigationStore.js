@@ -25,9 +25,6 @@ const mutations = {
     state.breadcrumbs = state.breadcrumbs.slice(0, position);
   },
   setRouteQuery(state, link, query) {
-    console.log("RQ: " + JSON.stringify(state.routeQueries)); // Why is this undefined?
-    console.log("LINK: " + JSON.stringify(link)); // Why is this set to query not link?
-    console.log("QUERY: " + JSON.stringify(query)); // Why is this undefined?
     state.routeQueries[link] = query;
   },
   clearNavigation(state) {
