@@ -6,20 +6,28 @@ describe('Navigation store methods', () => {
     previousLocation: '/1',
     breadcrumbs: [
       {
-        link: '/0',
-        text: 'home'
+        "/0": {
+          link: '/0',
+          text: 'home'
+        }
       },
       {
-        link: '/1',
-        text: 'start'
+        "/1": {
+          link: '/1',
+          text: 'start'
+        }
       },
       {
-        link: '/2',
-        text: 'researcher'
+        "/2": {
+          link: '/2',
+          text: 'researcher'
+        }
       },
       {
-        link: '/3',
-        text: 'upload data'
+        "/3": {
+          link: '/3',
+          text: 'upload data'
+        }
       }
     ],
     routeQueries: {},
@@ -48,66 +56,92 @@ describe('Navigation store methods', () => {
     expect(getters.getBreadcrumbs(state)).toStrictEqual(
       [
         {
-          link: '/0',
-          text: 'home'
+          "/0": {
+            link: '/0',
+            text: 'home'
+          }
         },
         {
-          link: '/1',
-          text: 'start'
+          "/1": {
+            link: '/1',
+            text: 'start'
+          }
         },
         {
-          link: '/2',
-          text: 'researcher'
+          "/2": {
+            link: '/2',
+            text: 'researcher'
+          }
         },
         {
-          link: '/3',
-          text: 'upload data'
+          "/3": {
+            link: '/3',
+            text: 'upload data'
+          }
         }
       ]
     )
-    mutations.pushBreadcrumb(state, {link: '/4', text: "another crumb"});
+    mutations.addBreadcrumb(state,{link: '/4', text: "another crumb"});
     expect(getters.getBreadcrumbs(state)).toStrictEqual(
       [
         {
-          link: '/0',
-          text: 'home'
+          "/0": {
+            link: '/0',
+            text: 'home'
+          }
         },
         {
-          link: '/1',
-          text: 'start'
+          "/1": {
+            link: '/1',
+            text: 'start'
+          }
         },
         {
-          link: '/2',
-          text: 'researcher'
+          "/2": {
+            link: '/2',
+            text: 'researcher'
+          }
         },
         {
-          link: '/3',
-          text: 'upload data'
+          "/3": {
+            link: '/3',
+            text: 'upload data'
+          }
         },
         {
-          link: '/4',
-          text: 'another crumb'
+          "/4": {
+            link: '/4',
+            text: 'another crumb'
+          }
         }
       ]
     )
-    mutations.popBreadcrumb(state);
+    mutations.removeBreadcrumb(state, {link: '/4', text: 'another crumb'});
     expect(getters.getBreadcrumbs(state)).toStrictEqual(
       [
         {
-          link: '/0',
-          text: 'home'
+          "/0": {
+            link: '/0',
+            text: 'home'
+          }
         },
         {
-          link: '/1',
-          text: 'start'
+          "/1": {
+            link: '/1',
+            text: 'start'
+          }
         },
         {
-          link: '/2',
-          text: 'researcher'
+          "/2": {
+            link: '/2',
+            text: 'researcher'
+          }
         },
         {
-          link: '/3',
-          text: 'upload data'
+          "/3": {
+            link: '/3',
+            text: 'upload data'
+          }
         }
       ]
     )
@@ -115,24 +149,15 @@ describe('Navigation store methods', () => {
     expect(getters.getBreadcrumbs(state)).toStrictEqual(
       [
         {
-          link: '/0',
-          text: 'home'
-        },
+          "/0": {
+            link: '/0',
+            text: 'home'
+          }
+        }
       ]
     )
   })
 
-  it("doesn't push duplicate breadcrumbs", () => {
-    mutations.pushBreadcrumb(state, {link: '/0', text: "home"});
-    expect(getters.getBreadcrumbs(state)).toStrictEqual(
-      [
-        {
-          link: '/0',
-          text: 'home'
-        },
-      ]
-    )
-  });
 
   it("can get and set queries for a previously-visited route", () => {
     let query = {"this": "that"};
@@ -144,7 +169,7 @@ describe('Navigation store methods', () => {
     let returnVal = {
       previousLocation: null,
       compliantWith: null,
-      breadcrumbs: [],
+      breadcrumbs: {},
       routeQueries: {}
     }
     mutations.clearNavigation(state);

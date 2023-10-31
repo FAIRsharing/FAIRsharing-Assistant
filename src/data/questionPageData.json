@@ -358,7 +358,7 @@
       "breadcrumb": {
         "id": "question_9_crumb",
         "link": "/9",
-        "text": "Wanting to discover <b>REGISTRY</b>"
+        "text": "Wanting to discover <b>REGISTRY</b> records"
       },
       "title": "What broad research area is relevant to your data?",
       "footer": "The broader the area you choose the more results you'll get. We suggest you start with a high-level subject area and refine as necessary. If you're not sure what to put here either just start typing or look at our <a href='https://fairsharing.org/browse/subject' _target='blank'>subject hierarchy</a> for inspiration. If you're not interested in a particular area then skip this step. If you want repostitories that take data from any research area then type 'Subject Agnostic'.",

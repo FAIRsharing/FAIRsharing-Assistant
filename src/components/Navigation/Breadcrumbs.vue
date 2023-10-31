@@ -69,6 +69,7 @@ export default {
   },
   computed: {
     ...mapGetters('navigationStore', ["getCompliantWith", "getBreadcrumbs"]),
+    ...mapGetters('multiTagsStore', ["getCurrentRegistry"]),
   },
   watch: {
     '$route'() {
@@ -110,12 +111,15 @@ export default {
     handleNavigation(link) {
       // TODO: replace crumbs with pills, and click them to jump to the right spot/slice crumb array.
       let position = Number.parseInt(link.replace('/',''));
-      this.$store.commit('navigationStore/sliceBreadcrumb', position);
+      this.$store.commit('navigationStore/sliceBreadcrumb', position -1);
       this.$router.push({path: link});
     },
     formatBreadcrumb(crumb) {
       if (this.getCompliantWith) {
         return crumb.text.replace("FORMAT", this.getCompliantWith);
+      }
+      else if (this.getCurrentRegistry) {
+        return crumb.text.replace("REGISTRY", this.getCurrentRegistry);
       }
       else {
         return crumb.text;

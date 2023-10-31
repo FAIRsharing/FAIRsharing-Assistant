@@ -1,7 +1,7 @@
 const state = {
   previousLocation: null,
   compliantWith: null,
-  breadcrumbs: [],
+  breadcrumbs: {},
   routeQueries: {}
 }
 
@@ -12,17 +12,21 @@ const mutations = {
   setComplianceState(state, compliantWith) {
     state.compliantWith = compliantWith;
   },
-  pushBreadcrumb(state, breadcrumb) {
-    if (state.breadcrumbs.some(e => e.link === breadcrumb.link)) {
-      return; // Don't push if it's already there.
-    }
-    state.breadcrumbs.push(breadcrumb)
+  addBreadcrumb(state, breadcrumb) {
+    console.log("Crumb: " + JSON.stringify(breadcrumb));
+    console.log("Before: " + JSON.stringify(state.breadcrumbs));
+    state.breadcrumbs[breadcrumb.link] = breadcrumb;
+    console.log("After: " + JSON.stringify(state.breadcrumbs));
   },
-  popBreadcrumb(state) {
-    state.breadcrumbs.pop();
+  removeBreadcrumb(state, breadcrumb) {
+    delete state.breadcrumbs[breadcrumb.link];
   },
   sliceBreadcrumb(state, position) {
+    console.log("POS: " + position);
+    console.log("BC: " + JSON.stringify(state.breadcrumbs));
+    console.log("Sliced: " + JSON.stringify(state.breadcrumbs.slice(0, position)));
     state.breadcrumbs = state.breadcrumbs.slice(0, position);
+    console.log("BCA: " + JSON.stringify(state.breadcrumbs));
   },
   setRouteQuery(state, link, query) {
     state.routeQueries[link] = query;
@@ -30,7 +34,7 @@ const mutations = {
   clearNavigation(state) {
     state.previousLocation = null;
     state.compliantWith = null;
-    state.breadcrumbs = [];
+    state.breadcrumbs = {};
     state.routeQueries = {}
   }
 }

@@ -553,7 +553,7 @@ export default {
         }
         this.$router.push({path: link});
       }
-      this.$store.commit('navigationStore/pushBreadcrumb', this.currentBreadcrumb);
+      this.$store.commit('navigationStore/addBreadcrumb', this.currentBreadcrumb);
     },
     resultCountColour() {
       if (this.getFairSharingRecords.length > 10) {
