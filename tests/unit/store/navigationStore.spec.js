@@ -4,32 +4,24 @@ describe('Navigation store methods', () => {
   const { mutations, getters} = navigationStore
   let state = {
     previousLocation: '/1',
-    breadcrumbs: [
-      {
-        "/0": {
-          link: '/0',
-          text: 'home'
-        }
+    breadcrumbs: {
+      "/0": {
+        link: '/0',
+        text: 'home'
       },
-      {
-        "/1": {
-          link: '/1',
-          text: 'start'
-        }
+      "/1": {
+        link: '/1',
+        text: 'start'
       },
-      {
-        "/2": {
-          link: '/2',
-          text: 'researcher'
-        }
+      "/2": {
+        link: '/2',
+        text: 'researcher'
       },
-      {
-        "/3": {
-          link: '/3',
-          text: 'upload data'
-        }
+      "/3": {
+        link: '/3',
+        text: 'upload data'
       }
-    ],
+    },
     routeQueries: {},
     compliantWith: null
   };
@@ -54,110 +46,92 @@ describe('Navigation store methods', () => {
 
   it("can get breadcrumbs", () => {
     expect(getters.getBreadcrumbs(state)).toStrictEqual(
-      [
-        {
-          "/0": {
-            link: '/0',
-            text: 'home'
-          }
+      {
+        "/0": {
+          link: '/0',
+          text: 'home'
         },
-        {
-          "/1": {
-            link: '/1',
-            text: 'start'
-          }
+        "/1": {
+          link: '/1',
+          text: 'start'
         },
-        {
-          "/2": {
-            link: '/2',
-            text: 'researcher'
-          }
+        "/2": {
+          link: '/2',
+          text: 'researcher'
         },
-        {
-          "/3": {
-            link: '/3',
-            text: 'upload data'
-          }
+        "/3": {
+          link: '/3',
+          text: 'upload data'
         }
-      ]
+      }
     )
     mutations.addBreadcrumb(state,{link: '/4', text: "another crumb"});
     expect(getters.getBreadcrumbs(state)).toStrictEqual(
-      [
-        {
-          "/0": {
-            link: '/0',
-            text: 'home'
-          }
+      {
+        "/0": {
+          link: '/0',
+          text: 'home'
         },
-        {
-          "/1": {
-            link: '/1',
-            text: 'start'
-          }
+        "/1": {
+          link: '/1',
+          text: 'start'
         },
-        {
-          "/2": {
-            link: '/2',
-            text: 'researcher'
-          }
+        "/2": {
+          link: '/2',
+          text: 'researcher'
         },
-        {
-          "/3": {
-            link: '/3',
-            text: 'upload data'
-          }
+        "/3": {
+          link: '/3',
+          text: 'upload data'
         },
-        {
-          "/4": {
-            link: '/4',
-            text: 'another crumb'
-          }
+        "/4": {
+          link: '/4',
+          text: 'another crumb'
         }
-      ]
+      }
     )
     mutations.removeBreadcrumb(state, {link: '/4', text: 'another crumb'});
     expect(getters.getBreadcrumbs(state)).toStrictEqual(
-      [
-        {
-          "/0": {
-            link: '/0',
-            text: 'home'
-          }
+      {
+        "/0": {
+          link: '/0',
+          text: 'home'
         },
-        {
-          "/1": {
-            link: '/1',
-            text: 'start'
-          }
+        "/1": {
+          link: '/1',
+          text: 'start'
         },
-        {
-          "/2": {
-            link: '/2',
-            text: 'researcher'
-          }
+        "/2": {
+          link: '/2',
+          text: 'researcher'
         },
-        {
-          "/3": {
-            link: '/3',
-            text: 'upload data'
-          }
+        "/3": {
+          link: '/3',
+          text: 'upload data'
         }
-      ]
-    )
-    mutations.sliceBreadcrumb(state, 1);
-    expect(getters.getBreadcrumbs(state)).toStrictEqual(
-      [
-        {
-          "/0": {
-            link: '/0',
-            text: 'home'
-          }
-        }
-      ]
+      }
     )
   })
 
+  it("can slice breadcrumbs", () => {
+    mutations.sliceBreadcrumb(state,'/3');
+    expect(getters.getBreadcrumbs(state)).toStrictEqual(
+      {
+        "/0": {
+          link: '/0',
+          text: 'home'
+        },
+        "/1": {
+          link: '/1',
+          text: 'start'
+        },
+        "/2": {
+          link: '/2',
+          text: 'researcher'
+        }
+      }
+    )
+  });
 
   it("can get and set queries for a previously-visited route", () => {
     let query = {"this": "that"};

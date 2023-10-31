@@ -110,8 +110,7 @@ export default {
     },
     handleNavigation(link) {
       // TODO: replace crumbs with pills, and click them to jump to the right spot/slice crumb array.
-      let position = Number.parseInt(link.replace('/',''));
-      this.$store.commit('navigationStore/sliceBreadcrumb', position -1);
+      this.$store.commit('navigationStore/sliceBreadcrumb', link);
       this.$router.push({path: link});
     },
     formatBreadcrumb(crumb) {
