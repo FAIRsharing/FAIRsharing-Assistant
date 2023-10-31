@@ -313,6 +313,7 @@
       },
       "title": "What type of resource are you interested in?",
       "footer": "<p><b>Finding resources</b> helps you comply with policies, avoid duplication, and discover the organisations behind resources, e.g. for collaboration.</p><p>Navigate the wealth of standards, databases and policies by selecting the attributes of those records most important to you.</p>",
+      "clear": "true",
       "questions": [
         {
           "id": 1,

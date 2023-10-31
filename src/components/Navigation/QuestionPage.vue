@@ -105,7 +105,7 @@
         />
         <!-- drop-down table for searchResults to go here -->
         <v-data-table
-          v-if="searchResults.length > 0 && searchString.length > 0"
+          v-if="searchResults.length > 0 && searchString && searchString.length > 0"
           v-model="foundModelFormats"
           :headers="headers"
           :items="searchResults"
@@ -191,7 +191,7 @@
           @click:clear="clearResults"
         />
         <v-data-table
-          v-if="tags.length > 0 && searchString.length > 0"
+          v-if="tags.length > 0 && searchString && searchString.length > 0"
           v-model="recordTags"
           :headers="tagHeaders"
           :items="tags"
@@ -538,7 +538,7 @@ export default {
         this.loading = false;
       }
       // Before leaving the page, stash the query for this particular page.
-      this.$store.commit('navigationStore/setRouteQuery', this.$route.params.id, this.getQueryParams);
+      this.$store.commit('navigationStore/setRouteQuery', [this.$route.params.id, query]);
       // In this case, the link is to an external site.
       if (link.match(/^http/)) {
         window.open(link);

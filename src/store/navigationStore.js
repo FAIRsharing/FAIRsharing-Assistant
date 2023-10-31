@@ -27,7 +27,9 @@ const mutations = {
       }
     })
   },
-  setRouteQuery(state, link, query) {
+  setRouteQuery(state, params) {
+    let link = params[0];
+    let query = params[1]
     state.routeQueries[link] = query;
   },
   clearNavigation(state) {
