@@ -4,15 +4,16 @@ import Vuetify from "vuetify"
 import Vuex from "vuex";
 import icons from "@/plugins/icons";
 import multiTagsStore from "@/store/multiTagsStore";
+import navigationStore from "@/store/navigationStore";
 
 const localVue = createLocalVue();
 localVue.use(Vuex);
-let $route = { path: "/", name: "HomeView" };
+let $route = { path: "/0", name: "HomeView", params: {id: 0} };
 
 const vuetify = new Vuetify({'icons':icons});
 
 let actions = {
-  resetMultiTags: jest.fn(),
+  resetMultiTags: jest.fn()
 }
 
 multiTagsStore.getters = {
@@ -29,10 +30,15 @@ multiTagsStore.getters = {
   getQueryParams: () => { return {} }
 }
 
+navigationStore.mutations = {
+  setNavigationState: jest.fn()
+}
+
 let store = new Vuex.Store({
   modules: {
     actions,
-    multiTagsStore: multiTagsStore
+    multiTagsStore: multiTagsStore,
+    navigationStore: navigationStore
   },
 })
 

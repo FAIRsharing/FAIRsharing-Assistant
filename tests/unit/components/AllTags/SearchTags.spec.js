@@ -11,6 +11,14 @@ import multiTagsFilter from "@/lib/GraphClient/queries/multiTagsFilter/multiTags
 const localVue = createLocalVue();
 localVue.use(Vuex);
 
+let $route = {
+  path: "/",
+  params: {
+    id: 0
+  }
+};
+
+
 multiTagsStore.getters = {
   getFairSharingRecords: () => {
     return [
@@ -57,7 +65,8 @@ describe("SearchTags.vue", function(){
     wrapper = shallowMount(SearchTags, {
       localVue,
       vuetify,
-      store
+      store,
+      mocks: { $route }
     })
   });
 

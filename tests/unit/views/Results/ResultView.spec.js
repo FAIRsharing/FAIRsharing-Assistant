@@ -8,7 +8,10 @@ import navigationStore from "@/store/navigationStore";
 const $router = { push: jest.fn() };
 let $route = {
   path: "/accounts/profile",
-  query: "fairsharingRegistry=Database&recordType=knowledgebase,repository"
+  query: "fairsharingRegistry=Database&recordType=knowledgebase,repository",
+  params: {
+    id: "/accounts/profile"
+  }
 };
 
 const localVue = createLocalVue();
