@@ -277,13 +277,14 @@
       >
         <!-- This html is from a safe source -->
         <!-- eslint-disable vue/no-v-html -->
-        <h3
+        <p
           style="text-align: center"
           v-html="footer"
         />
         <!-- eslint-enable vue/no-v-html -->
       </v-col>
     </v-row>
+    <!-- Preview the results -->
     <v-dialog
       v-model="showResultPreview"
       persistent
@@ -317,6 +318,42 @@
             @click="showResultPreview = false"
           >
             Close
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+    <!-- Potentially annoy the user by stopping to ask if they want to carry on due to few results -->
+    <v-dialog
+      v-model="lowResultsStoppage"
+      persistent
+    >
+      <v-card>
+        <v-card-title
+          class="headline"
+        >
+          Fewer than 10 {{getCurrentRegistry}} records fit your criteria?
+        </v-card-title>
+        <v-card-text>
+          How would you like to proceed? Select "continue" to go back to an earlier step, or to add more filters. Or,
+          you may go to the results.
+        </v-card-text>
+        <v-card-actions>
+          <v-spacer />
+          <v-btn
+            color="blue darken-1"
+            text
+            persistent
+            @click="lowResultsStoppage = false"
+          >
+            Continue
+          </v-btn>
+          <v-btn
+            color="blue darken-1"
+            text
+            persistent
+            @click="$router.push('/results')"
+          >
+            View results
           </v-btn>
         </v-card-actions>
       </v-card>
@@ -365,6 +402,7 @@ export default {
       footer: '',
       history: [],
       showResultPreview: false,
+      lowResultsStoppage: false,
       currentBreadcrumb: null,
       // This is silly, but I was in a rush and had enough with fighting javascript;
       registrySwitch: {
@@ -423,6 +461,11 @@ export default {
   watch: {
     '$route' () {
       this.getQuestions();
+    },
+    getFairSharingRecords () {
+      if (this.getFairSharingRecords.length > 0 && this.getFairSharingRecords.length <= 10) {
+        this.lowResultsStoppage = true;
+      }
     },
     async searchString(val){
       if (!val || val.length < 3) {

@@ -251,10 +251,10 @@
       "breadcrumb": {
         "id": "question_6_crumb",
         "link": "/6",
-        "text": "FIN"
+        "text": "Finished!"
       },
-      "title": "The end...",
-      "footer": "...or is it?",
+      "title": "No further questions!",
+      "footer": "At this point you can view the results so far. Or, select any point in the breadcrumb trail above to return to that question.",
       "questions": [
         {
           "id": 1,
