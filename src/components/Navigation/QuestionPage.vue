@@ -331,7 +331,7 @@
         <v-card-title
           class="headline"
         >
-          Fewer than 10 {{getCurrentRegistry}} records fit your criteria?
+          Fewer than 10 {{ getCurrentRegistry }} records fit your criteria?
         </v-card-title>
         <v-card-text>
           How would you like to proceed? Select "continue" to go back to an earlier step, or to add more filters. Or,
