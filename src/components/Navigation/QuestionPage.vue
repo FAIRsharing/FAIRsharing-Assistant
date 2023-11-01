@@ -456,7 +456,7 @@ export default {
   },
   computed: {
     ...mapGetters('multiTagsStore', ["getFairSharingRecords", "getCurrentRegistry", "getQueryParams"]),
-    ...mapGetters('navigationStore', ["getRouteQuery"]),
+    ...mapGetters('navigationStore', ["getRouteQuery", "getPreviousLocation"]),
   },
   watch: {
     '$route' () {
@@ -535,17 +535,21 @@ export default {
         this.resetMultiTags();
       }
 
-      // TODO: Get the query for this particular page, if defined by a user having been here before.
+      // TODO: Don't get the query if the user is going forwards again after going backwards.
       let previousQuery;
       try {
+        // Only get the previous query if going backwards.
         previousQuery = this.getRouteQuery[this.$route.params.id];
         if (Object.keys(previousQuery).length > 0) {
           this.searchQuery = previousQuery;
+          this.loading = true;
           await this.fetchMultiTagData(this.searchQuery);
+          this.loading = false;
         }
       }
       catch {
         // This value might well be empty if the user hasn't been here yet.
+        // TODO: Check to see if this can be removed.
       }
     },
     async processLink(link, query, message, refined) {
@@ -579,7 +583,8 @@ export default {
         this.loading = false;
       }
       // Before leaving the page, stash the query for this particular page.
-      this.$store.commit('navigationStore/setRouteQuery', [this.$route.params.id, query]);
+      let queryCopy = JSON.parse(JSON.stringify(this.getQueryParams));
+      this.$store.commit('navigationStore/setRouteQuery', [this.$route.params.id, queryCopy]);
       // In this case, the link is to an external site.
       if (link.match(/^http/)) {
         window.open(link);

@@ -69,7 +69,7 @@ export default {
   },
   computed: {
     ...mapGetters('navigationStore', ["getCompliantWith", "getBreadcrumbs"]),
-    ...mapGetters('multiTagsStore', ["getCurrentRegistry"]),
+    ...mapGetters('multiTagsStore', ["getCurrentRegistry", "getQueryParams"]),
   },
   watch: {
     '$route'() {
@@ -109,20 +109,28 @@ export default {
       }
     },
     handleNavigation(link) {
-      // TODO: replace crumbs with pills, and click them to jump to the right spot/slice crumb array.
       this.$store.commit('navigationStore/sliceBreadcrumb', link);
+      // We should be going backwards at this point
+      // TODO: Find breadcrumbs further advanced than the current click target, and clear them. 
       this.$router.push({path: link});
     },
     formatBreadcrumb(crumb) {
-      if (this.getCompliantWith) {
+      if (this.getCompliantWith && crumb.text.includes('FORMAT')) {
         return crumb.text.replace("FORMAT", this.getCompliantWith);
       }
-      else if (this.getCurrentRegistry) {
+      if (this.getCurrentRegistry && crumb.text.includes('REGISTRY')) {
         return crumb.text.replace("REGISTRY", this.getCurrentRegistry);
       }
-      else {
-        return crumb.text;
+      let tagText = [];
+      ['subjects', 'domains', 'taxonomies', 'user_defined_tags'].forEach((tagField) => {
+        if (this.getQueryParams[tagField] && this.getQueryParams[tagField].length > 0) {
+          tagText.push(...this.getQueryParams[tagField]);
+        }
+      });
+      if (tagText.length > 0 && crumb.text.includes('...')) {
+        return crumb.text.replace("...", `<b>${tagText.join(', ')}</b>`);
       }
+      return crumb.text;
     },
   }
 }

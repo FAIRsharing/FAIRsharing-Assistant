@@ -3,6 +3,7 @@ import Breadcrumbs from "@/components/Navigation/Breadcrumbs.vue"
 import Vuetify from "vuetify"
 import Vuex from "vuex";
 import icons from "@/plugins/icons";
+import multiTagsStore from "@/store/multiTagsStore";
 import navigationStore from "@/store/navigationStore";
 
 const localVue = createLocalVue();
@@ -16,6 +17,11 @@ let $route = {
 };
 
 const vuetify = new Vuetify({'icons':icons});
+
+multiTagsStore.getters = {
+  getQueryParams: () => { return {} },
+  getCurrentRegistry: () => { return 'standard '}
+}
 
 navigationStore.getters = {
   getBreadcrumbs: () => {
@@ -32,6 +38,7 @@ navigationStore.getters = {
 let store = new Vuex.Store({
   modules: {
     //actions,
+    multiTagsStore: multiTagsStore,
     navigationStore: navigationStore
   },
 })
