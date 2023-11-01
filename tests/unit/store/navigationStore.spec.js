@@ -135,7 +135,7 @@ describe('Navigation store methods', () => {
 
   it("can get and set queries for a previously-visited route", () => {
     let query = {"this": "that"};
-    mutations.setRouteQuery(state, '/1', query);
+    mutations.setRouteQuery(state, ['/1', query]);
     expect(getters.getRouteQuery(state)).toStrictEqual({ '/1': query });
   });
 

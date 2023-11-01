@@ -473,38 +473,36 @@ export default {
   methods: {
     ...mapActions('multiTagsStore', ['fetchMultiTagData', 'resetMultiTags']),
     async getQuestions() {
+      this.searchString = null;
+      //console.log("Route: " + this.$route.params.id);
+      let questionData = questionSets.questionSets.find(q => parseInt(q['path']) === parseInt(this.$route.params.id));
+      this.currentBreadcrumb = questionData.breadcrumb;
+      this.questions = questionData.questions;
+      //console.log("Q: " + JSON.stringify(this.questions));
+      this.searchQuery = questionData.searchQuery;
+      this.hasModelFormatQuery = questionData.hasModelFormatQuery;
+      this.hasTagsQuery = questionData.hasTagsQuery;
+      let path = '/' + questionData.path;
+      this.$store.commit('navigationStore/setNavigationState', path);
+
+      // The current page isn't a link, only previous pages.
+      this.title = questionData.title;
+      this.footer = questionData.footer;
+      if (questionData.clear) {
+        this.resetMultiTags();
+      }
+
+      // TODO: Get the query for this particular page, if defined by a user having been here before.
+      let previousQuery;
       try {
-        this.searchString = null;
-        this.currentBreadcrumb = questionSets.questionSets[parseInt(this.$route.params.id)].breadcrumb;
-        this.questions = questionSets.questionSets[parseInt(this.$route.params.id)].questions;
-        this.searchQuery = questionSets.questionSets[parseInt(this.$route.params.id)].searchQuery;
-        this.hasModelFormatQuery = questionSets.questionSets[parseInt(this.$route.params.id)].hasModelFormatQuery;
-        this.hasTagsQuery = questionSets.questionSets[parseInt(this.$route.params.id)].hasTagsQuery;
-        let path = '/' + questionSets.questionSets[parseInt(this.$route.params.id)].path;
-        this.$store.commit('navigationStore/setNavigationState', path);
-
-        // The current page isn't a link, only previous pages.
-        this.title = questionSets.questionSets[parseInt(this.$route.params.id)].title;
-        this.footer = questionSets.questionSets[parseInt(this.$route.params.id)].footer;
-        if (questionSets.questionSets[parseInt(this.$route.params.id)].clear) {
-          this.resetMultiTags();
-        }
-
-        // TODO: Get the query for this particular page, if defined by a user having been here before.
-        let previousQuery;
-        try {
-          previousQuery = this.getRouteQuery[this.$route.params.id];
-        }
-        catch {
-          // This value might well be empty if the user hasn't been here yet.
-        }
-        if (previousQuery) {
+        previousQuery = this.getRouteQuery[this.$route.params.id];
+        if (Object.keys(previousQuery).length > 0) {
           this.searchQuery = previousQuery;
           await this.fetchMultiTagData(this.searchQuery);
         }
       }
       catch {
-        this.questions = questionSets.questionSets[0].questions;
+        // This value might well be empty if the user hasn't been here yet.
       }
     },
     async processLink(link, query, message, refined) {
