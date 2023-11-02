@@ -569,16 +569,16 @@ export default {
           query['dataFormatsAndTerminologies'] = ids;
           this.$store.commit('navigationStore/setComplianceState', names.join(', '));
         }
-        await this.fetchMultiTagData(query);
-        this.$store.commit('multiTagsStore/setQueryParams', query);
+        // Merge the previous query in case we're coming from a page where data have already been calculated.
+        let existingQueryCopy = JSON.parse(JSON.stringify(this.getQueryParams));
+        let mergedQuery = { ...existingQueryCopy, ...query };
+        await this.fetchMultiTagData(mergedQuery);
+        this.$store.commit('multiTagsStore/setQueryParams', mergedQuery);
         if (refined) {
           this.$store.commit('multiTagsStore/setRefinedStatus', refined);
         }
         if (message) {
           this.$store.commit('multiTagsStore/setSelectionMessage', message);
-        }
-        if (query['fairsharingRegistry']) {
-          this.$store.commit('multiTagsStore/setCurrentRegistry', this.registrySwitch[query['fairsharingRegistry'][0]]);
         }
         this.loading = false;
       }

@@ -32,6 +32,15 @@ const mutations = {
     let query = params[1]
     state.routeQueries[link] = query;
   },
+  clearPreviousNavigation(state, link) {
+    let posNum = Number.parseInt(link.replace('/',''));
+    Object.keys(state.routeQueries).forEach(function(key) {
+      let keyPos = Number.parseInt(key.replace('/',''));
+      if (keyPos >= posNum) {
+        delete state.routeQueries[key];
+      }
+    })
+  },
   clearNavigation(state) {
     state.previousLocation = null;
     state.compliantWith = null;

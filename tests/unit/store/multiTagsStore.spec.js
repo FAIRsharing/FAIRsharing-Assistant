@@ -89,12 +89,6 @@ describe('MultiTags store methods', () => {
     expect(state.refinedStatus).toStrictEqual(false);
   });
 
-  it("can check setCurrentRegistry mutations", () => {
-    const currentRegistry = "Database"
-    mutations.setCurrentRegistry(state, currentRegistry);
-    expect(state.currentRegistry).toStrictEqual("Database");
-  });
-
   it("can check setSelectedTags mutations", () => {
     const selectedTags = [
       {
@@ -180,13 +174,28 @@ describe('MultiTags store methods', () => {
   })
 
   it("can check getCurrentRegistry getters", () => {
-    const stateValue = {
-      currentRegistry: "Database"
+    let stateValue = {
+      queryParams: {
+        fairsharingRegistry: ['database']
+      }
     }
-
-    const result = "Database"
-    const builtData = getters.getCurrentRegistry(stateValue);
+    const result = "database"
+    let builtData = getters.getCurrentRegistry(stateValue);
     expect(builtData).toBe(result);
+
+    stateValue = {
+      queryParams: {
+        fairsharingRegistry: []
+      }
+    }
+    builtData = getters.getCurrentRegistry(stateValue);
+    expect(builtData).toBe(null);
+
+    stateValue = {
+      queryParams: {}
+    }
+    builtData = getters.getCurrentRegistry(stateValue);
+    expect(builtData).toBe(null);
 
   })
 

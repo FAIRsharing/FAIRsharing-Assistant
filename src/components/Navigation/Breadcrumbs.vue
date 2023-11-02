@@ -111,7 +111,9 @@ export default {
     handleNavigation(link) {
       this.$store.commit('navigationStore/sliceBreadcrumb', link);
       // We should be going backwards at this point
-      // TODO: Find breadcrumbs further advanced than the current click target, and clear them. 
+      // TODO: Find queries in the routeQuery store further advanced than the current click target, and clear them.
+      // TODO: This could probably go in the store.
+      this.$store.commit('navigationStore/clearPrevious', link);
       this.$router.push({path: link});
     },
     formatBreadcrumb(crumb) {

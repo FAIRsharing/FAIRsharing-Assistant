@@ -10,7 +10,6 @@ const state = {
   error: false,
   loadingStatus: false,
   refinedStatus: false,
-  currentRegistry: '',
   selectedTags: [],
   selectionMessage: ''
 }
@@ -50,7 +49,6 @@ const mutations = {
   },
   setQueryParams(state, params) { state.queryParams = params },
   setRefinedStatus(state, refinedStatus) { state.refinedStatus = refinedStatus },
-  setCurrentRegistry(state, currentRegistry) { state.currentRegistry = currentRegistry },
   setSelectedTags(state, selectedTags) { state.selectedTags = selectedTags },
   setError(state, error) { state.error = error },
   setSelectionMessage(state, selectionMessage) { state.selectionMessage = selectionMessage }
@@ -70,7 +68,17 @@ const getters = {
     return state.refinedStatus
   },
   getCurrentRegistry(state) {
-    return state.currentRegistry
+    try {
+      if (state.queryParams['fairsharingRegistry'].length > 0) {
+        return state.queryParams['fairsharingRegistry'][0];
+      }
+      else {
+        return null;
+      }
+    }
+    catch {
+      return null;
+    }
   },
   getSelectedTags(state) {
     return state.selectedTags

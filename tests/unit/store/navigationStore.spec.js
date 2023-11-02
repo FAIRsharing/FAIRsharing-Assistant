@@ -22,7 +22,10 @@ describe('Navigation store methods', () => {
         text: 'upload data'
       }
     },
-    routeQueries: {},
+    routeQueries: {
+      "/0": {},
+      "/1": {},
+    },
     compliantWith: null
   };
 
@@ -135,8 +138,22 @@ describe('Navigation store methods', () => {
 
   it("can get and set queries for a previously-visited route", () => {
     let query = {"this": "that"};
-    mutations.setRouteQuery(state, ['/1', query]);
-    expect(getters.getRouteQuery(state)).toStrictEqual({ '/1': query });
+    mutations.setRouteQuery(state, ['/2', query]);
+    expect(getters.getRouteQuery(state)).toStrictEqual(
+      {
+        "/0": {},
+        "/1": {},
+        "/2": query
+      });
+  });
+
+  it("can remove route queries", () => {
+    mutations.clearPreviousNavigation(state, '/1');
+    expect(getters.getRouteQuery(state)).toStrictEqual(
+      {
+        "/0": {},
+      }
+    )
   });
 
   it("can clear navigation state", () => {

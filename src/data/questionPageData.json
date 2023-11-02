@@ -275,7 +275,8 @@
         "text": "Resource developer/data curator"
       },
       "title": "Do you want to...?",
-      "footer": "FAIRsharing offers rich and discoverable descriptions of standards, databases and policies, as well as relationship graphics to identify data resources similar (or related) to yours.</p><p><b>Finding resources</b> helps you comply with policies, avoid duplication, and discover the organisations behind resources, e.g. for collaboration.</p><p><b>Registering your resource(s) with FAIRsharing</b> allows you to describe the content, scope and relationships they have with the wider research landscape.</p><p><b>Incorporating FAIRsharing into your documentation</b>, presentations, policies and DMPs.",
+      "footer": "FAIRsharing offers rich and discoverable descriptions of standards, databases and policies, as well as relationship graphics to identify data resources similar (or related) to yours. <b>Finding resources</b> helps you comply with policies, avoid duplication, and discover the organisations behind resources, e.g. for collaboration. <b>Registering your resource(s) with FAIRsharing</b> allows you to describe the content, scope and relationships they have with the wider research landscape. <b>Incorporating FAIRsharing into your documentation</b>, presentations, policies and DMPs.",
+      "clear": "true",
       "questions": [
         {
           "id": 1,
@@ -335,7 +336,6 @@
       },
       "title": "What type of resource are you interested in?",
       "footer": "<b>Finding resources</b> helps you comply with policies, avoid duplication, and discover the organisations behind resources, e.g. for collaboration. Navigate the wealth of standards, databases and policies by selecting the attributes of those records most important to you.",
-      "clear": "true",
       "questions": [
         {
           "id": 1,
@@ -377,19 +377,21 @@
     },
     {
       "id": "question_10",
-      "path": 1,
+      "path": 10,
       "breadcrumb": {
-        "text": "Wanting to discover <b>REGISTRY</b> records"
+        "id": "question_10_crumb",
+        "text": "Wanting to discover <b>REGISTRY</b> records",
+        "link": "/10"
       },
-      "title": "",
-      "footer": "",
+      "title": "That's all...",
+      "footer": "...for now.",
       "questions": [
         {
           "id": 1,
-          "title": "question_",
-          "question": "",
+          "title": "question_10_1",
+          "question": "View results",
           "color": "internal",
-          "link": "/",
+          "link": "/results",
           "query": {}
         }
       ]
