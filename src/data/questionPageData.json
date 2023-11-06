@@ -341,6 +341,7 @@
           "id": 1,
           "title": "question_9_1",
           "question": "Standards",
+          "breadcrumbMod": " <b>(standards)</b>",
           "color": "internal",
           "link": "/10",
           "query": {
@@ -353,8 +354,9 @@
           "id": 2,
           "title": "question_9_2",
           "question": "Databases",
+          "breadcrumbMod": " <b>(databases)</b>",
           "color": "internal",
-          "link": "/10",
+          "link": "/11",
           "query": {
             "fairsharingRegistry": ["database"],
             "status": ["ready", "in_development"]
@@ -365,8 +367,9 @@
           "id": 3,
           "title": "question_9_3",
           "question": "Policies",
+          "breadcrumbMod": " <b>(policies)</b>",
           "color": "internal",
-          "link": "/10",
+          "link": "/12",
           "query": {
             "fairsharingRegistry": ["policy"],
             "status": ["ready", "in_development"]
@@ -380,15 +383,114 @@
       "path": 10,
       "breadcrumb": {
         "id": "question_10_crumb",
-        "text": "Wanting to discover <b>REGISTRY</b> records",
+        "text": "Has > 1 publication",
         "link": "/10"
+      },
+      "title": "Do you need a standard that has at least one publication?",
+      "footer": "",
+      "questions": [
+        {
+          "id": 1,
+          "title": "question_10_1",
+          "question": "Yes",
+          "breadcrumbMod": " <b>(yes)</b>",
+          "color": "internal",
+          "link": "/11",
+          "query": {
+            "hasPublication": true
+          }
+        },
+        {
+          "id": 2,
+          "title": "question_10_2",
+          "question": "Not important",
+          "breadcrumbMod": " (N/A)",
+          "color": "internal",
+          "link": "/11",
+          "query": {}
+        }
+      ]
+    },
+    {
+      "id": "question_11",
+      "path": 11,
+      "breadcrumb": {
+        "id": "question_11_crumb",
+        "text": "Recommended by > 1 policy",
+        "link": "/10"
+      },
+      "title": "Is a recommendation by at least one policy important?",
+      "footer": "",
+      "questions": [
+        {
+          "id": 1,
+          "title": "question_11_1",
+          "question": "Yes",
+          "breadcrumbMod": " <b>(yes)</b>",
+          "color": "internal",
+          "link": "/12",
+          "query": {
+            "isRecommended": true
+          }
+        },
+        {
+          "id": 2,
+          "title": "question_11_2",
+          "question": "Not important",
+          "breadcrumbMod": " (N/A)",
+          "color": "internal",
+          "link": "/12",
+          "query": {}
+        }
+      ]
+    },
+    {
+      "id": "question_12",
+      "path": 12,
+      "breadcrumb": {
+        "id": "question_12_crumb",
+        "text": "Implemented by > 1 database",
+        "link": "/10"
+      },
+      "title": "Is a implementation by at least one database important?",
+      "footer": "",
+      "questions": [
+        {
+          "id": 1,
+          "title": "question_12_1",
+          "question": "Yes",
+          "breadcrumbMod": " <b>(yes)</b>",
+          "color": "internal",
+          "link": "/100",
+          "query": {
+            "isImplemented": true
+          }
+        },
+        {
+          "id": 2,
+          "title": "question_12_2",
+          "question": "Not important",
+          "breadcrumbMod": " (N/A)",
+          "color": "internal",
+          "link": "/100",
+          "query": {}
+        }
+      ]
+    },
+    {
+      "id": "question_100",
+      "path": 100,
+      "breadcrumb": {
+        "id": "question_100_crumb",
+        "text": "Finished!",
+        "link": "/100"
       },
       "title": "That's all...",
       "footer": "...for now.",
       "questions": [
         {
           "id": 1,
-          "title": "question_10_1",
+          "title": "question_100_1",
           "question": "View results",
           "color": "internal",
           "link": "/results",

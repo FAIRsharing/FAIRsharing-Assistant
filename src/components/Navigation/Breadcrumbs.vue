@@ -81,10 +81,11 @@ export default {
   },
   methods: {
     setBreadcrumb() {
+      let questionData = questionSets.questionSets.find(q => parseInt(q['path']) === parseInt(this.$route.params.id));
       // Breadcrumbs may be visible on a non-question page, specifically results if users have got there via the
       // questions. So, there won't be a currentBreadcrumb defined.
       try {
-        this.currentBreadcrumb = questionSets.questionSets[parseInt(this.$route.params.id)].breadcrumb;
+        this.currentBreadcrumb = JSON.parse(JSON.stringify(questionData.breadcrumb));
       }
       // TODO: Perhaps currentBreadcrumb definitions could be put in a JSON file...
       catch {
@@ -113,7 +114,7 @@ export default {
       // We should be going backwards at this point
       // TODO: Find queries in the routeQuery store further advanced than the current click target, and clear them.
       // TODO: This could probably go in the store.
-      this.$store.commit('navigationStore/clearPrevious', link);
+      this.$store.commit('navigationStore/clearPreviousNavigation', link);
       this.$router.push({path: link});
     },
     formatBreadcrumb(crumb) {
