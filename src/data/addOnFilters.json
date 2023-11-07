@@ -7,7 +7,7 @@
       "filterTypes": [
         "database"
       ],
-      "tooltip": "Does this resource implement any identifier schema policies?"
+      "tooltip": "Does this resource implement any identifier schema standard?"
     },
     {
       "filterName": "Recommends at least one standard",

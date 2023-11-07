@@ -369,7 +369,7 @@
           "question": "Policies",
           "breadcrumbMod": " <b>(policies)</b>",
           "color": "internal",
-          "link": "/20",
+          "link": "/24",
           "query": {
             "fairsharingRegistry": ["policy"],
             "status": ["ready", "in_development"]
@@ -387,7 +387,7 @@
         "link": "/10"
       },
       "title": "Do you need a standard that has at least one publication?",
-      "footer": "",
+      "footer": "Select 'yes' if you'd like the resource to have at least one peer-reviewed publication describing it.",
       "questions": [
         {
           "id": 1,
@@ -513,7 +513,7 @@
         "link": "/13"
       },
       "title": "Do you need a database which supplies persistent identifiers?",
-      "footer": "",
+      "footer": "Select 'yes' if you'd like a database which implements any identifier schema standards.",
       "questions": [
         {
           "id": 1,
@@ -555,7 +555,7 @@
         "link": "/14"
       },
       "title": "Does it matter that the database has at least one publication?",
-      "footer": "",
+      "footer": "Select 'yes' if you'd like the resource to have at least one peer-reviewed publication describing it.",
       "questions": [
         {
           "id": 1,
@@ -597,7 +597,7 @@
         "link": "/15"
       },
       "title": "Does it matter that the database has a data preservation policy?",
-      "footer": "",
+      "footer": "A data preservation policy specifies the steps this database will take to ensure the data are preserved.",
       "questions": [
         {
           "id": 1,
@@ -639,7 +639,7 @@
         "link": "/16"
       },
       "title": "Do you need a resource sustainability plan?",
-      "footer": "",
+      "footer": "Such a plan would give information about how the database will ensure the ongoing preservation of data, e.g. if it were to be closed.",
       "questions": [
         {
           "id": 1,
@@ -681,7 +681,7 @@
         "link": "/17"
       },
       "title": "Are any of these data access conditions important to you?",
-      "footer": "",
+      "footer": "These options describe whether there are any restrictions on viewing data stored in the database.",
       "questions": [
         {
           "id": 1,
@@ -745,7 +745,7 @@
         "link": "/18"
       },
       "title": "For what sort of data curation are you looking?",
-      "footer": "",
+      "footer": "Is any form of curation undertaken on data stored in the database?",
       "questions": [
         {
           "id": 1,
@@ -809,7 +809,7 @@
         "link": "/19"
       },
       "title": "Do you need any data deposition conditions?",
-      "footer": "",
+      "footer": "Are there any restrictions (e.g. by location, country, organization, etc.) on data deposition or can anyone from anywhere deposit data?",
       "questions": [
         {
           "id": 1,
@@ -844,7 +844,491 @@
         },
         {
           "id": 4,
-          "title": "question_18_4",
+          "title": "question_19_4",
+          "question": "Skip to the end",
+          "breadcrumbMod": " (N/A)",
+          "color": "special_internal",
+          "link": "/100",
+          "query": {}
+        }
+      ]
+    },
+    {
+      "id": "question_20",
+      "path": 20,
+      "breadcrumb": {
+        "id": "question_20_crumb",
+        "text": "Citation to related publications",
+        "link": "/20"
+      },
+      "title": "Do you need a database offering citations to related publications?",
+      "footer": "Does the repository have a particular, standardized mechanism to link datasets to related articles or pre-prints?",
+      "questions": [
+        {
+          "id": 1,
+          "title": "question_20_1",
+          "question": "Yes",
+          "breadcrumbMod": " <b>(yes)</b>",
+          "color": "internal",
+          "link": "/21",
+          "query": {
+            "citationToRelatedPublications": true
+          }
+        },
+        {
+          "id": 2,
+          "title": "question_20_2",
+          "question": "No",
+          "breadcrumbMod": " <b>(N/A)</b>",
+          "color": "internal",
+          "link": "/21",
+          "query": {}
+        },
+        {
+          "id": 3,
+          "title": "question_20_3",
+          "question": "Skip to the end",
+          "breadcrumbMod": " (N/A)",
+          "color": "special_internal",
+          "link": "/100",
+          "query": {}
+        }
+      ]
+    },
+    {
+      "id": "question_21",
+      "path": 21,
+      "breadcrumb": {
+        "id": "question_21_crumb",
+        "text": "Data access for pre-publication review",
+        "link": "/21"
+      },
+      "title": "Is data access for pre-publication review important to you?",
+      "footer": "Does the repository have a mechanism to facilitate peer review of embargoed data?",
+      "questions": [
+        {
+          "id": 1,
+          "title": "question_21_1",
+          "question": "Yes",
+          "breadcrumbMod": " <b>(yes)</b>",
+          "color": "internal",
+          "link": "/22",
+          "query": {
+            "dataAccessForPrePublicationReview": true
+          }
+        },
+        {
+          "id": 2,
+          "title": "question_21_2",
+          "question": "No",
+          "breadcrumbMod": " <b>(N/A)</b>",
+          "color": "internal",
+          "link": "/22",
+          "query": {}
+        },
+        {
+          "id": 3,
+          "title": "question_21_3",
+          "question": "Skip to the end",
+          "breadcrumbMod": " (N/A)",
+          "color": "special_internal",
+          "link": "/100",
+          "query": {}
+        }
+      ]
+    },
+    {
+      "id": "question_22",
+      "path": 22,
+      "breadcrumb": {
+        "id": "question_22_crumb",
+        "text": "Data contact information",
+        "link": "/22"
+      },
+      "title": "Do you need data contact information?",
+      "footer": "Does the repository show data depositor contact information on dataset landing pages?",
+      "questions": [
+        {
+          "id": 1,
+          "title": "question_22_1",
+          "question": "Yes",
+          "breadcrumbMod": " <b>(yes)</b>",
+          "color": "internal",
+          "link": "/23",
+          "query": {
+            "dataContactInformation": true
+          }
+        },
+        {
+          "id": 2,
+          "title": "question_22_2",
+          "question": "No",
+          "breadcrumbMod": " <b>(N/A)</b>",
+          "color": "internal",
+          "link": "/23",
+          "query": {}
+        },
+        {
+          "id": 3,
+          "title": "question_22_3",
+          "question": "Skip to the end",
+          "breadcrumbMod": " (N/A)",
+          "color": "special_internal",
+          "link": "/100",
+          "query": {}
+        }
+      ]
+    },
+    {
+      "id": "question_23",
+      "path": 23,
+      "breadcrumb": {
+        "id": "question_23_crumb",
+        "text": "Data versioning",
+        "link": "/23"
+      },
+      "title": "Do you need data versioning?",
+      "footer": "Does the resource enable modifications to published data (e.g., to correct it or append additional information)? Is there a process to distinguish, link and access all public versions of the data?",
+      "questions": [
+        {
+          "id": 1,
+          "title": "question_23_1",
+          "question": "Yes",
+          "breadcrumbMod": " <b>(yes)</b>",
+          "color": "internal",
+          "link": "/100",
+          "query": {
+            "dataContactInformation": true
+          }
+        },
+        {
+          "id": 2,
+          "title": "question_23_2",
+          "question": "No",
+          "breadcrumbMod": " <b>(N/A)</b>",
+          "color": "internal",
+          "link": "/100",
+          "query": {}
+        },
+        {
+          "id": 3,
+          "title": "question_23_3",
+          "question": "Skip to the end",
+          "breadcrumbMod": " (N/A)",
+          "color": "special_internal",
+          "link": "/100",
+          "query": {}
+        }
+      ]
+    },
+    {
+      "id": "question_24",
+      "path": 24,
+      "breadcrumb": {
+        "id": "question_24_crumb",
+        "text": "Recommends standards",
+        "link": "/24"
+      },
+      "title": "Do you need this policy to recommend at least one standard?",
+      "footer": "",
+      "questions": [
+        {
+          "id": 1,
+          "title": "question_24_1",
+          "question": "Yes",
+          "breadcrumbMod": " <b>(yes)</b>",
+          "color": "internal",
+          "link": "/25",
+          "query": {
+            "recommendsStandard": true
+          }
+        },
+        {
+          "id": 2,
+          "title": "question_24_2",
+          "question": "No",
+          "breadcrumbMod": " <b>(N/A)</b>",
+          "color": "internal",
+          "link": "/25",
+          "query": {}
+        },
+        {
+          "id": 3,
+          "title": "question_24_3",
+          "question": "Skip to the end",
+          "breadcrumbMod": " (N/A)",
+          "color": "special_internal",
+          "link": "/100",
+          "query": {}
+        }
+      ]
+    },
+    {
+      "id": "question_25",
+      "path": 25,
+      "breadcrumb": {
+        "id": "question_25_crumb",
+        "text": "Recommends databases",
+        "link": "/25"
+      },
+      "title": "Do you need this policy to recommend at least one database?",
+      "footer": "",
+      "questions": [
+        {
+          "id": 1,
+          "title": "question_25_1",
+          "question": "Yes",
+          "breadcrumbMod": " <b>(yes)</b>",
+          "color": "internal",
+          "link": "/26",
+          "query": {
+            "recommendsDatabase": true
+          }
+        },
+        {
+          "id": 2,
+          "title": "question_25_2",
+          "question": "No",
+          "breadcrumbMod": " <b>(N/A)</b>",
+          "color": "internal",
+          "link": "/26",
+          "query": {}
+        },
+        {
+          "id": 3,
+          "title": "question_25_3",
+          "question": "Skip to the end",
+          "breadcrumbMod": " (N/A)",
+          "color": "special_internal",
+          "link": "/100",
+          "query": {}
+        }
+      ]
+    },
+    {
+      "id": "question_26",
+      "path": 26,
+      "breadcrumb": {
+        "id": "question_26_crumb",
+        "text": "Exceptions to data sharing",
+        "link": "/26"
+      },
+      "title": "Should the policy allow exceptions to its stated data sharing method?",
+      "footer": "",
+      "questions": [
+        {
+          "id": 1,
+          "title": "question_26_1",
+          "question": "Yes",
+          "breadcrumbMod": " <b>(yes)</b>",
+          "color": "internal",
+          "link": "/27",
+          "query": {
+            "exceptionsToDataSharing": true
+          }
+        },
+        {
+          "id": 2,
+          "title": "question_26_2",
+          "question": "No",
+          "breadcrumbMod": " <b>(N/A)</b>",
+          "color": "internal",
+          "link": "/27",
+          "query": {}
+        },
+        {
+          "id": 3,
+          "title": "question_26_3",
+          "question": "Skip to the end",
+          "breadcrumbMod": " (N/A)",
+          "color": "special_internal",
+          "link": "/100",
+          "query": {}
+        }
+      ]
+    },
+    {
+      "id": "question_27",
+      "path": 27,
+      "breadcrumb": {
+        "id": "question_27_crumb",
+        "text": "Data protection",
+        "link": "/27"
+      },
+      "title": "Should the policy enforce data protection as part of research data management?",
+      "footer": "",
+      "questions": [
+        {
+          "id": 1,
+          "title": "question_27_1",
+          "question": "Yes",
+          "breadcrumbMod": " <b>(yes)</b>",
+          "color": "internal",
+          "link": "/28",
+          "query": {
+            "dataProtection": true
+          }
+        },
+        {
+          "id": 2,
+          "title": "question_27_2",
+          "question": "No",
+          "breadcrumbMod": " <b>(N/A)</b>",
+          "color": "internal",
+          "link": "/28",
+          "query": {}
+        },
+        {
+          "id": 3,
+          "title": "question_27_3",
+          "question": "Skip to the end",
+          "breadcrumbMod": " (N/A)",
+          "color": "special_internal",
+          "link": "/100",
+          "query": {}
+        }
+      ]
+    },
+    {
+      "id": "question_28",
+      "path": 28,
+      "breadcrumb": {
+        "id": "question_28_crumb",
+        "text": "DMP creation",
+        "link": "/28"
+      },
+      "title": "Should the policy require the creation of a Data Management Plan?",
+      "footer": "",
+      "questions": [
+        {
+          "id": 1,
+          "title": "question_28_1",
+          "question": "Yes",
+          "breadcrumbMod": " <b>(required)</b>",
+          "color": "internal",
+          "link": "/29",
+          "query": {
+            "dmpDevelopment": ["required"]
+          }
+        },
+        {
+          "id": 2,
+          "title": "question_28_2",
+          "question": "Suggested",
+          "breadcrumbMod": " <b>(suggested)</b>",
+          "color": "internal",
+          "link": "/29",
+          "query": {
+            "dmpDevelopment": ["suggested"]
+          }
+        },
+        {
+          "id": 3,
+          "title": "question_28_3",
+          "question": "Not important",
+          "breadcrumbMod": " <b>(N/A)</b>",
+          "color": "internal",
+          "link": "/31",
+          "query": {}
+        },
+        {
+          "id": 3,
+          "title": "question_28_3",
+          "question": "Skip to the end",
+          "breadcrumbMod": " (N/A)",
+          "color": "special_internal",
+          "link": "/100",
+          "query": {}
+        }
+      ]
+    },
+    {
+      "id": "question_29",
+      "path": 29,
+      "breadcrumb": {
+        "id": "question_29_crumb",
+        "text": "DMP timing",
+        "link": "/29"
+      },
+      "title": "At what stage should the DMP be prepared?",
+      "footer": "",
+      "questions": [
+        {
+          "id": 1,
+          "title": "question_29_1",
+          "question": "Pre-award",
+          "breadcrumbMod": " <b>(pre-award)</b>",
+          "color": "internal",
+          "link": "/30",
+          "query": {
+            "timingOfDmp": ["pre-award"]
+          }
+        },
+        {
+          "id": 2,
+          "title": "question_29_2",
+          "question": "Post-award",
+          "breadcrumbMod": " <b>(post-award)</b>",
+          "color": "internal",
+          "link": "/30",
+          "query": {
+            "dmpDevelopment": ["post-award"]
+          }
+        },
+        {
+          "id": 3,
+          "title": "question_29_3",
+          "question": "Any",
+          "breadcrumbMod": " <b>(Any)</b>",
+          "color": "internal",
+          "link": "/30",
+          "query": {}
+        },
+        {
+          "id": 3,
+          "title": "question_29_3",
+          "question": "Skip to the end",
+          "breadcrumbMod": " (N/A)",
+          "color": "special_internal",
+          "link": "/100",
+          "query": {}
+        }
+      ]
+    },
+    {
+      "id": "question_30",
+      "path": 30,
+      "breadcrumb": {
+        "id": "question_30_crumb",
+        "text": "DMP updating",
+        "link": "/30"
+      },
+      "title": "Should the DMP be updated and versioned during the life of the project?",
+      "footer": "",
+      "questions": [
+        {
+          "id": 1,
+          "title": "question_30_1",
+          "question": "Yes",
+          "breadcrumbMod": " <b>(yes)</b>",
+          "color": "internal",
+          "link": "/31",
+          "query": {
+            "updatingOfDmp": ["yes"]
+          }
+        },
+        {
+          "id": 2,
+          "title": "question_30_2",
+          "question": "It doesn't matter",
+          "breadcrumbMod": " <b>(N/A)</b>",
+          "color": "internal",
+          "link": "/31",
+          "query": {}
+        },
+        {
+          "id": 3,
+          "title": "question_30_3",
           "question": "Skip to the end",
           "breadcrumbMod": " (N/A)",
           "color": "special_internal",
@@ -876,7 +1360,7 @@
     },
     {
       "id": "question_",
-      "path": 1,
+      "path": 1000,
       "breadcrumb": {},
       "title": "",
       "footer": "",
