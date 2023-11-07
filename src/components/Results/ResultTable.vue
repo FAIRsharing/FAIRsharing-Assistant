@@ -41,7 +41,7 @@
               solo-inverted
               hide-details
               prepend-inner-icon="mdi-magnify"
-              label="Search"
+              label="Filter these results"
             />
             <template v-if="$vuetify.breakpoint.mdAndUp">
               <v-spacer />

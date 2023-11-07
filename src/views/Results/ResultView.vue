@@ -4,8 +4,8 @@
   >
     <Jumbotron />
     <div
-      v-if="getBreadcrumbs.length > 1"
-      class="mb-10 utilityButtons d-flex flex-row justify-space-around full-width margin-auto"
+      v-if="Object.keys(getBreadcrumbs).length > 1"
+      class="mb-10 d-flex flex-row justify-space-around full-width margin-auto"
       :class="{'flex-column align-center': $vuetify.breakpoint.smAndDown}"
     >
       <Breadcrumbs />

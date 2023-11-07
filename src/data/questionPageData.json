@@ -356,7 +356,7 @@
           "question": "Databases",
           "breadcrumbMod": " <b>(databases)</b>",
           "color": "internal",
-          "link": "/11",
+          "link": "/13",
           "query": {
             "fairsharingRegistry": ["database"],
             "status": ["ready", "in_development"]
@@ -369,7 +369,7 @@
           "question": "Policies",
           "breadcrumbMod": " <b>(policies)</b>",
           "color": "internal",
-          "link": "/12",
+          "link": "/20",
           "query": {
             "fairsharingRegistry": ["policy"],
             "status": ["ready", "in_development"]
@@ -408,6 +408,15 @@
           "color": "internal",
           "link": "/11",
           "query": {}
+        },
+        {
+          "id": 3,
+          "title": "question_10_3",
+          "question": "Skip to the end",
+          "breadcrumbMod": " (N/A)",
+          "color": "special_internal",
+          "link": "/100",
+          "query": {}
         }
       ]
     },
@@ -417,7 +426,7 @@
       "breadcrumb": {
         "id": "question_11_crumb",
         "text": "Recommended by > 1 policy",
-        "link": "/10"
+        "link": "/11"
       },
       "title": "Is a recommendation by at least one policy important?",
       "footer": "",
@@ -441,6 +450,15 @@
           "color": "internal",
           "link": "/12",
           "query": {}
+        },
+        {
+          "id": 3,
+          "title": "question_11_3",
+          "question": "Skip to the end",
+          "breadcrumbMod": " (N/A)",
+          "color": "special_internal",
+          "link": "/100",
+          "query": {}
         }
       ]
     },
@@ -450,7 +468,7 @@
       "breadcrumb": {
         "id": "question_12_crumb",
         "text": "Implemented by > 1 database",
-        "link": "/10"
+        "link": "/12"
       },
       "title": "Is a implementation by at least one database important?",
       "footer": "",
@@ -472,6 +490,364 @@
           "question": "Not important",
           "breadcrumbMod": " (N/A)",
           "color": "internal",
+          "link": "/100",
+          "query": {}
+        },
+        {
+          "id": 3,
+          "title": "question_12_3",
+          "question": "Skip to the end",
+          "breadcrumbMod": " (N/A)",
+          "color": "special_internal",
+          "link": "/100",
+          "query": {}
+        }
+      ]
+    },
+    {
+      "id": "question_13",
+      "path": 13,
+      "breadcrumb": {
+        "id": "question_13_crumb",
+        "text": "Uses persistent identifier",
+        "link": "/13"
+      },
+      "title": "Do you need a database which supplies persistent identifiers?",
+      "footer": "",
+      "questions": [
+        {
+          "id": 1,
+          "title": "question_13_1",
+          "question": "Yes",
+          "breadcrumbMod": " <b>(yes)</b>",
+          "color": "internal",
+          "link": "/14",
+          "query": {
+            "usesPersistentIdentifier": true
+          }
+        },
+        {
+          "id": 2,
+          "title": "question_13_2",
+          "question": "No",
+          "breadcrumbMod": " <b>(N/A)</b>",
+          "color": "internal",
+          "link": "/14",
+          "query": {}
+        },
+        {
+          "id": 3,
+          "title": "question_13_3",
+          "question": "Skip to the end",
+          "breadcrumbMod": " (N/A)",
+          "color": "special_internal",
+          "link": "/100",
+          "query": {}
+        }
+      ]
+    },
+    {
+      "id": "question_14",
+      "path": 14,
+      "breadcrumb": {
+        "id": "question_14_crumb",
+        "text": "Has > 1 publication",
+        "link": "/14"
+      },
+      "title": "Does it matter that the database has at least one publication?",
+      "footer": "",
+      "questions": [
+        {
+          "id": 1,
+          "title": "question_14_1",
+          "question": "Yes",
+          "breadcrumbMod": " <b>(yes)</b>",
+          "color": "internal",
+          "link": "/15",
+          "query": {
+            "hasPublication": true
+          }
+        },
+        {
+          "id": 2,
+          "title": "question_14_2",
+          "question": "No",
+          "breadcrumbMod": " <b>(N/A)</b>",
+          "color": "internal",
+          "link": "/15",
+          "query": {}
+        },
+        {
+          "id": 3,
+          "title": "question_14_3",
+          "question": "Skip to the end",
+          "breadcrumbMod": " (N/A)",
+          "color": "special_internal",
+          "link": "/100",
+          "query": {}
+        }
+      ]
+    },
+    {
+      "id": "question_15",
+      "path": 15,
+      "breadcrumb": {
+        "id": "question_15_crumb",
+        "text": "Data preservation policy",
+        "link": "/15"
+      },
+      "title": "Does it matter that the database has a data preservation policy?",
+      "footer": "",
+      "questions": [
+        {
+          "id": 1,
+          "title": "question_15_1",
+          "question": "Yes",
+          "breadcrumbMod": " <b>(yes)</b>",
+          "color": "internal",
+          "link": "/16",
+          "query": {
+            "dataPreservationPolicy": true
+          }
+        },
+        {
+          "id": 2,
+          "title": "question_15_2",
+          "question": "No",
+          "breadcrumbMod": " <b>(N/A)</b>",
+          "color": "internal",
+          "link": "/16",
+          "query": {}
+        },
+        {
+          "id": 3,
+          "title": "question_15_3",
+          "question": "Skip to the end",
+          "breadcrumbMod": " (N/A)",
+          "color": "special_internal",
+          "link": "/100",
+          "query": {}
+        }
+      ]
+    },
+    {
+      "id": "question_16",
+      "path": 16,
+      "breadcrumb": {
+        "id": "question_16_crumb",
+        "text": "Resource sustainability",
+        "link": "/16"
+      },
+      "title": "Do you need a resource sustainability plan?",
+      "footer": "",
+      "questions": [
+        {
+          "id": 1,
+          "title": "question_16_1",
+          "question": "Yes",
+          "breadcrumbMod": " <b>(yes)</b>",
+          "color": "internal",
+          "link": "/17",
+          "query": {
+            "resourceSustainability": true
+          }
+        },
+        {
+          "id": 2,
+          "title": "question_16_2",
+          "question": "No",
+          "breadcrumbMod": " <b>(N/A)</b>",
+          "color": "internal",
+          "link": "/17",
+          "query": {}
+        },
+        {
+          "id": 3,
+          "title": "question_16_3",
+          "question": "Skip to the end",
+          "breadcrumbMod": " (N/A)",
+          "color": "special_internal",
+          "link": "/100",
+          "query": {}
+        }
+      ]
+    },
+    {
+      "id": "question_17",
+      "path": 17,
+      "breadcrumb": {
+        "id": "question_17_crumb",
+        "text": "Data access condition",
+        "link": "/17"
+      },
+      "title": "Are any of these data access conditions important to you?",
+      "footer": "",
+      "questions": [
+        {
+          "id": 1,
+          "title": "question_17_1",
+          "question": "Open",
+          "breadcrumbMod": " <b>(open)</b>",
+          "color": "internal",
+          "link": "/18",
+          "query": {
+            "dataAccessCondition": "open"
+          }
+        },
+        {
+          "id": 2,
+          "title": "question_17_2",
+          "question": "Partially open",
+          "breadcrumbMod": " <b>(partially open)</b>",
+          "color": "internal",
+          "link": "/18",
+          "query": {
+            "dataAccessCondition": "partially_open"
+          }
+        },
+        {
+          "id": 3,
+          "title": "question_17_3",
+          "question": "Controlled",
+          "breadcrumbMod": " <b>(controlled)</b>",
+          "color": "internal",
+          "link": "/18",
+          "query": {
+            "dataAccessCondition": "controlled"
+          }
+        },
+        {
+          "id": 4,
+          "title": "question_17_4",
+          "question": "It doesn't matter",
+          "breadcrumbMod": " <b>(N/A)</b>",
+          "color": "internal",
+          "link": "/18",
+          "query": {}
+        },
+        {
+          "id": 5,
+          "title": "question_17_5",
+          "question": "Skip to the end",
+          "breadcrumbMod": " (N/A)",
+          "color": "special_internal",
+          "link": "/100",
+          "query": {}
+        }
+      ]
+    },
+    {
+      "id": "question_18",
+      "path": 18,
+      "breadcrumb": {
+        "id": "question_18_crumb",
+        "text": "Data curation",
+        "link": "/18"
+      },
+      "title": "For what sort of data curation are you looking?",
+      "footer": "",
+      "questions": [
+        {
+          "id": 1,
+          "title": "question_18_1",
+          "question": "Manual",
+          "breadcrumbMod": " <b>(manual)</b>",
+          "color": "internal",
+          "link": "/19",
+          "query": {
+            "dataCuration": "manual"
+          }
+        },
+        {
+          "id": 2,
+          "title": "question_18_2",
+          "question": "Automated",
+          "breadcrumbMod": " <b>(automated)</b>",
+          "color": "internal",
+          "link": "/19",
+          "query": {
+            "dataCuration": "automated"
+          }
+        },
+        {
+          "id": 3,
+          "title": "question_18_3",
+          "question": "Both manual and automated",
+          "breadcrumbMod": " <b>(manual/automated)</b>",
+          "color": "internal",
+          "link": "/19",
+          "query": {
+            "dataCuration": "manual/automated"
+          }
+        },
+        {
+          "id": 4,
+          "title": "question_18_4",
+          "question": "It doesn't matter",
+          "breadcrumbMod": " <b>(N/A)</b>",
+          "color": "internal",
+          "link": "/19",
+          "query": {}
+        },
+        {
+          "id": 5,
+          "title": "question_18_5",
+          "question": "Skip to the end",
+          "breadcrumbMod": " (N/A)",
+          "color": "special_internal",
+          "link": "/100",
+          "query": {}
+        }
+      ]
+    },
+    {
+      "id": "question_19",
+      "path": 19,
+      "breadcrumb": {
+        "id": "question_19_crumb",
+        "text": "Data deposition condition",
+        "link": "/19"
+      },
+      "title": "Do you need any data deposition conditions?",
+      "footer": "",
+      "questions": [
+        {
+          "id": 1,
+          "title": "question_19_1",
+          "question": "Open",
+          "breadcrumbMod": " <b>(open)</b>",
+          "color": "internal",
+          "link": "/20",
+          "query": {
+            "dataDepositionCondition": "open"
+          }
+        },
+        {
+          "id": 2,
+          "title": "question_19_2",
+          "question": "Controlled",
+          "breadcrumbMod": " <b>(controlled)</b>",
+          "color": "internal",
+          "link": "/20",
+          "query": {
+            "dataDepositionCondition": "controlled"
+          }
+        },
+        {
+          "id": 3,
+          "title": "question_19_3",
+          "question": "It's not important",
+          "breadcrumbMod": " <b>(N/A)</b>",
+          "color": "internal",
+          "link": "/20",
+          "query": {}
+        },
+        {
+          "id": 4,
+          "title": "question_18_4",
+          "question": "Skip to the end",
+          "breadcrumbMod": " (N/A)",
+          "color": "special_internal",
           "link": "/100",
           "query": {}
         }
