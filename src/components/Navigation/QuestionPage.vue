@@ -253,7 +253,7 @@
               'cardXtraLarge pa-4': $vuetify.breakpoint.xlOnly,
             }
           ]"
-          @click="processLink(item.link, item.query, item.message, item.refined)"
+          @click="processLink(item.link, item.query, item.message, item.refined, item.breadcrumbMod)"
         >
           <div class="d-flex align-center">
             <v-card-text
@@ -517,10 +517,9 @@ export default {
     ...mapActions('multiTagsStore', ['fetchMultiTagData', 'resetMultiTags']),
     async getQuestions() {
       this.searchString = null;
-      //console.log("Route: " + this.$route.params.id);
       let questionData = questionSets.questionSets.find(q => parseInt(q['path']) === parseInt(this.$route.params.id));
-      this.currentBreadcrumb = questionData.breadcrumb;
-      this.questions = questionData.questions;
+      this.currentBreadcrumb = JSON.parse(JSON.stringify(questionData.breadcrumb));
+      this.questions = JSON.parse(JSON.stringify(questionData.questions));
       //console.log("Q: " + JSON.stringify(this.questions));
       this.searchQuery = questionData.searchQuery;
       this.hasModelFormatQuery = questionData.hasModelFormatQuery;
@@ -552,7 +551,7 @@ export default {
         // TODO: Check to see if this can be removed.
       }
     },
-    async processLink(link, query, message, refined) {
+    async processLink(link, query, message, refined, breadcrumbMod) {
       // Always stash the breadcrumb.
       // Some questions have a query that must be run when the question is clicked.
       if (!(Object.keys(query).length === 0)) {
@@ -598,6 +597,9 @@ export default {
           this.history.push(0);
         }
         this.$router.push({path: link});
+      }
+      if (breadcrumbMod) {
+        this.currentBreadcrumb.text = this.currentBreadcrumb.text + breadcrumbMod;
       }
       this.$store.commit('navigationStore/addBreadcrumb', this.currentBreadcrumb);
     },
