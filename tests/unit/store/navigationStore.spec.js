@@ -152,6 +152,7 @@ describe('Navigation store methods', () => {
     expect(getters.getRouteQuery(state)).toStrictEqual(
       {
         "/0": {},
+        "/1": {}
       }
     )
   });

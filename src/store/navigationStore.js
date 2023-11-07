@@ -36,7 +36,7 @@ const mutations = {
     let posNum = Number.parseInt(link.replace('/',''));
     Object.keys(state.routeQueries).forEach(function(key) {
       let keyPos = Number.parseInt(key.replace('/',''));
-      if (keyPos >= posNum) {
+      if (keyPos > posNum) {
         delete state.routeQueries[key];
       }
     })
