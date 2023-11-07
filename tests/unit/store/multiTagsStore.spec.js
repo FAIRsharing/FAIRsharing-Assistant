@@ -226,5 +226,4 @@ describe('MultiTags store methods', () => {
     expect(state.selectionMessage).toEqual('banana');
     expect(getters.getSelectionMessage({ selectionMessage: 'two oranges' })).toEqual('two oranges');
   })
-
 })
