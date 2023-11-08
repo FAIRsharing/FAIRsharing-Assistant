@@ -1,14 +1,6 @@
-// TODO: Placeholder => need to overcome tedious issue:
-// TODO: Cannot read properties of undefined (reading 'subjects')
-import multiTagsStore from "@/store/multiTagsStore";
-
-it("does nothing of consequence", () => {
-  expect("RefineRegistry").toMatch("RefineRegistry");
-});
-
-
 import {createLocalVue, shallowMount} from "@vue/test-utils";
-import RefineRegistry from "@/views/RefineRegistry/RefineRegistry.vue"
+import RefineFromQuestions from "@/views/Refinements/RefineFromQuestions.vue";
+import multiTagsStore from "@/store/multiTagsStore";
 import icons from '@/plugins/icons';
 import Vuetify from "vuetify"
 import Vuex from "vuex";
@@ -53,7 +45,7 @@ describe("RefineSelection.vue", function(){
   let wrapper;
 
   beforeEach(() => {
-    wrapper = shallowMount(RefineRegistry, {
+    wrapper = shallowMount(RefineFromQuestions, {
       localVue,
       vuetify,
       store,
@@ -63,7 +55,7 @@ describe("RefineSelection.vue", function(){
   });
 
   it("can be instantiated", () => {
-    expect(wrapper.vm.$options.name).toMatch("RefineRegistry");
+    expect(wrapper.vm.$options.name).toMatch("RefineFromQuestions");
   });
 
 });

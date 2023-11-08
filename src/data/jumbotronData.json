@@ -60,6 +60,11 @@
     "subTitle": "By selecting relevant values, the Assistant will narrow your search to the records that most closely match your needs."
   },
   {
+    "pageName": "RefineFromQuestions",
+    "title": "Here, you can select more features of interest",
+    "subTitle": "By selecting relevant values, the Assistant will narrow your search to the records that most closely match your needs."
+  },
+  {
     "pageName": "Educational",
     "title": "FAIRsharing Assistant",
     "tempSubTitle": "Beta"

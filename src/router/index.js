@@ -12,6 +12,7 @@ import {
   Licence,
   AllTags,
   RefineRegistry,
+  RefineFromQuestions,
   Educational
 } from './routes'
 
@@ -36,6 +37,11 @@ let routes = [
     name: "RefineRegistry",
     path: "/refineregistry",
     component: RefineRegistry,
+  },
+  {
+    name: "RefineFromQuestions",
+    path: "/refine",
+    component: RefineFromQuestions,
   },
   {
     name: "ResultView",
