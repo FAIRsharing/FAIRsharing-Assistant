@@ -78,6 +78,7 @@ export default {
     ...mapGetters('multiTagsStore', ["getFairSharingRecords", "getCurrentRegistry", "getQueryParams"]),
     showCountBanner() {
       let length = Object.keys(this.$store.getters["multiTagsStore/getQueryParams"]).length;
+      //console.log("Length: " + length);
       return length > 0;
     }
   },

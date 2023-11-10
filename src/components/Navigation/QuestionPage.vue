@@ -573,6 +573,7 @@ export default {
           delete tagQueryCopy.taggedRecords;
         }
         let tags = await graphClient.executeQuery(tagQueryCopy);
+        //console.log("TQC: " + JSON.stringify(tags));
         if (!tags.error) {
           // This is to take the parents of each tag up a level, so they are included
           // in the list of available tags from which users may select.

@@ -91,20 +91,30 @@ export default {
       catch {
         if (this.$route.path === '/results') {
           this.currentBreadcrumb = {
+            id: 'results_crumb',
             text: 'Results',
             link: '/results'
           }
         }
         else if (this.$route.path === '/educational/claim') {
           this.currentBreadcrumb = {
+            id: 'educational_claim_crumb',
             text: "Claim your record(s) in FAIRsharing",
             link: '/educational/claim'
           }
         }
         else if (this.$route.path === '/educational/register') {
           this.currentBreadcrumb = {
+            id: "eductional_register_crumb",
             text: "Register your resources(s) with FAIRsharing",
             link: '/educational/register'
+          }
+        }
+        else if (this.$route.path === '/refine') {
+          this.currentBreadcrumb = {
+            id: "refine_crumb",
+            text: "Refine your selection",
+            link: '/refine'
           }
         }
       }
