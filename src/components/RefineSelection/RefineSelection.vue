@@ -69,6 +69,9 @@
         Please note that curation is still in progress for our policies, and some search filters below might not give the expected result.
       </p>
     </div>
+    <p>
+      Some text will go here to explain what's going on with the filters below, perhaps linking to Gitbook.
+    </p>
     <AddOnFilters @filterSource="capitaliseText(getQueryParams['fairsharingRegistry'][0], null)" />
   </div>
 </template>

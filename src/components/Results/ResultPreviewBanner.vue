@@ -1,6 +1,6 @@
 <template>
   <v-row
-    v-if="showCountBanner"
+    v-if="Object.keys(getQueryParams).length >= 1"
   >
     <v-col
       cols="12"
@@ -10,7 +10,7 @@
         :type="resultCountColour()"
         variant="tonal"
       >
-        There are {{ getFairSharingRecords.length }} {{ getCurrentRegistry }} records matching your selection.
+        There are {{ getFairSharingRecords.length }} {{ getCurrentRegistryBold }} records matching your selection.
         <v-btn
           v-if="resultCountColour() !== 'error'"
           class="preview-results"
@@ -71,16 +71,12 @@ export default {
   mixins: [stringUtils],
   data: () => {
     return {
-      showResultPreview: false
+      showResultPreview: false,
+      show: false
     }
   },
   computed: {
-    ...mapGetters('multiTagsStore', ["getFairSharingRecords", "getCurrentRegistry", "getQueryParams"]),
-    showCountBanner() {
-      let length = Object.keys(this.$store.getters["multiTagsStore/getQueryParams"]).length;
-      //console.log("Length: " + length);
-      return length > 0;
-    }
+    ...mapGetters('multiTagsStore', ["getFairSharingRecords", "getCurrentRegistry", "getQueryParams"])
   },
   methods: {
     resultCountColour() {
@@ -92,6 +88,12 @@ export default {
       }
       return "error";
     },
+    getCurrentRegistryBold() {
+      if (this.getCurrentRegistry) {
+        return `<b>${this.getCurrentRegistry}</b>`;
+      }
+      return '';
+    }
   }
 }
 

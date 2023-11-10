@@ -15,6 +15,99 @@
     <ResultPreviewBanner />
     <!-- breadcrumb trail -->
     <Breadcrumbs />
+    <!-- tags query -->
+    <v-row>
+      <v-col
+        cols="12"
+        class="ml-4"
+      >
+        <!-- A list here of selected tags is shown just above the text box -->
+        <v-chip-group
+          class="pl-2"
+          column
+        >
+          <v-chip
+            v-for="tag in (recordTags)"
+            :key="tag.label"
+            class="ma-2"
+            :color="colors[tag.model]"
+            text-color="white"
+          >
+            {{ tag.label }}
+            <v-tooltip bottom>
+              <template #activator="{ on, attrs }">
+                <!-- this is a dreadful cheat; without it the close icon becomes unreadable -->
+                <div
+                  @click="deleteTag(tag.id, tag.model)"
+                >
+                  <v-icon
+                    v-bind="attrs"
+                    small
+                    class="ml-1"
+                    v-on="on"
+                  >
+                    fa-times-circle
+                  </v-icon>
+                </div>
+              </template>
+              <span> Delete tag </span>
+            </v-tooltip>
+          </v-chip>
+        </v-chip-group>
+        <!-- end of tags list -->
+        <v-text-field
+          id="searchString"
+          v-model="searchString"
+          append-icon="fa-search"
+          label="Search names and synonyms"
+          outlined
+          clearable
+          clear-icon="fa-times-circle"
+          hide-details
+          class="pt-1 mr-10"
+          @click:clear="clearResults"
+        />
+        <v-data-table
+          v-if="tags.length > 0 && searchString && searchString.length > 0"
+          v-model="recordTags"
+          :headers="tagHeaders"
+          :items="tags"
+          :items-per-page="10"
+          :footer-props="{'items-per-page-options': [10, 20, 30, 40, 50]}"
+          item-key="label"
+          class="elevation-1 mr-10"
+          show-select
+          calculate-widths
+          mobile-breakpoint="900"
+          :search-input.sync="searchString"
+        >
+          <template #[`item.model`]="{ item }">
+            <div
+              :class="colors[item.model] + '--text'"
+              class="noBreak"
+            >
+              {{ item.model.toUpperCase().replace(/_/g, " ") }}
+            </div>
+          </template>
+          <template #[`item.label`]="{ item }">
+            <v-chip
+              :class="colors[item.model] + ' white--text noBreak'"
+            >
+              {{ capitaliseText(item.label, item.model) }}
+            </v-chip>
+          </template>
+          <template #[`item.synonyms`]="{ item }">
+            <div
+              v-if="item.synonyms"
+              class="font-italic limitWidth"
+            >
+              {{ item.synonyms.join(", ") }}
+            </div>
+          </template>
+        </v-data-table>
+      </v-col>
+    </v-row>
+    <AddOnFilters @filterSource="capitaliseText(getQueryParams['fairsharingRegistry'][0], null)" />
   </v-container>
 </template>
 
@@ -23,22 +116,152 @@ import Breadcrumbs from "@/components/Navigation/Breadcrumbs.vue";
 import Loaders from "@/components/Loaders/Loaders.vue";
 import ResultPreviewBanner from "@/components/Results/ResultPreviewBanner.vue";
 import stringUtils from "@/utils/stringUtils";
-import {mapGetters} from "vuex";
+import {mapActions, mapGetters} from "vuex";
+import tagsQuery from "@/lib/GraphClient/queries/geTags.json";
+import GraphClient from "@/lib/GraphClient/GraphClient";
+import AddOnFilters from "@/components/Others/AddOnFilters.vue";
+
+const graphClient = new GraphClient();
 
 export default {
   name: 'RefineQuestionSelection',
-  components: {ResultPreviewBanner, Loaders, Breadcrumbs},
+  components: {AddOnFilters, ResultPreviewBanner, Loaders, Breadcrumbs},
   mixins: [stringUtils],
   data: () => {
     return {
-      loading: false
+      mounted: false,
+      loading: false,
+      recordTags: [],
+      tags: [],
+      searchString: null,
+      tagHeaders: [
+        {
+          text: "Type of keyword",
+          sortable: false,
+          value: "model"
+        },
+        {
+          text: "Name",
+          sortable: false,
+          value: "label"
+        },
+        {
+          text: "Definition",
+          sortable: false,
+          value: "definitions",
+          filterable: false
+        },
+        {
+          text: "Alternative names",
+          sortable: false,
+          value: "synonyms"
+        }
+      ],
+      colors: {
+        domain: 'domain_color',
+        taxonomy: 'taxonomic_color',
+        subject: 'subject_color',
+        user_defined_tag: 'tags_color'
+      },
     }
   },
   computed: {
-    ...mapGetters('multiTagsStore', ["getFairSharingRecords", "getCurrentRegistry", "getQueryParams"])
+    ...mapGetters('multiTagsStore', ["getFairSharingRecords", "getCurrentRegistry", "getQueryParams", "getSelectedTags"])
+  },
+  watch: {
+    async searchString(val){
+      if (!val || val.length < 3) {
+        return;
+      }
+      this.searchResults = [];
+      val = val.trim();
+      await this.getResults(val);
+    },
+    async recordTags (val) {
+      let _module = this;
+      if (!_module.mounted) {
+        return
+      }
+      _module.loading = true;
+
+      let queryParam =  _module.generateQuery(val);
+      await _module.fetchMultiTagData(queryParam);
+      // TODO: Handle errors from the server.
+      _module.recordsFound = _module.getFairSharingRecords;
+      _module.$store.commit('multiTagsStore/setQueryParams', queryParam);
+      _module.$store.commit('multiTagsStore/setSelectedTags', val);
+      _module.loading = false;
+    }
+  },
+  mounted() {
+    let _module = this;
+    _module.getSelectedTags.forEach(function(tag) {
+      _module.recordTags.push(tag);
+    });
+    _module.mounted = true;
   },
   methods: {
-
+    ...mapActions('multiTagsStore', ['fetchMultiTagData', 'resetMultiTags']),
+    async getResults(queryString) {
+      let _module = this;
+      let tagQueryCopy = JSON.parse(JSON.stringify(tagsQuery));
+      if (queryString) tagQueryCopy.queryParam = {q: queryString};
+      let taggedRecords = this.getFairSharingRecords.map(x => x.id);
+      if (taggedRecords.length) {
+        tagQueryCopy.queryParam.taggedRecords = taggedRecords;
+      }
+      else {
+        delete tagQueryCopy.taggedRecords;
+      }
+      let tags = await graphClient.executeQuery(tagQueryCopy);
+      //console.log("TQC: " + JSON.stringify(tags));
+      if (!tags.error) {
+        // This is to take the parents of each tag up a level, so they are included
+        // in the list of available tags from which users may select.
+        let parents = [];
+        tags = tags.searchTags;
+        tags.forEach((tag) => {
+          tag.parents.forEach((parent) => {
+            parent.model = tag.model
+            parents.push(parent)
+          })
+          delete tag.parents;
+        })
+        // TODO: process here to handle nested parents.
+        _module.tags = tags.concat(parents);
+      }
+    },
+    clearResults() {
+      this.loading = false;
+      this.tags = [];
+    },
+    generateQuery(val) {
+      let query = this.getQueryParams;
+      delete query.domains;
+      delete query.subjects;
+      delete query.taxonomies;
+      delete query.userDefinedTags;
+      let domains = val.filter(x => x.model === 'domain').map(x => x.label);
+      if (domains.length) {
+        query['domains'] = domains;
+      }
+      let subjects = val.filter(x => x.model === 'subject').map(x => x.label);
+      if (subjects.length) {
+        query['subjects'] = subjects;
+      }
+      let taxonomies = val.filter(x => x.model === 'taxonomy').map(x => x.label);
+      if (taxonomies.length) {
+        query['taxonomies'] = taxonomies;
+      }
+      let user_defined_tags = val.filter(x => x.model === 'user_defined_tag').map(x => x.label);
+      if (user_defined_tags.length) {
+        query['userDefinedTags'] = user_defined_tags;
+      }
+      return query;
+    },
+    deleteTag(tagId, tagModel) {
+      this.recordTags = this.recordTags.filter(el => el.id !== tagId && el.model !== tagModel);
+    },
   }
 }
 </script>

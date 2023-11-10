@@ -346,6 +346,13 @@
           "link": "/refine",
           "query": {
             "fairsharingRegistry": ["standard"],
+            "recordType": [
+              "model_and_format",
+              "metric",
+              "terminology_artefact",
+              "reporting_guideline",
+              "identifier_schema"
+            ],
             "status": ["ready", "in_development"]
           },
           "refined": true
