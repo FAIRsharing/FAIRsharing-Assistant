@@ -16,6 +16,15 @@
     <!-- breadcrumb trail -->
     <Breadcrumbs />
     <!-- tags query -->
+    <p
+      class="mt-5 pa-5"
+    >
+      The filters below will allow you to further refine the type of record you're looking for.
+      Hover over the tooltip question mark on each one to see more information about that field.
+      Additionally, you can add/remove subject (and other) tags at this stage. If you prefer,
+      you could return to an earlier stage of the questions by clicking on the relevant part of the
+      breadcrumb trail above.
+    </p>
     <v-row>
       <v-col
         cols="12"
@@ -107,6 +116,7 @@
         </v-data-table>
       </v-col>
     </v-row>
+
     <AddOnFilters @filterSource="capitaliseText(getQueryParams['fairsharingRegistry'][0], null)" />
   </v-container>
 </template>

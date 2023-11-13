@@ -1,6 +1,6 @@
 <template>
   <v-row
-    v-if="Object.keys(getQueryParams).length >= 1"
+    v-if="showBanner"
   >
     <v-col
       cols="12"
@@ -72,11 +72,24 @@ export default {
   data: () => {
     return {
       showResultPreview: false,
-      show: false
+      showBanner: false
     }
   },
   computed: {
-    ...mapGetters('multiTagsStore', ["getFairSharingRecords", "getCurrentRegistry", "getQueryParams"])
+    ...mapGetters('multiTagsStore', ["getFairSharingRecords", "getCurrentRegistry", "getQueryParams"]),
+    queryStore() {
+      return this.$store.getters["multiTagsStore/getQueryParams"];
+    }
+  },
+  watch: {
+    queryStore(val) {
+      if (Object.keys(val).length > 0) {
+        this.showBanner = true;
+      }
+      else {
+        this.showBanner = false;
+      }
+    }
   },
   methods: {
     resultCountColour() {
