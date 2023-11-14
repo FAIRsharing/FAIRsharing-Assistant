@@ -12,7 +12,7 @@
       </v-overlay>
     </v-fade-transition>
     <!-- how many results so far? -->
-    <ResultPreviewBanner />
+    <ResultPreviewBanner :show-banner="Object.keys(getQueryParams).length > 0" />
     <!-- breadcrumb trail -->
     <Breadcrumbs />
     <!-- tags query -->
@@ -189,22 +189,21 @@ export default {
     },
     async recordTags (val) {
       let _module = this;
-      if (!_module.mounted) {
-        return
+      if (_module.mounted) {
+        _module.loading = true;
+        let queryParam =  _module.generateQuery(val);
+        await _module.fetchMultiTagData(queryParam);
+        // TODO: Handle errors from the server.
+        _module.recordsFound = _module.getFairSharingRecords;
+        _module.$store.commit('multiTagsStore/setQueryParams', queryParam);
+        _module.$store.commit('multiTagsStore/setSelectedTags', val);
+        _module.loading = false;
       }
-      _module.loading = true;
-
-      let queryParam =  _module.generateQuery(val);
-      await _module.fetchMultiTagData(queryParam);
-      // TODO: Handle errors from the server.
-      _module.recordsFound = _module.getFairSharingRecords;
-      _module.$store.commit('multiTagsStore/setQueryParams', queryParam);
-      _module.$store.commit('multiTagsStore/setSelectedTags', val);
-      _module.loading = false;
     }
   },
   mounted() {
     let _module = this;
+    _module.mounted = false;
     _module.getSelectedTags.forEach(function(tag) {
       _module.recordTags.push(tag);
     });

@@ -12,7 +12,7 @@
       </v-overlay>
     </v-fade-transition>
     <!-- how many results so far? -->
-    <ResultPreviewBanner />
+    <ResultPreviewBanner :show-banner="Object.keys(getQueryParams).length > 0" />
     <!-- breadcrumb trail -->
     <Breadcrumbs />
     <!-- question title -->
@@ -340,7 +340,6 @@ export default {
       foundModelFormats: [],
       title: '',
       footer: '',
-      history: [],
       lowResultsStoppage: false,
       currentBreadcrumb: null,
       // This is silly, but I was in a rush and had enough with fighting javascript;
@@ -523,24 +522,34 @@ export default {
       // Before leaving the page, stash the query for this particular page.
       let queryCopy = JSON.parse(JSON.stringify(this.getQueryParams));
       this.$store.commit('navigationStore/setRouteQuery', [this.$route.params.id, queryCopy]);
+      this.$store.commit('navigationStore/addBreadcrumb', this.currentBreadcrumb);
+      // And set up the breadcrumbs correctly
+      if (breadcrumbMod) {
+        this.currentBreadcrumb.text = this.currentBreadcrumb.text + breadcrumbMod;
+      }
+      // Now the links.
       // In this case, the link is to an external site.
       if (link.match(/^http/)) {
         window.open(link);
       }
       // Whereas here, it's linking to somewhere else within the assistant.
       else {
-        if (this.$route.params.id) {
-          this.history.push(this.$route.params.id);
-        }
-        else {
-          this.history.push(0);
-        }
         this.$router.push({path: link});
       }
-      if (breadcrumbMod) {
-        this.currentBreadcrumb.text = this.currentBreadcrumb.text + breadcrumbMod;
-      }
-      this.$store.commit('navigationStore/addBreadcrumb', this.currentBreadcrumb);
+      /*
+      new Promise(() => {
+        if (link.match(/^http/)) {
+          window.open(link);
+        }
+        // Whereas here, it's linking to somewhere else within the assistant.
+        else {
+          this.$router.push({path: link});
+        }
+      }).then(() => {
+        this.$store.commit('navigationStore/addBreadcrumb', this.currentBreadcrumb);
+      });
+       */
+
     },
     async getResults(queryString) {
       // A different query is run depending on whether hasTagsQuery or hasModelFormatQuery is true.

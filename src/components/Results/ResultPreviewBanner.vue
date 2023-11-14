@@ -10,7 +10,13 @@
         :type="resultCountColour()"
         variant="tonal"
       >
-        There are {{ getFairSharingRecords.length }} {{ getCurrentRegistryBold }} records matching your selection.
+        <!-- This html is from a safe source -->
+        <!-- eslint-disable vue/no-v-html -->
+        <span
+          v-html="`There are ${getFairSharingRecords.length} ${getCurrentRegistryBold()} records matching your selection.`"
+        />
+        <!-- eslint-enable vue/no-v-html -->
+
         <v-btn
           v-if="resultCountColour() !== 'error'"
           class="preview-results"
@@ -69,29 +75,22 @@ export default {
   name: 'QuestionPage',
   components: { ResultTable },
   mixins: [stringUtils],
+  props: {
+    showBanner: {
+      type: Boolean,
+      default: false
+    }
+  },
   data: () => {
     return {
       showResultPreview: false,
-      showBanner: false
     }
   },
   computed: {
-    ...mapGetters('multiTagsStore', ["getFairSharingRecords", "getCurrentRegistry", "getQueryParams"]),
-    queryStore() {
-      return this.$store.getters["multiTagsStore/getQueryParams"];
-    }
-  },
-  watch: {
-    queryStore(val) {
-      if (Object.keys(val).length > 0) {
-        this.showBanner = true;
-      }
-      else {
-        this.showBanner = false;
-      }
-    }
+    ...mapGetters('multiTagsStore', ["getFairSharingRecords", "getCurrentRegistry"]),
   },
   methods: {
+    ...mapGetters('multiTagsStore', ["getQueryParams"]),
     resultCountColour() {
       if (this.getFairSharingRecords.length > 10) {
         return "success";

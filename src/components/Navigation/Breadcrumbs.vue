@@ -29,7 +29,7 @@
         <!-- eslint-enable vue/no-v-html -->
       </v-chip>
       <v-chip
-        :key="currentBreadcrumb.id"
+        :key="'active_' + currentBreadcrumb.id"
         class="ma-2"
         color="pink"
         text-color="pink"
