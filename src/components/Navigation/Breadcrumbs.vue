@@ -41,6 +41,28 @@
         <span v-html="formatBreadcrumb(currentBreadcrumb)" />
         <!-- eslint-enable vue/no-v-html -->
       </v-chip>
+
+      <v-tooltip
+        v-model="show"
+        top
+      >
+        <template #activator="{ on }">
+          <v-btn
+            color="special_internal"
+            raised
+            fab
+            dark
+            small
+            right
+            fixed
+            v-on="on"
+            @click="copyBreadcrumbs()"
+          >
+            Copy
+          </v-btn>
+        </template>
+        <span>Copy breadcrumb trail to clipboard</span>
+      </v-tooltip>
     </v-col>
   </v-row>
 </template>
@@ -64,7 +86,8 @@ export default {
         text: '',
         id: 'nullcrumb'
       },
-      breadcrumbs: null
+      breadcrumbs: null,
+      show: false
     }
   },
   computed: {
@@ -145,6 +168,21 @@ export default {
       }
       return crumb.text;
     },
+    async copyBreadcrumbs() {
+      try {
+        let crumbs = [];
+        Object.keys(this.getBreadcrumbs).forEach((key) => {
+          crumbs.push(this.formatBreadcrumb(this.getBreadcrumbs[key]));
+        });
+        crumbs.push(this.currentBreadcrumb.text);
+        await navigator.clipboard.writeText(crumbs.join(" > "));
+        alert('Copied');
+      }
+      catch($e) {
+        console.log($e);
+        alert('Copying failed!');
+      }
+    }
   }
 }
 
