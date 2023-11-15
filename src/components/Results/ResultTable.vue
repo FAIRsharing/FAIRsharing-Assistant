@@ -134,6 +134,11 @@
         <!-- data section ends -->
         <!-- footer ends -->
       </v-data-iterator>
+      <v-btn
+        @click="downloadResults()"
+      >
+        Download Results
+      </v-btn>
     </v-container>
   </div>
 </template>
@@ -216,6 +221,15 @@ export default {
       }
       _module.loading = false;
     },
+    downloadResults() {
+      var MIME_TYPE = "text/csv";
+      let data = ["name,abbreviation,URL\n"];
+      this.getFairSharingRecords.forEach((record) => {
+        data.push(`${record.name},${record.abbreviation || 'n/a'},https://fairsharing.org/${record.id}\n`);
+      })
+      var blob = new Blob(data, {type: MIME_TYPE});
+      window.location.href = window.URL.createObjectURL(blob);
+    }
   },
 };
 </script>
