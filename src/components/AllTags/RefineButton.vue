@@ -68,7 +68,7 @@ export default {
       _module.$router.push(_module.link);
     },
     getTypeArray(registry) {
-      return this.recordTypes[registry].map(item => item.value);
+      return this.recordTypes[registry.toLowerCase()].map(item => item.value);
     }
   }
 }
