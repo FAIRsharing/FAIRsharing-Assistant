@@ -172,6 +172,9 @@ export default {
       }
     },
     async searchString(val){
+      if (!val || val.length < 3) {
+        return;
+      }
       this.tagsLoading = true;
       this.tags = [];
       val = val.trim();
