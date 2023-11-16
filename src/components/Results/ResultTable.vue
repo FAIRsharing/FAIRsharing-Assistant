@@ -135,6 +135,7 @@
         <!-- footer ends -->
       </v-data-iterator>
       <v-btn
+        color="primary"
         @click="downloadResults()"
       >
         Download Results

@@ -116,8 +116,18 @@
         </v-data-table>
       </v-col>
     </v-row>
-
     <AddOnFilters @filterSource="capitaliseText(getQueryParams['fairsharingRegistry'][0], null)" />
+    <v-col
+      cols="6"
+      class="ml-4"
+    >
+      <v-btn
+        color="primary"
+        @click="$router.push('/results')"
+      >
+        View Results
+      </v-btn>
+    </v-col>
   </v-container>
 </template>
 
