@@ -547,7 +547,6 @@ export default {
       // Before leaving the page, stash the query for this particular page.
       // In some cases a question may need to execute a query on leaving, but clear the results of that on returning,
       // e.g. a researcher depositing data.
-      console.log("CLEAR: " + this.clear);
       if (this.clear) {
         this.$store.commit('navigationStore/setRouteQuery', [this.$route.params.id, {}]);
       }
