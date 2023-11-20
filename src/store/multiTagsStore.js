@@ -26,7 +26,7 @@ const actions = {
     commit("setLoadingStatus", true);
     MULTI_TAGS.queryParam = queryParams;
     let response = await CLIENT.executeQuery(MULTI_TAGS);
-    commit("setFairSharingRecords", response['multiTagFilter']);
+    commit("setFairSharingRecords", response['multiTagFilter'] || []);
     //commit("setQueryParams", queryParams); // appears to cause horrid recursive vuex errors...
     commit("setLoadingStatus", false);
   }

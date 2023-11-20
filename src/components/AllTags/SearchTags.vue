@@ -189,8 +189,8 @@ export default {
       _module.getSelectedTags.forEach(function(tag) {
         _module.recordTags.push(tag);
       })
-      _module.justMounted = false;
     }
+    _module.justMounted = false;
   },
   methods:{
     ...mapActions('multiTagsStore', ['fetchMultiTagData', 'resetMultiTags']),

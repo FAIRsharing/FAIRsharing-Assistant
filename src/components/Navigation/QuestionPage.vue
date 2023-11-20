@@ -328,6 +328,7 @@ export default {
   mixins: [ stringUtils ],
   data: () => {
     return {
+      watchRecordTags: true,
       questions: {},
       searchQuery: {},
       hasModelFormatQuery: false,
@@ -393,7 +394,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('multiTagsStore', ["getFairSharingRecords", "getCurrentRegistry", "getQueryParams"]),
+    ...mapGetters('multiTagsStore', ["getFairSharingRecords", "getCurrentRegistry", "getQueryParams", "getSelectedTags"]),
     ...mapGetters('navigationStore', ["getRouteQuery", "getPreviousLocation"]),
   },
   watch: {
@@ -416,6 +417,9 @@ export default {
     // Running the query every time user selects a new subject, domain etc.
     async recordTags (val) {
       let _module = this;
+      if (!_module.watchRecordTags) {
+        return;
+      }
       _module.loading = true;
 
       let queryParam =  _module.generateQuery(val);
@@ -449,7 +453,8 @@ export default {
     }
   },
   mounted() {
-    this.getQuestions()
+    let _module = this;
+    _module.getQuestions()
   },
   methods: {
     ...mapActions('multiTagsStore', ['fetchMultiTagData', 'resetMultiTags']),
@@ -458,7 +463,6 @@ export default {
       let questionData = questionSets.questionSets.find(q => parseInt(q['path']) === parseInt(this.$route.params.id));
       this.currentBreadcrumb = JSON.parse(JSON.stringify(questionData.breadcrumb));
       this.questions = JSON.parse(JSON.stringify(questionData.questions));
-      //console.log("Q: " + JSON.stringify(this.questions));
       this.searchQuery = questionData.searchQuery;
       this.hasModelFormatQuery = questionData.hasModelFormatQuery;
       this.hasTagsQuery = questionData.hasTagsQuery;
@@ -472,16 +476,27 @@ export default {
         this.resetMultiTags();
       }
 
-      // TODO: Don't get the query if the user is going forwards again after going backwards.
+      // If they're arriving somewhere where a previous query is defined it should be retrived from the store.
       let previousQuery;
+      let _module = this;
       try {
         // Only get the previous query if going backwards.
-        previousQuery = this.getRouteQuery[this.$route.params.id];
+        previousQuery = JSON.parse(JSON.stringify(this.getRouteQuery[this.$route.params.id]));
         if (Object.keys(previousQuery).length > 0) {
-          this.searchQuery = previousQuery;
-          this.loading = true;
-          await this.fetchMultiTagData(this.searchQuery);
-          this.loading = false;
+          // Set up the selected tags.
+          _module.watchRecordTags = false;
+          if (_module.getSelectedTags) {
+            _module.getSelectedTags.forEach(function(tag) {
+              _module.recordTags.push(tag);
+            })
+          }
+          _module.watchRecordTags = true;
+          // Load the previous query.
+          _module.searchQuery = previousQuery;
+          _module.$store.commit('multiTagsStore/setQueryParams', _module.searchQuery);
+          _module.loading = true;
+          await _module.fetchMultiTagData(_module.searchQuery);
+          _module.loading = false;
         }
       }
       catch {
@@ -582,7 +597,6 @@ export default {
           delete tagQueryCopy.taggedRecords;
         }
         let tags = await graphClient.executeQuery(tagQueryCopy);
-        //console.log("TQC: " + JSON.stringify(tags));
         if (!tags.error) {
           // This is to take the parents of each tag up a level, so they are included
           // in the list of available tags from which users may select.
