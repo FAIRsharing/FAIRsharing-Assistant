@@ -80,7 +80,7 @@
         "text": "Researcher"
       },
       "title": "Do you want to...?",
-      "footer": "Knowing what you want to do with your data helps us start narrowing down your search.",
+      "footer": "<b>Depositing data</b> helps to make it more discoverable, citable and reusable.<br/><b>Finding databases</b> helps you connect with the available data of interest to you, e.g. when writing a Data Management Plan.<br/><b>Finding standards</b> helps you discover the best way to structure and report your data.",
       "clear": "true",
       "questions": [
         {
