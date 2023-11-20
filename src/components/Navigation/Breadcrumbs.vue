@@ -179,7 +179,6 @@ export default {
         alert('Copied');
       }
       catch($e) {
-        console.log($e);
         alert('Copying failed!');
       }
     }
