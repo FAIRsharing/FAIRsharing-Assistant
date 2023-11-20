@@ -328,6 +328,7 @@ export default {
   mixins: [ stringUtils ],
   data: () => {
     return {
+      clear: false,
       watchRecordTags: true,
       questions: {},
       searchQuery: {},
@@ -473,7 +474,11 @@ export default {
       this.title = questionData.title;
       this.footer = questionData.footer;
       if (questionData.clear) {
-        this.resetMultiTags();
+        this.clear = true;
+        //this.resetMultiTags();
+      }
+      else {
+        this.clear = false;
       }
 
       // If they're arriving somewhere where a previous query is defined it should be retrived from the store.
@@ -497,6 +502,10 @@ export default {
           _module.loading = true;
           await _module.fetchMultiTagData(_module.searchQuery);
           _module.loading = false;
+        }
+        else {
+          // Empty query, so results should be cleared.
+          this.resetMultiTags();
         }
       }
       catch {
@@ -534,14 +543,23 @@ export default {
         }
         this.loading = false;
       }
+
       // Before leaving the page, stash the query for this particular page.
-      let queryCopy = JSON.parse(JSON.stringify(this.getQueryParams));
-      this.$store.commit('navigationStore/setRouteQuery', [this.$route.params.id, queryCopy]);
-      this.$store.commit('navigationStore/addBreadcrumb', this.currentBreadcrumb);
+      // In some cases a question may need to execute a query on leaving, but clear the results of that on returning,
+      // e.g. a researcher depositing data.
+      console.log("CLEAR: " + this.clear);
+      if (this.clear) {
+        this.$store.commit('navigationStore/setRouteQuery', [this.$route.params.id, {}]);
+      }
+      else {
+        let queryCopy = JSON.parse(JSON.stringify(this.getQueryParams));
+        this.$store.commit('navigationStore/setRouteQuery', [this.$route.params.id, queryCopy]);
+      }
       // And set up the breadcrumbs correctly
       if (breadcrumbMod) {
         this.currentBreadcrumb.text = this.currentBreadcrumb.text + breadcrumbMod;
       }
+      this.$store.commit('navigationStore/addBreadcrumb', this.currentBreadcrumb);
       // Now the links.
       // In this case, the link is to an external site.
       if (link.match(/^http/)) {
@@ -551,20 +569,6 @@ export default {
       else {
         this.$router.push({path: link});
       }
-      /*
-      new Promise(() => {
-        if (link.match(/^http/)) {
-          window.open(link);
-        }
-        // Whereas here, it's linking to somewhere else within the assistant.
-        else {
-          this.$router.push({path: link});
-        }
-      }).then(() => {
-        this.$store.commit('navigationStore/addBreadcrumb', this.currentBreadcrumb);
-      });
-       */
-
     },
     async getResults(queryString) {
       // A different query is run depending on whether hasTagsQuery or hasModelFormatQuery is true.
