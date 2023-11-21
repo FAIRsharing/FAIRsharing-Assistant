@@ -48,6 +48,7 @@
           </v-btn>
         </v-card-actions>
         <v-card-text>
+          <Breadcrumbs />
           <ResultTable />
         </v-card-text>
         <v-card-actions>
@@ -70,10 +71,11 @@
 import ResultTable from "@/components/Results/ResultTable.vue";
 import stringUtils from "@/utils/stringUtils";
 import {mapGetters} from "vuex";
+import Breadcrumbs from "@/components/Navigation/Breadcrumbs.vue";
 
 export default {
   name: 'QuestionPage',
-  components: { ResultTable },
+  components: {Breadcrumbs, ResultTable },
   mixins: [stringUtils],
   props: {
     showBanner: {

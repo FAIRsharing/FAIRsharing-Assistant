@@ -5,6 +5,17 @@
       class="ml-4"
     >
       <v-chip
+        v-if="getSummaryText()"
+        key="help_breadcrumb"
+        class="ma-2"
+        color="pink"
+        text-color="white"
+        label
+        @click="summary = true"
+      >
+        <v-icon>fa fa-question-circle</v-icon>
+      </v-chip>
+      <v-chip
         :key="crumbRoot.id"
         class="ma-2"
         color="pink"
@@ -41,35 +52,45 @@
         <span v-html="formatBreadcrumb(currentBreadcrumb)" />
         <!-- eslint-enable vue/no-v-html -->
       </v-chip>
-
-      <v-tooltip
-        v-model="show"
-        top
-      >
-        <template #activator="{ on }">
+    </v-col>
+    <v-dialog
+      v-model="summary"
+      activator="parent"
+      width="auto"
+    >
+      <v-card>
+        <!-- This html is from a safe source -->
+        <!-- eslint-disable vue/no-v-html -->
+        <v-card-title>
+          Summary
+        </v-card-title>
+        <v-card-text
+          v-html="getSummaryText()"
+        />
+        <!-- eslint-enable vue/no-v-html -->
+        <v-card-actions>
           <v-btn
-            color="special_internal"
-            raised
-            fab
-            dark
-            small
-            right
-            fixed
-            v-on="on"
-            @click="copyBreadcrumbs()"
+            color="primary"
+            @click="summary = false"
+          >
+            Close
+          </v-btn>
+          <v-btn
+            color="primary"
+            @click="copySummary()"
           >
             Copy
           </v-btn>
-        </template>
-        <span>Copy breadcrumb trail to clipboard</span>
-      </v-tooltip>
-    </v-col>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </v-row>
 </template>
 
 <script>
 
 import questionSets from "@/data/questionPageData.json";
+import summaries from "@/data/navigationSummary.json";
 import {mapGetters} from "vuex";
 
 export default {
@@ -87,7 +108,8 @@ export default {
         id: 'nullcrumb'
       },
       breadcrumbs: null,
-      show: false
+      show: false,
+      summary: false
     }
   },
   computed: {
@@ -168,19 +190,17 @@ export default {
       }
       return crumb.text;
     },
-    async copyBreadcrumbs() {
+    async copySummary() {
       try {
-        let crumbs = [];
-        Object.keys(this.getBreadcrumbs).forEach((key) => {
-          crumbs.push(this.formatBreadcrumb(this.getBreadcrumbs[key]));
-        });
-        crumbs.push(this.currentBreadcrumb.text);
-        await navigator.clipboard.writeText(crumbs.join(" > "));
-        alert('Copied');
+        await navigator.clipboard.writeText(this.getSummaryText());
       }
       catch($e) {
-        alert('Copying failed!');
+        // An alert could be used here, perhaps.
       }
+    },
+    getSummaryText() {
+      let key = String(this.$route.params.id);
+      return summaries[key];
     }
   }
 }
