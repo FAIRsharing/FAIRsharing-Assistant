@@ -61,7 +61,7 @@ export default {
         * @param {Boolean} -- value
        */
     noRecords(value) {
-      if (value) this.$router.push("/")
+      if (value) this.$router.push("/99");
     },
   }
 };

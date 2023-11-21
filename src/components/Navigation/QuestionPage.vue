@@ -475,7 +475,8 @@ export default {
       this.footer = questionData.footer;
       if (questionData.clear) {
         this.clear = true;
-        //this.resetMultiTags();
+        this.$store.commit('navigationStore/clearPreviousNavigation', `/${this.$route.params.id}`);
+        this.$store.commit('navigationStore/sliceBreadcrumb', `/${this.$route.params.id}`);
       }
       else {
         this.clear = false;
