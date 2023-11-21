@@ -275,7 +275,7 @@
           "title": "question_7_2",
           "question": "Register your resources with FAIRsharing",
           "color": "special_internal",
-          "link": "/educational/register",
+          "link": "https://fairsharing.org/new",
           "query": {}
         },
         {
@@ -283,7 +283,7 @@
           "title": "question_7_3",
           "question": "Incorporate FAIRsharing into your documentation",
           "color": "special_internal",
-          "link": "/educational/",
+          "link": "https://fairsharing.org/educational/",
           "query": {}
         }
       ]
