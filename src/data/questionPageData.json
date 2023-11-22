@@ -238,7 +238,7 @@
         "text": "Finished!"
       },
       "title": "No further questions!",
-      "footer": "At this point you can view the results so far. Or, select any point in the breadcrumb trail above to return to that question.",
+      "footer": "At this point you can view the results so far or further refine your choice.",
       "questions": [
         {
           "id": 1,
@@ -246,6 +246,14 @@
           "question": "View results",
           "color": "internal",
           "link": "/results",
+          "query": {}
+        },
+        {
+          "id": 2,
+          "title": "question_6_2",
+          "question": "Further refine your choice",
+          "color": "internal",
+          "link": "/refine",
           "query": {}
         }
       ]

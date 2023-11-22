@@ -43,7 +43,6 @@ const mutations = {
     state.error = false,
     state.loadingStatus = false,
     state.refinedStatus = false,
-    state.currentRegistry = '',
     state.selectedTags = [],
     state.selectionMessage = ''
   },

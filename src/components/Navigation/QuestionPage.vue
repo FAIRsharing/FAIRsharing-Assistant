@@ -467,8 +467,6 @@ export default {
       this.searchQuery = questionData.searchQuery;
       this.hasModelFormatQuery = questionData.hasModelFormatQuery;
       this.hasTagsQuery = questionData.hasTagsQuery;
-      let path = '/' + questionData.path;
-      this.$store.commit('navigationStore/setNavigationState', path);
 
       // The current page isn't a link, only previous pages.
       this.title = questionData.title;
@@ -482,18 +480,27 @@ export default {
         this.clear = false;
       }
 
-      // If they're arriving somewhere where a previous query is defined it should be retrived from the store.
+      // If they're arriving somewhere where a previous query is defined it should be retrieved from the store.
+      // BUT: To prevent users complaining the result is "wrong", the query has to be pushed to the next question in
+      // line when leaving, rather than the current one. So, when arriving at a question it will already have a
+      // previous query set and it needs to be triggered only if going backwards (or each query will be run twice
+      // when advancing through the questions).
       let previousQuery;
       let _module = this;
       try {
         // Only get the previous query if going backwards.
         previousQuery = JSON.parse(JSON.stringify(this.getRouteQuery[this.$route.params.id]));
-        if (Object.keys(previousQuery).length > 0) {
+        let previousLocation = Number.parseInt(this.getPreviousLocation.replace('/',''));
+        let currentLocation = Number.parseInt(this.$route.params.id);
+        // This is because the previous query needs only to be loaded when going backwards.
+        if (Object.keys(previousQuery).length > 0 && previousLocation > currentLocation) {
           // Set up the selected tags.
           _module.watchRecordTags = false;
           if (_module.getSelectedTags) {
             _module.getSelectedTags.forEach(function(tag) {
-              _module.recordTags.push(tag);
+              if (_module.recordTags.filter(x => x.label === tag.label).length === 0) {
+                _module.recordTags.push(tag);
+              }
             })
           }
           _module.watchRecordTags = true;
@@ -504,8 +511,8 @@ export default {
           await _module.fetchMultiTagData(_module.searchQuery);
           _module.loading = false;
         }
-        else {
-          // Empty query, so results should be cleared.
+        else if (previousLocation > currentLocation) {
+          // Empty query, so results should be cleared, but only whilst going backwards.
           this.resetMultiTags();
         }
       }
@@ -544,17 +551,16 @@ export default {
         }
         this.loading = false;
       }
+      // Save where we've just been.
+      let path = "/" + this.$route.params.id;
+      this.$store.commit('navigationStore/setNavigationState', path);
 
       // Before leaving the page, stash the query for this particular page.
       // In some cases a question may need to execute a query on leaving, but clear the results of that on returning,
       // e.g. a researcher depositing data.
-      if (this.clear) {
-        this.$store.commit('navigationStore/setRouteQuery', [this.$route.params.id, {}]);
-      }
-      else {
-        let queryCopy = JSON.parse(JSON.stringify(this.getQueryParams));
-        this.$store.commit('navigationStore/setRouteQuery', [this.$route.params.id, queryCopy]);
-      }
+      let queryCopy = JSON.parse(JSON.stringify(this.getQueryParams));
+      let nextId = link.replace('/','');
+      this.$store.commit('navigationStore/setRouteQuery', [nextId, queryCopy]);
       // And set up the breadcrumbs correctly
       if (breadcrumbMod) {
         this.currentBreadcrumb.text = this.currentBreadcrumb.text + breadcrumbMod;
@@ -608,9 +614,11 @@ export default {
           tags = tags.searchTags;
           tags.forEach((tag) => {
             tag.parents.forEach((parent) => {
-              parent.model = tag.model
-              parents.push(parent)
-            })
+              if (_module.tags.filter(x => x.label === parent.label).length === 0) {
+                parent.model = tag.model
+                parents.push(parent)
+              }
+            });
             delete tag.parents;
           })
           // TODO: process here to handle nested parents.
