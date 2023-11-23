@@ -267,7 +267,7 @@
         "text": "Resource developer/data curator"
       },
       "title": "Do you want to...?",
-      "footer": "FAIRsharing offers rich and discoverable descriptions of standards, databases and policies, as well as relationship graphics to identify data resources similar (or related) to yours. <b>Finding resources</b> helps you comply with policies, avoid duplication, and discover the organisations behind resources, e.g. for collaboration. <b>Registering your resource(s) with FAIRsharing</b> allows you to describe the content, scope and relationships they have with the wider research landscape. <b>Incorporating FAIRsharing into your documentation</b>, presentations, policies and DMPs.",
+      "footer": "FAIRsharing offers rich and discoverable descriptions of standards, databases and policies, as well as relationship graphics to identify data resources similar (or related) to yours. <b>Finding resources</b> helps you comply with policies, avoid duplication, and discover the organisations behind resources, e.g. for collaboration. <b>Registering your resource(s) with FAIRsharing</b> allows you to describe the content, scope and relationships they have with the wider research landscape. <b>Incorporate FAIRsharing into your documentation</b>, presentations, policies and DMPs by using our educational materials.",
       "clear": "true",
       "questions": [
         {
