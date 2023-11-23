@@ -31,7 +31,9 @@ multiTagsStore.getters = {
 }
 
 navigationStore.mutations = {
-  setNavigationState: jest.fn()
+  setNavigationState: jest.fn(),
+  clearPreviousNavigation: jest.fn(),
+  sliceBreadcrumb: jest.fn()
 }
 
 let store = new Vuex.Store({
