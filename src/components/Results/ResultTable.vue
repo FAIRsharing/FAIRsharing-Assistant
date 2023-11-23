@@ -40,7 +40,7 @@
               flat
               solo-inverted
               hide-details
-              prepend-inner-icon="mdi-magnify"
+              prepend-inner-icon="mdi-filter"
               label="Filter these results"
             />
             <template v-if="$vuetify.breakpoint.mdAndUp">
@@ -51,7 +51,7 @@
                 solo-inverted
                 hide-details
                 :items="keys"
-                prepend-inner-icon="mdi-magnify"
+                prepend-inner-icon="mdi-sort"
                 label="Sort by"
               />
               <v-spacer />
