@@ -656,7 +656,15 @@ export default {
       return query;
     },
     deleteTag(tagId, tagModel) {
-      this.recordTags = this.recordTags.filter(el => el.id !== tagId && el.model !== tagModel);
+      let currentTags = [];
+      let tagFilter = tagId + tagModel;
+      this.recordTags.forEach(function(tag) {
+        let identifier = tag.id + tag.model;
+        if (identifier !== tagFilter) {
+          currentTags.push(tag);
+        }
+      });
+      this.recordTags = currentTags;
     },
     deleteStandard(standardId) {
       this.foundModelFormats = this.foundModelFormats.filter(el => el.id !== standardId);
