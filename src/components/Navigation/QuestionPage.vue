@@ -488,37 +488,38 @@ export default {
       let previousQuery;
       let _module = this;
       try {
-        // Only get the previous query if going backwards.
         previousQuery = JSON.parse(JSON.stringify(this.getRouteQuery[this.$route.params.id]));
-        let previousLocation = Number.parseInt(this.getPreviousLocation.replace('/',''));
-        let currentLocation = Number.parseInt(this.$route.params.id);
-        // This is because the previous query needs only to be loaded when going backwards.
-        if (Object.keys(previousQuery).length > 0 && previousLocation > currentLocation) {
-          // Set up the selected tags.
-          _module.watchRecordTags = false;
-          if (_module.getSelectedTags) {
-            _module.getSelectedTags.forEach(function(tag) {
-              if (_module.recordTags.filter(x => x.label === tag.label).length === 0) {
-                _module.recordTags.push(tag);
-              }
-            })
-          }
-          _module.watchRecordTags = true;
-          // Load the previous query.
-          _module.searchQuery = previousQuery;
-          _module.$store.commit('multiTagsStore/setQueryParams', _module.searchQuery);
-          _module.loading = true;
-          await _module.fetchMultiTagData(_module.searchQuery);
-          _module.loading = false;
-        }
-        else if (previousLocation > currentLocation) {
-          // Empty query, so results should be cleared, but only whilst going backwards.
-          this.resetMultiTags();
-        }
       }
       catch {
-        // This value might well be empty if the user hasn't been here yet.
-        // TODO: Check to see if this can be removed.
+        // Fails on initial screen because getRouteQuery hasn't been defined.
+        previousQuery = {};
+      }
+      // Sometimes the previous location could be something like "/refine"
+      let previousLocation = Number.parseInt(this.getPreviousLocation.replace('/',''));
+      let currentLocation = Number.parseInt(this.$route.params.id);
+      let prevLength = Number.parseInt(Object.keys(previousQuery).length);
+      // This is because the previous query needs only to be loaded when going backwards.
+      if (prevLength > 0 && (previousLocation > currentLocation || this.getPreviousLocation === '/refine')) {
+        // Set up the selected tags.
+        _module.watchRecordTags = false;
+        if (_module.getSelectedTags) {
+          _module.getSelectedTags.forEach(function(tag) {
+            if (_module.recordTags.filter(x => x.label === tag.label).length === 0) {
+              _module.recordTags.push(tag);
+            }
+          })
+        }
+        _module.watchRecordTags = true;
+        // Load the previous query.
+        _module.searchQuery = previousQuery;
+        _module.$store.commit('multiTagsStore/setQueryParams', _module.searchQuery);
+        _module.loading = true;
+        await _module.fetchMultiTagData(_module.searchQuery);
+        _module.loading = false;
+      }
+      else if (previousLocation > currentLocation || this.getPreviousLocation === 'refine') {
+        // Empty query, so results should be cleared, but only whilst going backwards.
+        this.resetMultiTags();
       }
     },
     async processLink(link, query, message, refined, breadcrumbMod) {

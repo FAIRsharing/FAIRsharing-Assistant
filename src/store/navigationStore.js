@@ -51,6 +51,9 @@ const mutations = {
 
 const getters = {
   getPreviousLocation(state) {
+    if (!state.previousLocation) {
+      return '/0'
+    }
     return state.previousLocation;
   },
   getCompliantWith(state) {

@@ -170,7 +170,13 @@ export default {
       // TODO: Find queries in the routeQuery store further advanced than the current click target, and clear them.
       // TODO: This could probably go in the store.
       this.$store.commit('navigationStore/clearPreviousNavigation', link);
-      let path = "/" + this.$route.params.id;
+      let path;
+      if (this.$route.params.id) {
+        path = "/" + this.$route.params.id;
+      }
+      else {
+        path = this.$route.path;
+      }
       this.$store.commit('navigationStore/setNavigationState', path);
       this.$router.push({path: link});
     },
