@@ -291,7 +291,7 @@
             color="blue darken-1"
             text
             persistent
-            @click="$router.push('/results')"
+            @click="goToResults"
           >
             View results
           </v-btn>
@@ -677,6 +677,10 @@ export default {
     },
     deleteStandard(standardId) {
       this.foundModelFormats = this.foundModelFormats.filter(el => el.id !== standardId);
+    },
+    goToResults() {
+      this.$store.commit('navigationStore/addBreadcrumb', this.currentBreadcrumb);
+      this.$router.push('/results');
     }
   }
 };

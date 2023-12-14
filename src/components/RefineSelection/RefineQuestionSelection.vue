@@ -123,7 +123,7 @@
     >
       <v-btn
         color="primary"
-        @click="$router.push('/results')"
+        @click="goToResults"
       >
         View Results
       </v-btn>
@@ -281,6 +281,15 @@ export default {
     deleteTag(tagId, tagModel) {
       this.recordTags = this.recordTags.filter(el => el.id !== tagId && el.model !== tagModel);
     },
+    goToResults() {
+      let breadcrumb = {
+        id: "refine_crumb",
+        text: "Refine your selection",
+        link: '/refine'
+      }
+      this.$store.commit('navigationStore/addBreadcrumb', breadcrumb);
+      this.$router.push('/results');
+    }
   }
 }
 </script>
