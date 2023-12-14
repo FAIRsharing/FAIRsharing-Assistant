@@ -500,16 +500,24 @@ export default {
       let prevLength = Number.parseInt(Object.keys(previousQuery).length);
       // This is because the previous query needs only to be loaded when going backwards.
       if (prevLength > 0 && (previousLocation > currentLocation || this.getPreviousLocation === '/refine')) {
-        // Set up the selected tags.
-        _module.watchRecordTags = false;
-        if (_module.getSelectedTags) {
-          _module.getSelectedTags.forEach(function(tag) {
-            if (_module.recordTags.filter(x => x.label === tag.label).length === 0) {
-              _module.recordTags.push(tag);
-            }
-          })
+        // Set up the selected tags. The store should be checked only if some were defined in the query.
+        // If none are in the query then the store must be cleared (see 'else').
+        if ('subjects' in previousQuery || 'domains' in previousQuery || 'userDefinedTags' in previousQuery || 'taxonomies' in previousQuery) {
+          _module.watchRecordTags = false;
+          if (_module.getSelectedTags) {
+            _module.getSelectedTags.forEach(function(tag) {
+              if (_module.recordTags.filter(x => x.label === tag.label).length === 0) {
+                _module.recordTags.push(tag);
+              }
+            })
+          }
+          _module.watchRecordTags = true;
         }
-        _module.watchRecordTags = true;
+        // There are no selected tags so this store value should be cleared.
+        else {
+          _module.$store.commit('multiTagsStore/setSelectedTags', []);
+          _module.recordTags = [];
+        }
         // Load the previous query.
         _module.searchQuery = previousQuery;
         _module.$store.commit('multiTagsStore/setQueryParams', _module.searchQuery);
