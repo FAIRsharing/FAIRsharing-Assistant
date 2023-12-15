@@ -218,7 +218,7 @@
         cols="3"
       >
         <v-card
-          class="full-width d-flex align-center text-center flex-column questionCard"
+          class="full-width d-flex align-center text-center flex-column questionCard justify-center"
           height="130"
           elevation="4"
           :class="[
