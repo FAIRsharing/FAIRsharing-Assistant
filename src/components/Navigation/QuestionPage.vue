@@ -334,12 +334,14 @@ export default {
       searchQuery: {},
       hasModelFormatQuery: false,
       hasTagsQuery: false,
+      hasPolicyQuery: false,
       searchString: null,
       searchResults: [],
       recordTags: [],
       tags: [],
       loading: false,
       foundModelFormats: [],
+      foundPolicies: [],
       title: '',
       footer: '',
       lowResultsStoppage: false,
@@ -467,6 +469,7 @@ export default {
       this.searchQuery = questionData.searchQuery;
       this.hasModelFormatQuery = questionData.hasModelFormatQuery;
       this.hasTagsQuery = questionData.hasTagsQuery;
+      this.hasPolicyQuery = questionData.hasPolicyQuery; // TODO: The work related to this is in progress
 
       // The current page isn't a link, only previous pages.
       this.title = questionData.title;
@@ -633,6 +636,9 @@ export default {
           // TODO: process here to handle nested parents.
           _module.tags = tags.concat(parents);
         }
+      }
+      else if (_module.hasPolicyQuery) {
+        // TODO: Complete this once the corresponding query and search indexes are available.
       }
     },
     clearResults() {

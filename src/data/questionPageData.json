@@ -107,9 +107,9 @@
         {
           "id": 3,
           "title": "question_1_3",
-          "question": "Find resources linked to policies (TODO)",
+          "question": "Find resources linked to policies",
           "color": "internal",
-          "link": "/",
+          "link": "/10",
           "query": {}
         }
       ]
@@ -389,6 +389,40 @@
           "refined": true
         }
       ]
+    },
+    {
+      "id": "question_10",
+      "path": 10,
+      "breadcrumb": {
+        "id": "question_10_crumb",
+        "link": "/10",
+        "text": "Policy requirements"
+      },
+      "title": "With which policy do you want to comply?",
+      "footer": "Start typing the name of your policy. If we don't have it, or the question isn't relevant to you, choose 'continue' without selecting any policy.",
+      "hasPolicyQuery": true,
+      "questions": [
+        {
+          "id": 1,
+          "title": "question_10_1",
+          "question": "Continue",
+          "color": "internal",
+          "link": "/99",
+          "query": {}
+        }
+      ],
+      "searchQuery": {
+        "fairsharingRegistry": ["policy"],
+        "recordType": [
+          "journal",
+          "society",
+          "project",
+          "institution",
+          "journal_publisher",
+          "funder"
+        ]
+      },
+      "refined": true
     },
     {
       "id": "question_99",
