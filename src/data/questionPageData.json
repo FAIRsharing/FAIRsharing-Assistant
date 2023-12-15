@@ -132,6 +132,14 @@
           "color": "internal",
           "link": "/3",
           "query": {}
+        },
+        {
+          "id": 2,
+          "title": "question_2_2",
+          "question": "Jump straight to the results",
+          "color": "internal",
+          "link": "/results",
+          "query": {}
         }
       ]
     },

@@ -158,7 +158,7 @@ export default {
         else if (this.$route.path === '/refine') {
           this.currentBreadcrumb = {
             id: "refine_crumb",
-            text: "Refine your selection",
+            text: "Refine your choice",
             link: '/refine'
           }
         }
@@ -193,7 +193,7 @@ export default {
           tagText.push(...this.getQueryParams[tagField]);
         }
       });
-      if (tagText.length > 0 && crumb.text.includes('...') && !crumb.text.includes('Resource type')) {
+      if (tagText.length > 0 && crumb.text.includes('...') && crumb.text.includes('Research area')) {
         return crumb.text.replace("...", `<b>${tagText.join(', ')}</b>`);
       }
       return crumb.text;

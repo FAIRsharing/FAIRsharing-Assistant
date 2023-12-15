@@ -19,10 +19,14 @@ const mutations = {
     delete state.breadcrumbs[breadcrumb.link];
   },
   sliceBreadcrumb(state, position) {
-    let posNum = Number.parseInt(position.replace('/',''));
+    // The assumption here is that the keys will be in order. Thus, one might go through all from the
+    // start and delete any including and after the destination.
+    let seen = false;
     Object.keys(state.breadcrumbs).forEach(function(key) {
-      let keyPos = Number.parseInt(key.replace('/',''));
-      if (keyPos >= posNum) {
+      if (key === position) {
+        seen = true;
+      }
+      if (seen) {
         delete state.breadcrumbs[key];
       }
     })

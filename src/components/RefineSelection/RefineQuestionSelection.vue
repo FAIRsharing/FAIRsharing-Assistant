@@ -282,11 +282,24 @@ export default {
       this.recordTags = this.recordTags.filter(el => el.id !== tagId && el.model !== tagModel);
     },
     goToResults() {
+      let _module = this;
+      // Here's the basic breadcrumb...
       let breadcrumb = {
         id: "refine_crumb",
-        text: "Refine your selection",
+        text: "Refine your choice",
         link: '/refine'
       }
+      // ...now add too many textual elements to it!
+      let extra_text = [];
+      Object.keys(this.getQueryParams).forEach(function(key) {
+        if (!(['fairsharingRegistry', 'subjects', 'domains', 'taxonomies', 'userDefinedTags'].indexOf(key) > -1)) {
+          extra_text.push(_module.humaniseKey(key));
+        }
+      });
+      if (extra_text.length > 0) {
+        breadcrumb.text = `Refine your choice: <b>${extra_text.join(', ')}</b>`
+      }
+      // Finally, go to the result, pushing this outrageous breadcrumb as we go.
       this.$store.commit('navigationStore/addBreadcrumb', breadcrumb);
       this.$router.push('/results');
     }
