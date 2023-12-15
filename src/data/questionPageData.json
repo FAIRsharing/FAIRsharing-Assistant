@@ -80,7 +80,7 @@
         "text": "Researcher"
       },
       "title": "Do you want to...?",
-      "footer": "<b>Depositing data</b> helps to make it more discoverable, citable and reusable.<br/><b>Finding databases</b> helps you connect with the available data of interest to you, e.g. when writing a Data Management Plan.<br/><b>Finding standards</b> helps you discover the best way to structure and report your data.",
+      "footer": "<b>Depositing data</b> helps to make it more discoverable, citable and reusable.<br/><b>Finding databases</b> helps you connect with the available data of interest to you, e.g. when writing a Data Management Plan.<br/><b>Finding standards</b> helps you discover the best way to structure and report your data.<br/><b>Find policies</b> relevant to you and see which databases and standards they mention.",
       "clear": "true",
       "questions": [
         {
@@ -99,7 +99,7 @@
         {
           "id": 2,
           "title": "question_1_2",
-          "question": "Find data",
+          "question": "Find a database, standard or policy.",
           "color": "internal",
           "link": "/8",
           "query": {}
@@ -107,7 +107,7 @@
         {
           "id": 3,
           "title": "question_1_3",
-          "question": "Find a standard for your data (TODO)",
+          "question": "Find resources linked to policies (TODO)",
           "color": "internal",
           "link": "/",
           "query": {}
@@ -131,14 +131,6 @@
           "question": "Choose a repository according to my own needs",
           "color": "internal",
           "link": "/3",
-          "query": {}
-        },
-        {
-          "id": 2,
-          "title": "question_2_2",
-          "question": "Align with funder data requirements (TODO)",
-          "color": "internal",
-          "link": "/",
           "query": {}
         }
       ]
@@ -324,7 +316,7 @@
       "breadcrumb": {
         "id": "question_9_crumb",
         "link": "/9",
-        "text": "Wanting to find a resource"
+        "text": "Resource type: ..."
       },
       "title": "What type of resource are you interested in?",
       "footer": "<b>Finding resources</b> helps you comply with policies, avoid duplication, and discover the organisations behind resources, e.g. for collaboration. Navigate the wealth of standards, databases and policies by selecting the attributes of those records most important to you.",
@@ -333,7 +325,7 @@
           "id": 1,
           "title": "question_9_1",
           "question": "Standards",
-          "breadcrumbMod": " <b>(standards)</b>",
+          "breadcrumbMod": " <b>standards</b>",
           "color": "internal",
           "link": "/refine",
           "query": {
@@ -353,7 +345,7 @@
           "id": 2,
           "title": "question_9_2",
           "question": "Databases",
-          "breadcrumbMod": " <b>(databases)</b>",
+          "breadcrumbMod": " <b>databases</b>",
           "color": "internal",
           "link": "/refine",
           "query": {
@@ -371,7 +363,7 @@
           "id": 3,
           "title": "question_9_3",
           "question": "Policies",
-          "breadcrumbMod": " <b>(policies)</b>",
+          "breadcrumbMod": " <b>policies</b>",
           "color": "internal",
           "link": "/refine",
           "query": {

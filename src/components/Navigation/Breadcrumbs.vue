@@ -184,8 +184,8 @@ export default {
       if (this.getCompliantWith && crumb.text.includes('FORMAT')) {
         return crumb.text.replace("FORMAT", this.getCompliantWith);
       }
-      if (this.getCurrentRegistry && crumb.text.includes('REGISTRY')) {
-        return crumb.text.replace("REGISTRY", this.getCurrentRegistry);
+      if (this.getCurrentRegistry && crumb.text.includes('Resource type')) {
+        return crumb.text.replace('...', '');
       }
       let tagText = [];
       ['subjects', 'domains', 'taxonomies', 'user_defined_tags'].forEach((tagField) => {
@@ -193,7 +193,7 @@ export default {
           tagText.push(...this.getQueryParams[tagField]);
         }
       });
-      if (tagText.length > 0 && crumb.text.includes('...')) {
+      if (tagText.length > 0 && crumb.text.includes('...') && !crumb.text.includes('Resource type')) {
         return crumb.text.replace("...", `<b>${tagText.join(', ')}</b>`);
       }
       return crumb.text;
