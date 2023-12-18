@@ -187,7 +187,7 @@
         "text": "Repository compliant with <b>FORMAT</b>"
       },
       "title": "How would you like to proceed next?",
-      "footer": "You can view the results you have, return to the previous question or continue by choosing the area of research most relevant to your data.",
+      "footer": "You can view the results you have or continue by choosing the area of research most relevant to your data.",
       "questions": [
         {
           "id": 1,
@@ -396,18 +396,19 @@
       "breadcrumb": {
         "id": "question_10_crumb",
         "link": "/10",
-        "text": "Policy requirements"
+        "text": "Search policies"
       },
       "title": "With which policy do you want to comply?",
       "footer": "Start typing the name of your policy. If we don't have it, or the question isn't relevant to you, choose 'continue' without selecting any policy.",
       "hasPolicyQuery": true,
+      "clear": true,
       "questions": [
         {
           "id": 1,
           "title": "question_10_1",
           "question": "Continue",
           "color": "internal",
-          "link": "/99",
+          "link": "/11",
           "query": {}
         }
       ],
@@ -423,6 +424,27 @@
         ]
       },
       "refined": true
+    },
+    {
+      "id": "question_11",
+      "path": 11,
+      "breadcrumb": {
+        "id": "question_11_crumb",
+        "link": "/11",
+        "text": "Linked to <b>POLICY</b>"
+      },
+      "title": "How would you like to proceed next?",
+      "footer": "Currently, the only option available is to view the results.",
+      "questions": [
+        {
+          "id": 1,
+          "title": "question_4_1",
+          "question": "Go to results",
+          "color": "internal",
+          "link": "/results",
+          "query": {}
+        }
+      ]
     },
     {
       "id": "question_99",

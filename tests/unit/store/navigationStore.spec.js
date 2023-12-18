@@ -26,7 +26,8 @@ describe('Navigation store methods', () => {
       "/0": {},
       "/1": {},
     },
-    compliantWith: null
+    compliantWith: null,
+    compliantWithPolicy: null
   };
 
   it("can run setNavigationState mutation", () => {
@@ -43,8 +44,17 @@ describe('Navigation store methods', () => {
     expect(state.compliantWith).toBe('Genbank Sequence Format');
   });
 
+  it("can set policy compliance", () => {
+    mutations.setPolicyComplianceState(state, 'Nature Genetics');
+    expect(state.compliantWithPolicy).toBe('Nature Genetics');
+  });
+
   it("can get compliance", () => {
     expect(getters.getCompliantWith(state)).toEqual('Genbank Sequence Format');
+  });
+
+  it("can get policy compliance", () => {
+    expect(getters.getCompliantWithPolicy(state)).toEqual('Nature Genetics');
   });
 
   it("can get breadcrumbs", () => {
@@ -151,8 +161,7 @@ describe('Navigation store methods', () => {
     mutations.clearPreviousNavigation(state, '/1');
     expect(getters.getRouteQuery(state)).toStrictEqual(
       {
-        "/0": {},
-        "/1": {}
+        "/0": {}
       }
     )
   });
@@ -161,6 +170,7 @@ describe('Navigation store methods', () => {
     let returnVal = {
       previousLocation: null,
       compliantWith: null,
+      compliantWithPolicy: null,
       breadcrumbs: {},
       routeQueries: {}
     }

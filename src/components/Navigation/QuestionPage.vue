@@ -208,6 +208,93 @@
         </v-data-table>
       </v-col>
     </v-row>
+    <!-- end of tags -->
+    <!-- policy query -->
+    <v-row
+      v-if="hasPolicyQuery"
+    >
+      <v-col
+        cols="12"
+        class="ml-4"
+      >
+        <!-- A list here of selected standards is shown just above the text box -->
+        <v-chip-group
+          class="pl-2"
+          column
+        >
+          <v-chip
+            v-for="pol in (foundPolicies)"
+            :key="pol.name"
+            class="ma-2"
+          >
+            {{ pol.abbreviation || pol.name }}
+            <v-tooltip bottom>
+              <template #activator="{ on, attrs }">
+                <!-- this is a dreadful cheat; without it the close icon becomes unreadable -->
+                <div
+                  @click="deletePolicy(pol.id)"
+                >
+                  <v-icon
+                    v-bind="attrs"
+                    small
+                    class="ml-1"
+                    v-on="on"
+                  >
+                    fa-times-circle
+                  </v-icon>
+                </div>
+              </template>
+              <span> Delete policy </span>
+            </v-tooltip>
+          </v-chip>
+        </v-chip-group>
+        <!-- end of standard list -->
+        <v-text-field
+          id="searchString"
+          v-model="searchString"
+          append-icon="fa-search"
+          label="Search policies"
+          outlined
+          clearable
+          clear-icon="fa-times-circle"
+          hide-details
+          class="pt-1 mr-10"
+          @click:clear="clearResults"
+        />
+        <!-- drop-down table for searchResults to go here -->
+        <v-data-table
+          v-if="searchResults.length > 0 && searchString && searchString.length > 0"
+          v-model="foundPolicies"
+          :headers="headers"
+          :items="searchResults"
+          :items-per-page="10"
+          :footer-props="{'items-per-page-options': [10, 20, 30, 40, 50]}"
+          item-key="id"
+          class="elevation-1 mr-10"
+          show-select
+          calculate-widths
+          mobile-breakpoint="900"
+          :search-input.sync="searchString"
+        >
+          <template #[`item.name`]="{ item }">
+            <div
+              v-if="item.name"
+            >
+              {{ item.name }}
+            </div>
+          </template>
+          <template #[`item.abbreviation`]="{ item }">
+            <div
+              v-if="item.abbreviation"
+            >
+              {{ item.abbreviation }}
+            </div>
+          </template>
+        </v-data-table>
+        <!-- end of temp results data table -->
+      </v-col>
+    </v-row>
+    <!-- end of policy query -->
     <!-- question options -->
     <v-row
       class="align-stretch justify-center fill-height"
@@ -453,6 +540,26 @@ export default {
       this.$store.commit('navigationStore/setComplianceState', names.join(', '));
       await this.fetchMultiTagData(query);
       _module.loading = false;
+    },
+    async foundPolicies(val) {
+      let _module = this;
+      _module.loading = true;
+      let ids = [];
+      let names = [];
+      val.forEach(function(format) {
+        ids.push(format.id);
+        names.push(format.name);
+      })
+      let query = _module.getQueryParams;
+      if (ids.length > 0) {
+        query.policyRecommendations = ids;
+      }
+      else {
+        delete query.policyRecommendations;
+      }
+      this.$store.commit('navigationStore/setPolicyComplianceState', names.join(', '));
+      await this.fetchMultiTagData(query);
+      _module.loading = false;
     }
   },
   mounted() {
@@ -478,6 +585,8 @@ export default {
         this.clear = true;
         this.$store.commit('navigationStore/clearPreviousNavigation', `/${this.$route.params.id}`);
         this.$store.commit('navigationStore/sliceBreadcrumb', `/${this.$route.params.id}`);
+        this.foundPolicies = [];
+        this.foundModelFormats = [];
       }
       else {
         this.clear = false;
@@ -497,6 +606,7 @@ export default {
         // Fails on initial screen because getRouteQuery hasn't been defined.
         previousQuery = {};
       }
+
       // Sometimes the previous location could be something like "/refine"
       let previousLocation = Number.parseInt(this.getPreviousLocation.replace('/',''));
       let currentLocation = Number.parseInt(this.$route.params.id);
@@ -550,6 +660,16 @@ export default {
           query['dataFormatsAndTerminologies'] = ids;
           this.$store.commit('navigationStore/setComplianceState', names.join(', '));
         }
+        if (this.foundPolicies.length > 0) {
+          let ids = [];
+          let names = [];
+          this.foundPolicies.forEach(function(format) {
+            ids.push(format.id);
+            names.push(format.name);
+          })
+          query['policyRecommendations'] = ids;
+          this.$store.commit('navigationStore/setPolicyComplianceState', names.join(', '));
+        }
         // Merge the previous query in case we're coming from a page where data have already been calculated.
         let existingQueryCopy = JSON.parse(JSON.stringify(this.getQueryParams));
         let mergedQuery = { ...existingQueryCopy, ...query };
@@ -591,7 +711,7 @@ export default {
     async getResults(queryString) {
       // A different query is run depending on whether hasTagsQuery or hasModelFormatQuery is true.
       let _module = this;
-      if (_module.hasModelFormatQuery) {
+      if (_module.hasModelFormatQuery || _module.hasPolicyQuery) {
         let queryCopy = JSON.parse(JSON.stringify(this.searchQuery));
         let filterCopy = JSON.parse(JSON.stringify(multiTagFilter));
         if (queryString) {
@@ -637,9 +757,6 @@ export default {
           _module.tags = tags.concat(parents);
         }
       }
-      else if (_module.hasPolicyQuery) {
-        // TODO: Complete this once the corresponding query and search indexes are available.
-      }
     },
     clearResults() {
       this.loading = false;
@@ -683,6 +800,9 @@ export default {
     },
     deleteStandard(standardId) {
       this.foundModelFormats = this.foundModelFormats.filter(el => el.id !== standardId);
+    },
+    deletePolicy(policyId) {
+      this.foundPolicies = this.foundPolicies.filter(el => el.id !== policyId);
     },
     goToResults() {
       this.$store.commit('navigationStore/addBreadcrumb', this.currentBreadcrumb);

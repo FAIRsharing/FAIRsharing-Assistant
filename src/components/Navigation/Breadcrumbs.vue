@@ -113,7 +113,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('navigationStore', ["getCompliantWith", "getBreadcrumbs"]),
+    ...mapGetters('navigationStore', ["getCompliantWith", "getCompliantWithPolicy", "getBreadcrumbs"]),
     ...mapGetters('multiTagsStore', ["getCurrentRegistry", "getQueryParams"]),
   },
   watch: {
@@ -183,6 +183,9 @@ export default {
     formatBreadcrumb(crumb) {
       if (this.getCompliantWith && crumb.text.includes('FORMAT')) {
         return crumb.text.replace("FORMAT", this.getCompliantWith);
+      }
+      if (this.getCompliantWithPolicy && crumb.text.includes('POLICY')) {
+        return crumb.text.replace("POLICY", this.getCompliantWithPolicy);
       }
       if (this.getCurrentRegistry && crumb.text.includes('Resource type')) {
         return crumb.text.replace('...', '');

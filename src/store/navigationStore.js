@@ -1,6 +1,7 @@
 const state = {
   previousLocation: null,
   compliantWith: null,
+  compliantWithPolicy: null,
   breadcrumbs: {},
   routeQueries: {}
 }
@@ -11,6 +12,9 @@ const mutations = {
   },
   setComplianceState(state, compliantWith) {
     state.compliantWith = compliantWith;
+  },
+  setPolicyComplianceState(state, compliantWithPolicy) {
+    state.compliantWithPolicy = compliantWithPolicy;
   },
   addBreadcrumb(state, breadcrumb) {
     state.breadcrumbs[breadcrumb.link] = breadcrumb;
@@ -37,10 +41,12 @@ const mutations = {
     state.routeQueries[link] = query;
   },
   clearPreviousNavigation(state, link) {
-    let posNum = Number.parseInt(link.replace('/',''));
+    let seen = false;
     Object.keys(state.routeQueries).forEach(function(key) {
-      let keyPos = Number.parseInt(key.replace('/',''));
-      if (keyPos > posNum) {
+      if (key.replace('/','') === link.replace('/','')) {
+        seen = true;
+      }
+      if (seen) {
         delete state.routeQueries[key];
       }
     })
@@ -48,6 +54,7 @@ const mutations = {
   clearNavigation(state) {
     state.previousLocation = null;
     state.compliantWith = null;
+    state.compliantWithPolicy = null;
     state.breadcrumbs = {};
     state.routeQueries = {}
   }
@@ -62,6 +69,9 @@ const getters = {
   },
   getCompliantWith(state) {
     return state.compliantWith
+  },
+  getCompliantWithPolicy(state) {
+    return state.compliantWithPolicy
   },
   getBreadcrumbs(state) {
     return state.breadcrumbs
