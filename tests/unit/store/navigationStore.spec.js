@@ -172,6 +172,7 @@ describe('Navigation store methods', () => {
       previousLocation: null,
       compliantWith: null,
       compliantWithPolicy: null,
+      role: null,
       breadcrumbs: {},
       routeQueries: {}
     }
@@ -182,6 +183,12 @@ describe('Navigation store methods', () => {
   it("can get previous location when that's empty", () => {
     expect(getters.getPreviousLocation(state)).toEqual('/0');
   });
+
+  it('can get and set role', () => {
+    expect(getters.getRole(state)).toBe(null);
+    mutations.setRole(state, "Lord High Executioner");
+    expect(getters.getRole(state)).toEqual("Lord High Executioner");
+  })
 
 
 })

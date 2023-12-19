@@ -88,13 +88,14 @@
 </template>
 
 <script>
-
+import stringUtils from "@/utils/stringUtils";
 import questionSets from "@/data/questionPageData.json";
 import summaries from "@/data/navigationSummary.json";
 import {mapGetters} from "vuex";
 
 export default {
   name: 'Breadcrumbs',
+  mixins: [ stringUtils ],
   data(){
     return {
       crumbRoot: {
@@ -113,8 +114,8 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('navigationStore', ["getCompliantWith", "getCompliantWithPolicy", "getBreadcrumbs"]),
-    ...mapGetters('multiTagsStore', ["getCurrentRegistry", "getQueryParams"]),
+    ...mapGetters('navigationStore', ["getCompliantWith", "getCompliantWithPolicy", "getBreadcrumbs", "getRole"]),
+    ...mapGetters('multiTagsStore', ["getCurrentRegistry", "getQueryParams", "getFairSharingRecords"])
   },
   watch: {
     '$route'() {
@@ -210,7 +211,14 @@ export default {
       }
     },
     getSummaryText() {
-      let key = String(this.$route.params.id);
+      // Questions have an ID...
+      let key;
+      if (this.$route.path === '/refine') {
+        key = 'refine'
+      }
+      else {
+        key = String(this.$route.params.id)
+      }
       let text = summaries[key];
       if (!summaries[key]) {
         return null;
@@ -225,7 +233,35 @@ export default {
           text = text.replace('STANDARD_4', 'You have not selected any relevant standards for your data')
         }
       }
+      // These items may appear in more than one place.
+      if (text.includes('COUNT')) {
+        text = text.replace('COUNT', this.getFairSharingRecords.length);
+      }
+      if (text.includes('FILTERS')) {
+        text = text.replace('FILTERS', `${this.prepareFilterSummary()}`)
+      }
+      if (text.includes('ROLE')) {
+        text = text.replace('ROLE', `The FAIRsharing Assistant is set to the <b>${this.getRole}</b> role.`);
+      }
+      else {
+        text = text.replace('ROLE', '');
+      }
       return text;
+    },
+    prepareFilterSummary() {
+      let _module = this;
+      let output = '';
+      Object.keys(_module.getQueryParams).forEach(function(key) {
+        let value;
+        try {
+          value = _module.getQueryParams[key].join(', ');
+        }
+        catch {
+          value = _module.getQueryParams[key];
+        }
+        output = output + `${_module.humaniseKey(key)}: ${value}<br>`
+      });
+      return output;
     }
   }
 }

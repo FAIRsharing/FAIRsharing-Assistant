@@ -318,7 +318,7 @@
               'cardXtraLarge pa-4': $vuetify.breakpoint.xlOnly,
             }
           ]"
-          @click="processLink(item.link, item.query, item.message, item.refined, item.breadcrumbMod)"
+          @click="processLink(item.link, item.query, item.message, item.refined, item.breadcrumbMod, item.role)"
         >
           <div class="d-flex align-center">
             <v-card-text
@@ -643,7 +643,7 @@ export default {
         this.resetMultiTags();
       }
     },
-    async processLink(link, query, message, refined, breadcrumbMod) {
+    async processLink(link, query, message, refined, breadcrumbMod, role) {
       // Always stash the breadcrumb.
       // Some questions have a query that must be run when the question is clicked.
       if (!(Object.keys(query).length === 0)) {
@@ -686,6 +686,10 @@ export default {
       // Save where we've just been.
       let path = "/" + this.$route.params.id;
       this.$store.commit('navigationStore/setNavigationState', path);
+
+      if (role) {
+        this.$store.commit('navigationStore/setRole', role);
+      }
 
       // Before leaving the page, stash the query for this particular page.
       // In some cases a question may need to execute a query on leaving, but clear the results of that on returning,

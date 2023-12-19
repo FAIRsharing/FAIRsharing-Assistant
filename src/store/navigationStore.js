@@ -2,6 +2,7 @@ const state = {
   previousLocation: null,
   compliantWith: null,
   compliantWithPolicy: null,
+  role: null,
   breadcrumbs: {},
   routeQueries: {}
 }
@@ -15,6 +16,9 @@ const mutations = {
   },
   setPolicyComplianceState(state, compliantWithPolicy) {
     state.compliantWithPolicy = compliantWithPolicy;
+  },
+  setRole(state, role) {
+    state.role = role;
   },
   addBreadcrumb(state, breadcrumb) {
     state.breadcrumbs[breadcrumb.link] = breadcrumb;
@@ -55,6 +59,7 @@ const mutations = {
     state.previousLocation = null;
     state.compliantWith = null;
     state.compliantWithPolicy = null;
+    state.role = null;
     state.breadcrumbs = {};
     state.routeQueries = {}
   }
@@ -78,6 +83,9 @@ const getters = {
   },
   getRouteQuery(state) {
     return state.routeQueries;
+  },
+  getRole(state) {
+    return state.role;
   }
 }
 

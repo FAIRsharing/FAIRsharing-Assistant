@@ -20,7 +20,8 @@ const vuetify = new Vuetify({'icons':icons});
 
 multiTagsStore.getters = {
   getQueryParams: () => { return {} },
-  getCurrentRegistry: () => { return 'standard '}
+  getCurrentRegistry: () => { return 'standard '},
+  getFairSharingRecords: () => { return [{}, {}] }
 }
 
 navigationStore.getters = {
