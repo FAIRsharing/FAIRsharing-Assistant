@@ -123,12 +123,12 @@
         "text": "Deposit data"
       },
       "title": "Do you want to...?",
-      "footer": "If we already have information from your funder or journal we can use that to refine your search.",
+      "footer": "Apply additional filters to reduce the size of your result set. If you are happy with the current result set, please jump straight to the results page.",
       "questions": [
         {
           "id": 1,
           "title": "question_2_1",
-          "question": "Choose a repository according to my own needs",
+          "question": "Filter my results",
           "color": "internal",
           "link": "/3",
           "query": {}
