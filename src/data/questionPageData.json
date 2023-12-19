@@ -123,12 +123,12 @@
         "text": "Deposit data"
       },
       "title": "Do you want to...?",
-      "footer": "Apply additional filters to reduce the size of your result set. If you are happy with the current result set, please jump straight to the results page.",
+      "footer": "Apply additional filters to reduce the size of your result set. If you'd like to see all available databases, please jump straight to the results page.",
       "questions": [
         {
           "id": 1,
           "title": "question_2_1",
-          "question": "Filter my results",
+          "question": "Start filtering the results",
           "color": "internal",
           "link": "/3",
           "query": {}
@@ -136,7 +136,7 @@
         {
           "id": 2,
           "title": "question_2_2",
-          "question": "Jump straight to the results",
+          "question": "View all results",
           "color": "internal",
           "link": "/results",
           "query": {}
@@ -409,14 +409,6 @@
           "question": "Continue",
           "color": "internal",
           "link": "/11",
-          "query": {}
-        },
-        {
-          "id": 2,
-          "title": "question_10_2",
-          "question": "Skip further questions",
-          "color": "special_internal",
-          "link": "/researchfields",
           "query": {}
         }
       ],

@@ -211,7 +211,21 @@ export default {
     },
     getSummaryText() {
       let key = String(this.$route.params.id);
-      return summaries[key];
+      let text = summaries[key];
+      if (!summaries[key]) {
+        return null;
+      }
+      // There will be various places in the default text where substitutions must occur depending on the user's previous
+      // choices (similar to what's been done with breadcrumbs, above).
+      if (text.includes('STANDARD_4')) {
+        if (this.getCompliantWith) {
+          text = text.replace('STANDARD_4', `You have selected the following relevant standards <b>${this.getCompliantWith}</b>`)
+        }
+        else {
+          text = text.replace('STANDARD_4', 'You have not selected any relevant standards for your data')
+        }
+      }
+      return text;
     }
   }
 }
