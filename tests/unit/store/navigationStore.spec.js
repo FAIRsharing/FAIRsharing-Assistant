@@ -166,6 +166,7 @@ describe('Navigation store methods', () => {
     )
   });
 
+
   it("can clear navigation state", () => {
     let returnVal = {
       previousLocation: null,
@@ -177,5 +178,10 @@ describe('Navigation store methods', () => {
     mutations.clearNavigation(state);
     expect(state).toStrictEqual(returnVal);
   })
+
+  it("can get previous location when that's empty", () => {
+    expect(getters.getPreviousLocation(state)).toEqual('/0');
+  });
+
 
 })

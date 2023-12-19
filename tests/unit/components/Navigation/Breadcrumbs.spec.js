@@ -33,6 +33,7 @@ navigationStore.getters = {
     ]
   },
   getCompliantWith: () => { return "GenbankSequenceFormat" },
+  getCompliantWithPolicy: () => { return "Nature Genetics" }
 }
 
 let store = new Vuex.Store({

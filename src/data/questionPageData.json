@@ -99,7 +99,7 @@
         {
           "id": 2,
           "title": "question_1_2",
-          "question": "Find a database, standard or policy.",
+          "question": "Find a database, standard or policy",
           "color": "internal",
           "link": "/8",
           "query": {}
@@ -399,7 +399,7 @@
         "text": "Search policies"
       },
       "title": "With which policy do you want to comply?",
-      "footer": "Start typing the name of your policy. If we don't have it, or the question isn't relevant to you, choose 'continue' without selecting any policy.",
+      "footer": "Start typing the name of your policy.",
       "hasPolicyQuery": true,
       "clear": true,
       "questions": [
@@ -409,6 +409,14 @@
           "question": "Continue",
           "color": "internal",
           "link": "/11",
+          "query": {}
+        },
+        {
+          "id": 2,
+          "title": "question_10_2",
+          "question": "Skip further questions",
+          "color": "special_internal",
+          "link": "/researchfields",
           "query": {}
         }
       ],

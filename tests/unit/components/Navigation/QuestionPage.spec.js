@@ -33,7 +33,25 @@ multiTagsStore.getters = {
 navigationStore.mutations = {
   setNavigationState: jest.fn(),
   clearPreviousNavigation: jest.fn(),
-  sliceBreadcrumb: jest.fn()
+  sliceBreadcrumb: jest.fn(),
+  setPolicyComplianceState: jest.fn(),
+  setComplianceState: jest.fn()
+
+}
+
+navigationStore.getters = {
+  getBreadcrumbs: () => {
+    return [
+      {
+        link: '/1',
+        text: 'a link'
+      }
+    ]
+  },
+  getCompliantWith: () => { return "GenbankSequenceFormat" },
+  getCompliantWithPolicy: () => { return "Nature Genetics" },
+  getPreviousLocation: () => { return "/99" },
+  getRouteQuery: () => { return { "this": "that" }}
 }
 
 let store = new Vuex.Store({

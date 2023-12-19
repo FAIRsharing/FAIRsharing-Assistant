@@ -18,6 +18,14 @@
       fluid
       class="pa-5"
     >
+      <v-btn
+        class="mb-2"
+        color="primary"
+        small
+        @click="downloadResults()"
+      >
+        Download Results
+      </v-btn>
       <v-data-iterator
         :items="records"
         :items-per-page.sync="itemsPerPage"
@@ -134,12 +142,6 @@
         <!-- data section ends -->
         <!-- footer ends -->
       </v-data-iterator>
-      <v-btn
-        color="primary"
-        @click="downloadResults()"
-      >
-        Download Results
-      </v-btn>
     </v-container>
   </div>
 </template>
