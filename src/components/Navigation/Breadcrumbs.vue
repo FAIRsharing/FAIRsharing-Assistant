@@ -221,6 +221,9 @@ export default {
       if (this.$route.path === '/refine') {
         key = 'refine'
       }
+      else if (this.$route.path === '/results') {
+        key = 'results'
+      }
       else {
         key = String(this.$route.params.id)
       }
@@ -246,7 +249,12 @@ export default {
         text = text.replace('FILTERS', `${this.prepareFilterSummary()}`)
       }
       if (text.includes('ROLE')) {
-        text = text.replace('ROLE', `The FAIRsharing Assistant is set to the <b>${this.getRole}</b> role.`);
+        if (this.getRole === 'Researcher') {
+          text = text.replace('ROLE', `The FAIRsharing Assistant is set to the <b>${this.getRole}</b> role. We have restricted the available databases to those appropriate for data deposition, which means they: are repositories or knowledgebases/repositories, have a life cycle status of Ready or In development.`);
+        }
+        else {
+          text = text.replace('ROLE', `The FAIRsharing Assistant is set to the <b>${this.getRole}</b> role.`);
+        }
       }
       else {
         text = text.replace('ROLE', '');
