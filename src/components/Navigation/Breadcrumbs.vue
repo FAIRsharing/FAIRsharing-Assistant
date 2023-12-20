@@ -185,8 +185,13 @@ export default {
       if (this.getCompliantWith && crumb.text.includes('FORMAT')) {
         return crumb.text.replace("FORMAT", this.getCompliantWith);
       }
-      if (this.getCompliantWithPolicy && crumb.text.includes('POLICY')) {
-        return crumb.text.replace("POLICY", this.getCompliantWithPolicy);
+      if (crumb.text.includes('POLICY')) {
+        if (this.getCompliantWithPolicy) {
+          return crumb.text.replace("POLICY", this.getCompliantWithPolicy);
+        }
+        else {
+          return "No policy selected!";
+        }
       }
       if (this.getCurrentRegistry && crumb.text.includes('Resource type')) {
         return crumb.text.replace('...', '');
