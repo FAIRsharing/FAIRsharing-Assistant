@@ -102,7 +102,7 @@
                     :record="item"
                   />
                   <a
-                    :href="fairSharingURL + getRecordLink(item)"
+                    :href="fairSharingURL + '/' + getRecordLink(item)"
                     target="_blank"
                     class="ml-10"
                   >
