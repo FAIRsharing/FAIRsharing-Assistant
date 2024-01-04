@@ -34,10 +34,10 @@
         {
           "id": 3,
           "title": "question_0_3",
-          "question": "Journal publisher (TODO)",
+          "question": "Journal publisher",
           "role": "Journal publisher",
           "color": "internal",
-          "link": "/",
+          "link": "/13",
           "query": {}
         },
         {
@@ -479,6 +479,129 @@
           "color": "internal",
           "link": "/results",
           "query": {}
+        }
+      ]
+    },
+    {
+      "id": "question_13",
+      "path": 13,
+      "breadcrumb": {
+        "id": "question_13_crumb",
+        "link": "/13",
+        "text": "Journal publisher"
+      },
+      "title": "What do you need to do?",
+      "footer": "Currently, you can read how to create a policy record, or you could search for an existing resource.",
+      "questions": [
+        {
+          "id": 1,
+          "title": "question_13_1",
+          "question": "Create a policy record",
+          "color": "external",
+          "link": "https://fairsharing.gitbook.io/fairsharing/",
+          "query": {}
+        },
+        {
+          "id": 2,
+          "title": "question_13_1",
+          "question": "Find a resource",
+          "color": "internal",
+          "link": "/14",
+          "query": {}
+        }
+      ]
+    },
+    {
+      "id": "question_14",
+      "path": 14,
+      "breadcrumb": {
+        "id": "question_14_crumb",
+        "link": "/14",
+        "text": "Research areas: ..."
+      },
+      "title": "What broad research area is relevant to your data?",
+      "footer": "The broader the area you choose the more results you'll get. We suggest you start with a high-level subject area and refine as necessary. If you're not sure what to put here either just start typing or look at our <a href='https://fairsharing.org/browse/subject' _target='blank'>subject hierarchy</a> for inspiration. If you're not interested in a particular area then continue without selecting anything. If you want repostitories that take data from any research area then type 'Subject Agnostic'.",
+      "hasTagsQuery": true,
+      "questions": [
+        {
+          "id": 1,
+          "title": "question_14_1",
+          "question": "Continue",
+          "color": "internal",
+          "link": "/15",
+          "query": {}
+        }
+      ]
+    },
+    {
+      "id": "question_15",
+      "path": 15,
+      "breadcrumb": {
+        "id": "question_15_crumb",
+        "link": "/15",
+        "text": "Resource type: ..."
+      },
+      "title": "What type of resource are you interested in?",
+      "footer": "<b>Finding resources</b> helps you comply with policies, avoid duplication, and discover the organisations behind resources, e.g. for collaboration. Navigate the wealth of standards, databases and policies by selecting the attributes of those records most important to you.",
+      "questions": [
+        {
+          "id": 1,
+          "title": "question_15_1",
+          "question": "Standards",
+          "breadcrumbMod": " <b>standards</b>",
+          "color": "internal",
+          "link": "/refine",
+          "query": {
+            "fairsharingRegistry": ["standard"],
+            "recordType": [
+              "model_and_format",
+              "metric",
+              "terminology_artefact",
+              "reporting_guideline",
+              "identifier_schema"
+            ],
+            "status": ["ready", "in_development"]
+          },
+          "refined": true
+        },
+        {
+          "id": 2,
+          "title": "question_15_2",
+          "question": "Databases",
+          "breadcrumbMod": " <b>databases</b>",
+          "color": "internal",
+          "link": "/refine",
+          "query": {
+            "fairsharingRegistry": ["database"],
+            "recordType": [
+              "repository",
+              "knowledgebase",
+              "knowledgebase_and_repository"
+            ],
+            "status": ["ready", "in_development"]
+          },
+          "refined": true
+        },
+        {
+          "id": 3,
+          "title": "question_15_3",
+          "question": "Policies",
+          "breadcrumbMod": " <b>policies</b>",
+          "color": "internal",
+          "link": "/refine",
+          "query": {
+            "fairsharingRegistry": ["policy"],
+            "recordType": [
+              "journal",
+              "society",
+              "project",
+              "institution",
+              "journal_publisher",
+              "funder"
+            ],
+            "status": ["ready", "in_development"]
+          },
+          "refined": true
         }
       ]
     },

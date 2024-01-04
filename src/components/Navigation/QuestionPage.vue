@@ -370,7 +370,7 @@
             color="blue darken-1"
             text
             persistent
-            @click="lowResultsStoppage = false"
+            @click="lowResultsStoppage = false; iDontCare = true"
           >
             Continue
           </v-btn>
@@ -432,6 +432,7 @@ export default {
       title: '',
       footer: '',
       lowResultsStoppage: false,
+      iDontCare: false,
       currentBreadcrumb: null,
       // This is silly, but I was in a rush and had enough with fighting javascript;
       registrySwitch: {
@@ -492,7 +493,9 @@ export default {
       this.getQuestions();
     },
     getFairSharingRecords () {
-      if (this.getFairSharingRecords.length > 0 && this.getFairSharingRecords.length <= 10) {
+      if (this.getFairSharingRecords.length > 0
+          && this.getFairSharingRecords.length <= 10
+          && !this.iDontCare) {
         this.lowResultsStoppage = true;
       }
     },
@@ -644,6 +647,7 @@ export default {
       }
     },
     async processLink(link, query, message, refined, breadcrumbMod, role) {
+
       // Always stash the breadcrumb.
       // Some questions have a query that must be run when the question is clicked.
       if (!(Object.keys(query).length === 0)) {
@@ -683,6 +687,12 @@ export default {
         }
         this.loading = false;
       }
+
+      // Make the user go through this again if they got a low number of hits.
+      if (this.lowResultsStoppage && !this.iDontCare) {
+        return;
+      }
+
       // Save where we've just been.
       let path = "/" + this.$route.params.id;
       this.$store.commit('navigationStore/setNavigationState', path);
