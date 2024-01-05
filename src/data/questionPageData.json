@@ -157,7 +157,7 @@
         "link": "/3",
         "text": "According to own needs"
       },
-      "title": "Is your data in any particular format or tagged with an particular terminology?",
+      "title": "Are your data in any particular format or tagged with an particular terminology?",
       "footer": "Start typing the name of your format. If we don't have it, or the question isn't relevant to you, choose 'skip' without selecting any formats.",
       "hasModelFormatQuery": true,
       "questions": [

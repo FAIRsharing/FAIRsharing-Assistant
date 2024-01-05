@@ -621,8 +621,8 @@ export default {
       if (prevLength > 0 && (previousLocation > currentLocation || this.getPreviousLocation === '/refine')) {
         // Set up the selected tags. The store should be checked only if some were defined in the query.
         // If none are in the query then the store must be cleared (see 'else').
+        _module.watchRecordTags = false;
         if ('subjects' in previousQuery || 'domains' in previousQuery || 'userDefinedTags' in previousQuery || 'taxonomies' in previousQuery) {
-          _module.watchRecordTags = false;
           if (_module.getSelectedTags) {
             _module.getSelectedTags.forEach(function(tag) {
               if (_module.recordTags.filter(x => x.label === tag.label).length === 0) {
@@ -630,9 +630,19 @@ export default {
               }
             })
           }
-          _module.watchRecordTags = true;
+          // Should tags be cleared here (as in the else, below) also?
         }
-        // There are no selected tags so this store value should be cleared.
+        else {
+          _module.$store.commit('multiTagsStore/setSelectedTags', []);
+          _module.recordTags = [];
+        }
+        if ('dataFormatsAndTerminologies' in previousQuery) {
+          // TODO: Is any setup even necessary here?
+        }
+        else {
+          _module.$store.commit('navigationStore/setComplianceState', []);
+          _module.foundModelFormats = [];
+        }
 
         // Load the previous query.
         _module.searchQuery = previousQuery;
@@ -641,20 +651,15 @@ export default {
         await _module.fetchMultiTagData(_module.searchQuery);
         _module.loading = false;
 
-
         // We should be going backwards at this point
         // TODO: Find queries in the routeQuery store further advanced than the current click target, and clear them.
         // TODO: This could probably go in the store.
+        _module.watchRecordTags = true;
         this.$store.commit('navigationStore/clearPreviousNavigation', currentLocation);
       }
       else if (previousLocation > currentLocation || this.getPreviousLocation === 'refine') {
         // Empty query, so results should be cleared, but only whilst going backwards.
         this.resetMultiTags();
-      }
-      // The user has moved backwards to a point where record tags aren't defined, so they should be cleared.
-      if (prevLength === 0) {
-        _module.$store.commit('multiTagsStore/setSelectedTags', []);
-        _module.recordTags = [];
       }
     },
     /*
