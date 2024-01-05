@@ -31,6 +31,7 @@ const mutations = {
     // start and delete any including and after the destination.
     let seen = false;
     Object.keys(state.breadcrumbs).forEach(function(key) {
+      // This is the opposite way around from clearPreviousNavigation
       if (key === position) {
         seen = true;
       }
@@ -47,11 +48,12 @@ const mutations = {
   clearPreviousNavigation(state, link) {
     let seen = false;
     Object.keys(state.routeQueries).forEach(function(key) {
-      if (key.replace('/','') === link.replace('/','')) {
-        seen = true;
-      }
+      //if (key.replace('/','') === link.replace('/','')) {
       if (seen) {
         delete state.routeQueries[key];
+      }
+      if (key.replace('/','') === link) {
+        seen = true;
       }
     })
   },

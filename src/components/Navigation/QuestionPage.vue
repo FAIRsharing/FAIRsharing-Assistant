@@ -361,7 +361,7 @@
           Fewer than 10 {{ getCurrentRegistry }} records fit your criteria?
         </v-card-title>
         <v-card-text>
-          How would you like to proceed? Select "continue" to go back to an earlier step, or to add more filters. Or,
+          How would you like to proceed? Select "dismiss" to retry your selection. Or,
           you may go to the results.
         </v-card-text>
         <v-card-actions>
@@ -372,7 +372,7 @@
             persistent
             @click="lowResultsStoppage = false; iDontCare = true"
           >
-            Continue
+            Dismiss
           </v-btn>
           <v-btn
             color="blue darken-1"
@@ -571,6 +571,9 @@ export default {
   },
   methods: {
     ...mapActions('multiTagsStore', ['fetchMultiTagData', 'resetMultiTags']),
+    /*
+     * This is what's executed when the user arrives at a new question.
+     */
     async getQuestions() {
       this.searchString = null;
       let questionData = questionSets.questionSets.find(q => parseInt(q['path']) === parseInt(this.$route.params.id));
@@ -630,24 +633,34 @@ export default {
           _module.watchRecordTags = true;
         }
         // There are no selected tags so this store value should be cleared.
-        else {
-          _module.$store.commit('multiTagsStore/setSelectedTags', []);
-          _module.recordTags = [];
-        }
+
         // Load the previous query.
         _module.searchQuery = previousQuery;
         _module.$store.commit('multiTagsStore/setQueryParams', _module.searchQuery);
         _module.loading = true;
         await _module.fetchMultiTagData(_module.searchQuery);
         _module.loading = false;
+
+
+        // We should be going backwards at this point
+        // TODO: Find queries in the routeQuery store further advanced than the current click target, and clear them.
+        // TODO: This could probably go in the store.
+        this.$store.commit('navigationStore/clearPreviousNavigation', currentLocation);
       }
       else if (previousLocation > currentLocation || this.getPreviousLocation === 'refine') {
         // Empty query, so results should be cleared, but only whilst going backwards.
         this.resetMultiTags();
       }
+      // The user has moved backwards to a point where record tags aren't defined, so they should be cleared.
+      if (prevLength === 0) {
+        _module.$store.commit('multiTagsStore/setSelectedTags', []);
+        _module.recordTags = [];
+      }
     },
+    /*
+     * This code is executed when a user clicks on a question.
+     */
     async processLink(link, query, message, refined, breadcrumbMod, role) {
-
       // Always stash the breadcrumb.
       // Some questions have a query that must be run when the question is clicked.
       if (!(Object.keys(query).length === 0)) {

@@ -166,11 +166,6 @@ export default {
       }
     },
     handleNavigation(link) {
-      this.$store.commit('navigationStore/sliceBreadcrumb', link);
-      // We should be going backwards at this point
-      // TODO: Find queries in the routeQuery store further advanced than the current click target, and clear them.
-      // TODO: This could probably go in the store.
-      this.$store.commit('navigationStore/clearPreviousNavigation', link);
       let path;
       if (this.$route.params.id) {
         path = "/" + this.$route.params.id;
@@ -178,6 +173,10 @@ export default {
       else {
         path = this.$route.path;
       }
+      // TODO: Clearing things here means that we might not be able to get the necessary information on going back.
+      // TODO: Perhaps these could go into the QuestionPage.vue file, to be run after going there and recovering the query?
+      // TODO: Check that sliceBreadcrumb in particular is slicing correctly.
+      this.$store.commit('navigationStore/sliceBreadcrumb', link);
       this.$store.commit('navigationStore/setNavigationState', path);
       this.$router.push({path: link});
     },

@@ -158,10 +158,11 @@ describe('Navigation store methods', () => {
   });
 
   it("can remove route queries", () => {
-    mutations.clearPreviousNavigation(state, '/1');
+    mutations.clearPreviousNavigation(state, '1');
     expect(getters.getRouteQuery(state)).toStrictEqual(
       {
-        "/0": {}
+        "/0": {},
+        "/1": {}
       }
     )
   });
