@@ -615,10 +615,14 @@ export default {
 
       // Sometimes the previous location could be something like "/refine"
       let previousLocation = Number.parseInt(this.getPreviousLocation.replace('/',''));
+      // We're coming from results, refinement or whatever, that is named rather than numbered
+      if (isNaN(previousLocation)) {
+        previousLocation = 9999;
+      }
       let currentLocation = Number.parseInt(this.$route.params.id);
       let prevLength = Number.parseInt(Object.keys(previousQuery).length);
       // This is because the previous query needs only to be loaded when going backwards.
-      if (prevLength > 0 && (previousLocation > currentLocation || this.getPreviousLocation === '/refine')) {
+      if (prevLength > 0 && previousLocation > currentLocation) {
         // Set up the selected tags. The store should be checked only if some were defined in the query.
         // If none are in the query then the store must be cleared (see 'else').
         _module.watchRecordTags = false;
