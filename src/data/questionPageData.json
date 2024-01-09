@@ -440,7 +440,7 @@
         "text": "Linked to <b>POLICY</b>"
       },
       "title": "How would you like to proceed next?",
-      "footer": "Currently, the only option available is to view the results.",
+      "footer": "You may now view the results, or choose an area of research relevant to your work.",
       "questions": [
         {
           "id": 1,
