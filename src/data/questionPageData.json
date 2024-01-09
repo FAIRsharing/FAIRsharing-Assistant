@@ -43,28 +43,28 @@
         {
           "id": 4,
           "title": "question_0_4",
-          "question": "Librarian, trainer or data steward (TODO)",
+          "question": "Librarian, trainer or data steward (under construction)",
           "role": "Librarian, trainer or data steward",
-          "color": "internal",
-          "link": "/",
+          "color": "external",
+          "link": "https://zenodo.org/record/8186609/files/FAIRsharing%20for%20you_%20librarians%20and%20trainers.pdf?download=0",
           "query": {}
         },
         {
           "id": 5,
           "title": "question_0_5",
-          "question": "Society or alliance (TODO)",
+          "question": "Society or alliance (under construction)",
           "role": "Society or alliance",
-          "color": "internal",
-          "link": "/",
+          "color": "external",
+          "link": "https://zenodo.org/record/8186504/files/FAIRsharing%20for%20you_%20societies%20and%20alliances.pdf?download=0",
           "query": {}
         },
         {
           "id": 6,
           "title": "question_0_6",
-          "question": "Funder (TODO)",
+          "question": "Funder (under construction)",
           "role": "Funder",
-          "color": "internal",
-          "link": "/",
+          "color": "external",
+          "link": "https://zenodo.org/record/8186623/files/0%20-%20FAIRsharing%20for%20you_%20funders%20V1.1.pdf?download=0",
           "query": {}
         },
         {

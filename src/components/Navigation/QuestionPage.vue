@@ -645,10 +645,9 @@ export default {
         }
 
         // Load the previous query.
-        _module.searchQuery = previousQuery;
-        _module.$store.commit('multiTagsStore/setQueryParams', _module.searchQuery);
+        _module.$store.commit('multiTagsStore/setQueryParams', previousQuery);
         _module.loading = true;
-        await _module.fetchMultiTagData(_module.searchQuery);
+        await _module.fetchMultiTagData(previousQuery);
         _module.loading = false;
 
         // We should be going backwards at this point
