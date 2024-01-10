@@ -661,9 +661,28 @@ export default {
         _module.watchRecordTags = true;
         this.$store.commit('navigationStore/clearPreviousNavigation', currentLocation);
       }
-      else if (previousLocation > currentLocation || this.getPreviousLocation === 'refine') {
+      else if (previousLocation > currentLocation) {
         // Empty query, so results should be cleared, but only whilst going backwards.
         this.resetMultiTags();
+      }
+      // At this point the user is going _forwards_ but there still might be tags hanging around because they've
+      //  jumped backwards past e.g. a subject/domain selector and then forward again!
+      else {
+        if ('subjects' in this.getQueryParams ||
+            'domains' in this.getQueryParams ||
+            'userDefinedTags' in this.getQueryParams ||
+            'taxonomies' in this.getQueryParams) {
+          if (_module.getSelectedTags) {
+            _module.getSelectedTags.forEach(function (tag) {
+              if (_module.recordTags.filter(x => x.label === tag.label).length === 0) {
+                _module.recordTags.push(tag);
+              }
+            })
+          }
+        }
+        else {
+          _module.recordTags = [];
+        }
       }
     },
     /*
