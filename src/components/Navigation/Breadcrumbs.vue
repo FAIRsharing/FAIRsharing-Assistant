@@ -114,7 +114,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('navigationStore', ["getCompliantWith", "getCompliantWithPolicy", "getBreadcrumbs", "getRole"]),
+    ...mapGetters('navigationStore', ["getCompliantWith", "getCompliantWithPolicy", "getBreadcrumbs", "getRole", "getRestrict"]),
     ...mapGetters('multiTagsStore', ["getCurrentRegistry", "getQueryParams", "getFairSharingRecords"])
   },
   watch: {
@@ -226,7 +226,7 @@ export default {
       else {
         key = String(this.$route.params.id)
       }
-      let text = summaries[key];
+      let text = summaries[String(key)];
       if (!summaries[key]) {
         return null;
       }
@@ -248,7 +248,7 @@ export default {
         text = text.replace('FILTERS', `${this.prepareFilterSummary()}`)
       }
       if (text.includes('ROLE')) {
-        if (this.getRole === 'Researcher') {
+        if (this.getRole === 'Researcher' && this.getRestrict === 'database') {
           text = text.replace('ROLE', `The FAIRsharing Assistant is set to the <b>${this.getRole}</b> role. We have restricted the available databases to those appropriate for data deposition, which means they: are repositories or knowledgebases/repositories, have a life cycle status of Ready or In development.`);
         }
         else {

@@ -318,7 +318,7 @@
               'cardXtraLarge pa-4': $vuetify.breakpoint.xlOnly,
             }
           ]"
-          @click="processLink(item.link, item.query, item.message, item.refined, item.breadcrumbMod, item.role)"
+          @click="processLink(item.link, item.query, item.message, item.refined, item.breadcrumbMod, item.role, item.restrict)"
         >
           <div class="d-flex align-center">
             <v-card-text
@@ -434,6 +434,7 @@ export default {
       lowResultsStoppage: false,
       iDontCare: false,
       currentBreadcrumb: null,
+      restrict: null,
       // This is silly, but I was in a rush and had enough with fighting javascript;
       registrySwitch: {
         database: 'Database',
@@ -668,7 +669,11 @@ export default {
     /*
      * This code is executed when a user clicks on a question.
      */
-    async processLink(link, query, message, refined, breadcrumbMod, role) {
+    async processLink(link, query, message, refined, breadcrumbMod, role, restrict) {
+      if (restrict) {
+        this.$store.commit('navigationStore/setRestrict', restrict);
+      }
+
       // Always stash the breadcrumb.
       // Some questions have a query that must be run when the question is clicked.
       if (!(Object.keys(query).length === 0)) {

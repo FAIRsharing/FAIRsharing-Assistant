@@ -100,7 +100,8 @@
             "recordType": ["repository", "knowledgebase_and_repository"],
             "status": ["ready", "in_development"]
           },
-          "refined": true
+          "refined": true,
+          "restrict": "database"
         },
         {
           "id": 2,

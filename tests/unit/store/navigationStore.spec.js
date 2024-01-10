@@ -27,7 +27,8 @@ describe('Navigation store methods', () => {
       "/1": {},
     },
     compliantWith: null,
-    compliantWithPolicy: null
+    compliantWithPolicy: null,
+    restrict: null
   };
 
   it("can run setNavigationState mutation", () => {
@@ -175,7 +176,8 @@ describe('Navigation store methods', () => {
       compliantWithPolicy: null,
       role: null,
       breadcrumbs: {},
-      routeQueries: {}
+      routeQueries: {},
+      restrict: null
     }
     mutations.clearNavigation(state);
     expect(state).toStrictEqual(returnVal);
@@ -189,6 +191,12 @@ describe('Navigation store methods', () => {
     expect(getters.getRole(state)).toBe(null);
     mutations.setRole(state, "Lord High Executioner");
     expect(getters.getRole(state)).toEqual("Lord High Executioner");
+  })
+
+  it('can get and set restrict', () => {
+    expect(getters.getRestrict(state)).toBe(null);
+    mutations.setRestrict(state, "policy");
+    expect(getters.getRestrict(state)).toEqual("policy");
   })
 
 

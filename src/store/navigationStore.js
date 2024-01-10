@@ -4,10 +4,14 @@ const state = {
   compliantWithPolicy: null,
   role: null,
   breadcrumbs: {},
-  routeQueries: {}
+  routeQueries: {},
+  restrict: null
 }
 
 const mutations = {
+  setRestrict(state, restrict) {
+    state.restrict = restrict;
+  },
   setNavigationState(state, location) {
     state.previousLocation = location;
   },
@@ -63,7 +67,8 @@ const mutations = {
     state.compliantWithPolicy = null;
     state.role = null;
     state.breadcrumbs = {};
-    state.routeQueries = {}
+    state.routeQueries = {};
+    state.restrict = null;
   }
 }
 
@@ -88,6 +93,9 @@ const getters = {
   },
   getRole(state) {
     return state.role;
+  },
+  getRestrict(state) {
+    return state.restrict;
   }
 }
 
