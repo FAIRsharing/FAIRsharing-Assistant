@@ -756,7 +756,9 @@ export default {
       if (breadcrumbMod) {
         this.currentBreadcrumb.text = this.currentBreadcrumb.text + breadcrumbMod;
       }
-      this.$store.commit('navigationStore/addBreadcrumb', this.currentBreadcrumb);
+      if (this.currentBreadcrumb.text !== 'Finished!') {
+        this.$store.commit('navigationStore/addBreadcrumb', this.currentBreadcrumb);
+      }
       // Now the links.
       // In this case, the link is to an external site.
       if (link.match(/^http/)) {
