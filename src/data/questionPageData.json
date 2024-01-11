@@ -492,7 +492,7 @@
         "text": "Journal publisher"
       },
       "title": "What do you need to do?",
-      "footer": "Currently, you can read how to create a policy record, or you could search for an existing resource.",
+      "footer": "Currently, you can read how to create a policy record, or you could search for existing resources. Creating a policy record with FAIRsharing makes your data policy discoverable by both humans and machines (<a href='https://blog.fairsharing.org/?p=451' target='_blank'>more information</a>). Searching for resources relevant to your organisation allows you to link databases and standards to your FAIRsharing policy record. These relationships can be revised over time by editing your policy record, allowing it to adapt to authors’ needs and community best practices.",
       "questions": [
         {
           "id": 1,
