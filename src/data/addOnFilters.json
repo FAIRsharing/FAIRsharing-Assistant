@@ -312,8 +312,8 @@
     "tooltip": "'Required' is used when the policy clearly states that sharing of research software is required and provides clarity on legitimate exceptions. 'Suggested' is used when sharing research software is only encouraged. 'Not Covered' is selected when the policy addresses this topic poorly or not at all. Otherwise, 'Other' is used."
   },
     {
-      "filterName": "DMP Development",
-      "filterQuery": "dmpDevelopment",
+      "filterName": "Mandated DMP Creation",
+      "filterQuery": "mandatedDmpCreation",
       "refineToggle": [],
       "options": [
         "required",
