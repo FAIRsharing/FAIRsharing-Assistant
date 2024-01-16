@@ -133,8 +133,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('multiTagsStore', ["getFairSharingRecords", "getQueryParams", "getSelectedTags"
-    ])
+    ...mapGetters('multiTagsStore', ["getFairSharingRecords", "getQueryParams", "getSelectedTags"])
   },
   watch: {
     getSelectedTags: {
@@ -173,6 +172,9 @@ export default {
       }
     },
     async searchString(val){
+      if (!val || val.length < 3) {
+        return;
+      }
       this.tagsLoading = true;
       this.tags = [];
       val = val.trim();
@@ -187,8 +189,8 @@ export default {
       _module.getSelectedTags.forEach(function(tag) {
         _module.recordTags.push(tag);
       })
-      _module.justMounted = false;
     }
+    _module.justMounted = false;
   },
   methods:{
     ...mapActions('multiTagsStore', ['fetchMultiTagData', 'resetMultiTags']),

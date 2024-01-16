@@ -25,6 +25,9 @@ multiTagsStore.getters = {
       registry: ['standard']
     }
   },
+  getCurrentRegistry: () => {
+    return "standard"
+  }
 }
 
 let store = new Vuex.Store({

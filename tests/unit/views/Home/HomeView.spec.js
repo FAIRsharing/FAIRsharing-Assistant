@@ -8,6 +8,13 @@ localVue.use(Vuex);
 
 const vuetify = new Vuetify();
 
+let $route = {
+  path: "/",
+  params: {
+    id: 0
+  }
+};
+
 
 describe("HomeView.vue", function(){
   let wrapper;
@@ -16,7 +23,8 @@ describe("HomeView.vue", function(){
     wrapper = shallowMount(HomeView, {
       localVue,
       vuetify,
-      stubs: ['router-link', 'router-view']
+      stubs: ['router-link', 'router-view'],
+      mocks: { $route }
     })
   });
 

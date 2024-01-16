@@ -26,8 +26,8 @@
           <p
             class="intro-para"
           >
-            <a :href="url">FAIRsharing</a> is a curated registry of data and metadata standards,
-            databases and data policies.
+            <a :href="url">FAIRsharing</a> is a curated informative and educational resource on data and metadata
+            standards, inter-related to databases and data policies.
           </p>
         </v-row>
         <v-row
@@ -60,6 +60,7 @@
 
 <script>
 import Jumbotron from "@/components/Navigation/Jumbotron";
+import {mapActions} from "vuex";
 
 export default {
   name: 'SplashScreen',
@@ -70,6 +71,12 @@ export default {
     return {
       url: process.env.VUE_APP_FAIRSHARING_URL
     }
+  },
+  mounted() {
+    this.resetMultiTags();
+  },
+  methods: {
+    ...mapActions('multiTagsStore', ['resetMultiTags']),
   }
 };
 </script>

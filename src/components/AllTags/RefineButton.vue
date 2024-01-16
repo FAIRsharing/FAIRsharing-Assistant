@@ -65,11 +65,10 @@ export default {
         queryParams['recordType'] = _module.getTypeArray(_module.choice);
       }
       _module.$store.commit('multiTagsStore/setQueryParams', queryParams);
-      _module.$store.commit('multiTagsStore/setCurrentRegistry', _module.choice);
       _module.$router.push(_module.link);
     },
     getTypeArray(registry) {
-      return this.recordTypes[registry].map(item => item.value);
+      return this.recordTypes[registry.toLowerCase()].map(item => item.value);
     }
   }
 }

@@ -1,0 +1,669 @@
+{
+  "questionSets": [
+    {
+      "id": "question_0",
+      "path": 0,
+      "breadcrumb": {
+        "id": "question_0_crumb",
+        "link": "/0",
+        "text": "Start"
+      },
+      "title": "Are you a...?",
+      "footer": "By selecting a role we can tailor the next few questions to best suit your needs. Our <a href='https://fairsharing.org/educational' _target='blank'>educational pages</a> have more information on this. We use 'resource' as a general term when describing the standards, databases, and policies present within FAIRsharing.",
+      "clear": true,
+      "questions": [
+        {
+          "id": 1,
+          "title": "question_0_1",
+          "question": "Researcher",
+          "role": "Researcher",
+          "color": "internal",
+          "image_icon": "",
+          "link": "/1",
+          "query": {}
+        },
+        {
+          "id": 2,
+          "title": "question_0_2",
+          "question": "Resource developer / data curator",
+          "role": "Resource developer / data curator",
+          "color": "internal",
+          "link": "/7",
+          "query": {}
+        },
+        {
+          "id": 3,
+          "title": "question_0_3",
+          "question": "Journal publisher",
+          "role": "Journal publisher",
+          "color": "internal",
+          "link": "/13",
+          "query": {}
+        },
+        {
+          "id": 4,
+          "title": "question_0_4",
+          "question": "Librarian, trainer or data steward (under construction)",
+          "role": "Librarian, trainer or data steward",
+          "color": "external",
+          "link": "https://zenodo.org/record/8186609/files/FAIRsharing%20for%20you_%20librarians%20and%20trainers.pdf?download=0",
+          "query": {}
+        },
+        {
+          "id": 5,
+          "title": "question_0_5",
+          "question": "Society or alliance (under construction)",
+          "role": "Society or alliance",
+          "color": "external",
+          "link": "https://zenodo.org/record/8186504/files/FAIRsharing%20for%20you_%20societies%20and%20alliances.pdf?download=0",
+          "query": {}
+        },
+        {
+          "id": 6,
+          "title": "question_0_6",
+          "question": "Funder (under construction)",
+          "role": "Funder",
+          "color": "external",
+          "link": "https://zenodo.org/record/8186623/files/0%20-%20FAIRsharing%20for%20you_%20funders%20V1.1.pdf?download=0",
+          "query": {}
+        },
+        {
+          "id": 7,
+          "title": "question_0_7",
+          "question": "Skip all questions",
+          "color": "special_internal",
+          "link": "/researchfields",
+          "query": {}
+        }
+      ]
+    },
+    {
+      "id": "question_1",
+      "path": 1,
+      "breadcrumb": {
+        "id": "question_1_crumb",
+        "link": "/1",
+        "text": "Researcher"
+      },
+      "title": "Do you want to...?",
+      "footer": "<b>Depositing data</b> helps to make it more discoverable, citable and reusable.<br/><b>Finding databases</b> helps you connect with the available data of interest to you, e.g. when writing a Data Management Plan.<br/><b>Finding standards</b> helps you discover the best way to structure and report your data.<br/><b>Find policies</b> relevant to you and see which databases and standards they mention.",
+      "clear": "true",
+      "questions": [
+        {
+          "id": 1,
+          "title": "question_1_1",
+          "question": "Deposit data",
+          "color": "internal",
+          "link": "/2",
+          "query": {
+            "fairsharingRegistry": ["database"],
+            "recordType": ["repository", "knowledgebase_and_repository"],
+            "status": ["ready", "in_development"]
+          },
+          "refined": true,
+          "restrict": "database"
+        },
+        {
+          "id": 2,
+          "title": "question_1_2",
+          "question": "Find a database, standard or policy",
+          "color": "internal",
+          "link": "/8",
+          "query": {}
+        },
+        {
+          "id": 3,
+          "title": "question_1_3",
+          "question": "Find resources linked to policies",
+          "color": "internal",
+          "link": "/10",
+          "query": {}
+        }
+      ]
+    },
+    {
+      "id": "question_2",
+      "path": 2,
+      "breadcrumb": {
+        "id": "question_2_crumb",
+        "link": "/2",
+        "text": "Deposit data"
+      },
+      "title": "Do you want to...?",
+      "footer": "Apply additional filters to reduce the size of your result set. If you'd like to see all available databases, please jump straight to the results page.",
+      "questions": [
+        {
+          "id": 1,
+          "title": "question_2_1",
+          "question": "Start filtering the results",
+          "color": "internal",
+          "link": "/3",
+          "query": {}
+        },
+        {
+          "id": 2,
+          "title": "question_2_2",
+          "question": "View all results",
+          "color": "internal",
+          "link": "/results",
+          "query": {}
+        }
+      ]
+    },
+    {
+      "id": "question_3",
+      "path": 3,
+      "breadcrumb": {
+        "id": "question_3_crumb",
+        "link": "/3",
+        "text": "According to own needs"
+      },
+      "title": "Are your data in any particular format or tagged with an particular terminology?",
+      "footer": "Start typing the name of your format. If we don't have it, or the question isn't relevant to you, choose 'skip' without selecting any formats.",
+      "hasModelFormatQuery": true,
+      "questions": [
+        {
+          "id": 1,
+          "title": "question_3_1",
+          "question": "Select",
+          "color": "internal",
+          "link": "/4",
+          "query": {}
+        },
+        {
+          "id": 2,
+          "title": "question_3_1",
+          "question": "Skip",
+          "color": "internal",
+          "link": "/5",
+          "query": {}
+        }
+      ],
+      "searchQuery": {
+        "fairsharingRegistry": ["standard"],
+        "recordType": ["model_and_format", "terminology_artefact"]
+      },
+      "refined": true
+    },
+    {
+      "id": "question_4",
+      "path": 4,
+      "breadcrumb": {
+        "id": "question_4_crumb",
+        "link": "/4",
+        "text": "Repository compliant with <b>FORMAT</b>"
+      },
+      "title": "How would you like to proceed next?",
+      "footer": "You can view the results you have or continue by choosing the area of research most relevant to your data.",
+      "questions": [
+        {
+          "id": 1,
+          "title": "question_4_1",
+          "question": "Choose research area",
+          "color": "internal",
+          "link": "/5",
+          "query": {}
+        },
+        {
+          "id": 2,
+          "title": "question_4_2",
+          "question": "Go to results",
+          "color": "internal",
+          "link": "/results",
+          "query": {}
+        }
+      ]
+    },
+    {
+      "id": "question_5",
+      "path": 5,
+      "breadcrumb": {
+        "id": "question_5_crumb",
+        "link": "/5",
+        "text": "Research areas: ..."
+      },
+      "title": "What broad research area is relevant to your data?",
+      "footer": "The broader the area you choose the more results you'll get. We suggest you start with a high-level subject area and refine as necessary. If you're not sure what to put here either just start typing or look at our <a href='https://fairsharing.org/browse/subject' _target='blank'>subject hierarchy</a> for inspiration. If you're not interested in a particular area then continue without selecting anything. If you want repostitories that take data from any research area then type 'Subject Agnostic'.",
+      "hasTagsQuery": true,
+      "questions": [
+        {
+          "id": 1,
+          "title": "question_5_1",
+          "question": "Continue",
+          "color": "internal",
+          "link": "/6",
+          "query": {}
+        }
+      ]
+    },
+    {
+      "id": "question_6",
+      "path": 6,
+      "breadcrumb": {
+        "id": "question_6_crumb",
+        "link": "/6",
+        "text": "Finished!"
+      },
+      "title": "No further questions!",
+      "footer": "At this point you can view the results so far or further refine your choice.",
+      "questions": [
+        {
+          "id": 1,
+          "title": "question_6_1",
+          "question": "View results",
+          "color": "internal",
+          "link": "/results",
+          "query": {}
+        },
+        {
+          "id": 2,
+          "title": "question_6_2",
+          "question": "Further refine your choice",
+          "color": "internal",
+          "link": "/refine",
+          "query": {}
+        }
+      ]
+    },
+    {
+      "id": "question_7",
+      "path": 7,
+      "breadcrumb": {
+        "id": "question_7_crumb",
+        "link": "/7",
+        "text": "Resource developer/data curator"
+      },
+      "title": "Do you want to...?",
+      "footer": "FAIRsharing offers rich and discoverable descriptions of standards, databases and policies, as well as relationship graphics to identify data resources similar (or related) to yours. <b>Finding resources</b> helps you comply with policies, avoid duplication, and discover the organisations behind resources, e.g. for collaboration. <b>Registering your resource(s) with FAIRsharing</b> allows you to describe the content, scope and relationships they have with the wider research landscape. <b>Incorporate FAIRsharing into your documentation</b>, presentations, policies and DMPs by using our educational materials.",
+      "clear": "true",
+      "questions": [
+        {
+          "id": 1,
+          "title": "question_7_1",
+          "question": "Find a resource",
+          "color": "internal",
+          "link": "/8",
+          "query": {}
+        },
+        {
+          "id": 2,
+          "title": "question_7_2",
+          "question": "Register your resources with FAIRsharing",
+          "color": "special_internal",
+          "link": "https://fairsharing.org/new",
+          "query": {}
+        },
+        {
+          "id": 3,
+          "title": "question_7_3",
+          "question": "Incorporate FAIRsharing into your documentation",
+          "color": "special_internal",
+          "link": "https://fairsharing.org/educational/",
+          "query": {}
+        }
+      ]
+    },
+    {
+      "id": "question_8",
+      "path": 8,
+      "breadcrumb": {
+        "id": "question_8_crumb",
+        "link": "/8",
+        "text": "Research areas: ..."
+      },
+      "title": "What broad research area is relevant to your data?",
+      "footer": "The broader the area you choose the more results you'll get. We suggest you start with a high-level subject area and refine as necessary. If you're not sure what to put here either just start typing or look at our <a href='https://fairsharing.org/browse/subject' _target='blank'>subject hierarchy</a> for inspiration. If you're not interested in a particular area then continue without selecting anything. If you want repostitories that take data from any research area then type 'Subject Agnostic'.",
+      "hasTagsQuery": true,
+      "questions": [
+        {
+          "id": 1,
+          "title": "question_8_1",
+          "question": "Continue",
+          "color": "internal",
+          "link": "/9",
+          "query": {}
+        }
+      ]
+    },
+    {
+      "id": "question_9",
+      "path": 9,
+      "breadcrumb": {
+        "id": "question_9_crumb",
+        "link": "/9",
+        "text": "Resource type: ..."
+      },
+      "title": "What type of resource are you interested in?",
+      "footer": "<b>Finding resources</b> helps you comply with policies, avoid duplication, and discover the organisations behind resources, e.g. for collaboration. Navigate the wealth of standards, databases and policies by selecting the attributes of those records most important to you.",
+      "questions": [
+        {
+          "id": 1,
+          "title": "question_9_1",
+          "question": "Standards",
+          "breadcrumbMod": " <b>standards</b>",
+          "color": "internal",
+          "link": "/refine",
+          "query": {
+            "fairsharingRegistry": ["standard"],
+            "recordType": [
+              "model_and_format",
+              "metric",
+              "terminology_artefact",
+              "reporting_guideline",
+              "identifier_schema"
+            ],
+            "status": ["ready", "in_development"]
+          },
+          "refined": true
+        },
+        {
+          "id": 2,
+          "title": "question_9_2",
+          "question": "Databases",
+          "breadcrumbMod": " <b>databases</b>",
+          "color": "internal",
+          "link": "/refine",
+          "query": {
+            "fairsharingRegistry": ["database"],
+            "recordType": [
+              "repository",
+              "knowledgebase",
+              "knowledgebase_and_repository"
+            ],
+            "status": ["ready", "in_development"]
+          },
+          "refined": true
+        },
+        {
+          "id": 3,
+          "title": "question_9_3",
+          "question": "Policies",
+          "breadcrumbMod": " <b>policies</b>",
+          "color": "internal",
+          "link": "/refine",
+          "query": {
+            "fairsharingRegistry": ["policy"],
+            "recordType": [
+              "journal",
+              "society",
+              "project",
+              "institution",
+              "journal_publisher",
+              "funder"
+            ],
+            "status": ["ready", "in_development"]
+          },
+          "refined": true
+        }
+      ]
+    },
+    {
+      "id": "question_10",
+      "path": 10,
+      "breadcrumb": {
+        "id": "question_10_crumb",
+        "link": "/10",
+        "text": "Search policies"
+      },
+      "title": "With which policy do you want to comply?",
+      "footer": "Start typing the name of your policy.",
+      "hasPolicyQuery": true,
+      "clear": true,
+      "questions": [
+        {
+          "id": 1,
+          "title": "question_10_1",
+          "question": "Continue",
+          "color": "internal",
+          "link": "/11",
+          "query": {}
+        }
+      ],
+      "searchQuery": {
+        "fairsharingRegistry": ["policy"],
+        "recordType": [
+          "journal",
+          "society",
+          "project",
+          "institution",
+          "journal_publisher",
+          "funder"
+        ]
+      },
+      "refined": true
+    },
+    {
+      "id": "question_11",
+      "path": 11,
+      "breadcrumb": {
+        "id": "question_11_crumb",
+        "link": "/11",
+        "text": "Linked to <b>POLICY</b>"
+      },
+      "title": "How would you like to proceed next?",
+      "footer": "You may now view the results, or choose an area of research relevant to your work.",
+      "questions": [
+        {
+          "id": 1,
+          "title": "question_11_1",
+          "question": "Go to results",
+          "color": "internal",
+          "link": "/results",
+          "query": {}
+        },
+        {
+          "id": 2,
+          "title": "question_11_2",
+          "question": "Choose a research area",
+          "color": "internal",
+          "link": "/12",
+          "query": {}
+        }
+      ]
+    },
+    {
+      "id": "question_12",
+      "path": 12,
+      "breadcrumb": {
+        "id": "question_12_crumb",
+        "link": "/12",
+        "text": "Research areas: ..."
+      },
+      "title": "What broad research area is relevant to your data?",
+      "footer": "The broader the area you choose the more results you'll get. We suggest you start with a high-level subject area and refine as necessary. If you're not sure what to put here either just start typing or look at our <a href='https://fairsharing.org/browse/subject' _target='blank'>subject hierarchy</a> for inspiration. If you're not interested in a particular area then continue without selecting anything. If you want repostitories that take data from any research area then type 'Subject Agnostic'.",
+      "hasTagsQuery": true,
+      "questions": [
+        {
+          "id": 1,
+          "title": "question_12_1",
+          "question": "Go to results",
+          "color": "internal",
+          "link": "/results",
+          "query": {}
+        }
+      ]
+    },
+    {
+      "id": "question_13",
+      "path": 13,
+      "breadcrumb": {
+        "id": "question_13_crumb",
+        "link": "/13",
+        "text": "Journal publisher"
+      },
+      "title": "What do you need to do?",
+      "footer": "Currently, you can read how to create a policy record, or you could search for existing resources. Creating a policy record with FAIRsharing makes your data policy discoverable by both humans and machines (<a href='https://blog.fairsharing.org/?p=451' target='_blank'>more information</a>). Searching for resources relevant to your organisation allows you to link databases and standards to your FAIRsharing policy record. These relationships can be revised over time by editing your policy record, allowing it to adapt to authors’ needs and community best practices.",
+      "questions": [
+        {
+          "id": 1,
+          "title": "question_13_1",
+          "question": "Create a policy record",
+          "color": "external",
+          "link": "https://fairsharing.gitbook.io/fairsharing/",
+          "query": {}
+        },
+        {
+          "id": 2,
+          "title": "question_13_1",
+          "question": "Find a resource",
+          "color": "internal",
+          "link": "/14",
+          "query": {}
+        }
+      ]
+    },
+    {
+      "id": "question_14",
+      "path": 14,
+      "breadcrumb": {
+        "id": "question_14_crumb",
+        "link": "/14",
+        "text": "Research areas: ..."
+      },
+      "title": "What broad research area is relevant to your data?",
+      "footer": "The broader the area you choose the more results you'll get. We suggest you start with a high-level subject area and refine as necessary. If you're not sure what to put here either just start typing or look at our <a href='https://fairsharing.org/browse/subject' _target='blank'>subject hierarchy</a> for inspiration. If you're not interested in a particular area then continue without selecting anything. If you want repostitories that take data from any research area then type 'Subject Agnostic'.",
+      "hasTagsQuery": true,
+      "questions": [
+        {
+          "id": 1,
+          "title": "question_14_1",
+          "question": "Continue",
+          "color": "internal",
+          "link": "/15",
+          "query": {}
+        }
+      ]
+    },
+    {
+      "id": "question_15",
+      "path": 15,
+      "breadcrumb": {
+        "id": "question_15_crumb",
+        "link": "/15",
+        "text": "Resource type: ..."
+      },
+      "title": "What type of resource are you interested in?",
+      "footer": "<b>Finding resources</b> helps you comply with policies, avoid duplication, and discover the organisations behind resources, e.g. for collaboration. Navigate the wealth of standards, databases and policies by selecting the attributes of those records most important to you.",
+      "questions": [
+        {
+          "id": 1,
+          "title": "question_15_1",
+          "question": "Standards",
+          "breadcrumbMod": " <b>standards</b>",
+          "color": "internal",
+          "link": "/refine",
+          "query": {
+            "fairsharingRegistry": ["standard"],
+            "recordType": [
+              "model_and_format",
+              "metric",
+              "terminology_artefact",
+              "reporting_guideline",
+              "identifier_schema"
+            ],
+            "status": ["ready", "in_development"]
+          },
+          "refined": true
+        },
+        {
+          "id": 2,
+          "title": "question_15_2",
+          "question": "Databases",
+          "breadcrumbMod": " <b>databases</b>",
+          "color": "internal",
+          "link": "/refine",
+          "query": {
+            "fairsharingRegistry": ["database"],
+            "recordType": [
+              "repository",
+              "knowledgebase",
+              "knowledgebase_and_repository"
+            ],
+            "status": ["ready", "in_development"]
+          },
+          "refined": true
+        },
+        {
+          "id": 3,
+          "title": "question_15_3",
+          "question": "Policies",
+          "breadcrumbMod": " <b>policies</b>",
+          "color": "internal",
+          "link": "/refine",
+          "query": {
+            "fairsharingRegistry": ["policy"],
+            "recordType": [
+              "journal",
+              "society",
+              "project",
+              "institution",
+              "journal_publisher",
+              "funder"
+            ],
+            "status": ["ready", "in_development"]
+          },
+          "refined": true
+        }
+      ]
+    },
+    {
+      "id": "question_99",
+      "path": 99,
+      "breadcrumb": {
+        "id": "question_99_crumb",
+        "text": "No results!",
+        "link": "/99"
+      },
+      "title": "No results!",
+      "footer": "No records were found matching the criteria you specified.",
+      "questions": [
+        {
+          "id": 1,
+          "title": "question_99_1",
+          "question": "Start again",
+          "color": "internal",
+          "link": "/0",
+          "query": {}
+        }
+      ]
+    },
+    {
+      "id": "question_100",
+      "path": 100,
+      "breadcrumb": {
+        "id": "question_100_crumb",
+        "text": "Finished!",
+        "link": "/100"
+      },
+      "title": "That's all...",
+      "footer": "...for now.",
+      "questions": [
+        {
+          "id": 1,
+          "title": "question_100_1",
+          "question": "View results",
+          "color": "internal",
+          "link": "/results",
+          "query": {}
+        }
+      ]
+    },
+    {
+      "id": "question_",
+      "path": 1000,
+      "breadcrumb": {},
+      "title": "",
+      "footer": "",
+      "questions": [
+        {
+          "id": 1,
+          "title": "question_",
+          "question": "",
+          "color": "internal",
+          "link": "/",
+          "query": {}
+        }
+      ]
+    }
+  ]
+}
