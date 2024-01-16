@@ -282,8 +282,8 @@
     "tooltip": "Required' is used when the policy clearly states that data sharing is required and provides clarity on legitimate exceptions. 'Suggested' is used when data sharing is only encouraged. 'Not Covered' is selected when the policy addresses this topic poorly or not at all. Otherwise, 'Other' is used."
   },
   {
-    "filterName": "Mandated metadata sharing",
-    "filterQuery": "mandatedMetadataSharing",
+    "filterName": "Sharing metadata",
+    "filterQuery": "sharingMetadata",
     "refineToggle": [],
     "options": [
       "required",
