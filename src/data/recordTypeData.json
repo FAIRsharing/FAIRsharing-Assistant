@@ -1,5 +1,5 @@
 {
-  "Database": [
+  "database": [
     {
       "label": "Knowledgebase",
       "value": "knowledgebase",
@@ -16,7 +16,7 @@
       "tooltip": "Knowledgebases and Repositories are databases that have features of both knowledgebases and repositories."
     }
   ],
-  "Standard": [
+  "standard": [
     {
       "label": "Model and format",
       "value": "model_and_format",
@@ -43,7 +43,7 @@
       "tooltip": "Identifier schemas (e.g. URLs, pURLs, DOIs) describe publicly-available identifiers from a central registry."
     }
   ],
-  "Policy": [
+  "policy": [
     {
       "label": "Journal",
       "value": "journal",
@@ -75,5 +75,5 @@
       "tooltip": "Funders often have strict requirements about the type of databases or standards that they wish their grantees to use."
     }
   ],
-  "Collection": [ ]
+  "collection": [ ]
 }

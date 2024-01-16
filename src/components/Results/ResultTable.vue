@@ -18,6 +18,14 @@
       fluid
       class="pa-5"
     >
+      <v-btn
+        class="mb-2"
+        color="primary"
+        small
+        @click="downloadResults()"
+      >
+        Download Results
+      </v-btn>
       <v-data-iterator
         :items="records"
         :items-per-page.sync="itemsPerPage"
@@ -25,7 +33,7 @@
         :search="search"
         :sort-by="sortBy.toLowerCase()"
         :sort-desc="sortDesc"
-        :footer-props="{'items-per-page-options': [10, 25, 50, 100]}"
+        :footer-props="{'items-per-page-options': [5, 10, 25, 50, 100]}"
       >
         <!-- headers start -->
         <template #header>
@@ -40,8 +48,8 @@
               flat
               solo-inverted
               hide-details
-              prepend-inner-icon="mdi-magnify"
-              label="Search"
+              prepend-inner-icon="mdi-filter"
+              label="Filter these results"
             />
             <template v-if="$vuetify.breakpoint.mdAndUp">
               <v-spacer />
@@ -51,7 +59,7 @@
                 solo-inverted
                 hide-details
                 :items="keys"
-                prepend-inner-icon="mdi-magnify"
+                prepend-inner-icon="mdi-sort"
                 label="Sort by"
               />
               <v-spacer />
@@ -94,7 +102,7 @@
                     :record="item"
                   />
                   <a
-                    :href="fairSharingURL + getRecordLink(item)"
+                    :href="fairSharingURL + '/' + getRecordLink(item)"
                     target="_blank"
                     class="ml-10"
                   >
@@ -216,6 +224,15 @@ export default {
       }
       _module.loading = false;
     },
+    downloadResults() {
+      var MIME_TYPE = "text/csv";
+      let data = ["name,abbreviation,URL\n"];
+      this.getFairSharingRecords.forEach((record) => {
+        data.push(`${record.name},${record.abbreviation || 'n/a'},https://fairsharing.org/${record.id}\n`);
+      })
+      var blob = new Blob(data, {type: MIME_TYPE});
+      window.location.href = window.URL.createObjectURL(blob);
+    }
   },
 };
 </script>

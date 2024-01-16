@@ -11,7 +11,9 @@ import {
   ServerError,
   Licence,
   AllTags,
-  RefineRegistry
+  RefineRegistry,
+  RefineFromQuestions,
+  Educational
 } from './routes'
 
 let routes = [
@@ -37,6 +39,11 @@ let routes = [
     component: RefineRegistry,
   },
   {
+    name: "RefineFromQuestions",
+    path: "/refine",
+    component: RefineFromQuestions,
+  },
+  {
     name: "ResultView",
     path: "/results",
     component: ResultView
@@ -45,6 +52,11 @@ let routes = [
     name: "Licence",
     path: "/licence",
     component: Licence,
+  },
+  {
+    name: "Educational",
+    path: "/educational/:text",
+    component: Educational
   },
   /* ERROR HANDLING */
   {

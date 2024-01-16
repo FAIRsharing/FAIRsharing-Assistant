@@ -10,6 +10,10 @@ describe("stringUtils.js", () => {
     expect(stringUtils.methods.normalString("snake_case")).toBe("Snake case");
   })
 
+  it("humaniseKey ", function () {
+    expect(stringUtils.methods.humaniseKey("camelCase")).toBe("Camel case");
+  })
+
   it("capitaliseText when type is 'taxonomy' ", function () {
     expect(stringUtils.methods.capitaliseText("snake case", "taxonomy")).toBe("Snake case");
   })

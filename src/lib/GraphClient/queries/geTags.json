@@ -5,6 +5,17 @@
     {
       "$ref": "keywords"
     },
-    "model"
+    "model",
+    {
+      "name": "parents",
+      "fields": [
+        "label",
+        "id",
+        "definitions",
+        "iri",
+        "synonyms"
+      ]
+    }
+
   ]
 }
