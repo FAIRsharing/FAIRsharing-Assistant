@@ -881,7 +881,9 @@ export default {
       parentsQuery.queryParam = { id: item[0].id }
       let parents = await graphClient.executeQuery(parentsQuery);
       parents['fairsharingRecord']['parentPolicies'].forEach(parent => {
-        _module.foundPolicies.push(parent)
+        if (!_module.foundPolicies.map((x) => x.id).includes(parent.id)) {
+          _module.foundPolicies.push(parent)
+        }
       })
     }
   }
