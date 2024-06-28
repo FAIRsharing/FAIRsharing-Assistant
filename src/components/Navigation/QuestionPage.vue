@@ -275,6 +275,7 @@
           calculate-widths
           mobile-breakpoint="900"
           :search-input.sync="searchString"
+          @input="itemSelected($event)"
         >
           <template #[`item.name`]="{ item }">
             <div
@@ -396,6 +397,7 @@ import Loaders from "@/components/Loaders/Loaders.vue";
 import multiTagFilter from "@/lib/GraphClient/queries/multiTagsFilter/multiTagsFilterBrief.json";
 import GraphClient from "@/lib/GraphClient/GraphClient";
 import tagsQuery from "@/lib/GraphClient/queries/geTags.json";
+import parentsQuery from "@/lib/GraphClient/queries/getParentPolicies.json"
 import Breadcrumbs from "@/components/Navigation/Breadcrumbs.vue";
 import ResultPreviewBanner from "@/components/Results/ResultPreviewBanner.vue";
 
@@ -868,6 +870,19 @@ export default {
     goToResults() {
       this.$store.commit('navigationStore/addBreadcrumb', this.currentBreadcrumb);
       this.$router.push('/results');
+    },
+    async itemSelected(item) {
+      /*
+       * This is the particular policy a user has just selected.
+       * A query to get all parent policies must be triggered and those parents (id, name, abbreviation)
+       * added to foundPolicies (and searchResults?).
+       */
+      let _module = this;
+      parentsQuery.queryParam = { id: item[0].id }
+      let parents = await graphClient.executeQuery(parentsQuery);
+      parents['fairsharingRecord']['parentPolicies'].forEach(parent => {
+        _module.foundPolicies.push(parent)
+      })
     }
   }
 };
