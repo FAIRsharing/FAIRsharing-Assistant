@@ -871,12 +871,13 @@ export default {
       this.$store.commit('navigationStore/addBreadcrumb', this.currentBreadcrumb);
       this.$router.push('/results');
     },
+
+    /**
+     * Method to fetch all the parents till the last found parent (id, name, abbreviation) traversing bottom to top of the selected policy
+     * @param item - Selected policy
+     * @return {Promise<void>} - Add the parents if not already present to foundPolicies array
+     */
     async itemSelected(item) {
-      /*
-       * This is the particular policy a user has just selected.
-       * A query to get all parent policies must be triggered and those parents (id, name, abbreviation)
-       * added to foundPolicies (and searchResults?).
-       */
       let _module = this;
       parentsQuery.queryParam = { id: item[0].id }
       let parents = await graphClient.executeQuery(parentsQuery);
