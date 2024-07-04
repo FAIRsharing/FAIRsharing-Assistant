@@ -186,7 +186,13 @@ export default {
       }
       if (crumb.text.includes('POLICY')) {
         if (this.getCompliantWithPolicy) {
-          return crumb.text.replace("POLICY", this.getCompliantWithPolicy);
+          let length = this.getCompliantWithPolicy.split(',').length;
+          if (length <= 2) {
+            return crumb.text.replace("POLICY", this.getCompliantWithPolicy);
+          }
+          else {
+            return crumb.text.replace("POLICY", `${length} policies`);
+          }
         }
         else {
           return "No policy selected!";
