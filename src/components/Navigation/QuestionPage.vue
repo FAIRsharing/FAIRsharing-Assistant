@@ -275,7 +275,7 @@
           calculate-widths
           mobile-breakpoint="900"
           :search-input.sync="searchString"
-          @input="itemSelected($event)"
+          @item-selected="itemSelected($event)"
         >
           <template #[`item.name`]="{ item }">
             <div
@@ -879,7 +879,7 @@ export default {
      */
     async itemSelected(item) {
       let _module = this;
-      parentsQuery.queryParam = { id: item[0].id }
+      parentsQuery.queryParam = { id: item.item.id }
       let parents = await graphClient.executeQuery(parentsQuery);
       parents['fairsharingRecord']['parentPolicies'].forEach(parent => {
         if (!_module.foundPolicies.map((x) => x.id).includes(parent.id)) {
