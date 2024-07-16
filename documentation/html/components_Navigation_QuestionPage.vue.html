@@ -1,75 +1,154 @@
-<template>
-  <v-container
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title>FAIRsharing.org Source: components/Navigation/QuestionPage.vue</title>
+
+	<!--[if lt IE 9]>
+	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+	<link type="text/css" rel="stylesheet" href="styles/sunlight.default.css">
+
+	<link type="text/css" rel="stylesheet" href="styles/site.yeti.css">
+
+</head>
+
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top navbar-inverse">
+<div class="container">
+	<div class="navbar-header">
+		<a class="navbar-brand" href="index.html">FAIRsharing.org</a>
+		<button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#topNavigation">
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+        </button>
+	</div>
+	<div class="navbar-collapse collapse" id="topNavigation">
+		<ul class="nav navbar-nav">
+			
+			<li class="dropdown">
+				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
+				<ul class="dropdown-menu ">
+					<li><a href="GraphQLClient.html">GraphQLClient</a></li>
+				</ul>
+			</li>
+			
+			<li class="dropdown">
+				<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Global<b class="caret"></b></a>
+				<ul class="dropdown-menu ">
+					<li><a href="global.html#registryIcons">registryIcons</a></li><li><a href="global.html#registryName">registryName</a></li>
+				</ul>
+			</li>
+			
+		</ul>
+        
+            <div class="col-sm-3 col-md-3">
+                <form class="navbar-form" role="search">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search" name="q" id="search-input">
+                        <div class="input-group-btn">
+                            <button class="btn btn-default" id="search-submit"><i class="glyphicon glyphicon-search"></i></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        
+	</div>
+
+</div>
+</div>
+
+
+<div class="container" id="toc-content">
+<div class="row">
+
+	
+	<div class="col-md-12">
+	
+		<div id="main">
+			
+
+		<h1 class="page-title">Source: components/Navigation/QuestionPage.vue</h1>
+    
+<section>
+    <article>
+        <pre
+            class="sunlight-highlight-javascript linenums">&lt;template>
+  &lt;v-container
     fluid
     class="wrapperClass d-flex flex-column align-content-stretch"
   >
-    <v-fade-transition v-if="loading">
-      <v-overlay
+    &lt;v-fade-transition v-if="loading">
+      &lt;v-overlay
         :absolute="false"
         opacity="0.8"
       >
-        <Loaders />
-      </v-overlay>
-    </v-fade-transition>
-    <!-- how many results so far? -->
-    <ResultPreviewBanner :show-banner="Object.keys(getQueryParams).length > 0" />
-    <!-- breadcrumb trail -->
-    <Breadcrumbs />
-    <!-- question title -->
-    <v-row>
-      <v-col
+        &lt;Loaders />
+      &lt;/v-overlay>
+    &lt;/v-fade-transition>
+    &lt;!-- how many results so far? -->
+    &lt;ResultPreviewBanner :show-banner="Object.keys(getQueryParams).length > 0" />
+    &lt;!-- breadcrumb trail -->
+    &lt;Breadcrumbs />
+    &lt;!-- question title -->
+    &lt;v-row>
+      &lt;v-col
         cols="12"
       >
-        <!-- This html is from a safe source -->
-        <!-- eslint-disable vue/no-v-html -->
-        <h1
+        &lt;!-- This html is from a safe source -->
+        &lt;!-- eslint-disable vue/no-v-html -->
+        &lt;h1
           style="text-align: center"
           v-html="title"
         />
-        <!-- eslint-enable vue/no-v-html -->
-      </v-col>
-    </v-row>
-    <!-- A special query box if the question asks for model/format searching  -->
-    <v-row
+        &lt;!-- eslint-enable vue/no-v-html -->
+      &lt;/v-col>
+    &lt;/v-row>
+    &lt;!-- A special query box if the question asks for model/format searching  -->
+    &lt;v-row
       v-if="hasModelFormatQuery"
     >
-      <v-col
+      &lt;v-col
         cols="12"
         class="ml-4"
       >
-        <!-- A list here of selected standards is shown just above the text box -->
-        <v-chip-group
+        &lt;!-- A list here of selected standards is shown just above the text box -->
+        &lt;v-chip-group
           class="pl-2"
           column
         >
-          <v-chip
+          &lt;v-chip
             v-for="std in (foundModelFormats)"
             :key="std.name"
             class="ma-2"
           >
             {{ std.abbreviation || std.name }}
-            <v-tooltip bottom>
-              <template #activator="{ on, attrs }">
-                <!-- this is a dreadful cheat; without it the close icon becomes unreadable -->
-                <div
+            &lt;v-tooltip bottom>
+              &lt;template #activator="{ on, attrs }">
+                &lt;!-- this is a dreadful cheat; without it the close icon becomes unreadable -->
+                &lt;div
                   @click="deleteStandard(std.id)"
                 >
-                  <v-icon
+                  &lt;v-icon
                     v-bind="attrs"
                     small
                     class="ml-1"
                     v-on="on"
                   >
                     fa-times-circle
-                  </v-icon>
-                </div>
-              </template>
-              <span> Delete standard </span>
-            </v-tooltip>
-          </v-chip>
-        </v-chip-group>
-        <!-- end of standard list -->
-        <v-text-field
+                  &lt;/v-icon>
+                &lt;/div>
+              &lt;/template>
+              &lt;span> Delete standard &lt;/span>
+            &lt;/v-tooltip>
+          &lt;/v-chip>
+        &lt;/v-chip-group>
+        &lt;!-- end of standard list -->
+        &lt;v-text-field
           id="searchString"
           v-model="searchString"
           append-icon="fa-search"
@@ -81,9 +160,9 @@
           class="pt-1 mr-10"
           @click:clear="clearResults"
         />
-        <!-- drop-down table for searchResults to go here -->
-        <v-data-table
-          v-if="searchResults.length > 0 && searchString && searchString.length > 0"
+        &lt;!-- drop-down table for searchResults to go here -->
+        &lt;v-data-table
+          v-if="searchResults.length > 0 &amp;&amp; searchString &amp;&amp; searchString.length > 0"
           v-model="foundModelFormats"
           :headers="headers"
           :items="searchResults"
@@ -96,38 +175,38 @@
           mobile-breakpoint="900"
           :search-input.sync="searchString"
         >
-          <template #[`item.name`]="{ item }">
-            <div
+          &lt;template #[`item.name`]="{ item }">
+            &lt;div
               v-if="item.name"
             >
               {{ item.name }}
-            </div>
-          </template>
-          <template #[`item.abbreviation`]="{ item }">
-            <div
+            &lt;/div>
+          &lt;/template>
+          &lt;template #[`item.abbreviation`]="{ item }">
+            &lt;div
               v-if="item.abbreviation"
             >
               {{ item.abbreviation }}
-            </div>
-          </template>
-        </v-data-table>
-        <!-- end of temp results data table -->
-      </v-col>
-    </v-row>
-    <!-- A special query box if the question asks for model/format searching  -->
-    <v-row
+            &lt;/div>
+          &lt;/template>
+        &lt;/v-data-table>
+        &lt;!-- end of temp results data table -->
+      &lt;/v-col>
+    &lt;/v-row>
+    &lt;!-- A special query box if the question asks for model/format searching  -->
+    &lt;v-row
       v-if="hasTagsQuery"
     >
-      <v-col
+      &lt;v-col
         cols="12"
         class="ml-4"
       >
-        <!-- A list here of selected tags is shown just above the text box -->
-        <v-chip-group
+        &lt;!-- A list here of selected tags is shown just above the text box -->
+        &lt;v-chip-group
           class="pl-2"
           column
         >
-          <v-chip
+          &lt;v-chip
             v-for="tag in (recordTags)"
             :key="tag.label"
             class="ma-2"
@@ -135,28 +214,28 @@
             text-color="white"
           >
             {{ tag.label }}
-            <v-tooltip bottom>
-              <template #activator="{ on, attrs }">
-                <!-- this is a dreadful cheat; without it the close icon becomes unreadable -->
-                <div
+            &lt;v-tooltip bottom>
+              &lt;template #activator="{ on, attrs }">
+                &lt;!-- this is a dreadful cheat; without it the close icon becomes unreadable -->
+                &lt;div
                   @click="deleteTag(tag.id, tag.model)"
                 >
-                  <v-icon
+                  &lt;v-icon
                     v-bind="attrs"
                     small
                     class="ml-1"
                     v-on="on"
                   >
                     fa-times-circle
-                  </v-icon>
-                </div>
-              </template>
-              <span> Delete tag </span>
-            </v-tooltip>
-          </v-chip>
-        </v-chip-group>
-        <!-- end of tags list -->
-        <v-text-field
+                  &lt;/v-icon>
+                &lt;/div>
+              &lt;/template>
+              &lt;span> Delete tag &lt;/span>
+            &lt;/v-tooltip>
+          &lt;/v-chip>
+        &lt;/v-chip-group>
+        &lt;!-- end of tags list -->
+        &lt;v-text-field
           id="searchString"
           v-model="searchString"
           append-icon="fa-search"
@@ -168,8 +247,8 @@
           class="pt-1 mr-10"
           @click:clear="clearResults"
         />
-        <v-data-table
-          v-if="tags.length > 0 && searchString && searchString.length > 0"
+        &lt;v-data-table
+          v-if="tags.length > 0 &amp;&amp; searchString &amp;&amp; searchString.length > 0"
           v-model="recordTags"
           :headers="tagHeaders"
           :items="tags"
@@ -182,74 +261,74 @@
           mobile-breakpoint="900"
           :search-input.sync="searchString"
         >
-          <template #[`item.model`]="{ item }">
-            <div
+          &lt;template #[`item.model`]="{ item }">
+            &lt;div
               :class="colors[item.model] + '--text'"
               class="noBreak"
             >
               {{ item.model.toUpperCase().replace(/_/g, " ") }}
-            </div>
-          </template>
-          <template #[`item.label`]="{ item }">
-            <v-chip
+            &lt;/div>
+          &lt;/template>
+          &lt;template #[`item.label`]="{ item }">
+            &lt;v-chip
               :class="colors[item.model] + ' white--text noBreak'"
             >
               {{ capitaliseText(item.label, item.model) }}
-            </v-chip>
-          </template>
-          <template #[`item.synonyms`]="{ item }">
-            <div
+            &lt;/v-chip>
+          &lt;/template>
+          &lt;template #[`item.synonyms`]="{ item }">
+            &lt;div
               v-if="item.synonyms"
               class="font-italic limitWidth"
             >
               {{ item.synonyms.join(", ") }}
-            </div>
-          </template>
-        </v-data-table>
-      </v-col>
-    </v-row>
-    <!-- end of tags -->
-    <!-- policy query -->
-    <v-row
+            &lt;/div>
+          &lt;/template>
+        &lt;/v-data-table>
+      &lt;/v-col>
+    &lt;/v-row>
+    &lt;!-- end of tags -->
+    &lt;!-- policy query -->
+    &lt;v-row
       v-if="hasPolicyQuery"
     >
-      <v-col
+      &lt;v-col
         cols="12"
         class="ml-4"
       >
-        <!-- A list here of selected standards is shown just above the text box -->
-        <v-chip-group
+        &lt;!-- A list here of selected standards is shown just above the text box -->
+        &lt;v-chip-group
           class="pl-2"
           column
         >
-          <v-chip
+          &lt;v-chip
             v-for="pol in (foundPolicies)"
             :key="pol.name"
             class="ma-2"
           >
             {{ pol.abbreviation || pol.name }}
-            <v-tooltip bottom>
-              <template #activator="{ on, attrs }">
-                <!-- this is a dreadful cheat; without it the close icon becomes unreadable -->
-                <div
+            &lt;v-tooltip bottom>
+              &lt;template #activator="{ on, attrs }">
+                &lt;!-- this is a dreadful cheat; without it the close icon becomes unreadable -->
+                &lt;div
                   @click="deletePolicy(pol.id)"
                 >
-                  <v-icon
+                  &lt;v-icon
                     v-bind="attrs"
                     small
                     class="ml-1"
                     v-on="on"
                   >
                     fa-times-circle
-                  </v-icon>
-                </div>
-              </template>
-              <span> Delete policy </span>
-            </v-tooltip>
-          </v-chip>
-        </v-chip-group>
-        <!-- end of standard list -->
-        <v-text-field
+                  &lt;/v-icon>
+                &lt;/div>
+              &lt;/template>
+              &lt;span> Delete policy &lt;/span>
+            &lt;/v-tooltip>
+          &lt;/v-chip>
+        &lt;/v-chip-group>
+        &lt;!-- end of standard list -->
+        &lt;v-text-field
           id="searchString"
           v-model="searchString"
           append-icon="fa-search"
@@ -261,9 +340,9 @@
           class="pt-1 mr-10"
           @click:clear="clearResults"
         />
-        <!-- drop-down table for searchResults to go here -->
-        <v-data-table
-          v-if="searchResults.length > 0 && searchString && searchString.length > 0"
+        &lt;!-- drop-down table for searchResults to go here -->
+        &lt;v-data-table
+          v-if="searchResults.length > 0 &amp;&amp; searchString &amp;&amp; searchString.length > 0"
           v-model="foundPolicies"
           :headers="headers"
           :items="searchResults"
@@ -277,35 +356,35 @@
           :search-input.sync="searchString"
           @item-selected="itemSelected($event)"
         >
-          <template #[`item.name`]="{ item }">
-            <div
+          &lt;template #[`item.name`]="{ item }">
+            &lt;div
               v-if="item.name"
             >
               {{ item.name }}
-            </div>
-          </template>
-          <template #[`item.abbreviation`]="{ item }">
-            <div
+            &lt;/div>
+          &lt;/template>
+          &lt;template #[`item.abbreviation`]="{ item }">
+            &lt;div
               v-if="item.abbreviation"
             >
               {{ item.abbreviation }}
-            </div>
-          </template>
-        </v-data-table>
-        <!-- end of temp results data table -->
-      </v-col>
-    </v-row>
-    <!-- end of policy query -->
-    <!-- question options -->
-    <v-row
+            &lt;/div>
+          &lt;/template>
+        &lt;/v-data-table>
+        &lt;!-- end of temp results data table -->
+      &lt;/v-col>
+    &lt;/v-row>
+    &lt;!-- end of policy query -->
+    &lt;!-- question options -->
+    &lt;v-row
       class="align-stretch justify-center fill-height"
     >
-      <v-col
+      &lt;v-col
         v-for="item in questions"
         :key="item.id"
         cols="3"
       >
-        <v-card
+        &lt;v-card
           class="full-width d-flex align-center text-center flex-column questionCard justify-center"
           height="130"
           elevation="4"
@@ -321,75 +400,75 @@
           ]"
           @click="processLink(item.link, item.query, item.message, item.refined, item.breadcrumbMod, item.role, item.restrict)"
         >
-          <div class="d-flex align-center">
-            <v-card-text
+          &lt;div class="d-flex align-center">
+            &lt;v-card-text
               class="white--text font-weight-medium text-xl-h4 text-lg-h5 text-md-h5 text-sm-h5 text-xs-h5 questionText"
             >
-              <!-- This html is from a safe source -->
-              <!-- eslint-disable vue/no-v-html -->
-              <span
+              &lt;!-- This html is from a safe source -->
+              &lt;!-- eslint-disable vue/no-v-html -->
+              &lt;span
                 v-html="item.question"
               />
-            <!-- eslint-enable vue/no-v-html -->
-            </v-card-text>
-          </div>
-        </v-card>
-      </v-col>
-    </v-row>
-    <!-- question footer -->
-    <v-row>
-      <v-col
+            &lt;!-- eslint-enable vue/no-v-html -->
+            &lt;/v-card-text>
+          &lt;/div>
+        &lt;/v-card>
+      &lt;/v-col>
+    &lt;/v-row>
+    &lt;!-- question footer -->
+    &lt;v-row>
+      &lt;v-col
         cols="12"
       >
-        <!-- This html is from a safe source -->
-        <!-- eslint-disable vue/no-v-html -->
-        <p
+        &lt;!-- This html is from a safe source -->
+        &lt;!-- eslint-disable vue/no-v-html -->
+        &lt;p
           style="text-align: center"
           v-html="footer"
         />
-        <!-- eslint-enable vue/no-v-html -->
-      </v-col>
-    </v-row>
-    <!-- Potentially annoy the user by stopping to ask if they want to carry on due to few results -->
-    <v-dialog
+        &lt;!-- eslint-enable vue/no-v-html -->
+      &lt;/v-col>
+    &lt;/v-row>
+    &lt;!-- Potentially annoy the user by stopping to ask if they want to carry on due to few results -->
+    &lt;v-dialog
       v-model="lowResultsStoppage"
       persistent
     >
-      <v-card>
-        <v-card-title
+      &lt;v-card>
+        &lt;v-card-title
           class="headline"
         >
           Fewer than 10 {{ getCurrentRegistry }} records fit your criteria?
-        </v-card-title>
-        <v-card-text>
+        &lt;/v-card-title>
+        &lt;v-card-text>
           How would you like to proceed? Select "dismiss" to retry your selection. Or,
           you may go to the results.
-        </v-card-text>
-        <v-card-actions>
-          <v-spacer />
-          <v-btn
+        &lt;/v-card-text>
+        &lt;v-card-actions>
+          &lt;v-spacer />
+          &lt;v-btn
             color="blue darken-1"
             text
             persistent
             @click="lowResultsStoppage = false; iDontCare = true"
           >
             Dismiss
-          </v-btn>
-          <v-btn
+          &lt;/v-btn>
+          &lt;v-btn
             color="blue darken-1"
             text
             persistent
             @click="goToResults"
           >
             View results
-          </v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
-  </v-container>
-</template>
+          &lt;/v-btn>
+        &lt;/v-card-actions>
+      &lt;/v-card>
+    &lt;/v-dialog>
+  &lt;/v-container>
+&lt;/template>
 
-<script>
+&lt;script>
 import stringUtils from "@/utils/stringUtils";
 import questionSets from "@/data/questionPageData.json";
 import {mapActions, mapGetters} from "vuex";
@@ -497,13 +576,13 @@ export default {
     },
     getFairSharingRecords () {
       if (this.getFairSharingRecords.length > 0
-          && this.getFairSharingRecords.length <= 10
-          && !this.iDontCare) {
+          &amp;&amp; this.getFairSharingRecords.length &lt;= 10
+          &amp;&amp; !this.iDontCare) {
         this.lowResultsStoppage = true;
       }
     },
     async searchString(val){
-      if (!val || val.length < 3) {
+      if (!val || val.length &lt; 3) {
         return;
       }
       this.searchResults = [];
@@ -625,7 +704,7 @@ export default {
       let currentLocation = Number.parseInt(this.$route.params.id);
       let prevLength = Number.parseInt(Object.keys(previousQuery).length);
       // This is because the previous query needs only to be loaded when going backwards.
-      if (prevLength > 0 && previousLocation > currentLocation) {
+      if (prevLength > 0 &amp;&amp; previousLocation > currentLocation) {
         // Set up the selected tags. The store should be checked only if some were defined in the query.
         // If none are in the query then the store must be cleared (see 'else').
         _module.watchRecordTags = false;
@@ -736,7 +815,7 @@ export default {
       }
 
       // Make the user go through this again if they got a low number of hits.
-      if (this.lowResultsStoppage && !this.iDontCare) {
+      if (this.lowResultsStoppage &amp;&amp; !this.iDontCare) {
         return;
       }
 
@@ -875,7 +954,7 @@ export default {
     /**
      * Method to fetch all the parents till the last found parent (id, name, abbreviation) traversing bottom to top of the selected policy
      * @param item - Selected policy
-     * @return {Promise<void>} - Add the parents if not already present to foundPolicies array
+     * @return {Promise&lt;void>} - Add the parents if not already present to foundPolicies array
      */
     async itemSelected(item) {
       let _module = this;
@@ -889,9 +968,9 @@ export default {
     }
   }
 };
-</script>
+&lt;/script>
 
-<style scoped lang="scss">
+&lt;style scoped lang="scss">
 .wrapperClass{
   position: relative;
 }
@@ -967,4 +1046,141 @@ export default {
 }
 
 
-</style>
+&lt;/style>
+</pre>
+    </article>
+</section>
+
+
+
+
+
+		</div>
+	</div>
+
+	<div class="clearfix"></div>
+
+	
+
+</div>
+</div>
+
+
+    <div class="modal fade" id="searchResults">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Search results</h4>
+          </div>
+          <div class="modal-body"></div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div>
+
+
+<footer>
+
+
+	<span class="copyright">
+	DocStrap Copyright © 2012-2015 The contributors to the JSDoc3 and DocStrap projects.
+	</span>
+
+<span class="jsdoc-message">
+	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.3</a>
+	
+		on Mon Jul 15th 2024
+	
+	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
+</span>
+</footer>
+
+<script src="scripts/docstrap.lib.js"></script>
+<script src="scripts/toc.js"></script>
+
+    <script type="text/javascript" src="scripts/fulltext-search-ui.js"></script>
+
+
+<script>
+$( function () {
+	$( "[id*='$']" ).each( function () {
+		var $this = $( this );
+
+		$this.attr( "id", $this.attr( "id" ).replace( "$", "__" ) );
+	} );
+
+	$( ".tutorial-section pre, .readme-section pre, pre.prettyprint.source" ).each( function () {
+		var $this = $( this );
+
+		var example = $this.find( "code" );
+		exampleText = example.html();
+		var lang = /{@lang (.*?)}/.exec( exampleText );
+		if ( lang && lang[1] ) {
+			exampleText = exampleText.replace( lang[0], "" );
+			example.html( exampleText );
+			lang = lang[1];
+		} else {
+			var langClassMatch = example.parent()[0].className.match(/lang\-(\S+)/);
+			lang = langClassMatch ? langClassMatch[1] : "javascript";
+		}
+
+		if ( lang ) {
+
+			$this
+			.addClass( "sunlight-highlight-" + lang )
+			.addClass( "linenums" )
+			.html( example.html() );
+
+		}
+	} );
+
+	Sunlight.highlightAll( {
+		lineNumbers : true,
+		showMenu : true,
+		enableDoclinks : true
+	} );
+
+	$.catchAnchorLinks( {
+        navbarOffset: 10
+	} );
+	$( "#toc" ).toc( {
+		anchorName  : function ( i, heading, prefix ) {
+			return $( heading ).attr( "id" ) || ( prefix + i );
+		},
+		selectors   : "#toc-content h1,#toc-content h2,#toc-content h3,#toc-content h4",
+		showAndHide : false,
+		smoothScrolling: true
+	} );
+
+	$( "#main span[id^='toc']" ).addClass( "toc-shim" );
+	$( '.dropdown-toggle' ).dropdown();
+
+    $( "table" ).each( function () {
+      var $this = $( this );
+      $this.addClass('table');
+    } );
+
+} );
+</script>
+
+
+
+<!--Navigation and Symbol Display-->
+
+
+<!--Google Analytics-->
+
+
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            SearcherDisplay.init();
+        });
+    </script>
+
+
+</body>
+</html>
