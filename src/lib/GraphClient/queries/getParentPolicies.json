@@ -1,0 +1,15 @@
+{
+  "queryName": "fairsharingRecord",
+  "queryParam": null,
+  "fields": [
+    {
+      "name": "parentPolicies",
+      "fields": [
+        "id",
+        "name",
+        "abbreviation"
+      ]
+    }
+
+  ]
+}
