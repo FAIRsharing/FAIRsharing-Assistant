@@ -1,4 +1,5 @@
 import Vue from 'vue';
+import { createApp } from 'vue';
 import App from './App.vue';
 import router from './router';
 import Vuetify from 'vuetify';
@@ -20,9 +21,13 @@ Vue.use(SimpleAnalytics, {
 })
  */
 
+/*
 new Vue({
   render: (h) => h(App),
   router,
   vuetify,
   store
 }).$mount('#app')
+*/
+
+createApp(App).use(router).use(vuetify).use(store).$mount('#app')
