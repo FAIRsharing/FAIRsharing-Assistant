@@ -1,7 +1,4 @@
-import Vue from "vue";
-import VueRouter from "vue-router";
-
-Vue.use(VueRouter);
+import { createMemoryHistory, createRouter } from 'vue-router'
 
 import {
   HomeView,
@@ -73,15 +70,15 @@ let routes = [
   /* REDIRECTION */
   {
     name: "*",
-    path: "*/*",
+    path: "/*/*",
     component: NotFound
   }
 ]
 
-
-const router = new VueRouter({
-  mode: 'history',
+const router = createRouter({
+  history: createMemoryHistory(),
   routes,
-});
+})
 
-export default router;
+//export default router;
+export { router };

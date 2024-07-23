@@ -1,11 +1,10 @@
-import Vue from "vue"
-import Vuex from "vuex"
+import { createStore } from 'vuex'
 import multiTagsStore from "./multiTagsStore"
 import navigationStore from "@/store/navigationStore";
 
-Vue.use(Vuex);
 
-export default new Vuex.Store({
+// Create a new store instance.
+const store = createStore({
   namespaced: true,
   modules: {
     multiTagsStore,
@@ -13,3 +12,4 @@ export default new Vuex.Store({
   }
 })
 
+export { store }
