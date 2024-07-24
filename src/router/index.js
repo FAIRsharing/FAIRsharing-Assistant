@@ -1,4 +1,4 @@
-import { createMemoryHistory, createRouter } from 'vue-router'
+import { createMemoryHistory, createRouter } from "vue-router";
 
 import {
   HomeView,
@@ -10,8 +10,8 @@ import {
   AllTags,
   RefineRegistry,
   RefineFromQuestions,
-  Educational
-} from './routes'
+  Educational,
+} from "./routes";
 
 let routes = [
   // See below for further questions...
@@ -43,7 +43,7 @@ let routes = [
   {
     name: "ResultView",
     path: "/results",
-    component: ResultView
+    component: ResultView,
   },
   {
     name: "Licence",
@@ -53,32 +53,31 @@ let routes = [
   {
     name: "Educational",
     path: "/educational/:text",
-    component: Educational
+    component: Educational,
   },
   /* ERROR HANDLING */
   {
     name: "Error 404",
     path: "/error/404",
-    component: NotFound
+    component: NotFound,
   },
   /* SERVER ERROR HANDLING */
   {
     name: "Error 500",
     path: "/error/500",
-    component: ServerError
+    component: ServerError,
   },
   /* REDIRECTION */
   {
     name: "*",
     path: "/*/*",
-    component: NotFound
-  }
-]
+    component: NotFound,
+  },
+];
 
 const router = createRouter({
   history: createMemoryHistory(),
   routes,
-})
+});
 
-//export default router;
-export { router };
+export default router;

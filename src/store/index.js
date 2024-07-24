@@ -12,4 +12,4 @@ const store = createStore({
   }
 })
 
-export { store }
+export default store
