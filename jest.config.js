@@ -1,9 +1,7 @@
 module.exports = {
-  preset: "@vue/cli-plugin-unit-jest",
+  testEnvironment: "jsdom",
   collectCoverage: true,
-  coverageReporters: [
-    "lcov"
-  ],
+  coverageReporters: ["lcov", "html"],
   collectCoverageFrom: [
     "src/**/*.{js,vue}",
     "!src/main.js",
@@ -13,21 +11,20 @@ module.exports = {
     "!src/router/routes.js",
     "!src/components/Icon/Icon.vue",
   ],
+  coveragePathIgnorePatterns: ["/node_modules/", "/tests/"],
   testMatch: [
-    "**/**.spec.js", "**/**/**.spec.js", "tests/**/**.spec.js", "tests/**/**/**.spec.js"
+    "**/**.spec.js",
+    "**/**/**.spec.js",
+    "tests/**/**.spec.js",
+    "tests/**/**/**.spec.js",
   ],
-  setupFiles: [
-    "./jest-setup.js",
-    "trace-unhandled/register"
-  ],
-  "moduleFileExtensions": [
-    "js",
-    "json",
-    "vue"
-  ],
+  setupFiles: ["./jest-setup.js", "trace-unhandled/register"],
+  moduleFileExtensions: ["js", "json", "vue"],
   transform: {
-    '^.*\\.js$': 'babel-jest',
-    '.*\\.(vue)$': 'vue-jest'
+    "^.*\\.js$": "babel-jest",
+    ".*\\.(vue)$": "@vue/vue3-jest",
   },
-  transformIgnorePatterns: ['node_modules/(?!vue-router|@babel|vuetify|vue2-particles)']
+  transformIgnorePatterns: [
+    "node_modules/(?!vue-router|@babel|vuetify|tsparticles)",
+  ],
 };
