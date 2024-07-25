@@ -14,9 +14,8 @@
     :class="getJumbotronData['pageName'] === 'HomeView' ? 'heroBlock' : null"
   >
     <!-- eslint-disable vue/no-v-html -->
-    <Particles
+    <vue-particles
       id="particles"
-      :particles-init="particlesInit"
       :particles-loaded="particlesLoaded"
       :options="options"
     />
@@ -34,11 +33,6 @@
       }}</em>
     </h1>
 
-    <!--
-    ,
-        getJumbotronData['pageName'] === 'HomeView' ? 'text-center' : 'text-left'
-        // removed from class in block below
-    -->
     <h2
       v-if="getJumbotronData['subTitle']"
       :class="[
@@ -58,24 +52,23 @@
 
 <script>
 import jumbotronData from "@/data/jumbotronData.json";
-import { loadFull } from "tsparticles";
+//import { loadFull } from "tsparticles";
 
 // These consts appear to be called by the tests but aren't shown as covered.
 /* istanbul ignore next */
-const particlesInit = async (engine) => {
-  await loadFull(engine);
-};
+//const particlesInit = async (engine) => {
+//  await loadFull(engine);
+//};
 /* istanbul ignore next */
 // eslint-disable-next-line no-unused-vars
 const particlesLoaded = async (container) => {
-  //console.log("Particles container loaded", container);
+  console.log("Particles container loaded", container);
 };
 
 export default {
   name: "Jumbotron",
   data: () => {
     return {
-      particlesInit,
       particlesLoaded,
       options: {
         background: {
