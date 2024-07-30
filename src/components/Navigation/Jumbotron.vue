@@ -28,9 +28,12 @@
       // This goes in the h1 above, should it be needed again.
       -->
       {{ getJumbotronData["title"] }}
-      <em v-if="getJumbotronData['tempSubTitle']" class="green--text">{{
-        getJumbotronData["tempSubTitle"]
-      }}</em>
+      <em
+        v-if="getJumbotronData['tempSubTitle']"
+        class="green--text"
+      >
+        {{ getJumbotronData["tempSubTitle"] }}
+      </em>
     </h1>
 
     <h2
