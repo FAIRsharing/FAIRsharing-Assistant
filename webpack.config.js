@@ -10,10 +10,22 @@ const dotenv = require('dotenv').config({
 module.exports = {
   mode: "development",
   module: {
+    resolve: {
+      alias: {
+        vue: '@vue/compat'
+      }
+    },
     rules: [
       {
         test: /\.vue$/,
-        loader: "vue-loader"
+        loader: "vue-loader",
+        options: {
+          compilerOptions: {
+            compatConfig: {
+              MODE: 2
+            }
+          }
+        }
       },
       // this will apply to both plain `.js` files
       // AND `<script>` blocks in `.vue` files
