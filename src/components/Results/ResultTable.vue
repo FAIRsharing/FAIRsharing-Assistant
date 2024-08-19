@@ -22,7 +22,7 @@
         class="mb-2"
         color="primary"
         small
-        @click="downloadResults()"
+        @click="chooseDownload()"
       >
         Download Results
       </v-btn>
@@ -143,6 +143,46 @@
         <!-- footer ends -->
       </v-data-iterator>
     </v-container>
+    <v-dialog
+      v-model="chooseDownloadActive"
+      max-width="500"
+    >
+      <v-card>
+        <v-card-title>
+          Do you need information on organisations?
+        </v-card-title>
+        <v-card-text>
+          Selecting "yes" here will add a FAIRsharing record's organisations to your download file. This will increase
+          the file size as each organisation will require a separate line. Select "no" to download without organisations.
+        </v-card-text>
+
+        <v-card-actions>
+          <v-spacer />
+
+          <v-btn
+            color="blue darken-1"
+            text
+            @click="commenceDownload(true)"
+          >
+            Yes
+          </v-btn>
+          <v-btn
+            color="blue darken-1"
+            text
+            @click="commenceDownload(false)"
+          >
+            No
+          </v-btn>
+          <v-btn
+            color="red darken-1"
+            text
+            @click="chooseDownloadActive = false"
+          >
+            Cancel
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </div>
 </template>
 
@@ -184,7 +224,8 @@ export default {
         'Status',
         'Description'
       ],
-      fairSharingURL: process.env.VUE_APP_FAIRSHARING_URL
+      fairSharingURL: process.env.VUE_APP_FAIRSHARING_URL,
+      chooseDownloadActive: false
     }
   },
   computed: {
@@ -224,11 +265,24 @@ export default {
       }
       _module.loading = false;
     },
-    downloadResults() {
+    chooseDownload() {
+      this.chooseDownloadActive = true;
+    },
+    async commenceDownload(includeOrgs) {
+      this.chooseDownloadActive = false;
       var MIME_TYPE = "text/csv";
-      let data = ["name,abbreviation,URL\n"];
+      let data;
       this.getFairSharingRecords.forEach((record) => {
-        data.push(`${record.name},${record.abbreviation || 'n/a'},https://fairsharing.org/${record.id}\n`);
+        if (!includeOrgs) {
+          data = ["name,abbreviation,URL\n"];
+          data.push(`${record.name},${record.abbreviation || 'n/a'},https://fairsharing.org/${record.id}\n`);
+        }
+        else {
+          data = ["name,abbreviation,URL,org_relationship,org_name,org_fairsharing_url\n"];
+          record.organisationLinks.forEach((link) => {
+            data.push(`${record.name},${record.abbreviation || 'n/a'},https://fairsharing.org/${record.id},${link.relation},${link.organisation.name},https://fairsharing.org/organisations/${link.organisation.id}\n`);
+          })
+        }
       })
       var blob = new Blob(data, {type: MIME_TYPE});
       window.location.href = window.URL.createObjectURL(blob);

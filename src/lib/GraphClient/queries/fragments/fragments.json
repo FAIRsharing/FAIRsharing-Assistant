@@ -15,5 +15,42 @@
         }
       ]
     }
+  ],
+  "organisationLinks": [
+    {
+      "queryName": "organisationLinks",
+      "fields": [
+        "id",
+        "relation",
+        "isLead",
+        {
+          "name": "grant",
+          "fields": [
+            "name",
+            "id"
+          ]
+        },
+        {
+          "name": "organisation",
+          "fields": [
+            "name",
+            "id",
+            "homepage",
+            "types",
+            "urlForLogo",
+            "rorLink",
+            {
+              "queryName": "countries",
+              "name": "countries",
+              "fields": [
+                "code",
+                "id",
+                "name"
+              ]
+            }
+          ]
+        }
+      ]
+    }
   ]
 }
