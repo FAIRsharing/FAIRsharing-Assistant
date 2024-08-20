@@ -21,15 +21,15 @@
       <v-btn
         class="mb-2"
         color="primary"
-        size="small"
-        @click="downloadResults()"
+        small
+        @click="chooseDownload()"
       >
         Download Results
       </v-btn>
       <v-data-iterator
-        v-model:items-per-page="itemsPerPage"
-        v-model:page="page"
         :items="records"
+        :items-per-page.sync="itemsPerPage"
+        :page.sync="page"
         :search="search"
         :sort-by="sortBy.toLowerCase()"
         :sort-desc="sortDesc"
@@ -39,14 +39,14 @@
         <template #header>
           <v-toolbar
             dark
-            color="blue-lighten-1"
+            color="blue lighten-1"
             class="mb-5"
           >
             <v-text-field
               v-model="search"
               clearable
               flat
-              variant="solo-inverted"
+              solo-inverted
               hide-details
               prepend-inner-icon="mdi-filter"
               label="Filter these results"
@@ -56,7 +56,7 @@
               <v-select
                 v-model="sortBy"
                 flat
-                variant="solo-inverted"
+                solo-inverted
                 hide-details
                 :items="keys"
                 prepend-inner-icon="mdi-sort"
@@ -68,16 +68,16 @@
                 mandatory
               >
                 <v-btn
-                  size="large"
-                  variant="flat"
+                  large
+                  depressed
                   color="blue"
                   :value="false"
                 >
                   <v-icon>mdi-arrow-up</v-icon>
                 </v-btn>
                 <v-btn
-                  size="large"
-                  variant="flat"
+                  large
+                  depressed
                   color="blue"
                   :value="true"
                 >
@@ -143,6 +143,46 @@
         <!-- footer ends -->
       </v-data-iterator>
     </v-container>
+    <v-dialog
+      v-model="chooseDownloadActive"
+      max-width="500"
+    >
+      <v-card>
+        <v-card-title>
+          Do you need information on organisations?
+        </v-card-title>
+        <v-card-text>
+          Selecting "yes" here will add a FAIRsharing record's organisations to your download file. This will increase
+          the file size as each organisation will require a separate line. Select "no" to download without organisations.
+        </v-card-text>
+
+        <v-card-actions>
+          <v-spacer />
+
+          <v-btn
+            color="blue darken-1"
+            text
+            @click="commenceDownload(true)"
+          >
+            Yes
+          </v-btn>
+          <v-btn
+            color="blue darken-1"
+            text
+            @click="commenceDownload(false)"
+          >
+            No
+          </v-btn>
+          <v-btn
+            color="red darken-1"
+            text
+            @click="chooseDownloadActive = false"
+          >
+            Cancel
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </div>
 </template>
 
@@ -184,7 +224,8 @@ export default {
         'Status',
         'Description'
       ],
-      fairSharingURL: process.env.VUE_APP_FAIRSHARING_URL
+      fairSharingURL: process.env.VUE_APP_FAIRSHARING_URL,
+      chooseDownloadActive: false
     }
   },
   computed: {
@@ -224,12 +265,32 @@ export default {
       }
       _module.loading = false;
     },
-    downloadResults() {
+    chooseDownload() {
+      this.chooseDownloadActive = true;
+    },
+    async commenceDownload(includeOrgs) {
+      this.chooseDownloadActive = false;
       var MIME_TYPE = "text/csv";
-      let data = ["name,abbreviation,URL\n"];
-      this.getFairSharingRecords.forEach((record) => {
-        data.push(`${record.name},${record.abbreviation || 'n/a'},https://fairsharing.org/${record.id}\n`);
-      })
+      let data;
+      let seen = [];
+      if (includeOrgs) {
+        data = ["name,abbreviation,URL,org_relationship,org_name,org_fairsharing_url\n"];
+        this.getFairSharingRecords.forEach((record) => {
+          record.organisationLinks.forEach((link) => {
+            let identifier = `${link.relation}_${link.organisation.id}`;
+            if (!seen.includes(identifier)) {
+              data.push(`${record.name},${record.abbreviation || 'n/a'},https://fairsharing.org/${record.id},${link.relation},${link.organisation.name.replaceAll(",", "-")},https://fairsharing.org/organisations/${link.organisation.id}\n`);
+            }
+            seen.push(identifier);
+          })
+        })
+      }
+      else {
+        data = ["name,abbreviation,URL\n"];
+        this.getFairSharingRecords.forEach((record) => {
+          data.push(`${record.name},${record.abbreviation || 'n/a'},https://fairsharing.org/${record.id}\n`);
+        })
+      }
       var blob = new Blob(data, {type: MIME_TYPE});
       window.location.href = window.URL.createObjectURL(blob);
     }

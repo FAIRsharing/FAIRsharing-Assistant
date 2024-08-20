@@ -498,7 +498,8 @@ export default {
     getFairSharingRecords () {
       if (this.getFairSharingRecords.length > 0
           && this.getFairSharingRecords.length <= 10
-          && !this.iDontCare) {
+          && !this.iDontCare
+          && !this.loading) {
         this.lowResultsStoppage = true;
       }
     },

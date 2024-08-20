@@ -42,6 +42,7 @@
       "fields": [
         "label"
       ]
-    }
+    },
+    {"$ref": "organisationLinks"}
   ]
 }
