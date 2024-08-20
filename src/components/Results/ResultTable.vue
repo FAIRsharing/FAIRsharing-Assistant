@@ -274,21 +274,21 @@ export default {
       let data;
       let seen = [];
       if (includeOrgs) {
-        data = ["name|abbreviation|URL|org_relationship|org_name|org_fairsharing_url\n"];
+        data = ["name,abbreviation,URL,org_relationship,org_name,org_fairsharing_url\n"];
         this.getFairSharingRecords.forEach((record) => {
           record.organisationLinks.forEach((link) => {
             let identifier = `${link.relation}_${link.organisation.id}`;
             if (!seen.includes(identifier)) {
-              data.push(`${record.name}|${record.abbreviation || 'n/a'}|https://fairsharing.org/${record.id}|${link.relation}|${link.organisation.name}|https://fairsharing.org/organisations/${link.organisation.id}\n`);
+              data.push(`${record.name},${record.abbreviation || 'n/a'},https://fairsharing.org/${record.id},${link.relation},${link.organisation.name.replaceAll(",", "-")},https://fairsharing.org/organisations/${link.organisation.id}\n`);
             }
             seen.push(identifier);
           })
         })
       }
       else {
-        data = ["name|abbreviation|URL\n"];
+        data = ["name,abbreviation,URL\n"];
         this.getFairSharingRecords.forEach((record) => {
-          data.push(`${record.name}|${record.abbreviation || 'n/a'}|https://fairsharing.org/${record.id}\n`);
+          data.push(`${record.name},${record.abbreviation || 'n/a'},https://fairsharing.org/${record.id}\n`);
         })
       }
       var blob = new Blob(data, {type: MIME_TYPE});
