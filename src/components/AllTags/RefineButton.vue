@@ -7,7 +7,7 @@
       class="px-0"
       color="primary"
       :disabled="count <= 0"
-      text
+      variant="text"
       @click="makeChoice()"
     >
       Refine {{ whatToRefine[choice] }}

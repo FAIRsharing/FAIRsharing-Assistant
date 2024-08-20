@@ -32,15 +32,15 @@
     >
       <v-card>
         <v-card-title
-          class="headline"
+          class="text-h5"
         >
           Current search results
         </v-card-title>
         <v-card-actions>
           <v-spacer />
           <v-btn
-            color="blue darken-1"
-            text
+            color="blue-darken-1"
+            variant="text"
             persistent
             @click="showResultPreview = false"
           >
@@ -54,8 +54,8 @@
         <v-card-actions>
           <v-spacer />
           <v-btn
-            color="blue darken-1"
-            text
+            color="blue-darken-1"
+            variant="text"
             persistent
             @click="showResultPreview = false"
           >

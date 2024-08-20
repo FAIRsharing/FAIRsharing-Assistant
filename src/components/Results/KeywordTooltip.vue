@@ -2,13 +2,13 @@
   <div>
     <v-tooltip
       v-if="keyword.definitions"
-      bottom
+      location="bottom"
     >
-      <template #activator="{ on, attrs }">
+      <template #activator="{ props }">
         <div
-          v-bind="attrs"
+         
           :class="['text-center',{'ellipse-width-80':!fullWidth}]"
-          v-on="on"
+          v-bind="props"
         >
           {{ capitaliseText(keyword.label, 'other') }}
         </div>

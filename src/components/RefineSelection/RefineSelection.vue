@@ -72,7 +72,7 @@
     <p>
       Some text will go here to explain what's going on with the filters below, perhaps linking to Gitbook.
     </p>
-    <AddOnFilters @filterSource="capitaliseText(getQueryParams['fairsharingRegistry'][0], null)" />
+    <AddOnFilters @filter-source="capitaliseText(getQueryParams['fairsharingRegistry'][0], null)" />
   </div>
 </template>
 

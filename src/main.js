@@ -14,19 +14,19 @@ import * as components from "vuetify/components";
 import * as directives from "vuetify/directives";
 
 const vuetify = createVuetify({
-    components,
-    directives,
+  components,
+  directives,
 });
 
 const app = createApp(App)
-    .use(vuetify)
-    .use(router)
-    .use(store)
-    .use(Particles, {
-      init: async (engine) => {
-        await loadFull(engine);
-      },
-    })
-    .use(Vue3Sanitize);
+  .use(vuetify)
+  .use(router)
+  .use(store)
+  .use(Particles, {
+    init: async (engine) => {
+      await loadFull(engine);
+    },
+  })
+  .use(Vue3Sanitize);
 
 app.mount("#app");

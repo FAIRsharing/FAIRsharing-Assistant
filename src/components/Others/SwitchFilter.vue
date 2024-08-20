@@ -16,7 +16,7 @@
       <v-radio-group
         v-model="filtersOpted"
         :label="filter['filterName']"
-        @change="selectToggle(filter)"
+        @update:model-value="selectToggle(filter)"
       >
         <v-radio
           label="Yes"

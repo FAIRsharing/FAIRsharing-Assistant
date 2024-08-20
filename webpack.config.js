@@ -7,6 +7,7 @@ const dotenv = require('dotenv').config({
   path: path.join(__dirname, '.env')
 });
 
+const WebpackBundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 module.exports = {
   mode: "development",
   module: {
@@ -67,6 +68,7 @@ module.exports = {
     new webpack.DefinePlugin({
       "process.env": dotenv.parsed
     }),
+    new WebpackBundleAnalyzerPlugin()
   ],
 
 };

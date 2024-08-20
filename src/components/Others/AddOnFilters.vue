@@ -22,18 +22,18 @@
           :ref="field.value"
           v-model="typeSelected"
           :value="field.value"
-          @change="checkCheckbox()"
+          @update:model-value="checkCheckbox()"
         >
           <template #label>
             <div class="tooltip">
               {{ field.label }}
-              <v-tooltip top>
-                <template #activator="{ on, attrs }">
+              <v-tooltip location="top">
+                <template #activator="{ props }">
                   <v-icon
-                    v-bind="attrs"
-                    x-small
-                    class=" mr-1 grey--text"
-                    v-on="on"
+                   
+                    size="x-small"
+                    class="mr-1 text-grey"
+                    v-bind="props"
                   >
                     fa-question-circle
                   </v-icon>

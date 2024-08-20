@@ -16,7 +16,7 @@
       :options="options"
     />
     <h1
-      class="text-body-1 pt-2 text-sm-h4 text-md-h4 text-lg-h4 text-xl-h4 font-weight-medium white--text"
+      class="text-body-1 pt-2 text-sm-h4 text-md-h4 text-lg-h4 text-xl-h4 font-weight-medium text-white"
       style="z-index: 2"
     >
       <!--
@@ -25,7 +25,7 @@
       -->
       {{ getJumbotronData["title"] }} <em
         v-if="getJumbotronData['tempSubTitle']"
-        class="green--text"
+        class="text-green"
       >{{ getJumbotronData["tempSubTitle"] }}</em>
     </h1>
 

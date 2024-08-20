@@ -45,7 +45,7 @@
         color="pink"
         text-color="pink"
         label
-        outlined
+        variant="outlined"
       >
         <!-- This html is from a safe source -->
         <!-- eslint-disable vue/no-v-html -->
@@ -64,9 +64,9 @@
         <v-card-title>
           Summary
         </v-card-title>
-        <v-card-text
-          v-html="getSummaryText()"
-        />
+        <v-card-text>
+          <span v-html="getSummaryText()" />
+        </v-card-text>
         <!-- eslint-enable vue/no-v-html -->
         <v-card-actions>
           <v-btn

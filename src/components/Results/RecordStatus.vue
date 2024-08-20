@@ -5,14 +5,14 @@
       :class="showStatus?'circle-container':'circle-container-dashed'"
     >
       <v-tooltip
-        right
+        location="right"
         nudge-right="15"
       >
-        <template #activator="{ on }">
+        <template #activator="{ props }">
           <v-avatar
             size="80"
             :alt="getRecordStatus.title"
-            v-on="on"
+            v-bind="props"
           >
             <Icon
               :item="record.type"
@@ -26,13 +26,13 @@
 
       <v-tooltip
         v-if="showStatus"
-        right
+        location="right"
       >
-        <template #activator="{ on }">
+        <template #activator="{ props }">
           <span
-            class="white--text headline circle"
+            class="text-white text-h5 circle"
             :style="getRecordStatus.backColor"
-            v-on="on"
+            v-bind="props"
           ><p>{{ getRecordStatus.title }}</p></span>
         </template>
         <span>{{ getRecordStatus.tooltip }}</span>
@@ -45,13 +45,13 @@
     >
       <v-tooltip
         v-if="showStatus"
-        top
+        location="top"
       >
-        <template #activator="{ on }">
+        <template #activator="{ props }">
           <p
-            class="white--text headline circle text-center d-flex align-center justify-center"
+            class="text-white text-h5 circle text-center d-flex align-center justify-center"
             :style="getRecordStatus.backColor"
-            v-on="on"
+            v-bind="props"
           >
             <span>{{ getRecordStatus.title }}</span>
           </p>

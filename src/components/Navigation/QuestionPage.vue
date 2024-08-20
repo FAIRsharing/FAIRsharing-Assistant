@@ -48,17 +48,17 @@
             class="ma-2"
           >
             {{ std.abbreviation || std.name }}
-            <v-tooltip bottom>
-              <template #activator="{ on, attrs }">
+            <v-tooltip location="bottom">
+              <template #activator="{ props }">
                 <!-- this is a dreadful cheat; without it the close icon becomes unreadable -->
                 <div
                   @click="deleteStandard(std.id)"
                 >
                   <v-icon
-                    v-bind="attrs"
-                    small
+                   
+                    size="small"
                     class="ml-1"
-                    v-on="on"
+                    v-bind="props"
                   >
                     fa-times-circle
                   </v-icon>
@@ -74,7 +74,7 @@
           v-model="searchString"
           append-icon="fa-search"
           label="Search model/formats and terminologies"
-          outlined
+          variant="outlined"
           clearable
           clear-icon="fa-times-circle"
           hide-details
@@ -85,6 +85,7 @@
         <v-data-table
           v-if="searchResults.length > 0 && searchString && searchString.length > 0"
           v-model="foundModelFormats"
+          v-model:search-input="searchString"
           :headers="headers"
           :items="searchResults"
           :items-per-page="10"
@@ -94,7 +95,6 @@
           show-select
           calculate-widths
           mobile-breakpoint="900"
-          :search-input.sync="searchString"
         >
           <template #[`item.name`]="{ item }">
             <div
@@ -135,17 +135,17 @@
             text-color="white"
           >
             {{ tag.label }}
-            <v-tooltip bottom>
-              <template #activator="{ on, attrs }">
+            <v-tooltip location="bottom">
+              <template #activator="{ props }">
                 <!-- this is a dreadful cheat; without it the close icon becomes unreadable -->
                 <div
                   @click="deleteTag(tag.id, tag.model)"
                 >
                   <v-icon
-                    v-bind="attrs"
-                    small
+                   
+                    size="small"
                     class="ml-1"
-                    v-on="on"
+                    v-bind="props"
                   >
                     fa-times-circle
                   </v-icon>
@@ -161,7 +161,7 @@
           v-model="searchString"
           append-icon="fa-search"
           label="Search names and synonyms"
-          outlined
+          variant="outlined"
           clearable
           clear-icon="fa-times-circle"
           hide-details
@@ -171,6 +171,7 @@
         <v-data-table
           v-if="tags.length > 0 && searchString && searchString.length > 0"
           v-model="recordTags"
+          v-model:search-input="searchString"
           :headers="tagHeaders"
           :items="tags"
           :items-per-page="10"
@@ -180,7 +181,6 @@
           show-select
           calculate-widths
           mobile-breakpoint="900"
-          :search-input.sync="searchString"
         >
           <template #[`item.model`]="{ item }">
             <div
@@ -228,17 +228,17 @@
             class="ma-2"
           >
             {{ pol.abbreviation || pol.name }}
-            <v-tooltip bottom>
-              <template #activator="{ on, attrs }">
+            <v-tooltip location="bottom">
+              <template #activator="{ props }">
                 <!-- this is a dreadful cheat; without it the close icon becomes unreadable -->
                 <div
                   @click="deletePolicy(pol.id)"
                 >
                   <v-icon
-                    v-bind="attrs"
-                    small
+                   
+                    size="small"
                     class="ml-1"
-                    v-on="on"
+                    v-bind="props"
                   >
                     fa-times-circle
                   </v-icon>
@@ -254,7 +254,7 @@
           v-model="searchString"
           append-icon="fa-search"
           label="Search policies"
-          outlined
+          variant="outlined"
           clearable
           clear-icon="fa-times-circle"
           hide-details
@@ -265,6 +265,7 @@
         <v-data-table
           v-if="searchResults.length > 0 && searchString && searchString.length > 0"
           v-model="foundPolicies"
+          v-model:search-input="searchString"
           :headers="headers"
           :items="searchResults"
           :items-per-page="10"
@@ -274,7 +275,6 @@
           show-select
           calculate-widths
           mobile-breakpoint="900"
-          :search-input.sync="searchString"
           @item-selected="itemSelected($event)"
         >
           <template #[`item.name`]="{ item }">
@@ -323,7 +323,7 @@
         >
           <div class="d-flex align-center">
             <v-card-text
-              class="white--text font-weight-medium text-xl-h4 text-lg-h5 text-md-h5 text-sm-h5 text-xs-h5 questionText"
+              class="text-white font-weight-medium text-xl-h4 text-lg-h5 text-md-h5 text-sm-h5 text-xs-h5 questionText"
             >
               <!-- This html is from a safe source -->
               <!-- eslint-disable vue/no-v-html -->
@@ -357,7 +357,7 @@
     >
       <v-card>
         <v-card-title
-          class="headline"
+          class="text-h5"
         >
           Fewer than 10 {{ getCurrentRegistry }} records fit your criteria?
         </v-card-title>
@@ -368,16 +368,16 @@
         <v-card-actions>
           <v-spacer />
           <v-btn
-            color="blue darken-1"
-            text
+            color="blue-darken-1"
+            variant="text"
             persistent
             @click="lowResultsStoppage = false; iDontCare = true"
           >
             Dismiss
           </v-btn>
           <v-btn
-            color="blue darken-1"
-            text
+            color="blue-darken-1"
+            variant="text"
             persistent
             @click="goToResults"
           >

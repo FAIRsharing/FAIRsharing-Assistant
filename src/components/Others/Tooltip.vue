@@ -1,13 +1,13 @@
 <template>
   <div class="tooltip">
-    <v-tooltip top>
-      <template #activator="{ on, attrs }">
+    <v-tooltip location="top">
+      <template #activator="{ props }">
         <v-icon
-          v-bind="attrs"
-          x-small
+         
+          size="x-small"
           class=" mr-1"
           :class="whiteText ? 'white--text': 'grey--text'"
-          v-on="on"
+          v-bind="props"
         >
           fa-question-circle
         </v-icon>

@@ -43,17 +43,17 @@
             text-color="white"
           >
             {{ tag.label }}
-            <v-tooltip bottom>
-              <template #activator="{ on, attrs }">
+            <v-tooltip location="bottom">
+              <template #activator="{ props }">
                 <!-- this is a dreadful cheat; without it the close icon becomes unreadable -->
                 <div
                   @click="deleteTag(tag.id, tag.model)"
                 >
                   <v-icon
-                    v-bind="attrs"
-                    small
+                   
+                    size="small"
                     class="ml-1"
-                    v-on="on"
+                    v-bind="props"
                   >
                     fa-times-circle
                   </v-icon>
@@ -69,7 +69,7 @@
           v-model="searchString"
           append-icon="fa-search"
           label="Search names and synonyms"
-          outlined
+          variant="outlined"
           clearable
           clear-icon="fa-times-circle"
           hide-details
@@ -79,6 +79,7 @@
         <v-data-table
           v-if="tags.length > 0 && searchString && searchString.length > 0"
           v-model="recordTags"
+          v-model:search-input="searchString"
           :headers="tagHeaders"
           :items="tags"
           :items-per-page="10"
@@ -88,7 +89,6 @@
           show-select
           calculate-widths
           mobile-breakpoint="900"
-          :search-input.sync="searchString"
         >
           <template #[`item.model`]="{ item }">
             <div
@@ -116,7 +116,7 @@
         </v-data-table>
       </v-col>
     </v-row>
-    <AddOnFilters @filterSource="capitaliseText(getQueryParams['fairsharingRegistry'][0], null)" />
+    <AddOnFilters @filter-source="capitaliseText(getQueryParams['fairsharingRegistry'][0], null)" />
     <v-col
       cols="6"
       class="ml-4"

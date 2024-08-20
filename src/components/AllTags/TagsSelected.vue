@@ -49,7 +49,7 @@
         v-if="showSelected"
         class="selected_tags"
         :research-page="true"
-        @deleteTag="removeTag"
+        @delete-tag="removeTag"
       />
     </transition>
   </div>

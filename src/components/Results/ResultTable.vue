@@ -21,15 +21,15 @@
       <v-btn
         class="mb-2"
         color="primary"
-        small
+        size="small"
         @click="downloadResults()"
       >
         Download Results
       </v-btn>
       <v-data-iterator
+        v-model:items-per-page="itemsPerPage"
+        v-model:page="page"
         :items="records"
-        :items-per-page.sync="itemsPerPage"
-        :page.sync="page"
         :search="search"
         :sort-by="sortBy.toLowerCase()"
         :sort-desc="sortDesc"
@@ -39,14 +39,14 @@
         <template #header>
           <v-toolbar
             dark
-            color="blue lighten-1"
+            color="blue-lighten-1"
             class="mb-5"
           >
             <v-text-field
               v-model="search"
               clearable
               flat
-              solo-inverted
+              variant="solo-inverted"
               hide-details
               prepend-inner-icon="mdi-filter"
               label="Filter these results"
@@ -56,7 +56,7 @@
               <v-select
                 v-model="sortBy"
                 flat
-                solo-inverted
+                variant="solo-inverted"
                 hide-details
                 :items="keys"
                 prepend-inner-icon="mdi-sort"
@@ -68,16 +68,16 @@
                 mandatory
               >
                 <v-btn
-                  large
-                  depressed
+                  size="large"
+                  variant="flat"
                   color="blue"
                   :value="false"
                 >
                   <v-icon>mdi-arrow-up</v-icon>
                 </v-btn>
                 <v-btn
-                  large
-                  depressed
+                  size="large"
+                  variant="flat"
                   color="blue"
                   :value="true"
                 >

@@ -23,7 +23,7 @@
       <v-chip
         v-if="remainTagCount!==0 && remainTagCount!==1"
         disabled
-        outlined
+        variant="outlined"
         label
       >
         {{ `+${remainTagCount} more tags` }}
@@ -31,7 +31,7 @@
       <v-chip
         v-else-if="remainTagCount===1"
         disabled
-        outlined
+        variant="outlined"
         label
       >
         {{ `one more tag` }}

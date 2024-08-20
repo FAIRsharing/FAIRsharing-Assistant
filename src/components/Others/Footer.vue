@@ -1,5 +1,5 @@
 <template>
-  <div class="footer-container white--text pt-5 py-2 px-6">
+  <div class="footer-container text-white pt-5 py-2 px-6">
     <!--  Licence and copy right  -->
     <p class="mb-0">
       <sup>β</sup> The FAIRsharing Assistant is currently in beta. Please <a href="mailto:contact@fairsharing.org">contact us</a> if you wish to share feedback.
@@ -34,7 +34,7 @@
 <script>
 
 export default {
-  name: "Footer",
+  name: "FooterComp",
 }
 </script>
 <style scoped lang="scss">

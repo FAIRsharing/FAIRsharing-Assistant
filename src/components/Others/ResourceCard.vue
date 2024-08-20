@@ -12,7 +12,7 @@
     color="#ababab"
     elevation="6"
   >
-    <div class="white--text d-flex flex-column justify-center pt-4">
+    <div class="text-white d-flex flex-column justify-center pt-4">
       <div
         class="d-flex justify-center"
       >

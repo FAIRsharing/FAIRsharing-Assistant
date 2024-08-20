@@ -1,10 +1,8 @@
-import Vue from 'vue';
-import Vuetify from 'vuetify/lib/framework';
+import { createVuetify } from 'vuetify'
 import light from './theme'
 import customIcons from './icons'
-Vue.use(Vuetify);
 
-export default new Vuetify({
+export default createVuetify({
   theme: {
     themes: {light},
     options: {
@@ -12,5 +10,6 @@ export default new Vuetify({
     },
   },
   icons: customIcons,
-});
+})
+
 

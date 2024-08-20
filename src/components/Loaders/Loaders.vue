@@ -8,7 +8,7 @@
         cols="12"
         class="text-center"
       >
-        <h2 class="blue--text">
+        <h2 class="text-blue">
           Loading your content. <br> Please wait ...
         </h2>
       </v-col>

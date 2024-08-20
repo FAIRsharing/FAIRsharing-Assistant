@@ -28,7 +28,7 @@
               v-model="searchString"
               append-icon="fa-search"
               label="Search names and synonyms"
-              outlined
+              variant="outlined"
               clearable
               clear-icon="fa-times-circle"
               :clear-cb="tagsLoading = false"
@@ -39,6 +39,7 @@
               v-model="recordTags"
               :headers="headers"
               :items="tags"
+              v-model:search-input="searchString"
               :items-per-page="10"
               :footer-props="{'items-per-page-options': [10, 20, 30, 40, 50]}"
               item-key="label"
@@ -48,7 +49,6 @@
               mobile-breakpoint="900"
               :loading="tagsLoading"
               loading-text="Please wait, tags are loading"
-              :search-input.sync="searchString"
             >
               <template #[`item.model`]="{ item }">
                 <div

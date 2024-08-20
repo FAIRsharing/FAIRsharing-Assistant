@@ -22,8 +22,9 @@
           v-for="(row, index) in (text)"
           :key="row + '-' + index"
           cols="12"
-          v-html="row"
-        />
+        >
+          <span v-html="row" />
+        </v-col>
         <!-- eslint-enable vue/no-v-html -->
       </v-row>
     </v-container>

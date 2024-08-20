@@ -7,7 +7,7 @@
       :class="{'flex-column': $vuetify.breakpoint.smAndDown}"
     >
       <div
-        class="white--text py-3 px-4 titleCell full-width d-flex align-center justify-center"
+        class="text-white py-3 px-4 titleCell full-width d-flex align-center justify-center"
         :class="section.color"
         :style="$vuetify.breakpoint.smAndDown ? 'max-width:100%': 'max-width:205px'"
       >
@@ -35,18 +35,18 @@
             :class="[section.color + '--text white']"
           >
             {{ capitaliseText(tag.label, tag.model) }}
-            <v-tooltip bottom>
-              <template #activator="{ on, attrs }">
+            <v-tooltip location="bottom">
+              <template #activator="{ props }">
                 <!-- this is a dreadful cheat; without it the close icon becomes unreadable -->
                 <div
                   @click="deleteTag(tag.id, tag.label, sectionName)"
                 >
                   <v-icon
-                    v-bind="attrs"
-                    small
+                   
+                    size="small"
                     class="ml-1"
                     :class="[section.color + '--text white']"
-                    v-on="on"
+                    v-bind="props"
                   >
                     fa-times-circle
                   </v-icon>

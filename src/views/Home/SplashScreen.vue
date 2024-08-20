@@ -46,7 +46,7 @@
           class="intro-row"
         >
           <v-btn
-            x-large
+            size="x-large"
             href="/0"
             color="primary"
           >

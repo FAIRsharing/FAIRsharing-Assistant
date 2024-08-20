@@ -20,7 +20,7 @@
       <RegistryButton />
       <ClearAllSelections :refine-page="true" />
     </div>
-    <ResultTable @isError="noRecords" />
+    <ResultTable @is-error="noRecords" />
   </div>
 </template>
 
