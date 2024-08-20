@@ -272,18 +272,20 @@ export default {
       this.chooseDownloadActive = false;
       var MIME_TYPE = "text/csv";
       let data;
-      this.getFairSharingRecords.forEach((record) => {
-        if (!includeOrgs) {
-          data = ["name,abbreviation,URL\n"];
-          data.push(`${record.name},${record.abbreviation || 'n/a'},https://fairsharing.org/${record.id}\n`);
-        }
-        else {
-          data = ["name,abbreviation,URL,org_relationship,org_name,org_fairsharing_url\n"];
+      if (includeOrgs) {
+        data = ["name,abbreviation,URL,org_relationship,org_name,org_fairsharing_url\n"];
+        this.getFairSharingRecords.forEach((record) => {
           record.organisationLinks.forEach((link) => {
             data.push(`${record.name},${record.abbreviation || 'n/a'},https://fairsharing.org/${record.id},${link.relation},${link.organisation.name},https://fairsharing.org/organisations/${link.organisation.id}\n`);
           })
-        }
-      })
+        })
+      }
+      else {
+        data = ["name,abbreviation,URL\n"];
+        this.getFairSharingRecords.forEach((record) => {
+          data.push(`${record.name},${record.abbreviation || 'n/a'},https://fairsharing.org/${record.id}\n`);
+        })
+      }
       var blob = new Blob(data, {type: MIME_TYPE});
       window.location.href = window.URL.createObjectURL(blob);
     }
