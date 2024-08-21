@@ -204,6 +204,7 @@ export default {
   name: 'ResultTable',
   components: { RecordStatus, TagChips },
   mixins: [recordsCardUtils],
+  emits: ['isError'],
   // TODO: Passing in these props fails to do what's required.
   data () {
     return {

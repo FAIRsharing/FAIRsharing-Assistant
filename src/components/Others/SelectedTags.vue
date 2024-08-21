@@ -94,6 +94,7 @@ export default {
       default: false
     }
   },
+  emits: ['deleteTag'],
   data() {
     return {
       colors: {
