@@ -9,7 +9,7 @@
         key="help_breadcrumb"
         class="ma-2"
         color="pink"
-        text-color="white"
+        variant="flat"
         label
         @click="summary = true"
       >
@@ -19,7 +19,7 @@
         :key="crumbRoot.id"
         class="ma-2"
         color="pink"
-        text-color="white"
+        variant="flat"
         label
         @click="handleNavigation(crumbRoot.link)"
       >
@@ -30,7 +30,7 @@
         :key="crumb.id"
         class="ma-2"
         color="pink"
-        text-color="white"
+        variant="flat"
         label
         @click="handleNavigation(crumb.link)"
       >
@@ -43,7 +43,6 @@
         :key="'active_' + currentBreadcrumb.id"
         class="ma-2"
         color="pink"
-        text-color="pink"
         label
         variant="outlined"
       >

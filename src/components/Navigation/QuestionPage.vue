@@ -132,7 +132,7 @@
             :key="tag.label"
             class="ma-2"
             :color="colors[tag.model]"
-            text-color="white"
+            variant="flat"
           >
             {{ tag.label }}
             <v-tooltip location="bottom">

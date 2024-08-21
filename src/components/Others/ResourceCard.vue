@@ -18,7 +18,7 @@
       >
         <v-img
           class="mt-5 full-width"
-          contain
+          cover
           max-width="200px"
           height="100px"
           :src="$vuetify.icons.values[registryIcon].icon"

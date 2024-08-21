@@ -12,7 +12,7 @@
     >
       <v-img
         src="/assets/Errors/404.png"
-        contain
+        cover
         width="500px"
       />
     </v-col>

@@ -5,8 +5,8 @@
       :class="showStatus?'circle-container':'circle-container-dashed'"
     >
       <v-tooltip
-        location="right"
-        nudge-right="15"
+        location="end"
+        offset="15"
       >
         <template #activator="{ props }">
           <v-avatar

@@ -27,7 +27,7 @@
       <v-img
         src="assets/Logo/fairsharing-logo.svg"
         height="70"
-        contain
+        cover
         class="text-left pa-0 d-inline-block"
       />
       <p

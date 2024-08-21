@@ -37,9 +37,9 @@
             />
             <v-data-table
               v-model="recordTags"
+              v-model:search-input="searchString"
               :headers="headers"
               :items="tags"
-              v-model:search-input="searchString"
               :items-per-page="10"
               :footer-props="{'items-per-page-options': [10, 20, 30, 40, 50]}"
               item-key="label"

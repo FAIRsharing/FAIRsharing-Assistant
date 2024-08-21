@@ -6,7 +6,7 @@
       <v-chip
         v-for="(chip,index) in chips"
         :key="chip.label+'_'+index"
-        text-color="white"
+        variant="flat"
         :color="getChipColor(chip)"
       >
         <KeywordTooltip
