@@ -41,26 +41,29 @@
             class="ma-2"
             :color="colors[tag.model]"
             variant="flat"
+            close-icon="mdi-delete"
+            closable
+            @click="deleteTag(tag.id, tag.model)"
           >
             {{ tag.label }}
-            <v-tooltip location="bottom">
-              <template #activator="{ props }">
-                <!-- this is a dreadful cheat; without it the close icon becomes unreadable -->
-                <div
-                  @click="deleteTag(tag.id, tag.model)"
-                >
-                  <v-icon
-                   
-                    size="small"
-                    class="ml-1"
-                    v-bind="props"
-                  >
-                    fa-times-circle
-                  </v-icon>
-                </div>
-              </template>
-              <span> Delete tag </span>
-            </v-tooltip>
+            <!--Commented due to v2 to v3 migration-->
+            <!--            <v-tooltip location="bottom">-->
+            <!--              <template #activator="{ props }">-->
+            <!--                &lt;!&ndash; this is a dreadful cheat; without it the close icon becomes unreadable &ndash;&gt;-->
+            <!--                <div-->
+            <!--                  @click="deleteTag(tag.id, tag.model)"-->
+            <!--                >-->
+            <!--                  <v-icon-->
+            <!--                    v-bind="props"-->
+            <!--                    size="small"-->
+            <!--                    class="ml-1"-->
+            <!--                  >-->
+            <!--                    fa-times-circle-->
+            <!--                  </v-icon>-->
+            <!--                </div>-->
+            <!--              </template>-->
+            <!--              <span> Delete tag </span>-->
+            <!--            </v-tooltip>-->
           </v-chip>
         </v-chip-group>
         <!-- end of tags list -->

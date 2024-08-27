@@ -10,9 +10,9 @@
       >
         <template #activator="{ props }">
           <v-avatar
+            v-bind="props"
             size="80"
             :alt="getRecordStatus.title"
-            v-bind="props"
           >
             <Icon
               :item="record.type"

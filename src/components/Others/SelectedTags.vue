@@ -33,27 +33,31 @@
             v-for="(tag, tagIndex) in getSelectedTags.filter(x => x.model === section.label)"
             :key="'section_' + sectionIndex + '_tag_' + tagIndex"
             :class="[section.color + '--text white']"
+            close-icon="mdi-delete"
+            closable
+            @click="deleteTag(tag.id, tag.label, sectionName)"
           >
             {{ capitaliseText(tag.label, tag.model) }}
-            <v-tooltip location="bottom">
-              <template #activator="{ props }">
-                <!-- this is a dreadful cheat; without it the close icon becomes unreadable -->
-                <div
-                  @click="deleteTag(tag.id, tag.label, sectionName)"
-                >
-                  <v-icon
-                   
-                    size="small"
-                    class="ml-1"
-                    :class="[section.color + '--text white']"
-                    v-bind="props"
-                  >
-                    fa-times-circle
-                  </v-icon>
-                </div>
-              </template>
-              <span> Delete tag </span>
-            </v-tooltip>
+            <!--Commented due to v2 to v3 migration-->
+            <!--            <v-tooltip location="bottom">-->
+            <!--              <template #activator="{ props }">-->
+            <!--                &lt;!&ndash; this is a dreadful cheat; without it the close icon becomes unreadable &ndash;&gt;-->
+            <!--                <div-->
+            <!--                  @click="deleteTag(tag.id, tag.label, sectionName)"-->
+            <!--                >-->
+            <!--                  <v-icon-->
+            <!--                   -->
+            <!--                    size="small"-->
+            <!--                    class="ml-1"-->
+            <!--                    :class="[section.color + '&#45;&#45;text white']"-->
+            <!--                    v-bind="props"-->
+            <!--                  >-->
+            <!--                    fa-times-circle-->
+            <!--                  </v-icon>-->
+            <!--                </div>-->
+            <!--              </template>-->
+            <!--              <span> Delete tag </span>-->
+            <!--            </v-tooltip>-->
           </v-chip>
         </v-chip-group>
         <!--- For Refine Page -->

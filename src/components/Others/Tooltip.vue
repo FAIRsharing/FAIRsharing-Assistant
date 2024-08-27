@@ -3,11 +3,10 @@
     <v-tooltip location="top">
       <template #activator="{ props }">
         <v-icon
-         
+          v-bind="props"
           size="x-small"
           class=" mr-1"
           :class="whiteText ? 'white--text': 'grey--text'"
-          v-bind="props"
         >
           fa-question-circle
         </v-icon>
