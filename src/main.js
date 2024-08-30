@@ -1,4 +1,4 @@
-import { createApp } from "vue";
+import { createApp, configureCompat } from "vue";
 import { createVuetify } from "vuetify";
 import App from './App.vue'
 import router from './router'
@@ -17,6 +17,10 @@ const vuetify = createVuetify({
   components,
   directives,
 });
+
+configureCompat({
+  COMPONENT_ASYNC: false
+})
 
 const app = createApp(App)
   .use(vuetify)

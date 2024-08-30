@@ -1,4 +1,3 @@
-// webpack.config.js
 const VueLoaderPlugin = require("vue-loader/dist/plugin");
 
 const path = require("path");
@@ -13,7 +12,7 @@ module.exports = {
   module: {
     resolve: {
       alias: {
-        vue: '@vue/compat'
+        vue: '@vue/compat',
       }
     },
     rules: [
@@ -66,7 +65,10 @@ module.exports = {
     // make sure to include the plugin for the magic
     new VueLoaderPlugin(),
     new webpack.DefinePlugin({
-      "process.env": dotenv.parsed
+      "process.env": dotenv.parsed,
+      __VUE_OPTIONS_API__: true, // at the moment, many Vue components still use the Vue Options API
+      __VUE_PROD_DEVTOOLS__: false, // do not enable devtools support in production
+      __VUE_PROD_HYDRATION_MISMATCH_DETAILS__: false, // https://github.com/vuejs/vue-cli/pull/7443
     }),
     new WebpackBundleAnalyzerPlugin()
   ],

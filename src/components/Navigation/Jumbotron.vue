@@ -9,7 +9,7 @@
     :class="getJumbotronData['pageName'] === 'HomeView' ? 'heroBlock' : null"
   >
     <!-- eslint-disable vue/no-v-html -->
-    <Particles
+    <vue-particles
       id="particles"
       :particles-init="particlesInit"
       :particles-loaded="particlesLoaded"
@@ -30,7 +30,6 @@
     </h1>
 
     <!--
-    ,
         getJumbotronData['pageName'] === 'HomeView' ? 'text-center' : 'text-left'
         // removed from class in block below
     -->

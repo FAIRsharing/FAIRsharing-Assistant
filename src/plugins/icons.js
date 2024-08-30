@@ -32,10 +32,6 @@ const customIcons  = {
       type: 'icon',
       icon: 'fa-sitemap'
     },
-    funds: {
-      type: 'img',
-      icon: '/assets/icons/fund-icon.png'
-    },
     collaborates_on: {
       type: 'icon',
       icon: 'fa-handshake'
@@ -68,17 +64,9 @@ const customIcons  = {
       type: 'icon',
       icon: 'fa-sync'
     },
-    nodes: {
-      type: 'img',
-      icon: "/assets/icons/nodes.png",
-    },
     licences: {
       type: 'icon',
       icon: 'fa-certificate'
-    },
-    certificate: {
-      type: 'img',
-      icon: '/assets/icons/certificate-badge.svg'
     },
     frequently_asked_questions_faqs: {
       type: 'icon',
@@ -116,96 +104,9 @@ const customIcons  = {
       type: 'icon',
       icon: 'fa-funnel-dollar'
     },
-    tess_links_to_training_materials: {
-      type: 'img',
-      icon: '/assets/icons/elixir-tess.png'
-    },
     support_email: {
       type: 'icon',
       icon: 'fa-headset'
-    },
-    collection: {
-      type: "img",
-      icon: "/assets/records/collection-icon.svg",
-      tooltip: "Collection"
-    },
-    journal: {
-      type: "img",
-      icon: "/assets/records/policy.svg",
-      tooltip: "Journal"
-    },
-    identifier_schema: {
-      type: "img",
-      icon: "/assets/records/identifier_schema.svg",
-      tooltip: "Identifier Schema"
-    },
-    society: {
-      type: "img",
-      icon: "/assets/records/policy.svg",
-      tooltip: "Society"
-    },
-    funder: {
-      type: "img",
-      icon: "/assets/records/policy.svg",
-      tooltip: "Funder"
-    },
-    project: {
-      type: "img",
-      icon: "/assets/records/policy.svg",
-      tooltip: "Project"
-    },
-    institution: {
-      type: "img",
-      icon: "/assets/records/policy.svg",
-      tooltip: "Institution"
-    },
-    terminology_artefact: {
-      type: "img",
-      icon: "/assets/records/terminology_artefact.svg",
-      tooltip: "Terminology Artefact"
-    },
-    model_and_format: {
-      type: "img",
-      icon: "/assets/records/model_and_format.svg",
-      tooltip: "Model and Format"
-    },
-    reporting_guideline: {
-      type: "img",
-      icon: "/assets/records/reporting_guideline.svg",
-      tooltip: "Reporting Guideline"
-    },
-    metric: {
-      type: "img",
-      icon: "/assets/records/metric.svg",
-      tooltip: "Metric"
-    },
-    repository: {
-      type: "img",
-      icon: "/assets/records/db-icon.svg",
-      tooltip: "Repository"
-    },
-    journal_publisher: {
-      type: "img",
-      icon: "/assets/records/policy.svg",
-      tooltip: "Journal Publisher"
-    },
-    knowledgebase: {
-      type: "img",
-      icon: "/assets/records/db-icon.svg",
-      tooltip: "Knowledge Base"
-    },
-    knowledgebase_and_repository: {
-      type: "img",
-      icon: "/assets/records/db-icon.svg",
-      tooltip: "Knowledge Base & repository"
-    },
-    DOI: {
-      type: "img",
-      icon: "/assets/icons/DOI_logo.svg"
-    },
-    Orcid: {
-      type: "img",
-      icon: "/assets/icons/ORCID_iD.svg"
     },
     mailing_list: {
       type: "icon",
@@ -222,10 +123,6 @@ const customIcons  = {
     video: {
       type: "icon",
       icon: "fa-video"
-    },
-    collections: {
-      type: "img",
-      icon: "/assets/Home/BlockInfo/collection-icon.svg"
     },
     educational: {
       type: "icon",
@@ -283,14 +180,6 @@ const customIcons  = {
       type: "icon",
       icon: "fa-user"
     },
-    educational_material: {
-      type: "img",
-      icon: "/assets/Home/QuestionPage/educational_material.png"
-    },
-    dataset: {
-      type: "img",
-      icon: "/assets/Home/QuestionPage/dataset.png"
-    }
   },
   iconfont: 'fa'
 };
