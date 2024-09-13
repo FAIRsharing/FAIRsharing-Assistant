@@ -16,7 +16,7 @@
           <v-img
             src="assets/Logo/fairsharing-logo.svg"
             height="220"
-            cover
+            class="contain"
           />
         </v-row>
         <v-row

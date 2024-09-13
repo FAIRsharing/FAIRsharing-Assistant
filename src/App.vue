@@ -27,6 +27,9 @@ export default {
 </script>
 
 <style lang="scss">
+@import '../node_modules/roboto-fontface/css/roboto/roboto-fontface.css';
+
+
 #app {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

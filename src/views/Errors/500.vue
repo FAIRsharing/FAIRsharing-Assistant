@@ -12,8 +12,8 @@
     >
       <v-img
         src="/assets/Errors/500.png"
-        cover
         width="500px"
+        class="contain"
       />
     </v-col>
   </v-row>

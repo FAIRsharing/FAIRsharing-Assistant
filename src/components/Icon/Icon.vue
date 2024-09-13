@@ -16,8 +16,8 @@
     </v-icon>
     <v-img
       v-else-if="$vuetify.icons.values[item].type === 'img'"
+      class="contain"
       :class="{'mt-0': wrapperClass !== ''}"
-      cover
       :height="height"
       :width="height"
       :src="$vuetify.icons.values[item].icon"

@@ -17,8 +17,7 @@
         class="d-flex justify-center"
       >
         <v-img
-          class="mt-5 full-width"
-          cover
+          class="mt-5 full-width contain"
           max-width="200px"
           height="100px"
           :src="$vuetify.icons.values[registryIcon].icon"
