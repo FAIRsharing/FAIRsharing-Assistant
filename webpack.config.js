@@ -1,5 +1,4 @@
-const VueLoaderPlugin = require("vue-loader/dist/plugin");
-
+const VueLoaderPlugin = require("vue-loader");
 const path = require("path");
 const webpack = require('webpack');
 const dotenv = require('dotenv').config({
@@ -70,7 +69,7 @@ module.exports = {
       __VUE_PROD_DEVTOOLS__: false, // do not enable devtools support in production
       __VUE_PROD_HYDRATION_MISMATCH_DETAILS__: false, // https://github.com/vuejs/vue-cli/pull/7443
     }),
-    new WebpackBundleAnalyzerPlugin()
+    new WebpackBundleAnalyzerPlugin(),
   ],
 
 };

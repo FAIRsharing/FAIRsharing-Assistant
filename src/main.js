@@ -1,6 +1,6 @@
 import { createApp, configureCompat } from "vue";
 import 'vuetify/styles'
-import { createVuetify } from "vuetify";
+import createVuetify from "@/plugins/vuetify.js";
 import App from './App.vue'
 import router from './router'
 import store from './store'
@@ -11,20 +11,12 @@ import 'core-js/stable'
 import 'roboto-fontface/css/roboto/roboto-fontface.css'
 import { loadFull } from "tsparticles";
 
-import * as components from "vuetify/components";
-import * as directives from "vuetify/directives";
-
-const vuetify = createVuetify({
-  components,
-  directives,
-});
-
 configureCompat({
   COMPONENT_ASYNC: false
 })
 
 const app = createApp(App)
-  .use(vuetify)
+  .use(createVuetify)
   .use(router)
   .use(store)
   .use(Particles, {

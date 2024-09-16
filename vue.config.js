@@ -37,5 +37,5 @@ module.exports = defineConfig({
         additionalData: `@import "@/styles/index.scss";`,
       },
     },
-  }
+  },
 })
