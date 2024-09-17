@@ -51,7 +51,7 @@
               prepend-inner-icon="mdi-filter"
               label="Filter these results"
             />
-            <template v-if="$vuetify.breakpoint.mdAndUp">
+            <template v-if="$vuetify.display.mdAndUp">
               <v-spacer />
               <v-select
                 v-model="sortBy"

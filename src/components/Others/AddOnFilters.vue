@@ -10,7 +10,7 @@
     </v-fade-transition>
     <v-container
       class="filterWrapper ma-0 d-flex flex-row align-stretch"
-      :class="{'flex-column':$vuetify.breakpoint.smAndDown}"
+      :class="{'flex-column':$vuetify.display.smAndDown}"
     >
       <div
         class="switchWrapper flex-column full-width"

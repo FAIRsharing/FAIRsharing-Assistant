@@ -2,7 +2,7 @@
   <div class="px-md-10 pa-5 mb-8">
     <div
       class="mb-5 d-flex flex-row"
-      :class="{'flex-column align-center': $vuetify.breakpoint.smAndDown}"
+      :class="{'flex-column align-center': $vuetify.display.smAndDown}"
     >
       <ResourceCard
         class="mb-5"
@@ -14,7 +14,7 @@
     </div>
     <div
       class="utilityButtons d-flex flex-row justify-space-around my-6 full-width margin-auto"
-      :class="{'flex-column align-center': $vuetify.breakpoint.smAndDown}"
+      :class="{'flex-column align-center': $vuetify.display.smAndDown}"
     >
       <ViewRecordsButton />
       <ResearchFieldsButton />

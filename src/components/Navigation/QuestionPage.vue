@@ -321,11 +321,11 @@
           :class="[
             item.color,
             {
-              'cardXtraSmall pa-0': $vuetify.breakpoint.xsOnly,
-              'cardSmall pa-2': $vuetify.breakpoint.smOnly,
-              'cardMedium pa-2': $vuetify.breakpoint.mdAndUp,
-              'cardLarge pa-4': $vuetify.breakpoint.lgAndUp,
-              'cardXtraLarge pa-4': $vuetify.breakpoint.xlOnly,
+              'cardXtraSmall pa-0': $vuetify.display.xsOnly,
+              'cardSmall pa-2': $vuetify.display.smOnly,
+              'cardMedium pa-2': $vuetify.display.mdAndUp,
+              'cardLarge pa-4': $vuetify.display.lgAndUp,
+              'cardXtraLarge pa-4': $vuetify.display.xlOnly,
             }
           ]"
           @click="processLink(item.link, item.query, item.message, item.refined, item.breadcrumbMod, item.role, item.restrict)"

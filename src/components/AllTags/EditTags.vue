@@ -10,7 +10,7 @@
       <v-container fluid>
         <div
           class="block-category mb-5 d-flex align-center justify-space-around"
-          :class="{'flex-column': $vuetify.breakpoint.smAndDown}"
+          :class="{'flex-column': $vuetify.display.smAndDown}"
         >
           <!-- Standard card -->
           <TagsCard
@@ -32,7 +32,7 @@
         <!-- end of result cards -->
         <div
           class="utilityButtons d-flex flex-row justify-space-around my-6 full-width margin-auto"
-          :class="{'flex-column align-center': $vuetify.breakpoint.smAndDown}"
+          :class="{'flex-column align-center': $vuetify.display.smAndDown}"
         >
           <ViewRecords />
           <ClearAllSelections />

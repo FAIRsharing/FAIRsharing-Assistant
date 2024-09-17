@@ -6,7 +6,7 @@
     <div
       v-if="getBreadcrumbs.length > 1"
       class="mb-10 utilityButtons d-flex flex-row justify-space-around full-width margin-auto"
-      :class="{'flex-column align-center': $vuetify.breakpoint.smAndDown}"
+      :class="{'flex-column align-center': $vuetify.display.smAndDown}"
     >
       <Breadcrumbs />
     </div>

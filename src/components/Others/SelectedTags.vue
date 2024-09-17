@@ -4,12 +4,12 @@
       v-for="(section, sectionName, sectionIndex) in sections"
       :key="'edit_keywords_' + sectionIndex"
       class="mb-3 d-flex flex-row"
-      :class="{'flex-column': $vuetify.breakpoint.smAndDown}"
+      :class="{'flex-column': $vuetify.display.smAndDown}"
     >
       <div
         class="text-white py-3 px-4 titleCell full-width d-flex align-center justify-center"
         :class="section.color"
-        :style="$vuetify.breakpoint.smAndDown ? 'max-width:100%': 'max-width:205px'"
+        :style="$vuetify.display.smAndDown ? 'max-width:100%': 'max-width:205px'"
       >
         <div class="d-flex justify-center">
           <Tooltip

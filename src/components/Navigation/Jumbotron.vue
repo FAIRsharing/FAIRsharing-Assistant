@@ -36,11 +36,11 @@
     <h2
       v-if="getJumbotronData['subTitle']"
       :class="[
-        'lato-font-medium my-4 primary--text px-1 font-weight-thin',
+        'lato-font-medium my-4 text-primary px-1 font-weight-thin',
         {
-          'lato-text-md': $vuetify.breakpoint.mdOnly,
-          'lato-text-lg': $vuetify.breakpoint.lgAndUp,
-          'lato-text-sm': $vuetify.breakpoint.smAndDown
+          'lato-text-md': $vuetify.display.mdOnly,
+          'lato-text-lg': $vuetify.display.lgAndUp,
+          'lato-text-sm': $vuetify.display.smAndDown
         }
       ]"
       style="z-index: 2"

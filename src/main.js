@@ -12,7 +12,9 @@ import 'roboto-fontface/css/roboto/roboto-fontface.css'
 import { loadFull } from "tsparticles";
 
 configureCompat({
-  COMPONENT_ASYNC: false
+  COMPONENT_ASYNC: false,
+  WATCH_ARRAY: false,
+  COMPONENT_V_MODEL: false
 })
 
 const app = createApp(App)
