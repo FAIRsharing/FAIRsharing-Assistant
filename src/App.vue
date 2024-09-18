@@ -1,6 +1,8 @@
 <template>
   <v-app id="app">
-    <div class="d-flex appWrapper fill-height flex-column justify-space-between">
+    <div
+      class="d-flex appWrapper fill-height flex-column justify-space-between"
+    >
       <router-view />
       <Footer />
     </div>
@@ -10,19 +12,19 @@
 <script>
 import Footer from "@/components/Others/Footer.vue";
 export default {
-  name: 'App',
-  components:{Footer},
+  name: "App",
+  components: { Footer },
   data() {
     return {
-      loading:true,
-    }
+      loading: true,
+    };
   },
   /* istanbul ignore next */
   async updated() {
     // very important line of code which prevents layout shifting which is considered as one negative point for SEO
-    await this.$nextTick()
+    await this.$nextTick();
     this.loading = false;
-  }
+  },
 };
 </script>
 
@@ -33,7 +35,8 @@ export default {
   min-height: 99vh;
 }
 
-html, body {
+html,
+body {
   height: 100%;
 }
 

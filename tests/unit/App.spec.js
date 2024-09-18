@@ -1,27 +1,25 @@
-import {shallowMount, createLocalVue} from "@vue/test-utils";
+import { shallowMount } from "@vue/test-utils";
 import App from "@/App.vue";
-import Vuetify from "vuetify"
-import Vuex from "vuex";
+import { createApp } from "vue";
+import { createVuetify } from "vuetify";
 
-const localVue = createLocalVue();
-localVue.use(Vuex);
-let $route = { path: "/", name: "HomeView"};
-
+const vuetify = createVuetify({});
+const localVue = createApp();
+localVue.use(vuetify);
+let $route = { path: "/", name: "HomeView" };
 
 describe("App.vue", () => {
   let wrapper;
-  const vuetify = new Vuetify();
 
   it("can be instantiated", async () => {
     const title = "App";
-    wrapper = await shallowMount(App, {
+    wrapper = shallowMount(App, {
       localVue,
       vuetify,
-      mocks: {$route},
-      stubs: ['router-link', 'router-view']
+      mocks: { $route },
+      stubs: ["router-link", "router-view"],
     });
-    wrapper.vm.loading = false
+    wrapper.vm.loading = false;
     expect(wrapper.vm.$options.name).toMatch(title);
   });
-
 });
