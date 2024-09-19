@@ -15,7 +15,6 @@
   },
   "dependencies": {
     "-": "^0.0.1",
-    "@fortawesome/fontawesome-free": "^6.6.0",
     "@fortawesome/fontawesome-svg-core": "^6.6.0",
     "@fortawesome/vue-fontawesome": "^3.0.8",
     "@tsparticles/vue3": "^3.0.1",
@@ -48,6 +47,8 @@
     "@babel/plugin-transform-private-methods": "^7.24.7",
     "@babel/plugin-transform-unicode-property-regex": "^7.24.7",
     "@babel/preset-env": "^7.25.3",
+    "@fortawesome/fontawesome-free": "^6.6.0",
+    "@fortawesome/free-solid-svg-icons": "^6.6.0",
     "@vue/babel-preset-app": "^5.0.8",
     "@vue/cli-plugin-babel": "^5.0.8",
     "@vue/cli-plugin-eslint": "^5.0.8",

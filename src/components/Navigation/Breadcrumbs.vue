@@ -13,7 +13,10 @@
         label
         @click="summary = true"
       >
-        <v-icon>fa fa-question-circle</v-icon>
+        <v-icon
+          size="x-large"
+          icon="fa fa-question-circle"
+        />
       </v-chip>
       <v-chip
         :key="crumbRoot.id"

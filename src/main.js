@@ -1,5 +1,5 @@
 import { createApp, configureCompat } from "vue";
-import 'vuetify/styles'
+// import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
 import createVuetify from "@/plugins/vuetify.js";
 import App from './App.vue'
 import router from './router'
@@ -10,6 +10,11 @@ import '@fortawesome/fontawesome-free/css/all.css'
 import 'core-js/stable'
 import 'roboto-fontface/css/roboto/roboto-fontface.css'
 import { loadFull } from "tsparticles";
+import {library} from "@fortawesome/fontawesome-svg-core";
+import {faQuestionCircle} from "@fortawesome/free-solid-svg-icons";
+
+
+library.add(faQuestionCircle)
 
 configureCompat({
   COMPONENT_ASYNC: false,
@@ -26,6 +31,7 @@ const app = createApp(App)
       await loadFull(engine);
     },
   })
-  .use(Vue3Sanitize);
+  .use(Vue3Sanitize)
+  // .component("font-awesome-icon", FontAwesomeIcon);
 
 app.mount("#app");
