@@ -4,12 +4,14 @@
     class="wrapperClass d-flex flex-column align-content-stretch"
   >
     <v-fade-transition v-if="loading">
-      <v-overlay
-        :absolute="false"
-        opacity="0.8"
-      >
-        <Loaders />
-      </v-overlay>
+      <div>
+        <v-overlay
+          :absolute="false"
+          opacity="0.8"
+        >
+          <Loaders />
+        </v-overlay>
+      </div>
     </v-fade-transition>
     <!-- how many results so far? -->
     <ResultPreviewBanner :show-banner="Object.keys(getQueryParams).length > 0" />
@@ -318,8 +320,8 @@
           class="full-width d-flex align-center text-center flex-column questionCard justify-center"
           height="130"
           elevation="4"
+          :color="item.color"
           :class="[
-            item.color,
             {
               'cardXtraSmall pa-0': $vuetify.display.xsOnly,
               'cardSmall pa-2': $vuetify.display.smOnly,

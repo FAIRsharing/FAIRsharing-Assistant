@@ -4,12 +4,14 @@
     class="wrapperClass d-flex flex-column align-content-stretch"
   >
     <v-fade-transition v-if="loading">
-      <v-overlay
-        :absolute="false"
-        opacity="0.8"
-      >
-        <Loaders />
-      </v-overlay>
+      <div>
+        <v-overlay
+          :absolute="false"
+          opacity="0.8"
+        >
+          <Loaders />
+        </v-overlay>
+      </div>
     </v-fade-transition>
     <!-- how many results so far? -->
     <ResultPreviewBanner :show-banner="Object.keys(getQueryParams).length > 0" />
