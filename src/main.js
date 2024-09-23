@@ -17,9 +17,10 @@ import {faQuestionCircle} from "@fortawesome/free-solid-svg-icons";
 library.add(faQuestionCircle)
 
 configureCompat({
-  COMPONENT_ASYNC: false,
-  WATCH_ARRAY: false,
-  COMPONENT_V_MODEL: false
+  MODE: 3,
+  // COMPONENT_ASYNC: false,
+  // WATCH_ARRAY: false,
+  // COMPONENT_V_MODEL: false
 })
 
 const app = createApp(App)
