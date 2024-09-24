@@ -70,8 +70,9 @@
         <span v-html="getSummaryText()" />
       </v-card-text>
       <!-- eslint-enable vue/no-v-html -->
-      <v-card-actions>
+      <v-card-actions class="justify-center">
         <v-btn
+          elevation="2"
           color="primary"
           variant="flat"
           @click="summary = false"
@@ -79,7 +80,8 @@
           Close
         </v-btn>
         <v-btn
-          color="primary"
+          elevation="2"
+          color="accent2"
           variant="flat"
           @click="copySummary()"
         >

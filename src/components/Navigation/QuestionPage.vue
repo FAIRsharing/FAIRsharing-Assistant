@@ -79,13 +79,14 @@
         <v-text-field
           id="searchString"
           v-model="searchString"
-          append-icon="fa-search"
+          append-inner-icon="fa fa-search"
           label="Search model/formats and terminologies"
           variant="outlined"
           clearable
-          clear-icon="fa-times-circle"
+          clear-icon="fa fa-times-circle"
           hide-details
           class="pt-1 mr-10"
+          color="primary"
           @click:clear="clearResults"
         />
         <!-- drop-down table for searchResults to go here -->
@@ -169,13 +170,14 @@
         <v-text-field
           id="searchString"
           v-model="searchString"
-          append-icon="fa-search"
+          append-inner-icon="fa fa-search"
           label="Search names and synonyms"
           variant="outlined"
           clearable
-          clear-icon="fa-times-circle"
+          clear-icon="fa fa-times-circle"
           hide-details
           class="pt-1 mr-10"
+          color="primary"
           @click:clear="clearResults"
         />
         <v-data-table
@@ -194,7 +196,7 @@
         >
           <template #[`item.model`]="{ item }">
             <div
-              :class="colors[item.model] + '--text'"
+              :class="'text-' + colors[item.model]"
               class="noBreak"
             >
               {{ item.model.toUpperCase().replace(/_/g, " ") }}
@@ -203,6 +205,8 @@
           <template #[`item.label`]="{ item }">
             <v-chip
               :class="colors[item.model] + ' white--text noBreak'"
+              :color="colors[item.model]"
+              variant="flat"
             >
               {{ capitaliseText(item.label, item.model) }}
             </v-chip>
@@ -265,13 +269,14 @@
         <v-text-field
           id="searchString"
           v-model="searchString"
-          append-icon="fa-search"
+          append-inner-icon="fa fa-search"
           label="Search policies"
           variant="outlined"
           clearable
-          clear-icon="fa-times-circle"
+          clear-icon="fa fa-times-circle"
           hide-details
           class="pt-1 mr-10"
+          color="primary"
           @click:clear="clearResults"
         />
         <!-- drop-down table for searchResults to go here -->
@@ -471,23 +476,23 @@ export default {
       ],
       tagHeaders: [
         {
-          text: "Type of keyword",
+          title: "Type of keyword",
           sortable: false,
           value: "model"
         },
         {
-          text: "Name",
+          title: "Name",
           sortable: false,
           value: "label"
         },
         {
-          text: "Definition",
+          title: "Definition",
           sortable: false,
-          value: "definitions",
+          value: "definitions[0]",
           filterable: false
         },
         {
-          text: "Alternative names",
+          title: "Alternative names",
           sortable: false,
           value: "synonyms"
         }
