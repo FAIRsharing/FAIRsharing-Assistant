@@ -6,6 +6,8 @@
     <v-fade-transition v-if="loading">
       <div>
         <v-overlay
+          v-model="loading"
+          class="align-center justify-center"
           :absolute="false"
           opacity="0.8"
         >

@@ -3,6 +3,8 @@
     <v-fade-transition v-if="recordsLoading">
       <div>
         <v-overlay
+          v-model="recordsLoading"
+          class="align-center justify-center"
           :absolute="false"
           opacity="0.8"
         >
