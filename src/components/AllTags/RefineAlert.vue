@@ -7,9 +7,7 @@
       cols="12"
     >
       <v-alert
-        density="compact"
         type="info"
-        variant="tonal"
       >
         <!-- This html is from a safe source -->
         <!-- eslint-disable vue/no-v-html -->
