@@ -50,9 +50,9 @@
             v-for="std in (foundModelFormats)"
             :key="std.name"
             class="ma-2"
-            close-icon="mdi-delete"
+            close-icon="fa fa-trash"
             closable
-            @click="deleteStandard(std.id)"
+            @click:close="deleteStandard(std.id)"
           >
             {{ std.abbreviation || std.name }}
             <!--Commented v2 to v3 migration-->
@@ -131,9 +131,8 @@
         class="ml-4"
       >
         <!-- A list here of selected tags is shown just above the text box -->
-        <v-chip-group
+        <div
           class="pl-2"
-          column
         >
           <v-chip
             v-for="tag in (recordTags)"
@@ -141,11 +140,11 @@
             class="ma-2"
             :color="colors[tag.model]"
             variant="flat"
-            close-icon="mdi-delete"
+            close-icon="fa fa-trash"
             closable
-            @click="deleteTag(tag.id, tag.model)"
+            @click:close="deleteTag(tag.id, tag.model)"
           >
-            {{ tag.label }}
+            {{ capitaliseText(tag.label) }}
             <!--Commented due to v2 to v3 migration-->
             <!--            <v-tooltip location="bottom">-->
             <!--              <template #activator="{ props }">-->
@@ -165,7 +164,7 @@
             <!--              <span> Delete tag </span>-->
             <!--            </v-tooltip>-->
           </v-chip>
-        </v-chip-group>
+        </div>
         <!-- end of tags list -->
         <v-text-field
           id="searchString"
@@ -193,6 +192,7 @@
           show-select
           calculate-widths
           mobile-breakpoint="900"
+          return-object
         >
           <template #[`item.model`]="{ item }">
             <div
@@ -204,7 +204,7 @@
           </template>
           <template #[`item.label`]="{ item }">
             <v-chip
-              :class="colors[item.model] + ' white--text noBreak'"
+              :class="colors[item.model] + ' text-white noBreak'"
               :color="colors[item.model]"
               variant="flat"
             >
@@ -240,9 +240,9 @@
             v-for="pol in (foundPolicies)"
             :key="pol.name"
             class="ma-2"
-            close-icon="mdi-delete"
+            close-icon="fa fa-trash"
             closable
-            @click="deletePolicy(pol.id)"
+            @click:close="deletePolicy(pol.id)"
           >
             {{ pol.abbreviation || pol.name }}
             <!--Commented due to v2 to v3 migration-->
@@ -984,6 +984,5 @@ export default {
   min-height: 100px;
   padding: 50px;
 }
-
 
 </style>
