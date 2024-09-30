@@ -54,7 +54,7 @@ export default {
   mixins: [recordsCardUtils],
   props: {
     record: {
-      default: null,
+      default: () => ({}),
       type: Object
     }
   },

@@ -38,7 +38,8 @@ const fairSharingTheme = {
     bg_collection_record_card: '#f0f5f9',
 
     dark_gray: '#727272'
-  }
+  },
+  variables:{}
 }
 
 export default fairSharingTheme

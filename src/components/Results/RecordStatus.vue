@@ -66,6 +66,7 @@
 import Icon from "@/components/Icon/Icon.vue"
 // Lighten or darken the color using javascript
 import { LightenDarkenColor } from '@/utils/generalUtils';
+import fairSharingTheme from "@/plugins/theme"
 
 export default {
   name: "RecordStatus",
@@ -82,22 +83,22 @@ export default {
         ready: {
           title: 'R',
           tooltip: 'Ready',
-          backColor: `background: linear-gradient(${this.$vuetify.theme.themes.light.ready_color}, ${LightenDarkenColor(this.$vuetify.theme.themes.light.ready_color,50)})`
+          backColor: `background: linear-gradient(${fairSharingTheme.colors.ready_color}, ${LightenDarkenColor(fairSharingTheme.colors.ready_color,50)})`
         },
         deprecated: {
           title: 'D',
           tooltip: 'Deprecated',
-          backColor: `background: linear-gradient(${this.$vuetify.theme.themes.light.deprecated_color}, ${LightenDarkenColor(this.$vuetify.theme.themes.light.deprecated_color,50)})`
+          backColor: `background: linear-gradient(${fairSharingTheme.colors.deprecated_color}, ${LightenDarkenColor(fairSharingTheme.colors.deprecated_color,50)})`
         },
         uncertain: {
           title: 'U',
           tooltip: 'Uncertain',
-          backColor: `background: linear-gradient(${this.$vuetify.theme.themes.light.uncertain_color}, ${LightenDarkenColor(this.$vuetify.theme.themes.light.uncertain_color,50)})`
+          backColor: `background: linear-gradient(${fairSharingTheme.colors.uncertain_color}, ${LightenDarkenColor(fairSharingTheme.colors.uncertain_color,50)})`
         },
         in_development: {
           title: 'Dev',
           tooltip: 'In Development',
-          backColor: `background: linear-gradient(${this.$vuetify.theme.themes.light.dev_color}, ${LightenDarkenColor(this.$vuetify.theme.themes.light.dev_color,50)})`
+          backColor: `background: linear-gradient(${fairSharingTheme.colors.dev_color}, ${LightenDarkenColor(fairSharingTheme.colors.dev_color,50)})`
         },
         undefined: {
           title: '?',
