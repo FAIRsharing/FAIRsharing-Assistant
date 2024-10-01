@@ -31,7 +31,7 @@
         v-model:page="page"
         :items="records"
         :search="search"
-        :sort-by="sortBy.toLowerCase()"
+        :sort-by="sortBy"
         :sort-desc="sortDesc"
         :footer-props="{'items-per-page-options': [5, 10, 25, 50, 100]}"
       >
@@ -89,34 +89,34 @@
         </template>
         <!-- headers stop -->
         <!-- data section begins -->
-        <template #default="props">
+        <template #default="{items}">
           <v-row>
             <v-col
-              v-for="item in props.items"
-              :key="item.name"
+              v-for="item in items"
+              :key="item.raw.name"
               cols="12"
             >
               <v-card>
                 <v-card-title class="subheading font-weight-bold">
                   <RecordStatus
-                    :record="item"
+                    :record="item.raw"
                   />
                   <a
                     :href="fairSharingURL + '/' + getRecordLink(item)"
                     target="_blank"
                     class="ml-10"
                   >
-                    {{ item.name }}
+                    {{ item.raw.name }}
                   </a>
                 </v-card-title>
                 <p
                   class="mt-2 ml-10 pr-2 text-sm-body-2 text-md-body-1 text-justify text-ellipses-height-2lines"
                 >
-                  {{ item. description }}
+                  {{ item.raw.description }}
                 </p>
 
                 <TagChips
-                  :record="item"
+                  :record="item.raw"
                   class="ml-10"
                 />
 
@@ -214,7 +214,7 @@ export default {
       sortDesc: false,
       page: 1,
       itemsPerPage: 5,
-      sortBy: 'name',
+      sortBy: ['name'].toLocaleString().toLowerCase().split(','),
       records: [],
       loading: true,
       error: false,
