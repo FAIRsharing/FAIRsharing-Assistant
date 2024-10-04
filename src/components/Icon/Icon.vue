@@ -1,31 +1,34 @@
 <template>
   <div :class="[wrapperClass, 'd-flex justify-center']">
     <v-icon
-      v-if="!Object.keys($vuetify.icons.values).includes(item)"
+      v-if="!Object.keys(customIcons.values).includes(item)"
       :size="size"
       :color="color"
     >
-      {{ $vuetify.icons.values[fallback].icon }}
+      {{ customIcons.values[fallback].icon }}
     </v-icon>
     <v-icon
-      v-else-if="$vuetify.icons.values[item].type === 'icon'"
+      v-else-if="customIcons.values[item].type === 'icon'"
       :size="size"
       :color="color"
+      :icon="customIcons.values[item].icon"
     >
-      {{ $vuetify.icons.values[item].icon }}
+      {{ customIcons.values[item].icon }}
     </v-icon>
     <v-img
-      v-else-if="$vuetify.icons.values[item].type === 'img'"
+      v-else-if="customIcons.values[item].type === 'img'"
       class="contain"
       :class="{'mt-0': wrapperClass !== ''}"
       :height="height"
       :width="height"
-      :src="$vuetify.icons.values[item].icon"
+      :src="customIcons.values[item].icon"
     />
   </div>
 </template>
 
 <script>
+import customIcons from "@/plugins/icons";
+
 export default {
   name: "Icon",
   props: {
@@ -35,7 +38,12 @@ export default {
     wrapperClass: {default: 'icon-container', type: String},
     height: {default: 45, type: Number},
     color: {default: null, type: String},
-  }
+  },
+  data() {
+    return {
+      customIcons: customIcons
+    }
+  },
 }
 </script>
 

@@ -64,18 +64,22 @@
 
 <script>
 import Icon from "@/components/Icon/Icon.vue"
+import { useTheme } from 'vuetify'
 // Lighten or darken the color using javascript
 import { LightenDarkenColor } from '@/utils/generalUtils';
-import fairSharingTheme from "@/plugins/theme"
 
 export default {
   name: "RecordStatus",
   components: {Icon},
   props: {
-    record: {default: null, type: Object},
+    record: {default: () => ({}), type: Object},
     showStatus: {default: true, type: Boolean},
     showOnlyStatus: {default: false, type: Boolean},
     inEditForm: {default: false, type: Boolean},
+  },
+  setup() {
+    const theme = useTheme()
+    return {theme}
   },
   data() {
     return {
@@ -83,22 +87,22 @@ export default {
         ready: {
           title: 'R',
           tooltip: 'Ready',
-          backColor: `background: linear-gradient(${fairSharingTheme.colors.ready_color}, ${LightenDarkenColor(fairSharingTheme.colors.ready_color,50)})`
+          backColor: `background: linear-gradient(${this.theme.computedThemes.value.fairSharingTheme.colors.ready_color}, ${LightenDarkenColor(this.theme.computedThemes.value.fairSharingTheme.colors.ready_color,50)})`
         },
         deprecated: {
           title: 'D',
           tooltip: 'Deprecated',
-          backColor: `background: linear-gradient(${fairSharingTheme.colors.deprecated_color}, ${LightenDarkenColor(fairSharingTheme.colors.deprecated_color,50)})`
+          backColor: `background: linear-gradient(${this.theme.computedThemes.value.fairSharingTheme.colors.deprecated_color}, ${LightenDarkenColor(this.theme.computedThemes.value.fairSharingTheme.colors.deprecated_color,50)})`
         },
         uncertain: {
           title: 'U',
           tooltip: 'Uncertain',
-          backColor: `background: linear-gradient(${fairSharingTheme.colors.uncertain_color}, ${LightenDarkenColor(fairSharingTheme.colors.uncertain_color,50)})`
+          backColor: `background: linear-gradient(${this.theme.computedThemes.value.fairSharingTheme.colors.uncertain_color}, ${LightenDarkenColor(this.theme.computedThemes.value.fairSharingTheme.colors.uncertain_color,50)})`
         },
         in_development: {
           title: 'Dev',
           tooltip: 'In Development',
-          backColor: `background: linear-gradient(${fairSharingTheme.colors.dev_color}, ${LightenDarkenColor(fairSharingTheme.colors.dev_color,50)})`
+          backColor: `background: linear-gradient(${this.theme.computedThemes.value.fairSharingTheme.colors.dev_color}, ${LightenDarkenColor(this.theme.computedThemes.value.fairSharingTheme.colors.dev_color,50)})`
         },
         undefined: {
           title: '?',
@@ -117,13 +121,13 @@ export default {
       else {
         return this.statusStyles[undefined]
       }
-    }
+    },
   },
   created() {
     this.$nextTick(function () {
-      this.recordType = this.$vuetify.icons.values;
+      this.recordType = this.theme.computedThemes.value.fairSharingTheme;
     });
-  }
+  },
 }
 </script>
 

@@ -31,7 +31,7 @@
         v-model:page="page"
         :items="records"
         :search="search"
-        :sort-by="sortBy"
+        :sort-by="['name'].toLocaleString().toLowerCase().split(',')"
         :sort-desc="sortDesc"
         :footer-props="{'items-per-page-options': [5, 10, 25, 50, 100]}"
       >
@@ -40,15 +40,15 @@
           <v-toolbar
             dark
             color="blue-lighten-1"
-            class="mb-5"
+            class="mb-5 px-4 py-1"
           >
             <v-text-field
               v-model="search"
               clearable
               flat
-              variant="solo-inverted"
+              variant="solo"
               hide-details
-              prepend-inner-icon="mdi-filter"
+              prepend-inner-icon="fa fa-solid fa-filter"
               label="Filter these results"
             />
             <template v-if="$vuetify.display.mdAndUp">
@@ -59,7 +59,7 @@
                 variant="solo-inverted"
                 hide-details
                 :items="keys"
-                prepend-inner-icon="mdi-sort"
+                prepend-inner-icon="fa fa-solid fa-arrow-up-short-wide"
                 label="Sort by"
               />
               <v-spacer />
@@ -73,7 +73,7 @@
                   color="blue"
                   :value="false"
                 >
-                  <v-icon>mdi-arrow-up</v-icon>
+                  <v-icon icon="fa fa-solid fa-arrow-up" />
                 </v-btn>
                 <v-btn
                   size="large"
@@ -81,7 +81,7 @@
                   color="blue"
                   :value="true"
                 >
-                  <v-icon>mdi-arrow-down</v-icon>
+                  <v-icon icon="fa fa-solid fa-arrow-down" />
                 </v-btn>
               </v-btn-toggle>
             </template>
@@ -214,7 +214,7 @@ export default {
       sortDesc: false,
       page: 1,
       itemsPerPage: 5,
-      sortBy: ['name'].toLocaleString().toLowerCase().split(','),
+      sortBy: 'name',
       records: [],
       loading: true,
       error: false,
