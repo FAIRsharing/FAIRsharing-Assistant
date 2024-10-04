@@ -4,6 +4,7 @@
       v-if="recordType && !showOnlyStatus"
       :class="showStatus?'circle-container':'circle-container-dashed'"
     >
+      Test123
       <v-tooltip
         right
         nudge-right="15"
@@ -38,7 +39,7 @@
         <span>{{ getRecordStatus.tooltip }}</span>
       </v-tooltip>
     </div>
-    <!-- if only shows status and nothing else   -->
+    <!-- if only shows status and nothing else Test  -->
     <div
       v-if="showOnlyStatus && showStatus"
       :class="inEditForm ? 'circle-holder-editing' : 'circle-holder'"
@@ -121,7 +122,13 @@ export default {
   created() {
     this.$nextTick(function () {
       this.recordType = this.$vuetify.icons.values;
+      console.log("this.recordType Created::", this.recordType)
     });
+  },
+  mounted() {
+    console.log("this.record::", this.record)
+    console.log("this.recordType mounted::", this.recordType)
+    console.log("this.showOnlyStatus::", this.showOnlyStatus)
   }
 }
 </script>
