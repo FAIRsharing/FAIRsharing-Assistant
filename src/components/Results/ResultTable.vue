@@ -97,12 +97,12 @@
               cols="12"
             >
               <v-card>
-                <v-card-title class="subheading font-weight-bold">
+                <v-card-title class="subheading font-weight-bold d-flex align-center">
                   <RecordStatus
                     :record="item.raw"
                   />
                   <a
-                    :href="fairSharingURL + '/' + getRecordLink(item)"
+                    :href="fairSharingURL + getRecordLink(item.raw)"
                     target="_blank"
                     class="ml-10"
                   >

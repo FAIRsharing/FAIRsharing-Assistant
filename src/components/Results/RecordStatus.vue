@@ -6,7 +6,7 @@
     >
       <v-tooltip
         location="end"
-        offset="15"
+        offset="25"
       >
         <template #activator="{ props }">
           <v-avatar
@@ -67,6 +67,7 @@ import Icon from "@/components/Icon/Icon.vue"
 import { useTheme } from 'vuetify'
 // Lighten or darken the color using javascript
 import { LightenDarkenColor } from '@/utils/generalUtils';
+import customIcons from "@/plugins/icons";
 
 export default {
   name: "RecordStatus",
@@ -125,7 +126,7 @@ export default {
   },
   created() {
     this.$nextTick(function () {
-      this.recordType = this.theme.computedThemes.value.fairSharingTheme;
+      this.recordType = customIcons.values;
     });
   },
 }
