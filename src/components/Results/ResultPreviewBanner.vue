@@ -29,22 +29,21 @@
       persistent
     >
       <v-card>
-        <v-card-title
-          class="text-h5"
-        >
-          Current search results
-        </v-card-title>
-        <v-card-actions>
-          <v-spacer />
-          <v-btn
-            color="blue-darken-1"
-            variant="text"
-            persistent
-            @click="showResultPreview = false"
+        <div class="d-flex align-center position-relative">
+          <v-card-title
+            class="text-h5 mx-auto my-0"
           >
-            Close
-          </v-btn>
-        </v-card-actions>
+            Current search results
+          </v-card-title>
+          <v-btn
+            class="position-absolute"
+            color="accent3"
+            persistent
+            icon="fa fa-xmark fa-solid"
+            style="right: 10px"
+            @click="showResultPreview = false"
+          />
+        </div>
         <v-card-text>
           <Breadcrumbs />
           <ResultTable />
@@ -72,7 +71,7 @@ import {mapGetters} from "vuex";
 import Breadcrumbs from "@/components/Navigation/Breadcrumbs.vue";
 
 export default {
-  name: 'QuestionPage',
+  name: 'ResultPreviewBanner',
   components: {Breadcrumbs, ResultTable },
   mixins: [stringUtils],
   props: {
