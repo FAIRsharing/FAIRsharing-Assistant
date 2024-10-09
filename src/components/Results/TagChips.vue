@@ -1,13 +1,12 @@
 <template>
   <section :class="['mb-1 overflow-hidden',{'chips-container-fixed-height':!isColumn}]">
-    <v-chip-group
-      column
-    >
+    <div>
       <v-chip
         v-for="(chip,index) in chips"
         :key="chip.label+'_'+index"
         variant="flat"
         :color="getChipColor(chip)"
+        class="mr-2 my-1"
       >
         <KeywordTooltip
           v-if="chip.type === 'subjects' || chip.type === 'domains' "
@@ -36,7 +35,7 @@
       >
         {{ `one more tag` }}
       </v-chip>
-    </v-chip-group>
+    </div>
   </section>
 </template>
 

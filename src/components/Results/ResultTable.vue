@@ -31,8 +31,8 @@
         v-model:page="page"
         :items="records"
         :search="search"
-        :sort-by="['name'].toLocaleString().toLowerCase().split(',')"
-        :sort-desc="sortDesc"
+        :sort-by="sortData"
+        multi-sort
         :footer-props="{'items-per-page-options': [5, 10, 25, 50, 100]}"
       >
         <!-- headers start -->
@@ -50,17 +50,19 @@
               hide-details
               prepend-inner-icon="fa fa-solid fa-filter"
               label="Filter these results"
+              width="125"
             />
             <template v-if="$vuetify.display.mdAndUp">
               <v-spacer />
               <v-select
                 v-model="sortBy"
                 flat
-                variant="solo-inverted"
+                variant="solo"
                 hide-details
                 :items="keys"
                 prepend-inner-icon="fa fa-solid fa-arrow-up-short-wide"
                 label="Sort by"
+                width="125"
               />
               <v-spacer />
               <v-btn-toggle
@@ -214,7 +216,7 @@ export default {
       sortDesc: false,
       page: 1,
       itemsPerPage: 5,
-      sortBy: 'name',
+      sortBy: [],
       records: [],
       loading: true,
       error: false,
@@ -226,7 +228,7 @@ export default {
         'Description'
       ],
       fairSharingURL: process.env.VUE_APP_FAIRSHARING_URL,
-      chooseDownloadActive: false
+      chooseDownloadActive: false,
     }
   },
   computed: {
@@ -237,6 +239,27 @@ export default {
     filteredKeys () {
       return this.keys.filter(key => key !== 'Name' && key !== 'Description')
     },
+    sortData(){
+      switch(this.sortBy) {
+      case 'Name':
+        return [{key: 'name', order: this.sortDesc ? 'desc':'asc'}]
+      case 'Registry':
+        return [{key: 'registry', order: this.sortDesc ? 'desc':'asc'}]
+      case 'Type':
+        return [{key: 'type', order: this.sortDesc ? 'desc':'asc'}]
+      case 'Status':
+        return [{key: 'status', order: this.sortDesc ? 'desc':'asc'}]
+      case 'Description':
+        return [{key: 'description', order: this.sortDesc ? 'desc':'asc'}]
+      default:
+        return [{key: 'name', order: this.sortDesc ? 'desc':'asc'}]
+      }
+    }
+  },
+  watch: {
+    sortBy() {
+      this.sortDesc = false
+    }
   },
   async mounted() {
     await this.getData();
