@@ -36,13 +36,18 @@
             Current search results
           </v-card-title>
           <v-btn
-            class="position-absolute"
-            color="accent3"
+            class="position-absolute right-0 top-0 pa-0"
             persistent
-            icon="fa fa-xmark fa-solid"
-            style="right: 10px"
+            variant="text"
             @click="showResultPreview = false"
-          />
+          >
+            <template #append>
+              <v-icon
+                icon="fa fa-xmark fa-solid"
+                size="35"
+              />
+            </template>
+          </v-btn>
         </div>
         <v-card-text>
           <Breadcrumbs />
