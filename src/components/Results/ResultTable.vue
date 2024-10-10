@@ -27,8 +27,8 @@
         Download Results
       </v-btn>
       <v-data-iterator
-        v-model:items-per-page="itemsPerPage"
-        v-model:page="page"
+        :page="pageNumber"
+        :items-per-page="itemsPerPage"
         :items="records"
         :search="search"
         :sort-by="sortData"
@@ -142,6 +142,32 @@
           </v-row>
         </template>
         <!-- data section ends -->
+        <!-- footer start -->
+        <template #footer="{ page, pageCount, prevPage, nextPage }">
+          <v-footer class="d-flex justify-center mt-1">
+            <div class="me-6">
+              Page {{ page }} of {{ pageCount }}
+            </div>
+            <div class="d-inline-flex">
+              <v-btn
+                :disabled="page === 1"
+                class="me-2"
+                icon="fa fa-arrow-left"
+                size="small"
+                variant="tonal"
+                @click="prevPage"
+              />
+
+              <v-btn
+                :disabled="page === pageCount"
+                icon="fa fa-arrow-right"
+                size="small"
+                variant="tonal"
+                @click="nextPage"
+              />
+            </div>
+          </v-footer>
+        </template>
         <!-- footer ends -->
       </v-data-iterator>
     </v-container>
@@ -214,7 +240,7 @@ export default {
       search: '',
       filter: {},
       sortDesc: false,
-      page: 1,
+      pageNumber: 1,
       itemsPerPage: 5,
       sortBy: [],
       records: [],
