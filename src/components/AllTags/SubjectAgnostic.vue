@@ -24,13 +24,13 @@
 
       <v-card-actions>
         <v-btn
-          small
+          size="small"
           @click="yesPlease()"
         >
           Add subject agnostic
         </v-btn>
         <v-btn
-          small
+          size="small"
           @click="noThanks()"
         >
           Don't add

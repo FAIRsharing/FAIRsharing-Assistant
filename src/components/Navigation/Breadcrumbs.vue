@@ -9,17 +9,20 @@
         key="help_breadcrumb"
         class="ma-2"
         color="pink"
-        text-color="white"
+        variant="flat"
         label
         @click="summary = true"
       >
-        <v-icon>fa fa-question-circle</v-icon>
+        <v-icon
+          size="x-large"
+          icon="fa fa-question-circle"
+        />
       </v-chip>
       <v-chip
         :key="crumbRoot.id"
         class="ma-2"
         color="pink"
-        text-color="white"
+        variant="flat"
         label
         @click="handleNavigation(crumbRoot.link)"
       >
@@ -30,7 +33,7 @@
         :key="crumb.id"
         class="ma-2"
         color="pink"
-        text-color="white"
+        variant="flat"
         label
         @click="handleNavigation(crumb.link)"
       >
@@ -43,9 +46,8 @@
         :key="'active_' + currentBreadcrumb.id"
         class="ma-2"
         color="pink"
-        text-color="pink"
         label
-        outlined
+        variant="outlined"
       >
         <!-- This html is from a safe source -->
         <!-- eslint-disable vue/no-v-html -->
@@ -53,38 +55,41 @@
         <!-- eslint-enable vue/no-v-html -->
       </v-chip>
     </v-col>
-    <v-dialog
-      v-model="summary"
-      activator="parent"
-      width="auto"
-    >
-      <v-card>
-        <!-- This html is from a safe source -->
-        <!-- eslint-disable vue/no-v-html -->
-        <v-card-title>
-          Summary
-        </v-card-title>
-        <v-card-text
-          v-html="getSummaryText()"
-        />
-        <!-- eslint-enable vue/no-v-html -->
-        <v-card-actions>
-          <v-btn
-            color="primary"
-            @click="summary = false"
-          >
-            Close
-          </v-btn>
-          <v-btn
-            color="primary"
-            @click="copySummary()"
-          >
-            Copy
-          </v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
   </v-row>
+  <v-dialog
+    v-model="summary"
+    width="auto"
+  >
+    <v-card>
+      <!-- This html is from a safe source -->
+      <!-- eslint-disable vue/no-v-html -->
+      <v-card-title>
+        Summary
+      </v-card-title>
+      <v-card-text>
+        <span v-html="getSummaryText()" />
+      </v-card-text>
+      <!-- eslint-enable vue/no-v-html -->
+      <v-card-actions class="justify-center">
+        <v-btn
+          elevation="2"
+          color="primary"
+          variant="flat"
+          @click="summary = false"
+        >
+          Close
+        </v-btn>
+        <v-btn
+          elevation="2"
+          color="accent2"
+          variant="flat"
+          @click="copySummary()"
+        >
+          Copy
+        </v-btn>
+      </v-card-actions>
+    </v-card>
+  </v-dialog>
 </template>
 
 <script>

@@ -4,12 +4,12 @@
       v-for="(section, sectionName, sectionIndex) in sections"
       :key="'edit_keywords_' + sectionIndex"
       class="mb-3 d-flex flex-row"
-      :class="{'flex-column': $vuetify.breakpoint.smAndDown}"
+      :class="{'flex-column': $vuetify.display.smAndDown}"
     >
       <div
-        class="white--text py-3 px-4 titleCell full-width d-flex align-center justify-center"
+        class="text-white py-3 px-4 titleCell full-width d-flex align-center justify-center"
         :class="section.color"
-        :style="$vuetify.breakpoint.smAndDown ? 'max-width:100%': 'max-width:205px'"
+        :style="$vuetify.display.smAndDown ? 'max-width:100%': 'max-width:205px'"
       >
         <div class="d-flex justify-center">
           <Tooltip
@@ -33,27 +33,31 @@
             v-for="(tag, tagIndex) in getSelectedTags.filter(x => x.model === section.label)"
             :key="'section_' + sectionIndex + '_tag_' + tagIndex"
             :class="[section.color + '--text white']"
+            close-icon="mdi-delete"
+            closable
+            @click="deleteTag(tag.id, tag.label, sectionName)"
           >
             {{ capitaliseText(tag.label, tag.model) }}
-            <v-tooltip bottom>
-              <template #activator="{ on, attrs }">
-                <!-- this is a dreadful cheat; without it the close icon becomes unreadable -->
-                <div
-                  @click="deleteTag(tag.id, tag.label, sectionName)"
-                >
-                  <v-icon
-                    v-bind="attrs"
-                    small
-                    class="ml-1"
-                    :class="[section.color + '--text white']"
-                    v-on="on"
-                  >
-                    fa-times-circle
-                  </v-icon>
-                </div>
-              </template>
-              <span> Delete tag </span>
-            </v-tooltip>
+            <!--Commented due to v2 to v3 migration-->
+            <!--            <v-tooltip location="bottom">-->
+            <!--              <template #activator="{ props }">-->
+            <!--                &lt;!&ndash; this is a dreadful cheat; without it the close icon becomes unreadable &ndash;&gt;-->
+            <!--                <div-->
+            <!--                  @click="deleteTag(tag.id, tag.label, sectionName)"-->
+            <!--                >-->
+            <!--                  <v-icon-->
+            <!--                   -->
+            <!--                    size="small"-->
+            <!--                    class="ml-1"-->
+            <!--                    :class="[section.color + '&#45;&#45;text white']"-->
+            <!--                    v-bind="props"-->
+            <!--                  >-->
+            <!--                    fa-times-circle-->
+            <!--                  </v-icon>-->
+            <!--                </div>-->
+            <!--              </template>-->
+            <!--              <span> Delete tag </span>-->
+            <!--            </v-tooltip>-->
           </v-chip>
         </v-chip-group>
         <!--- For Refine Page -->
@@ -94,6 +98,7 @@ export default {
       default: false
     }
   },
+  emits: ['deleteTag'],
   data() {
     return {
       colors: {

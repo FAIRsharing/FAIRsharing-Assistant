@@ -4,12 +4,16 @@
     class="wrapperClass d-flex flex-column align-content-stretch"
   >
     <v-fade-transition v-if="loading">
-      <v-overlay
-        :absolute="false"
-        opacity="0.8"
-      >
-        <Loaders />
-      </v-overlay>
+      <div>
+        <v-overlay
+          v-model="loading"
+          :absolute="false"
+          opacity="0.8"
+          class="align-center justify-center"
+        >
+          <Loaders />
+        </v-overlay>
+      </div>
     </v-fade-transition>
     <!-- how many results so far? -->
     <ResultPreviewBanner :show-banner="Object.keys(getQueryParams).length > 0" />
@@ -46,45 +50,50 @@
             v-for="std in (foundModelFormats)"
             :key="std.name"
             class="ma-2"
+            close-icon="fa fa-trash"
+            closable
+            @click:close="deleteStandard(std.id)"
           >
             {{ std.abbreviation || std.name }}
-            <v-tooltip bottom>
-              <template #activator="{ on, attrs }">
-                <!-- this is a dreadful cheat; without it the close icon becomes unreadable -->
-                <div
-                  @click="deleteStandard(std.id)"
-                >
-                  <v-icon
-                    v-bind="attrs"
-                    small
-                    class="ml-1"
-                    v-on="on"
-                  >
-                    fa-times-circle
-                  </v-icon>
-                </div>
-              </template>
-              <span> Delete standard </span>
-            </v-tooltip>
+            <!--Commented v2 to v3 migration-->
+            <!--            <v-tooltip location="bottom">-->
+            <!--              <template #activator="{ props }">-->
+            <!--                &lt;!&ndash; this is a dreadful cheat; without it the close icon becomes unreadable &ndash;&gt;-->
+            <!--                <div-->
+            <!--                  @click="deleteStandard(std.id)"-->
+            <!--                >-->
+            <!--                  <v-icon-->
+            <!--                    v-bind="props"-->
+            <!--                    size="small"-->
+            <!--                    class="ml-1"-->
+            <!--                  >-->
+            <!--                    fa-times-circle-->
+            <!--                  </v-icon>-->
+            <!--                </div>-->
+            <!--              </template>-->
+            <!--              <span> Delete standard </span>-->
+            <!--            </v-tooltip>-->
           </v-chip>
         </v-chip-group>
         <!-- end of standard list -->
         <v-text-field
           id="searchString"
           v-model="searchString"
-          append-icon="fa-search"
+          append-inner-icon="fa fa-search"
           label="Search model/formats and terminologies"
-          outlined
+          variant="outlined"
           clearable
-          clear-icon="fa-times-circle"
+          clear-icon="fa fa-times-circle"
           hide-details
           class="pt-1 mr-10"
+          color="primary"
           @click:clear="clearResults"
         />
         <!-- drop-down table for searchResults to go here -->
         <v-data-table
           v-if="searchResults.length > 0 && searchString && searchString.length > 0"
           v-model="foundModelFormats"
+          v-model:search-input="searchString"
           :headers="headers"
           :items="searchResults"
           :items-per-page="10"
@@ -94,7 +103,6 @@
           show-select
           calculate-widths
           mobile-breakpoint="900"
-          :search-input.sync="searchString"
         >
           <template #[`item.name`]="{ item }">
             <div
@@ -123,54 +131,58 @@
         class="ml-4"
       >
         <!-- A list here of selected tags is shown just above the text box -->
-        <v-chip-group
+        <div
           class="pl-2"
-          column
         >
           <v-chip
             v-for="tag in (recordTags)"
             :key="tag.label"
             class="ma-2"
             :color="colors[tag.model]"
-            text-color="white"
+            variant="flat"
+            close-icon="fa fa-trash"
+            closable
+            @click:close="deleteTag(tag.id, tag.model)"
           >
-            {{ tag.label }}
-            <v-tooltip bottom>
-              <template #activator="{ on, attrs }">
-                <!-- this is a dreadful cheat; without it the close icon becomes unreadable -->
-                <div
-                  @click="deleteTag(tag.id, tag.model)"
-                >
-                  <v-icon
-                    v-bind="attrs"
-                    small
-                    class="ml-1"
-                    v-on="on"
-                  >
-                    fa-times-circle
-                  </v-icon>
-                </div>
-              </template>
-              <span> Delete tag </span>
-            </v-tooltip>
+            {{ capitaliseText(tag.label) }}
+            <!--Commented due to v2 to v3 migration-->
+            <!--            <v-tooltip location="bottom">-->
+            <!--              <template #activator="{ props }">-->
+            <!--                &lt;!&ndash; this is a dreadful cheat; without it the close icon becomes unreadable &ndash;&gt;-->
+            <!--                <div-->
+            <!--                  @click="deleteTag(tag.id, tag.model)"-->
+            <!--                >-->
+            <!--                  <v-icon-->
+            <!--                    v-bind="props"-->
+            <!--                    size="small"-->
+            <!--                    class="ml-1"-->
+            <!--                  >-->
+            <!--                    fa-times-circle-->
+            <!--                  </v-icon>-->
+            <!--                </div>-->
+            <!--              </template>-->
+            <!--              <span> Delete tag </span>-->
+            <!--            </v-tooltip>-->
           </v-chip>
-        </v-chip-group>
+        </div>
         <!-- end of tags list -->
         <v-text-field
           id="searchString"
           v-model="searchString"
-          append-icon="fa-search"
+          append-inner-icon="fa fa-search"
           label="Search names and synonyms"
-          outlined
+          variant="outlined"
           clearable
-          clear-icon="fa-times-circle"
+          clear-icon="fa fa-times-circle"
           hide-details
           class="pt-1 mr-10"
+          color="primary"
           @click:clear="clearResults"
         />
         <v-data-table
           v-if="tags.length > 0 && searchString && searchString.length > 0"
           v-model="recordTags"
+          v-model:search-input="searchString"
           :headers="tagHeaders"
           :items="tags"
           :items-per-page="10"
@@ -180,11 +192,11 @@
           show-select
           calculate-widths
           mobile-breakpoint="900"
-          :search-input.sync="searchString"
+          return-object
         >
           <template #[`item.model`]="{ item }">
             <div
-              :class="colors[item.model] + '--text'"
+              :class="'text-' + colors[item.model]"
               class="noBreak"
             >
               {{ item.model.toUpperCase().replace(/_/g, " ") }}
@@ -192,7 +204,9 @@
           </template>
           <template #[`item.label`]="{ item }">
             <v-chip
-              :class="colors[item.model] + ' white--text noBreak'"
+              :class="colors[item.model] + ' text-white noBreak'"
+              :color="colors[item.model]"
+              variant="flat"
             >
               {{ capitaliseText(item.label, item.model) }}
             </v-chip>
@@ -226,45 +240,50 @@
             v-for="pol in (foundPolicies)"
             :key="pol.name"
             class="ma-2"
+            close-icon="fa fa-trash"
+            closable
+            @click:close="deletePolicy(pol.id)"
           >
             {{ pol.abbreviation || pol.name }}
-            <v-tooltip bottom>
-              <template #activator="{ on, attrs }">
-                <!-- this is a dreadful cheat; without it the close icon becomes unreadable -->
-                <div
-                  @click="deletePolicy(pol.id)"
-                >
-                  <v-icon
-                    v-bind="attrs"
-                    small
-                    class="ml-1"
-                    v-on="on"
-                  >
-                    fa-times-circle
-                  </v-icon>
-                </div>
-              </template>
-              <span> Delete policy </span>
-            </v-tooltip>
+            <!--Commented due to v2 to v3 migration-->
+            <!--            <v-tooltip location="bottom">-->
+            <!--              <template #activator="{ props }">-->
+            <!--                &lt;!&ndash; this is a dreadful cheat; without it the close icon becomes unreadable &ndash;&gt;-->
+            <!--                <div-->
+            <!--                  @click="deletePolicy(pol.id)"-->
+            <!--                >-->
+            <!--                  <v-icon-->
+            <!--                    v-bind="props"-->
+            <!--                    size="small"-->
+            <!--                    class="ml-1"-->
+            <!--                  >-->
+            <!--                    fa-times-circle-->
+            <!--                  </v-icon>-->
+            <!--                </div>-->
+            <!--              </template>-->
+            <!--              <span> Delete policy </span>-->
+            <!--            </v-tooltip>-->
           </v-chip>
         </v-chip-group>
         <!-- end of standard list -->
         <v-text-field
           id="searchString"
           v-model="searchString"
-          append-icon="fa-search"
+          append-inner-icon="fa fa-search"
           label="Search policies"
-          outlined
+          variant="outlined"
           clearable
-          clear-icon="fa-times-circle"
+          clear-icon="fa fa-times-circle"
           hide-details
           class="pt-1 mr-10"
+          color="primary"
           @click:clear="clearResults"
         />
         <!-- drop-down table for searchResults to go here -->
         <v-data-table
           v-if="searchResults.length > 0 && searchString && searchString.length > 0"
           v-model="foundPolicies"
+          v-model:search-input="searchString"
           :headers="headers"
           :items="searchResults"
           :items-per-page="10"
@@ -274,7 +293,6 @@
           show-select
           calculate-widths
           mobile-breakpoint="900"
-          :search-input.sync="searchString"
           @item-selected="itemSelected($event)"
         >
           <template #[`item.name`]="{ item }">
@@ -309,21 +327,21 @@
           class="full-width d-flex align-center text-center flex-column questionCard justify-center"
           height="130"
           elevation="4"
+          :color="item.color"
           :class="[
-            item.color,
             {
-              'cardXtraSmall pa-0': $vuetify.breakpoint.xsOnly,
-              'cardSmall pa-2': $vuetify.breakpoint.smOnly,
-              'cardMedium pa-2': $vuetify.breakpoint.mdAndUp,
-              'cardLarge pa-4': $vuetify.breakpoint.lgAndUp,
-              'cardXtraLarge pa-4': $vuetify.breakpoint.xlOnly,
+              'cardXtraSmall pa-0': $vuetify.display.xsOnly,
+              'cardSmall pa-2': $vuetify.display.smOnly,
+              'cardMedium pa-2': $vuetify.display.mdAndUp,
+              'cardLarge pa-4': $vuetify.display.lgAndUp,
+              'cardXtraLarge pa-4': $vuetify.display.xlOnly,
             }
           ]"
           @click="processLink(item.link, item.query, item.message, item.refined, item.breadcrumbMod, item.role, item.restrict)"
         >
           <div class="d-flex align-center">
             <v-card-text
-              class="white--text font-weight-medium text-xl-h4 text-lg-h5 text-md-h5 text-sm-h5 text-xs-h5 questionText"
+              class="text-white font-weight-medium text-xl-h4 text-lg-h5 text-md-h5 text-sm-h5 text-xs-h5 questionText"
             >
               <!-- This html is from a safe source -->
               <!-- eslint-disable vue/no-v-html -->
@@ -357,7 +375,7 @@
     >
       <v-card>
         <v-card-title
-          class="headline"
+          class="text-h5"
         >
           Fewer than 10 {{ getCurrentRegistry }} records fit your criteria?
         </v-card-title>
@@ -368,16 +386,16 @@
         <v-card-actions>
           <v-spacer />
           <v-btn
-            color="blue darken-1"
-            text
+            color="blue-darken-1"
+            variant="text"
             persistent
             @click="lowResultsStoppage = false; iDontCare = true"
           >
             Dismiss
           </v-btn>
           <v-btn
-            color="blue darken-1"
-            text
+            color="blue-darken-1"
+            variant="text"
             persistent
             @click="goToResults"
           >
@@ -458,23 +476,23 @@ export default {
       ],
       tagHeaders: [
         {
-          text: "Type of keyword",
+          title: "Type of keyword",
           sortable: false,
           value: "model"
         },
         {
-          text: "Name",
+          title: "Name",
           sortable: false,
           value: "label"
         },
         {
-          text: "Definition",
+          title: "Definition",
           sortable: false,
-          value: "definitions",
+          value: "definitions[0]",
           filterable: false
         },
         {
-          text: "Alternative names",
+          title: "Alternative names",
           sortable: false,
           value: "synonyms"
         }
@@ -966,6 +984,5 @@ export default {
   min-height: 100px;
   padding: 50px;
 }
-
 
 </style>

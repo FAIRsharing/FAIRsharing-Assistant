@@ -27,7 +27,7 @@ module.exports = {
   ],
   transform: {
     '^.*\\.js$': 'babel-jest',
-    '.*\\.(vue)$': 'vue-jest'
+    '.*\\.(vue)$': '@vue/vue3-jest'
   },
   transformIgnorePatterns: ['node_modules/(?!vue-router|@babel|vuetify|vue2-particles)']
 };

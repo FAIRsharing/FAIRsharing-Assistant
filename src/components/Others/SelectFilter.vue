@@ -1,12 +1,16 @@
 <template>
   <div>
     <v-fade-transition v-if="recordsLoading">
-      <v-overlay
-        :absolute="false"
-        opacity="0.8"
-      >
-        <Loaders />
-      </v-overlay>
+      <div>
+        <v-overlay
+          v-model="recordsLoading"
+          class="align-center justify-center"
+          :absolute="false"
+          opacity="0.8"
+        >
+          <Loaders />
+        </v-overlay>
+      </div>
     </v-fade-transition>
     <v-row>
       <Tooltip
@@ -22,13 +26,13 @@
         multiple
         chips
         return-object
-        @change="selectToggle(filter)"
+        @update:model-value="selectToggle(filter)"
       >
-        <template #selection="data">
+        <template #chip="data">
           <v-chip
             v-bind="data.attrs"
-            :input-value="data.selected"
-            class="blue white--text"
+            :model-value="data.selected"
+            class="bg-blue text-white"
           >
             {{ data.item }}
           </v-chip>

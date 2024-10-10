@@ -1,12 +1,16 @@
 <template>
   <div>
     <v-fade-transition v-if="recordsLoading">
-      <v-overlay
-        :absolute="false"
-        opacity="0.8"
-      >
-        <Loaders />
-      </v-overlay>
+      <div>
+        <v-overlay
+          v-model="recordsLoading"
+          class="align-center justify-center"
+          :absolute="false"
+          opacity="0.8"
+        >
+          <Loaders />
+        </v-overlay>
+      </div>
     </v-fade-transition>
     <v-expand-transition class="ma-5">
       <v-container
@@ -28,7 +32,7 @@
               v-model="searchString"
               append-icon="fa-search"
               label="Search names and synonyms"
-              outlined
+              variant="outlined"
               clearable
               clear-icon="fa-times-circle"
               :clear-cb="tagsLoading = false"
@@ -37,6 +41,7 @@
             />
             <v-data-table
               v-model="recordTags"
+              v-model:search-input="searchString"
               :headers="headers"
               :items="tags"
               :items-per-page="10"
@@ -48,7 +53,6 @@
               mobile-breakpoint="900"
               :loading="tagsLoading"
               loading-text="Please wait, tags are loading"
-              :search-input.sync="searchString"
             >
               <template #[`item.model`]="{ item }">
                 <div

@@ -4,12 +4,16 @@
     class="wrapperClass d-flex flex-column align-content-stretch"
   >
     <v-fade-transition v-if="loading">
-      <v-overlay
-        :absolute="false"
-        opacity="0.8"
-      >
-        <Loaders />
-      </v-overlay>
+      <div>
+        <v-overlay
+          v-model="loading"
+          class="align-center justify-center"
+          :absolute="false"
+          opacity="0.8"
+        >
+          <Loaders />
+        </v-overlay>
+      </div>
     </v-fade-transition>
     <!-- how many results so far? -->
     <ResultPreviewBanner :show-banner="Object.keys(getQueryParams).length > 0" />
@@ -40,27 +44,30 @@
             :key="tag.label"
             class="ma-2"
             :color="colors[tag.model]"
-            text-color="white"
+            variant="flat"
+            close-icon="mdi-delete"
+            closable
+            @click="deleteTag(tag.id, tag.model)"
           >
             {{ tag.label }}
-            <v-tooltip bottom>
-              <template #activator="{ on, attrs }">
-                <!-- this is a dreadful cheat; without it the close icon becomes unreadable -->
-                <div
-                  @click="deleteTag(tag.id, tag.model)"
-                >
-                  <v-icon
-                    v-bind="attrs"
-                    small
-                    class="ml-1"
-                    v-on="on"
-                  >
-                    fa-times-circle
-                  </v-icon>
-                </div>
-              </template>
-              <span> Delete tag </span>
-            </v-tooltip>
+            <!--Commented due to v2 to v3 migration-->
+            <!--            <v-tooltip location="bottom">-->
+            <!--              <template #activator="{ props }">-->
+            <!--                &lt;!&ndash; this is a dreadful cheat; without it the close icon becomes unreadable &ndash;&gt;-->
+            <!--                <div-->
+            <!--                  @click="deleteTag(tag.id, tag.model)"-->
+            <!--                >-->
+            <!--                  <v-icon-->
+            <!--                    v-bind="props"-->
+            <!--                    size="small"-->
+            <!--                    class="ml-1"-->
+            <!--                  >-->
+            <!--                    fa-times-circle-->
+            <!--                  </v-icon>-->
+            <!--                </div>-->
+            <!--              </template>-->
+            <!--              <span> Delete tag </span>-->
+            <!--            </v-tooltip>-->
           </v-chip>
         </v-chip-group>
         <!-- end of tags list -->
@@ -69,7 +76,7 @@
           v-model="searchString"
           append-icon="fa-search"
           label="Search names and synonyms"
-          outlined
+          variant="outlined"
           clearable
           clear-icon="fa-times-circle"
           hide-details
@@ -79,6 +86,7 @@
         <v-data-table
           v-if="tags.length > 0 && searchString && searchString.length > 0"
           v-model="recordTags"
+          v-model:search-input="searchString"
           :headers="tagHeaders"
           :items="tags"
           :items-per-page="10"
@@ -88,7 +96,6 @@
           show-select
           calculate-widths
           mobile-breakpoint="900"
-          :search-input.sync="searchString"
         >
           <template #[`item.model`]="{ item }">
             <div
@@ -116,7 +123,7 @@
         </v-data-table>
       </v-col>
     </v-row>
-    <AddOnFilters @filterSource="capitaliseText(getQueryParams['fairsharingRegistry'][0], null)" />
+    <AddOnFilters @filter-source="capitaliseText(getQueryParams['fairsharingRegistry'][0], null)" />
     <v-col
       cols="6"
       class="ml-4"
