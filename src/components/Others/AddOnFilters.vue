@@ -20,35 +20,6 @@
         class="switchWrapper flex-column full-width"
         :class="switchDisplay"
       >
-        <v-checkbox
-          v-for="(field, index) in recordTypes[getCurrentRegistry]"
-          :key="field.value + '-' + index"
-          :ref="field.value"
-          v-model="typeSelected"
-          :value="field.value"
-          :label="field.label"
-          @update:model-value="checkCheckbox()"
-        />
-        <!--          <v-tooltip location="top">-->
-        <!--            <template #activator="{ props }">-->
-        <!--              <span v-bind="props">-->
-        <!--                <v-icon-->
-        <!--                  size="x-small"-->
-        <!--                  class="mr-1 text-grey"-->
-        <!--                >-->
-        <!--                  fa-question-circle-->
-        <!--                </v-icon>-->
-        <!--              </span>-->
-        <!--            </template>-->
-        <!--            <span> {{ field.tooltip }} </span>-->
-        <!--          </v-tooltip>-->
-        <Tooltip :tooltip-text="field['tooltip']" />
-      </div>
-     
-      <div
-        class="switchWrapper flex-column full-width"
-        :class="switchDisplay"
-      >
         <div
           v-for="(filter) in switchTypeFilters"
           :key="filter['filterQuery']"
@@ -81,15 +52,12 @@ import Loaders from "@/components/Loaders/Loaders.vue";
 import currentPath from "@/utils/currentPath"
 import SelectFilter from "@/components/Others/SelectFilter.vue"
 import SwitchFilter from "@/components/Others/SwitchFilter.vue"
-import Tooltip from "@/components/Others/Tooltip.vue";
-
 export default {
   name: 'AddOnFilters',
   components: {
     Loaders,
     SelectFilter,
     SwitchFilter,
-    Tooltip
   },
 
   data:() => {

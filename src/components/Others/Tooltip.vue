@@ -5,10 +5,10 @@
         <v-icon
           v-bind="props"
           size="x-small"
-          class=" mr-1"
+          class="mr-1"
           :class="whiteText ? 'white--text': 'grey--text'"
         >
-          fa-question-circle
+          fa fa-question-circle
         </v-icon>
       </template>
       <span> {{ tooltipText }} </span>
@@ -32,9 +32,3 @@ export default {
 }
 
 </script>
-
-<style scoped>
-.tooltip {
-    margin-top: -1px
-}
-</style>
