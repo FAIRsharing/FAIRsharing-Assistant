@@ -55,24 +55,6 @@
             @click:close="deleteStandard(std.id)"
           >
             {{ std.abbreviation || std.name }}
-            <!--Commented v2 to v3 migration-->
-            <!--            <v-tooltip location="bottom">-->
-            <!--              <template #activator="{ props }">-->
-            <!--                &lt;!&ndash; this is a dreadful cheat; without it the close icon becomes unreadable &ndash;&gt;-->
-            <!--                <div-->
-            <!--                  @click="deleteStandard(std.id)"-->
-            <!--                >-->
-            <!--                  <v-icon-->
-            <!--                    v-bind="props"-->
-            <!--                    size="small"-->
-            <!--                    class="ml-1"-->
-            <!--                  >-->
-            <!--                    fa-times-circle-->
-            <!--                  </v-icon>-->
-            <!--                </div>-->
-            <!--              </template>-->
-            <!--              <span> Delete standard </span>-->
-            <!--            </v-tooltip>-->
           </v-chip>
         </v-chip-group>
         <!-- end of standard list -->
@@ -145,24 +127,6 @@
             @click:close="deleteTag(tag.id, tag.model)"
           >
             {{ capitaliseText(tag.label) }}
-            <!--Commented due to v2 to v3 migration-->
-            <!--            <v-tooltip location="bottom">-->
-            <!--              <template #activator="{ props }">-->
-            <!--                &lt;!&ndash; this is a dreadful cheat; without it the close icon becomes unreadable &ndash;&gt;-->
-            <!--                <div-->
-            <!--                  @click="deleteTag(tag.id, tag.model)"-->
-            <!--                >-->
-            <!--                  <v-icon-->
-            <!--                    v-bind="props"-->
-            <!--                    size="small"-->
-            <!--                    class="ml-1"-->
-            <!--                  >-->
-            <!--                    fa-times-circle-->
-            <!--                  </v-icon>-->
-            <!--                </div>-->
-            <!--              </template>-->
-            <!--              <span> Delete tag </span>-->
-            <!--            </v-tooltip>-->
           </v-chip>
         </div>
         <!-- end of tags list -->
@@ -204,7 +168,7 @@
           </template>
           <template #[`item.label`]="{ item }">
             <v-chip
-              :class="colors[item.model] + ' text-white noBreak'"
+              :class="colors[item.model] + 'text-white noBreak'"
               :color="colors[item.model]"
               variant="flat"
             >

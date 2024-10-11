@@ -35,9 +35,8 @@
         class="ml-4"
       >
         <!-- A list here of selected tags is shown just above the text box -->
-        <v-chip-group
+        <div
           class="pl-2"
-          column
         >
           <v-chip
             v-for="tag in (recordTags)"
@@ -45,42 +44,25 @@
             class="ma-2"
             :color="colors[tag.model]"
             variant="flat"
-            close-icon="mdi-delete"
+            close-icon="fa fa-trash"
             closable
-            @click="deleteTag(tag.id, tag.model)"
+            @click:close="deleteTag(tag.id, tag.model)"
           >
-            {{ tag.label }}
-            <!--Commented due to v2 to v3 migration-->
-            <!--            <v-tooltip location="bottom">-->
-            <!--              <template #activator="{ props }">-->
-            <!--                &lt;!&ndash; this is a dreadful cheat; without it the close icon becomes unreadable &ndash;&gt;-->
-            <!--                <div-->
-            <!--                  @click="deleteTag(tag.id, tag.model)"-->
-            <!--                >-->
-            <!--                  <v-icon-->
-            <!--                    v-bind="props"-->
-            <!--                    size="small"-->
-            <!--                    class="ml-1"-->
-            <!--                  >-->
-            <!--                    fa-times-circle-->
-            <!--                  </v-icon>-->
-            <!--                </div>-->
-            <!--              </template>-->
-            <!--              <span> Delete tag </span>-->
-            <!--            </v-tooltip>-->
+            {{ capitaliseText(tag.label) }}
           </v-chip>
-        </v-chip-group>
+        </div>
         <!-- end of tags list -->
         <v-text-field
           id="searchString"
           v-model="searchString"
-          append-icon="fa-search"
+          append-inner-icon="fa fa-search"
           label="Search names and synonyms"
           variant="outlined"
           clearable
-          clear-icon="fa-times-circle"
+          clear-icon="fa fa-times-circle"
           hide-details
           class="pt-1 mr-10"
+          color="primary"
           @click:clear="clearResults"
         />
         <v-data-table
@@ -96,6 +78,7 @@
           show-select
           calculate-widths
           mobile-breakpoint="900"
+          return-object
         >
           <template #[`item.model`]="{ item }">
             <div
@@ -107,7 +90,9 @@
           </template>
           <template #[`item.label`]="{ item }">
             <v-chip
-              :class="colors[item.model] + ' white--text noBreak'"
+              :class="colors[item.model] + 'text-white noBreak'"
+              :color="colors[item.model]"
+              variant="flat"
             >
               {{ capitaliseText(item.label, item.model) }}
             </v-chip>
@@ -163,23 +148,23 @@ export default {
       searchString: null,
       tagHeaders: [
         {
-          text: "Type of keyword",
+          title: "Type of keyword",
           sortable: false,
           value: "model"
         },
         {
-          text: "Name",
+          title: "Name",
           sortable: false,
           value: "label"
         },
         {
-          text: "Definition",
+          title: "Definition",
           sortable: false,
-          value: "definitions",
+          value: "definitions[0]",
           filterable: false
         },
         {
-          text: "Alternative names",
+          title: "Alternative names",
           sortable: false,
           value: "synonyms"
         }
@@ -240,7 +225,6 @@ export default {
         delete tagQueryCopy.taggedRecords;
       }
       let tags = await graphClient.executeQuery(tagQueryCopy);
-      //console.log("TQC: " + JSON.stringify(tags));
       if (!tags.error) {
         // This is to take the parents of each tag up a level, so they are included
         // in the list of available tags from which users may select.
