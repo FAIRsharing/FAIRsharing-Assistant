@@ -20,6 +20,38 @@
         class="switchWrapper flex-column full-width"
         :class="switchDisplay"
       >
+        <v-checkbox
+          v-for="(field, index) in recordTypes[getCurrentRegistry]"
+          :key="field.value + '-' + index"
+          :ref="field.value"
+          v-model="typeSelected"
+          :value="field.value"
+          color="primary"
+          @update:model-value="checkCheckbox()"
+        >
+          <template #label>
+            <div class="tooltip">
+              {{ field.label }}
+              <v-tooltip location="top">
+                <template #activator="{ props }">
+                  <v-icon
+                    size="x-small"
+                    class="mr-1 text-grey"
+                    v-bind="props"
+                  >
+                    fa fa-question-circle
+                  </v-icon>
+                </template>
+                <span> {{ field.tooltip }} </span>
+              </v-tooltip>
+            </div>
+          </template>
+        </v-checkbox>
+      </div>
+      <div
+        class="switchWrapper flex-column full-width"
+        :class="switchDisplay"
+      >
         <div
           v-for="(filter) in switchTypeFilters"
           :key="filter['filterQuery']"

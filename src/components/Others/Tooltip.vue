@@ -6,7 +6,7 @@
           v-bind="props"
           size="x-small"
           class="mr-1"
-          :class="whiteText ? 'white--text': 'grey--text'"
+          :class="whiteText ? 'text-white': 'text-grey'"
         >
           fa fa-question-circle
         </v-icon>
