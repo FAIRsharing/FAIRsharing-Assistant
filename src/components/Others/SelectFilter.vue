@@ -13,31 +13,36 @@
       </div>
     </v-fade-transition>
     <v-row>
-      <Tooltip
-        :tooltip-text="filter['tooltip']"
-        class="mt-5 mr-1"
-      />
-      <v-select
-        ref="filterSelect"
-        v-model="filtersOpted"
-        :items="filter['options']"
-        :label="cleanText(filter['filterName'])"
-        clearable
-        multiple
-        chips
-        return-object
-        @update:model-value="selectToggle(filter)"
+      <v-col
+        cols="12"
+        class="d-flex align-top"
       >
-        <template #chip="data">
-          <v-chip
-            v-bind="data.attrs"
-            :model-value="data.selected"
-            class="bg-blue text-white"
-          >
-            {{ data.item }}
-          </v-chip>
-        </template>
-      </v-select>
+        <Tooltip
+          :tooltip-text="filter['tooltip']"
+          class="mt-5 mr-1"
+        />
+        <v-select
+          ref="filterSelect"
+          v-model="filtersOpted"
+          :items="filter['options']"
+          :label="cleanText(filter['filterName'])"
+          clearable
+          multiple
+          chips
+          return-object
+          @update:model-value="selectToggle(filter)"
+        >
+          <template #chip="data">
+            <v-chip
+              v-bind="data.attrs"
+              :model-value="data.selected"
+              class="bg-blue text-white text-capitalize"
+            >
+              {{ cleanText(data.item.title) }}
+            </v-chip>
+          </template>
+        </v-select>
+      </v-col>
     </v-row>
   </div>
 </template>
@@ -89,8 +94,6 @@ export default {
         "value" : filter["refineToggle"]
       }
 
-      // this.$store.commit("addOnFilterSelectedStore/filtersSelected",  this.filterSelected);
-
       let currentQueryParams = _module.getQueryParams;
       if (_module.filterSelected.value.length === 0) {
         delete currentQueryParams[this.filterSelected.key];
@@ -103,10 +106,13 @@ export default {
       _module.recordsLoading = false;
 
     },
-    cleanText(text) {
-      text.replace(/(^\w{1})|(\s{1}\w{1})/g, match => match.toUpperCase());
-      text.replace("_", " ");
-      return text;
+    cleanText(string) {
+      if (typeof string === "string") {
+        if (string.includes("_")) {
+          return string.replace(/_/g, " ");
+        }
+      }
+      return string;
     },
 
     preSelectedFilter () {
