@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="ml-3">
     <v-btn
       color="info"
       class="mb-2"
@@ -49,7 +49,7 @@
         v-if="showSelected"
         class="selected_tags"
         :research-page="true"
-        @deleteTag="removeTag"
+        @delete-tag="removeTag"
       />
     </transition>
   </div>

@@ -1,12 +1,16 @@
 <template>
   <div>
     <v-fade-transition v-if="recordsLoading">
-      <v-overlay
-        :absolute="false"
-        opacity="0.8"
-      >
-        <Loaders />
-      </v-overlay>
+      <div>
+        <v-overlay
+          v-model="recordsLoading"
+          class="align-center justify-center"
+          :absolute="false"
+          opacity="0.8"
+        >
+          <Loaders />
+        </v-overlay>
+      </div>
     </v-fade-transition>
     <v-expand-transition class="ma-5">
       <v-container
@@ -26,17 +30,18 @@
             <v-text-field
               id="searchString"
               v-model="searchString"
-              append-icon="fa-search"
+              append-inner-icon="fa fa-search"
               label="Search names and synonyms"
-              outlined
+              variant="outlined"
               clearable
-              clear-icon="fa-times-circle"
+              clear-icon="fa fa-times-circle"
               :clear-cb="tagsLoading = false"
               hide-details
               class="pt-1"
             />
             <v-data-table
               v-model="recordTags"
+              v-model:search-input="searchString"
               :headers="headers"
               :items="tags"
               :items-per-page="10"
@@ -48,7 +53,7 @@
               mobile-breakpoint="900"
               :loading="tagsLoading"
               loading-text="Please wait, tags are loading"
-              :search-input.sync="searchString"
+              return-object
             >
               <template #[`item.model`]="{ item }">
                 <div
@@ -60,7 +65,9 @@
               </template>
               <template #[`item.label`]="{ item }">
                 <v-chip
-                  :class="colors[item.model] + ' white--text noBreak'"
+                  :class="colors[item.model] + 'text-white noBreak'"
+                  :color="colors[item.model]"
+                  variant="flat"
                 >
                   {{ capitaliseText(item.label, item.model) }}
                 </v-chip>
@@ -101,23 +108,23 @@ export default {
       tagsLoading: false,
       headers: [
         {
-          text: "Type of keyword",
+          title: "Type of keyword",
           sortable: false,
           value: "model"
         },
         {
-          text: "Name",
+          title: "Name",
           sortable: false,
           value: "label"
         },
         {
-          text: "Definition",
+          title: "Definition",
           sortable: false,
-          value: "definitions",
+          value: "definitions[0]",
           filterable: false
         },
         {
-          text: "Alternative names",
+          title: "Alternative names",
           sortable: false,
           value: "synonyms"
         }

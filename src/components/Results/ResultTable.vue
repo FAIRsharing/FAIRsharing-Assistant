@@ -21,46 +21,48 @@
       <v-btn
         class="mb-2"
         color="primary"
-        small
+        size="small"
         @click="chooseDownload()"
       >
         Download Results
       </v-btn>
       <v-data-iterator
+        :page="pageNumber"
+        :items-per-page="itemsPerPage"
         :items="records"
-        :items-per-page.sync="itemsPerPage"
-        :page.sync="page"
         :search="search"
-        :sort-by="sortBy.toLowerCase()"
-        :sort-desc="sortDesc"
+        :sort-by="sortData"
+        multi-sort
         :footer-props="{'items-per-page-options': [5, 10, 25, 50, 100]}"
       >
         <!-- headers start -->
         <template #header>
           <v-toolbar
             dark
-            color="blue lighten-1"
-            class="mb-5"
+            color="blue-lighten-1"
+            class="mb-5 px-4 py-1"
           >
             <v-text-field
               v-model="search"
               clearable
               flat
-              solo-inverted
+              variant="solo"
               hide-details
-              prepend-inner-icon="mdi-filter"
+              prepend-inner-icon="fa fa-solid fa-filter"
               label="Filter these results"
+              width="125"
             />
-            <template v-if="$vuetify.breakpoint.mdAndUp">
+            <template v-if="$vuetify.display.mdAndUp">
               <v-spacer />
               <v-select
                 v-model="sortBy"
                 flat
-                solo-inverted
+                variant="solo"
                 hide-details
                 :items="keys"
-                prepend-inner-icon="mdi-sort"
+                prepend-inner-icon="fa fa-solid fa-arrow-up-short-wide"
                 label="Sort by"
+                width="125"
               />
               <v-spacer />
               <v-btn-toggle
@@ -68,20 +70,20 @@
                 mandatory
               >
                 <v-btn
-                  large
-                  depressed
+                  size="large"
+                  variant="flat"
                   color="blue"
                   :value="false"
                 >
-                  <v-icon>mdi-arrow-up</v-icon>
+                  <v-icon icon="fa fa-solid fa-arrow-up" />
                 </v-btn>
                 <v-btn
-                  large
-                  depressed
+                  size="large"
+                  variant="flat"
                   color="blue"
                   :value="true"
                 >
-                  <v-icon>mdi-arrow-down</v-icon>
+                  <v-icon icon="fa fa-solid fa-arrow-down" />
                 </v-btn>
               </v-btn-toggle>
             </template>
@@ -89,34 +91,34 @@
         </template>
         <!-- headers stop -->
         <!-- data section begins -->
-        <template #default="props">
+        <template #default="{items}">
           <v-row>
             <v-col
-              v-for="item in props.items"
-              :key="item.name"
+              v-for="item in items"
+              :key="item.raw.name"
               cols="12"
             >
               <v-card>
-                <v-card-title class="subheading font-weight-bold">
+                <v-card-title class="subheading font-weight-bold d-flex align-center">
                   <RecordStatus
-                    :record="item"
+                    :record="item.raw"
                   />
                   <a
-                    :href="fairSharingURL + '/' + getRecordLink(item)"
+                    :href="fairSharingURL + getRecordLink(item.raw)"
                     target="_blank"
                     class="ml-10"
                   >
-                    {{ item.name }}
+                    {{ item.raw.name }}
                   </a>
                 </v-card-title>
                 <p
                   class="mt-2 ml-10 pr-2 text-sm-body-2 text-md-body-1 text-justify text-ellipses-height-2lines"
                 >
-                  {{ item. description }}
+                  {{ item.raw.description }}
                 </p>
 
                 <TagChips
-                  :record="item"
+                  :record="item.raw"
                   class="ml-10"
                 />
 
@@ -140,6 +142,32 @@
           </v-row>
         </template>
         <!-- data section ends -->
+        <!-- footer start -->
+        <template #footer="{ page, pageCount, prevPage, nextPage }">
+          <v-footer class="d-flex justify-center mt-1">
+            <div class="me-6">
+              Page {{ page }} of {{ pageCount }}
+            </div>
+            <div class="d-inline-flex">
+              <v-btn
+                :disabled="page === 1"
+                class="me-2"
+                icon="fa fa-arrow-left"
+                size="small"
+                variant="tonal"
+                @click="prevPage"
+              />
+
+              <v-btn
+                :disabled="page === pageCount"
+                icon="fa fa-arrow-right"
+                size="small"
+                variant="tonal"
+                @click="nextPage"
+              />
+            </div>
+          </v-footer>
+        </template>
         <!-- footer ends -->
       </v-data-iterator>
     </v-container>
@@ -160,22 +188,22 @@
           <v-spacer />
 
           <v-btn
-            color="blue darken-1"
-            text
+            color="blue-darken-1"
+            variant="text"
             @click="commenceDownload(true)"
           >
             Yes
           </v-btn>
           <v-btn
-            color="blue darken-1"
-            text
+            color="blue-darken-1"
+            variant="text"
             @click="commenceDownload(false)"
           >
             No
           </v-btn>
           <v-btn
-            color="red darken-1"
-            text
+            color="red-darken-1"
+            variant="text"
             @click="chooseDownloadActive = false"
           >
             Cancel
@@ -204,6 +232,7 @@ export default {
   name: 'ResultTable',
   components: { RecordStatus, TagChips },
   mixins: [recordsCardUtils],
+  emits: ['isError'],
   // TODO: Passing in these props fails to do what's required.
   data () {
     return {
@@ -211,9 +240,9 @@ export default {
       search: '',
       filter: {},
       sortDesc: false,
-      page: 1,
+      pageNumber: 1,
       itemsPerPage: 5,
-      sortBy: 'name',
+      sortBy: [],
       records: [],
       loading: true,
       error: false,
@@ -225,7 +254,7 @@ export default {
         'Description'
       ],
       fairSharingURL: process.env.VUE_APP_FAIRSHARING_URL,
-      chooseDownloadActive: false
+      chooseDownloadActive: false,
     }
   },
   computed: {
@@ -236,6 +265,27 @@ export default {
     filteredKeys () {
       return this.keys.filter(key => key !== 'Name' && key !== 'Description')
     },
+    sortData(){
+      switch(this.sortBy) {
+      case 'Name':
+        return [{key: 'name', order: this.sortDesc ? 'desc':'asc'}]
+      case 'Registry':
+        return [{key: 'registry', order: this.sortDesc ? 'desc':'asc'}]
+      case 'Type':
+        return [{key: 'type', order: this.sortDesc ? 'desc':'asc'}]
+      case 'Status':
+        return [{key: 'status', order: this.sortDesc ? 'desc':'asc'}]
+      case 'Description':
+        return [{key: 'description', order: this.sortDesc ? 'desc':'asc'}]
+      default:
+        return [{key: 'name', order: this.sortDesc ? 'desc':'asc'}]
+      }
+    }
+  },
+  watch: {
+    sortBy() {
+      this.sortDesc = false
+    }
   },
   async mounted() {
     await this.getData();

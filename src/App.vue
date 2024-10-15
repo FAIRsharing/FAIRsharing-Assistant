@@ -2,16 +2,16 @@
   <v-app id="app">
     <div class="d-flex appWrapper fill-height flex-column justify-space-between">
       <router-view />
-      <Footer />
+      <FooterComp />
     </div>
   </v-app>
 </template>
 
 <script>
-import Footer from "@/components/Others/Footer.vue";
+import FooterComp from "@/components/Others/Footer.vue";
 export default {
   name: 'App',
-  components:{Footer},
+  components:{FooterComp},
   data() {
     return {
       loading:true,

@@ -1,15 +1,14 @@
 <template>
   <div class="tooltip">
-    <v-tooltip top>
-      <template #activator="{ on, attrs }">
+    <v-tooltip location="top">
+      <template #activator="{ props }">
         <v-icon
-          v-bind="attrs"
-          x-small
-          class=" mr-1"
-          :class="whiteText ? 'white--text': 'grey--text'"
-          v-on="on"
+          v-bind="props"
+          size="x-small"
+          class="mr-1"
+          :class="whiteText ? 'text-white': 'text-grey'"
         >
-          fa-question-circle
+          fa fa-question-circle
         </v-icon>
       </template>
       <span> {{ tooltipText }} </span>
@@ -33,9 +32,3 @@ export default {
 }
 
 </script>
-
-<style scoped>
-.tooltip {
-    margin-top: -1px
-}
-</style>

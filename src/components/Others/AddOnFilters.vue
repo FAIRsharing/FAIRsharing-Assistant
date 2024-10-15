@@ -1,16 +1,20 @@
 <template>
   <div>
     <v-fade-transition v-if="loading">
-      <v-overlay
-        :absolute="false"
-        opacity="0.8"
-      >
-        <Loaders />
-      </v-overlay>
+      <div>
+        <v-overlay
+          v-model="loading"
+          class="align-center justify-center"
+          :absolute="false"
+          opacity="0.8"
+        >
+          <Loaders />
+        </v-overlay>
+      </div>
     </v-fade-transition>
     <v-container
       class="filterWrapper ma-0 d-flex flex-row align-stretch"
-      :class="{'flex-column':$vuetify.breakpoint.smAndDown}"
+      :class="{'flex-column':$vuetify.display.smAndDown}"
     >
       <div
         class="switchWrapper flex-column full-width"
@@ -22,20 +26,20 @@
           :ref="field.value"
           v-model="typeSelected"
           :value="field.value"
-          @change="checkCheckbox()"
+          color="primary"
+          @update:model-value="checkCheckbox()"
         >
           <template #label>
             <div class="tooltip">
               {{ field.label }}
-              <v-tooltip top>
-                <template #activator="{ on, attrs }">
+              <v-tooltip location="top">
+                <template #activator="{ props }">
                   <v-icon
-                    v-bind="attrs"
-                    x-small
-                    class=" mr-1 grey--text"
-                    v-on="on"
+                    size="x-small"
+                    class="mr-1 text-grey"
+                    v-bind="props"
                   >
-                    fa-question-circle
+                    fa fa-question-circle
                   </v-icon>
                 </template>
                 <span> {{ field.tooltip }} </span>
@@ -80,13 +84,12 @@ import Loaders from "@/components/Loaders/Loaders.vue";
 import currentPath from "@/utils/currentPath"
 import SelectFilter from "@/components/Others/SelectFilter.vue"
 import SwitchFilter from "@/components/Others/SwitchFilter.vue"
-
 export default {
   name: 'AddOnFilters',
   components: {
     Loaders,
     SelectFilter,
-    SwitchFilter
+    SwitchFilter,
   },
 
   data:() => {
