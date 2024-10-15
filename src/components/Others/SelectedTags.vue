@@ -20,7 +20,7 @@
         </div>
       </div>
       <div
-        class="tagsCell full-width"
+        class="full-width d-flex align-center"
         :class="'bg-' + section.color+'_lighten_2'"
       >
         <!--- For Research Page -->
@@ -31,33 +31,15 @@
           <v-chip
             v-for="(tag, tagIndex) in getSelectedTags.filter(x => x.model === section.label)"
             :key="'section_' + sectionIndex + '_tag_' + tagIndex"
-            :class="[section.color + '--text white']"
-            :color="section.color"
-            close-icon="mdi-delete"
+            class="my-1 mr-2"
+            :class="['text-' + section.color ]"
+            color="white"
+            close-icon="fa fa-trash"
+            variant="flat"
             closable
-            @click="deleteTag(tag.id, tag.label, sectionName)"
+            @click:close="deleteTag(tag.id, tag.label, sectionName)"
           >
             {{ capitaliseText(tag.label, tag.model) }}
-            <!--Commented due to v2 to v3 migration-->
-            <!--            <v-tooltip location="bottom">-->
-            <!--              <template #activator="{ props }">-->
-            <!--                &lt;!&ndash; this is a dreadful cheat; without it the close icon becomes unreadable &ndash;&gt;-->
-            <!--                <div-->
-            <!--                  @click="deleteTag(tag.id, tag.label, sectionName)"-->
-            <!--                >-->
-            <!--                  <v-icon-->
-            <!--                   -->
-            <!--                    size="small"-->
-            <!--                    class="ml-1"-->
-            <!--                    :class="[section.color + '&#45;&#45;text white']"-->
-            <!--                    v-bind="props"-->
-            <!--                  >-->
-            <!--                    fa-times-circle-->
-            <!--                  </v-icon>-->
-            <!--                </div>-->
-            <!--              </template>-->
-            <!--              <span> Delete tag </span>-->
-            <!--            </v-tooltip>-->
           </v-chip>
         </div>
         <!--- For Refine Page -->
@@ -68,8 +50,9 @@
           <v-chip
             v-for="(tag, tagIndex) in getQueryParams[section.refineLabel]"
             :key="'section_' + sectionIndex + '_tag_' + tagIndex"
-            :class="[section.color + '--text white']"
-            :color="section.color"
+            :class="['text-' + section.color ]"
+            color="white"
+            variant="flat"
           >
             {{ capitaliseText(tag, section.refineLabel) }}
           </v-chip>

@@ -22,20 +22,23 @@
         >FAIRsharing Subject Browser</a> for alternative subject tags.
       </v-card-subtitle>
 
-      <v-card-actions>
+      <div class="pa-2">
         <v-btn
+          color="white"
           size="small"
           @click="yesPlease()"
         >
           Add subject agnostic
         </v-btn>
         <v-btn
+          class="ml-2"
+          color="white"
           size="small"
           @click="noThanks()"
         >
           Don't add
         </v-btn>
-      </v-card-actions>
+      </div>
     </v-card>
   </v-col>
 </template>

@@ -65,7 +65,9 @@
               </template>
               <template #[`item.label`]="{ item }">
                 <v-chip
-                  :class="colors[item.model] + ' white--text noBreak'"
+                  :class="colors[item.model] + 'text-white noBreak'"
+                  :color="colors[item.model]"
+                  variant="flat"
                 >
                   {{ capitaliseText(item.label, item.model) }}
                 </v-chip>
