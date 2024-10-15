@@ -8,7 +8,7 @@
     >
       <div
         class="text-white py-3 px-4 titleCell full-width d-flex align-center justify-center"
-        :class="section.color"
+        :class="'bg-'+section.color"
         :style="$vuetify.display.smAndDown ? 'max-width:100%': 'max-width:205px'"
       >
         <div class="d-flex justify-center">
@@ -21,18 +21,18 @@
       </div>
       <div
         class="tagsCell full-width"
-        :class="section.color + ' lighten-2'"
+        :class="'bg-' + section.color+'_lighten_2'"
       >
         <!--- For Research Page -->
-        <v-chip-group
+        <div
           v-if="researchPage"
           class="pl-2"
-          column
         >
           <v-chip
             v-for="(tag, tagIndex) in getSelectedTags.filter(x => x.model === section.label)"
             :key="'section_' + sectionIndex + '_tag_' + tagIndex"
             :class="[section.color + '--text white']"
+            :color="section.color"
             close-icon="mdi-delete"
             closable
             @click="deleteTag(tag.id, tag.label, sectionName)"
@@ -59,21 +59,21 @@
             <!--              <span> Delete tag </span>-->
             <!--            </v-tooltip>-->
           </v-chip>
-        </v-chip-group>
+        </div>
         <!--- For Refine Page -->
-        <v-chip-group
+        <div
           v-if="refinePage"
           class="pl-2"
-          column
         >
           <v-chip
             v-for="(tag, tagIndex) in getQueryParams[section.refineLabel]"
             :key="'section_' + sectionIndex + '_tag_' + tagIndex"
             :class="[section.color + '--text white']"
+            :color="section.color"
           >
             {{ capitaliseText(tag, section.refineLabel) }}
           </v-chip>
-        </v-chip-group>
+        </div>
       </div>
     </div>
   </div>

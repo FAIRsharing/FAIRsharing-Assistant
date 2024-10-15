@@ -30,11 +30,11 @@
             <v-text-field
               id="searchString"
               v-model="searchString"
-              append-icon="fa-search"
+              append-inner-icon="fa fa-search"
               label="Search names and synonyms"
               variant="outlined"
               clearable
-              clear-icon="fa-times-circle"
+              clear-icon="fa fa-times-circle"
               :clear-cb="tagsLoading = false"
               hide-details
               class="pt-1"
@@ -53,6 +53,7 @@
               mobile-breakpoint="900"
               :loading="tagsLoading"
               loading-text="Please wait, tags are loading"
+              return-object
             >
               <template #[`item.model`]="{ item }">
                 <div
@@ -105,23 +106,23 @@ export default {
       tagsLoading: false,
       headers: [
         {
-          text: "Type of keyword",
+          title: "Type of keyword",
           sortable: false,
           value: "model"
         },
         {
-          text: "Name",
+          title: "Name",
           sortable: false,
           value: "label"
         },
         {
-          text: "Definition",
+          title: "Definition",
           sortable: false,
-          value: "definitions",
+          value: "definitions[0]",
           filterable: false
         },
         {
-          text: "Alternative names",
+          title: "Alternative names",
           sortable: false,
           value: "synonyms"
         }

@@ -20,7 +20,7 @@
           class="mt-5 full-width contain"
           max-width="200px"
           height="100px"
-          :src="$vuetify.icons.values[registryIcon].icon"
+          :src="customIcons.values[registryIcon].icon"
         />
       </div>
       <v-card-title class="d-inline text-h4 text-md-h5 text-lg-h4 text-center">
@@ -43,6 +43,7 @@
 <script>
 
 import RefineButton from "@/components/AllTags/RefineButton.vue";
+import customIcons from "@/plugins/icons";
 
 export default {
   name: 'ResourceCard',
@@ -71,6 +72,11 @@ export default {
     showRefineButton:{
       type: Boolean,
       default: false,
+    }
+  },
+  data() {
+    return {
+      customIcons: customIcons
     }
   },
 }
