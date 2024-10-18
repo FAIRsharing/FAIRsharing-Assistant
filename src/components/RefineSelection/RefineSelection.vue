@@ -38,7 +38,7 @@
         v-model="help"
         width="auto"
       >
-        <v-card>
+        <v-card class="py-4 px-6">
           <v-card-title>
             About this page
           </v-card-title>
@@ -51,14 +51,14 @@
             />
           </v-card-text>
           <!-- eslint-enable vue/no-v-html -->
-          <v-card-actions>
+          <div>
             <v-btn
               color="primary"
               @click="hideHelp()"
             >
               Close
             </v-btn>
-          </v-card-actions>
+          </div>
         </v-card>
       </v-dialog>
       <!-- end of help text -->

@@ -8,8 +8,8 @@
     <v-btn
       v-bind="button['attributes']"
       :block="$vuetify.display.smAndDown"
-      color="dev_color white--text"
-      @click="navigateToPrevious($router.history.current.path)"
+      color="dev_color text-white"
+      @click="navigateToPrevious($router.currentRoute.value.path)"
     >
       {{ button["text"] }}
     </v-btn>
