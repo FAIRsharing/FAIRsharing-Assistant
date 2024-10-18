@@ -1,13 +1,12 @@
 <template>
   <section :class="['mb-1 overflow-hidden',{'chips-container-fixed-height':!isColumn}]">
-    <v-chip-group
-      column
-    >
+    <div>
       <v-chip
         v-for="(chip,index) in chips"
         :key="chip.label+'_'+index"
-        text-color="white"
+        variant="flat"
         :color="getChipColor(chip)"
+        class="mr-2 my-1"
       >
         <KeywordTooltip
           v-if="chip.type === 'subjects' || chip.type === 'domains' "
@@ -23,7 +22,7 @@
       <v-chip
         v-if="remainTagCount!==0 && remainTagCount!==1"
         disabled
-        outlined
+        variant="outlined"
         label
       >
         {{ `+${remainTagCount} more tags` }}
@@ -31,12 +30,12 @@
       <v-chip
         v-else-if="remainTagCount===1"
         disabled
-        outlined
+        variant="outlined"
         label
       >
         {{ `one more tag` }}
       </v-chip>
-    </v-chip-group>
+    </div>
   </section>
 </template>
 
@@ -54,7 +53,7 @@ export default {
   mixins: [recordsCardUtils],
   props: {
     record: {
-      default: null,
+      default: () => ({}),
       type: Object
     }
   },

@@ -2,8 +2,8 @@
   <v-card
     class="full-width"
     :class="[
-      {'my-3 mx-0': $vuetify.breakpoint.smAndDown},
-      {'mx-3 mb-0': $vuetify.breakpoint.mdAndUp}
+      {'my-3 mx-0': $vuetify.display.smAndDown},
+      {'mx-3 mb-0': $vuetify.display.mdAndUp}
     ]"
     :style="registrySelected ? 'border: 2px solid red;' : null"
     max-width="350"
@@ -12,16 +12,15 @@
     color="#ababab"
     elevation="6"
   >
-    <div class="white--text d-flex flex-column justify-center pt-4">
+    <div class="text-white d-flex flex-column justify-center pt-4">
       <div
         class="d-flex justify-center"
       >
         <v-img
-          class="mt-5 full-width"
-          contain
+          class="mt-5 full-width contain"
           max-width="200px"
           height="100px"
-          :src="$vuetify.icons.values[registryIcon].icon"
+          :src="customIcons.values[registryIcon].icon"
         />
       </div>
       <v-card-title class="d-inline text-h4 text-md-h5 text-lg-h4 text-center">
@@ -44,6 +43,7 @@
 <script>
 
 import RefineButton from "@/components/AllTags/RefineButton.vue";
+import customIcons from "@/plugins/icons";
 
 export default {
   name: 'ResourceCard',
@@ -72,6 +72,11 @@ export default {
     showRefineButton:{
       type: Boolean,
       default: false,
+    }
+  },
+  data() {
+    return {
+      customIcons: customIcons
     }
   },
 }

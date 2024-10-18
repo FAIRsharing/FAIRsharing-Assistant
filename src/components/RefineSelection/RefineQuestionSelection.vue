@@ -4,12 +4,16 @@
     class="wrapperClass d-flex flex-column align-content-stretch"
   >
     <v-fade-transition v-if="loading">
-      <v-overlay
-        :absolute="false"
-        opacity="0.8"
-      >
-        <Loaders />
-      </v-overlay>
+      <div>
+        <v-overlay
+          v-model="loading"
+          class="align-center justify-center"
+          :absolute="false"
+          opacity="0.8"
+        >
+          <Loaders />
+        </v-overlay>
+      </div>
     </v-fade-transition>
     <!-- how many results so far? -->
     <ResultPreviewBanner :show-banner="Object.keys(getQueryParams).length > 0" />
@@ -31,54 +35,40 @@
         class="ml-4"
       >
         <!-- A list here of selected tags is shown just above the text box -->
-        <v-chip-group
+        <div
           class="pl-2"
-          column
         >
           <v-chip
             v-for="tag in (recordTags)"
             :key="tag.label"
             class="ma-2"
             :color="colors[tag.model]"
-            text-color="white"
+            variant="flat"
+            close-icon="fa fa-trash"
+            closable
+            @click:close="deleteTag(tag.id, tag.model)"
           >
-            {{ tag.label }}
-            <v-tooltip bottom>
-              <template #activator="{ on, attrs }">
-                <!-- this is a dreadful cheat; without it the close icon becomes unreadable -->
-                <div
-                  @click="deleteTag(tag.id, tag.model)"
-                >
-                  <v-icon
-                    v-bind="attrs"
-                    small
-                    class="ml-1"
-                    v-on="on"
-                  >
-                    fa-times-circle
-                  </v-icon>
-                </div>
-              </template>
-              <span> Delete tag </span>
-            </v-tooltip>
+            {{ capitaliseText(tag.label) }}
           </v-chip>
-        </v-chip-group>
+        </div>
         <!-- end of tags list -->
         <v-text-field
           id="searchString"
           v-model="searchString"
-          append-icon="fa-search"
+          append-inner-icon="fa fa-search"
           label="Search names and synonyms"
-          outlined
+          variant="outlined"
           clearable
-          clear-icon="fa-times-circle"
+          clear-icon="fa fa-times-circle"
           hide-details
           class="pt-1 mr-10"
+          color="primary"
           @click:clear="clearResults"
         />
         <v-data-table
           v-if="tags.length > 0 && searchString && searchString.length > 0"
           v-model="recordTags"
+          v-model:search-input="searchString"
           :headers="tagHeaders"
           :items="tags"
           :items-per-page="10"
@@ -88,7 +78,7 @@
           show-select
           calculate-widths
           mobile-breakpoint="900"
-          :search-input.sync="searchString"
+          return-object
         >
           <template #[`item.model`]="{ item }">
             <div
@@ -100,7 +90,9 @@
           </template>
           <template #[`item.label`]="{ item }">
             <v-chip
-              :class="colors[item.model] + ' white--text noBreak'"
+              :class="colors[item.model] + 'text-white noBreak'"
+              :color="colors[item.model]"
+              variant="flat"
             >
               {{ capitaliseText(item.label, item.model) }}
             </v-chip>
@@ -116,7 +108,7 @@
         </v-data-table>
       </v-col>
     </v-row>
-    <AddOnFilters @filterSource="capitaliseText(getQueryParams['fairsharingRegistry'][0], null)" />
+    <AddOnFilters @filter-source="capitaliseText(getQueryParams['fairsharingRegistry'][0], null)" />
     <v-col
       cols="6"
       class="ml-4"
@@ -156,23 +148,23 @@ export default {
       searchString: null,
       tagHeaders: [
         {
-          text: "Type of keyword",
+          title: "Type of keyword",
           sortable: false,
           value: "model"
         },
         {
-          text: "Name",
+          title: "Name",
           sortable: false,
           value: "label"
         },
         {
-          text: "Definition",
+          title: "Definition",
           sortable: false,
-          value: "definitions",
+          value: "definitions[0]",
           filterable: false
         },
         {
-          text: "Alternative names",
+          title: "Alternative names",
           sortable: false,
           value: "synonyms"
         }
@@ -233,7 +225,6 @@ export default {
         delete tagQueryCopy.taggedRecords;
       }
       let tags = await graphClient.executeQuery(tagQueryCopy);
-      //console.log("TQC: " + JSON.stringify(tags));
       if (!tags.error) {
         // This is to take the parents of each tag up a level, so they are included
         // in the list of available tags from which users may select.
@@ -279,7 +270,15 @@ export default {
       return query;
     },
     deleteTag(tagId, tagModel) {
-      this.recordTags = this.recordTags.filter(el => el.id !== tagId && el.model !== tagModel);
+      let currentTags = [];
+      let tagFilter = tagId + tagModel;
+      this.recordTags.forEach(function(tag) {
+        let identifier = tag.id + tag.model;
+        if (identifier !== tagFilter) {
+          currentTags.push(tag);
+        }
+      });
+      this.recordTags = currentTags;
     },
     goToResults() {
       let _module = this;

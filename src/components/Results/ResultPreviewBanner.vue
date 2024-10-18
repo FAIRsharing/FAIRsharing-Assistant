@@ -6,9 +6,7 @@
       cols="12"
     >
       <v-alert
-        density="compact"
         :type="resultCountColour()"
-        variant="tonal"
       >
         <!-- This html is from a safe source -->
         <!-- eslint-disable vue/no-v-html -->
@@ -31,22 +29,26 @@
       persistent
     >
       <v-card>
-        <v-card-title
-          class="headline"
-        >
-          Current search results
-        </v-card-title>
-        <v-card-actions>
-          <v-spacer />
+        <div class="d-flex align-center position-relative">
+          <v-card-title
+            class="text-h5 mx-auto my-0"
+          >
+            Current search results
+          </v-card-title>
           <v-btn
-            color="blue darken-1"
-            text
+            class="position-absolute right-0 top-0 pa-0"
             persistent
+            variant="text"
             @click="showResultPreview = false"
           >
-            Close
+            <template #append>
+              <v-icon
+                icon="fa fa-xmark fa-solid"
+                size="35"
+              />
+            </template>
           </v-btn>
-        </v-card-actions>
+        </div>
         <v-card-text>
           <Breadcrumbs />
           <ResultTable />
@@ -54,8 +56,8 @@
         <v-card-actions>
           <v-spacer />
           <v-btn
-            color="blue darken-1"
-            text
+            color="blue-darken-1"
+            variant="text"
             persistent
             @click="showResultPreview = false"
           >
@@ -74,7 +76,7 @@ import {mapGetters} from "vuex";
 import Breadcrumbs from "@/components/Navigation/Breadcrumbs.vue";
 
 export default {
-  name: 'QuestionPage',
+  name: 'ResultPreviewBanner',
   components: {Breadcrumbs, ResultTable },
   mixins: [stringUtils],
   props: {

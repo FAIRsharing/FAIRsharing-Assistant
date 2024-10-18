@@ -6,7 +6,7 @@
     <div
       v-if="getBreadcrumbs.length > 1"
       class="mb-10 utilityButtons d-flex flex-row justify-space-around full-width margin-auto"
-      :class="{'flex-column align-center': $vuetify.breakpoint.smAndDown}"
+      :class="{'flex-column align-center': $vuetify.display.smAndDown}"
     >
       <Breadcrumbs />
     </div>
@@ -22,8 +22,9 @@
           v-for="(row, index) in (text)"
           :key="row + '-' + index"
           cols="12"
-          v-html="row"
-        />
+        >
+          <span v-html="row" />
+        </v-col>
         <!-- eslint-enable vue/no-v-html -->
       </v-row>
     </v-container>

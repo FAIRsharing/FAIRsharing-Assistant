@@ -1,36 +1,47 @@
 <template>
   <div>
     <v-fade-transition v-if="recordsLoading">
-      <v-overlay
-        :absolute="false"
-        opacity="0.8"
-      >
-        <Loaders />
-      </v-overlay>
+      <div>
+        <v-overlay
+          v-model="recordsLoading"
+          class="align-center justify-center"
+          :absolute="false"
+          opacity="0.8"
+        >
+          <Loaders />
+        </v-overlay>
+      </div>
     </v-fade-transition>
     <v-row>
-      <Tooltip
-        :tooltip-text="filter['tooltip']"
-        class="mt-4 mr-1"
-      />
-      <v-radio-group
-        v-model="filtersOpted"
-        :label="filter['filterName']"
-        @change="selectToggle(filter)"
+      <v-col
+        cols="12"
+        class="d-flex align-top"
       >
-        <v-radio
-          label="Yes"
-          value="true"
+        <Tooltip
+          :tooltip-text="filter['tooltip']"
+          class="mr-n2"
+          style="margin-top:1px"
         />
-        <v-radio
-          label="No"
-          value="false"
-        />
-        <v-radio
-          label="Either"
-          value="null"
-        />
-      </v-radio-group>
+        <v-radio-group
+          v-model="filtersOpted"
+          :label="filter['filterName']"
+          color="primary"
+          @update:model-value="selectToggle(filter)"
+        >
+          <v-radio
+            label="Yes"
+            value="true"
+          />
+          <v-radio
+            label="No"
+            value="false"
+          />
+          <v-radio
+            label="Either"
+            value="null"
+          />
+        </v-radio-group>
+      </v-col>
     </v-row>
   </div>
 </template>
