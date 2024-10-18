@@ -42,9 +42,8 @@
         class="ml-4"
       >
         <!-- A list here of selected standards is shown just above the text box -->
-        <v-chip-group
+        <div
           class="pl-2"
-          column
         >
           <v-chip
             v-for="std in (foundModelFormats)"
@@ -56,7 +55,7 @@
           >
             {{ std.abbreviation || std.name }}
           </v-chip>
-        </v-chip-group>
+        </div>
         <!-- end of standard list -->
         <v-text-field
           id="searchString"
@@ -196,9 +195,8 @@
         class="ml-4"
       >
         <!-- A list here of selected standards is shown just above the text box -->
-        <v-chip-group
+        <div
           class="pl-2"
-          column
         >
           <v-chip
             v-for="pol in (foundPolicies)"
@@ -209,26 +207,8 @@
             @click:close="deletePolicy(pol.id)"
           >
             {{ pol.abbreviation || pol.name }}
-            <!--Commented due to v2 to v3 migration-->
-            <!--            <v-tooltip location="bottom">-->
-            <!--              <template #activator="{ props }">-->
-            <!--                &lt;!&ndash; this is a dreadful cheat; without it the close icon becomes unreadable &ndash;&gt;-->
-            <!--                <div-->
-            <!--                  @click="deletePolicy(pol.id)"-->
-            <!--                >-->
-            <!--                  <v-icon-->
-            <!--                    v-bind="props"-->
-            <!--                    size="small"-->
-            <!--                    class="ml-1"-->
-            <!--                  >-->
-            <!--                    fa-times-circle-->
-            <!--                  </v-icon>-->
-            <!--                </div>-->
-            <!--              </template>-->
-            <!--              <span> Delete policy </span>-->
-            <!--            </v-tooltip>-->
           </v-chip>
-        </v-chip-group>
+        </div>
         <!-- end of standard list -->
         <v-text-field
           id="searchString"
@@ -428,12 +408,12 @@ export default {
       },
       headers: [
         {
-          text: "Name",
+          title: "Name",
           sortable: false,
           value: "name"
         },
         {
-          text: "Abbreviation",
+          title: "Abbreviation",
           sortable: false,
           value: "abbreviation"
         }
