@@ -10,14 +10,15 @@ import '@fortawesome/fontawesome-free/css/all.css'
 import 'core-js/stable'
 import 'roboto-fontface/css/roboto/roboto-fontface.css'
 import { loadFull } from "tsparticles";
-import {library} from "@fortawesome/fontawesome-svg-core";
-import {faQuestionCircle} from "@fortawesome/free-solid-svg-icons";
-
-
-library.add(faQuestionCircle)
+// import {library} from "@fortawesome/fontawesome-svg-core";
+// import {faQuestionCircle} from "@fortawesome/free-solid-svg-icons";
+//
+//
+// library.add(faQuestionCircle)
 
 configureCompat({
   MODE: 3,
+  // COMPILER_V_BIND_OBJECT_ORDER:false
   // COMPONENT_ASYNC: false,
   // WATCH_ARRAY: false,
   // COMPONENT_V_MODEL: false
