@@ -84,6 +84,7 @@
           show-select
           calculate-widths
           mobile-breakpoint="900"
+          return-object
         >
           <template #[`item.name`]="{ item }">
             <div
@@ -237,6 +238,7 @@
           show-select
           calculate-widths
           mobile-breakpoint="900"
+          return-object
           @item-selected="itemSelected($event)"
         >
           <template #[`item.name`]="{ item }">
