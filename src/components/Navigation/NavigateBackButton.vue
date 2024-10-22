@@ -2,14 +2,14 @@
   <div
     v-if="getPreviousLocation"
     class="d-flex align-center"
-    :class="{'mb-6 mr-2 full-width utilityButton': $vuetify.breakpoint.smAndDown}"
+    :class="{'mb-6 mr-2 full-width utilityButton': $vuetify.display.smAndDown}"
   >
     <Tooltip :tooltip-text="tooltipText" />
     <v-btn
       v-bind="button['attributes']"
-      :block="$vuetify.breakpoint.smAndDown"
-      color="dev_color white--text"
-      @click="navigateToPrevious($router.history.current.path)"
+      :block="$vuetify.display.smAndDown"
+      color="dev_color text-white"
+      @click="navigateToPrevious($router.currentRoute.value.path)"
     >
       {{ button["text"] }}
     </v-btn>

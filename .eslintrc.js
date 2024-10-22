@@ -4,9 +4,11 @@ module.exports = {
     node: true,
     jest: true
   },
-  "extends": [
-    "plugin:vue/recommended",
-    "eslint:recommended"
+  extends: [
+    'plugin:vue/vue3-recommended',
+    "eslint:recommended",
+    'plugin:vue/base',
+    'plugin:vuetify/base'
   ],
   rules: {
     'no-console': process.env.NODE_ENV === "production" ? "error" : "off",

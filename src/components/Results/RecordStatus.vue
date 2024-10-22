@@ -5,14 +5,14 @@
       :class="showStatus?'circle-container':'circle-container-dashed'"
     >
       <v-tooltip
-        right
-        nudge-right="15"
+        location="end"
+        offset="25"
       >
-        <template #activator="{ on }">
+        <template #activator="{ props }">
           <v-avatar
+            v-bind="props"
             size="80"
             :alt="getRecordStatus.title"
-            v-on="on"
           >
             <Icon
               :item="record.type"
@@ -26,13 +26,13 @@
 
       <v-tooltip
         v-if="showStatus"
-        right
+        location="right"
       >
-        <template #activator="{ on }">
+        <template #activator="{ props }">
           <span
-            class="white--text headline circle"
+            class="text-white text-h5 circle"
             :style="getRecordStatus.backColor"
-            v-on="on"
+            v-bind="props"
           ><p>{{ getRecordStatus.title }}</p></span>
         </template>
         <span>{{ getRecordStatus.tooltip }}</span>
@@ -45,13 +45,13 @@
     >
       <v-tooltip
         v-if="showStatus"
-        top
+        location="top"
       >
-        <template #activator="{ on }">
+        <template #activator="{ props }">
           <p
-            class="white--text headline circle text-center d-flex align-center justify-center"
+            class="text-white text-h5 circle text-center d-flex align-center justify-center"
             :style="getRecordStatus.backColor"
-            v-on="on"
+            v-bind="props"
           >
             <span>{{ getRecordStatus.title }}</span>
           </p>
@@ -64,17 +64,23 @@
 
 <script>
 import Icon from "@/components/Icon/Icon.vue"
+import { useTheme } from 'vuetify'
 // Lighten or darken the color using javascript
 import { LightenDarkenColor } from '@/utils/generalUtils';
+import customIcons from "@/plugins/icons";
 
 export default {
   name: "RecordStatus",
   components: {Icon},
   props: {
-    record: {default: null, type: Object},
+    record: {default: () => ({}), type: Object},
     showStatus: {default: true, type: Boolean},
     showOnlyStatus: {default: false, type: Boolean},
     inEditForm: {default: false, type: Boolean},
+  },
+  setup() {
+    const theme = useTheme()
+    return {theme}
   },
   data() {
     return {
@@ -82,22 +88,22 @@ export default {
         ready: {
           title: 'R',
           tooltip: 'Ready',
-          backColor: `background: linear-gradient(${this.$vuetify.theme.themes.light.ready_color}, ${LightenDarkenColor(this.$vuetify.theme.themes.light.ready_color,50)})`
+          backColor: `background: linear-gradient(${this.theme.computedThemes.value.fairSharingTheme.colors.ready_color}, ${LightenDarkenColor(this.theme.computedThemes.value.fairSharingTheme.colors.ready_color,50)})`
         },
         deprecated: {
           title: 'D',
           tooltip: 'Deprecated',
-          backColor: `background: linear-gradient(${this.$vuetify.theme.themes.light.deprecated_color}, ${LightenDarkenColor(this.$vuetify.theme.themes.light.deprecated_color,50)})`
+          backColor: `background: linear-gradient(${this.theme.computedThemes.value.fairSharingTheme.colors.deprecated_color}, ${LightenDarkenColor(this.theme.computedThemes.value.fairSharingTheme.colors.deprecated_color,50)})`
         },
         uncertain: {
           title: 'U',
           tooltip: 'Uncertain',
-          backColor: `background: linear-gradient(${this.$vuetify.theme.themes.light.uncertain_color}, ${LightenDarkenColor(this.$vuetify.theme.themes.light.uncertain_color,50)})`
+          backColor: `background: linear-gradient(${this.theme.computedThemes.value.fairSharingTheme.colors.uncertain_color}, ${LightenDarkenColor(this.theme.computedThemes.value.fairSharingTheme.colors.uncertain_color,50)})`
         },
         in_development: {
           title: 'Dev',
           tooltip: 'In Development',
-          backColor: `background: linear-gradient(${this.$vuetify.theme.themes.light.dev_color}, ${LightenDarkenColor(this.$vuetify.theme.themes.light.dev_color,50)})`
+          backColor: `background: linear-gradient(${this.theme.computedThemes.value.fairSharingTheme.colors.dev_color}, ${LightenDarkenColor(this.theme.computedThemes.value.fairSharingTheme.colors.dev_color,50)})`
         },
         undefined: {
           title: '?',
@@ -116,13 +122,13 @@ export default {
       else {
         return this.statusStyles[undefined]
       }
-    }
+    },
   },
   created() {
     this.$nextTick(function () {
-      this.recordType = this.$vuetify.icons.values;
+      this.recordType = customIcons.values;
     });
-  }
+  },
 }
 </script>
 

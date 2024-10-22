@@ -4,12 +4,12 @@
       v-for="(section, sectionName, sectionIndex) in sections"
       :key="'edit_keywords_' + sectionIndex"
       class="mb-3 d-flex flex-row"
-      :class="{'flex-column': $vuetify.breakpoint.smAndDown}"
+      :class="{'flex-column': $vuetify.display.smAndDown}"
     >
       <div
-        class="white--text py-3 px-4 titleCell full-width d-flex align-center justify-center"
-        :class="section.color"
-        :style="$vuetify.breakpoint.smAndDown ? 'max-width:100%': 'max-width:205px'"
+        class="text-white py-3 px-4 titleCell full-width d-flex align-center justify-center"
+        :class="'bg-'+section.color"
+        :style="$vuetify.display.smAndDown ? 'max-width:100%': 'max-width:205px'"
       >
         <div class="d-flex justify-center">
           <Tooltip
@@ -20,56 +20,43 @@
         </div>
       </div>
       <div
-        class="tagsCell full-width"
-        :class="section.color + ' lighten-2'"
+        class="full-width d-flex align-center"
+        :class="'bg-' + section.color+'_lighten_2'"
       >
         <!--- For Research Page -->
-        <v-chip-group
+        <div
           v-if="researchPage"
           class="pl-2"
-          column
         >
           <v-chip
             v-for="(tag, tagIndex) in getSelectedTags.filter(x => x.model === section.label)"
             :key="'section_' + sectionIndex + '_tag_' + tagIndex"
-            :class="[section.color + '--text white']"
+            class="my-1 mr-2"
+            :class="['text-' + section.color ]"
+            color="white"
+            close-icon="fa fa-trash"
+            variant="flat"
+            closable
+            @click:close="deleteTag(tag.id, tag.label, sectionName)"
           >
             {{ capitaliseText(tag.label, tag.model) }}
-            <v-tooltip bottom>
-              <template #activator="{ on, attrs }">
-                <!-- this is a dreadful cheat; without it the close icon becomes unreadable -->
-                <div
-                  @click="deleteTag(tag.id, tag.label, sectionName)"
-                >
-                  <v-icon
-                    v-bind="attrs"
-                    small
-                    class="ml-1"
-                    :class="[section.color + '--text white']"
-                    v-on="on"
-                  >
-                    fa-times-circle
-                  </v-icon>
-                </div>
-              </template>
-              <span> Delete tag </span>
-            </v-tooltip>
           </v-chip>
-        </v-chip-group>
+        </div>
         <!--- For Refine Page -->
-        <v-chip-group
+        <div
           v-if="refinePage"
           class="pl-2"
-          column
         >
           <v-chip
             v-for="(tag, tagIndex) in getQueryParams[section.refineLabel]"
             :key="'section_' + sectionIndex + '_tag_' + tagIndex"
-            :class="[section.color + '--text white']"
+            :class="['text-' + section.color ]"
+            color="white"
+            variant="flat"
           >
             {{ capitaliseText(tag, section.refineLabel) }}
           </v-chip>
-        </v-chip-group>
+        </div>
       </div>
     </div>
   </div>
@@ -94,6 +81,7 @@ export default {
       default: false
     }
   },
+  emits: ['deleteTag'],
   data() {
     return {
       colors: {

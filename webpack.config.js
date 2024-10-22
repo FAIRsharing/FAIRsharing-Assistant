@@ -1,19 +1,30 @@
-// webpack.config.js
-const VueLoaderPlugin = require("vue-loader/dist/plugin");
-
+const VueLoaderPlugin = require("vue-loader");
 const path = require("path");
 const webpack = require('webpack');
 const dotenv = require('dotenv').config({
   path: path.join(__dirname, '.env')
 });
 
+const WebpackBundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 module.exports = {
   mode: "development",
   module: {
+    resolve: {
+      alias: {
+        vue: '@vue/compat',
+      }
+    },
     rules: [
       {
         test: /\.vue$/,
-        loader: "vue-loader"
+        loader: "vue-loader",
+        options: {
+          compilerOptions: {
+            compatConfig: {
+              MODE: 2
+            }
+          }
+        }
       },
       // this will apply to both plain `.js` files
       // AND `<script>` blocks in `.vue` files
@@ -53,8 +64,12 @@ module.exports = {
     // make sure to include the plugin for the magic
     new VueLoaderPlugin(),
     new webpack.DefinePlugin({
-      "process.env": dotenv.parsed
+      "process.env": dotenv.parsed,
+      __VUE_OPTIONS_API__: true, // at the moment, many Vue components still use the Vue Options API
+      __VUE_PROD_DEVTOOLS__: false, // do not enable devtools support in production
+      __VUE_PROD_HYDRATION_MISMATCH_DETAILS__: false, // https://github.com/vuejs/vue-cli/pull/7443
     }),
+    new WebpackBundleAnalyzerPlugin(),
   ],
 
 };

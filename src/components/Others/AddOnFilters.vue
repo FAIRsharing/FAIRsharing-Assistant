@@ -1,74 +1,71 @@
 <template>
   <div>
     <v-fade-transition v-if="loading">
-      <v-overlay
-        :absolute="false"
-        opacity="0.8"
-      >
-        <Loaders />
-      </v-overlay>
+      <div>
+        <v-overlay
+          v-model="loading"
+          class="align-center justify-center"
+          :absolute="false"
+          opacity="0.8"
+        >
+          <Loaders />
+        </v-overlay>
+      </div>
     </v-fade-transition>
-    <v-container
-      class="filterWrapper ma-0 d-flex flex-row align-stretch"
-      :class="{'flex-column':$vuetify.breakpoint.smAndDown}"
-    >
+    <div class="mt-5 mx-9">
       <div
-        class="switchWrapper flex-column full-width"
-        :class="switchDisplay"
-      >
-        <v-checkbox
-          v-for="(field, index) in recordTypes[getCurrentRegistry]"
-          :key="field.value + '-' + index"
-          :ref="field.value"
-          v-model="typeSelected"
-          :value="field.value"
-          @change="checkCheckbox()"
-        >
-          <template #label>
-            <div class="tooltip">
-              {{ field.label }}
-              <v-tooltip top>
-                <template #activator="{ on, attrs }">
-                  <v-icon
-                    v-bind="attrs"
-                    x-small
-                    class=" mr-1 grey--text"
-                    v-on="on"
-                  >
-                    fa-question-circle
-                  </v-icon>
-                </template>
-                <span> {{ field.tooltip }} </span>
-              </v-tooltip>
-            </div>
-          </template>
-        </v-checkbox>
-      </div>
-      <div
-        class="switchWrapper flex-column full-width"
-        :class="switchDisplay"
+        class="filterWrapper d-flex flex-row align-stretch my-0 mx-auto full-width"
+        :class="{'flex-column':$vuetify.display.smAndDown}"
       >
         <div
-          v-for="(filter) in switchTypeFilters"
-          :key="filter['filterQuery']"
+          class="switchWrapper flex-column full-width"
+          :class="switchDisplay"
         >
-          <SwitchFilter :filter="filter" />
+          <v-checkbox
+            v-for="(field, index) in recordTypes[getCurrentRegistry]"
+            :key="field.value + '-' + index"
+            :ref="field.value"
+            v-model="typeSelected"
+            :value="field.value"
+            color="primary"
+            :label="field.label"
+            @update:model-value="checkCheckbox()"
+          >
+            <template #prepend>
+              <Tooltip
+                :tooltip-text="field.tooltip "
+                class="mr-n4"
+                style="margin-top:-3px"
+              />
+            </template>
+          </v-checkbox>
         </div>
-      </div>
-      <div
-        class="selectWrapper flex-column full-width"
-        :class="selectDisplay"
-      >
         <div
-          v-for="(filter) in selectTypeFilters"
-          :key="filter['filterQuery']"
+          class="flex-column full-width"
+          :class="switchDisplay"
         >
-          <SelectFilter
-            :filter="filter"
-          />
+          <div
+            v-for="(filter) in switchTypeFilters"
+            :key="filter['filterQuery']"
+          >
+            <SwitchFilter :filter="filter" />
+          </div>
+        </div>
+        <div
+          class="flex-column full-width"
+          :class="selectDisplay"
+        >
+          <div
+            v-for="(filter) in selectTypeFilters"
+            :key="filter['filterQuery']"
+          >
+            <SelectFilter
+              :filter="filter"
+            />
+          </div>
         </div>
       </div>
-    </v-container>
+    </div>
   </div>
 </template>
 
@@ -80,13 +77,14 @@ import Loaders from "@/components/Loaders/Loaders.vue";
 import currentPath from "@/utils/currentPath"
 import SelectFilter from "@/components/Others/SelectFilter.vue"
 import SwitchFilter from "@/components/Others/SwitchFilter.vue"
-
+import Tooltip from "@/components/Others/Tooltip.vue";
 export default {
   name: 'AddOnFilters',
   components: {
+    Tooltip,
     Loaders,
     SelectFilter,
-    SwitchFilter
+    SwitchFilter,
   },
 
   data:() => {
@@ -233,12 +231,6 @@ export default {
 <style scoped lang="scss">
 .filterWrapper {
   justify-content: space-evenly;
-}
-.switchWrapper {
-  max-width: 250px;
-}
-
-.selectWrapper {
-  max-width: 350px;
+  max-width: 1500px;
 }
 </style>

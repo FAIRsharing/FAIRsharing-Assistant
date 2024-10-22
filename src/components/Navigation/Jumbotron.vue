@@ -9,14 +9,13 @@
     :class="getJumbotronData['pageName'] === 'HomeView' ? 'heroBlock' : null"
   >
     <!-- eslint-disable vue/no-v-html -->
-    <Particles
+    <vue-particles
       id="particles"
-      :particles-init="particlesInit"
-      :particles-loaded="particlesLoaded"
       :options="options"
+      @particles-loaded="particlesLoaded"
     />
     <h1
-      class="text-body-1 pt-2 text-sm-h4 text-md-h4 text-lg-h4 text-xl-h4 font-weight-medium white--text"
+      class="text-body-1 pt-2 text-sm-h4 text-md-h4 text-lg-h4 text-xl-h4 font-weight-medium text-white"
       style="z-index: 2"
     >
       <!--
@@ -25,23 +24,22 @@
       -->
       {{ getJumbotronData["title"] }} <em
         v-if="getJumbotronData['tempSubTitle']"
-        class="green--text"
+        class="text-green"
       >{{ getJumbotronData["tempSubTitle"] }}</em>
     </h1>
 
     <!--
-    ,
         getJumbotronData['pageName'] === 'HomeView' ? 'text-center' : 'text-left'
         // removed from class in block below
     -->
     <h2
       v-if="getJumbotronData['subTitle']"
       :class="[
-        'lato-font-medium my-4 primary--text px-1 font-weight-thin',
+        'lato-font-medium my-4 text-primary px-1 font-weight-thin',
         {
-          'lato-text-md': $vuetify.breakpoint.mdOnly,
-          'lato-text-lg': $vuetify.breakpoint.lgAndUp,
-          'lato-text-sm': $vuetify.breakpoint.smAndDown
+          'lato-text-md': $vuetify.display.mdOnly,
+          'lato-text-lg': $vuetify.display.lgAndUp,
+          'lato-text-sm': $vuetify.display.smAndDown
         }
       ]"
       style="z-index: 2"
@@ -103,11 +101,7 @@ export default {
             straight: false
           },
           number: {
-            density: {
-              enable: true,
-              value_area: 300
-            },
-            value: 100
+            value: 30
           },
           opacity: {
             value: 0.5

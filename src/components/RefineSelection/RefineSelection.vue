@@ -2,7 +2,7 @@
   <div class="px-md-10 pa-5 mb-8">
     <div
       class="mb-5 d-flex flex-row"
-      :class="{'flex-column align-center': $vuetify.breakpoint.smAndDown}"
+      :class="{'flex-column align-center': $vuetify.display.smAndDown}"
     >
       <ResourceCard
         class="mb-5"
@@ -14,7 +14,7 @@
     </div>
     <div
       class="utilityButtons d-flex flex-row justify-space-around my-6 full-width margin-auto"
-      :class="{'flex-column align-center': $vuetify.breakpoint.smAndDown}"
+      :class="{'flex-column align-center': $vuetify.display.smAndDown}"
     >
       <ViewRecordsButton />
       <ResearchFieldsButton />
@@ -38,7 +38,7 @@
         v-model="help"
         width="auto"
       >
-        <v-card>
+        <v-card class="py-4 px-6">
           <v-card-title>
             About this page
           </v-card-title>
@@ -51,14 +51,14 @@
             />
           </v-card-text>
           <!-- eslint-enable vue/no-v-html -->
-          <v-card-actions>
+          <div>
             <v-btn
               color="primary"
               @click="hideHelp()"
             >
               Close
             </v-btn>
-          </v-card-actions>
+          </div>
         </v-card>
       </v-dialog>
       <!-- end of help text -->
@@ -72,7 +72,7 @@
     <p>
       Some text will go here to explain what's going on with the filters below, perhaps linking to Gitbook.
     </p>
-    <AddOnFilters @filterSource="capitaliseText(getQueryParams['fairsharingRegistry'][0], null)" />
+    <AddOnFilters @filter-source="capitaliseText(getQueryParams['fairsharingRegistry'][0], null)" />
   </div>
 </template>
 

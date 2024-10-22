@@ -1,7 +1,4 @@
-import Vue from "vue";
-import VueRouter from "vue-router";
-
-Vue.use(VueRouter);
+import { createWebHistory, createRouter } from "vue-router";
 
 import {
   HomeView,
@@ -13,7 +10,7 @@ import {
   AllTags,
   RefineRegistry,
   RefineFromQuestions,
-  Educational
+  Educational,
 } from './routes'
 
 let routes = [
@@ -73,14 +70,14 @@ let routes = [
   /* REDIRECTION */
   {
     name: "*",
-    path: "*/*",
+    path: "/*/*",
     component: NotFound
   }
 ]
 
 
-const router = new VueRouter({
-  mode: 'history',
+const router = createRouter({
+  history: createWebHistory(),
   routes,
 });
 
