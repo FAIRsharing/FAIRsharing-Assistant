@@ -11,9 +11,8 @@
     <!-- eslint-disable vue/no-v-html -->
     <vue-particles
       id="particles"
-      :particles-init="particlesInit"
-      :particles-loaded="particlesLoaded"
       :options="options"
+      @particles-loaded="particlesLoaded"
     />
     <h1
       class="text-body-1 pt-2 text-sm-h4 text-md-h4 text-lg-h4 text-xl-h4 font-weight-medium text-white"
@@ -102,11 +101,7 @@ export default {
             straight: false
           },
           number: {
-            density: {
-              enable: true,
-              value_area: 300
-            },
-            value: 100
+            value: 30
           },
           opacity: {
             value: 0.5
