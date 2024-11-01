@@ -3,7 +3,7 @@ module.exports = {
   env: {
     node: true,
     // jest: true,
-    vitest: true,
+    // vitest: true,
   },
   extends: [
     'plugin:vue/vue3-recommended',
@@ -81,7 +81,7 @@ module.exports = {
       ],
       env: {
         // jest: true
-        vitest: true,
+        // vitest: true,
       }
     }
   ]

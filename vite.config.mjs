@@ -4,12 +4,13 @@ import vue from "@vitejs/plugin-vue";
 import vuetify, { transformAssetUrls } from "vite-plugin-vuetify";
 
 export default defineConfig({
+  base: "./",
   test: {
     environment: "jsdom",
     globals: true,
   },
   plugins: [
-    vue({template: { transformAssetUrls }}),
+    vue({template: { transformAssetUrls}}),
     vuetify({
       autoImport: true,
     }),
@@ -18,7 +19,7 @@ export default defineConfig({
     alias: {
       "@": fileURLToPath(new URL("./src", import.meta.url)),
     },
-    extensions: ['.js', '.vue', '.json'],
+    extensions: ['.js', '.vue', '.json', '.svg'],
   },
   optimizeDeps: {
     include: ["vuetify"],

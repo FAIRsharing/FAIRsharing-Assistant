@@ -1,24 +1,22 @@
-import {createLocalVue, shallowMount} from "@vue/test-utils";
+import {shallowMount} from "@vue/test-utils";
+import { createStore } from 'vuex'
 import SplashScreen from "@/views/Home/SplashScreen.vue"
 import multiTagsStore from "@/store/multiTagsStore";
-import Vuetify from "vuetify"
-import Vuex from "vuex";
+import { createVuetify } from 'vuetify'
+import { describe, expect, it, beforeEach } from 'vitest'
 
-const localVue = createLocalVue();
-localVue.use(Vuex);
 
-const vuetify = new Vuetify();
+const vuetify = createVuetify();
 
 let actions = {
-  resetMultiTags: jest.fn()
+  resetMultiTags: vi.fn()
 }
 
-let store = new Vuex.Store({
+let store = createStore({
   modules: {
     actions,
     multiTagsStore: multiTagsStore
   },
-
 })
 
 
@@ -27,10 +25,10 @@ describe("SplashScreen.vue", function(){
 
   beforeEach(() => {
     wrapper = shallowMount(SplashScreen, {
-      localVue,
-      vuetify,
-      store,
-      stubs: ['router-link', 'router-view']
+      global: {
+        plugins: [vuetify, store],
+        stubs: ['router-link', 'router-view'],
+      },
     })
   });
 

@@ -14,7 +14,7 @@
         <!-- TODO centre vertically -->
         <v-row>
           <v-img
-            src="assets/Logo/fairsharing-logo.svg"
+            src="/assets/Logo/fairsharing-logo.svg"
             height="220"
             class="contain"
           />

@@ -23,7 +23,6 @@ module.exports = {
             compatConfig: {
               MODE: 2
             },
-            isCustomElement: tag =>tag.startsWith('v-'),
           },
 
         }

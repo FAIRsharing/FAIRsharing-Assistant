@@ -25,6 +25,4 @@ const app = createApp(App)
   })
   .use(Vue3Sanitize)
 
-// app.config.compilerOptions.isCustomElement = tag => tag.startsWith('v-')
-
 app.mount("#app");
