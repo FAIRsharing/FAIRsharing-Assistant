@@ -22,8 +22,10 @@ module.exports = {
           compilerOptions: {
             compatConfig: {
               MODE: 2
-            }
-          }
+            },
+            isCustomElement: tag =>tag.startsWith('v-'),
+          },
+
         }
       },
       // this will apply to both plain `.js` files

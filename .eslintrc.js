@@ -2,7 +2,8 @@ module.exports = {
   root: true,
   env: {
     node: true,
-    jest: true
+    // jest: true,
+    vitest: true,
   },
   extends: [
     'plugin:vue/vue3-recommended',
@@ -79,7 +80,8 @@ module.exports = {
         "**/tests/unit/**/*.spec.{j,t}s?(x)"
       ],
       env: {
-        jest: true
+        // jest: true
+        vitest: true,
       }
     }
   ]

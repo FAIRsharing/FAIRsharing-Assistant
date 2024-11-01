@@ -1,20 +1,18 @@
-import { createLocalVue, shallowMount } from "@vue/test-utils";
+import {  mount } from "@vue/test-utils";
 import Error from "@/views/Errors/404.vue";
-import Vuetify from "vuetify"
-import Vuex from "vuex";
+import { createVuetify } from 'vuetify'
+import { describe, expect, it, beforeEach } from 'vitest'
 
-const localVue = createLocalVue();
-localVue.use(Vuex);
-
-const vuetify = new Vuetify();
+const vuetify = createVuetify();
 
 describe("404 error page", () => {
   let wrapper;
 
   beforeEach(() => {
-    wrapper = shallowMount(Error, {
-      localVue,
-      vuetify
+    wrapper = mount(Error,{
+      global: {
+        plugins: [vuetify],
+      },
     });
   });
 

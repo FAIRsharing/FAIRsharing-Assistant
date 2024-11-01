@@ -1,5 +1,4 @@
 import { createApp, configureCompat } from "vue";
-// import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
 import createVuetify from "@/plugins/vuetify.js";
 import App from './App.vue'
 import router from './router'
@@ -25,6 +24,7 @@ const app = createApp(App)
     },
   })
   .use(Vue3Sanitize)
-  // .component("font-awesome-icon", FontAwesomeIcon);
+
+// app.config.compilerOptions.isCustomElement = tag => tag.startsWith('v-')
 
 app.mount("#app");

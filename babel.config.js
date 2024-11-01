@@ -1,7 +1,28 @@
+//
+// module.exports = {
+//   env: {
+//     test: {
+//       presets: [
+//         [
+//           "@babel/preset-env",
+//           {
+//             targets: {
+//               node: "current",
+//             },
+//           },
+//         ],
+//       ],
+//     },
+//   },
+// }
+
+
+
 module.exports = {
   presets: [
-    "@vue/cli-plugin-babel/preset",
     "@babel/preset-env",
+    "@vue/cli-plugin-babel/preset",
+
   ],
   plugins: [
     '@babel/plugin-transform-class-properties',
