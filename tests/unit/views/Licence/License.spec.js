@@ -1,16 +1,20 @@
 import {shallowMount} from "@vue/test-utils";
 import Licence from "@/views/Licence/Licence"
-import Vuetify from "vuetify"
+import { createVuetify } from 'vuetify'
+import { describe, expect, it, beforeEach } from 'vitest'
 
-const vuetify = new Vuetify();
+
+const vuetify = createVuetify();
 
 describe("Licence.vue", function(){
   let wrapper;
 
   beforeEach(() => {
     wrapper = shallowMount(Licence, {
-      vuetify,
-      stubs: ['router-link']
+      global: {
+        plugins: [vuetify],
+        stubs: ['router-link']
+      }
     })
   });
 

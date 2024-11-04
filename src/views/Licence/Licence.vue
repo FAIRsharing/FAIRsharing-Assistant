@@ -25,7 +25,7 @@
         </router-link>
       </p>
       <v-img
-        src="assets/Logo/fairsharing-logo.svg"
+        src="/assets/Logo/fairsharing-logo.svg"
         width="auto"
         height="70"
         class="text-left pa-0 d-inline-block contain"
@@ -65,10 +65,9 @@
 </template>
 <script>
 import Jumbotron from "@/components/Navigation/Jumbotron.vue";
-
 export default {
   name: "Licence",
-  components: {Jumbotron}
+  components: {Jumbotron},
 }
 </script>
 <style scoped>

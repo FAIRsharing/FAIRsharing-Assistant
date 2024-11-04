@@ -11,16 +11,12 @@
 </template>
 
 <script>
+import { useHead } from '@unhead/vue'
+
+useHead({
+  title: 'FAIRassist | Maintenance Mode'
+})
 export default {
   name: "Maintenance",
-  metaInfo() {
-    return {
-      title: "FAIRassist | Maintenance Mode"
-    }
-  }
 }
 </script>
-
-<style scoped>
-
-</style>

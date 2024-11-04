@@ -20,12 +20,12 @@
 </template>
 
 <script>
+import { useHead } from '@unhead/vue'
+
+useHead({
+  title: 'FAIRassist | Not Found'
+})
 export default {
   name: "Error404",
-  metaInfo() {
-    return {
-      title: "FAIRassist | Not Found"
-    }
-  }
 }
 </script>

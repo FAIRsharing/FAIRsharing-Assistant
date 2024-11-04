@@ -20,13 +20,13 @@
 </template>
 
 <script>
+import { useHead } from '@unhead/vue'
+
+useHead({
+  title: 'FAIRassist | Server Error'
+})
 export default {
   name: "Error500",
-  metaInfo() {
-    return {
-      title: "FAIRassist | Server Error"
-    }
-  }
 }
 </script>
 
