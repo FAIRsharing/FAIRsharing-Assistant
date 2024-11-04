@@ -5,8 +5,7 @@
   "scripts": {
     "serve": "vue-cli-service serve --port 8082",
     "build": "vue-cli-service build --modern",
-    "test:unit": "vitest",
-    "coverage": "vitest run --coverage",
+    "test:unit": "vitest run --coverage",
     "lint": "vue-cli-service lint",
     "lint:fix": "vue-cli-service lint --fix",
     "codacy": "cat ./coverage/lcov.info | codacy-coverage -t ",

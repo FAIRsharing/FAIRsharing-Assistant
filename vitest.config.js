@@ -22,12 +22,22 @@ export default mergeConfig(
       coverage: {
         provider: 'v8', // or 'istanbul'
         exclude:[
+          "dist/*",
+          "documentation/*",
           "src/main.js",
           "src/documentation/process_doc.js",
           "src/store/index.js",
           "src/plugins/**",
           "src/router/routes.js",
           "src/components/Icon/Icon.vue",
+          "tests/*",
+          ".eslintrc.js",
+          "babel.config.js",
+          "vite.config.mjs",
+          "vitest.config.js",
+          "vue.config.js",
+          "webpack.config.js"
+
         ],
         reporter: ['text', 'lcov'],
         reportOnFailure: true,

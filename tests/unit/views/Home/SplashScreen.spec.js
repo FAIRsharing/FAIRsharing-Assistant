@@ -3,7 +3,7 @@ import { createStore } from 'vuex'
 import SplashScreen from "@/views/Home/SplashScreen.vue"
 import multiTagsStore from "@/store/multiTagsStore";
 import { createVuetify } from 'vuetify'
-import { describe, expect, it, beforeEach } from 'vitest'
+import { describe, expect, it, beforeEach, vi } from 'vitest'
 
 
 const vuetify = createVuetify();
