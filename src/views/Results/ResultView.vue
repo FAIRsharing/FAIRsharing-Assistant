@@ -35,7 +35,6 @@ import NavigateBackButton from "@/components/Navigation/NavigateBackButton.vue";
 import Breadcrumbs from "@/components/Navigation/Breadcrumbs.vue";
 
 
-
 export default {
   name: 'ResultView',
   components: {

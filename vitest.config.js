@@ -21,6 +21,11 @@ export default mergeConfig(
       },
       coverage: {
         provider: 'v8', // or 'istanbul'
+        ignoreEmptyLines: true,
+        thresholds:{
+          autoUpdate: true
+        },
+        css: true,
         exclude:[
           "dist/*",
           "documentation/*",
@@ -37,9 +42,8 @@ export default mergeConfig(
           "vitest.config.js",
           "vue.config.js",
           "webpack.config.js"
-
         ],
-        reporter: ['text', 'lcov'],
+        reporter: ['html', 'lcov'],
         reportOnFailure: true,
       },
     }
