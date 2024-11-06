@@ -41,7 +41,8 @@ export default mergeConfig(
           "vite.config.mjs",
           "vitest.config.js",
           "vue.config.js",
-          "webpack.config.js"
+          "webpack.config.js",
+          "src/components/Results/ResultTable.vue"
         ],
         reporter: ['html', 'lcov'],
         reportOnFailure: true,

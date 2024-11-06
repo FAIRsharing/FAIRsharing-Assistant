@@ -1,6 +1,9 @@
-import {createLocalVue, shallowMount} from "@vue/test-utils";
-import Vuetify from "vuetify"
+import {shallowMount} from "@vue/test-utils";
+import { createVuetify } from 'vuetify'
+import { describe, expect, it, beforeEach, vi } from 'vitest'
 import TagChips from "@/components/Results/TagChips.vue"
+
+const vuetify = createVuetify();
 
 let $route = {
   name: "search",
@@ -8,19 +11,19 @@ let $route = {
 };
 
 const $router = {
-  push: jest.fn(),
+  push: vi.fn(),
 };
 
 describe("TagChips.vue", function () {
   let wrapper;
-  const vuetify = new Vuetify();
-  const localVue = createLocalVue();
 
   beforeEach(() => {
     wrapper = shallowMount(TagChips, {
-      localVue,
-      vuetify,
-      propsData: {
+      global:{
+        plugins: [vuetify],
+        mocks: {$route, $router}
+      },
+      props: {
         record: {
           name: 'test record',
           subjects: [
@@ -81,7 +84,7 @@ describe("TagChips.vue", function () {
         ]
          */
       },
-      mocks: {$route, $router}
+
     });
   });
 

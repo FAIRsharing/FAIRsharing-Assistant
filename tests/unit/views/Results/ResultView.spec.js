@@ -6,7 +6,6 @@ import ResultView from "@/views/Results/ResultView.vue"
 import multiTagsStore from "@/store/multiTagsStore";
 import navigationStore from "@/store/navigationStore";
 
-
 const vuetify = createVuetify();
 
 const mockRouter = { push: vi.fn() };

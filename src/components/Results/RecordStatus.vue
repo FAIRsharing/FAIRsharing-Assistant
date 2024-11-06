@@ -1,4 +1,4 @@
-<template xmlns:v-slot="http://www.w3.org/1999/XSL/Transform">
+<template>
   <div>
     <div
       v-if="recordType && !showOnlyStatus"
@@ -73,7 +73,7 @@ export default {
   name: "RecordStatus",
   components: {Icon},
   props: {
-    record: {default: () => ({}), type: Object},
+    record: {default: null, type: Object},
     showStatus: {default: true, type: Boolean},
     showOnlyStatus: {default: false, type: Boolean},
     inEditForm: {default: false, type: Boolean},

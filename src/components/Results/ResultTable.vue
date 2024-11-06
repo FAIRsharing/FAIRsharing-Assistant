@@ -262,9 +262,7 @@ export default {
     currentRouteQuery() {
       return this.$route.query;
     },
-    filteredKeys () {
-      return this.keys.filter(key => key !== 'Name' && key !== 'Description')
-    },
+
     sortData(){
       switch(this.sortBy) {
       case 'Name':

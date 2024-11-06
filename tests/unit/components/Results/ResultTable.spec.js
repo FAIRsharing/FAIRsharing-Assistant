@@ -1,15 +1,11 @@
-import {createLocalVue, shallowMount} from "@vue/test-utils";
+import {shallowMount} from "@vue/test-utils";
+import { createStore } from 'vuex';
+import { createVuetify } from 'vuetify'
+import { describe, expect, it, beforeEach } from 'vitest'
 import ResultTable from "@/components/Results/ResultTable.vue";
-import Vuetify from "vuetify"
-import Vuex from "vuex";
 import multiTagsStore from "@/store/multiTagsStore";
 
-
-const localVue = createLocalVue();
-localVue.use(Vuex);
-
-const vuetify = new Vuetify();
-
+const vuetify = createVuetify();
 multiTagsStore.getters = {
   getFairSharingRecords: () => {
     return [
@@ -23,7 +19,7 @@ multiTagsStore.getters = {
   getCurrentRegistry: () => { return "database" }
 }
 
-let store = new Vuex.Store({
+let store = createStore({
   modules: {
     multiTagsStore: multiTagsStore,
   }
@@ -34,10 +30,10 @@ describe("ResultTable.vue", function(){
 
   beforeEach(() => {
     wrapper = shallowMount(ResultTable, {
-      localVue,
-      vuetify,
-      store,
-      stubs: ['router-link', 'router-view']
+      global:{
+        plugins: [vuetify, store],
+        stubs: ['router-link', 'router-view']
+      },
     })
   });
 
