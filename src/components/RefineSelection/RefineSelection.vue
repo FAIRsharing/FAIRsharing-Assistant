@@ -35,7 +35,7 @@
       </v-btn>
       <!-- help -->
       <v-dialog
-        v-model="help"
+        :model-value="help"
         width="auto"
       >
         <v-card class="py-4 px-6">
@@ -112,7 +112,7 @@ export default {
   computed:{
     ...mapGetters("multiTagsStore", ['getQueryParams', 'getFairSharingRecords', 'getCurrentRegistry']),
     recordsAvailable() {
-      if (!this.getFairSharingRecords) {
+      if (Array.isArray(this.getFairSharingRecords) && this.getFairSharingRecords.length === 0) {
         return 0;
       }
       return this.getFairSharingRecords.filter(x => x.registry === this.getCurrentRegistry).length

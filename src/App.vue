@@ -17,12 +17,13 @@ export default {
       loading:true,
     }
   },
-  /* istanbul ignore next */
+  /* v8 ignore start */
   async updated() {
     // very important line of code which prevents layout shifting which is considered as one negative point for SEO
     await this.$nextTick()
     this.loading = false;
   }
+  /* v8 ignore stop */
 };
 </script>
 

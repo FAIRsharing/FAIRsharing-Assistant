@@ -1,9 +1,6 @@
 import {shallowMount} from "@vue/test-utils";
-// import { createVuetify } from 'vuetify'
 import { describe, expect, it } from 'vitest'
 import KeywordTooltip from "@/components/Results/KeywordTooltip.vue"
-
-// const vuetify = createVuetify();
 
 describe('KeywordTooltip.vue', () => {
   let wrapper;
