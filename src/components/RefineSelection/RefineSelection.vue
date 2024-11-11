@@ -26,6 +26,7 @@
     >
       <!-- help text -->
       <v-btn
+        id="showHelp"
         color="info"
         class="mb-2 ml-2"
         :disabled="help"
@@ -72,7 +73,7 @@
     <p>
       Some text will go here to explain what's going on with the filters below, perhaps linking to Gitbook.
     </p>
-    <AddOnFilters @filter-source="capitaliseText(getQueryParams['fairsharingRegistry'][0], null)" />
+    <AddOnFilters />
   </div>
 </template>
 

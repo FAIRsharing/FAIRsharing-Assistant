@@ -42,12 +42,14 @@ describe("RefineSelection.vue", function(){
   beforeEach(() => {
     wrapper = shallowMount(RefineSelection, {
       global:{
-        data:{
-          recordTypes: {},
-          help: false,
-          helpText: {
-            tags: ["abc"],
-            refinement: ["nv"]
+        data(){
+          return {
+            recordTypes: {},
+            help: false,
+            helpText: {
+              tags: ["abc"],
+              refinement: ["nv"]
+            }
           }
         },
         plugins: [vuetify, store],
@@ -55,10 +57,10 @@ describe("RefineSelection.vue", function(){
           $router: mockRouter,
         },
         stubs: ['router-link', 'router-view']
+
       },
     })
-    wrapper.vm.registryName()
-    wrapper.vm.registryIcons()
+    wrapper.vm.showHelp()
   });
 
   it("can be instantiated", () => {
@@ -121,6 +123,8 @@ describe("RefineSelection.vue", function(){
   });
 
   it("can showHelp method is called", () => {
+    const showHelp = wrapper.get("#showHelp");
+    showHelp.trigger('click')
     wrapper.vm.showHelp()
     expect(wrapper.vm.help).toBe(true);
   });
@@ -129,5 +133,4 @@ describe("RefineSelection.vue", function(){
     wrapper.vm.hideHelp()
     expect(wrapper.vm.help).toBe(false);
   });
-
 });
