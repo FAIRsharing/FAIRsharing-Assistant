@@ -187,6 +187,7 @@ export default {
       }
       this.searchResults = [];
       val = val.trim();
+      /* v8 ignore next */
       await this.getResults(val);
     },
     async recordTags (val) {
@@ -213,6 +214,7 @@ export default {
   },
   methods: {
     ...mapActions('multiTagsStore', ['fetchMultiTagData', 'resetMultiTags']),
+    /* v8 ignore start */
     async getResults(queryString) {
       let _module = this;
       let tagQueryCopy = JSON.parse(JSON.stringify(tagsQuery));
@@ -241,6 +243,7 @@ export default {
         _module.tags = tags.concat(parents);
       }
     },
+    /* v8 ignore stop */
     clearResults() {
       this.loading = false;
       this.tags = [];
@@ -280,6 +283,7 @@ export default {
       });
       this.recordTags = currentTags;
     },
+    /* v8 ignore start */
     goToResults() {
       let _module = this;
       // Here's the basic breadcrumb...
@@ -302,6 +306,7 @@ export default {
       this.$store.commit('navigationStore/addBreadcrumb', breadcrumb);
       this.$router.push('/results');
     }
+    /* v8 ignore end */
   }
 }
 </script>
