@@ -1,13 +1,12 @@
 <template>
   <v-card
-    class="full-width"
+    class="full-width testcard"
     :class="[
       {'my-3 mx-0': $vuetify.display.smAndDown},
-      {'mx-3 mb-0': $vuetify.display.mdAndUp}
+      {'mx-3 mb-0': $vuetify.display.mdAndUp},
+      {'cardBorder': registrySelected},
     ]"
-    :style="registrySelected ? 'border: 2px solid red;' : null"
     max-width="350"
-    :max-height="showRefineButton? 'none' : 230"
     height="auto"
     color="#ababab"
     elevation="6"
@@ -98,5 +97,11 @@ export default {
 }
 .actionBlock {
   background: #fff
+}
+.cardBorder {
+  border: 2px solid red
+}
+.cardHeight{
+  max-height: 230px
 }
 </style>
