@@ -5,6 +5,7 @@
       {'my-3 mx-0': $vuetify.display.smAndDown},
       {'mx-3 mb-0': $vuetify.display.mdAndUp},
       {'cardBorder': registrySelected},
+      {'cardHeight': !showRefineButton},
     ]"
     max-width="350"
     height="auto"
@@ -102,6 +103,6 @@ export default {
   border: 2px solid red
 }
 .cardHeight{
-  max-height: 230px
+  max-height: 230px;
 }
 </style>
