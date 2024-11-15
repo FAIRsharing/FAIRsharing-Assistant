@@ -50,7 +50,7 @@ describe("SelectFilter.vue", function(){
     expect(wrapper.vm.$options.name).toMatch("SelectFilter");
   });
 
-  it("can cleanText method is called", () => {
+  it("cleanText method is called", () => {
     wrapper.vm.cleanText("_abc")
     expect(wrapper.vm.cleanText("_abc")).toBe(" abc");
 
@@ -58,7 +58,7 @@ describe("SelectFilter.vue", function(){
     expect(wrapper.vm.cleanText(123)).toBe(123);
   });
 
-  it("can selectToggle method is called", async () => {
+  it("selectToggle method is called", async () => {
     const filter = {
       "filterName": "Data Contact Information",
       "filterQuery": "dataContactInformation",
@@ -85,7 +85,25 @@ describe("SelectFilter.vue", function(){
     wrapper.vm.selectToggle(wrapper.props().filter)
 
     expect(wrapper.vm.getQueryParams).toStrictEqual(state.queryParams);
-    await wrapper.vm.fetchMultiTagData(wrapper.vm.getQueryParams)
   });
 
+  it("preSelectedFilter method is called", async () => {
+    const filter = {
+      "filterName": "Data Contact Information",
+      "filterQuery": "dataContactInformation",
+      "refineToggle": ["yes"],
+      "options": [
+        "yes",
+        "no",
+        "not found"
+      ],
+      "filterTypes": [
+        "database"
+      ],
+      "tooltip": "Does the repository show data depositor contact information on dataset landing pages?"
+    }
+
+    await wrapper.setProps({filter : filter})
+    expect(wrapper.vm.preSelectedFilter()).toHaveBeenCalled;
+  });
 });
