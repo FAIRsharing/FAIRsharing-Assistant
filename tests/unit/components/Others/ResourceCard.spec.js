@@ -28,8 +28,6 @@ describe("ResourceCard.vue", function(){
   });
 
   it("can be instantiated", () => {
-    // wrapper.vm.showRefineButton = true
-    console.log("wrapper.vm.showRefineButton::", wrapper.vm.showRefineButton)
     expect(wrapper.vm.$options.name).toMatch("ResourceCard");
   });
 

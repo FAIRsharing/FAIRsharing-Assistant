@@ -77,9 +77,6 @@ export default {
   },
   computed:{
     ...mapGetters("multiTagsStore", ["getQueryParams"]),
-    currentRouteQuery() {
-      return this.$route.query;
-    },
   },
   mounted() {
     this.preSelectedFilter()
