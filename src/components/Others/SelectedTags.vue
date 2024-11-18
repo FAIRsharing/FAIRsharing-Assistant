@@ -8,8 +8,10 @@
     >
       <div
         class="text-white py-3 px-4 titleCell full-width d-flex align-center justify-center"
-        :class="'bg-'+section.color"
-        :style="$vuetify.display.smAndDown ? 'max-width:100%': 'max-width:205px'"
+        :class="[
+          'bg-'+section.color,
+          {'titleCellMobile' : $vuetify.display.smAndDown}
+        ]"
       >
         <div class="d-flex justify-center">
           <Tooltip
@@ -135,3 +137,14 @@ export default {
 }
 
 </script>
+
+<style>
+.titleCell {
+  max-width: 205px
+}
+
+.titleCellMobile {
+  max-width: 100%
+}
+
+</style>
