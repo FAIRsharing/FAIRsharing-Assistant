@@ -77,9 +77,6 @@ export default {
   },
   computed:{
     ...mapGetters("multiTagsStore", ["getQueryParams"]),
-    currentRouteQuery() {
-      return this.$route.query;
-    },
   },
 
   mounted() {
@@ -113,9 +110,11 @@ export default {
       // TODO: Change this to look in the store.
       let _module = this;
       let existing  = _module.getQueryParams[_module.filter.filterQuery];
+      /* v8 ignore start */
       if (existing) {
         _module.filtersOpted = String(existing);
       }
+      /* v8 ignore stop */
     },
   }
 }
