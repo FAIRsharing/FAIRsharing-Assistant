@@ -118,9 +118,11 @@ const recordsCardUtils = {
         });
         return true;
       }
+      /* v8 ignore start */
       else {
         return false;
       }
+      /* v8 ignore stop */
     },
     // TODO: This is not used in the assistant
     /*

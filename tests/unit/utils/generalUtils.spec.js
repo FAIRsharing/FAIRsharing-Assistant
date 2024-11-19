@@ -1,3 +1,4 @@
+import { describe, expect, it, vi } from 'vitest'
 import generalUtils, {LightenDarkenColor, toBase64} from "@/utils/generalUtils.js";
 
 describe("generalUtils.js", function(){
@@ -27,7 +28,7 @@ describe("generalUtils.js", function(){
       type: 'image/jpeg',
     });
     const dummy = {
-      readAsDataURL: jest.fn(),
+      readAsDataURL: vi.fn(),
       onload: () => new Promise((resolve) => {
         resolve()
       }),
@@ -36,7 +37,7 @@ describe("generalUtils.js", function(){
       }),
       result: 'vv'
     }
-    window.FileReader = jest.fn(() => dummy)
+    window.FileReader = vi.fn(() => dummy)
     toBase64(mFile)
     dummy.onload()
     dummy.onerror('a')

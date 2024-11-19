@@ -1,8 +1,8 @@
 /**
- * @param {Object} - route query parameters
+ * @param routeQuery {Object} - route query parameters
  * @returns {Object} - route query parameters
  */
-/* istanbul ignore next */
+
 const currentPath = (routeQuery) => {
   let queryParams = {};
   Object.keys(routeQuery).forEach(prop => {
