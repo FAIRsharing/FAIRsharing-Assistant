@@ -34,7 +34,6 @@ export default mergeConfig(
           "src/store/index.js",
           "src/plugins/**",
           "src/router/routes.js",
-          "src/components/Icon/Icon.vue",
           "tests/*",
           ".eslintrc.js",
           "babel.config.js",
@@ -42,7 +41,9 @@ export default mergeConfig(
           "vitest.config.js",
           "vue.config.js",
           "webpack.config.js",
-          "src/components/Results/ResultTable.vue"
+          "src/components/Icon/Icon.vue",
+          "src/components/Results/ResultTable.vue",
+          "src/components/Others/AddOnFilters.vue"
         ],
         reporter: ['html', 'lcov'],
         reportOnFailure: true,

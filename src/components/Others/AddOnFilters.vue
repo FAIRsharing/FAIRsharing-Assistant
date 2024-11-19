@@ -152,6 +152,7 @@ export default {
   },
   methods: {
     ...mapActions('multiTagsStore', ['fetchMultiTagData']),
+
     async checkCheckbox() {
       // TODO: Modify queryParams and trigger query.
       // TODO: Ensure at least one box is selected.
@@ -163,6 +164,7 @@ export default {
       await _module.fetchMultiTagData(params);
       _module.loading = false;
     },
+
     resetFiltersOnLoad() {
       let _module = this;
       [_module.switchTypeFilters, _module.selectTypeFilters].forEach(group => {
@@ -173,6 +175,7 @@ export default {
 
       })
     },
+
     async readRegAndTypeFilterParams() {
       let _module = this;
       let params = currentPath(this.currentRouteQuery);
@@ -189,6 +192,7 @@ export default {
         }
       })
     },
+
     selectFilters(){
       const prevRoute = localStorage.getItem("pageName");
       let selectedRegistry = this.topResult;
@@ -209,6 +213,7 @@ export default {
         this.conditionalFilters("policies")
       }
     },
+
     conditionalDisplay() {
       if (!this.switchTypeFilters?.length && this.selectTypeFilters?.length) {
         this.onlySelect = true
@@ -217,9 +222,11 @@ export default {
         this.onlySwitch = true
       }
     },
+
     conditionalFilters(registry) {
       const registrySwitchFilters = this.switchTypeFilters.filter(({filterTypes}) => filterTypes.includes(registry))
       this.switchTypeFilters = registrySwitchFilters
+
       const registrySelectFilters = this.selectTypeFilters.filter(({filterTypes}) => filterTypes.includes(registry))
       this.selectTypeFilters = registrySelectFilters
       this.conditionalDisplay()
