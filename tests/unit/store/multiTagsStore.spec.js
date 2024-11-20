@@ -1,3 +1,4 @@
+import { describe, expect, it, beforeAll, afterAll, vi } from 'vitest'
 import multiTagsStore from "@/store/multiTagsStore"
 import sinon from "sinon"
 import GraphClient from "@/lib/GraphClient/GraphClient.js";
@@ -28,14 +29,14 @@ describe('MultiTags store methods', () => {
   });
 
   it("can check fetchMultiTagData actions with null parameters", async() => {
-    const commit = jest.fn()
+    const commit = vi.fn()
     const additionalParams = [null, null, null]
     await actions.fetchMultiTagData({ commit }, additionalParams)
     expect(commit).toHaveBeenCalledWith('setLoadingStatus', true);
   });
 
   it("can check fetchMultiTagData actions empty parameters", async() => {
-    const commit = jest.fn()
+    const commit = vi.fn()
     const additionalParams = [" ", " ", " "]
     await actions.fetchMultiTagData({ commit }, additionalParams)
     expect(commit).toHaveBeenCalledWith('setLoadingStatus', true);
@@ -43,7 +44,7 @@ describe('MultiTags store methods', () => {
 
 
   it("can check resetMultiTags actions", () => {
-    const commit = jest.fn()
+    const commit = vi.fn()
     actions.resetMultiTags({ commit })
     expect(commit).toHaveBeenCalledTimes(1);
   });

@@ -1,3 +1,4 @@
+import { describe, expect, it, beforeEach, beforeAll, afterAll, vi } from 'vitest'
 import Client from "@/lib/GraphClient/GraphClient.js"
 import query from "./getRecords.json"
 
@@ -56,6 +57,7 @@ describe("GraphQL Client", function () {
         records: [{}]
       }
     }));
+
 
     let output2 = await client.getData(localQuery);
     expect(JSON.stringify(output2.data)).toBe(JSON.stringify({

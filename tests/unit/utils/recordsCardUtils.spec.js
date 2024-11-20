@@ -1,3 +1,4 @@
+import { describe, expect, it } from 'vitest'
 import recordsCardUtils from "@/utils/recordsCardUtils.js";
 
 describe("recordsCardUtils.js", function(){
