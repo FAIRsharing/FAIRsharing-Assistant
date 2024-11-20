@@ -4,6 +4,7 @@
   >
     <Tooltip :tooltip-text="tooltipText" />
     <v-btn
+      data-testid="makeChoice"
       class="px-0"
       color="primary"
       :disabled="count <= 0"

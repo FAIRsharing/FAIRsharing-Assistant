@@ -26,7 +26,6 @@ describe("RecordStatus.vue", function () {
         inEditForm: false
       }
     });
-
     expect(wrapper.vm.$options.name).toMatch("RecordStatus");
   });
 
