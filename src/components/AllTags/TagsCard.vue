@@ -28,7 +28,7 @@ export default {
     ...mapGetters('multiTagsStore', ["getCurrentRegistry", "getFairSharingRecords"]),
     recordsCount() {
       let _module = this;
-      if (!_module.getFairSharingRecords) return 0
+      if (_module.getFairSharingRecords && _module.getFairSharingRecords.length === 0) return 0
       else return _module.getFairSharingRecords.filter(x => x.registry === this.registry).length
     },
   },
