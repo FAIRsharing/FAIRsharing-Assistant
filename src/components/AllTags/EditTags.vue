@@ -5,7 +5,7 @@
     <v-form
       id="editTags"
       ref="editTags"
-      v-model="formValid"
+      :model-value="formValid"
     >
       <v-container fluid>
         <div

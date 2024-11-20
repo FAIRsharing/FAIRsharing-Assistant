@@ -1,20 +1,18 @@
-import {createLocalVue, shallowMount} from "@vue/test-utils";
+import { shallowMount} from "@vue/test-utils";
+import { createVuetify } from 'vuetify'
+import { describe, expect, it, beforeEach } from 'vitest'
 import EditTags from "@/components/AllTags/EditTags.vue"
-import Vuetify from "vuetify"
-import Vuex from "vuex";
 
-const localVue = createLocalVue();
-localVue.use(Vuex);
-
-const vuetify = new Vuetify();
+const vuetify = createVuetify();
 
 describe("EditTags.vue", function(){
   let wrapper;
 
   beforeEach(() => {
     wrapper = shallowMount(EditTags, {
-      localVue,
-      vuetify
+      global: {
+        plugins: [vuetify],
+      }
     })
   });
 

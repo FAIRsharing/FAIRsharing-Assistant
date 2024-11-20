@@ -6,7 +6,7 @@ import icons from "@/plugins/icons";
 
 
 const vuetify = createVuetify({'icons':icons});
-// const vuetify = new Vuetify({'icons':icons});
+
 
 describe("ResourceCard.vue", function(){
   let wrapper;

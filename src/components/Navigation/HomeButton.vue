@@ -5,6 +5,7 @@
   >
     <Tooltip :tooltip-text="tooltipText" />
     <v-btn
+      id="goHome"
       v-bind="button['attributes']"
       :block="$vuetify.display.smAndDown"
       color="dev_color white--text"
