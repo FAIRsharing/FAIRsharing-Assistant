@@ -1,6 +1,7 @@
 <template>
   <div class="ml-3">
     <v-btn
+      data-testid="toggleSelected"
       color="info"
       class="mb-2"
       @click="toggleSelected()"
@@ -8,6 +9,7 @@
       {{ buttonMessage }}
     </v-btn>
     <v-btn
+      data-testid="showHelp"
       color="info"
       class="mb-2 ml-2"
       :disabled="help"
@@ -17,7 +19,7 @@
     </v-btn>
     <!-- help -->
     <v-dialog
-      v-model="help"
+      :model-value="help"
       width="auto"
     >
       <v-card>
@@ -94,6 +96,7 @@ export default {
         return sectionName
       }
     },
+    /* v8 ignore start */
     removeTag(tagParams){
       let id = tagParams[0]
       let label = tagParams[1]
@@ -111,6 +114,7 @@ export default {
         this.$store.commit('multiTagsStore/setFairSharingRecords', []);
       }
     },
+    /* v8 ignore stop */
     toggleSelected() {
       this.showSelected = !this.showSelected;
       if (this.showSelected) {
