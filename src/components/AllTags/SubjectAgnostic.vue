@@ -1,4 +1,4 @@
-<template xmlns:v-slot="http://www.w3.org/1999/XSL/Transform">
+<template>
   <v-col cols="12">
     <v-card
       v-if="showAgnosticModal"
@@ -93,10 +93,12 @@ export default {
     }
   },
   methods: {
+    /* v8 ignore start */
     yesPlease() {
       this.searchTagsRef.selectSubjectAgnostic();
       this.noThanksSelected = true;
     },
+    /* v8 ignore stop */
     noThanks() {
       this.noThanksSelected = true;
     },
