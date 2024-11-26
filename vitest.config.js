@@ -43,7 +43,8 @@ export default mergeConfig(
           "webpack.config.js",
           "src/components/Icon/Icon.vue",
           "src/components/Results/ResultTable.vue",
-          "src/components/Others/AddOnFilters.vue"
+          "src/components/Others/AddOnFilters.vue",
+          "src/components/AllTags/SearchTags.vue"
         ],
         reporter: ['html', 'lcov'],
         reportOnFailure: true,

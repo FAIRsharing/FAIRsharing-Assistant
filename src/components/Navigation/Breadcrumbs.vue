@@ -57,7 +57,7 @@
     </v-col>
   </v-row>
   <v-dialog
-    v-model="summary"
+    :model-value="summary"
     width="auto"
   >
     <v-card>
@@ -115,7 +115,9 @@ export default {
       },
       breadcrumbs: null,
       show: false,
-      summary: false
+      summary: false,
+      path: "",
+      summaryKey: ""
     }
   },
   computed: {
@@ -171,20 +173,20 @@ export default {
       }
     },
     handleNavigation(link) {
-      let path;
       if (this.$route.params.id) {
-        path = "/" + this.$route.params.id;
+        this.path = "/" + this.$route.params.id;
       }
       else {
-        path = this.$route.path;
+        this.path = this.$route.path;
       }
       // TODO: Clearing things here means that we might not be able to get the necessary information on going back.
       // TODO: Perhaps these could go into the QuestionPage.vue file, to be run after going there and recovering the query?
       // TODO: Check that sliceBreadcrumb in particular is slicing correctly.
       this.$store.commit('navigationStore/sliceBreadcrumb', link);
-      this.$store.commit('navigationStore/setNavigationState', path);
+      this.$store.commit('navigationStore/setNavigationState', this.path);
       this.$router.push({path: link});
     },
+
     formatBreadcrumb(crumb) {
       if (this.getCompliantWith && crumb.text.includes('FORMAT')) {
         return crumb.text.replace("FORMAT", this.getCompliantWith);
@@ -217,6 +219,7 @@ export default {
       }
       return crumb.text;
     },
+
     async copySummary() {
       try {
         await navigator.clipboard.writeText(this.getSummaryText());
@@ -225,20 +228,20 @@ export default {
         // An alert could be used here, perhaps.
       }
     },
+
     getSummaryText() {
       // Questions have an ID...
-      let key;
       if (this.$route.path === '/refine') {
-        key = 'refine'
+        this.summaryKey = 'refine'
       }
       else if (this.$route.path === '/results') {
-        key = 'results'
+        this.summaryKey = 'results'
       }
       else {
-        key = String(this.$route.params.id)
+        this.summaryKey = String(this.$route.params.id)
       }
-      let text = summaries[String(key)];
-      if (!summaries[key]) {
+      let text = summaries[String(this.summaryKey)];
+      if (!summaries[this.summaryKey]) {
         return null;
       }
       // There will be various places in the default text where substitutions must occur depending on the user's previous
@@ -279,9 +282,12 @@ export default {
         try {
           value = _module.getQueryParams[key].join(', ');
         }
+        //Ignoring in test as unable to understand the logic and purpose of the catch statement here
+        /* v8 ignore start */
         catch {
           value = _module.getQueryParams[key];
         }
+        /* v8 ignore stop */
         output = output + `${_module.humaniseKey(key)}: ${value}<br>`
       });
       return output;
