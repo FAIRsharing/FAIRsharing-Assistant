@@ -1,13 +1,16 @@
-import {createLocalVue, shallowMount} from "@vue/test-utils";
+import {shallowMount} from "@vue/test-utils";
+import { createStore } from 'vuex';
+import { createVuetify } from 'vuetify'
+import { describe, expect, it, beforeEach, vi } from 'vitest'
 import ClearAllSelections from "@/components/Navigation/ClearAllSelections.vue"
-import Vuetify from "vuetify"
-import Vuex from "vuex";
 import multiTagsStore from "@/store/multiTagsStore";
 
-const localVue = createLocalVue();
-localVue.use(Vuex);
+const vuetify = createVuetify();
 
-const vuetify = new Vuetify();
+const mockRouter = { push: vi.fn() };
+let mockRoute = {
+  path: "/researchfields",
+};
 
 multiTagsStore.getters = {
   getFairSharingRecords: () => {
@@ -31,15 +34,14 @@ multiTagsStore.getters = {
   getCurrentRegistry: () => { return 'standard' },
 }
 
-let actions = {
-  resetMultiTags: jest.fn()
+multiTagsStore.actions = {
+  resetMultiTags: vi.fn()
 }
 
 
-let store = new Vuex.Store({
+let store = createStore({
   modules: {
     multiTagsStore: multiTagsStore,
-    actions
   },
 })
 
@@ -48,15 +50,170 @@ describe("ClearAllSelections.vue", function(){
 
   beforeEach(() => {
     wrapper = shallowMount(ClearAllSelections, {
-      localVue,
-      vuetify,
-      store,
-      stubs: ['router-link', 'router-view']
+      global:{
+        props:{
+          refinePage: true
+        },
+        plugins: [vuetify, store],
+        mocks: {
+          $router: mockRouter,
+          $route: mockRoute
+        },
+        stubs: ['router-link', 'router-view']
+      },
     })
   });
 
   it("can be instantiated", () => {
     expect(wrapper.vm.$options.name).toMatch("ClearAllSelections");
+  });
+
+  it("can check clearButtonActive computed property when only 'getQueryParams' have values", () => {
+    multiTagsStore.getters = {
+      getFairSharingRecords: () => {
+        return []
+      },
+      getQueryParams:  () => {
+        return {
+          subjects: ['genetics'],
+          registry: ['standard']
+        }
+      },
+      getRefinedStatus: () => { return false },
+      getCurrentRegistry: () => { return '' },
+    }
+    store = createStore({
+      modules: {
+        multiTagsStore: multiTagsStore,
+      },
+    })
+
+    wrapper = shallowMount(ClearAllSelections, {
+      global:{
+        props:{
+          refinePage: true
+        },
+        plugins: [vuetify, store],
+        mocks: {
+          $router: mockRouter,
+          $route: mockRoute
+        },
+        stubs: ['router-link', 'router-view']
+      },
+    })
+    const clearButtonActive = wrapper.vm.clearButtonActive
+    expect(clearButtonActive).toBe(true);
+  });
+
+  it("can check clearButtonActive computed property when only 'getRefinedStatus' is true", () => {
+    multiTagsStore.getters = {
+      getFairSharingRecords: () => {
+        return []
+      },
+      getQueryParams:  () => {
+        return {}
+      },
+      getRefinedStatus: () => { return true },
+      getCurrentRegistry: () => { return '' },
+    }
+    store = createStore({
+      modules: {
+        multiTagsStore: multiTagsStore,
+      },
+    })
+
+    wrapper = shallowMount(ClearAllSelections, {
+      global:{
+        props:{
+          refinePage: true
+        },
+        plugins: [vuetify, store],
+        mocks: {
+          $router: mockRouter,
+          $route: mockRoute
+        },
+        stubs: ['router-link', 'router-view']
+      },
+    })
+    const clearButtonActive = wrapper.vm.clearButtonActive
+    expect(clearButtonActive).toBe(true);
+  });
+
+  it("can check clearButtonActive computed property when only 'getCurrentRegistry' is true", () => {
+    multiTagsStore.getters = {
+      getFairSharingRecords: () => {
+        return []
+      },
+      getQueryParams:  () => {
+        return {}
+      },
+      getRefinedStatus: () => { return false },
+      getCurrentRegistry: () => { return 'standard' },
+    }
+    store = createStore({
+      modules: {
+        multiTagsStore: multiTagsStore,
+      },
+    })
+
+    wrapper = shallowMount(ClearAllSelections, {
+      global:{
+        props:{
+          refinePage: true
+        },
+        plugins: [vuetify, store],
+        mocks: {
+          $router: mockRouter,
+          $route: mockRoute
+        },
+        stubs: ['router-link', 'router-view']
+      },
+    })
+    const clearButtonActive = wrapper.vm.clearButtonActive
+    expect(clearButtonActive).toBe(true);
+  });
+
+  it("can check clearButtonActive computed property for ELSE condition", () => {
+    multiTagsStore.getters = {
+      getFairSharingRecords: () => {
+        return []
+      },
+      getQueryParams:  () => {
+        return {}
+      },
+      getRefinedStatus: () => { return false },
+      getCurrentRegistry: () => { return '' },
+    }
+    store = createStore({
+      modules: {
+        multiTagsStore: multiTagsStore,
+      },
+    })
+
+    wrapper = shallowMount(ClearAllSelections, {
+      global:{
+        props:{
+          refinePage: true
+        },
+        plugins: [vuetify, store],
+        mocks: {
+          $router: mockRouter,
+          $route: mockRoute
+        },
+        stubs: ['router-link', 'router-view']
+      },
+    })
+    const clearButtonActive = wrapper.vm.clearButtonActive
+    expect(clearButtonActive).toBe(false);
+  });
+
+  it("can check clearResults method", async() => {
+    const clearResults = wrapper.get("[data-testid='clearResults']");
+    clearResults.trigger('click')
+    await wrapper.setProps({refinePage : true})
+    wrapper.vm.clearResults()
+    expect(wrapper.vm.resetMultiTags).toHaveBeenCalled;
+    expect(wrapper.vm.$route.path).toBe('/researchfields');
   });
 
 });

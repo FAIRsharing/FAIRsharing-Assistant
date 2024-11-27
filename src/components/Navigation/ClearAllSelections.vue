@@ -6,6 +6,7 @@
     <Tooltip :tooltip-text="tooltipText" />
     <v-btn
       v-bind="button['attributes']"
+      data-testid="clearResults"
       :block="$vuetify.display.smAndDown"
       :disabled="!clearButtonActive"
       color="dev_color white--text"
@@ -44,6 +45,7 @@ export default {
   },
   computed: {
     ...mapGetters('multiTagsStore', ["getFairSharingRecords", "getQueryParams", "getRefinedStatus", "getCurrentRegistry"]),
+
     clearButtonActive() {
       let _module = this;
       if (_module.getFairSharingRecords && _module.getFairSharingRecords.length > 0) {
@@ -63,6 +65,7 @@ export default {
   },
   methods: {
     ...mapActions('multiTagsStore', ['resetMultiTags']),
+
     clearResults() {
       this.resetMultiTags()
       if(this.refinePage) this.$router.push('/researchfields')

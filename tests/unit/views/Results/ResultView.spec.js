@@ -65,7 +65,6 @@ describe("ResultView.vue", function(){
         },
         stubs: ['router-link', 'router-view']
       },
-
     })
   });
 
