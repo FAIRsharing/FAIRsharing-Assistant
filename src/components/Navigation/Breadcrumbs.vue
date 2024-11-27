@@ -224,9 +224,11 @@ export default {
       try {
         await navigator.clipboard.writeText(this.getSummaryText());
       }
+      /* v8 ignore start */
       catch($e) {
         // An alert could be used here, perhaps.
       }
+      /* v8 ignore stop */
     },
 
     getSummaryText() {

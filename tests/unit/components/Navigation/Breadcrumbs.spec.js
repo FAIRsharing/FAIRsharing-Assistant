@@ -1,7 +1,7 @@
 import {shallowMount} from "@vue/test-utils";
 import { createStore } from 'vuex';
 import { createVuetify } from 'vuetify'
-import { describe, expect, it, beforeEach, vi } from 'vitest'
+import { describe, expect, it, beforeEach, vi, afterEach } from 'vitest'
 import Breadcrumbs from "@/components/Navigation/Breadcrumbs.vue"
 import icons from "@/plugins/icons";
 import multiTagsStore from "@/store/multiTagsStore";
@@ -59,6 +59,7 @@ let store = createStore({
 describe("Breadcrumbs.vue", function(){
   let wrapper;
 
+
   beforeEach(() => {
     wrapper = shallowMount(Breadcrumbs, {
       global: {
@@ -73,17 +74,76 @@ describe("Breadcrumbs.vue", function(){
     })
   });
 
+  afterEach(() => {
+    vi.clearAllMocks();
+    vi.resetAllMocks();
+  });
+
   it("can be instantiated", () => {
     wrapper.vm.$options.watch.$route.call(wrapper.vm)
     expect(wrapper.vm.$options.name).toMatch("Breadcrumbs");
   });
 
+  it("can check setBreadcrumb method when path is '/results'", () => {
+    wrapper.vm.$route.path = '/results'
+    wrapper.vm.$route.params.id = 100000
+    wrapper.vm.setBreadcrumb()
+    let output = {
+      id: 'results_crumb',
+      text: 'Results',
+      link: '/results'
+    }
+
+    expect(wrapper.vm.currentBreadcrumb).toStrictEqual(output);
+  });
+
+  it("can check setBreadcrumb method when path is '/educational/claim'", () => {
+    wrapper.vm.$route.path = '/educational/claim'
+    wrapper.vm.$route.params.id = 100000
+    wrapper.vm.setBreadcrumb()
+    let output = {
+      id: 'educational_claim_crumb',
+      text: "Claim your record(s) in FAIRsharing",
+      link: '/educational/claim'
+    }
+
+    expect(wrapper.vm.currentBreadcrumb).toStrictEqual(output);
+  });
+
+  it("can check setBreadcrumb method when path is '/educational/register'", () => {
+    wrapper.vm.$route.path = '/educational/register'
+    wrapper.vm.$route.params.id = 100000
+    wrapper.vm.setBreadcrumb()
+    let output = {
+      id: "eductional_register_crumb",
+      text: "Register your resources(s) with FAIRsharing",
+      link: '/educational/register'
+    }
+
+    expect(wrapper.vm.currentBreadcrumb).toStrictEqual(output);
+  });
+
+  it("can check setBreadcrumb method when path is '/refine'", () => {
+    wrapper.vm.$route.path = '/refine'
+    wrapper.vm.$route.params.id = 100000
+    wrapper.vm.setBreadcrumb()
+    let output = {
+      id: "refine_crumb",
+      text: "Refine your choice",
+      link: '/refine'
+    }
+
+    expect(wrapper.vm.currentBreadcrumb).toStrictEqual(output);
+  });
+
   it("can check handleNavigation method", () => {
+    wrapper.vm.$route.params.id = 1
     wrapper.vm.handleNavigation('/1')
     expect(wrapper.vm.path).toBe("/1");
 
     //When params.id is 0
     wrapper.vm.$route.params.id = 0
+    wrapper.vm.$route.path = '/'
     wrapper.vm.handleNavigation('/1')
     expect(wrapper.vm.path).toBe("/");
   });
@@ -134,7 +194,7 @@ describe("Breadcrumbs.vue", function(){
     wrapper.vm.formatBreadcrumb(crumb)
     expect(wrapper.vm.formatBreadcrumb(crumb)).toBe(outputText);
 
-    //When getCompliantWithPolicy getter does not have any value
+    //When getCompliantWithPolicy getter does not have any value ELSE condition
     navigationStore.getters = {
       getCompliantWith: () => { return "GenbankSequenceFormat" },
       getCompliantWithPolicy: () => { return "" },
@@ -162,6 +222,49 @@ describe("Breadcrumbs.vue", function(){
     wrapper.vm.formatBreadcrumb(crumb)
     expect(wrapper.vm.formatBreadcrumb(crumb)).toBe(outputResult);
 
+  });
+
+  it("can check formatBreadcrumb method when parameter includes text 'Resource type'", () => {
+    let crumb = {
+      text: "...Resource type"
+    }
+
+    let output = "Resource type"
+    wrapper.vm.formatBreadcrumb(crumb)
+    expect(wrapper.vm.formatBreadcrumb(crumb)).toBe(output);
+  });
+
+  it("can check formatBreadcrumb method when parameter includes text 'Research area'", () => {
+    let crumb = {
+      text: "...Research area"
+    }
+
+    let output = "<b>genetics</b>Research area"
+    wrapper.vm.formatBreadcrumb(crumb)
+    expect(wrapper.vm.formatBreadcrumb(crumb)).toBe(output);
+  });
+
+  it("can check formatBreadcrumb method when parameter does not includes text 'Research area i.e. ELSE condition'", () => {
+    let crumb = {
+      text: "Research area test"
+    }
+
+    let output = "Research area test"
+    wrapper.vm.formatBreadcrumb(crumb)
+    expect(wrapper.vm.formatBreadcrumb(crumb)).toBe(output);
+  });
+
+  it("can check copySummary method TRY block", async() => {
+    let clipboardContents = "";
+    Object.assign(navigator, {
+      clipboard: {
+        writeText: vi.fn(text => { clipboardContents = text; }),
+        readText: vi.fn(() => clipboardContents),
+      },
+    });
+
+    await wrapper.vm.copySummary()
+    await expect(clipboardContents).toHaveBeenCalled;
   });
 
   it("can check getSummaryText method", () => {
