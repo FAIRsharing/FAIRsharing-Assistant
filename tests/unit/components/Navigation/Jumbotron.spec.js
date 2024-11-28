@@ -35,7 +35,7 @@ describe("Jumbotron.vue", function(){
     expect(tempSubTitle.text()).toEqual('Beta')
   });
 
-  it("can check else getJumbotronData does not has tempSubTitle text", () => {
+  it("can check getJumbotronData does not has tempSubTitle text (ELSE condition)", () => {
     wrapper.vm.getJumbotronData["tempSubTitle"] = ''
     expect(wrapper.find('#tempSubTitle').exists()).toBe(false)
   });
@@ -45,7 +45,7 @@ describe("Jumbotron.vue", function(){
     expect(subTitle.text()).toEqual('Please answer the questions below...')
   });
 
-  it("can check else getJumbotronData does not has subTitle text", () => {
+  it("can check getJumbotronData does not has subTitle text (ELSE condition)", () => {
     wrapper.vm.getJumbotronData["subTitle"] = ''
     expect(wrapper.find('#subTitle').exists()).toBe(false)
   });
