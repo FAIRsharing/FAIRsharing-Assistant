@@ -6,6 +6,7 @@
     <Tooltip :tooltip-text="tooltipText" />
     <v-btn
       v-bind="button['attributes']"
+      data-testid="returnToRegistries"
       :block="$vuetify.display.smAndDown"
       :disabled="!registryButtonActive"
       color="internal white--text primary"
