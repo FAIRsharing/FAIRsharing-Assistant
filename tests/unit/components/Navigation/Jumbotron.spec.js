@@ -1,12 +1,10 @@
-import {createLocalVue, shallowMount} from "@vue/test-utils";
+import {shallowMount} from "@vue/test-utils";
+import { createVuetify } from 'vuetify'
+import { describe, expect, it, beforeEach } from 'vitest'
 import Jumbotron from "@/components/Navigation/Jumbotron"
-import Vuetify from "vuetify"
-import VueSanitize from "vue-sanitize";
+import VueParticles from "@tsparticles/vue3";
 
-const localVue = createLocalVue();
-localVue.use(VueSanitize)
-
-const vuetify = new Vuetify();
+const vuetify = createVuetify();
 let $route = { path: "/", name: "HomeView"};
 
 
@@ -15,15 +13,46 @@ describe("Jumbotron.vue", function(){
 
   beforeEach(() => {
     wrapper = shallowMount(Jumbotron, {
-      localVue,
-      vuetify,
-      mocks: { $route},
-      stubs: ['router-link', 'router-view']
+      global:{
+        components: {
+          'vue-particles': VueParticles
+        },
+        plugins: [vuetify],
+        mocks: {
+          $route: $route,
+        },
+        stubs: ['router-link', 'router-view']
+      },
     })
   });
 
   it("can be instantiated", () => {
     expect(wrapper.vm.$options.name).toMatch("Jumbotron");
+  });
+
+  it("can check if getJumbotronData has tempSubTitle text", () => {
+    const tempSubTitle = wrapper.get("[data-testid='tempSubTitle']")
+    expect(tempSubTitle.text()).toEqual('Beta')
+  });
+
+  it("can check else getJumbotronData does not has tempSubTitle text", () => {
+    wrapper.vm.getJumbotronData["tempSubTitle"] = ''
+    expect(wrapper.find('#tempSubTitle').exists()).toBe(false)
+  });
+
+  it("can check if getJumbotronData has subTitle text", () => {
+    const subTitle = wrapper.get("[data-testid='subTitle']")
+    expect(subTitle.text()).toEqual('Please answer the questions below...')
+  });
+
+  it("can check else getJumbotronData does not has subTitle text", () => {
+    wrapper.vm.getJumbotronData["subTitle"] = ''
+    expect(wrapper.find('#subTitle').exists()).toBe(false)
+  });
+
+  it("can check addClass method", () => {
+    wrapper.vm.getJumbotronData["pageName"] = 'HomeView'
+    expect(wrapper.vm.addClass()).toBe("heroBlock")
   });
 
 });

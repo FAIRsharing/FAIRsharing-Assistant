@@ -1,12 +1,13 @@
 <template>
   <section
+    data-testid="jumbotron"
     class="px-md-10 pa-5 d-flex flex-column justify-center mb-6"
     :style="['z-index: 2', {
       backgroundImage: 'linear-gradient(180deg, rgba(37, 52, 66, 1) 0%, rgba(39, 170, 225, 1) 200%),url(' + '/assets/Home/BlockHero/pattern3.jpg',
       backgroundRepeat: 'repeat',
       backgroundBlendMode: 'multiply',
     }]"
-    :class="getJumbotronData['pageName'] === 'HomeView' ? 'heroBlock' : null"
+    :class="addClass()"
   >
     <!-- eslint-disable vue/no-v-html -->
     <vue-particles
@@ -18,22 +19,16 @@
       class="text-body-1 pt-2 text-sm-h4 text-md-h4 text-lg-h4 text-xl-h4 font-weight-medium text-white"
       style="z-index: 2"
     >
-      <!--
-      :class="getJumbotronData['pageName'] === 'HomeView' ? 'text-center' : getJumbotronData['pageName'] === 'Licence'? 'text-center' : 'text-left'"
-      // This goes in the h1 above, should it be needed again.
-      -->
-      {{ getJumbotronData["title"] }} <em
+      {{ getJumbotronData["title"] }}
+      <em
         v-if="getJumbotronData['tempSubTitle']"
+        data-testid="tempSubTitle"
         class="text-green"
       >{{ getJumbotronData["tempSubTitle"] }}</em>
     </h1>
-
-    <!--
-        getJumbotronData['pageName'] === 'HomeView' ? 'text-center' : 'text-left'
-        // removed from class in block below
-    -->
     <h2
       v-if="getJumbotronData['subTitle']"
+      data-testid="subTitle"
       :class="[
         'lato-font-medium my-4 text-primary px-1 font-weight-thin',
         {
@@ -54,16 +49,16 @@ import jumbotronData from "@/data/jumbotronData.json";
 import { loadFull } from "tsparticles";
 
 // These consts appear to be called by the tests but aren't shown as covered.
-/* istanbul ignore next */
+/* v8 ignore start */
 const particlesInit = async engine => {
   await loadFull(engine);
 };
-/* istanbul ignore next */
+
 // eslint-disable-next-line no-unused-vars
 const particlesLoaded = async container => {
   //console.log("Particles container loaded", container);
 };
-
+/* v8 ignore stop */
 export default {
   name: "Jumbotron",
   data:() => {
@@ -127,6 +122,13 @@ export default {
         currentPage = jumbotronData.filter(({pageName}) => pageName === route)
       }
       return currentPage[0]
+    }
+  },
+  methods:{
+    addClass() {
+      if(this.getJumbotronData['pageName'] === 'HomeView') {
+        return 'heroBlock'
+      }
     }
   }
 }
