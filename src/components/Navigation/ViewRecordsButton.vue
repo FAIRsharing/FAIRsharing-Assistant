@@ -6,6 +6,7 @@
     <Tooltip :tooltip-text="tooltipText" />
     <v-btn
       v-bind="button['attributes']"
+      data-testid="showResults"
       :block="$vuetify.display.smAndDown"
       :disabled="!resultsButtonActive"
       color="internal text-white primary"
