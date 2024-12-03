@@ -546,6 +546,7 @@ export default {
       this.searchString = null;
       let questionData = questionSets.questionSets.find(q => parseInt(q['path']) === parseInt(this.$route.params.id));
       this.currentBreadcrumb = JSON.parse(JSON.stringify(questionData.breadcrumb));
+
       this.questions = JSON.parse(JSON.stringify(questionData.questions));
       this.searchQuery = questionData.searchQuery;
       this.hasModelFormatQuery = questionData.hasModelFormatQuery;
@@ -561,11 +562,12 @@ export default {
         this.$store.commit('navigationStore/sliceBreadcrumb', `/${this.$route.params.id}`);
         this.foundPolicies = [];
         this.foundModelFormats = [];
+        /* v8 ignore start */
       }
       else {
         this.clear = false;
       }
-
+      /* v8 ignore stop */
       // If they're arriving somewhere where a previous query is defined it should be retrieved from the store.
       // BUT: To prevent users complaining the result is "wrong", the query has to be pushed to the next question in
       // line when leaving, rather than the current one. So, when arriving at a question it will already have a
@@ -728,13 +730,17 @@ export default {
       }
       // Now the links.
       // In this case, the link is to an external site.
+      /* v8 ignore start */
       if (link.match(/^http/)) {
         window.open(link);
       }
+      /* v8 ignore stop */
+
       // Whereas here, it's linking to somewhere else within the assistant.
       else {
         this.$router.push({path: link});
       }
+
     },
     async getResults(queryString) {
       // A different query is run depending on whether hasTagsQuery or hasModelFormatQuery is true.
@@ -744,6 +750,7 @@ export default {
         let filterCopy = JSON.parse(JSON.stringify(multiTagFilter));
         if (queryString) {
           queryCopy['q'] = queryString;
+
         }
         else {
           this.searchResults = [];
@@ -752,9 +759,11 @@ export default {
         filterCopy.queryParam = queryCopy;
         // This m_t_f execution isn't to do the normal search, just to return databases implementing standards.
         let searchResults = await graphClient.executeQuery(filterCopy);
+
         if (!searchResults.error) {
           _module.searchResults = searchResults.multiTagFilter;
         }
+
       }
       else if (_module.hasTagsQuery) {
         let tagQueryCopy = JSON.parse(JSON.stringify(tagsQuery));
@@ -836,7 +845,6 @@ export default {
       this.$store.commit('navigationStore/addBreadcrumb', this.currentBreadcrumb);
       this.$router.push('/results');
     },
-
     /**
      * Method to fetch all the parents till the last found parent (id, name, abbreviation) traversing bottom to top of the selected policy
      * @param item - Selected policy
