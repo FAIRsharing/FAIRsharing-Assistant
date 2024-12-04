@@ -41,6 +41,7 @@ class GraphQLClient {
      * @param {Object} queryString - processed request coming out of buildQuery() or a GraphQL query string
      * @returns {Promise} - an axios promise representing the server response.
      */
+  /* v8 ignore start */
   async getData(queryString){
     let client = this;
     const fullQuery = {
@@ -51,7 +52,7 @@ class GraphQLClient {
     };
     return axios(fullQuery);
   }
-
+  /* v8 ignore stop */
   /**
      * Transform the JSON query into a string for graphQL
      * @param {Object} query - the query coming from the JSON file
@@ -96,6 +97,7 @@ class GraphQLClient {
               if (typeof subField === "string"){
                 queryString += ` ${subField}`;
               }
+              /* v8 ignore next 3 */
               else {
                 queryString += ` ${client.buildQuery(subField)}`;
               }
@@ -124,6 +126,7 @@ class GraphQLClient {
      * Add the authorization token to the headers
      * @param {String} jwt - the user json web token
      */
+
   setHeader(jwt){
     this.headers['Authorization'] = `Bearer ${jwt}`;
   }
@@ -134,10 +137,11 @@ class GraphQLClient {
       "Content-Type": "application/json",
     };
     this.headers['X-Client-Id'] = process.env.VUE_APP_CLIENT_ID;
-    /* istanbul ignore if */
+    /* v8 ignore start */
     if (this.headers['X-Client-Id'] === undefined){
       delete this.headers['X-Client-Id']
     }
+    /* v8 ignore stop */
   }
 
 

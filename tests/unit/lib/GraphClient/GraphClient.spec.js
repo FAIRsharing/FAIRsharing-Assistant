@@ -38,7 +38,6 @@ describe("GraphQL Client", function () {
   });
 
   it("can execute a query", async function () {
-
     let stub = sinon.stub(Client.prototype, "getData");
     stub.withArgs(sinon.match.any).returns({
       data: {
@@ -51,6 +50,7 @@ describe("GraphQL Client", function () {
     localQuery.queryParam = {};
     localQuery.queryParam["fairsharingRegistry"] = "Standard";
     localQuery.queryParam["isRecommended"] = true;
+    localQuery.queryParam["isRecommended"] = ["Standard", "Database", 1]
     let output = await client.executeQuery(localQuery);
     expect(JSON.stringify(output)).toBe(JSON.stringify({
       searchFairsharingRecords: {
@@ -100,4 +100,11 @@ describe("GraphQL Client", function () {
     });
     Client.prototype.getData.restore();
   });
+
+  it("can check setHeader method", function () {
+    let header = client.headers
+    client.setHeader("abc")
+    expect(header['Authorization']).toBe("Bearer abc");
+  });
+
 });
