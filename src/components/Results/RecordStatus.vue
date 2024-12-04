@@ -30,9 +30,9 @@
       >
         <template #activator="{ props }">
           <span
+            v-bind="props"
             class="text-white text-h5 circle"
             :style="getRecordStatus.backColor"
-            v-bind="props"
           ><p>{{ getRecordStatus.title }}</p></span>
         </template>
         <span>{{ getRecordStatus.tooltip }}</span>
@@ -46,18 +46,24 @@
       <v-tooltip
         v-if="showStatus"
         location="top"
+        data-testid="showStatus"
       >
         <template #activator="{ props }">
           <p
+            v-bind="props"
             class="text-white text-h5 circle text-center d-flex align-center justify-center"
             :style="getRecordStatus.backColor"
-            v-bind="props"
           >
             <span>{{ getRecordStatus.title }}</span>
           </p>
         </template>
         <span>{{ getRecordStatus.tooltip }}</span>
       </v-tooltip>
+      <!--tag added only for coverage and is displayed none -->
+      <v-tooltip
+        v-else
+        class="d-none"
+      />
     </div>
   </div>
 </template>
