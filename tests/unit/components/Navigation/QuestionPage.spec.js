@@ -8,7 +8,6 @@ import multiTagsStore from "@/store/multiTagsStore";
 import navigationStore from "@/store/navigationStore";
 import tagsQuery from "@/lib/GraphClient/queries/geTags.json";
 import parentsQuery from "@/lib/GraphClient/queries/getParentPolicies.json"
-// import multiTagFilter from "@/lib/GraphClient/queries/multiTagsFilter/multiTagsFilterBrief.json";
 import sinon from "sinon";
 import GraphClient from "@/lib/GraphClient/GraphClient";
 

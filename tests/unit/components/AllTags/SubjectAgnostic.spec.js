@@ -1,7 +1,7 @@
 import {shallowMount} from "@vue/test-utils";
 import { createStore } from 'vuex';
 import { createVuetify } from 'vuetify'
-import { describe, expect, it, beforeEach, vi } from 'vitest'
+import { describe, expect, it, beforeEach } from 'vitest'
 import SubjectAgnostic from "@/components/AllTags/SubjectAgnostic";
 import multiTagsStore from "@/store/multiTagsStore";
 

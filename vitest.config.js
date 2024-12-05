@@ -44,7 +44,7 @@ export default mergeConfig(
           "src/components/Icon/Icon.vue",
           "src/components/Results/ResultTable.vue",
           "src/components/Others/AddOnFilters.vue",
-          "src/components/AllTags/SearchTags.vue"
+          // "src/components/AllTags/SearchTags.vue"
         ],
         reporter: ['html', 'lcov'],
         reportOnFailure: true,

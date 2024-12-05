@@ -185,10 +185,8 @@ export default {
       this.tagsLoading = true;
       this.tags = [];
       val = val.trim();
-      /* v8 ignore start */
       await this.getTags(val);
       this.tagsLoading = false;
-      /* v8 ignore stop */
     },
   },
   mounted() {
