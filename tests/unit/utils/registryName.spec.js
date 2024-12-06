@@ -1,4 +1,5 @@
 import registryName from "@/utils/registryName";
+import { describe, expect, it } from 'vitest'
 
 describe("registryName.js", () => {
 

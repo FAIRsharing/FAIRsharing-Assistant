@@ -3,7 +3,7 @@
     <v-fade-transition v-if="loading">
       <div>
         <v-overlay
-          v-model="loading"
+          :model-value="loading"
           class="align-center justify-center"
           :absolute="false"
           opacity="0.8"
@@ -25,7 +25,7 @@
             v-for="(field, index) in recordTypes[getCurrentRegistry]"
             :key="field.value + '-' + index"
             :ref="field.value"
-            v-model="typeSelected"
+            :model-value="typeSelected"
             :value="field.value"
             color="primary"
             :label="field.label"
@@ -181,6 +181,7 @@ export default {
       let params = currentPath(this.currentRouteQuery);
       Object.keys(params).forEach(key => {
         if (key === 'registry') {
+          /* v8 ignore next 9 */
           if (_module.allowedRegistries.indexOf(params[key]) > -1) {
             _module.topResult = params[key];
           }

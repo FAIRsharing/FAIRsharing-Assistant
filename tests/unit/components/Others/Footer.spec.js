@@ -1,12 +1,9 @@
-import {createLocalVue, shallowMount} from "@vue/test-utils";
+import {shallowMount} from "@vue/test-utils";
+import { createVuetify } from 'vuetify'
+import {describe, expect, it, beforeEach} from 'vitest'
 import Footer from "@/components/Others/Footer.vue"
-import Vuetify from "vuetify"
-import Vuex from "vuex";
 
-const localVue = createLocalVue();
-localVue.use(Vuex);
-
-const vuetify = new Vuetify();
+const vuetify = createVuetify();
 
 
 describe("Footer.vue", function(){
@@ -14,9 +11,10 @@ describe("Footer.vue", function(){
 
   beforeEach(() => {
     wrapper = shallowMount(Footer, {
-      localVue,
-      vuetify,
-      stubs: ['router-link', 'router-view']
+      global:{
+        plugins: [vuetify],
+        stubs: ['router-link', 'router-view']
+      },
     })
   });
 

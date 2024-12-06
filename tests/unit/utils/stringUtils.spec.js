@@ -1,4 +1,5 @@
 import stringUtils from "@/utils/stringUtils.js";
+import { describe, expect, it } from 'vitest'
 
 describe("stringUtils.js", () => {
 

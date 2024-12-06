@@ -1,4 +1,5 @@
 import registryIcons from "@/utils/registryIcon";
+import { describe, expect, it } from 'vitest'
 
 describe("registryIcons.js", () => {
 

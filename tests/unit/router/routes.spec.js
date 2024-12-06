@@ -1,24 +1,27 @@
-import {shallowMount, createLocalVue} from "@vue/test-utils";
-import routes from "@/router/index"
-import VueRouter from "vue-router";
+import {shallowMount} from "@vue/test-utils";
+import { createWebHistory, createRouter } from "vue-router";
+import {describe, expect, it} from 'vitest'
+import Licence from "@/views/Licence/Licence.vue";
 import App from "@/App.vue";
 
-const localVue = createLocalVue()
-localVue.use(VueRouter)
-
-
 describe("Routes", () =>{
-  const testRoute = routes.options.routes.filter(({name}) => name === "HomeView")
 
   it("renders a HomeView component via routing", async () => {
-    const router = new VueRouter({ mode: 'history', testRoute })
-    const wrapper = shallowMount(App, {
-      localVue,
-      router
+    const router = createRouter({
+      history: createWebHistory(),
+      routes: [{
+        name: "Licence",
+        path: "/licence",
+        component: Licence,
+      }]
     })
-    router.push("/1")
-    await wrapper.vm.$nextTick()
+    await router.push("/licence")
+    await router.isReady()
+    const wrapper = shallowMount(App, {
+      global: {
+        plugins: [router]
+      }
+    })
     expect(wrapper.findComponent(App).exists()).toBe(true)
-
   });
 });

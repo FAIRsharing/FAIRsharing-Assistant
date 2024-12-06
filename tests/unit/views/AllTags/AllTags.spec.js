@@ -1,12 +1,9 @@
-import {createLocalVue, shallowMount} from "@vue/test-utils";
+import {shallowMount} from "@vue/test-utils";
+import { createVuetify } from 'vuetify'
+import { describe, expect, it, beforeEach } from 'vitest'
 import AllTags from "@/views/AllTags/AllTags.vue"
-import Vuetify from "vuetify"
-import Vuex from "vuex";
 
-const localVue = createLocalVue();
-localVue.use(Vuex);
-
-const vuetify = new Vuetify();
+const vuetify = createVuetify();
 
 
 describe("AllTags.vue", function(){
@@ -14,8 +11,9 @@ describe("AllTags.vue", function(){
 
   beforeEach(() => {
     wrapper = shallowMount(AllTags, {
-      localVue,
-      vuetify
+      global: {
+        plugins: [vuetify],
+      }
     })
   });
 
