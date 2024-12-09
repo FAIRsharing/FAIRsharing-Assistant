@@ -107,6 +107,8 @@ describe("AddOnFilters.vue", function(){
   });
 
   it("can check checkCheckbox method", async() => {
+    const checkCheckbox = wrapper.get("[data-testid='checkCheckbox']");
+    checkCheckbox.trigger('click');
     await wrapper.vm.checkCheckbox()
     expect(wrapper.vm.loading).toBe(false);
   });

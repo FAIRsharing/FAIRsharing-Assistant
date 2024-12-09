@@ -29,7 +29,8 @@
             :value="field.value"
             color="primary"
             :label="field.label"
-            @update:model-value="checkCheckbox()"
+            data-testid="checkCheckbox"
+            @click="checkCheckbox($event)"
           >
             <template #prepend>
               <Tooltip
