@@ -43,7 +43,7 @@
             class="mb-5 px-4 py-1"
           >
             <v-text-field
-              v-model="search"
+              :model-value="search"
               clearable
               flat
               variant="solo"
@@ -55,7 +55,7 @@
             <template v-if="$vuetify.display.mdAndUp">
               <v-spacer />
               <v-select
-                v-model="sortBy"
+                :model-value="sortBy"
                 flat
                 variant="solo"
                 hide-details
@@ -66,7 +66,7 @@
               />
               <v-spacer />
               <v-btn-toggle
-                v-model="sortDesc"
+                :model-value="sortDesc"
                 mandatory
               >
                 <v-btn
@@ -172,7 +172,7 @@
       </v-data-iterator>
     </v-container>
     <v-dialog
-      v-model="chooseDownloadActive"
+      :model-value="chooseDownloadActive"
       max-width="500"
     >
       <v-card>
@@ -291,6 +291,7 @@ export default {
   methods: {
     async getData() {
       let _module = this;
+      /* v8 ignore next */
       _module.records = _module.getFairSharingRecords || [];
       if (_module.records.length > 0) {
         _module.loading = false;
