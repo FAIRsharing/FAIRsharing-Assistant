@@ -1,7 +1,7 @@
-import {shallowMount} from "@vue/test-utils";
-import { createStore } from 'vuex';
-import { createVuetify } from 'vuetify'
-import { describe, expect, it, beforeEach, vi } from 'vitest'
+import { shallowMount } from "@vue/test-utils";
+import { createStore } from "vuex";
+import { createVuetify } from "vuetify";
+import { describe, expect, it, beforeEach, vi } from "vitest";
 import RefineSelection from "@/components/RefineSelection/RefineSelection.vue";
 import multiTagsStore from "@/store/multiTagsStore";
 
@@ -15,52 +15,53 @@ multiTagsStore.getters = {
         record: "Wibble",
         registry: "Standard",
         id: 123,
-      }
-    ]
+      },
+    ];
   },
-  getQueryParams:  () => {
+  getQueryParams: () => {
     return {
-      fairsharingRegistry: ['genetics'],
-    }
+      fairsharingRegistry: ["genetics"],
+    };
   },
-  getCurrentRegistry: () => { return "" }
-}
+  getCurrentRegistry: () => {
+    return "";
+  },
+};
 multiTagsStore.state = {
-  refinedStatus: false
-}
-multiTagsStore.commit = vi.fn()
+  refinedStatus: false,
+};
+multiTagsStore.commit = vi.fn();
 
 let store = createStore({
   modules: {
     multiTagsStore: multiTagsStore,
-  }
-})
+  },
+});
 
-describe("RefineSelection.vue", function(){
+describe("RefineSelection.vue", function () {
   let wrapper;
 
   beforeEach(() => {
     wrapper = shallowMount(RefineSelection, {
-      global:{
-        data(){
+      global: {
+        data() {
           return {
             recordTypes: {},
             help: false,
             helpText: {
               tags: ["abc"],
-              refinement: ["nv"]
-            }
-          }
+              refinement: ["nv"],
+            },
+          };
         },
         plugins: [vuetify, store],
         mocks: {
           $router: mockRouter,
         },
-        stubs: ['router-link', 'router-view']
-
+        stubs: ["router-link", "router-view"],
       },
-    })
-    wrapper.vm.showHelp()
+    });
+    wrapper.vm.showHelp();
   });
 
   it("can be instantiated", () => {
@@ -70,67 +71,71 @@ describe("RefineSelection.vue", function(){
   it("can recordsAvailable computed method when there are no getFairSharingRecords", () => {
     multiTagsStore.getters = {
       getFairSharingRecords: () => {
-        return []
+        return [];
       },
-      getCurrentRegistry: () => { return "" }
-    }
+      getCurrentRegistry: () => {
+        return "";
+      },
+    };
     store = createStore({
       modules: {
         multiTagsStore: multiTagsStore,
-      }
-    })
+      },
+    });
 
     wrapper = shallowMount(RefineSelection, {
-      global:{
+      global: {
         plugins: [vuetify, store],
         mocks: {
           $router: mockRouter,
         },
-
       },
-    })
+    });
     expect(wrapper.vm.recordsAvailable).toBe(0);
-    expect(wrapper.vm.capitaliseText('genetics', null)).toBe("Genetics");
+    expect(wrapper.vm.capitaliseText("genetics", null)).toBe("Genetics");
   });
 
   it("can recordsAvailable computed method when there are getFairSharingRecords", () => {
     multiTagsStore.getters = {
       getFairSharingRecords: () => {
-        return [ {
-          record: "Wibble",
-          registry: "Policy",
-          id: 123,
-        }]
+        return [
+          {
+            record: "Wibble",
+            registry: "Policy",
+            id: 123,
+          },
+        ];
       },
-      getCurrentRegistry: () => { return "Policy" }
-    }
+      getCurrentRegistry: () => {
+        return "Policy";
+      },
+    };
     store = createStore({
       modules: {
         multiTagsStore: multiTagsStore,
-      }
-    })
+      },
+    });
 
     wrapper = shallowMount(RefineSelection, {
-      global:{
+      global: {
         plugins: [vuetify, store],
         mocks: {
           $router: mockRouter,
         },
-
       },
-    })
+    });
     expect(wrapper.vm.recordsAvailable).toBe(1);
   });
 
   it("can showHelp method is called", () => {
     const showHelp = wrapper.get("#showHelp");
-    showHelp.trigger('click')
-    wrapper.vm.showHelp()
+    showHelp.trigger("click");
+    wrapper.vm.showHelp();
     expect(wrapper.vm.help).toBe(true);
   });
 
   it("can hideHelp method is called", () => {
-    wrapper.vm.hideHelp()
+    wrapper.vm.hideHelp();
     expect(wrapper.vm.help).toBe(false);
   });
 });

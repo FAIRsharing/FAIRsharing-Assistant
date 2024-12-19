@@ -16,37 +16,27 @@
       </div>
     </v-fade-transition>
     <!-- how many results so far? -->
-    <ResultPreviewBanner :show-banner="Object.keys(getQueryParams).length > 0" />
+    <ResultPreviewBanner
+      :show-banner="Object.keys(getQueryParams).length > 0"
+    />
     <!-- breadcrumb trail -->
     <Breadcrumbs />
     <!-- question title -->
     <v-row>
-      <v-col
-        cols="12"
-      >
+      <v-col cols="12">
         <!-- This html is from a safe source -->
         <!-- eslint-disable vue/no-v-html -->
-        <h1
-          style="text-align: center"
-          v-html="title"
-        />
+        <h1 style="text-align: center" v-html="title" />
         <!-- eslint-enable vue/no-v-html -->
       </v-col>
     </v-row>
     <!-- A special query box if the question asks for model/format searching  -->
-    <v-row
-      v-if="hasModelFormatQuery"
-    >
-      <v-col
-        cols="12"
-        class="ml-4"
-      >
+    <v-row v-if="hasModelFormatQuery">
+      <v-col cols="12" class="ml-4">
         <!-- A list here of selected standards is shown just above the text box -->
-        <div
-          class="pl-2"
-        >
+        <div class="pl-2">
           <v-chip
-            v-for="std in (foundModelFormats)"
+            v-for="std in foundModelFormats"
             :key="std.name"
             class="ma-2"
             close-icon="fa fa-trash"
@@ -72,13 +62,15 @@
         />
         <!-- drop-down table for searchResults to go here -->
         <v-data-table
-          v-if="searchResults.length > 0 && searchString && searchString.length > 0"
+          v-if="
+            searchResults.length > 0 && searchString && searchString.length > 0
+          "
           v-model="foundModelFormats"
           v-model:search-input="searchString"
           :headers="headers"
           :items="searchResults"
           :items-per-page="10"
-          :footer-props="{'items-per-page-options': [10, 20, 30, 40, 50]}"
+          :footer-props="{ 'items-per-page-options': [10, 20, 30, 40, 50] }"
           item-key="id"
           class="elevation-1 mr-10"
           show-select
@@ -87,16 +79,12 @@
           return-object
         >
           <template #[`item.name`]="{ item }">
-            <div
-              v-if="item.name"
-            >
+            <div v-if="item.name">
               {{ item.name }}
             </div>
           </template>
           <template #[`item.abbreviation`]="{ item }">
-            <div
-              v-if="item.abbreviation"
-            >
+            <div v-if="item.abbreviation">
               {{ item.abbreviation }}
             </div>
           </template>
@@ -105,19 +93,12 @@
       </v-col>
     </v-row>
     <!-- A special query box if the question asks for model/format searching  -->
-    <v-row
-      v-if="hasTagsQuery"
-    >
-      <v-col
-        cols="12"
-        class="ml-4"
-      >
+    <v-row v-if="hasTagsQuery">
+      <v-col cols="12" class="ml-4">
         <!-- A list here of selected tags is shown just above the text box -->
-        <div
-          class="pl-2"
-        >
+        <div class="pl-2">
           <v-chip
-            v-for="tag in (recordTags)"
+            v-for="tag in recordTags"
             :key="tag.label"
             class="ma-2"
             :color="colors[tag.model]"
@@ -150,7 +131,7 @@
           :headers="tagHeaders"
           :items="tags"
           :items-per-page="10"
-          :footer-props="{'items-per-page-options': [10, 20, 30, 40, 50]}"
+          :footer-props="{ 'items-per-page-options': [10, 20, 30, 40, 50] }"
           item-key="label"
           class="elevation-1 mr-10"
           show-select
@@ -159,10 +140,7 @@
           return-object
         >
           <template #[`item.model`]="{ item }">
-            <div
-              :class="'text-' + colors[item.model]"
-              class="noBreak"
-            >
+            <div :class="'text-' + colors[item.model]" class="noBreak">
               {{ item.model.toUpperCase().replace(/_/g, " ") }}
             </div>
           </template>
@@ -176,10 +154,7 @@
             </v-chip>
           </template>
           <template #[`item.synonyms`]="{ item }">
-            <div
-              v-if="item.synonyms"
-              class="font-italic limitWidth"
-            >
+            <div v-if="item.synonyms" class="font-italic limitWidth">
               {{ item.synonyms.join(", ") }}
             </div>
           </template>
@@ -188,19 +163,12 @@
     </v-row>
     <!-- end of tags -->
     <!-- policy query -->
-    <v-row
-      v-if="hasPolicyQuery"
-    >
-      <v-col
-        cols="12"
-        class="ml-4"
-      >
+    <v-row v-if="hasPolicyQuery">
+      <v-col cols="12" class="ml-4">
         <!-- A list here of selected standards is shown just above the text box -->
-        <div
-          class="pl-2"
-        >
+        <div class="pl-2">
           <v-chip
-            v-for="pol in (foundPolicies)"
+            v-for="pol in foundPolicies"
             :key="pol.name"
             class="ma-2"
             close-icon="fa fa-trash"
@@ -226,13 +194,15 @@
         />
         <!-- drop-down table for searchResults to go here -->
         <v-data-table
-          v-if="searchResults.length > 0 && searchString && searchString.length > 0"
+          v-if="
+            searchResults.length > 0 && searchString && searchString.length > 0
+          "
           v-model="foundPolicies"
           v-model:search-input="searchString"
           :headers="headers"
           :items="searchResults"
           :items-per-page="10"
-          :footer-props="{'items-per-page-options': [10, 20, 30, 40, 50]}"
+          :footer-props="{ 'items-per-page-options': [10, 20, 30, 40, 50] }"
           item-key="id"
           class="elevation-1 mr-10"
           show-select
@@ -242,16 +212,12 @@
           @item-selected="itemSelected($event)"
         >
           <template #[`item.name`]="{ item }">
-            <div
-              v-if="item.name"
-            >
+            <div v-if="item.name">
               {{ item.name }}
             </div>
           </template>
           <template #[`item.abbreviation`]="{ item }">
-            <div
-              v-if="item.abbreviation"
-            >
+            <div v-if="item.abbreviation">
               {{ item.abbreviation }}
             </div>
           </template>
@@ -261,14 +227,8 @@
     </v-row>
     <!-- end of policy query -->
     <!-- question options -->
-    <v-row
-      class="align-stretch justify-center fill-height"
-    >
-      <v-col
-        v-for="item in questions"
-        :key="item.id"
-        cols="3"
-      >
+    <v-row class="align-stretch justify-center fill-height">
+      <v-col v-for="item in questions" :key="item.id" cols="3">
         <v-card
           class="full-width d-flex align-center text-center flex-column questionCard justify-center"
           height="130"
@@ -281,9 +241,19 @@
               'cardMedium pa-2': $vuetify.display.mdAndUp,
               'cardLarge pa-4': $vuetify.display.lgAndUp,
               'cardXtraLarge pa-4': $vuetify.display.xlOnly,
-            }
+            },
           ]"
-          @click="processLink(item.link, item.query, item.message, item.refined, item.breadcrumbMod, item.role, item.restrict)"
+          @click="
+            processLink(
+              item.link,
+              item.query,
+              item.message,
+              item.refined,
+              item.breadcrumbMod,
+              item.role,
+              item.restrict,
+            )
+          "
         >
           <div class="d-flex align-center">
             <v-card-text
@@ -291,10 +261,8 @@
             >
               <!-- This html is from a safe source -->
               <!-- eslint-disable vue/no-v-html -->
-              <span
-                v-html="item.question"
-              />
-            <!-- eslint-enable vue/no-v-html -->
+              <span v-html="item.question" />
+              <!-- eslint-enable vue/no-v-html -->
             </v-card-text>
           </div>
         </v-card>
@@ -302,32 +270,22 @@
     </v-row>
     <!-- question footer -->
     <v-row>
-      <v-col
-        cols="12"
-      >
+      <v-col cols="12">
         <!-- This html is from a safe source -->
         <!-- eslint-disable vue/no-v-html -->
-        <p
-          style="text-align: center"
-          v-html="footer"
-        />
+        <p style="text-align: center" v-html="footer" />
         <!-- eslint-enable vue/no-v-html -->
       </v-col>
     </v-row>
     <!-- Potentially annoy the user by stopping to ask if they want to carry on due to few results -->
-    <v-dialog
-      v-model="lowResultsStoppage"
-      persistent
-    >
+    <v-dialog v-model="lowResultsStoppage" persistent>
       <v-card>
-        <v-card-title
-          class="text-h5"
-        >
+        <v-card-title class="text-h5">
           Fewer than 10 {{ getCurrentRegistry }} records fit your criteria?
         </v-card-title>
         <v-card-text>
-          How would you like to proceed? Select "dismiss" to retry your selection. Or,
-          you may go to the results.
+          How would you like to proceed? Select "dismiss" to retry your
+          selection. Or, you may go to the results.
         </v-card-text>
         <v-card-actions>
           <v-spacer />
@@ -335,7 +293,10 @@
             color="blue-darken-1"
             variant="text"
             persistent
-            @click="lowResultsStoppage = false; iDontCare = true"
+            @click="
+              lowResultsStoppage = false;
+              iDontCare = true;
+            "
           >
             Dismiss
           </v-btn>
@@ -356,12 +317,12 @@
 <script>
 import stringUtils from "@/utils/stringUtils";
 import questionSets from "@/data/questionPageData.json";
-import {mapActions, mapGetters} from "vuex";
+import { mapActions, mapGetters } from "vuex";
 import Loaders from "@/components/Loaders/Loaders.vue";
 import multiTagFilter from "@/lib/GraphClient/queries/multiTagsFilter/multiTagsFilterBrief.json";
 import GraphClient from "@/lib/GraphClient/GraphClient";
 import tagsQuery from "@/lib/GraphClient/queries/geTags.json";
-import parentsQuery from "@/lib/GraphClient/queries/getParentPolicies.json"
+import parentsQuery from "@/lib/GraphClient/queries/getParentPolicies.json";
 import Breadcrumbs from "@/components/Navigation/Breadcrumbs.vue";
 import ResultPreviewBanner from "@/components/Results/ResultPreviewBanner.vue";
 
@@ -376,9 +337,9 @@ const graphClient = new GraphClient();
  */
 
 export default {
-  name: 'QuestionPage',
+  name: "QuestionPage",
   components: { ResultPreviewBanner, Loaders, Breadcrumbs },
-  mixins: [ stringUtils ],
+  mixins: [stringUtils],
   data: () => {
     return {
       clear: false,
@@ -395,79 +356,86 @@ export default {
       loading: false,
       foundModelFormats: [],
       foundPolicies: [],
-      title: '',
-      footer: '',
+      title: "",
+      footer: "",
       lowResultsStoppage: false,
       iDontCare: false,
       currentBreadcrumb: null,
       restrict: null,
       // This is silly, but I was in a rush and had enough with fighting javascript;
       registrySwitch: {
-        database: 'Database',
-        policy: 'Policy',
-        standard: 'Standard',
-        collection: 'Collection'
+        database: "Database",
+        policy: "Policy",
+        standard: "Standard",
+        collection: "Collection",
       },
       headers: [
         {
           title: "Name",
           sortable: false,
-          value: "name"
+          value: "name",
         },
         {
           title: "Abbreviation",
           sortable: false,
-          value: "abbreviation"
-        }
+          value: "abbreviation",
+        },
       ],
       tagHeaders: [
         {
           title: "Type of keyword",
           sortable: false,
-          value: "model"
+          value: "model",
         },
         {
           title: "Name",
           sortable: false,
-          value: "label"
+          value: "label",
         },
         {
           title: "Definition",
           sortable: false,
           value: "definitions[0]",
-          filterable: false
+          filterable: false,
         },
         {
           title: "Alternative names",
           sortable: false,
-          value: "synonyms"
-        }
+          value: "synonyms",
+        },
       ],
       colors: {
-        domain: 'domain_color',
-        taxonomy: 'taxonomic_color',
-        subject: 'subject_color',
-        user_defined_tag: 'tags_color'
+        domain: "domain_color",
+        taxonomy: "taxonomic_color",
+        subject: "subject_color",
+        user_defined_tag: "tags_color",
       },
-    }
+    };
   },
   computed: {
-    ...mapGetters('multiTagsStore', ["getFairSharingRecords", "getCurrentRegistry", "getQueryParams", "getSelectedTags"]),
-    ...mapGetters('navigationStore', ["getRouteQuery", "getPreviousLocation"]),
+    ...mapGetters("multiTagsStore", [
+      "getFairSharingRecords",
+      "getCurrentRegistry",
+      "getQueryParams",
+      "getSelectedTags",
+    ]),
+    ...mapGetters("navigationStore", ["getRouteQuery", "getPreviousLocation"]),
   },
   watch: {
-    '$route' () {
+    $route() {
       this.getQuestions();
     },
-    getFairSharingRecords () {
-      if (this.getFairSharingRecords.length > 0
-          && this.getFairSharingRecords.length <= 10
-          && !this.iDontCare
-          && !this.loading) {
+    getFairSharingRecords() {
+      if (
+        this.getFairSharingRecords.length > 0 &&
+        this.getFairSharingRecords.length <= 10 &&
+        !this.iDontCare &&
+        !this.loading
+      ) {
         this.lowResultsStoppage = true;
       }
     },
-    async searchString(val){
+    async searchString(val) {
       if (!val || val.length < 3) {
         return;
       }
@@ -476,19 +444,19 @@ export default {
       await this.getResults(val);
     },
     // Running the query every time user selects a new subject, domain etc.
-    async recordTags (val) {
+    async recordTags(val) {
       let _module = this;
       if (!_module.watchRecordTags) {
         return;
       }
       _module.loading = true;
 
-      let queryParam =  _module.generateQuery(val);
+      let queryParam = _module.generateQuery(val);
       await _module.fetchMultiTagData(queryParam);
       // TODO: Handle errors from the server.
       _module.recordsFound = _module.getFairSharingRecords;
-      _module.$store.commit('multiTagsStore/setQueryParams', queryParam);
-      _module.$store.commit('multiTagsStore/setSelectedTags', val);
+      _module.$store.commit("multiTagsStore/setQueryParams", queryParam);
+      _module.$store.commit("multiTagsStore/setSelectedTags", val);
       _module.loading = false;
     },
     // Running the query every time user selects a new model/format
@@ -497,18 +465,20 @@ export default {
       _module.loading = true;
       let ids = [];
       let names = [];
-      val.forEach(function(format) {
+      val.forEach(function (format) {
         ids.push(format.id);
         names.push(format.name);
-      })
+      });
       let query = _module.getQueryParams;
       if (ids.length > 0) {
         query.dataFormatsAndTerminologies = ids;
-      }
-      else {
+      } else {
         delete query.dataFormatsAndTerminologies;
       }
-      this.$store.commit('navigationStore/setComplianceState', names.join(', '));
+      this.$store.commit(
+        "navigationStore/setComplianceState",
+        names.join(", "),
+      );
       await this.fetchMultiTagData(query);
       _module.loading = false;
     },
@@ -517,35 +487,41 @@ export default {
       _module.loading = true;
       let ids = [];
       let names = [];
-      val.forEach(function(format) {
+      val.forEach(function (format) {
         ids.push(format.id);
         names.push(format.name);
-      })
+      });
       let query = _module.getQueryParams;
       if (ids.length > 0) {
         query.policyRecommendations = ids;
-      }
-      else {
+      } else {
         delete query.policyRecommendations;
       }
-      this.$store.commit('navigationStore/setPolicyComplianceState', names.join(', '));
+      this.$store.commit(
+        "navigationStore/setPolicyComplianceState",
+        names.join(", "),
+      );
       await this.fetchMultiTagData(query);
       _module.loading = false;
-    }
+    },
   },
   mounted() {
     let _module = this;
-    _module.getQuestions()
+    _module.getQuestions();
   },
   methods: {
-    ...mapActions('multiTagsStore', ['fetchMultiTagData', 'resetMultiTags']),
+    ...mapActions("multiTagsStore", ["fetchMultiTagData", "resetMultiTags"]),
     /*
      * This is what's executed when the user arrives at a new question.
      */
     async getQuestions() {
       this.searchString = null;
-      let questionData = questionSets.questionSets.find(q => parseInt(q['path']) === parseInt(this.$route.params.id));
-      this.currentBreadcrumb = JSON.parse(JSON.stringify(questionData.breadcrumb));
+      let questionData = questionSets.questionSets.find(
+        (q) => parseInt(q["path"]) === parseInt(this.$route.params.id),
+      );
+      this.currentBreadcrumb = JSON.parse(
+        JSON.stringify(questionData.breadcrumb),
+      );
 
       this.questions = JSON.parse(JSON.stringify(questionData.questions));
       this.searchQuery = questionData.searchQuery;
@@ -558,13 +534,18 @@ export default {
       this.footer = questionData.footer;
       if (questionData.clear) {
         this.clear = true;
-        this.$store.commit('navigationStore/clearPreviousNavigation', `/${this.$route.params.id}`);
-        this.$store.commit('navigationStore/sliceBreadcrumb', `/${this.$route.params.id}`);
+        this.$store.commit(
+          "navigationStore/clearPreviousNavigation",
+          `/${this.$route.params.id}`,
+        );
+        this.$store.commit(
+          "navigationStore/sliceBreadcrumb",
+          `/${this.$route.params.id}`,
+        );
         this.foundPolicies = [];
         this.foundModelFormats = [];
         /* v8 ignore start */
-      }
-      else {
+      } else {
         this.clear = false;
       }
       /* v8 ignore stop */
@@ -576,15 +557,18 @@ export default {
       let previousQuery;
       let _module = this;
       try {
-        previousQuery = JSON.parse(JSON.stringify(this.getRouteQuery[this.$route.params.id]));
-      }
-      catch {
+        previousQuery = JSON.parse(
+          JSON.stringify(this.getRouteQuery[this.$route.params.id]),
+        );
+      } catch {
         // Fails on initial screen because getRouteQuery hasn't been defined.
         previousQuery = {};
       }
 
       // Sometimes the previous location could be something like "/refine"
-      let previousLocation = Number.parseInt(this.getPreviousLocation.replace('/',''));
+      let previousLocation = Number.parseInt(
+        this.getPreviousLocation.replace("/", ""),
+      );
       // We're coming from results, refinement or whatever, that is named rather than numbered
       if (isNaN(previousLocation)) {
         previousLocation = 9999;
@@ -596,30 +580,36 @@ export default {
         // Set up the selected tags. The store should be checked only if some were defined in the query.
         // If none are in the query then the store must be cleared (see 'else').
         _module.watchRecordTags = false;
-        if ('subjects' in previousQuery || 'domains' in previousQuery || 'userDefinedTags' in previousQuery || 'taxonomies' in previousQuery) {
+        if (
+          "subjects" in previousQuery ||
+          "domains" in previousQuery ||
+          "userDefinedTags" in previousQuery ||
+          "taxonomies" in previousQuery
+        ) {
           if (_module.getSelectedTags) {
-            _module.getSelectedTags.forEach(function(tag) {
-              if (_module.recordTags.filter(x => x.label === tag.label).length === 0) {
+            _module.getSelectedTags.forEach(function (tag) {
+              if (
+                _module.recordTags.filter((x) => x.label === tag.label)
+                  .length === 0
+              ) {
                 _module.recordTags.push(tag);
               }
-            })
+            });
           }
           // Should tags be cleared here (as in the else, below) also?
-        }
-        else {
-          _module.$store.commit('multiTagsStore/setSelectedTags', []);
+        } else {
+          _module.$store.commit("multiTagsStore/setSelectedTags", []);
           _module.recordTags = [];
         }
-        if ('dataFormatsAndTerminologies' in previousQuery) {
+        if ("dataFormatsAndTerminologies" in previousQuery) {
           // TODO: Is any setup even necessary here?
-        }
-        else {
-          _module.$store.commit('navigationStore/setComplianceState', []);
+        } else {
+          _module.$store.commit("navigationStore/setComplianceState", []);
           _module.foundModelFormats = [];
         }
 
         // Load the previous query.
-        _module.$store.commit('multiTagsStore/setQueryParams', previousQuery);
+        _module.$store.commit("multiTagsStore/setQueryParams", previousQuery);
         _module.loading = true;
         await _module.fetchMultiTagData(previousQuery);
         _module.loading = false;
@@ -628,28 +618,34 @@ export default {
         // TODO: Find queries in the routeQuery store further advanced than the current click target, and clear them.
         // TODO: This could probably go in the store.
         _module.watchRecordTags = true;
-        this.$store.commit('navigationStore/clearPreviousNavigation', currentLocation);
-      }
-      else if (previousLocation > currentLocation) {
+        this.$store.commit(
+          "navigationStore/clearPreviousNavigation",
+          currentLocation,
+        );
+      } else if (previousLocation > currentLocation) {
         // Empty query, so results should be cleared, but only whilst going backwards.
         this.resetMultiTags();
       }
       // At this point the user is going _forwards_ but there still might be tags hanging around because they've
       //  jumped backwards past e.g. a subject/domain selector and then forward again!
       else {
-        if ('subjects' in this.getQueryParams ||
-            'domains' in this.getQueryParams ||
-            'userDefinedTags' in this.getQueryParams ||
-            'taxonomies' in this.getQueryParams) {
+        if (
+          "subjects" in this.getQueryParams ||
+          "domains" in this.getQueryParams ||
+          "userDefinedTags" in this.getQueryParams ||
+          "taxonomies" in this.getQueryParams
+        ) {
           if (_module.getSelectedTags) {
             _module.getSelectedTags.forEach(function (tag) {
-              if (_module.recordTags.filter(x => x.label === tag.label).length === 0) {
+              if (
+                _module.recordTags.filter((x) => x.label === tag.label)
+                  .length === 0
+              ) {
                 _module.recordTags.push(tag);
               }
-            })
+            });
           }
-        }
-        else {
+        } else {
           _module.recordTags = [];
         }
       }
@@ -657,9 +653,17 @@ export default {
     /*
      * This code is executed when a user clicks on a question.
      */
-    async processLink(link, query, message, refined, breadcrumbMod, role, restrict) {
+    async processLink(
+      link,
+      query,
+      message,
+      refined,
+      breadcrumbMod,
+      role,
+      restrict,
+    ) {
       if (restrict) {
-        this.$store.commit('navigationStore/setRestrict', restrict);
+        this.$store.commit("navigationStore/setRestrict", restrict);
       }
 
       // Always stash the breadcrumb.
@@ -671,33 +675,39 @@ export default {
         if (this.foundModelFormats.length > 0) {
           let ids = [];
           let names = [];
-          this.foundModelFormats.forEach(function(format) {
+          this.foundModelFormats.forEach(function (format) {
             ids.push(format.id);
             names.push(format.name);
-          })
-          query['dataFormatsAndTerminologies'] = ids;
-          this.$store.commit('navigationStore/setComplianceState', names.join(', '));
+          });
+          query["dataFormatsAndTerminologies"] = ids;
+          this.$store.commit(
+            "navigationStore/setComplianceState",
+            names.join(", "),
+          );
         }
         if (this.foundPolicies.length > 0) {
           let ids = [];
           let names = [];
-          this.foundPolicies.forEach(function(format) {
+          this.foundPolicies.forEach(function (format) {
             ids.push(format.id);
             names.push(format.name);
-          })
-          query['policyRecommendations'] = ids;
-          this.$store.commit('navigationStore/setPolicyComplianceState', names.join(', '));
+          });
+          query["policyRecommendations"] = ids;
+          this.$store.commit(
+            "navigationStore/setPolicyComplianceState",
+            names.join(", "),
+          );
         }
         // Merge the previous query in case we're coming from a page where data have already been calculated.
         let existingQueryCopy = JSON.parse(JSON.stringify(this.getQueryParams));
         let mergedQuery = { ...existingQueryCopy, ...query };
         await this.fetchMultiTagData(mergedQuery);
-        this.$store.commit('multiTagsStore/setQueryParams', mergedQuery);
+        this.$store.commit("multiTagsStore/setQueryParams", mergedQuery);
         if (refined) {
-          this.$store.commit('multiTagsStore/setRefinedStatus', refined);
+          this.$store.commit("multiTagsStore/setRefinedStatus", refined);
         }
         if (message) {
-          this.$store.commit('multiTagsStore/setSelectionMessage', message);
+          this.$store.commit("multiTagsStore/setSelectionMessage", message);
         }
         this.loading = false;
       }
@@ -709,24 +719,28 @@ export default {
 
       // Save where we've just been.
       let path = "/" + this.$route.params.id;
-      this.$store.commit('navigationStore/setNavigationState', path);
+      this.$store.commit("navigationStore/setNavigationState", path);
 
       if (role) {
-        this.$store.commit('navigationStore/setRole', role);
+        this.$store.commit("navigationStore/setRole", role);
       }
 
       // Before leaving the page, stash the query for this particular page.
       // In some cases a question may need to execute a query on leaving, but clear the results of that on returning,
       // e.g. a researcher depositing data.
       let queryCopy = JSON.parse(JSON.stringify(this.getQueryParams));
-      let nextId = link.replace('/','');
-      this.$store.commit('navigationStore/setRouteQuery', [nextId, queryCopy]);
+      let nextId = link.replace("/", "");
+      this.$store.commit("navigationStore/setRouteQuery", [nextId, queryCopy]);
       // And set up the breadcrumbs correctly
       if (breadcrumbMod) {
-        this.currentBreadcrumb.text = this.currentBreadcrumb.text + breadcrumbMod;
+        this.currentBreadcrumb.text =
+          this.currentBreadcrumb.text + breadcrumbMod;
       }
-      if (this.currentBreadcrumb.text !== 'Finished!') {
-        this.$store.commit('navigationStore/addBreadcrumb', this.currentBreadcrumb);
+      if (this.currentBreadcrumb.text !== "Finished!") {
+        this.$store.commit(
+          "navigationStore/addBreadcrumb",
+          this.currentBreadcrumb,
+        );
       }
       // Now the links.
       // In this case, the link is to an external site.
@@ -738,9 +752,8 @@ export default {
 
       // Whereas here, it's linking to somewhere else within the assistant.
       else {
-        this.$router.push({path: link});
+        this.$router.push({ path: link });
       }
-
     },
     async getResults(queryString) {
       // A different query is run depending on whether hasTagsQuery or hasModelFormatQuery is true.
@@ -749,10 +762,8 @@ export default {
         let queryCopy = JSON.parse(JSON.stringify(this.searchQuery));
         let filterCopy = JSON.parse(JSON.stringify(multiTagFilter));
         if (queryString) {
-          queryCopy['q'] = queryString;
-
-        }
-        else {
+          queryCopy["q"] = queryString;
+        } else {
           this.searchResults = [];
           return;
         }
@@ -763,16 +774,13 @@ export default {
         if (!searchResults.error) {
           _module.searchResults = searchResults.multiTagFilter;
         }
-
-      }
-      else if (_module.hasTagsQuery) {
+      } else if (_module.hasTagsQuery) {
         let tagQueryCopy = JSON.parse(JSON.stringify(tagsQuery));
-        if (queryString) tagQueryCopy.queryParam = {q: queryString};
-        let taggedRecords = this.getFairSharingRecords.map(x => x.id);
+        if (queryString) tagQueryCopy.queryParam = { q: queryString };
+        let taggedRecords = this.getFairSharingRecords.map((x) => x.id);
         if (taggedRecords.length) {
           tagQueryCopy.queryParam.taggedRecords = taggedRecords;
-        }
-        else {
+        } else {
           delete tagQueryCopy.taggedRecords;
         }
         let tags = await graphClient.executeQuery(tagQueryCopy);
@@ -783,13 +791,16 @@ export default {
           tags = tags.searchTags;
           tags.forEach((tag) => {
             tag.parents.forEach((parent) => {
-              if (_module.tags.filter(x => x.label === parent.label).length === 0) {
-                parent.model = tag.model
-                parents.push(parent)
+              if (
+                _module.tags.filter((x) => x.label === parent.label).length ===
+                0
+              ) {
+                parent.model = tag.model;
+                parents.push(parent);
               }
             });
             delete tag.parents;
-          })
+          });
           // TODO: process here to handle nested parents.
           _module.tags = tags.concat(parents);
         }
@@ -806,28 +817,34 @@ export default {
       delete query.subjects;
       delete query.taxonomies;
       delete query.userDefinedTags;
-      let domains = val.filter(x => x.model === 'domain').map(x => x.label);
+      let domains = val.filter((x) => x.model === "domain").map((x) => x.label);
       if (domains.length) {
-        query['domains'] = domains;
+        query["domains"] = domains;
       }
-      let subjects = val.filter(x => x.model === 'subject').map(x => x.label);
+      let subjects = val
+        .filter((x) => x.model === "subject")
+        .map((x) => x.label);
       if (subjects.length) {
-        query['subjects'] = subjects;
+        query["subjects"] = subjects;
       }
-      let taxonomies = val.filter(x => x.model === 'taxonomy').map(x => x.label);
+      let taxonomies = val
+        .filter((x) => x.model === "taxonomy")
+        .map((x) => x.label);
       if (taxonomies.length) {
-        query['taxonomies'] = taxonomies;
+        query["taxonomies"] = taxonomies;
       }
-      let user_defined_tags = val.filter(x => x.model === 'user_defined_tag').map(x => x.label);
+      let user_defined_tags = val
+        .filter((x) => x.model === "user_defined_tag")
+        .map((x) => x.label);
       if (user_defined_tags.length) {
-        query['userDefinedTags'] = user_defined_tags;
+        query["userDefinedTags"] = user_defined_tags;
       }
       return query;
     },
     deleteTag(tagId, tagModel) {
       let currentTags = [];
       let tagFilter = tagId + tagModel;
-      this.recordTags.forEach(function(tag) {
+      this.recordTags.forEach(function (tag) {
         let identifier = tag.id + tag.model;
         if (identifier !== tagFilter) {
           currentTags.push(tag);
@@ -836,14 +853,21 @@ export default {
       this.recordTags = currentTags;
     },
     deleteStandard(standardId) {
-      this.foundModelFormats = this.foundModelFormats.filter(el => el.id !== standardId);
+      this.foundModelFormats = this.foundModelFormats.filter(
+        (el) => el.id !== standardId,
+      );
     },
     deletePolicy(policyId) {
-      this.foundPolicies = this.foundPolicies.filter(el => el.id !== policyId);
+      this.foundPolicies = this.foundPolicies.filter(
+        (el) => el.id !== policyId,
+      );
     },
     goToResults() {
-      this.$store.commit('navigationStore/addBreadcrumb', this.currentBreadcrumb);
-      this.$router.push('/results');
+      this.$store.commit(
+        "navigationStore/addBreadcrumb",
+        this.currentBreadcrumb,
+      );
+      this.$router.push("/results");
     },
     /**
      * Method to fetch all the parents till the last found parent (id, name, abbreviation) traversing bottom to top of the selected policy
@@ -852,20 +876,20 @@ export default {
      */
     async itemSelected(item) {
       let _module = this;
-      parentsQuery.queryParam = { id: item.item.id }
+      parentsQuery.queryParam = { id: item.item.id };
       let parents = await graphClient.executeQuery(parentsQuery);
-      parents['fairsharingRecord']['parentPolicies'].forEach(parent => {
+      parents["fairsharingRecord"]["parentPolicies"].forEach((parent) => {
         if (!_module.foundPolicies.map((x) => x.id).includes(parent.id)) {
-          _module.foundPolicies.push(parent)
+          _module.foundPolicies.push(parent);
         }
-      })
-    }
-  }
+      });
+    },
+  },
 };
 </script>
 
 <style scoped lang="scss">
-.wrapperClass{
+.wrapperClass {
   position: relative;
 }
 
@@ -878,13 +902,13 @@ export default {
   z-index: 1;
   animation: smooth-appear 1250ms ease forwards;
   @keyframes smooth-appear {
-    from{
+    from {
       bottom: -300%;
-      opacity:0;
+      opacity: 0;
     }
-    to{
+    to {
       bottom: 20px;
-      opacity:1;
+      opacity: 1;
     }
   }
 }
@@ -934,9 +958,9 @@ export default {
   //height: 80px;
   padding: 80px;
 }
-.cardLarge, .cardXtraLarge {
+.cardLarge,
+.cardXtraLarge {
   min-height: 100px;
   padding: 50px;
 }
-
 </style>

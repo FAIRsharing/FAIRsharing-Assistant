@@ -1,8 +1,7 @@
-import { describe, expect, it } from 'vitest'
+import { describe, expect, it } from "vitest";
 import currentPath from "@/utils/currentPath.js";
 
-describe("currentPath.js", function(){
-
+describe("currentPath.js", function () {
   it("can check currentPath method", () => {
     const routeQuery = {
       a: "somestring",
@@ -13,9 +12,8 @@ describe("currentPath.js", function(){
     const result = {
       a: "somestring",
       b: "42",
-    }
+    };
 
     expect(currentPath(routeQuery)).toStrictEqual(result);
-  })
-
-})
+  });
+});

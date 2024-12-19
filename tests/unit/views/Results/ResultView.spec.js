@@ -1,8 +1,8 @@
-import { shallowMount} from "@vue/test-utils";
-import { createStore } from 'vuex';
-import { createVuetify } from 'vuetify'
-import { describe, expect, it, beforeEach, vi } from 'vitest'
-import ResultView from "@/views/Results/ResultView.vue"
+import { shallowMount } from "@vue/test-utils";
+import { createStore } from "vuex";
+import { createVuetify } from "vuetify";
+import { describe, expect, it, beforeEach, vi } from "vitest";
+import ResultView from "@/views/Results/ResultView.vue";
 import multiTagsStore from "@/store/multiTagsStore";
 import navigationStore from "@/store/navigationStore";
 
@@ -13,8 +13,8 @@ let mockRoute = {
   path: "/accounts/profile",
   query: "fairsharingRegistry=Database&recordType=knowledgebase,repository",
   params: {
-    id: "/accounts/profile"
-  }
+    id: "/accounts/profile",
+  },
 };
 
 multiTagsStore.getters = {
@@ -24,48 +24,53 @@ multiTagsStore.getters = {
         record: "Wibble",
         registry: "Standard",
         id: 123,
-      }
-    ]
+      },
+    ];
   },
-  getQueryParams:  () => {
+  getQueryParams: () => {
     return {
-      subjects: ['genetics'],
-      registry: ['standard']
-    }
+      subjects: ["genetics"],
+      registry: ["standard"],
+    };
   },
-  getRefinedStatus: () => { return true },
-  getCurrentRegistry: () => { return 'standard' },
-  getSelectedTags: () => { return [] }
-}
+  getRefinedStatus: () => {
+    return true;
+  },
+  getCurrentRegistry: () => {
+    return "standard";
+  },
+  getSelectedTags: () => {
+    return [];
+  },
+};
 
 navigationStore.getters = {
   getBreadcrumbs() {
-    return []
-  }
-}
+    return [];
+  },
+};
 
 let store = createStore({
   modules: {
     multiTagsStore: multiTagsStore,
-    navigationStore: navigationStore
-  }
-})
+    navigationStore: navigationStore,
+  },
+});
 
-
-describe("ResultView.vue", function(){
+describe("ResultView.vue", function () {
   let wrapper;
 
   beforeEach(() => {
     wrapper = shallowMount(ResultView, {
-      global:{
+      global: {
         plugins: [vuetify, store],
         mocks: {
           $router: mockRouter,
-          $route: mockRoute
+          $route: mockRoute,
         },
-        stubs: ['router-link', 'router-view']
+        stubs: ["router-link", "router-view"],
       },
-    })
+    });
   });
 
   it("can be instantiated", () => {
@@ -74,7 +79,6 @@ describe("ResultView.vue", function(){
 
   it("noRecords method is called", () => {
     wrapper.vm.noRecords(true);
-    expect(wrapper.vm.$route.path).toBe('/accounts/profile');
+    expect(wrapper.vm.$route.path).toBe("/accounts/profile");
   });
-
 });

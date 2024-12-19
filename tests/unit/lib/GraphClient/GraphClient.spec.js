@@ -1,13 +1,21 @@
-import { describe, expect, it, beforeEach, beforeAll, afterAll, vi } from 'vitest'
-import Client from "@/lib/GraphClient/GraphClient.js"
-import query from "./getRecords.json"
+import {
+  describe,
+  expect,
+  it,
+  beforeEach,
+  beforeAll,
+  afterAll,
+  vi,
+} from "vitest";
+import Client from "@/lib/GraphClient/GraphClient.js";
+import query from "./getRecords.json";
 
 const sinon = require("sinon");
 const axios = require("axios");
 
 describe("GraphQL Client", function () {
   let client;
-  const searchFairsharingRecords = {records: [{}]};
+  const searchFairsharingRecords = { records: [{}] };
   let postStub = sinon.stub(axios, "post");
   const stubQuery = {};
   let localQuery = {};
@@ -21,14 +29,14 @@ describe("GraphQL Client", function () {
     postStub.withArgs(sinon.match.any).returns({
       data: {
         data: {
-          searchFairsharingRecords
-        }
-      }
+          searchFairsharingRecords,
+        },
+      },
     });
   });
 
   afterAll(() => {
-    postStub.restore()
+    postStub.restore();
   });
 
   it("can be instantiated as a singleton", function () {
@@ -42,33 +50,35 @@ describe("GraphQL Client", function () {
     stub.withArgs(sinon.match.any).returns({
       data: {
         data: {
-          searchFairsharingRecords
-        }
-      }
+          searchFairsharingRecords,
+        },
+      },
     });
 
     localQuery.queryParam = {};
     localQuery.queryParam["fairsharingRegistry"] = "Standard";
     localQuery.queryParam["isRecommended"] = true;
-    localQuery.queryParam["isRecommended"] = ["Standard", "Database", 1]
+    localQuery.queryParam["isRecommended"] = ["Standard", "Database", 1];
     let output = await client.executeQuery(localQuery);
-    expect(JSON.stringify(output)).toBe(JSON.stringify({
-      searchFairsharingRecords: {
-        records: [{}]
-      }
-    }));
-
+    expect(JSON.stringify(output)).toBe(
+      JSON.stringify({
+        searchFairsharingRecords: {
+          records: [{}],
+        },
+      }),
+    );
 
     let output2 = await client.getData(localQuery);
-    expect(JSON.stringify(output2.data)).toBe(JSON.stringify({
-      data: {
-        searchFairsharingRecords: {
-          records: [{}]
-        }
-      }
-    }));
+    expect(JSON.stringify(output2.data)).toBe(
+      JSON.stringify({
+        data: {
+          searchFairsharingRecords: {
+            records: [{}],
+          },
+        },
+      }),
+    );
     stub.restore();
-
   });
 
   it("can check either function returns errors or correct response ", async function () {
@@ -79,32 +89,29 @@ describe("GraphQL Client", function () {
 
     stub.withArgs(sinon.match.any).returns({
       data: {
-        errors: [
-          {message: "Im an error"}
-        ]
-      }
+        errors: [{ message: "Im an error" }],
+      },
     });
     await expect(client.executeQuery(localQuery)).rejects;
     stub.withArgs(sinon.match.any).returns({
       data: {
         data: {
-          searchFairsharingRecords
-        }
-      }
+          searchFairsharingRecords,
+        },
+      },
     });
 
     await expect(client.executeQuery(localQuery)).resolves.toStrictEqual({
       searchFairsharingRecords: {
-        records: [{}]
-      }
+        records: [{}],
+      },
     });
     Client.prototype.getData.restore();
   });
 
   it("can check setHeader method", function () {
-    let header = client.headers
-    client.setHeader("abc")
-    expect(header['Authorization']).toBe("Bearer abc");
+    let header = client.headers;
+    client.setHeader("abc");
+    expect(header["Authorization"]).toBe("Bearer abc");
   });
-
 });

@@ -1,14 +1,14 @@
-import {shallowMount} from "@vue/test-utils";
-import { createStore } from 'vuex';
-import { createVuetify } from 'vuetify'
-import {describe, expect, it, beforeEach, vi} from 'vitest'
-import RefineRegistry from "@/views/Refinements/RefineRegistry.vue"
+import { shallowMount } from "@vue/test-utils";
+import { createStore } from "vuex";
+import { createVuetify } from "vuetify";
+import { describe, expect, it, beforeEach, vi } from "vitest";
+import RefineRegistry from "@/views/Refinements/RefineRegistry.vue";
 import multiTagsStore from "@/store/multiTagsStore";
-import icons from '@/plugins/icons';
+import icons from "@/plugins/icons";
 
 const mockRouter = { push: vi.fn() };
 
-const vuetify = createVuetify({'icons': icons });
+const vuetify = createVuetify({ icons: icons });
 
 multiTagsStore.getters = {
   getFairSharingRecords: () => {
@@ -17,43 +17,48 @@ multiTagsStore.getters = {
         record: "Wibble",
         registry: "Standard",
         id: 123,
-      }
-    ]
+      },
+    ];
   },
-  getQueryParams:  () => {
+  getQueryParams: () => {
     return {
-      subjects: ['genetics'],
-      registry: ['standard']
-    }
+      subjects: ["genetics"],
+      registry: ["standard"],
+    };
   },
-  getRefinedStatus: () => { return true },
-  getCurrentRegistry: () => { return 'standard' },
-  getSelectedTags: () => { return [] }
-}
+  getRefinedStatus: () => {
+    return true;
+  },
+  getCurrentRegistry: () => {
+    return "standard";
+  },
+  getSelectedTags: () => {
+    return [];
+  },
+};
 
 let store = createStore({
   modules: {
     multiTagsStore: multiTagsStore,
-  }
-})
+  },
+});
 
-describe("RefineSelection.vue", function(){
+describe("RefineSelection.vue", function () {
   let wrapper;
 
   beforeEach(() => {
     wrapper = shallowMount(RefineRegistry, {
-      global:{
+      global: {
         plugins: [vuetify, store],
         mocks: {
           $router: mockRouter,
         },
-        stubs: ['router-link', 'router-view']
+        stubs: ["router-link", "router-view"],
       },
-    })
+    });
   });
 
   it("can be instantiated", () => {
     expect(wrapper.vm.$options.name).toMatch("RefineRegistry");
   });
-
 });

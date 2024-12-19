@@ -1,7 +1,7 @@
 import { shallowMount } from "@vue/test-utils";
 import Maintenance from "@/views/Errors/Maintenance.vue";
-import { createVuetify } from 'vuetify'
-import { describe, expect, it, beforeEach } from 'vitest'
+import { createVuetify } from "vuetify";
+import { describe, expect, it, beforeEach } from "vitest";
 
 const vuetify = createVuetify();
 
@@ -18,7 +18,5 @@ describe("Maintenance page", () => {
 
   it("can be instantiated", () => {
     expect(wrapper.vm.$options.name).toBe("Maintenance");
-
   });
-
 });

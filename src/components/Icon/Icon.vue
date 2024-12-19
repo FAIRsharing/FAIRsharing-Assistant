@@ -18,7 +18,7 @@
     <v-img
       v-else-if="customIcons.values[item].type === 'img'"
       class="contain"
-      :class="{'mt-0': wrapperClass !== ''}"
+      :class="{ 'mt-0': wrapperClass !== '' }"
       :height="height"
       :width="height"
       :src="customIcons.values[item].icon"
@@ -32,39 +32,39 @@ import customIcons from "@/plugins/icons";
 export default {
   name: "Icon",
   props: {
-    item: {default: null, type: String},
-    size: {default: '10', type: String},
-    fallback: {default: 'undefined', type: String},
-    wrapperClass: {default: 'icon-container', type: String},
-    height: {default: 45, type: Number},
-    color: {default: null, type: String},
+    item: { default: null, type: String },
+    size: { default: "10", type: String },
+    fallback: { default: "undefined", type: String },
+    wrapperClass: { default: "icon-container", type: String },
+    height: { default: 45, type: Number },
+    color: { default: null, type: String },
   },
   data() {
     return {
-      customIcons: customIcons
-    }
+      customIcons: customIcons,
+    };
   },
-}
+};
 </script>
 
 <style scoped>
-  .icon-container {
-    position: absolute;
-    top: -25px;
-    background: white;
-    border: #b3b3b3 dotted 3px;
-    border-radius: 50% !important;
-    -moz-border-radius: 50% !important;
-    -webkit-border-radius: 50% !important;
-    width: 45px;
-    height: 45px;
-    cursor: help;
-  }
-  .alt-container {
-    position: absolute;
-    background: white;
-    width: 40px;
-    height: 40px;
-    cursor: help;
-  }
+.icon-container {
+  position: absolute;
+  top: -25px;
+  background: white;
+  border: #b3b3b3 dotted 3px;
+  border-radius: 50% !important;
+  -moz-border-radius: 50% !important;
+  -webkit-border-radius: 50% !important;
+  width: 45px;
+  height: 45px;
+  cursor: help;
+}
+.alt-container {
+  position: absolute;
+  background: white;
+  width: 40px;
+  height: 40px;
+  cursor: help;
+}
 </style>

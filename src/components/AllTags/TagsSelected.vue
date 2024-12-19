@@ -18,30 +18,18 @@
       Show help
     </v-btn>
     <!-- help -->
-    <v-dialog
-      :model-value="help"
-      width="auto"
-    >
+    <v-dialog :model-value="help" width="auto">
       <v-card>
-        <v-card-title>
-          About this page
-        </v-card-title>
+        <v-card-title> About this page </v-card-title>
         <!-- This html is from a safe source -->
         <!-- eslint-disable vue/no-v-html -->
         <v-card-text>
           <!-- because javascript doesn't allow line breaks in text -->
-          <span
-            v-html="helpText.tags.join('\n')"
-          />
+          <span v-html="helpText.tags.join('\n')" />
         </v-card-text>
         <!-- eslint-enable vue/no-v-html -->
         <v-card-actions>
-          <v-btn
-            color="primary"
-            @click="hideHelp()"
-          >
-            Close
-          </v-btn>
+          <v-btn color="primary" @click="hideHelp()"> Close </v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -58,25 +46,25 @@
 </template>
 
 <script>
-import {mapGetters} from "vuex";
+import { mapGetters } from "vuex";
 import SelectedTags from "@/components/Others/SelectedTags.vue";
-import helpDialogs from "@/data/helpDialogs.json"
+import helpDialogs from "@/data/helpDialogs.json";
 
 export default {
-  name: 'TagsSelected',
+  name: "TagsSelected",
   components: { SelectedTags },
   data() {
     return {
       selectedTags: [],
       selectedQueryParam: [],
       showSelected: false,
-      buttonMessage: 'Show selected tags',
+      buttonMessage: "Show selected tags",
       help: false,
-      helpText: helpDialogs
-    }
+      helpText: helpDialogs,
+    };
   },
   computed: {
-    ...mapGetters('multiTagsStore', ["getSelectedTags", "getQueryParams"]),
+    ...mapGetters("multiTagsStore", ["getSelectedTags", "getQueryParams"]),
   },
   watch: {
     getSelectedTags: {
@@ -85,43 +73,44 @@ export default {
       },
     },
   },
-  methods:{
+  methods: {
     queryParamTags(sectionName) {
       switch (sectionName) {
-      case "taxonomic range":
-        return "taxonomies"
-      case "user_defined_tag":
-        return "userDefinedTags"
-      default:
-        return sectionName
+        case "taxonomic range":
+          return "taxonomies";
+        case "user_defined_tag":
+          return "userDefinedTags";
+        default:
+          return sectionName;
       }
     },
     /* v8 ignore start */
-    removeTag(tagParams){
-      let id = tagParams[0]
-      let label = tagParams[1]
-      let sectionName = tagParams[2]
-      this.selectedTags = this.selectedTags.filter(el => el.id !== id);
-      Object.keys(this.getQueryParams).forEach(key => {
-        if(key === this.queryParamTags(sectionName)) {
-          this.selectedQueryParam = this.getQueryParams[this.queryParamTags(sectionName)].filter(el => el !== label)
-          this.getQueryParams[key] = this.selectedQueryParam
+    removeTag(tagParams) {
+      let id = tagParams[0];
+      let label = tagParams[1];
+      let sectionName = tagParams[2];
+      this.selectedTags = this.selectedTags.filter((el) => el.id !== id);
+      Object.keys(this.getQueryParams).forEach((key) => {
+        if (key === this.queryParamTags(sectionName)) {
+          this.selectedQueryParam = this.getQueryParams[
+            this.queryParamTags(sectionName)
+          ].filter((el) => el !== label);
+          this.getQueryParams[key] = this.selectedQueryParam;
         }
-      })
-      this.$store.commit('multiTagsStore/setQueryParams', this.getQueryParams);
-      this.$store.commit('multiTagsStore/setSelectedTags', this.selectedTags);
+      });
+      this.$store.commit("multiTagsStore/setQueryParams", this.getQueryParams);
+      this.$store.commit("multiTagsStore/setSelectedTags", this.selectedTags);
       if (this.selectedTags && !this.selectedTags.length) {
-        this.$store.commit('multiTagsStore/setFairSharingRecords', []);
+        this.$store.commit("multiTagsStore/setFairSharingRecords", []);
       }
     },
     /* v8 ignore stop */
     toggleSelected() {
       this.showSelected = !this.showSelected;
       if (this.showSelected) {
-        this.buttonMessage = "Hide selected tags"
-      }
-      else {
-        this.buttonMessage = "Show selected tags"
+        this.buttonMessage = "Hide selected tags";
+      } else {
+        this.buttonMessage = "Show selected tags";
       }
     },
     showHelp() {
@@ -129,18 +118,17 @@ export default {
     },
     hideHelp() {
       this.help = false;
-    }
-  }
-}
-
+    },
+  },
+};
 </script>
 
 <style>
-.fade-enter-active, .fade-leave-active {
-  transition: opacity .5s;
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
 }
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
   opacity: 0;
 }
-
 </style>

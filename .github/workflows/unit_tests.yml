@@ -6,14 +6,13 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
-          node-version: '16.x'
+          node-version: "16.x"
       - name: Install Dependencies
         run: npm install --legacy-peer-deps
       - name: Run npm unit tests
@@ -22,6 +21,6 @@ jobs:
         uses: coverallsapp/github-action@master
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          path-to-lcov: './coverage/lcov.info'
+          path-to-lcov: "./coverage/lcov.info"
       - name: Update coverage to codacy
         run: npm run codacy ${{ secrets.CODACY_PROJECT_TOKEN }}

@@ -1,8 +1,8 @@
-import { shallowMount} from "@vue/test-utils";
-import { createStore } from 'vuex';
-import { createVuetify } from 'vuetify'
-import {describe, expect, it, beforeEach, vi} from 'vitest'
-import GoHome from "@/components/Navigation/HomeButton.vue"
+import { shallowMount } from "@vue/test-utils";
+import { createStore } from "vuex";
+import { createVuetify } from "vuetify";
+import { describe, expect, it, beforeEach, vi } from "vitest";
+import GoHome from "@/components/Navigation/HomeButton.vue";
 import multiTagsStore from "@/store/multiTagsStore";
 import navigationStore from "@/store/navigationStore";
 
@@ -26,10 +26,10 @@ let store = createStore({
   modules: {
     multiTagsStore: multiTagsStore,
     navigationStore: navigationStore,
-  }
-})
+  },
+});
 
-describe("HomeButton.vue", function(){
+describe("HomeButton.vue", function () {
   let wrapper;
 
   beforeEach(() => {
@@ -38,11 +38,11 @@ describe("HomeButton.vue", function(){
         plugins: [vuetify, store],
         mocks: {
           $router: mockRouter,
-          $route: mockRoute
+          $route: mockRoute,
         },
-        stubs: ['router-link', 'router-view']
-      }
-    })
+        stubs: ["router-link", "router-view"],
+      },
+    });
   });
 
   it("can be instantiated", () => {
@@ -51,9 +51,8 @@ describe("HomeButton.vue", function(){
 
   it("check goHome method is called", () => {
     const goHome = wrapper.get("#goHome");
-    goHome.trigger('click')
-    wrapper.vm.goHome()
-    expect(wrapper.vm.$route.path).toBe('/0');
+    goHome.trigger("click");
+    wrapper.vm.goHome();
+    expect(wrapper.vm.$route.path).toBe("/0");
   });
-
 });

@@ -1,8 +1,8 @@
-import {shallowMount} from "@vue/test-utils";
-import { createStore } from 'vuex';
-import { createVuetify } from 'vuetify'
-import { describe, expect, it, beforeEach } from 'vitest'
-import ResultPreviewBanner from "@/components/Results/ResultPreviewBanner.vue"
+import { shallowMount } from "@vue/test-utils";
+import { createStore } from "vuex";
+import { createVuetify } from "vuetify";
+import { describe, expect, it, beforeEach } from "vitest";
+import ResultPreviewBanner from "@/components/Results/ResultPreviewBanner.vue";
 import multiTagsStore from "@/store/multiTagsStore";
 
 const vuetify = createVuetify();
@@ -14,27 +14,29 @@ multiTagsStore.getters = {
         record: "Wibble",
         registry: "Standard",
         id: 123,
-      }
-    ]
+      },
+    ];
   },
-  getCurrentRegistry: () => { return 'standard' },
-}
+  getCurrentRegistry: () => {
+    return "standard";
+  },
+};
 
 let store = createStore({
   modules: {
     multiTagsStore: multiTagsStore,
-  }
-})
+  },
+});
 
-describe('ResultPreviewBanner.vue', () => {
+describe("ResultPreviewBanner.vue", () => {
   let wrapper;
   beforeEach(() => {
     wrapper = shallowMount(ResultPreviewBanner, {
-      global:{
+      global: {
         plugins: [vuetify, store],
       },
       props: {
-        showBanner: false
+        showBanner: false,
       },
     });
   });
@@ -107,20 +109,20 @@ describe('ResultPreviewBanner.vue', () => {
             registry: "Standard",
             id: 11,
           },
-        ]
+        ];
       },
-    }
+    };
     store = createStore({
       modules: {
         multiTagsStore: multiTagsStore,
-      }
-    })
+      },
+    });
     wrapper = shallowMount(ResultPreviewBanner, {
-      global:{
+      global: {
         plugins: [vuetify, store],
       },
       props: {
-        showBanner: false
+        showBanner: false,
       },
     });
     wrapper.vm.resultCountColour();
@@ -130,20 +132,20 @@ describe('ResultPreviewBanner.vue', () => {
   it("can resultCountColour method when getFairSharingRecords has no records", () => {
     multiTagsStore.getters = {
       getFairSharingRecords: () => {
-        return []
+        return [];
       },
-    }
+    };
     store = createStore({
       modules: {
         multiTagsStore: multiTagsStore,
-      }
-    })
+      },
+    });
     wrapper = shallowMount(ResultPreviewBanner, {
-      global:{
+      global: {
         plugins: [vuetify, store],
       },
       props: {
-        showBanner: false
+        showBanner: false,
       },
     });
     wrapper.vm.resultCountColour();
@@ -152,15 +154,17 @@ describe('ResultPreviewBanner.vue', () => {
 
   it("can getCurrentRegistryBold method when getCurrentRegistry getter return a string", () => {
     multiTagsStore.getters = {
-      getCurrentRegistry: () => { return 'standard' },
-    }
+      getCurrentRegistry: () => {
+        return "standard";
+      },
+    };
     store = createStore({
       modules: {
         multiTagsStore: multiTagsStore,
-      }
-    })
+      },
+    });
     wrapper = shallowMount(ResultPreviewBanner, {
-      global:{
+      global: {
         plugins: [store],
       },
     });
@@ -170,20 +174,21 @@ describe('ResultPreviewBanner.vue', () => {
 
   it("can getCurrentRegistryBold method when getCurrentRegistry getter does not return a string", () => {
     multiTagsStore.getters = {
-      getCurrentRegistry: () => { return '' },
-    }
+      getCurrentRegistry: () => {
+        return "";
+      },
+    };
     store = createStore({
       modules: {
         multiTagsStore: multiTagsStore,
-      }
-    })
+      },
+    });
     wrapper = shallowMount(ResultPreviewBanner, {
-      global:{
+      global: {
         plugins: [store],
       },
     });
     wrapper.vm.getCurrentRegistryBold();
-    expect(wrapper.vm.getCurrentRegistryBold()).toBe('');
+    expect(wrapper.vm.getCurrentRegistryBold()).toBe("");
   });
-
 });

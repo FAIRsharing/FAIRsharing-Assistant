@@ -1,19 +1,18 @@
-import {shallowMount} from "@vue/test-utils";
-import HomeView from "@/views/Home/HomeView.vue"
-import { createVuetify } from 'vuetify'
-import { describe, expect, it, beforeEach } from 'vitest'
-
+import { shallowMount } from "@vue/test-utils";
+import HomeView from "@/views/Home/HomeView.vue";
+import { createVuetify } from "vuetify";
+import { describe, expect, it, beforeEach } from "vitest";
 
 const vuetify = createVuetify();
 
 let $route = {
   path: "/",
   params: {
-    id: 0
-  }
+    id: 0,
+  },
 };
 
-describe("HomeView.vue", function(){
+describe("HomeView.vue", function () {
   let wrapper;
 
   beforeEach(() => {
@@ -21,15 +20,14 @@ describe("HomeView.vue", function(){
       global: {
         plugins: [vuetify],
         mocks: {
-          $route: $route
+          $route: $route,
         },
-        stubs: ['router-link', 'router-view']
+        stubs: ["router-link", "router-view"],
       },
-    })
+    });
   });
 
   it("can be instantiated", () => {
     expect(wrapper.vm.$options.name).toMatch("HomeView");
   });
-
 });

@@ -1,11 +1,5 @@
 {
-  "keywords": [
-    "label",
-    "id",
-    "definitions",
-    "iri",
-    "synonyms"
-  ],
+  "keywords": ["label", "id", "definitions", "iri", "synonyms"],
   "subjects": [
     {
       "queryName": "subjects",
@@ -25,10 +19,7 @@
         "isLead",
         {
           "name": "grant",
-          "fields": [
-            "name",
-            "id"
-          ]
+          "fields": ["name", "id"]
         },
         {
           "name": "organisation",
@@ -42,11 +33,7 @@
             {
               "queryName": "countries",
               "name": "countries",
-              "fields": [
-                "code",
-                "id",
-                "name"
-              ]
+              "fields": ["code", "id", "name"]
             }
           ]
         }

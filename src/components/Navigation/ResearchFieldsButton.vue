@@ -1,7 +1,9 @@
 <template>
   <div
     class="d-flex align-center"
-    :class="{'mb-6 mr-2 full-width utilityButton': $vuetify.display.smAndDown}"
+    :class="{
+      'mb-6 mr-2 full-width utilityButton': $vuetify.display.smAndDown,
+    }"
   >
     <Tooltip :tooltip-text="tooltipText" />
     <v-btn
@@ -19,43 +21,43 @@
 
 <script>
 import Tooltip from "@/components/Others/Tooltip.vue";
-import {mapGetters} from "vuex";
+import { mapGetters } from "vuex";
 
 export default {
-  name: 'ResearchFieldsButton',
-  components: {Tooltip},
-  data(){
+  name: "ResearchFieldsButton",
+  components: { Tooltip },
+  data() {
     return {
       button: {
         text: "Edit tags",
         attributes: {
-          elevation:"2",
+          elevation: "2",
           raised: true,
           color: "primary",
-        }
+        },
       },
-      tooltipText: "Refine your choice of scientific field"
-    }
+      tooltipText: "Refine your choice of scientific field",
+    };
   },
-  computed:{
-    ...mapGetters('multiTagsStore', ["getFairSharingRecords"]),
+  computed: {
+    ...mapGetters("multiTagsStore", ["getFairSharingRecords"]),
     tagButtonActive() {
-      if (this.getFairSharingRecords && this.getFairSharingRecords.length > 0) return true;
+      if (this.getFairSharingRecords && this.getFairSharingRecords.length > 0)
+        return true;
       else return false;
     },
   },
 
   methods: {
     returnToTags() {
-      this.$router.push('/researchfields');
+      this.$router.push("/researchfields");
     },
-  }
-}
-
+  },
+};
 </script>
 
 <style scoped>
 .utilityButton {
-    max-width: 320px
+  max-width: 320px;
 }
 </style>

@@ -1,8 +1,8 @@
-import {shallowMount} from "@vue/test-utils";
-import { createStore } from 'vuex';
-import { createVuetify } from 'vuetify'
-import {describe, expect, it, beforeEach, vi} from 'vitest'
-import RefineButton from "@/components/AllTags/RefineButton.vue"
+import { shallowMount } from "@vue/test-utils";
+import { createStore } from "vuex";
+import { createVuetify } from "vuetify";
+import { describe, expect, it, beforeEach, vi } from "vitest";
+import RefineButton from "@/components/AllTags/RefineButton.vue";
 import multiTagsStore from "@/store/multiTagsStore";
 
 const vuetify = createVuetify();
@@ -12,25 +12,25 @@ let mockRoute = {
 };
 
 const state = {
-  queryParams :{
-    subjects: ['genetics'],
-    dataContactInformation: ['yes'],
-  }
-}
+  queryParams: {
+    subjects: ["genetics"],
+    dataContactInformation: ["yes"],
+  },
+};
 
 multiTagsStore.getters = {
-  getQueryParams:  () => {
-    return state.queryParams
+  getQueryParams: () => {
+    return state.queryParams;
   },
-}
+};
 
 let store = createStore({
   modules: {
     multiTagsStore: multiTagsStore,
-  }
-})
+  },
+});
 
-describe("RefineButton.vue", function(){
+describe("RefineButton.vue", function () {
   let wrapper;
 
   beforeEach(() => {
@@ -39,16 +39,16 @@ describe("RefineButton.vue", function(){
         plugins: [vuetify, store],
         mocks: {
           $router: mockRouter,
-          $route: mockRoute
+          $route: mockRoute,
         },
-        stubs: ['router-link'],
-        props:{
-          link: '/',
-          choice: 'Database',
-          count: 0
-        }
-      }
-    })
+        stubs: ["router-link"],
+        props: {
+          link: "/",
+          choice: "Database",
+          count: 0,
+        },
+      },
+    });
   });
 
   it("can be instantiated", () => {
@@ -57,8 +57,7 @@ describe("RefineButton.vue", function(){
 
   it("check makeChoice method is called", () => {
     const makeChoice = wrapper.get("[data-testid='makeChoice']");
-    makeChoice.trigger('click')
+    makeChoice.trigger("click");
     expect(wrapper.vm.makeChoice()).toHaveBeenCalled;
   });
-
 });

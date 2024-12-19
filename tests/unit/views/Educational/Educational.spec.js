@@ -1,8 +1,8 @@
-import {shallowMount} from "@vue/test-utils";
-import { createStore } from 'vuex';
-import { createVuetify } from 'vuetify'
-import { describe, expect, it, beforeEach, vi } from 'vitest'
-import Educational from "@/views/Educational/Educational.vue"
+import { shallowMount } from "@vue/test-utils";
+import { createStore } from "vuex";
+import { createVuetify } from "vuetify";
+import { describe, expect, it, beforeEach, vi } from "vitest";
+import Educational from "@/views/Educational/Educational.vue";
 import navigationStore from "@/store/navigationStore";
 
 const vuetify = createVuetify();
@@ -11,36 +11,36 @@ const $router = { push: vi.fn() };
 let $route = {
   path: "/educational/claim",
   params: {
-    text: "claim"
-  }
+    text: "claim",
+  },
 };
 
 navigationStore.getters = {
   getBreadcrumbs() {
-    return []
-  }
-}
+    return [];
+  },
+};
 
 let store = createStore({
   modules: {
-    navigationStore: navigationStore
-  }
-})
+    navigationStore: navigationStore,
+  },
+});
 
-describe("Educational.vue", function(){
+describe("Educational.vue", function () {
   let wrapper;
 
   beforeEach(() => {
     wrapper = shallowMount(Educational, {
-      global:{
+      global: {
         plugins: [vuetify, store],
         mocks: {
           $router: $router,
-          $route: $route
+          $route: $route,
         },
-        stubs: ['router-link', 'router-view']
+        stubs: ["router-link", "router-view"],
       },
-    })
+    });
   });
 
   it("can be instantiated", () => {
@@ -49,19 +49,18 @@ describe("Educational.vue", function(){
 
   it("no params text", () => {
     $route = {
-      params: {}
-    }
+      params: {},
+    };
     wrapper = shallowMount(Educational, {
-      global:{
+      global: {
         plugins: [vuetify, store],
         mocks: {
           $router: $router,
-          $route: $route
+          $route: $route,
         },
-        stubs: ['router-link', 'router-view']
+        stubs: ["router-link", "router-view"],
       },
-    })
+    });
     expect(wrapper.vm.text).toMatchObject(["<p>Nothing to see here!</p>"]);
   });
-
 });

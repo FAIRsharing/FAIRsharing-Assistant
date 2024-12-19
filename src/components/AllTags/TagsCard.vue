@@ -10,26 +10,36 @@
 </template>
 
 <script>
-import {mapGetters} from "vuex";
-import ResourceCard from '@/components/Others/ResourceCard.vue'
+import { mapGetters } from "vuex";
+import ResourceCard from "@/components/Others/ResourceCard.vue";
 import registryName from "@/utils/registryName";
 import registryIcons from "@/utils/registryIcon";
 
 export default {
-  name: 'TagsCard',
+  name: "TagsCard",
   components: { ResourceCard },
   props: {
     registry: {
       default: "",
-      type: String
-    }
+      type: String,
+    },
   },
   computed: {
-    ...mapGetters('multiTagsStore', ["getCurrentRegistry", "getFairSharingRecords"]),
+    ...mapGetters("multiTagsStore", [
+      "getCurrentRegistry",
+      "getFairSharingRecords",
+    ]),
     recordsCount() {
       let _module = this;
-      if (_module.getFairSharingRecords && _module.getFairSharingRecords.length === 0) return 0
-      else return _module.getFairSharingRecords.filter(x => x.registry === this.registry).length
+      if (
+        _module.getFairSharingRecords &&
+        _module.getFairSharingRecords.length === 0
+      )
+        return 0;
+      else
+        return _module.getFairSharingRecords.filter(
+          (x) => x.registry === this.registry,
+        ).length;
     },
   },
   methods: {
@@ -39,7 +49,6 @@ export default {
       if (registry === this.getCurrentRegistry) return true;
       else return false;
     },
-  }
-}
-
+  },
+};
 </script>

@@ -1,7 +1,7 @@
-import {shallowMount} from "@vue/test-utils";
-import { createStore } from 'vuex';
-import { createVuetify } from 'vuetify'
-import { describe, expect, it, beforeEach } from 'vitest'
+import { shallowMount } from "@vue/test-utils";
+import { createStore } from "vuex";
+import { createVuetify } from "vuetify";
+import { describe, expect, it, beforeEach } from "vitest";
 import SubjectAgnostic from "@/components/AllTags/SubjectAgnostic";
 import multiTagsStore from "@/store/multiTagsStore";
 
@@ -14,39 +14,39 @@ multiTagsStore.getters = {
         record: "Wibble",
         registry: "Standard",
         id: 123,
-      }
-    ]
+      },
+    ];
   },
-  getQueryParams:  () => {
+  getQueryParams: () => {
     return {
-      subjects: ['genetics'],
-      registry: ['standard']
-    }
+      subjects: ["genetics"],
+      registry: ["standard"],
+    };
   },
   getCurrentRegistry: () => {
-    return "standard"
-  }
-}
+    return "standard";
+  },
+};
 
 let store = createStore({
   modules: {
     multiTagsStore: multiTagsStore,
   },
-})
+});
 
-describe("SubjectAgnostic.vue", function(){
+describe("SubjectAgnostic.vue", function () {
   let wrapper;
 
   beforeEach(() => {
     wrapper = shallowMount(SubjectAgnostic, {
-      global:{
-        props :{
-          searchTagsRef: {}
+      global: {
+        props: {
+          searchTagsRef: {},
         },
         plugins: [vuetify, store],
-        stubs: ['router-link', 'router-view']
+        stubs: ["router-link", "router-view"],
       },
-    })
+    });
   });
 
   it("can be instantiated", () => {
@@ -55,11 +55,11 @@ describe("SubjectAgnostic.vue", function(){
 
   it("can check showAgnosticModal computed property", () => {
     //When noThanksSelected data is true
-    wrapper.vm.noThanksSelected = true
+    wrapper.vm.noThanksSelected = true;
     expect(wrapper.vm.showAgnosticModal).toBe(false);
 
     //When noThanksSelected data is false & getCurrentRegistry has a string value
-    wrapper.vm.noThanksSelected = false
+    wrapper.vm.noThanksSelected = false;
     expect(wrapper.vm.showAgnosticModal).toBe(true);
   });
 
@@ -81,29 +81,29 @@ describe("SubjectAgnostic.vue", function(){
             record: "Wibble3",
             registry: "Standard",
             id: 3,
-          }
-        ]
+          },
+        ];
       },
       getCurrentRegistry: () => {
-        return "Standard"
-      }
-    }
+        return "Standard";
+      },
+    };
     store = createStore({
       modules: {
         multiTagsStore: multiTagsStore,
       },
-    })
+    });
     wrapper = shallowMount(SubjectAgnostic, {
-      global:{
-        props :{
-          searchTagsRef: {}
+      global: {
+        props: {
+          searchTagsRef: {},
         },
         plugins: [vuetify, store],
-        stubs: ['router-link', 'router-view']
+        stubs: ["router-link", "router-view"],
       },
-    })
+    });
 
-    wrapper.vm.noThanksSelected = false
+    wrapper.vm.noThanksSelected = false;
     expect(wrapper.vm.showAgnosticModal).toBe(false);
   });
 
@@ -116,34 +116,34 @@ describe("SubjectAgnostic.vue", function(){
             record: "Wibble",
             registry: "Standard",
             id: 123,
-          }
-        ]
+          },
+        ];
       },
-      getQueryParams:  () => {
+      getQueryParams: () => {
         return {
-          subjects: ['genetics'],
-          registry: ['standard']
-        }
+          subjects: ["genetics"],
+          registry: ["standard"],
+        };
       },
       getCurrentRegistry: () => {
-        return ""
-      }
-    }
+        return "";
+      },
+    };
     store = createStore({
       modules: {
         multiTagsStore: multiTagsStore,
       },
-    })
+    });
     wrapper = shallowMount(SubjectAgnostic, {
-      global:{
-        props :{
-          searchTagsRef: {}
+      global: {
+        props: {
+          searchTagsRef: {},
         },
         plugins: [vuetify, store],
-        stubs: ['router-link', 'router-view']
+        stubs: ["router-link", "router-view"],
       },
-    })
-    wrapper.vm.noThanksSelected = false
+    });
+    wrapper.vm.noThanksSelected = false;
 
     expect(wrapper.vm.showAgnosticModal).toBe(true);
 
@@ -155,37 +155,37 @@ describe("SubjectAgnostic.vue", function(){
             record: "Wibble",
             registry: "Standard",
             id: 123,
-          }
-        ]
+          },
+        ];
       },
-      getQueryParams:  () => {
-        return {}
+      getQueryParams: () => {
+        return {};
       },
       getCurrentRegistry: () => {
-        return ""
-      }
-    }
+        return "";
+      },
+    };
     store = createStore({
       modules: {
         multiTagsStore: multiTagsStore,
       },
-    })
+    });
     wrapper = shallowMount(SubjectAgnostic, {
-      global:{
-        props :{
-          searchTagsRef: {}
+      global: {
+        props: {
+          searchTagsRef: {},
         },
         plugins: [vuetify, store],
-        stubs: ['router-link', 'router-view']
+        stubs: ["router-link", "router-view"],
       },
-    })
-    wrapper.vm.noThanksSelected = false
+    });
+    wrapper.vm.noThanksSelected = false;
 
     expect(wrapper.vm.showAgnosticModal).toBe(false);
   });
 
   it("can check noThanks method", () => {
-    wrapper.vm.noThanks()
+    wrapper.vm.noThanks();
     expect(wrapper.vm.noThanksSelected).toBe(true);
   });
 
@@ -197,39 +197,39 @@ describe("SubjectAgnostic.vue", function(){
             record: "Wibble",
             registry: "Standard",
             id: 123,
-          }
-        ]
+          },
+        ];
       },
-      getQueryParams:  () => {
+      getQueryParams: () => {
         return {
-          subjects: ['genetics'],
-          registry: ['standard']
-        }
+          subjects: ["genetics"],
+          registry: ["standard"],
+        };
       },
       getCurrentRegistry: () => {
-        return "standard"
-      }
-    }
+        return "standard";
+      },
+    };
     store = createStore({
       modules: {
         multiTagsStore: multiTagsStore,
-      }
-    })
+      },
+    });
 
     wrapper = shallowMount(SubjectAgnostic, {
-      global:{
-        props :{
-          searchTagsRef: {}
+      global: {
+        props: {
+          searchTagsRef: {},
         },
         plugins: [vuetify, store],
-        stubs: ['router-link', 'router-view']
+        stubs: ["router-link", "router-view"],
       },
-    })
-    process.env.VUE_APP_FAIRSHARING_URL = "http://test.com/"
-    wrapper.vm.subjectBrowserLink()
+    });
+    process.env.VUE_APP_FAIRSHARING_URL = "http://test.com/";
+    wrapper.vm.subjectBrowserLink();
 
     //When getQueryParams has subjects object
-    let defaultURL = "http://test.com/browse/subject?term=genetics"
+    let defaultURL = "http://test.com/browse/subject?term=genetics";
     expect(wrapper.vm.subjectBrowserLink()).toBe(defaultURL);
 
     //When getQueryParams has no subjects object
@@ -240,37 +240,37 @@ describe("SubjectAgnostic.vue", function(){
             record: "Wibble",
             registry: "Standard",
             id: 123,
-          }
-        ]
+          },
+        ];
       },
-      getQueryParams:  () => {
+      getQueryParams: () => {
         return {
-          registry: ['standard']
-        }
+          registry: ["standard"],
+        };
       },
       getCurrentRegistry: () => {
-        return "standard"
-      }
-    }
+        return "standard";
+      },
+    };
     store = createStore({
       modules: {
         multiTagsStore: multiTagsStore,
-      }
-    })
+      },
+    });
 
     wrapper = shallowMount(SubjectAgnostic, {
-      global:{
-        props :{
-          searchTagsRef: {}
+      global: {
+        props: {
+          searchTagsRef: {},
         },
         plugins: [vuetify, store],
-        stubs: ['router-link', 'router-view']
+        stubs: ["router-link", "router-view"],
       },
-    })
+    });
 
-    wrapper.vm.subjectBrowserLink()
-    expect(wrapper.vm.subjectBrowserLink()).toBe("http://test.com/browse/subject");
-
+    wrapper.vm.subjectBrowserLink();
+    expect(wrapper.vm.subjectBrowserLink()).toBe(
+      "http://test.com/browse/subject",
+    );
   });
-
 });

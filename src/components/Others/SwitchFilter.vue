@@ -13,14 +13,11 @@
       </div>
     </v-fade-transition>
     <v-row>
-      <v-col
-        cols="12"
-        class="d-flex align-top"
-      >
+      <v-col cols="12" class="d-flex align-top">
         <Tooltip
           :tooltip-text="filter['tooltip']"
           class="mr-n2"
-          style="margin-top:1px"
+          style="margin-top: 1px"
         />
         <v-radio-group
           v-model="filtersOpted"
@@ -28,18 +25,9 @@
           color="primary"
           @update:model-value="selectToggle(filter)"
         >
-          <v-radio
-            label="Yes"
-            value="true"
-          />
-          <v-radio
-            label="No"
-            value="false"
-          />
-          <v-radio
-            label="Either"
-            value="null"
-          />
+          <v-radio label="Yes" value="true" />
+          <v-radio label="No" value="false" />
+          <v-radio label="Either" value="null" />
         </v-radio-group>
       </v-col>
     </v-row>
@@ -52,35 +40,34 @@ import Tooltip from "@/components/Others/Tooltip.vue";
 
 export default {
   name: "SwitchFilter",
-  components: {Tooltip, Loaders},
-  props:{
-    filter:{
+  components: { Tooltip, Loaders },
+  props: {
+    filter: {
       type: Object,
       required: false,
       default() {
-        return {}
-      }
-    }
-
+        return {};
+      },
+    },
   },
-  data () {
+  data() {
     return {
       recordsLoading: false,
       hasBeenUsed: false,
-      filtersOpted: 'null',
+      filtersOpted: "null",
       filterSelectedArray: [],
-      filterSelected:{
-        key:"",
-        value:""
-      }
-    }
+      filterSelected: {
+        key: "",
+        value: "",
+      },
+    };
   },
-  computed:{
+  computed: {
     ...mapGetters("multiTagsStore", ["getQueryParams"]),
   },
 
   mounted() {
-    this.preSelectedFilter()
+    this.preSelectedFilter();
   },
 
   methods: {
@@ -89,33 +76,31 @@ export default {
       let _module = this;
       _module.hasBeenUsed = true;
       let currentQueryParams = _module.getQueryParams;
-      if (_module.filtersOpted === 'true') {
-        currentQueryParams[filter['filterQuery']] = true;
-      }
-      else if (_module.filtersOpted === 'false') {
-        currentQueryParams[filter['filterQuery']] = false;
-      }
-      else {
-        delete currentQueryParams[filter['filterQuery']];
+      if (_module.filtersOpted === "true") {
+        currentQueryParams[filter["filterQuery"]] = true;
+      } else if (_module.filtersOpted === "false") {
+        currentQueryParams[filter["filterQuery"]] = false;
+      } else {
+        delete currentQueryParams[filter["filterQuery"]];
       }
 
       // TODO: Try to update query params with currentQueryParams
-      
+
       this.recordsLoading = true;
       await _module.fetchMultiTagData(currentQueryParams);
       this.recordsLoading = false;
     },
 
-    preSelectedFilter () {
+    preSelectedFilter() {
       // TODO: Change this to look in the store.
       let _module = this;
-      let existing  = _module.getQueryParams[_module.filter.filterQuery];
+      let existing = _module.getQueryParams[_module.filter.filterQuery];
       /* v8 ignore start */
       if (existing) {
         _module.filtersOpted = String(existing);
       }
       /* v8 ignore stop */
     },
-  }
-}
+  },
+};
 </script>

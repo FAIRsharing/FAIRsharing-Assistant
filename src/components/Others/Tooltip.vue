@@ -6,7 +6,7 @@
           v-bind="props"
           size="x-small"
           class="mr-1"
-          :class="whiteText ? 'text-white': 'text-grey'"
+          :class="whiteText ? 'text-white' : 'text-grey'"
         >
           fa fa-question-circle
         </v-icon>
@@ -16,19 +16,17 @@
   </div>
 </template>
 <script>
-
 export default {
-  name: 'Tooltip',
-  props:{
-    tooltipText:{
-      type:String,
-      default: ""
+  name: "Tooltip",
+  props: {
+    tooltipText: {
+      type: String,
+      default: "",
     },
     whiteText: {
       type: Boolean,
-      default: false
-    }
-  }
-}
-
+      default: false,
+    },
+  },
+};
 </script>

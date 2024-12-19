@@ -2,10 +2,10 @@
   <v-card
     class="full-width testcard"
     :class="[
-      {'my-3 mx-0': $vuetify.display.smAndDown},
-      {'mx-3 mb-0': $vuetify.display.mdAndUp},
-      {'cardBorder': registrySelected},
-      {'cardHeight': !showRefineButton},
+      { 'my-3 mx-0': $vuetify.display.smAndDown },
+      { 'mx-3 mb-0': $vuetify.display.mdAndUp },
+      { cardBorder: registrySelected },
+      { cardHeight: !showRefineButton },
     ]"
     max-width="350"
     height="auto"
@@ -13,9 +13,7 @@
     elevation="6"
   >
     <div class="text-white d-flex flex-column justify-center pt-4">
-      <div
-        class="d-flex justify-center"
-      >
+      <div class="d-flex justify-center">
         <v-img
           class="mt-5 full-width contain"
           max-width="200px"
@@ -41,19 +39,18 @@
 </template>
 
 <script>
-
 import RefineButton from "@/components/AllTags/RefineButton.vue";
 import customIcons from "@/plugins/icons";
 
 export default {
-  name: 'ResourceCard',
-  components: {RefineButton},
-  props:{
+  name: "ResourceCard",
+  components: { RefineButton },
+  props: {
     registry: {
       type: String,
       default: "",
     },
-    registryIcon:{
+    registryIcon: {
       type: String,
       default: "",
     },
@@ -67,27 +64,25 @@ export default {
     },
     recordsCount: {
       type: Number,
-      default: 0
+      default: 0,
     },
-    showRefineButton:{
+    showRefineButton: {
       type: Boolean,
       default: false,
-    }
+    },
   },
   data() {
     return {
-      customIcons: customIcons
-    }
+      customIcons: customIcons,
+    };
   },
-}
-
+};
 </script>
-
 
 <style scoped lang="scss">
 .block-category {
   &__card {
-    transition: all .2ms ease;
+    transition: all 0.2ms ease;
     &:hover {
       transform: scale(1.05);
     }
@@ -97,12 +92,12 @@ export default {
   margin: 8px;
 }
 .actionBlock {
-  background: #fff
+  background: #fff;
 }
 .cardBorder {
-  border: 2px solid red
+  border: 2px solid red;
 }
-.cardHeight{
+.cardHeight {
   max-height: 230px;
 }
 </style>

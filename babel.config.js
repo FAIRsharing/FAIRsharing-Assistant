@@ -16,16 +16,10 @@
 //   },
 // }
 
-
-
 module.exports = {
-  presets: [
-    "@babel/preset-env",
-    "@vue/cli-plugin-babel/preset",
-
-  ],
+  presets: ["@babel/preset-env", "@vue/cli-plugin-babel/preset"],
   plugins: [
-    '@babel/plugin-transform-class-properties',
-    '@babel/plugin-transform-private-methods'
-  ]
+    "@babel/plugin-transform-class-properties",
+    "@babel/plugin-transform-private-methods",
+  ],
 };

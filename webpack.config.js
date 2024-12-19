@@ -1,18 +1,19 @@
 const VueLoaderPlugin = require("vue-loader");
 const path = require("path");
-const webpack = require('webpack');
-const dotenv = require('dotenv').config({
-  path: path.join(__dirname, '.env')
+const webpack = require("webpack");
+const dotenv = require("dotenv").config({
+  path: path.join(__dirname, ".env"),
 });
 
-const WebpackBundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const WebpackBundleAnalyzerPlugin =
+  require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
 module.exports = {
   mode: "development",
   module: {
     resolve: {
       alias: {
-        vue: '@vue/compat',
-      }
+        vue: "@vue/compat",
+      },
     },
     rules: [
       {
@@ -21,45 +22,37 @@ module.exports = {
         options: {
           compilerOptions: {
             compatConfig: {
-              MODE: 2
+              MODE: 2,
             },
           },
-
-        }
+        },
       },
       // this will apply to both plain `.js` files
       // AND `<script>` blocks in `.vue` files
       {
         test: /\.js$/,
         loader: "babel-loader",
-        exclude: /(node_modules|bower_components)/
+        exclude: /(node_modules|bower_components)/,
       },
       // this will apply to both plain `.css` files
       // AND `<style>` blocks in `.vue` files
       {
         test: /\.scss$/,
-        use: [
-          'vue-style-loader',
-          'css-loader',
-          'sass-loader',
-        ],
+        use: ["vue-style-loader", "css-loader", "sass-loader"],
       },
       {
         test: /\.css$/,
-        use: [
-          "vue-style-loader",
-          "css-loader",
-        ]
+        use: ["vue-style-loader", "css-loader"],
       },
       {
         test: /\.js?$/,
         exclude: /(node_modules)/,
         include: path.resolve(__dirname, "src"),
         use: {
-          loader: "babel-loader"
-        }
+          loader: "babel-loader",
+        },
       },
-    ]
+    ],
   },
   plugins: [
     // make sure to include the plugin for the magic
@@ -72,5 +65,4 @@ module.exports = {
     }),
     new WebpackBundleAnalyzerPlugin(),
   ],
-
 };

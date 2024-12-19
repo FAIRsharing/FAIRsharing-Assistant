@@ -13,14 +13,8 @@
       </div>
     </v-fade-transition>
     <v-row>
-      <v-col
-        cols="12"
-        class="d-flex align-top"
-      >
-        <Tooltip
-          :tooltip-text="filter['tooltip']"
-          class="mt-5 mr-1"
-        />
+      <v-col cols="12" class="d-flex align-top">
+        <Tooltip :tooltip-text="filter['tooltip']" class="mt-5 mr-1" />
         <v-select
           ref="filterSelect"
           v-model="filtersOpted"
@@ -47,61 +41,58 @@
   </div>
 </template>
 <script>
-import {mapActions, mapGetters} from "vuex";
+import { mapActions, mapGetters } from "vuex";
 import Loaders from "@/components/Loaders/Loaders.vue";
-import Tooltip from "@/components/Others/Tooltip.vue"
+import Tooltip from "@/components/Others/Tooltip.vue";
 
 export default {
   name: "SelectFilter",
   components: { Loaders, Tooltip },
-  props:{
-    filter:{
+  props: {
+    filter: {
       type: Object,
       required: false,
       default() {
-        return {}
-      }
-    }
-
+        return {};
+      },
+    },
   },
-  data () {
+  data() {
     return {
-      filtersOpted:[],
+      filtersOpted: [],
       recordsLoading: false,
       filterSelectedArray: [],
-      filterSelected:{
-        key:"",
-        value:""
-      }
-    }
+      filterSelected: {
+        key: "",
+        value: "",
+      },
+    };
   },
-  computed:{
+  computed: {
     ...mapGetters("multiTagsStore", ["getQueryParams"]),
   },
   mounted() {
-    this.preSelectedFilter()
+    this.preSelectedFilter();
   },
   methods: {
     ...mapActions("multiTagsStore", ["fetchMultiTagData"]),
     async selectToggle(filter) {
       let _module = this;
-      filter["refineToggle"] = this.filtersOpted
+      filter["refineToggle"] = this.filtersOpted;
       _module.filterSelected = {
-        "key" : filter["filterQuery"],
-        "value" : filter["refineToggle"]
-      }
+        key: filter["filterQuery"],
+        value: filter["refineToggle"],
+      };
 
       let currentQueryParams = _module.getQueryParams;
       if (_module.filterSelected.value.length === 0) {
         delete currentQueryParams[this.filterSelected.key];
-      }
-      else {
+      } else {
         currentQueryParams[this.filterSelected.key] = this.filterSelected.value;
       }
       _module.recordsLoading = true;
       await _module.fetchMultiTagData(currentQueryParams);
       _module.recordsLoading = false;
-
     },
     cleanText(string) {
       if (typeof string === "string") {
@@ -112,17 +103,16 @@ export default {
       return string;
     },
 
-    preSelectedFilter () {
+    preSelectedFilter() {
       let _module = this;
-      Object.keys(_module.getQueryParams).forEach(function(key) {
+      Object.keys(_module.getQueryParams).forEach(function (key) {
         if (key === _module.filter.filterQuery) {
-          _module.getQueryParams[key].forEach(function(value) {
+          _module.getQueryParams[key].forEach(function (value) {
             _module.filtersOpted.push(value);
-          })
+          });
         }
-      })
-    }
-
-  }
-}
+      });
+    },
+  },
+};
 </script>

@@ -2,38 +2,27 @@
   <div>
     <div
       v-if="recordType && !showOnlyStatus"
-      :class="showStatus?'circle-container':'circle-container-dashed'"
+      :class="showStatus ? 'circle-container' : 'circle-container-dashed'"
     >
-      <v-tooltip
-        location="end"
-        offset="25"
-      >
+      <v-tooltip location="end" offset="25">
         <template #activator="{ props }">
-          <v-avatar
-            v-bind="props"
-            size="80"
-            :alt="getRecordStatus.title"
-          >
-            <Icon
-              :item="record.type"
-              wrapper-class=""
-              :height="80"
-            />
+          <v-avatar v-bind="props" size="80" :alt="getRecordStatus.title">
+            <Icon :item="record.type" wrapper-class="" :height="80" />
           </v-avatar>
         </template>
-        <span v-if="recordType[record.type]">{{ recordType[record.type].tooltip }}</span>
+        <span v-if="recordType[record.type]">{{
+          recordType[record.type].tooltip
+        }}</span>
       </v-tooltip>
 
-      <v-tooltip
-        v-if="showStatus"
-        location="right"
-      >
+      <v-tooltip v-if="showStatus" location="right">
         <template #activator="{ props }">
           <span
             v-bind="props"
             class="text-white text-h5 circle"
             :style="getRecordStatus.backColor"
-          ><p>{{ getRecordStatus.title }}</p></span>
+            ><p>{{ getRecordStatus.title }}</p></span
+          >
         </template>
         <span>{{ getRecordStatus.tooltip }}</span>
       </v-tooltip>
@@ -43,11 +32,7 @@
       v-if="showOnlyStatus && showStatus"
       :class="inEditForm ? 'circle-holder-editing' : 'circle-holder'"
     >
-      <v-tooltip
-        v-if="showStatus"
-        location="top"
-        data-testid="showStatus"
-      >
+      <v-tooltip v-if="showStatus" location="top" data-testid="showStatus">
         <template #activator="{ props }">
           <p
             v-bind="props"
@@ -60,73 +45,73 @@
         <span>{{ getRecordStatus.tooltip }}</span>
       </v-tooltip>
       <!--tag added only for coverage and is displayed none -->
-      <v-tooltip
-        v-else
-        class="d-none"
-      />
+      <v-tooltip v-else class="d-none" />
     </div>
   </div>
 </template>
 
 <script>
-import Icon from "@/components/Icon/Icon.vue"
-import { useTheme } from 'vuetify'
+import Icon from "@/components/Icon/Icon.vue";
+import { useTheme } from "vuetify";
 // Lighten or darken the color using javascript
-import { LightenDarkenColor } from '@/utils/generalUtils';
+import { LightenDarkenColor } from "@/utils/generalUtils";
 import customIcons from "@/plugins/icons";
 
 export default {
   name: "RecordStatus",
-  components: {Icon},
+  components: { Icon },
   props: {
-    record: {default: null, type: Object},
-    showStatus: {default: true, type: Boolean},
-    showOnlyStatus: {default: false, type: Boolean},
-    inEditForm: {default: false, type: Boolean},
+    record: { default: null, type: Object },
+    showStatus: { default: true, type: Boolean },
+    showOnlyStatus: { default: false, type: Boolean },
+    inEditForm: { default: false, type: Boolean },
   },
   setup() {
-    const theme = useTheme()
-    return {theme}
+    const theme = useTheme();
+    return { theme };
   },
   data() {
     return {
       statusStyles: {
         ready: {
-          title: 'R',
-          tooltip: 'Ready',
-          backColor: `background: linear-gradient(${this.theme.computedThemes.value.fairSharingTheme.colors.ready_color}, ${LightenDarkenColor(this.theme.computedThemes.value.fairSharingTheme.colors.ready_color,50)})`
+          title: "R",
+          tooltip: "Ready",
+          backColor: `background: linear-gradient(${this.theme.computedThemes.value.fairSharingTheme.colors.ready_color}, ${LightenDarkenColor(this.theme.computedThemes.value.fairSharingTheme.colors.ready_color, 50)})`,
         },
         deprecated: {
-          title: 'D',
-          tooltip: 'Deprecated',
-          backColor: `background: linear-gradient(${this.theme.computedThemes.value.fairSharingTheme.colors.deprecated_color}, ${LightenDarkenColor(this.theme.computedThemes.value.fairSharingTheme.colors.deprecated_color,50)})`
+          title: "D",
+          tooltip: "Deprecated",
+          backColor: `background: linear-gradient(${this.theme.computedThemes.value.fairSharingTheme.colors.deprecated_color}, ${LightenDarkenColor(this.theme.computedThemes.value.fairSharingTheme.colors.deprecated_color, 50)})`,
         },
         uncertain: {
-          title: 'U',
-          tooltip: 'Uncertain',
-          backColor: `background: linear-gradient(${this.theme.computedThemes.value.fairSharingTheme.colors.uncertain_color}, ${LightenDarkenColor(this.theme.computedThemes.value.fairSharingTheme.colors.uncertain_color,50)})`
+          title: "U",
+          tooltip: "Uncertain",
+          backColor: `background: linear-gradient(${this.theme.computedThemes.value.fairSharingTheme.colors.uncertain_color}, ${LightenDarkenColor(this.theme.computedThemes.value.fairSharingTheme.colors.uncertain_color, 50)})`,
         },
         in_development: {
-          title: 'Dev',
-          tooltip: 'In Development',
-          backColor: `background: linear-gradient(${this.theme.computedThemes.value.fairSharingTheme.colors.dev_color}, ${LightenDarkenColor(this.theme.computedThemes.value.fairSharingTheme.colors.dev_color,50)})`
+          title: "Dev",
+          tooltip: "In Development",
+          backColor: `background: linear-gradient(${this.theme.computedThemes.value.fairSharingTheme.colors.dev_color}, ${LightenDarkenColor(this.theme.computedThemes.value.fairSharingTheme.colors.dev_color, 50)})`,
         },
         undefined: {
-          title: '?',
-          tooltip: 'Undefined',
-          backColor: 'background: linear-gradient(red, red)'
+          title: "?",
+          tooltip: "Undefined",
+          backColor: "background: linear-gradient(red, red)",
         },
       },
       recordType: null,
-    }
+    };
   },
   computed: {
     getRecordStatus: function () {
       let _module = this;
-      if (this.statusStyles[_module.record.status] !== undefined && _module.record.status !== undefined)
+      if (
+        this.statusStyles[_module.record.status] !== undefined &&
+        _module.record.status !== undefined
+      )
         return this.statusStyles[_module.record.status];
       else {
-        return this.statusStyles[undefined]
+        return this.statusStyles[undefined];
       }
     },
   },
@@ -135,7 +120,7 @@ export default {
       this.recordType = customIcons.values;
     });
   },
-}
+};
 </script>
 
 <style scoped lang="scss">
@@ -198,7 +183,7 @@ export default {
     border-radius: 40px;
     -moz-border-radius: 40px;
     -webkit-border-radius: 40px;
-    cursor:help;
+    cursor: help;
   }
 }
 
@@ -215,6 +200,4 @@ export default {
     -webkit-border-radius: 36px;
   }
 }
-
-
 </style>

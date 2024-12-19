@@ -1,81 +1,83 @@
 const axios = require("axios");
-import Fragments from "./queries/fragments/fragments.json"
+import Fragments from "./queries/fragments/fragments.json";
 
 /* istanbul ignore next */
 class GraphQLClient {
-
   /** The GraphQLClient retrieves data from the FAIRSharing API and sends it to the front-end.
-     * Be careful, this is a singleton and trying to cast new instances will return the existing instance. Be
-     * also careful, its constructor is async !!
-     * @returns {Promise} - to use this object you need to do "await new ClassName()" or use .then(callback)
-     */
-  constructor(){
+   * Be careful, this is a singleton and trying to cast new instances will return the existing instance. Be
+   * also careful, its constructor is async !!
+   * @returns {Promise} - to use this object you need to do "await new ClassName()" or use .then(callback)
+   */
+  constructor() {
     this.initalizeHeader();
-    if (GraphQLClient._instance){
-      return GraphQLClient._instance
+    if (GraphQLClient._instance) {
+      return GraphQLClient._instance;
     }
     GraphQLClient._instance = this;
     this.url = process.env.VUE_APP_API_ENDPOINT + "/graphql";
   }
 
   /**
-     * Execute the given query (coming from a json file, see /queries/getRecords.json)
-     * @param {Object} query - the query coming from the JSON file
-     * sending to the API.
-     * @returns {Promise}
-     */
-  async executeQuery(query){
+   * Execute the given query (coming from a json file, see /queries/getRecords.json)
+   * @param {Object} query - the query coming from the JSON file
+   * sending to the API.
+   * @returns {Promise}
+   */
+  async executeQuery(query) {
     let client = this;
     let queryString = {
-      query: `{${client.buildQuery(query)}}`
+      query: `{${client.buildQuery(query)}}`,
     };
     let resp = await this.getData(queryString);
     if (resp.data.errors) {
       return resp.data.errors;
     }
-    return resp.data.data
+    return resp.data.data;
   }
 
   /**
-     * Takes the query, post it with axios and returns the raw data
-     * @param {Object} queryString - processed request coming out of buildQuery() or a GraphQL query string
-     * @returns {Promise} - an axios promise representing the server response.
-     */
+   * Takes the query, post it with axios and returns the raw data
+   * @param {Object} queryString - processed request coming out of buildQuery() or a GraphQL query string
+   * @returns {Promise} - an axios promise representing the server response.
+   */
   /* v8 ignore start */
-  async getData(queryString){
+  async getData(queryString) {
     let client = this;
     const fullQuery = {
       method: "post",
       baseURL: client.url,
-      data:  queryString,
-      headers: client.headers
+      data: queryString,
+      headers: client.headers,
     };
     return axios(fullQuery);
   }
   /* v8 ignore stop */
   /**
-     * Transform the JSON query into a string for graphQL
-     * @param {Object} query - the query coming from the JSON file
-     * @returns {Object} {query: queryString} - a valid graphQL query string to execute
-     */
-  buildQuery(query){
+   * Transform the JSON query into a string for graphQL
+   * @param {Object} query - the query coming from the JSON file
+   * @returns {Object} {query: queryString} - a valid graphQL query string to execute
+   */
+  buildQuery(query) {
     let client = this;
     let queryString = `${query["queryName"]}`; // query name
 
     // Handle query parameters
     if (query.queryParam) {
       queryString += "(";
-      Object.keys(query.queryParam).forEach(function(key){
-        if (typeof query.queryParam[key] === "boolean" || typeof query.queryParam[key] === "number"){
+      Object.keys(query.queryParam).forEach(function (key) {
+        if (
+          typeof query.queryParam[key] === "boolean" ||
+          typeof query.queryParam[key] === "number"
+        ) {
           queryString += `${key}:${query.queryParam[key]} `;
-        }
-        else if (typeof query.queryParam[key] === "string") {
+        } else if (typeof query.queryParam[key] === "string") {
           queryString += `${key}:"${query.queryParam[key]}" `;
-        }
-        else {
+        } else {
           let param = [];
-          query.queryParam[key].forEach(function(paramVal){
-            typeof paramVal !== "number" ? param.push("\"" + paramVal + "\"") : param.push(paramVal);
+          query.queryParam[key].forEach(function (paramVal) {
+            typeof paramVal !== "number"
+              ? param.push('"' + paramVal + '"')
+              : param.push(paramVal);
           });
           queryString += `${key}:[${param.join(",")}]`;
         }
@@ -84,32 +86,29 @@ class GraphQLClient {
     }
 
     // Handle query fields
-    if (query.fields){
+    if (query.fields) {
       queryString += "{";
-      query.fields.forEach(function(field){
-        if (typeof field === "string"){
+      query.fields.forEach(function (field) {
+        if (typeof field === "string") {
           queryString += ` ${field}`;
         }
-        if (typeof field === "object"){
-          if ("$ref" in field){
+        if (typeof field === "object") {
+          if ("$ref" in field) {
             let myRef = Fragments[field["$ref"]];
-            for (let subField of myRef){
-              if (typeof subField === "string"){
+            for (let subField of myRef) {
+              if (typeof subField === "string") {
                 queryString += ` ${subField}`;
-              }
-              /* v8 ignore next 3 */
-              else {
+              } else {
+                /* v8 ignore next 3 */
                 queryString += ` ${client.buildQuery(subField)}`;
               }
             }
-          }
-          else {
+          } else {
             queryString += ` ${field.name}{`;
-            field.fields.forEach(function(subField){
-              if (typeof subField === "string"){
+            field.fields.forEach(function (subField) {
+              if (typeof subField === "string") {
                 queryString += `${subField} `;
-              }
-              else {
+              } else {
                 queryString += `${client.buildQuery(subField)}`;
               }
             });
@@ -123,28 +122,26 @@ class GraphQLClient {
   }
 
   /**
-     * Add the authorization token to the headers
-     * @param {String} jwt - the user json web token
-     */
+   * Add the authorization token to the headers
+   * @param {String} jwt - the user json web token
+   */
 
-  setHeader(jwt){
-    this.headers['Authorization'] = `Bearer ${jwt}`;
+  setHeader(jwt) {
+    this.headers["Authorization"] = `Bearer ${jwt}`;
   }
 
-  initalizeHeader(){
+  initalizeHeader() {
     this.headers = {
-      "Accept": "application/json",
+      Accept: "application/json",
       "Content-Type": "application/json",
     };
-    this.headers['X-Client-Id'] = process.env.VUE_APP_CLIENT_ID;
+    this.headers["X-Client-Id"] = process.env.VUE_APP_CLIENT_ID;
     /* v8 ignore start */
-    if (this.headers['X-Client-Id'] === undefined){
-      delete this.headers['X-Client-Id']
+    if (this.headers["X-Client-Id"] === undefined) {
+      delete this.headers["X-Client-Id"];
     }
     /* v8 ignore stop */
   }
-
-
 }
 
 export default GraphQLClient;

@@ -1,17 +1,13 @@
 <template>
-  <v-row
-    v-if="showBanner"
-  >
-    <v-col
-      cols="12"
-    >
-      <v-alert
-        :type="resultCountColour()"
-      >
+  <v-row v-if="showBanner">
+    <v-col cols="12">
+      <v-alert :type="resultCountColour()">
         <!-- This html is from a safe source -->
         <!-- eslint-disable vue/no-v-html -->
         <span
-          v-html="`There are ${getFairSharingRecords.length} ${getCurrentRegistryBold()} records matching your selection.`"
+          v-html="
+            `There are ${getFairSharingRecords.length} ${getCurrentRegistryBold()} records matching your selection.`
+          "
         />
         <!-- eslint-enable vue/no-v-html -->
 
@@ -24,15 +20,10 @@
         </v-btn>
       </v-alert>
     </v-col>
-    <v-dialog
-      v-model="showResultPreview"
-      persistent
-    >
+    <v-dialog v-model="showResultPreview" persistent>
       <v-card>
         <div class="d-flex align-center position-relative">
-          <v-card-title
-            class="text-h5 mx-auto my-0"
-          >
+          <v-card-title class="text-h5 mx-auto my-0">
             Current search results
           </v-card-title>
           <v-btn
@@ -42,10 +33,7 @@
             @click="showResultPreview = false"
           >
             <template #append>
-              <v-icon
-                icon="fa fa-xmark fa-solid"
-                size="35"
-              />
+              <v-icon icon="fa fa-xmark fa-solid" size="35" />
             </template>
           </v-btn>
         </div>
@@ -72,34 +60,39 @@
 <script>
 import ResultTable from "@/components/Results/ResultTable.vue";
 import stringUtils from "@/utils/stringUtils";
-import {mapGetters} from "vuex";
+import { mapGetters } from "vuex";
 import Breadcrumbs from "@/components/Navigation/Breadcrumbs.vue";
 
 export default {
-  name: 'ResultPreviewBanner',
-  components: {Breadcrumbs, ResultTable },
+  name: "ResultPreviewBanner",
+  components: { Breadcrumbs, ResultTable },
   mixins: [stringUtils],
   props: {
     showBanner: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
   data: () => {
     return {
       showResultPreview: false,
-    }
+    };
   },
   computed: {
-    ...mapGetters('multiTagsStore', ["getFairSharingRecords", "getCurrentRegistry"]),
+    ...mapGetters("multiTagsStore", [
+      "getFairSharingRecords",
+      "getCurrentRegistry",
+    ]),
   },
   methods: {
-    ...mapGetters('multiTagsStore', ["getQueryParams"]),
+    ...mapGetters("multiTagsStore", ["getQueryParams"]),
     resultCountColour() {
       if (this.getFairSharingRecords.length > 10) {
         return "success";
-      }
-      else if (this.getFairSharingRecords.length > 0 && this.getFairSharingRecords.length <= 10) {
+      } else if (
+        this.getFairSharingRecords.length > 0 &&
+        this.getFairSharingRecords.length <= 10
+      ) {
         return "warning";
       }
       return "error";
@@ -108,11 +101,10 @@ export default {
       if (this.getCurrentRegistry) {
         return `<b>${this.getCurrentRegistry}</b>`;
       }
-      return '';
-    }
-  }
-}
-
+      return "";
+    },
+  },
+};
 </script>
 
 <style>
