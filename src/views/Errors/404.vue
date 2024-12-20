@@ -13,11 +13,11 @@
 </template>
 
 <script>
-import { useHead } from "@unhead/vue";
-
-useHead({
-  title: "FAIRassist | Not Found",
-});
+// import { useHead } from "@unhead/vue";
+//
+// useHead({
+//   title: "ABCS",
+// });
 export default {
   name: "Error404",
 };

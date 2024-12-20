@@ -59,6 +59,7 @@ let routes = [
   {
     name: "Error 404",
     path: "/error/404",
+    meta: { title: 'FAIRassist | Not Found TEST' },
     component: NotFound,
   },
   /* SERVER ERROR HANDLING */
@@ -78,6 +79,10 @@ let routes = [
 const router = createRouter({
   history: createWebHistory(),
   routes,
+});
+
+router.beforeEach((to) => {
+  document.title = to.meta.title;
 });
 
 export default router;
