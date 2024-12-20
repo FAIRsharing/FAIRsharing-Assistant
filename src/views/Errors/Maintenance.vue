@@ -10,11 +10,11 @@
 </template>
 
 <script>
-import { useHead } from "@unhead/vue";
-
-useHead({
-  title: "FAIRassist | Maintenance Mode",
-});
+// import { useHead } from "@unhead/vue";
+//
+// useHead({
+//   title: "FAIRassist | Maintenance Mode",
+// });
 export default {
   name: "Maintenance",
 };

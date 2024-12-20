@@ -13,11 +13,11 @@
 </template>
 
 <script>
-import { useHead } from "@unhead/vue";
-
-useHead({
-  title: "FAIRassist | Server Error",
-});
+// import { useHead } from "@unhead/vue";
+//
+// useHead({
+//   title: "FAIRassist | Server Error",
+// });
 export default {
   name: "Error500",
 };

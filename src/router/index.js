@@ -11,6 +11,7 @@ import {
   RefineRegistry,
   RefineFromQuestions,
   Educational,
+  Maintenance
 } from "./routes";
 
 let routes = [
@@ -59,13 +60,14 @@ let routes = [
   {
     name: "Error 404",
     path: "/error/404",
-    meta: { title: 'FAIRassist | Not Found TEST' },
+    meta: { title: 'FAIRassist | Not Found' },
     component: NotFound,
   },
   /* SERVER ERROR HANDLING */
   {
     name: "Error 500",
     path: "/error/500",
+    meta: { title: 'FAIRassist | Server Error' },
     component: ServerError,
   },
   /* REDIRECTION */
@@ -73,6 +75,13 @@ let routes = [
     name: "*",
     path: "/*/*",
     component: NotFound,
+  },
+  /* MAINTENANCE */
+  {
+    name: "Maintenance",
+    path: "/error/maintenance",
+    meta: { title: 'FAIRassist | Maintenance Mode' },
+    component: Maintenance,
   },
 ];
 

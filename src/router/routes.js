@@ -12,4 +12,6 @@ export const RefineRegistry = () =>
   import("@/views/Refinements/RefineRegistry.vue");
 export const RefineFromQuestions = () =>
   import("@/views/Refinements/RefineFromQuestions.vue");
-export const Educational = () => import("@/views/Educational/Educational.vue");
+export const Educational = () => import("@/views/Educational/Educational.vue")
+export const Maintenance = () =>
+  import("@/views/Errors/Maintenance");
