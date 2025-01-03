@@ -46,7 +46,7 @@ export default {
   },
   data() {
     return {
-      url: process.env.VUE_APP_FAIRSHARING_URL,
+      url: import.meta.env.VITE_FAIRSHARING_URL,
     };
   },
   mounted() {
@@ -65,4 +65,5 @@ export default {
 .intro-para {
   text-align: center;
 }
+
 </style>

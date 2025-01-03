@@ -225,7 +225,7 @@ describe("SubjectAgnostic.vue", function () {
         stubs: ["router-link", "router-view"],
       },
     });
-    process.env.VUE_APP_FAIRSHARING_URL = "http://test.com/";
+    import.meta.env.VITE_FAIRSHARING_URL = "http://test.com/";
     wrapper.vm.subjectBrowserLink();
 
     //When getQueryParams has subjects object

@@ -12,8 +12,8 @@ module.exports = {
     "prettier",
   ],
   rules: {
-    "no-console": process.env.NODE_ENV === "production" ? "error" : "off",
-    "no-debugger": process.env.NODE_ENV === "production" ? "error" : "off",
+    "no-console": process.env.VITE_NODE_ENV === "production" ? "error" : "off",
+    "no-debugger": process.env.VITE_NODE_ENV === "production" ? "error" : "off",
     "vue/multi-word-component-names": "off",
     "vue/order-in-components": [
       "error",

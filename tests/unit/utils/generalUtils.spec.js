@@ -6,14 +6,14 @@ import generalUtils, {
 
 describe("generalUtils.js", function () {
   it("can check getHostName method", function () {
-    process.env.VUE_APP_HOSTNAME = "https://api.fairsharing.org";
+    import.meta.env.VITE_HOSTNAME = "https://api.fairsharing.org";
     expect(generalUtils.methods.getHostname()).toBe(
       "https://api.fairsharing.org",
     );
   });
 
   it("can check getAPIEndPoint method", function () {
-    process.env.VUE_APP_API_ENDPOINT = "https://dev-api.fairsharing.org";
+    import.meta.env.VITE_API_ENDPOINT = "https://dev-api.fairsharing.org";
     expect(generalUtils.methods.getAPIEndPoint()).toBe(
       "https://dev-api.fairsharing.org",
     );

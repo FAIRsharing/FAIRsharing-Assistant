@@ -90,8 +90,9 @@ const router = createRouter({
   routes,
 });
 
+const DEFAULT_TITLE = 'FAIRassist';
 router.beforeEach((to) => {
-  document.title = to.meta.title;
+  document.title = to.meta.title || DEFAULT_TITLE;
 });
 
 export default router;

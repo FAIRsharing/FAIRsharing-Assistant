@@ -1,10 +1,10 @@
 const generalUtils = {
   methods: {
     getHostname() {
-      return process.env.VUE_APP_HOSTNAME;
+      return import.meta.env.VITE_HOSTNAME;
     },
     getAPIEndPoint() {
-      return process.env.VUE_APP_API_ENDPOINT;
+      return import.meta.env.VITE_API_ENDPOINT;
     },
   },
 };
