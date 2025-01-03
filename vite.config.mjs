@@ -56,34 +56,34 @@ export default defineConfig({
     },
   },
   // The important bit...
-  // build: {
-  //   lib: {
-  //     // src/main.ts is where we have exported our component(s)
-  //     entry: path.resolve(__dirname, "src/main.js"),
-  //     // entry: ['src/main.js'],
-  //     name: "FAIRsharing-Assistant",
-  //     // the name of the output files when the build is run
-  //     fileName: "FAIRsharing-Assistant",
-  //   },
-  //   rollupOptions: {
-  //     input: {
-  //       main: path.resolve(__dirname, 'index.html'),
-  //     },
-  //     // Make sure to exclude Vue from the bundle
-  //     external: ["vue"],
-  //     output: {
-  //       // Provide global variables to use in the UMD build
-  //       // for externalized deps
-  //       globals: {
-  //         vue: 'Vue',
-  //       },
-  //     },
-  //   },
-  // },
   build: {
-    outDir: 'dist',
-    assetsDir: '',
-    sourcemap: false,
-    minify: true,
-  }
+    lib: {
+      // src/main.ts is where we have exported our component(s)
+      entry: path.resolve(__dirname, "src/main.js"),
+      // entry: ['src/main.js'],
+      name: "FAIRsharing-Assistant",
+      // the name of the output files when the build is run
+      fileName: "FAIRsharing-Assistant",
+    },
+    rollupOptions: {
+      input: {
+        main: path.resolve(__dirname, 'index.html'),
+      },
+      // Make sure to exclude Vue from the bundle
+      external: ["vue"],
+      output: {
+        // Provide global variables to use in the UMD build
+        // for externalized deps
+        globals: {
+          vue: 'Vue',
+        },
+      },
+    },
+  },
+  // build: {
+  //   outDir: 'dist',
+  //   assetsDir: '',
+  //   sourcemap: false,
+  //   minify: true,
+  // }
 });
