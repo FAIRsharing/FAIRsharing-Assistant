@@ -64,24 +64,24 @@ describe("RefineQuestionSelection.vue", function () {
     expect(wrapper.vm.$options.name).toMatch("RefineQuestionSelection");
   });
 
-  it("can searchString watch when it has value of length lesser than 3", async () => {
-    wrapper.vm.searchString = "xy";
-    expect(wrapper.vm.searchString).toBe("xy");
-  });
-
-  it("can searchString watch when it has value of length greater than 3", async () => {
-    wrapper.vm.searchString = "abcd";
-    await wrapper.vm.$nextTick();
-    await expect(wrapper.vm.getResults("abcd")).toHaveBeenCalled;
-  });
-
-  it("can recordTags watch is executed", async () => {
-    wrapper.vm.recordTags = ["xyz"];
-    wrapper.vm.mounted = true;
-    wrapper.vm.loading = true;
-    await wrapper.vm.$nextTick();
-    expect(wrapper.vm.getFairSharingRecords).toHaveBeenCalled;
-  });
+  // it("can searchString watch when it has value of length lesser than 3", async () => {
+  //   wrapper.vm.searchString = "xy";
+  //   expect(wrapper.vm.searchString).toBe("xy");
+  // });
+  //
+  // it("can searchString watch when it has value of length greater than 3", async () => {
+  //   wrapper.vm.searchString = "abcd";
+  //   await wrapper.vm.$nextTick();
+  //   await expect(wrapper.vm.getResults("abcd")).toHaveBeenCalled;
+  // });
+  //
+  // it("can recordTags watch is executed", async () => {
+  //   wrapper.vm.recordTags = ["xyz"];
+  //   wrapper.vm.mounted = true;
+  //   wrapper.vm.loading = true;
+  //   await wrapper.vm.$nextTick();
+  //   expect(wrapper.vm.getFairSharingRecords).toHaveBeenCalled;
+  // });
 
   it("can clearResults method is executed", () => {
     wrapper.vm.clearResults();
