@@ -25,4 +25,5 @@ yarn-error.log*
 *.sln
 *.sw?
 **/*.html
+!/index.html
 
