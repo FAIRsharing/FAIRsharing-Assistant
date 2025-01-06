@@ -2,15 +2,9 @@
   <v-row v-if="showBanner">
     <v-col cols="12">
       <v-alert :type="resultCountColour()">
-        <!-- This html is from a safe source -->
-        <!-- eslint-disable vue/no-v-html -->
-        <span
-          v-html="
-            `There are ${getFairSharingRecords.length} ${getCurrentRegistryBold()} records matching your selection.`
-          "
-        />
-        <!-- eslint-enable vue/no-v-html -->
-
+        <span>{{
+          `There are ${getFairSharingRecords.length} ${getCurrentRegistryBold()} records matching your selection.`
+        }}</span>
         <v-btn
           v-if="resultCountColour() !== 'error'"
           class="preview-results"

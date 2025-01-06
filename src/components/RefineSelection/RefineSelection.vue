@@ -36,13 +36,10 @@
       <v-dialog :model-value="help" width="auto">
         <v-card class="py-4 px-6">
           <v-card-title> About this page </v-card-title>
-          <!-- This html is from a safe source -->
-          <!-- eslint-disable vue/no-v-html -->
           <v-card-text>
             <!-- because javascript doesn't allow line breaks in text -->
-            <span v-html="helpText.refinement.join('\n')" />
+            <span>{{ helpText.refinement.join("\n") }}</span>
           </v-card-text>
-          <!-- eslint-enable vue/no-v-html -->
           <div>
             <v-btn color="primary" @click="hideHelp()"> Close </v-btn>
           </div>

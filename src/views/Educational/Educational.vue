@@ -14,12 +14,9 @@
       class="wrapperClass d-flex flex-column align-content-stretch"
     >
       <v-row>
-        <!-- This html is from a safe source -->
-        <!-- eslint-disable vue/no-v-html -->
         <v-col v-for="(row, index) in text" :key="row + '-' + index" cols="12">
-          <span v-html="row" />
+          <span>{{ row }}</span>
         </v-col>
-        <!-- eslint-enable vue/no-v-html -->
       </v-row>
     </v-container>
   </div>

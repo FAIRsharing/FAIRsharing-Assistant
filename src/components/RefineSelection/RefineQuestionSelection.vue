@@ -214,8 +214,7 @@ export default {
       let taggedRecords = this.getFairSharingRecords.map((x) => x.id);
       if (taggedRecords.length) {
         tagQueryCopy.queryParam.taggedRecords = taggedRecords;
-      }
-      else {
+      } else {
         delete tagQueryCopy.taggedRecords;
       }
       let tags = await graphClient.executeQuery(tagQueryCopy);

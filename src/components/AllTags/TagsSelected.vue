@@ -21,13 +21,10 @@
     <v-dialog :model-value="help" width="auto">
       <v-card>
         <v-card-title> About this page </v-card-title>
-        <!-- This html is from a safe source -->
-        <!-- eslint-disable vue/no-v-html -->
         <v-card-text>
           <!-- because javascript doesn't allow line breaks in text -->
-          <span v-html="helpText.tags.join('\n')" />
+          <span>{{ helpText.tags.join("\n") }}</span>
         </v-card-text>
-        <!-- eslint-enable vue/no-v-html -->
         <v-card-actions>
           <v-btn color="primary" @click="hideHelp()"> Close </v-btn>
         </v-card-actions>

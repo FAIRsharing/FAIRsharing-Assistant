@@ -2,14 +2,13 @@
   <v-row v-if="getRefinedStatus" class="block-category pb-5">
     <v-col cols="12">
       <v-alert type="info">
-        <!-- This html is from a safe source -->
-        <!-- eslint-disable vue/no-v-html -->
-        <span v-if="getSelectionMessage" v-html="getSelectionMessage" />
+        <span v-if="getSelectionMessage">
+          {{ getSelectionMessage }}
+        </span>
         <span v-else>
           You've already selected <b>{{ getCurrentRegistry }}</b> records which
           will affect record counts here.
         </span>
-        <!-- eslint-enable vue/no-v-html -->
       </v-alert>
     </v-col>
   </v-row>

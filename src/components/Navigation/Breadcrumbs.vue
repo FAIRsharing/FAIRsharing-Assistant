@@ -31,10 +31,7 @@
         label
         @click="handleNavigation(crumb.link)"
       >
-        <!-- This html is from a safe source -->
-        <!-- eslint-disable vue/no-v-html -->
-        <span v-html="formatBreadcrumb(crumb)" />
-        <!-- eslint-enable vue/no-v-html -->
+        <span>{{ formatBreadcrumb(crumb) }}</span>
       </v-chip>
       <v-chip
         :key="'active_' + currentBreadcrumb.id"
@@ -43,22 +40,16 @@
         label
         variant="outlined"
       >
-        <!-- This html is from a safe source -->
-        <!-- eslint-disable vue/no-v-html -->
-        <span v-html="formatBreadcrumb(currentBreadcrumb)" />
-        <!-- eslint-enable vue/no-v-html -->
+        <span>{{ formatBreadcrumb(currentBreadcrumb) }}</span>
       </v-chip>
     </v-col>
   </v-row>
   <v-dialog :model-value="summary" width="auto">
     <v-card>
-      <!-- This html is from a safe source -->
-      <!-- eslint-disable vue/no-v-html -->
       <v-card-title> Summary </v-card-title>
       <v-card-text>
-        <span v-html="getSummaryText()" />
+        <span>{{ getSummaryText() }}</span>
       </v-card-text>
-      <!-- eslint-enable vue/no-v-html -->
       <v-card-actions class="justify-center">
         <v-btn
           elevation="2"
@@ -308,8 +299,8 @@ export default {
         try {
           value = _module.getQueryParams[key].join(", ");
         }
-        /* v8 ignore start */
         catch {
+          /* v8 ignore start */
           //Ignoring in test as unable to understand the logic and purpose of the catch statement here
           value = _module.getQueryParams[key];
         }

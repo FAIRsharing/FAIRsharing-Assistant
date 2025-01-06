@@ -25,9 +25,9 @@
     <v-row>
       <v-col cols="12">
         <!-- This html is from a safe source -->
-        <!-- eslint-disable vue/no-v-html -->
-        <h1 style="text-align: center" v-html="title" />
-        <!-- eslint-enable vue/no-v-html -->
+        <h1 style="text-align: center">
+          {{ title }}
+        </h1>
       </v-col>
     </v-row>
     <!-- A special query box if the question asks for model/format searching  -->
@@ -259,10 +259,9 @@
             <v-card-text
               class="text-white font-weight-medium text-xl-h4 text-lg-h5 text-md-h5 text-sm-h5 text-xs-h5 questionText"
             >
-              <!-- This html is from a safe source -->
-              <!-- eslint-disable vue/no-v-html -->
-              <span v-html="item.question" />
-              <!-- eslint-enable vue/no-v-html -->
+              <span>
+                {{ item.question }}
+              </span>
             </v-card-text>
           </div>
         </v-card>
@@ -271,10 +270,7 @@
     <!-- question footer -->
     <v-row>
       <v-col cols="12">
-        <!-- This html is from a safe source -->
-        <!-- eslint-disable vue/no-v-html -->
-        <p style="text-align: center" v-html="footer" />
-        <!-- eslint-enable vue/no-v-html -->
+        <p style="text-align: center">{{ footer }}</p>
       </v-col>
     </v-row>
     <!-- Potentially annoy the user by stopping to ask if they want to carry on due to few results -->
