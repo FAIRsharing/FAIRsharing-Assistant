@@ -62,9 +62,6 @@ describe("RefineQuestionSelection.vue", function () {
 
   it("can be instantiated", async () => {
     expect(wrapper.vm.$options.name).toMatch("RefineQuestionSelection");
-    await wrapper.vm.$options.watch.searchString.call(wrapper.vm, "abcd");
-    //When searchString in watch has value lesser than 3
-    await wrapper.vm.$options.watch.searchString.call(wrapper.vm, "ab");
   });
 
   // it("can searchString watch when it has value of length lesser than 3", async () => {

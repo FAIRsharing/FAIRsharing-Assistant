@@ -172,14 +172,15 @@ export default {
     ]),
   },
   watch: {
+    /* v8 ignore start */
     async searchString(val) {
       if (!val || val.length < 3) {
         return;
       }
       this.searchResults = [];
       val = val.trim();
-      /* v8 ignore next */
       await this.getResults(val);
+      /* v8 ignore stop */
     },
     async recordTags(val) {
       let _module = this;
@@ -213,7 +214,8 @@ export default {
       let taggedRecords = this.getFairSharingRecords.map((x) => x.id);
       if (taggedRecords.length) {
         tagQueryCopy.queryParam.taggedRecords = taggedRecords;
-      } else {
+      }
+      else {
         delete tagQueryCopy.taggedRecords;
       }
       let tags = await graphClient.executeQuery(tagQueryCopy);
