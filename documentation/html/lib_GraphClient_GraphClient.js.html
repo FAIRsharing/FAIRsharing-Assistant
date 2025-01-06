@@ -150,11 +150,9 @@ class GraphQLClient {
           typeof query.queryParam[key] === "number"
         ) {
           queryString += `${key}:${query.queryParam[key]} `;
-        }
-        else if (typeof query.queryParam[key] === "string") {
+        } else if (typeof query.queryParam[key] === "string") {
           queryString += `${key}:"${query.queryParam[key]}" `;
-        }
-        else {
+        } else {
           let param = [];
           query.queryParam[key].forEach(function (paramVal) {
             typeof paramVal !== "number"
@@ -181,19 +179,16 @@ class GraphQLClient {
               if (typeof subField === "string") {
                 queryString += ` ${subField}`;
                 /* v8 ignore next 4 */
-              }
-              else {
+              } else {
                 queryString += ` ${client.buildQuery(subField)}`;
               }
             }
-          }
-          else {
+          } else {
             queryString += ` ${field.name}{`;
             field.fields.forEach(function (subField) {
               if (typeof subField === "string") {
                 queryString += `${subField} `;
-              }
-              else {
+              } else {
                 queryString += `${client.buildQuery(subField)}`;
               }
             });
