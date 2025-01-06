@@ -60,8 +60,11 @@ describe("RefineQuestionSelection.vue", function () {
     });
   });
 
-  it("can be instantiated", () => {
+  it("can be instantiated", async () => {
     expect(wrapper.vm.$options.name).toMatch("RefineQuestionSelection");
+    await wrapper.vm.$options.watch.searchString.call(wrapper.vm, "abcd");
+    //When searchString in watch has value lesser than 3
+    await wrapper.vm.$options.watch.searchString.call(wrapper.vm, "ab");
   });
 
   // it("can searchString watch when it has value of length lesser than 3", async () => {
@@ -75,13 +78,13 @@ describe("RefineQuestionSelection.vue", function () {
   //   await expect(wrapper.vm.getResults("abcd")).toHaveBeenCalled;
   // });
   //
-  // it("can recordTags watch is executed", async () => {
-  //   wrapper.vm.recordTags = ["xyz"];
-  //   wrapper.vm.mounted = true;
-  //   wrapper.vm.loading = true;
-  //   await wrapper.vm.$nextTick();
-  //   expect(wrapper.vm.getFairSharingRecords).toHaveBeenCalled;
-  // });
+  it("can recordTags watch is executed", async () => {
+    wrapper.vm.recordTags = ["xyz"];
+    wrapper.vm.mounted = true;
+    wrapper.vm.loading = true;
+    await wrapper.vm.$nextTick();
+    expect(wrapper.vm.getFairSharingRecords).toHaveBeenCalled;
+  });
 
   it("can clearResults method is executed", () => {
     wrapper.vm.clearResults();

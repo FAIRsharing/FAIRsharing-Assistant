@@ -65,5 +65,4 @@ export default {
 .intro-para {
   text-align: center;
 }
-
 </style>

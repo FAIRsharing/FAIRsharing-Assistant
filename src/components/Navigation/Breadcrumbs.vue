@@ -142,7 +142,8 @@ export default {
         this.currentBreadcrumb = JSON.parse(
           JSON.stringify(questionData.breadcrumb),
         );
-      } catch {
+      }
+      catch {
         // TODO: Perhaps currentBreadcrumb definitions could be put in a JSON file...
         if (this.$route.path === "/results") {
           this.currentBreadcrumb = {
@@ -150,19 +151,22 @@ export default {
             text: "Results",
             link: "/results",
           };
-        } else if (this.$route.path === "/educational/claim") {
+        }
+        else if (this.$route.path === "/educational/claim") {
           this.currentBreadcrumb = {
             id: "educational_claim_crumb",
             text: "Claim your record(s) in FAIRsharing",
             link: "/educational/claim",
           };
-        } else if (this.$route.path === "/educational/register") {
+        }
+        else if (this.$route.path === "/educational/register") {
           this.currentBreadcrumb = {
             id: "eductional_register_crumb",
             text: "Register your resources(s) with FAIRsharing",
             link: "/educational/register",
           };
-        } else if (this.$route.path === "/refine") {
+        }
+        else if (this.$route.path === "/refine") {
           this.currentBreadcrumb = {
             id: "refine_crumb",
             text: "Refine your choice",
@@ -174,7 +178,8 @@ export default {
     handleNavigation(link) {
       if (this.$route.params.id) {
         this.path = "/" + this.$route.params.id;
-      } else {
+      }
+      else {
         this.path = this.$route.path;
       }
       // TODO: Clearing things here means that we might not be able to get the necessary information on going back.
@@ -194,10 +199,12 @@ export default {
           let length = this.getCompliantWithPolicy.split(",").length;
           if (length <= 2) {
             return crumb.text.replace("POLICY", this.getCompliantWithPolicy);
-          } else {
+          }
+          else {
             return crumb.text.replace("POLICY", `${length} policies`);
           }
-        } else {
+        }
+        else {
           return "No policy selected!";
         }
       }
@@ -228,8 +235,9 @@ export default {
     async copySummary() {
       try {
         await navigator.clipboard.writeText(this.getSummaryText());
-      } catch ($e) {
-        /* v8 ignore start */
+      }
+      /* v8 ignore start */
+      catch ($e) {
         // An alert could be used here, perhaps.
       }
       /* v8 ignore stop */
@@ -239,9 +247,11 @@ export default {
       // Questions have an ID...
       if (this.$route.path === "/refine") {
         this.summaryKey = "refine";
-      } else if (this.$route.path === "/results") {
+      }
+      else if (this.$route.path === "/results") {
         this.summaryKey = "results";
-      } else {
+      }
+      else {
         this.summaryKey = String(this.$route.params.id);
       }
       let text = summaries[String(this.summaryKey)];
@@ -256,7 +266,8 @@ export default {
             "STANDARD_4",
             `You have selected the following relevant standards <b>${this.getCompliantWith}</b>`,
           );
-        } else {
+        }
+        else {
           text = text.replace(
             "STANDARD_4",
             "You have not selected any relevant standards for your data",
@@ -276,13 +287,15 @@ export default {
             "ROLE",
             `The FAIRsharing Assistant is set to the <b>${this.getRole}</b> role. We have restricted the available databases to those appropriate for data deposition, which means they: are repositories or knowledgebases/repositories, have a life cycle status of Ready or In development.`,
           );
-        } else {
+        }
+        else {
           text = text.replace(
             "ROLE",
             `The FAIRsharing Assistant is set to the <b>${this.getRole}</b> role.`,
           );
         }
-      } else {
+      }
+      else {
         text = text.replace("ROLE", "");
       }
       return text;
@@ -294,9 +307,10 @@ export default {
         let value;
         try {
           value = _module.getQueryParams[key].join(", ");
-        } catch {
+        }
+        /* v8 ignore start */
+        catch {
           //Ignoring in test as unable to understand the logic and purpose of the catch statement here
-          /* v8 ignore start */
           value = _module.getQueryParams[key];
         }
         /* v8 ignore stop */

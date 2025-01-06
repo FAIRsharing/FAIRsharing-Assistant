@@ -99,7 +99,8 @@ export default {
     },
     subjectBrowserLink() {
       const subjects = this.getQueryParams.subjects;
-      const defaultUrl = import.meta.env.VITE_FAIRSHARING_URL + "browse/subject";
+      const defaultUrl =
+        import.meta.env.VITE_FAIRSHARING_URL + "browse/subject";
       if (subjects && subjects.length === 1) {
         return defaultUrl + "?term=" + subjects[0];
       }

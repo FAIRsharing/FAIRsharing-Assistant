@@ -11,7 +11,7 @@ import {
   RefineRegistry,
   RefineFromQuestions,
   Educational,
-  Maintenance
+  Maintenance,
 } from "./routes";
 
 let routes = [
@@ -60,14 +60,14 @@ let routes = [
   {
     name: "Error 404",
     path: "/error/404",
-    meta: { title: 'FAIRassist | Not Found' },
+    meta: { title: "FAIRassist | Not Found" },
     component: NotFound,
   },
   /* SERVER ERROR HANDLING */
   {
     name: "Error 500",
     path: "/error/500",
-    meta: { title: 'FAIRassist | Server Error' },
+    meta: { title: "FAIRassist | Server Error" },
     component: ServerError,
   },
   /* REDIRECTION */
@@ -80,7 +80,7 @@ let routes = [
   {
     name: "Maintenance",
     path: "/error/maintenance",
-    meta: { title: 'FAIRassist | Maintenance Mode' },
+    meta: { title: "FAIRassist | Maintenance Mode" },
     component: Maintenance,
   },
 ];
@@ -90,7 +90,7 @@ const router = createRouter({
   routes,
 });
 
-const DEFAULT_TITLE = 'FAIRassist';
+const DEFAULT_TITLE = "FAIRassist";
 router.beforeEach((to) => {
   document.title = to.meta.title || DEFAULT_TITLE;
 });
