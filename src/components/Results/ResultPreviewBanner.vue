@@ -2,9 +2,7 @@
   <v-row v-if="showBanner">
     <v-col cols="12">
       <v-alert :type="resultCountColour()">
-        <span>{{
-          `There are ${getFairSharingRecords.length} ${getCurrentRegistryBold()} records matching your selection.`
-        }}</span>
+        There are {{getFairSharingRecords.length}} <span class="font-weight-bold">{{getCurrentRegistryBold()}}</span> records matching your selection.
         <v-btn
           v-if="resultCountColour() !== 'error'"
           class="preview-results"
@@ -83,7 +81,8 @@ export default {
     resultCountColour() {
       if (this.getFairSharingRecords.length > 10) {
         return "success";
-      } else if (
+      }
+      else if (
         this.getFairSharingRecords.length > 0 &&
         this.getFairSharingRecords.length <= 10
       ) {
@@ -93,7 +92,7 @@ export default {
     },
     getCurrentRegistryBold() {
       if (this.getCurrentRegistry) {
-        return `<b>${this.getCurrentRegistry}</b>`;
+        return this.getCurrentRegistry;
       }
       return "";
     },

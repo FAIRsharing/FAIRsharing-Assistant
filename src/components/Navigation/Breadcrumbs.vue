@@ -34,22 +34,29 @@
         <span>{{ formatBreadcrumb(crumb) }}</span>
       </v-chip>
       <v-chip
+        id="currentBreadcrumb"
         :key="'active_' + currentBreadcrumb.id"
         class="ma-2"
         color="pink"
         label
         variant="outlined"
       >
-        <span>{{ formatBreadcrumb(currentBreadcrumb) }}</span>
+        <!-- This html is from a safe source -->
+        <!-- eslint-disable vue/no-v-html -->
+        <span v-html="formatBreadcrumb(currentBreadcrumb)" />
+        <!-- eslint-enable vue/no-v-html -->
       </v-chip>
     </v-col>
   </v-row>
   <v-dialog :model-value="summary" width="auto">
     <v-card>
+      <!-- This html is from a safe source -->
+      <!-- eslint-disable vue/no-v-html -->
       <v-card-title> Summary </v-card-title>
       <v-card-text>
-        <span>{{ getSummaryText() }}</span>
+        <span v-html="getSummaryText()" />
       </v-card-text>
+      <!-- eslint-enable vue/no-v-html -->
       <v-card-actions class="justify-center">
         <v-btn
           elevation="2"
@@ -218,11 +225,10 @@ export default {
         crumb.text.includes("...") &&
         crumb.text.includes("Research area")
       ) {
-        return crumb.text.replace("...", `<b>${tagText.join(", ")}</b>`);
+        return crumb.text.replace("...", `<b>${tagText.join(", ")}</b>`)
       }
       return crumb.text;
     },
-
     async copySummary() {
       try {
         await navigator.clipboard.writeText(this.getSummaryText());
