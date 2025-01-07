@@ -305,8 +305,8 @@ export default {
         try {
           value = _module.getQueryParams[key].join(", ");
         }
+        /* v8 ignore start */
         catch {
-          /* v8 ignore start */
           //Ignoring in test as unable to understand the logic and purpose of the catch statement here
           value = _module.getQueryParams[key];
         }

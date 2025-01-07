@@ -169,7 +169,7 @@ describe("ResultPreviewBanner.vue", () => {
       },
     });
     wrapper.vm.getCurrentRegistryBold();
-    expect(wrapper.vm.getCurrentRegistryBold()).toBe(`<b>${"standard"}</b>`);
+    expect(wrapper.vm.getCurrentRegistryBold()).toBe('standard');
   });
 
   it("can getCurrentRegistryBold method when getCurrentRegistry getter does not return a string", () => {

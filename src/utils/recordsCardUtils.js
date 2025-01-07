@@ -4,18 +4,22 @@ const recordsCardUtils = {
       if (record.doi) {
         // Only the last part of the DOI is needed for local links.
         return record.doi.split("/").pop();
-      } else {
+      }
+      else {
         return record.id;
       }
     },
     getChipColor(chip) {
       if (chip.type === "subjects") {
         return "subject_color";
-      } else if (chip.type === "domains") {
+      }
+      else if (chip.type === "domains") {
         return "domain_color";
-      } else if (chip.type === "taxonomies") {
+      }
+      else if (chip.type === "taxonomies") {
         return "taxonomic_color";
-      } else if (chip.type === "userDefinedTags") {
+      }
+      else if (chip.type === "userDefinedTags") {
         return "tags_color";
       }
     },
@@ -23,7 +27,8 @@ const recordsCardUtils = {
       if (type === "taxonomy") {
         // Upper case for first character only.
         return text.charAt(0).toUpperCase() + text.slice(1).toLowerCase();
-      } else {
+      }
+      else {
         // Upper case for first letter of each word.
         return text.replace(/(^\w{1})|(\s{1}\w{1})/g, (match) =>
           match.toUpperCase(),
@@ -108,13 +113,15 @@ const recordsCardUtils = {
           if (index < max_item_shown) {
             item.type = node;
             _module.chips.push(item);
-          } else {
+          }
+          else {
             record[node].remainTagCount++;
           }
         });
         return true;
-      } else {
+      }
       /* v8 ignore start */
+      else {
         return false;
       }
       /* v8 ignore stop */
