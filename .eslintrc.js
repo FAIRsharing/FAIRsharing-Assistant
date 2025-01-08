@@ -10,6 +10,7 @@ module.exports = {
     "plugin:vue/base",
     "plugin:vuetify/base",
     "prettier",
+    "stylelint-scss"
   ],
   rules: {
     "no-console": process.env.VITE_NODE_ENV === "production" ? "error" : "off",
