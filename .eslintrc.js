@@ -65,6 +65,8 @@ module.exports = {
     ],
     indent: ["error", 2],
     "space-in-parens": ["error", "never"],
+    "at-rule-no-unknown": null,
+    "scss/at-rule-no-unknown": true,
   },
   parser: "vue-eslint-parser",
   parserOptions: {
