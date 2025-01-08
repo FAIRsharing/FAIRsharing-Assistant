@@ -10,7 +10,6 @@ module.exports = {
     "plugin:vue/base",
     "plugin:vuetify/base",
     "prettier",
-    "stylelint-scss"
   ],
   rules: {
     "no-console": process.env.VITE_NODE_ENV === "production" ? "error" : "off",
@@ -66,13 +65,6 @@ module.exports = {
     ],
     indent: ["error", 2],
     "space-in-parens": ["error", "never"],
-    "at-rule-no-unknown": null,
-    "scss/at-rule-no-unknown": [
-      true,
-      {
-        "ignoreAtRules": ["use"]
-      }
-    ],
   },
   parser: "vue-eslint-parser",
   parserOptions: {
