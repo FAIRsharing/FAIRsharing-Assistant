@@ -270,7 +270,10 @@
     <!-- question footer -->
     <v-row>
       <v-col cols="12">
-        <p style="text-align: center">{{ footer }}</p>
+        <!-- This html is from a safe source -->
+        <!-- eslint-disable vue/no-v-html -->
+        <p style="text-align: center" v-html="footer" />
+        <!-- eslint-enable vue/no-v-html -->
       </v-col>
     </v-row>
     <!-- Potentially annoy the user by stopping to ask if they want to carry on due to few results -->
@@ -468,7 +471,8 @@ export default {
       let query = _module.getQueryParams;
       if (ids.length > 0) {
         query.dataFormatsAndTerminologies = ids;
-      } else {
+      }
+      else {
         delete query.dataFormatsAndTerminologies;
       }
       this.$store.commit(
@@ -490,7 +494,8 @@ export default {
       let query = _module.getQueryParams;
       if (ids.length > 0) {
         query.policyRecommendations = ids;
-      } else {
+      }
+      else {
         delete query.policyRecommendations;
       }
       this.$store.commit(
@@ -541,7 +546,8 @@ export default {
         this.foundPolicies = [];
         this.foundModelFormats = [];
         /* v8 ignore start */
-      } else {
+      }
+      else {
         this.clear = false;
       }
       /* v8 ignore stop */
@@ -556,7 +562,8 @@ export default {
         previousQuery = JSON.parse(
           JSON.stringify(this.getRouteQuery[this.$route.params.id]),
         );
-      } catch {
+      }
+      catch {
         // Fails on initial screen because getRouteQuery hasn't been defined.
         previousQuery = {};
       }
@@ -593,13 +600,15 @@ export default {
             });
           }
           // Should tags be cleared here (as in the else, below) also?
-        } else {
+        }
+        else {
           _module.$store.commit("multiTagsStore/setSelectedTags", []);
           _module.recordTags = [];
         }
         if ("dataFormatsAndTerminologies" in previousQuery) {
           // TODO: Is any setup even necessary here?
-        } else {
+        }
+        else {
           _module.$store.commit("navigationStore/setComplianceState", []);
           _module.foundModelFormats = [];
         }
@@ -618,7 +627,8 @@ export default {
           "navigationStore/clearPreviousNavigation",
           currentLocation,
         );
-      } else if (previousLocation > currentLocation) {
+      }
+      else if (previousLocation > currentLocation) {
         // Empty query, so results should be cleared, but only whilst going backwards.
         this.resetMultiTags();
       }
@@ -641,7 +651,8 @@ export default {
               }
             });
           }
-        } else {
+        }
+        else {
           _module.recordTags = [];
         }
       }
@@ -759,7 +770,8 @@ export default {
         let filterCopy = JSON.parse(JSON.stringify(multiTagFilter));
         if (queryString) {
           queryCopy["q"] = queryString;
-        } else {
+        }
+        else {
           this.searchResults = [];
           return;
         }
@@ -770,13 +782,15 @@ export default {
         if (!searchResults.error) {
           _module.searchResults = searchResults.multiTagFilter;
         }
-      } else if (_module.hasTagsQuery) {
+      }
+      else if (_module.hasTagsQuery) {
         let tagQueryCopy = JSON.parse(JSON.stringify(tagsQuery));
         if (queryString) tagQueryCopy.queryParam = { q: queryString };
         let taggedRecords = this.getFairSharingRecords.map((x) => x.id);
         if (taggedRecords.length) {
           tagQueryCopy.queryParam.taggedRecords = taggedRecords;
-        } else {
+        }
+        else {
           delete tagQueryCopy.taggedRecords;
         }
         let tags = await graphClient.executeQuery(tagQueryCopy);
