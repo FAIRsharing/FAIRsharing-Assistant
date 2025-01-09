@@ -12,6 +12,7 @@
             src="/assets/Logo/fairsharing-logo.svg"
             height="220"
             class="contain"
+            alt="FAIRsharing-logo"
           />
         </v-row>
         <v-row justify="center" class="intro-row">
