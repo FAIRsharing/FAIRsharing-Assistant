@@ -31,7 +31,10 @@
         label
         @click="handleNavigation(crumb.link)"
       >
-        <span>{{ formatBreadcrumb(crumb) }}</span>
+        <!-- This html is from a safe source -->
+        <!-- eslint-disable vue/no-v-html -->
+        <span v-html="formatBreadcrumb(crumb)" />
+        <!-- eslint-enable vue/no-v-html -->
       </v-chip>
       <v-chip
         id="currentBreadcrumb"
