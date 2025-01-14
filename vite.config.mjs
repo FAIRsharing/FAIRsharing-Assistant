@@ -84,8 +84,9 @@ export default defineConfig({
   // },
   build: {
     outDir: 'dist',
-    assetsDir: '',
-    sourcemap: false,
-    minify: true,
+    assetsDir: 'assets',
+    minify: 'esbuild',
+    target: 'es2015',
+    cssCodeSplit: true,
   }
 });
