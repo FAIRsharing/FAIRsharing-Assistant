@@ -19,41 +19,49 @@ let routes = [
   {
     name: "SplashScreen",
     path: "/",
+    meta: {title: "FAIRassist | Home"},
     component: SplashScreen,
   },
   {
     name: "HomeView",
     path: "/:id(\\d+)",
+    meta: {title: "FAIRassist | Questions"},
     component: HomeView,
   },
   {
     name: "AllTags",
     path: "/researchfields",
+    meta: {title: "FAIRassist | ResearchFields"},
     component: AllTags,
   },
   {
     name: "RefineRegistry",
     path: "/refineregistry",
+    meta: {title: "FAIRassist | Refine Registry"},
     component: RefineRegistry,
   },
   {
     name: "RefineFromQuestions",
     path: "/refine",
+    meta: {title: "FAIRassist | Refine Your Choice"},
     component: RefineFromQuestions,
   },
   {
     name: "ResultView",
     path: "/results",
+    meta: {title: "FAIRassist | Results"},
     component: ResultView,
   },
   {
     name: "Licence",
     path: "/licence",
+    meta: {title: "FAIRassist | Licence"},
     component: Licence,
   },
   {
     name: "Educational",
     path: "/educational/:text",
+    meta: {title: "FAIRassist | Educational"},
     component: Educational,
   },
   /* ERROR HANDLING */
@@ -74,6 +82,7 @@ let routes = [
   {
     name: "*",
     path: "/*/*",
+    meta: { title: "FAIRassist | NotFound" },
     component: NotFound,
   },
   /* MAINTENANCE */
@@ -90,9 +99,14 @@ const router = createRouter({
   routes,
 });
 
-const DEFAULT_TITLE = "FAIRassist";
+
 router.beforeEach((to) => {
-  document.title = to.meta.title || DEFAULT_TITLE;
+  const { title, description } = to.meta;
+  const DEFAULT_TITLE = "FAIRassist";
+  const DEFAULT_DESCRIPTION = "FAIRsharing is a curated informative and educational resource on data and metadata standards, inter-related to databases and data policies. This Assistant will help you find the standards, databases and policies you need to help make your data FAIR.";
+  const descriptionElement = document.querySelector('head meta[name="description"]')
+  document.title = title || DEFAULT_TITLE;
+  descriptionElement.setAttribute('content', description || DEFAULT_DESCRIPTION)
 });
 
 export default router;
