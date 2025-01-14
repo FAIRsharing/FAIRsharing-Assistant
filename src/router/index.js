@@ -15,7 +15,6 @@ import {
 } from "./routes";
 
 let routes = [
-  // See below for further questions...
   {
     name: "SplashScreen",
     path: "/",
