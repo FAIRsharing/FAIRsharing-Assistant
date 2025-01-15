@@ -88,5 +88,23 @@ export default defineConfig({
     minify: 'esbuild',
     target: 'es2015',
     cssCodeSplit: true,
+    rollupOptions:{
+      output:{
+        manualChunks:{
+          'group-user': [
+            "@/views/Home/HomeView.vue",
+            "@/views/Home/SplashScreen.vue",
+            "@/views/Errors/404",
+            "@/views/Errors/500",
+            "@/views/Licence/Licence",
+            "@/views/AllTags/AllTags.vue",
+            "@/views/Refinements/RefineRegistry.vue",
+            "@/views/Refinements/RefineFromQuestions.vue",
+            "@/views/Educational/Educational.vue",
+            "@/views/Errors/Maintenance",
+          ]
+        }
+      }
+    }
   }
 });
