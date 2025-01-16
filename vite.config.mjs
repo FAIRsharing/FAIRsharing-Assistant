@@ -7,7 +7,6 @@ import eslintPlugin from "vite-plugin-eslint";
 import path from 'path'
 import { nodePolyfills } from 'vite-plugin-node-polyfills';
 import compress from 'vite-plugin-compress'
-
 dns.setDefaultResultOrder("verbatim");
 
 const __filename = fileURLToPath(import.meta.url)
@@ -36,7 +35,7 @@ export default defineConfig({
     }),
     eslintPlugin,
     nodePolyfills(),
-    compress
+    compress,
   ],
   resolve: {
     alias: {
@@ -56,36 +55,19 @@ export default defineConfig({
       },
     },
   },
-  // The important bit...
-  // build: {
-  //   lib: {
-  //     // src/main.ts is where we have exported our component(s)
-  //     entry: path.resolve(__dirname, "src/main.js"),
-  //     // entry: ['src/main.js'],
-  //     name: "FAIRsharing-Assistant",
-  //     // the name of the output files when the build is run
-  //     fileName: "FAIRsharing-Assistant",
-  //   },
-  //   rollupOptions: {
-  //     input: {
-  //       main: path.resolve(__dirname, 'index.html'),
-  //     },
-  //     // Make sure to exclude Vue from the bundle
-  //     external: ["vue"],
-  //     output: {
-  //       // Provide global variables to use in the UMD build
-  //       // for externalized deps
-  //       globals: {
-  //         vue: 'Vue',
-  //       },
-  //     },
-  //   },
-  // },
   build: {
-    outDir: 'dist',
+    // outDir: 'dist',
     assetsDir: 'assets',
     minify: 'esbuild',
     target: 'es2015',
-    cssCodeSplit: true
+    cssCodeSplit: true,
+    chunkSizeWarningLimit: 1250,
+    rollupOptions: {
+      input:path.resolve(__dirname, "index.html"),
+      output: {
+        dir: "dist",
+        format: "es"
+      },
+    }
   }
 });

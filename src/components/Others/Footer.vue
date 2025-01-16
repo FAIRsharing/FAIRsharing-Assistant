@@ -26,7 +26,9 @@
       <a href="/licence" class="underline-effect"
         ><img
           src="/assets/Home/Footer/FAIRsharingCC_BY_SA.png"
-          alt="fairsharing licence"
+          alt="FAIRsharing licence"
+          width="88px"
+          height="31px"
       /></a>
     </p>
   </div>

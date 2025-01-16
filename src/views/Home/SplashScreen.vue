@@ -10,7 +10,7 @@
         <v-row>
           <v-img
             src="/assets/Logo/fairsharing-logo.svg"
-            height="220"
+            max-height="220"
             class="contain"
             alt="FAIRsharing-logo"
           />
