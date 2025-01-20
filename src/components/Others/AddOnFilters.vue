@@ -3,7 +3,7 @@
     <v-fade-transition v-if="loading">
       <div>
         <v-overlay
-          :model-value="loading"
+            v-model="loading"
           class="align-center justify-center"
           :absolute="false"
           opacity="0.8"
@@ -211,7 +211,8 @@ export default {
     conditionalDisplay() {
       if (!this.switchTypeFilters?.length && this.selectTypeFilters?.length) {
         this.onlySelect = true;
-      } else if (
+      }
+      else if (
         this.switchTypeFilters?.length &&
         !this.selectTypeFilters?.length
       ) {

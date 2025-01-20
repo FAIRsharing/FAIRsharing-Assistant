@@ -2,7 +2,7 @@
   <div>
     <!-- Alert -->
     <RefineAlert />
-    <v-form id="editTags" ref="editTags" :model-value="formValid">
+    <v-form id="editTags" ref="editTags" v-model="formValid">
       <v-container fluid>
         <div
           class="block-category mb-5 d-flex align-center justify-space-around"

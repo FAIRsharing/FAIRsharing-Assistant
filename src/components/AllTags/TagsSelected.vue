@@ -18,12 +18,12 @@
       Show help
     </v-btn>
     <!-- help -->
-    <v-dialog :model-value="help" width="auto">
+    <v-dialog v-model="help" width="auto">
       <v-card>
         <v-card-title> About this page </v-card-title>
         <v-card-text>
           <!-- because javascript doesn't allow line breaks in text -->
-          <span>{{ helpText.tags.join("\n") }}</span>
+          <span v-html='helpText.tags.join("\n")'/>
         </v-card-text>
         <v-card-actions>
           <v-btn color="primary" @click="hideHelp()"> Close </v-btn>
@@ -73,12 +73,12 @@ export default {
   methods: {
     queryParamTags(sectionName) {
       switch (sectionName) {
-        case "taxonomic range":
-          return "taxonomies";
-        case "user_defined_tag":
-          return "userDefinedTags";
-        default:
-          return sectionName;
+      case "taxonomic range":
+        return "taxonomies";
+      case "user_defined_tag":
+        return "userDefinedTags";
+      default:
+        return sectionName;
       }
     },
     /* v8 ignore start */
@@ -106,7 +106,8 @@ export default {
       this.showSelected = !this.showSelected;
       if (this.showSelected) {
         this.buttonMessage = "Hide selected tags";
-      } else {
+      }
+      else {
         this.buttonMessage = "Show selected tags";
       }
     },

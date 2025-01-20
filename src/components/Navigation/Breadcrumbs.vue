@@ -51,7 +51,7 @@
       </v-chip>
     </v-col>
   </v-row>
-  <v-dialog :model-value="summary" width="auto">
+  <v-dialog v-model="summary" width="auto">
     <v-card>
       <!-- This html is from a safe source -->
       <!-- eslint-disable vue/no-v-html -->

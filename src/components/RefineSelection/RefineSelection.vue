@@ -33,7 +33,7 @@
         Show help
       </v-btn>
       <!-- help -->
-      <v-dialog :model-value="help" width="auto">
+      <v-dialog v-model="help" width="auto">
         <v-card class="py-4 px-6">
           <v-card-title> About this page </v-card-title>
           <v-card-text>

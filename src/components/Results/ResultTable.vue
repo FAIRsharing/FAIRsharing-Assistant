@@ -25,7 +25,7 @@
         <template #header>
           <v-toolbar dark color="blue-lighten-1" class="mb-5 px-4 py-1">
             <v-text-field
-              :model-value="search"
+              v-model="search"
               clearable
               flat
               variant="solo"
@@ -47,7 +47,7 @@
                 width="125"
               />
               <v-spacer />
-              <v-btn-toggle :model-value="sortDesc" mandatory>
+              <v-btn-toggle v-model="sortDesc" mandatory>
                 <v-btn size="large" variant="flat" color="blue" :value="false">
                   <v-icon icon="fa fa-solid fa-arrow-up" />
                 </v-btn>
@@ -129,7 +129,7 @@
         <!-- footer ends -->
       </v-data-iterator>
     </v-container>
-    <v-dialog :model-value="chooseDownloadActive" max-width="500">
+    <v-dialog v-model="chooseDownloadActive" max-width="500">
       <v-card>
         <v-card-title> Do you need information on organisations? </v-card-title>
         <v-card-text>
