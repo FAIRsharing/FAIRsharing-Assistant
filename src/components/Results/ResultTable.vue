@@ -37,7 +37,7 @@
             <template v-if="$vuetify.display.mdAndUp">
               <v-spacer />
               <v-select
-                :model-value="sortBy"
+                v-model="sortBy"
                 flat
                 variant="solo"
                 hide-details
@@ -216,20 +216,20 @@ export default {
 
     sortData() {
       switch (this.sortBy) {
-        case "Name":
-          return [{ key: "name", order: this.sortDesc ? "desc" : "asc" }];
-        case "Registry":
-          return [{ key: "registry", order: this.sortDesc ? "desc" : "asc" }];
-        case "Type":
-          return [{ key: "type", order: this.sortDesc ? "desc" : "asc" }];
-        case "Status":
-          return [{ key: "status", order: this.sortDesc ? "desc" : "asc" }];
-        case "Description":
-          return [
-            { key: "description", order: this.sortDesc ? "desc" : "asc" },
-          ];
-        default:
-          return [{ key: "name", order: this.sortDesc ? "desc" : "asc" }];
+      case "Name":
+        return [{ key: "name", order: this.sortDesc ? "desc" : "asc" }];
+      case "Registry":
+        return [{ key: "registry", order: this.sortDesc ? "desc" : "asc" }];
+      case "Type":
+        return [{ key: "type", order: this.sortDesc ? "desc" : "asc" }];
+      case "Status":
+        return [{ key: "status", order: this.sortDesc ? "desc" : "asc" }];
+      case "Description":
+        return [
+          { key: "description", order: this.sortDesc ? "desc" : "asc" },
+        ];
+      default:
+        return [{ key: "name", order: this.sortDesc ? "desc" : "asc" }];
       }
     },
   },
@@ -261,7 +261,8 @@ export default {
       // TODO: Handle errors from the server.
       if (!response.error) {
         _module.records = response["multiTagFilter"];
-      } else {
+      }
+      else {
         _module.error = true;
         this.$store.commit("multiTagsStore/setError", true);
         this.$emit("isError", true);
@@ -291,7 +292,8 @@ export default {
             seen.push(identifier);
           });
         });
-      } else {
+      }
+      else {
         data = ["name,abbreviation,URL\n"];
         this.getFairSharingRecords.forEach((record) => {
           data.push(
