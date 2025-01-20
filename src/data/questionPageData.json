@@ -495,19 +495,27 @@
       "footer": "Currently, you can read how to create a policy record, or you could search for existing resources. Creating a policy record with FAIRsharing makes your data policy discoverable by both humans and machines (<a href='https://blog.fairsharing.org/?p=451' target='_blank'>more information</a>). Searching for resources relevant to your organisation allows you to link databases and standards to your FAIRsharing policy record. These relationships can be revised over time by editing your policy record, allowing it to adapt to authors’ needs and community best practices.",
       "questions": [
         {
-          "id": 1,
-          "title": "question_13_1",
-          "question": "Create a policy record",
-          "color": "external",
-          "link": "https://fairsharing.gitbook.io/fairsharing/",
-          "query": {}
-        },
-        {
           "id": 2,
           "title": "question_13_1",
           "question": "Find a resource",
           "color": "internal",
           "link": "/14",
+          "query": {}
+        },
+        {
+          "id": 1,
+          "title": "question_13_1",
+          "question": "Register your Policy with FAIRsharing",
+          "color": "special_internal",
+          "link": "https://fairsharing.org/new",
+          "query": {}
+        },
+        {
+          "id": 3,
+          "title": "question_13_1",
+          "question": "Incorporate FAIRsharing into your documentation",
+          "color": "special_internal",
+          "link": "https://fairsharing.org/educational#policies",
           "query": {}
         }
       ]
