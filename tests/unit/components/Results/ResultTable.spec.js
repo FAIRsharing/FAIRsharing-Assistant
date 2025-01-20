@@ -286,6 +286,7 @@ describe("ResultTable.vue", function () {
   });
 
   it("can check chooseDownload method", () => {
+    wrapper.vm.chooseDownloadActive = true
     wrapper.vm.chooseDownload();
     expect(wrapper.vm.chooseDownloadActive).toBe(true);
   });

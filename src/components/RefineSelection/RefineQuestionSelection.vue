@@ -6,7 +6,7 @@
     <v-fade-transition v-if="loading">
       <div>
         <v-overlay
-          v-model="loading"
+          :model-value="loading"
           class="align-center justify-center"
           :absolute="false"
           opacity="0.8"
@@ -214,7 +214,8 @@ export default {
       let taggedRecords = this.getFairSharingRecords.map((x) => x.id);
       if (taggedRecords.length) {
         tagQueryCopy.queryParam.taggedRecords = taggedRecords;
-      } else {
+      }
+      else {
         delete tagQueryCopy.taggedRecords;
       }
       let tags = await graphClient.executeQuery(tagQueryCopy);

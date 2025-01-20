@@ -18,7 +18,7 @@
       Show help
     </v-btn>
     <!-- help -->
-    <v-dialog v-model="help" width="auto">
+    <v-dialog :model-value="help" width="auto">
       <v-card>
         <v-card-title> About this page </v-card-title>
         <v-card-text>

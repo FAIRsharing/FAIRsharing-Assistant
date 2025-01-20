@@ -25,7 +25,7 @@
         <template #header>
           <v-toolbar dark color="blue-lighten-1" class="mb-5 px-4 py-1">
             <v-text-field
-              v-model="search"
+              :model-value="search"
               clearable
               flat
               variant="solo"
@@ -33,6 +33,7 @@
               prepend-inner-icon="fa fa-solid fa-filter"
               label="Filter these results"
               width="125"
+              @update:model-value="search = $event"
             />
             <template v-if="$vuetify.display.mdAndUp">
               <v-spacer />
@@ -47,14 +48,18 @@
                 width="125"
               />
               <v-spacer />
-              <v-btn-toggle v-model="sortDesc" mandatory>
+              <v-btn-toggle
+                  :model-value="sortDesc"
+                  mandatory
+                  @update:model-value="sortDesc = $event"
+              >
                 <v-btn size="large" variant="flat" color="blue" :value="false">
                   <v-icon icon="fa fa-solid fa-arrow-up" />
                 </v-btn>
                 <v-btn size="large" variant="flat" color="blue" :value="true">
                   <v-icon icon="fa fa-solid fa-arrow-down" />
                 </v-btn>
-              </v-btn-toggle>
+              </v-btn-toggle >
             </template>
           </v-toolbar>
         </template>
@@ -129,7 +134,11 @@
         <!-- footer ends -->
       </v-data-iterator>
     </v-container>
-    <v-dialog v-model="chooseDownloadActive" max-width="500">
+    <v-dialog
+        :model-value="chooseDownloadActive"
+        max-width="500"
+        @update:model-value="chooseDownloadActive"
+    >
       <v-card>
         <v-card-title> Do you need information on organisations? </v-card-title>
         <v-card-text>
