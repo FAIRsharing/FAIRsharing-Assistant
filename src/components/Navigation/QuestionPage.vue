@@ -197,23 +197,24 @@
           v-if="
             searchResults.length > 0 && searchString && searchString.length > 0
           "
-          v-model="foundPolicies"
           v-model:search-input="searchString"
+          v-model="foundPolicies"
           :headers="headers"
           :items="searchResults"
           :items-per-page="10"
           :footer-props="{ 'items-per-page-options': [10, 20, 30, 40, 50] }"
           item-key="id"
           class="elevation-1 mr-10"
-          show-select
           calculate-widths
           mobile-breakpoint="900"
           return-object
-          @item-selected="itemSelected($event)"
         >
           <template #[`item.name`]="{ item }">
             <div v-if="item.name">
-              {{ item.name }}
+              <v-checkbox
+                :label="item.name"
+                @click="itemSelected(item)"
+              />
             </div>
           </template>
           <template #[`item.abbreviation`]="{ item }">
@@ -886,7 +887,7 @@ export default {
      */
     async itemSelected(item) {
       let _module = this;
-      parentsQuery.queryParam = { id: item.item.id };
+      parentsQuery.queryParam = { id: item.id };
       let parents = await graphClient.executeQuery(parentsQuery);
       parents["fairsharingRecord"]["parentPolicies"].forEach((parent) => {
         if (!_module.foundPolicies.map((x) => x.id).includes(parent.id)) {
