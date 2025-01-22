@@ -194,11 +194,9 @@
         />
         <!-- drop-down table for searchResults to go here -->
         <v-data-table
-          v-if="
-            searchResults.length > 0 && searchString && searchString.length > 0
-          "
-          v-model:search-input="searchString"
+          v-if="searchResults.length > 0 && searchString && searchString.length > 0"
           v-model="foundPolicies"
+          v-model:search-input="searchString"
           :headers="headers"
           :items="searchResults"
           :items-per-page="10"
@@ -325,6 +323,7 @@ import tagsQuery from "@/lib/GraphClient/queries/geTags.json";
 import parentsQuery from "@/lib/GraphClient/queries/getParentPolicies.json";
 import Breadcrumbs from "@/components/Navigation/Breadcrumbs.vue";
 import ResultPreviewBanner from "@/components/Results/ResultPreviewBanner.vue";
+import { xorBy } from 'lodash'
 
 const graphClient = new GraphClient();
 
@@ -887,6 +886,7 @@ export default {
      */
     async itemSelected(item) {
       let _module = this;
+      _module.foundPolicies = xorBy(_module.foundPolicies,[item], (item) => item)
       parentsQuery.queryParam = { id: item.id };
       let parents = await graphClient.executeQuery(parentsQuery);
       parents["fairsharingRecord"]["parentPolicies"].forEach((parent) => {
