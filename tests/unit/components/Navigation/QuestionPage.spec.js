@@ -733,7 +733,7 @@ describe("QuestionPage.vue", function () {
     const item = {
       item: foundPoliciesArr[0],
     };
-    wrapper.vm.foundPolicies = foundPoliciesArr;
+    wrapper.vm.foundPolicies = [];
 
     graphStub.withArgs(parentsQuery).returns({
       fairsharingRecord: {
@@ -743,8 +743,8 @@ describe("QuestionPage.vue", function () {
 
     await wrapper.vm.itemSelected(item);
     let output = [
-      foundPoliciesArr[0],
       { id: 2, label: "label", model: "subject" },
+      item
     ];
 
     expect(wrapper.vm.foundPolicies).toStrictEqual(output);

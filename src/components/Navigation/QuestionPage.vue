@@ -886,7 +886,6 @@ export default {
      */
     async itemSelected(item) {
       let _module = this;
-      _module.foundPolicies = xorBy(_module.foundPolicies,[item], (item) => item)
       parentsQuery.queryParam = { id: item.id };
       let parents = await graphClient.executeQuery(parentsQuery);
       parents["fairsharingRecord"]["parentPolicies"].forEach((parent) => {
@@ -894,6 +893,7 @@ export default {
           _module.foundPolicies.push(parent);
         }
       });
+      _module.foundPolicies = xorBy(_module.foundPolicies,[item], (item) => item)
     },
   },
 };
