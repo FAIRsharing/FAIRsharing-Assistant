@@ -210,9 +210,12 @@
           <template #[`item.name`]="{ item }">
             <div v-if="item.name">
               <v-checkbox
-                :label="item.name"
                 @click="itemSelected(item)"
-              />
+              >
+              <template #label>
+                <span class="pl-2">{{item.name}}</span>
+              </template>
+              </v-checkbox>
             </div>
           </template>
           <template #[`item.abbreviation`]="{ item }">
