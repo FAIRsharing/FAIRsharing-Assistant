@@ -164,7 +164,7 @@
     <!-- end of tags -->
     <!-- policy query -->
     <v-row v-if="hasPolicyQuery">
-      <v-col cols="12" class="ml-4">
+      <v-col cols="12">
         <!-- A list here of selected standards is shown just above the text box -->
         <div class="pl-2">
           <v-chip
@@ -188,7 +188,7 @@
           clearable
           clear-icon="fa fa-times-circle"
           hide-details
-          class="pt-1 mr-10"
+          class="pt-1"
           color="primary"
           @click:clear="clearResults"
         />
@@ -206,17 +206,25 @@
           calculate-widths
           mobile-breakpoint="900"
           return-object
+          show-select
         >
-          <template #[`item.name`]="{ item }">
-            <div v-if="item.name">
-              <v-checkbox
+<!--          <template #[`item.name`]="{ item }">-->
+<!--            <div v-if="item.name">-->
+<!--              <v-checkbox-->
+<!--                @click="itemSelected(item)"-->
+<!--              >-->
+<!--              <template #label>-->
+<!--                <span class="pl-2">{{item.name}}</span>-->
+<!--              </template>-->
+<!--              </v-checkbox>-->
+<!--            </div>-->
+<!--          </template>-->
+          <template
+              #item.data-table-select="{ item }"
+          >
+            <v-checkbox-btn
                 @click="itemSelected(item)"
-              >
-              <template #label>
-                <span class="pl-2">{{item.name}}</span>
-              </template>
-              </v-checkbox>
-            </div>
+            ></v-checkbox-btn>
           </template>
           <template #[`item.abbreviation`]="{ item }">
             <div v-if="item.abbreviation">
@@ -896,6 +904,7 @@ export default {
           _module.foundPolicies.push(parent);
         }
       });
+      //XorBy is used to toggle the item selected
       _module.foundPolicies = xorBy(_module.foundPolicies,[item], (item) => item)
     },
   },
