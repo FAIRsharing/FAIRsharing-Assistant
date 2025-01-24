@@ -42,7 +42,7 @@ export default mergeConfig(
           "vue.config.js",
           "webpack.config.js",
         ],
-        reporter: ["html", "lcov"],
+        reporter: ["html", "lcov", "text"],
         reportOnFailure: true,
       },
     },

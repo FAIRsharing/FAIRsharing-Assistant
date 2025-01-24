@@ -81,7 +81,7 @@ export default {
         return sectionName;
       }
     },
-    /* v8 ignore start */
+
     removeTag(tagParams) {
       let id = tagParams[0];
       let label = tagParams[1];
@@ -101,7 +101,7 @@ export default {
         this.$store.commit("multiTagsStore/setFairSharingRecords", []);
       }
     },
-    /* v8 ignore stop */
+
     toggleSelected() {
       this.showSelected = !this.showSelected;
       if (this.showSelected) {

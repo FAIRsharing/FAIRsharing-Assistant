@@ -1,7 +1,7 @@
 import { shallowMount } from "@vue/test-utils";
 import { createStore } from "vuex";
 import { createVuetify } from "vuetify";
-import { describe, expect, it, beforeEach, vi } from "vitest";
+import {describe, expect, it, beforeEach, vi} from "vitest";
 import TagsSelected from "@/components/AllTags/TagsSelected";
 import multiTagsStore from "@/store/multiTagsStore";
 
@@ -22,6 +22,7 @@ multiTagsStore.getters = {
     };
   },
 };
+multiTagsStore.commit = vi.fn();
 
 let store = createStore({
   modules: {
@@ -87,5 +88,12 @@ describe("TagsSelected.vue", function () {
   it("can check hideHelp method", () => {
     wrapper.vm.hideHelp();
     expect(wrapper.vm.help).toBe(false);
+  });
+
+  it("can check removeTag method", () => {
+    const tagParams = [1, 'label', 'subjects']
+    wrapper.vm.removeTag(tagParams);
+    wrapper.vm.queryParamTags("subjects");
+    expect(wrapper.vm.selectedQueryParam).toStrictEqual(["genetics"]);
   });
 });
