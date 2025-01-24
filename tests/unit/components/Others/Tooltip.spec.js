@@ -1,26 +1,23 @@
-import {createLocalVue, shallowMount} from "@vue/test-utils";
+import { shallowMount } from "@vue/test-utils";
+import { createVuetify } from "vuetify";
+import { describe, expect, it, beforeEach } from "vitest";
 import Tooltip from "@/components/Others/Tooltip.vue";
-import Vuetify from "vuetify"
-import Vuex from "vuex";
 
-const localVue = createLocalVue();
-localVue.use(Vuex);
+const vuetify = createVuetify();
 
-const vuetify = new Vuetify();
-
-describe("Tooltip.vue", function(){
+describe("Tooltip.vue", function () {
   let wrapper;
 
   beforeEach(() => {
     wrapper = shallowMount(Tooltip, {
-      localVue,
-      vuetify,
-      stubs: ['router-link', 'router-view']
-    })
+      global: {
+        plugins: [vuetify],
+        stubs: ["router-link", "router-view"],
+      },
+    });
   });
 
   it("can be instantiated", () => {
     expect(wrapper.vm.$options.name).toMatch("Tooltip");
   });
-
 });

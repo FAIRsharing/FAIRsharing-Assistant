@@ -1,35 +1,33 @@
-import {createLocalVue, shallowMount} from "@vue/test-utils";
-import HomeView from "@/views/Home/HomeView.vue"
-import Vuetify from "vuetify"
-import Vuex from "vuex";
+import { shallowMount } from "@vue/test-utils";
+import HomeView from "@/views/Home/HomeView.vue";
+import { createVuetify } from "vuetify";
+import { describe, expect, it, beforeEach } from "vitest";
 
-const localVue = createLocalVue();
-localVue.use(Vuex);
-
-const vuetify = new Vuetify();
+const vuetify = createVuetify();
 
 let $route = {
   path: "/",
   params: {
-    id: 0
-  }
+    id: 0,
+  },
 };
 
-
-describe("HomeView.vue", function(){
+describe("HomeView.vue", function () {
   let wrapper;
 
   beforeEach(() => {
     wrapper = shallowMount(HomeView, {
-      localVue,
-      vuetify,
-      stubs: ['router-link', 'router-view'],
-      mocks: { $route }
-    })
+      global: {
+        plugins: [vuetify],
+        mocks: {
+          $route: $route,
+        },
+        stubs: ["router-link", "router-view"],
+      },
+    });
   });
 
   it("can be instantiated", () => {
     expect(wrapper.vm.$options.name).toMatch("HomeView");
   });
-
 });

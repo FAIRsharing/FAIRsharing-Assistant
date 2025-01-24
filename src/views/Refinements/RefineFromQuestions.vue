@@ -6,15 +6,14 @@
 </template>
 
 <script>
-
 import Jumbotron from "@/components/Navigation/Jumbotron";
 import RefineQuestionSelection from "@/components/RefineSelection/RefineQuestionSelection.vue";
 
 export default {
-  name: 'RefineFromQuestions',
+  name: "RefineFromQuestions",
   components: {
     RefineQuestionSelection,
-    Jumbotron
+    Jumbotron,
   },
 };
 </script>

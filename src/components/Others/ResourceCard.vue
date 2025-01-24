@@ -1,27 +1,24 @@
 <template>
   <v-card
-    class="full-width"
+    class="full-width testcard"
     :class="[
-      {'my-3 mx-0': $vuetify.breakpoint.smAndDown},
-      {'mx-3 mb-0': $vuetify.breakpoint.mdAndUp}
+      { 'my-3 mx-0': $vuetify.display.smAndDown },
+      { 'mx-3 mb-0': $vuetify.display.mdAndUp },
+      { cardBorder: registrySelected },
+      { cardHeight: !showRefineButton },
     ]"
-    :style="registrySelected ? 'border: 2px solid red;' : null"
     max-width="350"
-    :max-height="showRefineButton? 'none' : 230"
     height="auto"
     color="#ababab"
     elevation="6"
   >
-    <div class="white--text d-flex flex-column justify-center pt-4">
-      <div
-        class="d-flex justify-center"
-      >
+    <div class="text-white d-flex flex-column justify-center pt-4">
+      <div class="d-flex justify-center">
         <v-img
-          class="mt-5 full-width"
-          contain
+          class="mt-5 full-width contain"
           max-width="200px"
           height="100px"
-          :src="$vuetify.icons.values[registryIcon].icon"
+          :src="customIcons.values[registryIcon].icon"
         />
       </div>
       <v-card-title class="d-inline text-h4 text-md-h5 text-lg-h4 text-center">
@@ -42,18 +39,18 @@
 </template>
 
 <script>
-
 import RefineButton from "@/components/AllTags/RefineButton.vue";
+import customIcons from "@/plugins/icons";
 
 export default {
-  name: 'ResourceCard',
-  components: {RefineButton},
-  props:{
+  name: "ResourceCard",
+  components: { RefineButton },
+  props: {
     registry: {
       type: String,
       default: "",
     },
-    registryIcon:{
+    registryIcon: {
       type: String,
       default: "",
     },
@@ -67,22 +64,25 @@ export default {
     },
     recordsCount: {
       type: Number,
-      default: 0
+      default: 0,
     },
-    showRefineButton:{
+    showRefineButton: {
       type: Boolean,
       default: false,
-    }
+    },
   },
-}
-
+  data() {
+    return {
+      customIcons: customIcons,
+    };
+  },
+};
 </script>
-
 
 <style scoped lang="scss">
 .block-category {
   &__card {
-    transition: all .2ms ease;
+    transition: all 0.2ms ease;
     &:hover {
       transform: scale(1.05);
     }
@@ -92,6 +92,12 @@ export default {
   margin: 8px;
 }
 .actionBlock {
-  background: #fff
+  background: #fff;
+}
+.cardBorder {
+  border: 2px solid red;
+}
+.cardHeight {
+  max-height: 230px;
 }
 </style>

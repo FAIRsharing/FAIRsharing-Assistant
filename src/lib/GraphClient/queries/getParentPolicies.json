@@ -4,12 +4,7 @@
   "fields": [
     {
       "name": "parentPolicies",
-      "fields": [
-        "id",
-        "name",
-        "abbreviation"
-      ]
+      "fields": ["id", "name", "abbreviation"]
     }
-
   ]
 }

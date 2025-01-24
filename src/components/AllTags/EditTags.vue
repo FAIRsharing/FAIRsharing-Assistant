@@ -2,37 +2,25 @@
   <div>
     <!-- Alert -->
     <RefineAlert />
-    <v-form
-      id="editTags"
-      ref="editTags"
-      v-model="formValid"
-    >
+    <v-form id="editTags" ref="editTags" :model-value="formValid">
       <v-container fluid>
         <div
           class="block-category mb-5 d-flex align-center justify-space-around"
-          :class="{'flex-column': $vuetify.breakpoint.smAndDown}"
+          :class="{ 'flex-column': $vuetify.display.smAndDown }"
         >
           <!-- Standard card -->
-          <TagsCard
-            registry="Standard"
-          />
+          <TagsCard registry="Standard" />
           <!-- Database card -->
-          <TagsCard
-            registry="Database"
-          />
+          <TagsCard registry="Database" />
           <!-- Policy card -->
-          <TagsCard
-            registry="Policy"
-          />
+          <TagsCard registry="Policy" />
           <!-- Collection card -->
-          <TagsCard
-            registry="Collection"
-          />
+          <TagsCard registry="Collection" />
         </div>
         <!-- end of result cards -->
         <div
           class="utilityButtons d-flex flex-row justify-space-around my-6 full-width margin-auto"
-          :class="{'flex-column align-center': $vuetify.breakpoint.smAndDown}"
+          :class="{ 'flex-column align-center': $vuetify.display.smAndDown }"
         >
           <ViewRecords />
           <ClearAllSelections />
@@ -50,35 +38,41 @@
 <script>
 import TagsCard from "@/components/AllTags/TagsCard.vue";
 import ViewRecords from "@/components/Navigation/ViewRecordsButton.vue";
-import ClearAllSelections from "@/components/Navigation/ClearAllSelections.vue"
+import ClearAllSelections from "@/components/Navigation/ClearAllSelections.vue";
 import GoHome from "@/components/Navigation/HomeButton.vue";
 import RefineAlert from "@/components/AllTags/RefineAlert.vue";
 import TagsSelected from "@/components/AllTags/TagsSelected.vue";
-import stringUtils from '@/utils/stringUtils';
+import stringUtils from "@/utils/stringUtils";
 import SearchTags from "@/components/AllTags/SearchTags.vue";
-import SubjectAgnostic from "@/components/AllTags/SubjectAgnostic.vue"
+import SubjectAgnostic from "@/components/AllTags/SubjectAgnostic.vue";
 
 export default {
   name: "EditTags",
-  components: {SearchTags, TagsSelected, RefineAlert, GoHome, ViewRecords, TagsCard, ClearAllSelections, SubjectAgnostic},
+  components: {
+    SearchTags,
+    TagsSelected,
+    RefineAlert,
+    GoHome,
+    ViewRecords,
+    TagsCard,
+    ClearAllSelections,
+    SubjectAgnostic,
+  },
   mixins: [stringUtils],
-  data(){
+  data() {
     return {
       formValid: true,
-      searchRef: {}
-    }
+      searchRef: {},
+    };
   },
   mounted() {
-    this.searchRef = this.$refs.searchTagsRef
+    this.searchRef = this.$refs.searchTagsRef;
   },
-}
+};
 </script>
 
 <style scoped>
 .utilityButtons {
-    max-width: 650px
+  max-width: 650px;
 }
-
-
 </style>
-
