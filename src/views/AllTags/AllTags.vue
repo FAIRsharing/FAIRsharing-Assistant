@@ -8,15 +8,14 @@
 </template>
 
 <script>
-
-import Jumbotron from "@/components/Navigation/Jumbotron"
+import Jumbotron from "@/components/Navigation/Jumbotron";
 import EditTags from "@/components/AllTags/EditTags.vue";
 
 export default {
-  name:'AllTags',
+  name: "AllTags",
   components: {
     Jumbotron,
-    EditTags
+    EditTags,
   },
 };
 </script>

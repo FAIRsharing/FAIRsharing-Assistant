@@ -1,22 +1,8 @@
 <template>
-  <v-row
-    v-if="showBanner"
-  >
-    <v-col
-      cols="12"
-    >
-      <v-alert
-        density="compact"
-        :type="resultCountColour()"
-        variant="tonal"
-      >
-        <!-- This html is from a safe source -->
-        <!-- eslint-disable vue/no-v-html -->
-        <span
-          v-html="`There are ${getFairSharingRecords.length} ${getCurrentRegistryBold()} records matching your selection.`"
-        />
-        <!-- eslint-enable vue/no-v-html -->
-
+  <v-row v-if="showBanner">
+    <v-col cols="12">
+      <v-alert :type="resultCountColour()">
+        There are {{getFairSharingRecords.length}} <span class="font-weight-bold">{{getCurrentRegistryBold()}}</span> records matching your selection.
         <v-btn
           v-if="resultCountColour() !== 'error'"
           class="preview-results"
@@ -26,27 +12,23 @@
         </v-btn>
       </v-alert>
     </v-col>
-    <v-dialog
-      v-model="showResultPreview"
-      persistent
-    >
+    <v-dialog v-model="showResultPreview" persistent>
       <v-card>
-        <v-card-title
-          class="headline"
-        >
-          Current search results
-        </v-card-title>
-        <v-card-actions>
-          <v-spacer />
+        <div class="d-flex align-center position-relative">
+          <v-card-title class="text-h5 mx-auto my-0">
+            Current search results
+          </v-card-title>
           <v-btn
-            color="blue darken-1"
-            text
+            class="position-absolute right-0 top-0 pa-0"
             persistent
+            variant="text"
             @click="showResultPreview = false"
           >
-            Close
+            <template #append>
+              <v-icon icon="fa fa-xmark fa-solid" size="35" />
+            </template>
           </v-btn>
-        </v-card-actions>
+        </div>
         <v-card-text>
           <Breadcrumbs />
           <ResultTable />
@@ -54,8 +36,8 @@
         <v-card-actions>
           <v-spacer />
           <v-btn
-            color="blue darken-1"
-            text
+            color="blue-darken-1"
+            variant="text"
             persistent
             @click="showResultPreview = false"
           >
@@ -70,47 +52,52 @@
 <script>
 import ResultTable from "@/components/Results/ResultTable.vue";
 import stringUtils from "@/utils/stringUtils";
-import {mapGetters} from "vuex";
+import { mapGetters } from "vuex";
 import Breadcrumbs from "@/components/Navigation/Breadcrumbs.vue";
 
 export default {
-  name: 'QuestionPage',
-  components: {Breadcrumbs, ResultTable },
+  name: "ResultPreviewBanner",
+  components: { Breadcrumbs, ResultTable },
   mixins: [stringUtils],
   props: {
     showBanner: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
   data: () => {
     return {
       showResultPreview: false,
-    }
+    };
   },
   computed: {
-    ...mapGetters('multiTagsStore', ["getFairSharingRecords", "getCurrentRegistry"]),
+    ...mapGetters("multiTagsStore", [
+      "getFairSharingRecords",
+      "getCurrentRegistry",
+    ]),
   },
   methods: {
-    ...mapGetters('multiTagsStore', ["getQueryParams"]),
+    ...mapGetters("multiTagsStore", ["getQueryParams"]),
     resultCountColour() {
       if (this.getFairSharingRecords.length > 10) {
         return "success";
       }
-      else if (this.getFairSharingRecords.length > 0 && this.getFairSharingRecords.length <= 10) {
+      else if (
+        this.getFairSharingRecords.length > 0 &&
+        this.getFairSharingRecords.length <= 10
+      ) {
         return "warning";
       }
       return "error";
     },
     getCurrentRegistryBold() {
       if (this.getCurrentRegistry) {
-        return `<b>${this.getCurrentRegistry}</b>`;
+        return this.getCurrentRegistry;
       }
-      return '';
-    }
-  }
-}
-
+      return "";
+    },
+  },
+};
 </script>
 
 <style>

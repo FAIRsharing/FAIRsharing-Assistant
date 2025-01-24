@@ -3,34 +3,36 @@ const recordsCardUtils = {
     getRecordLink(record) {
       if (record.doi) {
         // Only the last part of the DOI is needed for local links.
-        return record.doi.split('/').pop();
+        return record.doi.split("/").pop();
       }
       else {
         return record.id;
       }
     },
-    getChipColor(chip){
-      if(chip.type==='subjects'){
-        return 'subject_color';
+    getChipColor(chip) {
+      if (chip.type === "subjects") {
+        return "subject_color";
       }
-      else if(chip.type==='domains') {
-        return 'domain_color';
+      else if (chip.type === "domains") {
+        return "domain_color";
       }
-      else if(chip.type==='taxonomies') {
-        return 'taxonomic_color';
+      else if (chip.type === "taxonomies") {
+        return "taxonomic_color";
       }
-      else if(chip.type==='userDefinedTags') {
-        return 'tags_color';
+      else if (chip.type === "userDefinedTags") {
+        return "tags_color";
       }
     },
     capitaliseText(text, type) {
-      if (type === 'taxonomy') {
+      if (type === "taxonomy") {
         // Upper case for first character only.
         return text.charAt(0).toUpperCase() + text.slice(1).toLowerCase();
       }
       else {
         // Upper case for first letter of each word.
-        return text.replace(/(^\w{1})|(\s{1}\w{1})/g, match => match.toUpperCase());
+        return text.replace(/(^\w{1})|(\s{1}\w{1})/g, (match) =>
+          match.toUpperCase(),
+        );
       }
     },
     // TODO: This function isn't (yet) used in the assistant, but may be needed later.
@@ -92,15 +94,15 @@ const recordsCardUtils = {
      */
     setChips(record) {
       const _module = this;
-      const order = ['subjects', 'domains', 'taxonomies']
-      _module.remainTagCount = 0
+      const order = ["subjects", "domains", "taxonomies"];
+      _module.remainTagCount = 0;
       _module.chips = [];
-      order.forEach(node => {
-        record[node].remainTagCount = 0
+      order.forEach((node) => {
+        record[node].remainTagCount = 0;
         _module.organizeChips(record, node, _module.getMaxItemShown);
       });
       for (let i = 0; i < order.length; i++) {
-        _module.remainTagCount += record[order[i]].remainTagCount
+        _module.remainTagCount += record[order[i]].remainTagCount;
       }
     },
     organizeChips(record, node, max_item_shown) {
@@ -118,9 +120,11 @@ const recordsCardUtils = {
         });
         return true;
       }
+      /* v8 ignore start */
       else {
         return false;
       }
+      /* v8 ignore stop */
     },
     // TODO: This is not used in the assistant
     /*
@@ -137,7 +141,6 @@ const recordsCardUtils = {
     }
      */
   },
-}
+};
 
 export default recordsCardUtils;
-

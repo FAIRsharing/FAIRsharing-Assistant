@@ -1,9 +1,5 @@
 {
   "queryName": "multiTagFilter",
   "queryParam": null,
-  "fields": [
-    "id",
-    "name",
-    "abbreviation"
-  ]
+  "fields": ["id", "name", "abbreviation"]
 }

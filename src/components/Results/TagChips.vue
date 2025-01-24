@@ -1,42 +1,43 @@
 <template>
-  <section :class="['mb-1 overflow-hidden',{'chips-container-fixed-height':!isColumn}]">
-    <v-chip-group
-      column
-    >
+  <section
+    :class="[
+      'mb-1 overflow-hidden',
+      { 'chips-container-fixed-height': !isColumn },
+    ]"
+  >
+    <div>
       <v-chip
-        v-for="(chip,index) in chips"
-        :key="chip.label+'_'+index"
-        text-color="white"
+        v-for="(chip, index) in chips"
+        :key="chip.label + '_' + index"
+        variant="flat"
         :color="getChipColor(chip)"
+        class="mr-2 my-1"
       >
         <KeywordTooltip
-          v-if="chip.type === 'subjects' || chip.type === 'domains' "
+          v-if="chip.type === 'subjects' || chip.type === 'domains'"
           :keyword="chip"
         />
-        <div
-          v-else
-          class="ellipse-width-80 text-center"
-        >
+        <div v-else class="ellipse-width-80 text-center">
           {{ chip.label }}
         </div>
       </v-chip>
       <v-chip
-        v-if="remainTagCount!==0 && remainTagCount!==1"
+        v-if="remainTagCount !== 0 && remainTagCount !== 1"
         disabled
-        outlined
+        variant="outlined"
         label
       >
         {{ `+${remainTagCount} more tags` }}
       </v-chip>
       <v-chip
-        v-else-if="remainTagCount===1"
+        v-else-if="remainTagCount === 1"
         disabled
-        outlined
+        variant="outlined"
         label
       >
         {{ `one more tag` }}
       </v-chip>
-    </v-chip-group>
+    </div>
   </section>
 </template>
 
@@ -55,21 +56,21 @@ export default {
   props: {
     record: {
       default: null,
-      type: Object
-    }
+      type: Object,
+    },
   },
   data() {
     return {
       chips: [],
       remainTagCount: 0,
       isColumn: false,
-      getMaxItemShown: 5
-    }
+      getMaxItemShown: 5,
+    };
   },
   mounted() {
     this.setChips(this.record);
-  }
-}
+  },
+};
 </script>
 
 <style scoped>

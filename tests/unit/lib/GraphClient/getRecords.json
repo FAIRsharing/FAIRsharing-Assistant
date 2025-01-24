@@ -20,39 +20,26 @@
         "description",
         {
           "queryName": "domains",
-          "fields": [
-            {"$ref": "keywords"},
-            "inFairsharing"
-          ]
+          "fields": [{ "$ref": "keywords" }, "inFairsharing"]
         },
         {
           "queryName": "subjects",
-          "fields": [
-            {"$ref": "keywords"}
-          ]
+          "fields": [{ "$ref": "keywords" }]
         },
         {
           "queryName": "taxonomies",
-          "fields": [
-            "label"
-          ]
+          "fields": ["label"]
         },
         {
           "queryName": "userDefinedTags",
-          "fields": [
-            "label"
-          ]
+          "fields": ["label"]
         },
         {
           "queryName": "recordAssociations",
           "fields": [
             {
               "name": "linkedRecord",
-              "fields": [
-                "name",
-                "id",
-                "registry"
-              ]
+              "fields": ["name", "id", "registry"]
             },
             "recordAssocLabel"
           ]
@@ -62,11 +49,7 @@
           "fields": [
             {
               "name": "fairsharingRecord",
-              "fields": [
-                "name",
-                "id",
-                "registry"
-              ]
+              "fields": ["name", "id", "registry"]
             },
             "recordAssocLabel"
           ]

@@ -23,26 +23,16 @@
     },
     {
       "name": "subjects",
-      "fields": [
-        "label",
-        "id",
-        "definitions",
-        "iri",
-        "synonyms"
-      ]
+      "fields": ["label", "id", "definitions", "iri", "synonyms"]
     },
     {
       "name": "taxonomies",
-      "fields": [
-        "label"
-      ]
+      "fields": ["label"]
     },
     {
       "name": "userDefinedTags",
-      "fields": [
-        "label"
-      ]
+      "fields": ["label"]
     },
-    {"$ref": "organisationLinks"}
+    { "$ref": "organisationLinks" }
   ]
 }

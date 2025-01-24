@@ -44,7 +44,6 @@
   width: 100%;
 }
 
-
 .half-height {
   height: 50%;
 }
@@ -278,5 +277,9 @@ end of utility classes
 }
 
 .margin-auto {
-  margin: 0 auto
+  margin: 0 auto;
+}
+
+.contain {
+  background-size: contain;
 }

@@ -8,14 +8,7 @@
     "model",
     {
       "name": "parents",
-      "fields": [
-        "label",
-        "id",
-        "definitions",
-        "iri",
-        "synonyms"
-      ]
+      "fields": ["label", "id", "definitions", "iri", "synonyms"]
     }
-
   ]
 }

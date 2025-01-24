@@ -4,341 +4,224 @@
       "filterName": "Uses persistent identifier",
       "filterQuery": "usesPersistentIdentifier",
       "refineToggle": false,
-      "filterTypes": [
-        "database"
-      ],
+      "filterTypes": ["database"],
       "tooltip": "Does this resource implement any identifier schema standard?"
     },
     {
       "filterName": "Recommends at least one standard",
       "filterQuery": "recommendsStandard",
       "refineToggle": false,
-      "filterTypes": [
-        "policies"
-      ],
+      "filterTypes": ["policies"],
       "tooltip": "Does this resource recommend at least one standard (of any type)?"
     },
     {
       "filterName": "Recommends at least one database",
       "filterQuery": "recommendsDatabase",
       "refineToggle": false,
-      "filterTypes": [
-        "policies"
-      ],
+      "filterTypes": ["policies"],
       "tooltip": "Does this resource recommend at least one database (of any type)?"
     },
     {
       "filterName": "Exceptions to data sharing",
       "filterQuery": "exceptionsToDataSharing",
       "refineToggle": false,
-      "filterTypes": [
-        "policies"
-      ],
+      "filterTypes": ["policies"],
       "tooltip": "'Yes' is applicable when this policy allow exceptions to the stated data sharing methods, otherwise 'no' is used."
     },
     {
       "filterName": "Data Protection",
       "filterQuery": "dataProtection",
       "refineToggle": false,
-      "filterTypes": [
-        "policies"
-      ],
+      "filterTypes": ["policies"],
       "tooltip": "'Yes' is applicable when the policy makes clear that data protection is part of RDM and provides links to appropriate documentation. When the policy addresses this topic poorly or not at all, 'no' is used."
     },
     {
       "filterName": "Updating of DMP",
       "filterQuery": "updatingOfDmp",
       "refineToggle": false,
-      "filterTypes": [
-        "policies"
-      ],
+      "filterTypes": ["policies"],
       "tooltip": "'Yes' is applicable when the policy makes clear that the DMP must be updated and versioned over the life of the project. When the policy addresses this topic poorly or not at all, 'no' is used."
     },
     {
       "filterName": "Licences for Outputs",
       "filterQuery": "licencesForOutputs",
       "refineToggle": false,
-      "filterTypes": [
-        "policies"
-      ],
+      "filterTypes": ["policies"],
       "tooltip": "'Yes' is applicable when the policy requires the use of appropriate licences for research outputs. When the policy only encourages their use, or does not address this topic, 'no' is used."
     },
     {
       "filterName": "Data Citation",
       "filterQuery": "dataCitation",
       "refineToggle": false,
-      "filterTypes": [
-        "policies"
-      ],
+      "filterTypes": ["policies"],
       "tooltip": "Does this policy have a clear statement about the expectations surrounding the citation of a broad range of research objects (data, software, researchers and other roles)?"
     },
     {
       "filterName": "Data Preservation",
       "filterQuery": "dataPreservation",
       "refineToggle": false,
-      "filterTypes": [
-        "policies"
-      ],
+      "filterTypes": ["policies"],
       "tooltip": "Yes' is applicable when the policy requires that selected data must be preserved for a set period of time. When the policy lacks clarity, or does not address this topic, 'no' is used."
     },
     {
       "filterName": "Monitoring of Compliance",
       "filterQuery": "monitoringOfCompliance",
       "refineToggle": false,
-      "filterTypes": [
-        "policies"
-      ],
+      "filterTypes": ["policies"],
       "tooltip": "'Yes' is applicable when the policy makes clear whether compliance will be monitored and provides clarity on related rewards or penalties. When the policy lacks clarity, or does not address this topic, 'no' is used."
     },
     {
       "filterName": "Data Availability Statement",
       "filterQuery": "dataAvailabilityStatement",
       "refineToggle": false,
-      "filterTypes": [
-        "policies"
-      ],
+      "filterTypes": ["policies"],
       "tooltip": "Does this policy require a data availability statement?"
     },
-  {
-    "filterName": "Has Publication",
-    "filterQuery": "hasPublication",
-    "refineToggle": false,
-    "filterTypes": [
-      "database",
-      "standards"
-    ],
-    "tooltip": "Does this resource have any publications which describe it?"
-  },
-  {
-    "filterName": "Recommended by at least one policy",
-    "filterQuery": "isRecommended",
-    "refineToggle": false,
-    "filterTypes": [
-      "standards"
-    ],
-    "tooltip": "Is this resource recommended by at least one policy (of any type)?"
-  },
-  {
-    "filterName": "Implemented by at least one database",
-    "filterQuery": "isImplemented",
-    "refineToggle": false,
-    "filterTypes": [
-      "standards"
-    ],
-    "tooltip": "Is this resource recommended by at least one database (of any type)?"
-  },
-  {
-    "filterName": "Data Preservation Policy",
-    "filterQuery": "dataPreservationPolicy",
-    "refineToggle": false,
-    "filterTypes": [
-      "database"
-    ],
-    "tooltip": "Policy that details how the preservation of the data is ensured. Does the repository provide information on its data preservation policies?"
-  },
-  {
-    "filterName": "Resource Sustainability",
-    "filterQuery": "resourceSustainability",
-    "refineToggle": false,
-    "filterTypes": [
-      "database"
-    ],
-    "tooltip": "Plan that gives information about sustainability plans for the repository: does the repository have a webpage or document that describes these?"
-  }
+    {
+      "filterName": "Has Publication",
+      "filterQuery": "hasPublication",
+      "refineToggle": false,
+      "filterTypes": ["database", "standards"],
+      "tooltip": "Does this resource have any publications which describe it?"
+    },
+    {
+      "filterName": "Recommended by at least one policy",
+      "filterQuery": "isRecommended",
+      "refineToggle": false,
+      "filterTypes": ["standards"],
+      "tooltip": "Is this resource recommended by at least one policy (of any type)?"
+    },
+    {
+      "filterName": "Implemented by at least one database",
+      "filterQuery": "isImplemented",
+      "refineToggle": false,
+      "filterTypes": ["standards"],
+      "tooltip": "Is this resource recommended by at least one database (of any type)?"
+    },
+    {
+      "filterName": "Data Preservation Policy",
+      "filterQuery": "dataPreservationPolicy",
+      "refineToggle": false,
+      "filterTypes": ["database"],
+      "tooltip": "Policy that details how the preservation of the data is ensured. Does the repository provide information on its data preservation policies?"
+    },
+    {
+      "filterName": "Resource Sustainability",
+      "filterQuery": "resourceSustainability",
+      "refineToggle": false,
+      "filterTypes": ["database"],
+      "tooltip": "Plan that gives information about sustainability plans for the repository: does the repository have a webpage or document that describes these?"
+    }
   ],
   "select": [
-  {
-    "filterName": "Life Cycle Status",
-    "filterQuery": "status",
-    "refineToggle": [],
-    "options": [
-      "ready",
-      "in_development",
-      "deprecated",
-      "uncertain"
-    ],
-    "filterTypes": [
-      "database",
-      "standards",
-      "policies"
-    ],
-    "tooltip": "An indication of whether the resource is currently maintained/supported."
-  },
-  {
-    "filterName": "Data Access Condition",
-    "filterQuery": "dataAccessCondition",
-    "refineToggle": [],
-    "options": [
-      "open",
-      "partially open",
-      "controlled",
-      "not found"
-    ],
-    "filterTypes": [
-      "database"
-    ],
-    "tooltip": "Data access mechanisms and terms to define access at repository and/or dataset level; what is the process through which access can be requested (and granted)? For example, if the data is freely available or subject to a request and approval process."
-  },
-  {
-    "filterName": "Data Curation",
-    "filterQuery": "dataCuration",
-    "refineToggle": [],
-    "options": [
-      "manual",
-      "automated",
-      "manual/automated",
-      "none",
-      "not found"
-    ],
-    "filterTypes": [
-      "database"
-    ],
-    "tooltip": "Review and annotation of the data performed by the repository (e.g. via a data submission tool that enforces some curation, automated, or manual curation)?"
-  },
-  {
-    "filterName": "Data Deposition Condition",
-    "filterQuery": "dataDepositionCondition",
-    "refineToggle": [],
-    "options": [
-      "open",
-      "controlled",
-      "not found",
-      "not applicable"
-    ],
-    "filterTypes": [
-      "database"
-    ],
-    "tooltip": "Are there any restrictions (e.g. by location, country, organization, etc.) on data deposition or can anyone from anywhere deposit data?"
-  },
-  {
-    "filterName": "Citation To Related Publications",
-    "filterQuery": "citationToRelatedPublications",
-    "refineToggle": [],
-    "options": [
-      "yes",
-      "no",
-      "not found"
-    ],
-    "filterTypes": [
-      "database"
-    ],
-    "tooltip": "Does the repository have a particular, standardized mechanism to link datasets to related articles or pre-prints?"
-  },
-  {
-    "filterName": "Data Access For Pre-Publication Review",
-    "filterQuery": "dataAccessForPrePublicationReview",
-    "refineToggle": [],
-    "options": [
-      "yes",
-      "no",
-      "not found"
-    ],
-    "filterTypes": [
-      "database"
-    ],
-    "tooltip": "Does the repository have a mechanism to facilitate peer review of embargoed data?"
-  },
-  {
-    "filterName": "Data Contact Information",
-    "filterQuery": "dataContactInformation",
-    "refineToggle": [],
-    "options": [
-      "yes",
-      "no",
-      "not found"
-    ],
-    "filterTypes": [
-      "database"
-    ],
-    "tooltip": "Does the repository show data depositor contact information on dataset landing pages?"
-  },
-  {
-    "filterName": "Data Versioning",
-    "filterQuery": "dataVersioning",
-    "refineToggle": [],
-    "options": [
-      "yes",
-      "no",
-      "not found"
-    ],
-    "filterTypes": [
-      "database"
-    ],
-    "tooltip": "Does the resource enable modifications to published data (e.g., to correct it or append additional information)? Is there a process to distinguish, link and access all public versions of the data?"
-  },
-  {
-    "filterName": "Mandated data sharing",
-    "filterQuery": "mandatedDataSharing",
-    "refineToggle": [],
-    "options": [
-      "required",
-      "suggested",
-      "not covered",
-      "other"
-    ],
-    "filterTypes": [
-      "policies"
-    ],
-    "tooltip": "Required' is used when the policy clearly states that data sharing is required and provides clarity on legitimate exceptions. 'Suggested' is used when data sharing is only encouraged. 'Not Covered' is selected when the policy addresses this topic poorly or not at all. Otherwise, 'Other' is used."
-  },
-  {
-    "filterName": "Sharing metadata",
-    "filterQuery": "sharingMetadata",
-    "refineToggle": [],
-    "options": [
-      "required",
-      "suggested",
-      "not covered",
-      "other"
-    ],
-    "filterTypes": [
-      "policies"
-    ],
-    "tooltip": "'Required' is used when the policy clearly states that metadata sharing is required and provides clarity on legitimate exceptions. 'Suggested' is used when metadata sharing is only encouraged. 'Not Covered' is selected when the policy addresses this topic poorly or not at all. Otherwise, 'Other' is used."
-  },
-  {
-    "filterName": "Sharing research software",
-    "filterQuery": "sharingResearchSoftware",
-    "refineToggle": [],
-    "options": [
-      "required",
-      "suggested",
-      "not covered",
-      "other"
-    ],
-    "filterTypes": [
-      "policies"
-    ],
-    "tooltip": "'Required' is used when the policy clearly states that sharing of research software is required and provides clarity on legitimate exceptions. 'Suggested' is used when sharing research software is only encouraged. 'Not Covered' is selected when the policy addresses this topic poorly or not at all. Otherwise, 'Other' is used."
-  },
+    {
+      "filterName": "Life Cycle Status",
+      "filterQuery": "status",
+      "refineToggle": [],
+      "options": ["ready", "in_development", "deprecated", "uncertain"],
+      "filterTypes": ["database", "standards", "policies"],
+      "tooltip": "An indication of whether the resource is currently maintained/supported."
+    },
+    {
+      "filterName": "Data Access Condition",
+      "filterQuery": "dataAccessCondition",
+      "refineToggle": [],
+      "options": ["open", "partially open", "controlled", "not found"],
+      "filterTypes": ["database"],
+      "tooltip": "Data access mechanisms and terms to define access at repository and/or dataset level; what is the process through which access can be requested (and granted)? For example, if the data is freely available or subject to a request and approval process."
+    },
+    {
+      "filterName": "Data Curation",
+      "filterQuery": "dataCuration",
+      "refineToggle": [],
+      "options": [
+        "manual",
+        "automated",
+        "manual/automated",
+        "none",
+        "not found"
+      ],
+      "filterTypes": ["database"],
+      "tooltip": "Review and annotation of the data performed by the repository (e.g. via a data submission tool that enforces some curation, automated, or manual curation)?"
+    },
+    {
+      "filterName": "Data Deposition Condition",
+      "filterQuery": "dataDepositionCondition",
+      "refineToggle": [],
+      "options": ["open", "controlled", "not found", "not applicable"],
+      "filterTypes": ["database"],
+      "tooltip": "Are there any restrictions (e.g. by location, country, organization, etc.) on data deposition or can anyone from anywhere deposit data?"
+    },
+    {
+      "filterName": "Citation To Related Publications",
+      "filterQuery": "citationToRelatedPublications",
+      "refineToggle": [],
+      "options": ["yes", "no", "not found"],
+      "filterTypes": ["database"],
+      "tooltip": "Does the repository have a particular, standardized mechanism to link datasets to related articles or pre-prints?"
+    },
+    {
+      "filterName": "Data Access For Pre-Publication Review",
+      "filterQuery": "dataAccessForPrePublicationReview",
+      "refineToggle": [],
+      "options": ["yes", "no", "not found"],
+      "filterTypes": ["database"],
+      "tooltip": "Does the repository have a mechanism to facilitate peer review of embargoed data?"
+    },
+    {
+      "filterName": "Data Contact Information",
+      "filterQuery": "dataContactInformation",
+      "refineToggle": [],
+      "options": ["yes", "no", "not found"],
+      "filterTypes": ["database"],
+      "tooltip": "Does the repository show data depositor contact information on dataset landing pages?"
+    },
+    {
+      "filterName": "Data Versioning",
+      "filterQuery": "dataVersioning",
+      "refineToggle": [],
+      "options": ["yes", "no", "not found"],
+      "filterTypes": ["database"],
+      "tooltip": "Does the resource enable modifications to published data (e.g., to correct it or append additional information)? Is there a process to distinguish, link and access all public versions of the data?"
+    },
+    {
+      "filterName": "Mandated data sharing",
+      "filterQuery": "mandatedDataSharing",
+      "refineToggle": [],
+      "options": ["required", "suggested", "not covered", "other"],
+      "filterTypes": ["policies"],
+      "tooltip": "Required' is used when the policy clearly states that data sharing is required and provides clarity on legitimate exceptions. 'Suggested' is used when data sharing is only encouraged. 'Not Covered' is selected when the policy addresses this topic poorly or not at all. Otherwise, 'Other' is used."
+    },
+    {
+      "filterName": "Sharing metadata",
+      "filterQuery": "sharingMetadata",
+      "refineToggle": [],
+      "options": ["required", "suggested", "not covered", "other"],
+      "filterTypes": ["policies"],
+      "tooltip": "'Required' is used when the policy clearly states that metadata sharing is required and provides clarity on legitimate exceptions. 'Suggested' is used when metadata sharing is only encouraged. 'Not Covered' is selected when the policy addresses this topic poorly or not at all. Otherwise, 'Other' is used."
+    },
+    {
+      "filterName": "Sharing research software",
+      "filterQuery": "sharingResearchSoftware",
+      "refineToggle": [],
+      "options": ["required", "suggested", "not covered", "other"],
+      "filterTypes": ["policies"],
+      "tooltip": "'Required' is used when the policy clearly states that sharing of research software is required and provides clarity on legitimate exceptions. 'Suggested' is used when sharing research software is only encouraged. 'Not Covered' is selected when the policy addresses this topic poorly or not at all. Otherwise, 'Other' is used."
+    },
     {
       "filterName": "Mandated DMP Creation",
       "filterQuery": "mandatedDmpCreation",
       "refineToggle": [],
-      "options": [
-        "required",
-        "suggested",
-        "not covered",
-        "other"
-      ],
-      "filterTypes": [
-        "policies"
-      ],
+      "options": ["required", "suggested", "not covered", "other"],
+      "filterTypes": ["policies"],
       "tooltip": "'Required' is used when the policy requires the development of a DMP. 'Suggested' is used when DMP creation is only encouraged. 'Not Covered' is selected when the policy addresses this topic poorly or not at all. Otherwise, 'Other' is used."
     },
     {
       "filterName": "Timing of DMP",
       "filterQuery": "timingOfDmp",
       "refineToggle": [],
-      "options": [
-        "pre-award",
-        "post-award",
-        "other",
-        "n/a"
-      ],
-      "filterTypes": [
-        "policies"
-      ],
+      "options": ["pre-award", "post-award", "other", "n/a"],
+      "filterTypes": ["policies"],
       "tooltip": "Either 'Pre-award' or 'Post-award' is chosen when the policy makes clear that the DMP should be prepared at one of these stages. 'Other' is used for any other stage, together with further information in the notes field. 'Not applicable' is used when the policy addresses this poorly or not at all."
     }
   ]

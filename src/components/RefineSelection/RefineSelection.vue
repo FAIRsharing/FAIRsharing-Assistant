@@ -2,7 +2,7 @@
   <div class="px-md-10 pa-5 mb-8">
     <div
       class="mb-5 d-flex flex-row"
-      :class="{'flex-column align-center': $vuetify.breakpoint.smAndDown}"
+      :class="{ 'flex-column align-center': $vuetify.display.smAndDown }"
     >
       <ResourceCard
         class="mb-5"
@@ -14,18 +14,17 @@
     </div>
     <div
       class="utilityButtons d-flex flex-row justify-space-around my-6 full-width margin-auto"
-      :class="{'flex-column align-center': $vuetify.breakpoint.smAndDown}"
+      :class="{ 'flex-column align-center': $vuetify.display.smAndDown }"
     >
       <ViewRecordsButton />
       <ResearchFieldsButton />
       <ClearAllSelections :refine-page="true" />
       <GoHome />
     </div>
-    <div
-      class="mb-5"
-    >
+    <div class="mb-5">
       <!-- help text -->
       <v-btn
+        id="showHelp"
         color="info"
         class="mb-2 ml-2"
         :disabled="help"
@@ -34,45 +33,33 @@
         Show help
       </v-btn>
       <!-- help -->
-      <v-dialog
-        v-model="help"
-        width="auto"
-      >
-        <v-card>
-          <v-card-title>
-            About this page
-          </v-card-title>
-          <!-- This html is from a safe source -->
-          <!-- eslint-disable vue/no-v-html -->
+      <v-dialog :model-value="help" width="auto">
+        <v-card class="py-4 px-6">
+          <v-card-title> About this page </v-card-title>
           <v-card-text>
             <!-- because javascript doesn't allow line breaks in text -->
-            <span
-              v-html="helpText.refinement.join('\n')"
-            />
+            <span>{{ helpText.refinement.join("\n") }}</span>
           </v-card-text>
-          <!-- eslint-enable vue/no-v-html -->
-          <v-card-actions>
-            <v-btn
-              color="primary"
-              @click="hideHelp()"
-            >
-              Close
-            </v-btn>
-          </v-card-actions>
+          <div>
+            <v-btn color="primary" @click="hideHelp()"> Close </v-btn>
+          </div>
         </v-card>
       </v-dialog>
       <!-- end of help text -->
-      <p>Below, you can select what sort of <strong>{{ getCurrentRegistry }}</strong> record you need.</p>
-      <p
-        v-if="getCurrentRegistry === 'Policy'"
-      >
-        Please note that curation is still in progress for our policies, and some search filters below might not give the expected result.
+      <p>
+        Below, you can select what sort of
+        <strong>{{ getCurrentRegistry }}</strong> record you need.
+      </p>
+      <p v-if="getCurrentRegistry === 'Policy'">
+        Please note that curation is still in progress for our policies, and
+        some search filters below might not give the expected result.
       </p>
     </div>
     <p>
-      Some text will go here to explain what's going on with the filters below, perhaps linking to Gitbook.
+      Some text will go here to explain what's going on with the filters below,
+      perhaps linking to Gitbook.
     </p>
-    <AddOnFilters @filterSource="capitaliseText(getQueryParams['fairsharingRegistry'][0], null)" />
+    <AddOnFilters />
   </div>
 </template>
 
@@ -83,15 +70,15 @@ import ResourceCard from "@/components/Others/ResourceCard.vue";
 import registryName from "@/utils/registryName";
 import SelectedTags from "@/components/Others/SelectedTags.vue";
 import registryIcons from "@/utils/registryIcon";
-import ViewRecordsButton from "@/components/Navigation/ViewRecordsButton.vue"
+import ViewRecordsButton from "@/components/Navigation/ViewRecordsButton.vue";
 import ClearAllSelections from "@/components/Navigation/ClearAllSelections.vue";
 import GoHome from "@/components/Navigation/HomeButton.vue";
-import ResearchFieldsButton from "@/components/Navigation/ResearchFieldsButton.vue"
+import ResearchFieldsButton from "@/components/Navigation/ResearchFieldsButton.vue";
 import stringUtils from "@/utils/stringUtils";
-import helpDialogs from "@/data/helpDialogs.json"
+import helpDialogs from "@/data/helpDialogs.json";
 
 export default {
-  name: 'RefineSelection',
+  name: "RefineSelection",
   components: {
     GoHome,
     ClearAllSelections,
@@ -99,32 +86,41 @@ export default {
     ResourceCard,
     AddOnFilters,
     ViewRecordsButton,
-    ResearchFieldsButton
+    ResearchFieldsButton,
   },
   mixins: [stringUtils],
-  data:() => {
+  data: () => {
     return {
       recordTypes: {},
       help: false,
-      helpText: helpDialogs
-    }
+      helpText: helpDialogs,
+    };
   },
-  computed:{
-    ...mapGetters("multiTagsStore", ['getQueryParams', 'getFairSharingRecords', 'getCurrentRegistry']),
+  computed: {
+    ...mapGetters("multiTagsStore", [
+      "getQueryParams",
+      "getFairSharingRecords",
+      "getCurrentRegistry",
+    ]),
     recordsAvailable() {
-      if (!this.getFairSharingRecords) {
+      if (
+        Array.isArray(this.getFairSharingRecords) &&
+        this.getFairSharingRecords.length === 0
+      ) {
         return 0;
       }
-      return this.getFairSharingRecords.filter(x => x.registry === this.getCurrentRegistry).length
+      return this.getFairSharingRecords.filter(
+        (x) => x.registry === this.getCurrentRegistry,
+      ).length;
     },
   },
   mounted() {
     // If a user has come here then they've set the refinement status by choosing a registry
     if (!this.getCurrentRegistry) {
-      this.$store.commit('multiTagsStore/setRefinedStatus', false);
-      this.$router.push('/researchfields');
+      this.$store.commit("multiTagsStore/setRefinedStatus", false);
+      this.$router.push("/researchfields");
     }
-    this.$store.commit('multiTagsStore/setRefinedStatus', true);
+    this.$store.commit("multiTagsStore/setRefinedStatus", true);
   },
   methods: {
     registryName,
@@ -134,14 +130,13 @@ export default {
     },
     hideHelp() {
       this.help = false;
-    }
-  }
+    },
+  },
 };
 </script>
 
 <style scoped>
 .utilityButtons {
-    max-width: 820px
+  max-width: 820px;
 }
-
 </style>

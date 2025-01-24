@@ -1,46 +1,41 @@
 <template>
   <div>
     <v-fade-transition v-if="recordsLoading">
-      <v-overlay
-        :absolute="false"
-        opacity="0.8"
-      >
-        <Loaders />
-      </v-overlay>
+      <div>
+        <v-overlay
+          v-model="recordsLoading"
+          class="align-center justify-center"
+          :absolute="false"
+          opacity="0.8"
+        >
+          <Loaders />
+        </v-overlay>
+      </div>
     </v-fade-transition>
     <v-expand-transition class="ma-5">
-      <v-container
-        fluid
-        class="py-0"
-      >
-        <v-row
-          justify="center"
-          no-gutters
-        >
+      <v-container fluid class="py-0">
+        <v-row justify="center" no-gutters>
           <v-col cols="12">
-            <p
-              class="pt-6"
-            >
-              Use this search box to find tags of interest.
-            </p>
+            <p class="pt-6">Use this search box to find tags of interest.</p>
             <v-text-field
               id="searchString"
               v-model="searchString"
-              append-icon="fa-search"
+              append-inner-icon="fa fa-search"
               label="Search names and synonyms"
-              outlined
+              variant="outlined"
               clearable
-              clear-icon="fa-times-circle"
+              clear-icon="fa fa-times-circle"
               :clear-cb="tagsLoading = false"
               hide-details
               class="pt-1"
             />
             <v-data-table
               v-model="recordTags"
+              v-model:search-input="searchString"
               :headers="headers"
               :items="tags"
               :items-per-page="10"
-              :footer-props="{'items-per-page-options': [10, 20, 30, 40, 50]}"
+              :footer-props="{ 'items-per-page-options': [10, 20, 30, 40, 50] }"
               item-key="label"
               class="elevation-1"
               show-select
@@ -48,28 +43,24 @@
               mobile-breakpoint="900"
               :loading="tagsLoading"
               loading-text="Please wait, tags are loading"
-              :search-input.sync="searchString"
+              return-object
             >
               <template #[`item.model`]="{ item }">
-                <div
-                  :class="colors[item.model] + '--text'"
-                  class="noBreak"
-                >
+                <div :class="colors[item.model] + '--text'" class="noBreak">
                   {{ item.model.toUpperCase().replace(/_/g, " ") }}
                 </div>
               </template>
               <template #[`item.label`]="{ item }">
                 <v-chip
-                  :class="colors[item.model] + ' white--text noBreak'"
+                  :class="colors[item.model] + 'text-white noBreak'"
+                  :color="colors[item.model]"
+                  variant="flat"
                 >
                   {{ capitaliseText(item.label, item.model) }}
                 </v-chip>
               </template>
               <template #[`item.synonyms`]="{ item }">
-                <div
-                  v-if="item.synonyms"
-                  class="font-italic limitWidth"
-                >
+                <div v-if="item.synonyms" class="font-italic limitWidth">
                   {{ item.synonyms.join(", ") }}
                 </div>
               </template>
@@ -85,12 +76,12 @@
 import stringUtils from "@/utils/stringUtils";
 import tagsQuery from "@/lib/GraphClient/queries/geTags.json";
 import GraphClient from "@/lib/GraphClient/GraphClient";
-import {mapActions, mapGetters} from "vuex";
+import { mapActions, mapGetters } from "vuex";
 import Loaders from "@/components/Loaders/Loaders.vue";
 
 const graphClient = new GraphClient();
 export default {
-  name: 'SearchTags',
+  name: "SearchTags",
   components: { Loaders },
   mixins: [stringUtils],
   data() {
@@ -101,39 +92,43 @@ export default {
       tagsLoading: false,
       headers: [
         {
-          text: "Type of keyword",
+          title: "Type of keyword",
           sortable: false,
-          value: "model"
+          value: "model",
         },
         {
-          text: "Name",
+          title: "Name",
           sortable: false,
-          value: "label"
+          value: "label",
         },
         {
-          text: "Definition",
+          title: "Definition",
           sortable: false,
-          value: "definitions",
-          filterable: false
+          value: "definitions[0]",
+          filterable: false,
         },
         {
-          text: "Alternative names",
+          title: "Alternative names",
           sortable: false,
-          value: "synonyms"
-        }
+          value: "synonyms",
+        },
       ],
       tags: [],
       colors: {
-        domain: 'domain_color',
-        taxonomy: 'taxonomic_color',
-        subject: 'subject_color',
-        user_defined_tag: 'tags_color'
+        domain: "domain_color",
+        taxonomy: "taxonomic_color",
+        subject: "subject_color",
+        user_defined_tag: "tags_color",
       },
-      recordTags: []
-    }
+      recordTags: [],
+    };
   },
   computed: {
-    ...mapGetters('multiTagsStore', ["getFairSharingRecords", "getQueryParams", "getSelectedTags"])
+    ...mapGetters("multiTagsStore", [
+      "getFairSharingRecords",
+      "getQueryParams",
+      "getSelectedTags",
+    ]),
   },
   watch: {
     getSelectedTags: {
@@ -141,7 +136,7 @@ export default {
         this.recordTags = newValue;
       },
     },
-    async recordTags (val) {
+    async recordTags(val) {
       let _module = this;
       // It's necessary to modify tags to reflect the store.
       // We can't have tags modifying the store whilst this happens.
@@ -155,23 +150,22 @@ export default {
       // TODO: refactor this for brevity
 
       // TODO: Bug is here; it doesn't check the store before modifying the query.
-      let queryParam =  _module.generateQuery(val)[0];
+      let queryParam = _module.generateQuery(val)[0];
       let run = _module.generateQuery(val)[1];
       if (run) {
         //let response = await graphClient.executeQuery(MULTI_TAGS);
         await _module.fetchMultiTagData(queryParam);
         // TODO: Handle errors from the server.
         _module.recordsFound = _module.getFairSharingRecords;
-        _module.$store.commit('multiTagsStore/setQueryParams', queryParam);
-        _module.$store.commit('multiTagsStore/setSelectedTags', val);
+        _module.$store.commit("multiTagsStore/setQueryParams", queryParam);
+        _module.$store.commit("multiTagsStore/setSelectedTags", val);
         _module.recordsLoading = false;
-      }
-      else {
-        _module.$store.commit('multiTagsStore/setSelectedTags', val);
+      } else {
+        _module.$store.commit("multiTagsStore/setSelectedTags", val);
         _module.recordsLoading = false;
       }
     },
-    async searchString(val){
+    async searchString(val) {
       if (!val || val.length < 3) {
         return;
       }
@@ -185,18 +179,19 @@ export default {
   mounted() {
     let _module = this;
     // TODO: Make sure that _module.tags matches the store
-    if (_module.getSelectedTags) { // TODO: Because the store is broken in EditTags.spec.js
-      _module.getSelectedTags.forEach(function(tag) {
+    if (_module.getSelectedTags) {
+      // TODO: Because the store is broken in EditTags.spec.js
+      _module.getSelectedTags.forEach(function (tag) {
         _module.recordTags.push(tag);
-      })
+      });
     }
     _module.justMounted = false;
   },
-  methods:{
-    ...mapActions('multiTagsStore', ['fetchMultiTagData', 'resetMultiTags']),
+  methods: {
+    ...mapActions("multiTagsStore", ["fetchMultiTagData", "resetMultiTags"]),
     async getTags(queryString) {
       let tagQueryCopy = JSON.parse(JSON.stringify(tagsQuery));
-      if (queryString) tagQueryCopy.queryParam = {q: queryString};
+      if (queryString) tagQueryCopy.queryParam = { q: queryString };
       let tags = await graphClient.executeQuery(tagQueryCopy);
       if (!tags.error) {
         this.tags = tags.searchTags;
@@ -206,69 +201,74 @@ export default {
     generateQuery(val) {
       let run = false;
       let query = this.getQueryParams;
-      let domains = val.filter(x => x.model === 'domain').map(x => x.label);
+      let domains = val.filter((x) => x.model === "domain").map((x) => x.label);
       if (domains.length) {
-        query['domains'] = domains;
+        query["domains"] = domains;
         run = true;
       }
-      let subjects = val.filter(x => x.model === 'subject').map(x => x.label);
+      let subjects = val
+        .filter((x) => x.model === "subject")
+        .map((x) => x.label);
       if (subjects.length) {
-        query['subjects'] = subjects;
+        query["subjects"] = subjects;
         run = true;
       }
-      let taxonomies = val.filter(x => x.model === 'taxonomy').map(x => x.label);
+      let taxonomies = val
+        .filter((x) => x.model === "taxonomy")
+        .map((x) => x.label);
       if (taxonomies.length) {
-        query['taxonomies'] = taxonomies;
+        query["taxonomies"] = taxonomies;
         run = true;
       }
-      let user_defined_tags = val.filter(x => x.model === 'user_defined_tag').map(x => x.label);
+      let user_defined_tags = val
+        .filter((x) => x.model === "user_defined_tag")
+        .map((x) => x.label);
       if (user_defined_tags.length) {
-        query['userDefinedTags'] = user_defined_tags;
+        query["userDefinedTags"] = user_defined_tags;
         run = true;
       }
-      return [query, run]
+      return [query, run];
     },
     selectSubjectAgnostic() {
       let _module = this;
       //find the relevant entry in tags and insert it into recordTags
-      const agnostic = _module.tags.find((element) => element.label === 'subject agnostic');
+      const agnostic = _module.tags.find(
+        (element) => element.label === "subject agnostic",
+      );
       // TODO: Why is this now null?
       if (agnostic) {
         _module.recordTags.push(agnostic);
       }
       // searchString
       //Vue.set(this.searchString, 'subject agnostic');
-      _module.searchString = 'subject agnostic';
-    }
-  }
-}
-
+      _module.searchString = "subject agnostic";
+    },
+  },
+};
 </script>
 
 <style scoped>
 table#tagsTable {
-    border-collapse: collapse;
-    width: 100%
+  border-collapse: collapse;
+  width: 100%;
 }
 
 table#tagsTable td.titleCell {
-    width: 100px;
-    white-space: nowrap;
-    text-align: center;
-    font-size: 16px;
-    font-weight: bolder;
-    height: 55px;
+  width: 100px;
+  white-space: nowrap;
+  text-align: center;
+  font-size: 16px;
+  font-weight: bolder;
+  height: 55px;
 }
 
 table#tagsTable tr {
-    border-collapse: collapse;
-    border-bottom: 10px solid white;
+  border-collapse: collapse;
+  border-bottom: 10px solid white;
 }
 
 .elevation-1 >>> .v-data-table-header-mobile__select {
-    justify-content: flex-end;
-    width: 100%;
+  justify-content: flex-end;
+  width: 100%;
 }
-
-
 </style>
