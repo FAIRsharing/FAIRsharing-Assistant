@@ -163,6 +163,7 @@ export default {
   position: absolute;
   width: 100% !important;
   height: 50px !important;
+  max-height: 100px !important;
   z-index: 1;
   left: 0;
   top: 0;
