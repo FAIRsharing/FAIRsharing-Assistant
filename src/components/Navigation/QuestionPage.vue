@@ -810,12 +810,10 @@ export default {
           // in the list of available tags from which users may select.
           let parents = [];
           tags = tags.searchTags;
+          const unique = [...new Set(tags.map(item => item.id))]
           tags.forEach((tag) => {
             tag.parents.forEach((parent) => {
-              if (
-                _module.tags.filter((x) => x.label === parent.label).length ===
-                0
-              ) {
+              if (!unique.includes(parent.id)) {
                 parent.model = tag.model;
                 parents.push(parent);
               }
