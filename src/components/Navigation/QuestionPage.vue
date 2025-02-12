@@ -716,7 +716,7 @@ export default {
             names.join(", "),
           );
         }
-        // Merge the previous query in case we're coming from a page where data have already been calculated.
+        // Merge the previous query in case we're coming from a page where data have already been calculated
         let existingQueryCopy = JSON.parse(JSON.stringify(this.getQueryParams));
         let mergedQuery = { ...existingQueryCopy, ...query };
         await this.fetchMultiTagData(mergedQuery);
