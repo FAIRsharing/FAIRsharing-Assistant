@@ -889,18 +889,23 @@ export default {
           // in the list of available tags from which users may select.
           let parents = [];
           tags = tags.searchTags;
-          const unique = [...new Set(tags.map(item => item.id))]
           tags.forEach((tag) => {
             tag.parents.forEach((parent) => {
-              if (!unique.includes(parent.id)) {
-                parent.model = tag.model;
-                parents.push(parent);
-              }
+              parent.model = tag.model;
+              parents.push(parent);
             });
             delete tag.parents;
           });
-          // TODO: process here to handle nested parents.
-          _module.tags = tags.concat(parents);
+          // This is due to duplicates appearing in the tags list
+          // under some circumstances.
+          let concatTags = tags.concat(parents);
+          let dedupedTags = concatTags.reduce((acc, obj) => {
+            if (!acc.some(o => o.id === obj.id)) {
+              acc.push(obj);
+            }
+            return acc;
+          }, []);
+          _module.tags = dedupedTags;
         }
       }
     },
