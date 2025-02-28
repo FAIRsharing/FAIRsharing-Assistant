@@ -38,7 +38,7 @@
           <v-card-title> About this page </v-card-title>
           <v-card-text>
             <!-- because javascript doesn't allow line breaks in text -->
-            <span>{{ helpText.refinement.join("\n") }}</span>
+            <span v-html='helpText.refinement.join("\n")'/>
           </v-card-text>
           <div>
             <v-btn color="primary" @click="hideHelp()"> Close </v-btn>
