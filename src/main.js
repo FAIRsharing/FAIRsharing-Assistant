@@ -11,10 +11,6 @@ import "roboto-fontface/css/roboto/roboto-fontface.css";
 import { loadFull } from "tsparticles";
 import { createHead } from "@unhead/vue";
 
-// configureCompat({
-//   MODE: 3,
-// });
-
 const head = createHead();
 
 const app = createApp(App)
