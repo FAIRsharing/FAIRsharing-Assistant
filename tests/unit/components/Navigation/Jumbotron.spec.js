@@ -29,16 +29,6 @@ describe("Jumbotron.vue", function () {
     expect(wrapper.vm.$options.name).toMatch("Jumbotron");
   });
 
-  it("can check if getJumbotronData has tempSubTitle text", () => {
-    const tempSubTitle = wrapper.get("[data-testid='tempSubTitle']");
-    expect(tempSubTitle.text()).toEqual("Beta");
-  });
-
-  it("can check getJumbotronData does not has tempSubTitle text (ELSE condition)", () => {
-    wrapper.vm.getJumbotronData["tempSubTitle"] = "";
-    expect(wrapper.find("#tempSubTitle").exists()).toBe(false);
-  });
-
   it("can check if getJumbotronData has subTitle text", () => {
     const subTitle = wrapper.get("[data-testid='subTitle']");
     expect(subTitle.text()).toEqual("Please answer the questions below...");

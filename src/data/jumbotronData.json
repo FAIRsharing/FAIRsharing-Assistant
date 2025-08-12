@@ -2,13 +2,11 @@
   {
     "pageName": "HomeView",
     "title": "FAIRsharing Assistant",
-    "tempSubTitle": "Beta",
     "subTitle": "Please answer the questions below..."
   },
   {
     "pageName": "SplashScreen",
-    "title": "FAIRsharing Assistant",
-    "tempSubTitle": "Beta"
+    "title": "FAIRsharing Assistant"
   },
   {
     "pageName": "StandardsView",
@@ -66,7 +64,6 @@
   },
   {
     "pageName": "Educational",
-    "title": "FAIRsharing Assistant",
-    "tempSubTitle": "Beta"
+    "title": "FAIRsharing Assistant"
   }
 ]
