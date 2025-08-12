@@ -2,7 +2,7 @@
   <div class="footer-container text-white pt-5 py-2 px-6">
     <!--  Licence and copy right  -->
     <p class="mb-0">
-      <sup>β</sup> The FAIRsharing Assistant is currently in beta. Please
+      <sup>β</sup>Please
       <a href="mailto:contact@fairsharing.org">contact us</a> if you wish to
       share feedback.
     </p>
