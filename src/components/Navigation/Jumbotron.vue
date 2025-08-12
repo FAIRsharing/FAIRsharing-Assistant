@@ -25,12 +25,6 @@
       style="z-index: 2"
     >
       {{ getJumbotronData["title"] }}
-      <em
-        v-if="getJumbotronData['tempSubTitle']"
-        data-testid="tempSubTitle"
-        class="text-green"
-        >{{ getJumbotronData["tempSubTitle"] }}</em
-      >
     </h1>
     <h2
       v-if="getJumbotronData['subTitle']"
